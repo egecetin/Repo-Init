@@ -1,4 +1,4 @@
-set(CACHE_FILE "build/BuildNumberCache.txt")
+set(CACHE_FILE "BuildNumberCache.txt")
 
 #Reading data from file + incrementation
 IF(EXISTS ${CACHE_FILE})

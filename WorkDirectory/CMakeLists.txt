@@ -1,5 +1,5 @@
-project(XXX)
 cmake_minimum_required(VERSION 3.16)
+project(XXX)
 
 # CMake Modules
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
@@ -13,16 +13,36 @@ if(NOT DEFINED REVISION_VERSION)
 endif()
 
 # Set properties
-set(CMAKE_PROJECT_VERSION "1.0.${BUILD_VERSION}.rev-${REVISION_VERSION}")
-message("${BoldBlue}Compiling Version ${CMAKE_PROJECT_VERSION}${ColourReset}")
+set(PROJECT_VERSION_MAJOR 0)
+set(PROJECT_VERSION_MINOR 0)
+set(PROJECT_VERSION_PATCH ${BUILD_VERSION})
+set(PROJECT_VERSION_TWEAK ${REVISION_VERSION})
+set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${BUILD_VERSION}-rev${REVISION_VERSION}")
+message("${BoldBlue}Compiling Version ${PROJECT_VERSION}${ColourReset}")
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug/lib/static)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug/lib/shared)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug/bin)
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/lib/static)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/lib/shared)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/bin)
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} -O0 -g")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -O0 -g")
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS} -DNDEBUG -O3")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -DNDEBUG -O3")
+
+add_compile_options(-Wall -Wextra -pedantic)
+configure_file(build_number.h.in build_number.h)
+
+FILE(GLOB ProjectSources 
+                ${PROJECT_SOURCE_DIR}/src/*.cpp 
+                ${PROJECT_SOURCE_DIR}/src/*.c 
+                ${PROJECT_SOURCE_DIR}/src/**/*.cpp 
+                ${PROJECT_SOURCE_DIR}/src/**/*.c)
 
 # Include directories
 include_directories(${PROJECT_SOURCE_DIR}/include)
@@ -30,9 +50,14 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 # Subdirectories
 # add_subdirectory(thirdparty/)
 
-# Update build number at every build (Should be at the end of file!)
+# Set Target
+add_executable(XXX ${ProjectSources})
+target_include_directories(XXX PUBLIC "${PROJECT_BINARY_DIR}")
+target_link_libraries(XXX)
+
+# Update build number at every build
 add_custom_command(
     TARGET XXX
     PRE_BUILD
-    COMMAND ${CMAKE_COMMAND} -P "cmake/AutoBuildNumber.cmake"
+    COMMAND ${CMAKE_COMMAND} -P "../cmake/AutoBuildNumber.cmake"
 )

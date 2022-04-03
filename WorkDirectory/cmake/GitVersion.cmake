@@ -4,7 +4,7 @@
 
 find_package(Git)
 if(GIT_FOUND)
-    execute_process(COMMAND ${GIT_EXECUTABLE} rev-parse HEAD RESULT_VARIABLE res_var OUTPUT_VARIABLE GIT_COM_ID ERROR_QUIET)
+    execute_process(COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD RESULT_VARIABLE res_var OUTPUT_VARIABLE GIT_COM_ID ERROR_QUIET)
     if( NOT ${res_var} EQUAL 0 )
         message(AUTHOR_WARNING " Git failed (not a repo). Build will not contain git revision info.")
     else()
