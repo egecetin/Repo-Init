@@ -11,6 +11,7 @@
 ## Scripts
 
 - create_installer      : Creates installer package using makeself
+- firstName             : Script to change placeholder name
 - init                  : Script used initialization of this repo
 - ldd-copy-dependencies : Script to copy dynamic dependencies of a binary
 - prepare-release       : Prepares a release package
