@@ -55,13 +55,17 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 # add_subdirectory(thirdparty/)
 
 # Set Target
-add_executable(XXX ${ProjectSources})
+add_library(XXX_Lib STATIC ${ProjectSources})
+target_include_directories(XXX_Lib PUBLIC "${PROJECT_BINARY_DIR}")
+target_link_libraries(XXX_Lib stdc++fs)
+
+add_executable(XXX ${PROJECT_SOURCE_DIR}/main.cpp)
 target_include_directories(XXX PUBLIC "${PROJECT_BINARY_DIR}")
-target_link_libraries(XXX)
+target_link_libraries(XXX XXX_Lib)
 
 # Update build number at every build
 add_custom_command(
-    TARGET XXX
+    TARGET XXX_Lib
     PRE_BUILD
     COMMAND ${CMAKE_COMMAND} -P "../cmake/AutoBuildNumber.cmake"
 )

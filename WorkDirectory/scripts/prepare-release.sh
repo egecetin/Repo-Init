@@ -8,4 +8,4 @@ cd ../build
 cmake -DCMAKE_BUILD_TYPE=Release -Wno-dev ..
 cmake --build .
 
-# Package
+# Copy rpm packages to dist
