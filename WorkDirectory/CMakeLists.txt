@@ -6,12 +6,13 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
 include(Colorize)
 include(GitVersion)
 include(SvnVersion)
+include(Doxy)
 
 if(NOT DEFINED REVISION_VERSION)
     message(SEND_ERROR "Can't find SVN or Git. The folder is not under version control.")
 endif()
 
-# Set properties
+# Set project properties
 set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_VERSION_MINOR 0)
 if(EXISTS "../BuildNumberCache.txt")
@@ -42,6 +43,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -DNDEBUG -O3")
 add_compile_options(-Wall -Wextra -pedantic)
 configure_file(build_number.h.in build_number.h)
 
+# Sources
 FILE(GLOB ProjectSources 
                 ${PROJECT_SOURCE_DIR}/src/*.cpp 
                 ${PROJECT_SOURCE_DIR}/src/*.c 
@@ -59,7 +61,7 @@ add_library(XXX_Lib STATIC ${ProjectSources})
 target_include_directories(XXX_Lib PUBLIC "${PROJECT_BINARY_DIR}")
 target_link_libraries(XXX_Lib stdc++fs)
 
-add_executable(XXX ${PROJECT_SOURCE_DIR}/main.cpp)
+add_executable(XXX ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_include_directories(XXX PUBLIC "${PROJECT_BINARY_DIR}")
 target_link_libraries(XXX XXX_Lib)
 
