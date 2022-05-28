@@ -18,12 +18,12 @@ mkdir -p /root/.config/neofetch
 mv -f scripts/data/neofetch_config.conf /root/.config/neofetch/config.conf
 echo "neofetch" >> /etc/profile.d/neofetch-init.sh
 
-echo "Installing IDRAC tools ..."
-curl -O https://linux.dell.com/repo/hardware/dsu/bootstrap.cgi
-bash bootstrap.cgi
-rm -f bootstrap.cgi
-yum install dell-system-update -y
-yum install srvadmin-* -y
+# echo "Installing IDRAC tools ..."
+# curl -O https://linux.dell.com/repo/hardware/dsu/bootstrap.cgi
+# bash bootstrap.cgi
+# rm -f bootstrap.cgi
+# yum install dell-system-update -y
+# yum install srvadmin-* -y
 
 echo "Installing Intel oneAPI ..."
 tee > /tmp/oneAPI.repo << EOF
