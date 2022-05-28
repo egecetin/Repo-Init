@@ -15,3 +15,4 @@
 - init                  : Script used initialization of this repo
 - ldd-copy-dependencies : Script to copy dynamic dependencies of a binary
 - prepare-release       : Prepares a release package
+- system-setup          : Installs desired packages on RedHat based systems
