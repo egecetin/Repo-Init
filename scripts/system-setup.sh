@@ -38,6 +38,9 @@ EOF
 mv /tmp/oneAPI.repo /etc/yum.repos.d
 yum install intel-basekit -y
 
+# Add config for VS Code
+mv -f scripts/data/cmake-tools-kits.json /root/.local/share/CMakeTools/
+
 echo "Detecting sensors ..."
 sensors-detect --auto > /dev/null
 

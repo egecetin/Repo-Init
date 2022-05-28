@@ -1,0 +1,16 @@
+[
+  {
+    "name": "GCC",
+    "compilers": {
+      "C": "/usr/bin/gcc",
+      "CXX": "/usr/bin/g++"
+    }
+  },
+  {
+    "name": "Intel Compiler",
+    "compilers": {
+      "C": "icc",
+      "CXX": "icpc"
+    }
+  }
+]
