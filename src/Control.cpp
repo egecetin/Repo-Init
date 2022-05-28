@@ -59,13 +59,6 @@ void controllerThread()
 		}
 		else
 			spdlog::debug("Controller receive timeout");
-
-		// Print total bandwidth
-		if (sigReadyFlag)
-		{
-			sigReadyFlag = false;
-			spdlog::trace("Current bandwidth {}", bandwidth);
-		}
 	}
 
 	// Cleanup
