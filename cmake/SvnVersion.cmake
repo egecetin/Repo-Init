@@ -2,7 +2,7 @@
 # the FindSubversion.cmake module is part of the standard distribution
 include(CustomFindSubversion)
 if(SUBVERSION_FOUND)
-    # extract working copy information for SOURCE_DIR into MY_XXX variables
+    # extract working copy information for SOURCE_DIR into MY_X variables
     Subversion_WC_INFO(${PROJECT_SOURCE_DIR} MY IGNORE_SVN_FAILURE)
     if(${MY_WC_REVISION})
         message("${BoldBlue}Current revision is (from SVN) ${MY_WC_REVISION}${ColourReset}")

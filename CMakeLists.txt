@@ -33,6 +33,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/lib/stati
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/lib/shared)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/bin)
 
+set(CMAKE_DEBUG_POSTFIX d)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} -O0 -g")
@@ -40,7 +41,6 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -O0 -g")
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS} -DNDEBUG -O3")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -DNDEBUG -O3")
 
-add_compile_options(-Wall -Wextra -pedantic)
 configure_file(build_number.h.in XXX_Version.h)
 
 # Sources
@@ -58,18 +58,32 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/spdlog/include)
 
+# Disable/Enalbe options of subprojects
+option(BUILD_TESTS "" OFF) # libzmq
+option(WITH_DOCS "" OFF) # libzmq
+option(CPPZMQ_BUILD_TESTS "" OFF)
+option(RAPIDJSON_BUILD_DOC "" OFF)
+option(RAPIDJSON_BUILD_EXAMPLES "" OFF)
+option(RAPIDJSON_BUILD_TESTS "" OFF)
+option(SPDLOG_BUILD_SHARED "" ON)
+
 # Subdirectories
-add_subdirectory(thirdparty/libzmq)
-add_subdirectory(thirdparty/cppzmq)
-add_subdirectory(thirdparty/rapidjson)
-add_subdirectory(thirdparty/spdlog)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/libzmq)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/spdlog)
+
+# Add tests
+add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
 
 # Set Target
-add_library(XXX_Lib STATIC ${ProjectSources})
+add_library(XXX_Lib SHARED ${ProjectSources})
+target_compile_options(XXX_Lib PUBLIC -Wall -Wextra -Werror -pedantic)
 target_include_directories(XXX_Lib PUBLIC "${PROJECT_BINARY_DIR}")
-target_link_libraries(XXX_Lib stdc++fs)
+target_link_libraries(XXX_Lib stdc++fs spdlog libzmq)
 
 add_executable(XXX ${PROJECT_SOURCE_DIR}/src/main.cpp)
+target_compile_options(XXX PUBLIC -Wall -Wextra -Werror -pedantic)
 target_include_directories(XXX PUBLIC "${PROJECT_BINARY_DIR}")
 target_link_libraries(XXX XXX_Lib)
 
