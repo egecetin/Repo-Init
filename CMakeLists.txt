@@ -41,7 +41,7 @@ set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS} -DNDEBUG -O3")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -DNDEBUG -O3")
 
 add_compile_options(-Wall -Wextra -pedantic)
-configure_file(build_number.h.in build_number.h)
+configure_file(build_number.h.in XXX_Version.h)
 
 # Sources
 FILE(GLOB ProjectSources 
