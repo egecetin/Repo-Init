@@ -58,7 +58,7 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/spdlog/include)
 
-# Disable/Enalbe options of subprojects
+# Disable/Enable options of subprojects
 option(BUILD_TESTS "" OFF) # libzmq
 option(WITH_DOCS "" OFF) # libzmq
 option(CPPZMQ_BUILD_TESTS "" OFF)
@@ -98,5 +98,5 @@ add_custom_command(
 add_custom_command(
     TARGET XXX
     POST_BUILD
-    COMMAND sh ../ldd-copy-dependencies.sh -b ../build/bin/Release/bin -t ../dist
+    COMMAND $<$<CONFIG:Release>:sh> $<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/scripts/ldd-copy-dependencies.sh> $<$<CONFIG:Release>:-b> $<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/build/Release/bin/XXX> $<$<CONFIG:Release>:-t> $<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist>
 )

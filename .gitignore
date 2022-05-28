@@ -1,5 +1,7 @@
 build
 dist
 doc
-Doxyfile
 .vscode
+
+BuildNumberCache.txt
+Doxyfile

@@ -165,13 +165,13 @@ void backtracer(int)
 		size = backtrace(array, 100);
 
 		// print strings for all entries
-		write(STDERR_FILENO, "Error signal\n", 14);
+		(void)!write(STDERR_FILENO, "Error signal\n", 14);
 		backtrace_symbols_fd(array, size, STDERR_FILENO);
-		write(STDERR_FILENO, "Error printed\n", 15);
+		(void)!write(STDERR_FILENO, "Error printed\n", 15);
 
 		sleep(3);
 
-		write(STDERR_FILENO, "Aborting\n", 9);
+		(void)!write(STDERR_FILENO, "Aborting\n", 9);
 		abort();
 	}
 }
@@ -181,5 +181,5 @@ void interruptFunc(int)
 	if (loopFlag)
 		loopFlag = false;
 	else
-		write(STDERR_FILENO, "Interrupt in progress...\n", 26);
+		(void)!write(STDERR_FILENO, "Interrupt in progress...\n", 26);
 }
