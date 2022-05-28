@@ -79,3 +79,10 @@ add_custom_command(
     PRE_BUILD
     COMMAND ${CMAKE_COMMAND} -P "../cmake/AutoBuildNumber.cmake"
 )
+
+# Update dist folder after build
+add_custom_command(
+    TARGET XXX
+    POST_BUILD
+    COMMAND sh ../ldd-copy-dependencies.sh -b ../build/bin/Release/bin -t ../dist
+)

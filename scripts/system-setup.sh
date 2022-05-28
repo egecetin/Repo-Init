@@ -14,7 +14,8 @@ wget https://github.com/dylanaraps/neofetch/archive/refs/tags/7.1.0.tar.gz
 tar -xzvf 7.1.0.tar.gz neofetch-7.1.0/
 make install -C neofetch-7.1.0
 rm -rf neofetch-7.1.0
-mv -f neofetch_config.conf /root/.config/neofetch/config.conf
+mkdir -p /root/.config/neofetch
+mv -f scripts/data/neofetch_config.conf /root/.config/neofetch/config.conf
 echo "neofetch" >> /etc/profile.d/neofetch-init.sh
 
 echo "Installing IDRAC tools ..."
