@@ -1,0 +1,12 @@
+[submodule "thirdparty/spdlog"]
+	path = thirdparty/spdlog
+	url = https://github.com/gabime/spdlog.git
+[submodule "thirdparty/rapidjson"]
+	path = thirdparty/rapidjson
+	url = https://github.com/Tencent/rapidjson.git
+[submodule "thirdparty/libzmq"]
+	path = thirdparty/libzmq
+	url = https://github.com/zeromq/libzmq.git
+[submodule "thirdparty/cppzmq"]
+	path = thirdparty/cppzmq
+	url = https://github.com/zeromq/cppzmq.git

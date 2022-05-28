@@ -53,8 +53,16 @@ FILE(GLOB ProjectSources
 # Include directories
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/libzmq)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/spdlog/include)
+
 # Subdirectories
-# add_subdirectory(thirdparty/)
+add_subdirectory(thirdparty/libzmq)
+add_subdirectory(thirdparty/cppzmq)
+add_subdirectory(thirdparty/rapidjson)
+add_subdirectory(thirdparty/spdlog)
 
 # Set Target
 add_library(XXX_Lib STATIC ${ProjectSources})
