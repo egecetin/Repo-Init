@@ -1,4 +1,5 @@
 build
 dist
-.vscode
+doc
 Doxyfile
+.vscode
