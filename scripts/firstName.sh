@@ -2,7 +2,7 @@
 
 read -p "Enter new name: " replace
 
-if [[ $search != "" && $replace != "" ]]; then
+if [[ $replace != "" ]]; then
 sed -i 's/XXX/$replace/' *.*
 sed -i 's/XXX/$replace/' **/*
 else
