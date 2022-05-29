@@ -14,10 +14,10 @@ FetchContent_MakeAvailable(googletest)
 include(CTest)
 enable_testing()
 
-FILE(GLOB ProjectTestSources 
-                ${PROJECT_SOURCE_DIR}/tests/*.cpp 
-                ${PROJECT_SOURCE_DIR}/tests/*.c 
-                ${PROJECT_SOURCE_DIR}/tests/**/*.cpp 
+FILE(GLOB ProjectTestSources
+                ${PROJECT_SOURCE_DIR}/tests/*.cpp
+                ${PROJECT_SOURCE_DIR}/tests/*.c
+                ${PROJECT_SOURCE_DIR}/tests/**/*.cpp
                 ${PROJECT_SOURCE_DIR}/tests/**/*.c)
 
 # Test cases

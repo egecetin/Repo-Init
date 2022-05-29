@@ -44,10 +44,10 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -DNDEBUG -O3")
 configure_file(build_number.h.in XXX_Version.h)
 
 # Sources
-FILE(GLOB ProjectSources 
-                ${PROJECT_SOURCE_DIR}/src/*.cpp 
-                ${PROJECT_SOURCE_DIR}/src/*.c 
-                ${PROJECT_SOURCE_DIR}/src/**/*.cpp 
+FILE(GLOB ProjectSources
+                ${PROJECT_SOURCE_DIR}/src/*.cpp
+                ${PROJECT_SOURCE_DIR}/src/*.c
+                ${PROJECT_SOURCE_DIR}/src/**/*.cpp
                 ${PROJECT_SOURCE_DIR}/src/**/*.c)
 
 # Include directories

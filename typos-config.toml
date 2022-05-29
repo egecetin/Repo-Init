@@ -1,0 +1,19 @@
+[files]
+extend-exclude = [  "codespell-ignore-list.txt",
+                    "build/",
+                    "cmake/",
+                    "dist/",
+                    "doc/",
+                    "scripts/",
+                    "thirdparty/"
+                 ]
+
+[default.extend-identifiers]
+
+
+[default.extend-words]
+
+
+[type.make]
+extend-glob = []
+check-file = false
