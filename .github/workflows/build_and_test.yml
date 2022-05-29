@@ -1,0 +1,25 @@
+name: Build and test
+on: [push, pull_request]
+
+env:
+  BUILD_DIR: build
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v2
+      - uses: pre-commit/action@v2.0.3
+
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Configure
+        run:  cmake -DCMAKE_BUILD_TYPE=Release -S . -B $BUILD_DIR
+      - name: Build
+        run:  cmake --build $BUILD_DIR -j
+      - name: Test
+        run:  $BUILD_DIR/Release/bin/XXX
