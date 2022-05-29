@@ -1,12 +1,12 @@
 [files]
 extend-exclude = [
-                    "codespell-ignore-list.txt",
-                    "build/",
-                    "cmake/",
-                    "dist/",
-                    "doc/",
-                    "scripts/",
-                    "thirdparty/"
+                    "build",
+                    "cmake",
+                    "dist",
+                    "doc",
+                    "scripts",
+                    "thirdparty",
+                    "codespell-ignore-list.txt"
                  ]
 
 [default.extend-identifiers]
