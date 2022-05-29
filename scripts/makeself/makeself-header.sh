@@ -308,7 +308,7 @@ MS_Decompress()
     else
         eval "$GUNZIP_CMD"
     fi
-    
+
     if test \$? -ne 0; then
         echo " ... Decompression failed." >&2
     fi
@@ -537,7 +537,7 @@ fi
 
 if test x"$NEED_ROOT" = xy -a \`id -u\` -ne 0; then
 	echo "Administrative privileges required for this archive (use su or sudo)" >&2
-	exit 1	
+	exit 1
 fi
 
 if test x"\$copy" \!= xphase2; then
