@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
       - name: Configure
         run:  cmake -DCMAKE_BUILD_TYPE=Release -S . -B $BUILD_DIR
       - name: Build
