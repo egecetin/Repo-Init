@@ -22,7 +22,7 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 										EXCLUDE "${PROJECT_SOURCE_DIR}/src/main.cpp" "${PROJECT_SOURCE_DIR}/thirdparty/*" "${PROJECT_SOURCE_DIR}/build/*" "${PROJECT_SOURCE_DIR}/tests/*")
 endif()
 
-# Enable test frameworks
+# Enable test framework
 include(CTest)
 enable_testing()
 
