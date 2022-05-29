@@ -13,3 +13,6 @@
 [submodule "tests/MemPlumber"]
 	path = tests/MemPlumber
 	url = https://github.com/seladb/MemPlumber.git
+[submodule "scripts/makeself"]
+	path = scripts/makeself
+	url = https://github.com/megastep/makeself.git
