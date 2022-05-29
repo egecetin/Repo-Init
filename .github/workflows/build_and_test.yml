@@ -26,4 +26,4 @@ jobs:
       - name: Build
         run:  cmake --build $BUILD_DIR -j
       - name: Test
-        run:  $BUILD_DIR/Release/bin/XXX
+        run:  $BUILD_DIR/Release/bin/TestMain
