@@ -5,4 +5,4 @@ rm -rf build/*
 
 # Compile Release
 cmake -DCMAKE_BUILD_TYPE=Release -Wno-dev -S . -B build
-cmake --build build --target all
+cmake --build build --target package

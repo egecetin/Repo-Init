@@ -118,9 +118,30 @@ add_custom_command(
 add_custom_command(
 	TARGET XXX
 	POST_BUILD
-	COMMAND $<$<CONFIG:Release>:find> $<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist> $<$<CONFIG:Release>:-maxdepth> $<$<CONFIG:Release>:1> $<$<CONFIG:Release>:-type> $<$<CONFIG:Release>:f> $<$<CONFIG:Release>:-delete>
-	COMMAND $<$<CONFIG:Release>:sh> $<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/scripts/ldd-copy-dependencies.sh> $<$<CONFIG:Release>:-b> $<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/XXX> $<$<CONFIG:Release>:-t> $<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist>
-	COMMAND $<$<CONFIG:Release>:sh> $<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/scripts/makeself.sh> $<$<CONFIG:Release>:--notemp> $<$<CONFIG:Release>:--sha256> $<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist> $<$<CONFIG:Release>:"${PROJECT_NAME}.${PROJECT_VERSION}.run"> $<$<CONFIG:Release>:"${PROJECT_NAME}">
+	COMMAND $<$<CONFIG:Release>:find>
+			$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/temp/>
+			$<$<CONFIG:Release>:-maxdepth>
+			$<$<CONFIG:Release>:1>
+			$<$<CONFIG:Release>:-type>
+			$<$<CONFIG:Release>:f>
+			$<$<CONFIG:Release>:-delete>
+	COMMAND $<$<CONFIG:Release>:sh>
+			$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/scripts/ldd-copy-dependencies.sh>
+			$<$<CONFIG:Release>:-b>
+			$<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/XXX>
+			$<$<CONFIG:Release>:-t>
+			$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/temp>
+	COMMAND $<$<CONFIG:Release>:sh>
+			$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/scripts/makeself/makeself.sh>
+			$<$<CONFIG:Release>:--notemp>
+			$<$<CONFIG:Release>:--sha256>
+			$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/temp>
+			$<$<CONFIG:Release>:"${PROJECT_NAME}.${PROJECT_VERSION}.run">
+			$<$<CONFIG:Release>:"${PROJECT_NAME}">
+	COMMAND $<$<CONFIG:Release>:mv>
+			$<$<CONFIG:Release>:-f>
+			$<$<CONFIG:Release>:"${PROJECT_NAME}.${PROJECT_VERSION}.run">
+			$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/makeself>
 	COMMENT "${BoldBlue}Updating dist folder${ColourReset}"
 )
 

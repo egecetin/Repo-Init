@@ -15,7 +15,7 @@ FetchContent_MakeAvailable(googletest)
 
 # Enable gcov
 include(CodeCoverage)
-setup_target_for_coverage_gcovr_html(NAME coverage EXECUTABLE TestMain DEPENDENCIES TestMain EXCLUDE "${PROJECT_SOURCE_DIR}/thirdparty/*" "${PROJECT_SOURCE_DIR}/build/*")
+setup_target_for_coverage_gcovr_html(NAME coverage EXECUTABLE TestMain DEPENDENCIES TestMain EXCLUDE "${PROJECT_SOURCE_DIR}/src/main.cpp" "${PROJECT_SOURCE_DIR}/thirdparty/*" "${PROJECT_SOURCE_DIR}/build/*")
 
 include(CTest)
 enable_testing()

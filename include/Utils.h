@@ -7,6 +7,7 @@
 
 #include <unistd.h>
 
+/// Variable to define path to config file
 #define CONFIG_FILE_PATH "config.json"
 
 // Config variables
