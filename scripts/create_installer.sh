@@ -8,7 +8,7 @@ do
 	case $option in
 		f) ARGUMENT_FILES="$OPTARG" ;;
 		e) ARGUMENT_MAKESELF="$OPTARG" ;;
-        v) ARGUMENT_VERSION="$OPTARG" ;;
+		v) ARGUMENT_VERSION="$OPTARG" ;;
 	esac
 done
 
