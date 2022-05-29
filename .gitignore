@@ -1,6 +1,7 @@
 build
 dist
 doc
+.git
 .vscode
 
 BuildNumberCache.txt
