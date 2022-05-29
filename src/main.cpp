@@ -1,5 +1,5 @@
-#include "Utils.h"
 #include "Control.h"
+#include "Utils.h"
 
 #include <signal.h>
 #include <thread>

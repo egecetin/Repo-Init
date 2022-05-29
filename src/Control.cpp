@@ -51,7 +51,7 @@ void controllerThread()
 				break;
 			}
 			default:
-				spdlog::error("Unknown command recieved from control");
+				spdlog::error("Unknown command received from control");
 				break;
 			}
 
