@@ -21,6 +21,8 @@ jobs:
           submodules: recursive
       - name: Configure
         run:  cmake -DCMAKE_BUILD_TYPE=Release -S . -B $BUILD_DIR
+      - name: Create Temp Directories
+        run:  mkdir -p dist/temp dist/rpm dist/makeself
       - name: Build
         run:  cmake --build $BUILD_DIR -j
       - name: Test
