@@ -1,25 +1,41 @@
 #include "Utils.h"
+#include "test-static-definitions.h"
 
 #include <gtest/gtest.h>
 
 TEST(Utils_Tests, InputParser_Tests)
 {
-    /*
-    // Test
-    int nArgc = 3;
-    char* nArgv[] = {"program", "argument1", "-v"};
-    InputParser parser(nArgc, nArgv);
+	// Test
+	int nArgc = 4;
+	char *nArgv[] = {"program", "argument1", "option1", "-argument2", NULL};
+	InputParser parser(nArgc, nArgv);
 
-    EXPECT_EQ("", parser.getCmdOption("program"));
-    EXPECT_TRUE(parser.cmdOptionExists("program"));
+	ASSERT_EQ("", parser.getCmdOption("program"));
+	ASSERT_FALSE(parser.cmdOptionExists("program"));
 
-    EXPECT_EQ("", parser.getCmdOption("argument1"));
-    EXPECT_TRUE(parser.cmdOptionExists("argument1"));
+	ASSERT_EQ("option1", parser.getCmdOption("argument1"));
+	ASSERT_TRUE(parser.cmdOptionExists("argument1"));
 
-    EXPECT_EQ("-v", parser.getCmdOption("-v"));
-    EXPECT_TRUE(parser.cmdOptionExists("-v"));
+	ASSERT_EQ("", parser.getCmdOption("-argument2"));
+	ASSERT_TRUE(parser.cmdOptionExists("-argument2"));
 
-    EXPECT_EQ("", parser.getCmdOption("unknownArg"));
-    EXPECT_FALSE(parser.cmdOptionExists("unknownArg"));
-    */
+	ASSERT_EQ("", parser.getCmdOption("unknownArg"));
+	ASSERT_FALSE(parser.cmdOptionExists("unknownArg"));
+}
+
+TEST(Utils_Tests, ConfigReader_Tests)
+{
+	ASSERT_TRUE(readConfig(TEST_CONFIG_PATH));
+
+	ASSERT_EQ(1000, ZMQ_SEND_TIMEOUT);
+	ASSERT_EQ(1000, ZMQ_RECV_TIMEOUT);
+	ASSERT_EQ("/tmp", CONTROL_IPC_PATH);
+
+	ASSERT_EQ("1000", readSingleConfig(TEST_CONFIG_PATH, "ZMQ_SEND_TIMEOUT"));
+	ASSERT_EQ("1000", readSingleConfig(TEST_CONFIG_PATH, "ZMQ_RECV_TIMEOUT"));
+	ASSERT_EQ("/tmp", readSingleConfig(TEST_CONFIG_PATH, "CONTROL_IPC_PATH"));
+
+	ASSERT_FALSE(readConfig("dummypath"));
+	ASSERT_EQ("", readSingleConfig("dummypath", "ZMQ_SEND_TIMEOUT"));
+	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_PATH, "dummyoption"));
 }

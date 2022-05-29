@@ -1,5 +1,6 @@
 #include "Control.h"
 
+// GCOVR_EXCL_START
 void controllerThread()
 {
 	// Init ZMQ connection
@@ -68,3 +69,4 @@ void controllerThread()
 
 	spdlog::debug("Control thread done");
 }
+// GCOVR_EXCL_STOP

@@ -23,6 +23,7 @@ volatile uintmax_t alarmCtr;
 volatile bool loopFlag;
 volatile bool sigReadyFlag;
 
+// GCOVR_EXCL_START
 void print_version(void)
 {
 	int major = 0, minor = 0, patch = 0;
@@ -34,6 +35,7 @@ void print_version(void)
 	spdlog::info("  CPPZMQ                          : v{}.{}.{}", CPPZMQ_VERSION_MAJOR, CPPZMQ_VERSION_MINOR,
 				 CPPZMQ_VERSION_PATCH);
 }
+// GCOVR_EXCL_STOP
 
 template <typename T> std::string stringify(const T &o)
 {
@@ -133,6 +135,7 @@ std::string readSingleConfig(const char *dir, std::string value)
 	return "";
 }
 
+// GCOVR_EXCL_START
 void alarmFunc(int)
 {
 	struct timespec ts;
@@ -148,7 +151,9 @@ void alarmFunc(int)
 	if (loopFlag)
 		alarm(ALARM_INTERVAL);
 }
+// GCOVR_EXCL_STOP
 
+// GCOVR_EXCL_START
 void backtracer(int)
 {
 	if (loopFlag)
@@ -175,7 +180,9 @@ void backtracer(int)
 		abort();
 	}
 }
+// GCOVR_EXCL_STOP
 
+// GCOVR_EXCL_START
 void interruptFunc(int)
 {
 	if (loopFlag)
@@ -183,3 +190,4 @@ void interruptFunc(int)
 	else
 		(void)!write(STDERR_FILENO, "Interrupt in progress...\n", 26);
 }
+// GCOVR_EXCL_STOP
