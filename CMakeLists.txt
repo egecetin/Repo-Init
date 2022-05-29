@@ -95,13 +95,13 @@ set_target_properties(
 	VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
 	SOVERSION ${PROJECT_VERSION_MAJOR}
 )
-target_compile_options(XXX_Lib PUBLIC -Wall -Wextra -Werror -pedantic)
-target_include_directories(XXX_Lib PUBLIC "${PROJECT_BINARY_DIR}")
+target_compile_options(XXX_Lib PRIVATE -Wall -Wextra -Werror -pedantic)
+target_include_directories(XXX_Lib PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(XXX_Lib stdc++fs spdlog libzmq)
 
 add_executable(XXX ${PROJECT_SOURCE_DIR}/src/main.cpp)
-target_compile_options(XXX PUBLIC -Wall -Wextra -Werror -pedantic)
-target_include_directories(XXX PUBLIC "${PROJECT_BINARY_DIR}")
+target_compile_options(XXX PRIVATE -Wall -Wextra -Werror -pedantic)
+target_include_directories(XXX PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(XXX XXX_Lib)
 
 install(TARGETS XXX XXX_Lib RUNTIME DESTINATION bin LIBRARY DESTINATION lib)

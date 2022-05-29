@@ -10,3 +10,6 @@
 [submodule "thirdparty/cppzmq"]
 	path = thirdparty/cppzmq
 	url = https://github.com/zeromq/cppzmq.git
+[submodule "tests/MemPlumber"]
+	path = tests/MemPlumber
+	url = https://github.com/seladb/MemPlumber.git
