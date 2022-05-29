@@ -13,9 +13,11 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Enable gcov
-include(CodeCoverage)
-setup_target_for_coverage_gcovr_html(NAME coverage EXECUTABLE TestMain DEPENDENCIES TestMain EXCLUDE "${PROJECT_SOURCE_DIR}/src/main.cpp" "${PROJECT_SOURCE_DIR}/thirdparty/*" "${PROJECT_SOURCE_DIR}/build/*")
+# Enable gcov if Debug
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+	include(CodeCoverage)
+	setup_target_for_coverage_gcovr_html(NAME coverage EXECUTABLE TestMain DEPENDENCIES TestMain EXCLUDE "${PROJECT_SOURCE_DIR}/src/main.cpp" "${PROJECT_SOURCE_DIR}/thirdparty/*" "${PROJECT_SOURCE_DIR}/build/*")
+endif()
 
 include(CTest)
 enable_testing()
@@ -28,8 +30,12 @@ FILE(GLOB ProjectTestSources
 
 # Test cases
 add_executable(TestMain ${ProjectTestSources})
-target_compile_options(TestMain PUBLIC --coverage)
-target_link_libraries(TestMain gtest_main XXX_Lib gcov)
+target_link_libraries(TestMain gtest_main XXX_Lib)
+
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+	target_compile_options(TestMain PUBLIC --coverage)
+	target_link_libraries(TestMain gcov)
+endif()
 
 include(GoogleTest)
 gtest_discover_tests(TestMain)
