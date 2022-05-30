@@ -79,13 +79,13 @@ option(RAPIDJSON_BUILD_TESTS "" OFF)
 option(SPDLOG_BUILD_SHARED "" ON)
 
 # Subdirectories
-add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/libzmq)
-add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq)
-add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson)
-add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/spdlog)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/libzmq EXCLUDE_FROM_ALL)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq EXCLUDE_FROM_ALL)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson EXCLUDE_FROM_ALL)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/spdlog EXCLUDE_FROM_ALL)
 
 # Add tests
-add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
+add_subdirectory(${PROJECT_SOURCE_DIR}/tests EXCLUDE_FROM_ALL)
 
 # Set Targets
 add_library(XXX_Lib SHARED ${ProjectSources})
@@ -104,7 +104,7 @@ target_compile_options(XXX PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories(XXX PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(XXX XXX_Lib)
 
-install(TARGETS XXX XXX_Lib RUNTIME DESTINATION bin LIBRARY DESTINATION lib)
+install(TARGETS XXX XXX_Lib spdlog libzmq RUNTIME DESTINATION bin LIBRARY DESTINATION lib)
 
 # Update build number at every build
 add_custom_command(
@@ -136,24 +136,22 @@ add_custom_command(
 			$<$<CONFIG:Release>:--notemp>
 			$<$<CONFIG:Release>:--sha256>
 			$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/temp>
-			$<$<CONFIG:Release>:"${PROJECT_NAME}.${PROJECT_VERSION}.run">
+			$<$<CONFIG:Release>:"${PROJECT_NAME}.${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}.run">
 			$<$<CONFIG:Release>:"${PROJECT_NAME}">
 	COMMAND $<$<CONFIG:Release>:mv>
 			$<$<CONFIG:Release>:-f>
-			$<$<CONFIG:Release>:"${PROJECT_NAME}.${PROJECT_VERSION}.run">
+			$<$<CONFIG:Release>:"${PROJECT_NAME}.${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}.run">
 			$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/makeself>
 	COMMENT "${BoldBlue}Updating dist folder${ColourReset}"
 )
 
 # CPack
-include(InstallRequiredSystemLibraries)
-set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
+set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
 set(CPACK_GENERATOR "RPM")
 set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
-set(CPACK_PACKAGE_RELEASE 1)
-set(CPACK_PACKAGE_CONTACT "")
-set(CPACK_PACKAGE_VENDOR "")
+set(CPACK_PACKAGE_RELEASE ${PROJECT_VERSION_PATCH})
 set(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
 set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}.${CMAKE_SYSTEM_PROCESSOR}")
+set(CPACK_RPM_SPEC_MORE_DEFINE "%define _build_id_links none")
 set(CPACK_OUTPUT_FILE_PREFIX ${PROJECT_SOURCE_DIR}/dist/rpm)
 include(CPack)
