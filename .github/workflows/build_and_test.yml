@@ -24,6 +24,6 @@ jobs:
       - name: Create Temp Directories
         run:  mkdir -p dist/temp dist/rpm dist/makeself
       - name: Build
-        run:  cmake --build $BUILD_DIR -j
+        run:  cmake --build $BUILD_DIR -j -t TestMain
       - name: Test
         run:  $BUILD_DIR/Release/bin/TestMain
