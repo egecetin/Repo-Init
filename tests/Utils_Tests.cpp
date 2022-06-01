@@ -7,7 +7,7 @@ TEST(Utils_Tests, InputParser_Tests)
 {
 	// Test
 	int nArgc = 4;
-	char *nArgv[] = {"program", "argument1", "option1", "-argument2", NULL};
+	char *nArgv[] = {"program", "argument1", "option1", "--argument2", NULL};
 	InputParser parser(nArgc, nArgv);
 
 	ASSERT_EQ("", parser.getCmdOption("program"));
@@ -16,8 +16,8 @@ TEST(Utils_Tests, InputParser_Tests)
 	ASSERT_EQ("option1", parser.getCmdOption("argument1"));
 	ASSERT_TRUE(parser.cmdOptionExists("argument1"));
 
-	ASSERT_EQ("", parser.getCmdOption("-argument2"));
-	ASSERT_TRUE(parser.cmdOptionExists("-argument2"));
+	ASSERT_EQ("", parser.getCmdOption("--argument2"));
+	ASSERT_TRUE(parser.cmdOptionExists("--argument2"));
 
 	ASSERT_EQ("", parser.getCmdOption("unknownArg"));
 	ASSERT_FALSE(parser.cmdOptionExists("unknownArg"));
