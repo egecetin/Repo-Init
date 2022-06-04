@@ -59,7 +59,7 @@ void controllerThread()
 			socketRep.send(zmq::const_buffer(&reply, sizeof(reply)));
 		}
 		else
-			spdlog::debug("Controller receive timeout");
+			spdlog::trace("Controller receive timeout");
 	}
 
 	// Cleanup
