@@ -7,9 +7,7 @@
 
 #include <spdlog/spdlog.h>
 
-#define LOG_LEVEL_ID 1
-#define ENABLE_MIRROR_ID 2
-#define DISABLE_MIRROR_ID 3
+constexpr uint32_t LOG_LEVEL_ID = (('L') | ('O' << 8) | ('G' << 16) | ('L' << 24));
 
 /**
  * @brief Thread function to receive control messages or config changes from ZMQ connection
