@@ -13,7 +13,7 @@ void controllerThread()
 	socketRep.set(zmq::sockopt::heartbeat_ttl, 3000);
 	socketRep.set(zmq::sockopt::heartbeat_timeout, 3000);
 
-	std::string hostAddrRep = "ipc://" + CONTROL_IPC_PATH + "/XXX";
+	std::string hostAddrRep = CONTROL_IPC_PATH + "/XXX";
 	try
 	{
 		socketRep.bind(hostAddrRep);
