@@ -4,16 +4,16 @@
 #include <chrono>
 #include <thread>
 
+#include <spdlog/spdlog.h>
 #include <zmq.hpp>
 #include <zmq_addon.hpp>
-#include <spdlog/spdlog.h>
 
 void TelnetConnectedCallback(SP_TelnetSession session)
 {
-	session->sendLine(	"\r\n"
-						"𝑲𝒆𝒆𝒑 𝒚𝒐𝒖𝒓 𝒆𝒚𝒆𝒔 𝒐𝒏 𝒕𝒉𝒆 𝒔𝒕𝒂𝒓𝒔 "
-						"𝒂𝒏𝒅 𝒚𝒐𝒖𝒓 𝒇𝒆𝒆𝒕 𝒐𝒏 𝒕𝒉𝒆 𝒈𝒓𝒐𝒖𝒏𝒅 "
-						"\r\n");
+	session->sendLine("\r\n"
+					  "𝑲𝒆𝒆𝒑 𝒚𝒐𝒖𝒓 𝒆𝒚𝒆𝒔 𝒐𝒏 𝒕𝒉𝒆 𝒔𝒕𝒂𝒓𝒔 "
+					  "𝒂𝒏𝒅 𝒚𝒐𝒖𝒓 𝒇𝒆𝒆𝒕 𝒐𝒏 𝒕𝒉𝒆 𝒈𝒓𝒐𝒖𝒏𝒅 "
+					  "\r\n");
 }
 
 void TelnetMessageCallback(SP_TelnetSession session, std::string line)
@@ -42,11 +42,10 @@ void telnetControlThread()
 		telnetServerPtr->update();
 		std::this_thread::sleep_for(std::chrono::milliseconds(50));
 	}
-	
+
 	// Closing server
 	telnetServerPtr->shutdown();
 	spdlog::debug("Telnet Control thread done");
-
 }
 // GCOVR_EXCL_STOP
 
