@@ -29,6 +29,8 @@ typedef int sock_int_converter;
 #define DEFAULT_BUFLEN 512
 // Timeout to automatic close session
 #define TELNET_TIMEOUT 120
+// Maximum number of concurrent sessions
+#define MAX_AVAILABLE_SESSION 5
 
 std::string TelnetSession::getPeerIP()
 {
@@ -452,12 +454,22 @@ void TelnetServer::acceptConnection()
 		closesocket(m_listenSocket);
 		return;
 	}
-	else
+	else if (m_sessions.size() >= MAX_AVAILABLE_SESSION)
 	{
+		spdlog::error("Can't accept too many connections {}", m_sessions.size());
+
+		// Create for only sending error
 		SP_TelnetSession s = std::make_shared<TelnetSession>(ClientSocket, shared_from_this());
-		m_sessions.push_back(s);
 		s->initialise();
+
+		s->sendLine("Too many active connections. Please try again later. \r\nClosing...");
+		s->closeClient();
+		return;
 	}
+
+	SP_TelnetSession s = std::make_shared<TelnetSession>(ClientSocket, shared_from_this());
+	m_sessions.push_back(s);
+	s->initialise();
 }
 
 void TelnetServer::update()
