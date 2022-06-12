@@ -1,4 +1,5 @@
 #include "Utils.h"
+#include "telnetservlib.hpp"
 #include "test-static-definitions.h"
 
 #include <gtest/gtest.h>
@@ -38,4 +39,9 @@ TEST(Utils_Tests, ConfigReader_Tests)
 	ASSERT_FALSE(readConfig("dummypath"));
 	ASSERT_EQ("", readSingleConfig("dummypath", "ZMQ_SEND_TIMEOUT"));
 	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_PATH, "dummyoption"));
+}
+
+TEST(Utils_Tests, Telnet_Tests)
+{
+	ASSERT_FALSE(TelnetSession::UNIT_TEST());
 }

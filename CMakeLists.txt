@@ -83,6 +83,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/libzmq EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/spdlog EXCLUDE_FROM_ALL)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/telnetserver EXCLUDE_FROM_ALL)
 
 # Add tests
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests EXCLUDE_FROM_ALL)
@@ -97,7 +98,7 @@ set_target_properties(
 )
 target_compile_options(XXX_Lib PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories(XXX_Lib PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries(XXX_Lib stdc++fs spdlog libzmq)
+target_link_libraries(XXX_Lib stdc++fs spdlog libzmq TelnetServer)
 
 add_executable(XXX ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_compile_options(XXX PRIVATE -Wall -Wextra -Werror -pedantic)
