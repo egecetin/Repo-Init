@@ -2,14 +2,14 @@
 
 void TelnetConnectedCallback(SP_TelnetSession session)
 {
-    spdlog::info("New connection received");
+	spdlog::info("New connection received");
 	session->sendLine("Wellcome!");
 }
 
 void TelnetMessageCallback(SP_TelnetSession session, std::string line)
 {
 	spdlog::trace("Received message {}", line);
-    session->sendLine("Copy that.");
+	session->sendLine("Copy that.");
 }
 
 // GCOVR_EXCL_START
@@ -39,9 +39,9 @@ void controllerThread()
 
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
-    telnetServerPtr->initialise(TELNET_PORT);
-    telnetServerPtr->connectedCallback(TelnetConnectedCallback);
-    telnetServerPtr->newLineCallback(TelnetMessageCallback);
+	telnetServerPtr->initialise(TELNET_PORT);
+	telnetServerPtr->connectedCallback(TelnetConnectedCallback);
+	telnetServerPtr->newLineCallback(TelnetMessageCallback);
 	spdlog::debug("Telnet server created at {}", TELNET_PORT);
 
 	while (loopFlag)

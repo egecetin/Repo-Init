@@ -80,41 +80,57 @@ typedef int SOCKET;
 class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 {
   public:
+	/// Constructor for session
 	TelnetSession(SOCKET ClientSocket, std::shared_ptr<TelnetServer> ts) : m_socket(ClientSocket), m_telnetServer(ts)
 	{
 		m_historyCursor = m_history.end();
 	};
 
-  public:
-	void sendLine(std::string data); // Send a line of data to the Telnet Server
-	void closeClient();				 // Finish the session
+	/// Send a line of data to the Telnet Server
+	void sendLine(std::string data);
+	/// Finish the session
+	void closeClient();
 
+	/// For internal unit tests
 	static int UNIT_TEST();
 
   protected:
-	void initialise(); //
-	void update();	   // Called every frame/loop by the Terminal Server
+	//
+	void initialise();
+	// Called every frame/loop by the Terminal Server
+	void update();
 
   private:
-	void sendPromptAndBuffer(); // Write the prompt and any data sat in the input buffer
-	void eraseLine();			// Erase all characters on the current line and move prompt back to beginning of line
+	// Write the prompt and any data sat in the input buffer
+	void sendPromptAndBuffer();
+	// Erase all characters on the current line and move prompt back to beginning of line
+	void eraseLine();
+	// Echo back message
 	void echoBack(char *buffer, u_long length);
+	//
 	static void stripNVT(std::string &buffer);
-	static void stripEscapeCharacters(std::string &buffer); // Remove all escape characters from the line
-	static bool processBackspace(
-		std::string
-			&buffer); // Takes backspace commands and removes them and the preceeding character from the m_buffer. //
-					  // Handles arrow key actions for history management. Returns true if the input buffer was changed.
-	void addToHistory(std::string line);			 // Add a command into the command history
-	bool processCommandHistory(std::string &buffer); // Handles arrow key actions for history management. Returns true
-													 // if the input buffer was changed.
+	// Remove all escape characters from the line
+	static void stripEscapeCharacters(std::string &buffer);
+	// Takes backspace commands and removes them and the preceding character from the m_buffer. Handles arrow key
+	// actions for history management. Returns true if the input buffer was changed.
+	static bool processBackspace(std::string &buffer);
+	// Add a command into the command history
+	void addToHistory(std::string line);
+	// Handles arrow key actions for history management. Returns true if the input buffer was changed.
+	bool processCommandHistory(std::string &buffer);
+	//
 	static std::vector<std::string> getCompleteLines(std::string &buffer);
 
   private:
-	SOCKET m_socket;							  // The Winsock socket
-	std::shared_ptr<TelnetServer> m_telnetServer; // Parent TelnetServer class
-	std::string m_buffer;						  // Buffer of input data (mid line)
-	std::list<std::string> m_history;			  // A history of all completed commands
+	// The socket
+	SOCKET m_socket;
+	// Parent TelnetServer class
+	std::shared_ptr<TelnetServer> m_telnetServer;
+	// Buffer of input data (mid line)
+	std::string m_buffer;
+	// A history of all completed commands
+	std::list<std::string> m_history;
+	// Iterator to completed commands
 	std::list<std::string>::iterator m_historyCursor;
 
 	friend TelnetServer;
@@ -129,13 +145,25 @@ typedef std::function<void(SP_TelnetSession, std::string)> FPTR_NewLineCallback;
 class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 {
   public:
+	/// Constructor for server
 	TelnetServer() : m_initialised(false), m_promptString(""){};
 
+	/**
+	 * @brief Initializes a new Telnet server
+	 *
+	 * @param[in] listenPort Port to listen
+	 * @param[in] promptString Prompt string for connected users
+	 * @return true If initialized
+	 * @return false otherwise
+	 */
 	bool initialise(u_long listenPort, std::string promptString = "");
+
+	/// Process new connections and messages
 	void update();
+
+	/// Closes the Telnet Server
 	void shutdown();
 
-  public:
 	void connectedCallback(FPTR_ConnectedCallback f)
 	{
 		m_connectedCallback = f;
@@ -180,11 +208,12 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	SOCKET m_listenSocket;
 	VEC_SP_TelnetSession m_sessions;
 	bool m_initialised;
-	std::string m_promptString; // A string that denotes the current prompt
+	// A string that denotes the current prompt
+	std::string m_promptString;
 
   protected:
-	FPTR_ConnectedCallback
-		m_connectedCallback; // Called after the telnet session is initialised. function(SP_TelnetSession) {}
-	FPTR_NewLineCallback
-		m_newlineCallback; // Called after every new line (from CR or LF)     function(SP_TelnetSession, std::string) {}
+	// Called after the telnet session is initialised. function(SP_TelnetSession) {}
+	FPTR_ConnectedCallback m_connectedCallback;
+	// Called after every new line (from CR or LF) function(SP_TelnetSession, std::string) {}
+	FPTR_NewLineCallback m_newlineCallback;
 };

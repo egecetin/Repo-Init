@@ -3,7 +3,7 @@
 #ifndef _WIN32
 // Define WIN32 types at Unix
 #define SD_SEND SHUT_WR
-#define SOCKET_ERROR u_long(-1)
+#define SOCKET_ERROR -1
 #define INVALID_SOCKET -1
 #define WSAEWOULDBLOCK 0
 
@@ -27,45 +27,44 @@ typedef int sock_int_converter;
 void TelnetSession::sendPromptAndBuffer()
 {
 	// Output the prompt
-	u_long iSendResult = send(m_socket, m_telnetServer->promptString().c_str(), (u_long)m_telnetServer->promptString().length(), 0);
-	if(iSendResult == SOCKET_ERROR)
-		std::cout << "Error on send" << std::endl;
+	int iSendResult =
+		send(m_socket, m_telnetServer->promptString().c_str(), m_telnetServer->promptString().length(), 0);
 
+	if (iSendResult == SOCKET_ERROR)
+		spdlog::error("Error on send {}", iSendResult);
 	if (m_buffer.length() > 0)
 	{
 		// resend the buffer
-		iSendResult = send(m_socket, m_buffer.c_str(), (u_long)m_buffer.length(), 0);
-		if(iSendResult == SOCKET_ERROR)
-			std::cout << "Error on send" << std::endl;
+		iSendResult = send(m_socket, m_buffer.c_str(), m_buffer.length(), 0);
+		if (iSendResult == SOCKET_ERROR)
+			spdlog::error("Error on send {}", iSendResult);
 	}
 }
 
 void TelnetSession::eraseLine()
 {
-	u_long iSendResult;
-	// send an erase line
-	iSendResult = send(m_socket, ANSI_ERASE_LINE.c_str(), (u_long)ANSI_ERASE_LINE.length(), 0);
+	// Send an erase line
+	int iSendResult = send(m_socket, ANSI_ERASE_LINE.c_str(), ANSI_ERASE_LINE.length(), 0);
+	if (iSendResult == SOCKET_ERROR)
+		spdlog::error("Error on send {}", iSendResult);
 
 	// Move the cursor to the beginning of the line
 	std::string moveBack = "\x1b[80D";
-	iSendResult = send(m_socket, moveBack.c_str(), (u_long)moveBack.length(), 0);
-	if(iSendResult == SOCKET_ERROR)
-		std::cout << "Error on send" << std::endl;
+	iSendResult = send(m_socket, moveBack.c_str(), moveBack.length(), 0);
+	if (iSendResult == SOCKET_ERROR)
+		spdlog::error("Error on send {}", iSendResult);
 }
 
 void TelnetSession::sendLine(std::string data)
 {
-	u_long iSendResult;
 	// If is something is on the prompt, wipe it off
 	if (m_telnetServer->interactivePrompt() || m_buffer.length() > 0)
-	{
 		eraseLine();
-	}
 
 	data.append("\r\n");
-	iSendResult = send(m_socket, data.c_str(), (u_long)data.length(), 0);
-	if(iSendResult == SOCKET_ERROR)
-		std::cout << "Error on send" << std::endl;
+	int iSendResult = send(m_socket, data.c_str(), data.length(), 0);
+	if (iSendResult == SOCKET_ERROR)
+		spdlog::error("Error on send {}", iSendResult);
 
 	if (m_telnetServer->interactivePrompt())
 		sendPromptAndBuffer();
@@ -73,15 +72,10 @@ void TelnetSession::sendLine(std::string data)
 
 void TelnetSession::closeClient()
 {
-	u_long iResult;
-
 	// attempt to cleanly shutdown the connection since we're done
-	iResult = shutdown(m_socket, SD_SEND);
+	int iResult = shutdown(m_socket, SD_SEND);
 	if (iResult == SOCKET_ERROR)
-	{
-		printf("shutdown failed with error: %d\n", WSAGetLastError());
-		return;
-	}
+		spdlog::error("Shutdown failed with error {}", WSAGetLastError());
 
 	// cleanup
 	closesocket(m_socket);
@@ -89,60 +83,53 @@ void TelnetSession::closeClient()
 
 void TelnetSession::echoBack(char *buffer, u_long length)
 {
-	// Echo the buffer back to the sender
-
 	// If you are an NVT command (i.e. first it of data is 255) then ignore the echo back
 	unsigned char firstItem = *buffer;
 	if (firstItem == 0xff)
 		return;
 
-	u_long iSendResult;
-	iSendResult = send(m_socket, buffer, length, 0);
-
+	int iSendResult = send(m_socket, buffer, length, 0);
 	if (iSendResult == SOCKET_ERROR && iSendResult != WSAEWOULDBLOCK)
 	{
-		printf("Send failed with error: %d\n", WSAGetLastError());
-		std::cout << "Closing session and socket.\r\n";
+		spdlog::error("Send failed with error {}", WSAGetLastError());
 		closesocket(m_socket);
-		return;
 	}
 }
 
 void TelnetSession::initialise()
 {
-	// get details of connection
+	// Get details of connection
 	SOCKADDR_IN client_info;
 	memset(&client_info, 0, sizeof(client_info));
 	int addrsize = sizeof(client_info);
 	getpeername(m_socket, (struct sockaddr *)&client_info, (sock_int_converter *)&addrsize);
 
-	char ip[16];
-	inet_ntop(AF_INET, &client_info.sin_addr, &ip[0], 16);
+	char ip[INET_ADDRSTRLEN];
+	inet_ntop(AF_INET, &client_info.sin_addr, &ip[0], INET_ADDRSTRLEN);
 
-	std::cout << "Client " << ip << " connected...\n";
+	spdlog::info("Connection received from {}", ip);
 
 	// Set the connection to be non-blocking
 	u_long iMode = 1;
 	ioctlsocket(m_socket, FIONBIO, &iMode);
 
 	// Set NVT mode to say that I will echo back characters.
-	u_long iSendResult;
 	unsigned char willEcho[3] = {0xff, 0xfb, 0x01};
-	iSendResult = send(m_socket, (char *)willEcho, 3, 0);
-	if(iSendResult == SOCKET_ERROR)
-		std::cout << "Error on send" << std::endl;
+	int iSendResult = send(m_socket, (char *)willEcho, 3, 0);
+	if (iSendResult == SOCKET_ERROR)
+		spdlog::error("Error on send {}", iSendResult);
 
 	// Set NVT requesting that the remote system not/dont echo back characters
 	unsigned char dontEcho[3] = {0xff, 0xfe, 0x01};
 	iSendResult = send(m_socket, (char *)dontEcho, 3, 0);
-	if(iSendResult == SOCKET_ERROR)
-		std::cout << "Error on send" << std::endl;
+	if (iSendResult == SOCKET_ERROR)
+		spdlog::error("Error on send {}", iSendResult);
 
-	// Set NVT mode to say that I will supress go-ahead. Stops remote clients from doing local linemode.
+	// Set NVT mode to say that I will suppress go-ahead. Stops remote clients from doing local linemode.
 	unsigned char willSGA[3] = {0xff, 0xfb, 0x03};
 	iSendResult = send(m_socket, (char *)willSGA, 3, 0);
-	if(iSendResult == SOCKET_ERROR)
-		std::cout << "Error on send" << std::endl;
+	if (iSendResult == SOCKET_ERROR)
+		spdlog::error("Error on send {}", iSendResult);
 
 	if (m_telnetServer->connectedCallback())
 		m_telnetServer->connectedCallback()(shared_from_this());
@@ -156,16 +143,13 @@ void TelnetSession::stripNVT(std::string &buffer)
 		unsigned char findChar = 0xff;
 		found = buffer.find_first_of((char)findChar);
 		if (found != std::string::npos && (found + 2) <= buffer.length() - 1)
-		{
 			buffer.erase(found, 3);
-		}
 	} while (found != std::string::npos);
 }
 
 void TelnetSession::stripEscapeCharacters(std::string &buffer)
 {
 	size_t found;
-
 	std::array<std::string, 4> cursors = {ANSI_ARROW_UP, ANSI_ARROW_DOWN, ANSI_ARROW_RIGHT, ANSI_ARROW_LEFT};
 
 	for (auto c : cursors)
@@ -174,9 +158,7 @@ void TelnetSession::stripEscapeCharacters(std::string &buffer)
 		{
 			found = buffer.find(c);
 			if (found != std::string::npos)
-			{
 				buffer.erase(found, c.length());
-			}
 		} while (found != std::string::npos);
 	}
 }
@@ -228,31 +210,25 @@ bool TelnetSession::processCommandHistory(std::string &buffer)
 		if (buffer.find(ANSI_ARROW_UP) != std::string::npos && m_history.size() > 0)
 		{
 			if (m_historyCursor != m_history.begin())
-			{
 				m_historyCursor--;
-			}
 			buffer = *m_historyCursor;
 
 			// Issue a cursor command to counter it
-			u_long iSendResult;
-			iSendResult = send(m_socket, ANSI_ARROW_DOWN.c_str(), (u_long)ANSI_ARROW_DOWN.length(), 0);
-			if(iSendResult == SOCKET_ERROR)
-				std::cout << "Error on send" << std::endl;
+			int iSendResult = send(m_socket, ANSI_ARROW_DOWN.c_str(), (u_long)ANSI_ARROW_DOWN.length(), 0);
+			if (iSendResult == SOCKET_ERROR)
+				spdlog::error("Error on send {}", iSendResult);
 			return true;
 		}
 		if (buffer.find(ANSI_ARROW_DOWN) != std::string::npos && m_history.size() > 0)
 		{
 			if (next(m_historyCursor) != m_history.end())
-			{
 				m_historyCursor++;
-			}
 			buffer = *m_historyCursor;
 
 			// Issue a cursor command to counter it
-			u_long iSendResult;
-			iSendResult = send(m_socket, ANSI_ARROW_UP.c_str(), (u_long)ANSI_ARROW_UP.length(), 0);
-			if(iSendResult == SOCKET_ERROR)
-				std::cout << "Error on send" << std::endl;
+			int iSendResult = send(m_socket, ANSI_ARROW_UP.c_str(), (u_long)ANSI_ARROW_UP.length(), 0);
+			if (iSendResult == SOCKET_ERROR)
+				spdlog::error("Error on send {}", iSendResult);
 			return true;
 		}
 		if (buffer.find(ANSI_ARROW_LEFT) != std::string::npos || buffer.find(ANSI_ARROW_RIGHT) != std::string::npos)
@@ -291,16 +267,12 @@ void TelnetSession::update()
 	readBytes = recv(m_socket, recvbuf, recvbuflen, 0);
 
 	// Check for errors from the read
-	int error = WSAGetLastError();
-	if (error != WSAEWOULDBLOCK && error != 0)
+	if (readBytes == SOCKET_ERROR)
 	{
-		std::cout << "Receive failed with error code: " << error << "\r\n";
-		std::cout << "Closing session and socket.\r\n";
+		spdlog::error("Receive failed with error code {}", WSAGetLastError());
 		closesocket(m_socket);
-		return;
 	}
-
-	if (readBytes > 0)
+	else if (readBytes > 0)
 	{
 		// Echo it back to the sender
 		echoBack(recvbuf, readBytes);
@@ -315,11 +287,10 @@ void TelnetSession::update()
 
 		// Add it to the received buffer
 		m_buffer.append(recvbuf, readBytes);
-
-		stripNVT(m_buffer); // Remove telnet negotiation sequences
+		// Remove telnet negotiation sequences
+		stripNVT(m_buffer);
 
 		bool requirePromptReprint = false;
-
 		if (m_telnetServer->interactivePrompt())
 		{
 			if (processCommandHistory(m_buffer)) // Read up and down arrow keys and scroll through history
@@ -335,7 +306,6 @@ void TelnetSession::update()
 		{
 			if (m_telnetServer->newLineCallBack())
 				m_telnetServer->newLineCallBack()(shared_from_this(), line);
-
 			addToHistory(line);
 		}
 
@@ -379,22 +349,15 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString)
 {
 	if (m_initialised)
 	{
-		std::cout << "This Telnet Server instance has already been initialised. Please shut it down before "
-					 "reinitialising it.";
+		spdlog::error("This Telnet Server has already been initialised");
 		return false;
 	}
 
 	m_listenPort = listenPort;
 	m_promptString = promptString;
+	spdlog::info("Starting Telnet Server on port {}", std::to_string(m_listenPort));
 
-	std::cout << "Starting Telnet Server on port " << std::to_string(m_listenPort) << "\n";
-
-	u_long iResult;
-	struct addrinfo *result = NULL;
-	struct addrinfo hints;
-
-	m_listenSocket = INVALID_SOCKET;
-
+	int iResult;
 #ifdef _WIN32
 	WSADATA wsaData;
 
@@ -402,10 +365,11 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString)
 	iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
 	if (iResult != 0)
 	{
-		printf("WSAStartup failed with error: %d\n", iResult);
+		spdlog::error("WSAStartup failed with error {}", iResult);
 		return false;
 	}
 #endif
+	struct addrinfo hints;
 	memset(&hints, 0, sizeof(hints));
 
 	hints.ai_family = AF_INET;
@@ -414,10 +378,11 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString)
 	hints.ai_flags = AI_PASSIVE;
 
 	// Resolve the server address and port
+	struct addrinfo *result = NULL;
 	iResult = getaddrinfo(NULL, std::to_string(m_listenPort).c_str(), &hints, &result);
 	if (iResult != 0)
 	{
-		printf("getaddrinfo failed with error: %ld\n", iResult);
+		spdlog::error("getaddrinfo failed with error {}", iResult);
 		return false;
 	}
 
@@ -425,7 +390,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString)
 	m_listenSocket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
 	if (m_listenSocket == INVALID_SOCKET)
 	{
-		printf("socket failed with error: %d\n", WSAGetLastError());
+		spdlog::error("Socket failed with error {}", WSAGetLastError());
 		freeaddrinfo(result);
 		return false;
 	}
@@ -434,7 +399,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString)
 	iResult = bind(m_listenSocket, result->ai_addr, (int)result->ai_addrlen);
 	if (iResult == SOCKET_ERROR)
 	{
-		printf("bind failed with error: %d\n", WSAGetLastError());
+		spdlog::error("Bind failed with error {}", WSAGetLastError());
 		freeaddrinfo(result);
 		closesocket(m_listenSocket);
 		return false;
@@ -445,7 +410,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString)
 	iResult = listen(m_listenSocket, SOMAXCONN);
 	if (iResult == SOCKET_ERROR)
 	{
-		printf("listen failed with error: %d\n", WSAGetLastError());
+		spdlog::error("Listen failed with error {}", WSAGetLastError());
 		closesocket(m_listenSocket);
 		return false;
 	}
@@ -460,7 +425,7 @@ void TelnetServer::acceptConnection()
 	ClientSocket = accept(m_listenSocket, NULL, NULL);
 	if (ClientSocket == INVALID_SOCKET)
 	{
-		printf("accept failed with error: %d\n", WSAGetLastError());
+		spdlog::error("Accept failed with error {}", WSAGetLastError());
 		closesocket(m_listenSocket);
 		return;
 	}
@@ -482,26 +447,20 @@ void TelnetServer::update()
 	timeout.tv_sec = 0; // Zero timeout (poll)
 	timeout.tv_usec = 0;
 
+	// If there is a connection pending, accept it.
 	if (select(m_listenSocket + 1, &readSet, NULL, NULL, &timeout) > 0)
-	{
-		// There is a connection pending, so accept it.
 		acceptConnection();
-	}
 
 	// Update all the telnet Sessions that are currently in flight.
 	for (SP_TelnetSession ts : m_sessions)
-	{
 		ts->update();
-	}
 }
 
 void TelnetServer::shutdown()
 {
 	// Attempt to cleanly close every telnet session in flight.
 	for (SP_TelnetSession ts : m_sessions)
-	{
 		ts->closeClient();
-	}
 	m_sessions.clear();
 
 	// No longer need server socket so close it.
