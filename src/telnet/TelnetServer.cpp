@@ -1,4 +1,5 @@
 #include "telnet/TelnetServer.h"
+#include "Utils.h"
 
 #include <spdlog/spdlog.h>
 
@@ -27,12 +28,26 @@ typedef int sock_int_converter;
 // Receive buffer length
 #define DEFAULT_BUFLEN 512
 // Timeout to automatic close session
-#define TIMEOUT 120
+#define TELNET_TIMEOUT 120
+
+std::string TelnetSession::getPeerIP()
+{
+	SOCKADDR_IN client_info;
+	memset(&client_info, 0, sizeof(client_info));
+	int addrsize = sizeof(client_info);
+	getpeername(m_socket, (struct sockaddr *)&client_info, (sock_int_converter *)&addrsize);
+
+	char ip[INET_ADDRSTRLEN];
+	inet_ntop(AF_INET, &client_info.sin_addr, &ip[0], INET_ADDRSTRLEN);
+
+	return ip;
+}
 
 void TelnetSession::sendPromptAndBuffer()
 {
 	// Output the prompt
-	int iSendResult = send(m_socket, m_telnetServer->promptString().c_str(), m_telnetServer->promptString().length(), 0);
+	int iSendResult =
+		send(m_socket, m_telnetServer->promptString().c_str(), m_telnetServer->promptString().length(), 0);
 
 	if (iSendResult == SOCKET_ERROR)
 		spdlog::error("Error on send {}", iSendResult);
@@ -85,6 +100,11 @@ void TelnetSession::closeClient()
 	closesocket(m_socket);
 }
 
+bool TelnetSession::checkTimeout()
+{
+	return (currentTime - lastSeenTime > TELNET_TIMEOUT);
+}
+
 void TelnetSession::echoBack(char *buffer, u_long length)
 {
 	// If you are an NVT command (i.e. first it of data is 255) then ignore the echo back
@@ -103,15 +123,7 @@ void TelnetSession::echoBack(char *buffer, u_long length)
 void TelnetSession::initialise()
 {
 	// Get details of connection
-	SOCKADDR_IN client_info;
-	memset(&client_info, 0, sizeof(client_info));
-	int addrsize = sizeof(client_info);
-	getpeername(m_socket, (struct sockaddr *)&client_info, (sock_int_converter *)&addrsize);
-
-	char ip[INET_ADDRSTRLEN];
-	inet_ntop(AF_INET, &client_info.sin_addr, &ip[0], INET_ADDRSTRLEN);
-
-	spdlog::info("Connection received from {}", ip);
+	spdlog::info("Connection received from {}", getPeerIP());
 
 	// Set the connection to be non-blocking
 	u_long iMode = 1;
@@ -137,6 +149,9 @@ void TelnetSession::initialise()
 
 	if (m_telnetServer->connectedCallback())
 		m_telnetServer->connectedCallback()(shared_from_this());
+
+	// Set last seen
+	lastSeenTime = currentTime;
 }
 
 void TelnetSession::stripNVT(std::string &buffer)
@@ -279,6 +294,9 @@ void TelnetSession::update()
 	}
 	else if (readBytes > 0)
 	{
+		// Update last seen
+		lastSeenTime = currentTime;
+
 		// Echo it back to the sender
 		echoBack(recvbuf, readBytes);
 
@@ -457,8 +475,17 @@ void TelnetServer::update()
 		acceptConnection();
 
 	// Update all the telnet Sessions that are currently in flight.
-	for (SP_TelnetSession ts : m_sessions)
-		ts->update();
+	for (size_t idx = 0; idx < m_sessions.size(); ++idx)
+	{
+		m_sessions[idx]->update();
+		if (m_sessions[idx]->checkTimeout())
+		{
+			spdlog::info("Connection timeout to {}", m_sessions[idx]->getPeerIP());
+			m_sessions[idx]->closeClient();
+			m_sessions.erase(m_sessions.begin() + idx);
+			--idx;
+		}
+	}
 }
 
 void TelnetServer::shutdown()

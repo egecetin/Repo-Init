@@ -84,6 +84,8 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	void sendLine(std::string data);
 	/// Finish the session
 	void closeClient();
+	/// Checks the connection timeout
+	bool checkTimeout();
 
 	/// For internal unit tests
 	static int UNIT_TEST();
@@ -95,6 +97,8 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	void update();
 
   private:
+	// Returns ip of the peer
+	std::string getPeerIP();
 	// Write the prompt and any data sat in the input buffer
 	void sendPromptAndBuffer();
 	// Erase all characters on the current line and move prompt back to beginning of line
@@ -115,7 +119,8 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	//
 	static std::vector<std::string> getCompleteLines(std::string &buffer);
 
-  private:
+	// Last seen
+	time_t lastSeenTime;
 	// The socket
 	SOCKET m_socket;
 	// Parent TelnetServer class
