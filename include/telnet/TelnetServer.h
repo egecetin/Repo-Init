@@ -13,17 +13,11 @@
 #endif
 
 #include <array>
-#include <assert.h>
 #include <functional>
-#include <iterator>
 #include <list>
 #include <memory>
 #include <string>
 #include <vector>
-
-#include <string.h>
-
-#include <spdlog/spdlog.h>
 
 class TelnetServer;
 class TelnetSession;

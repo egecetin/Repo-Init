@@ -1,5 +1,7 @@
 #include "telnet/TelnetServer.h"
 
+#include <spdlog/spdlog.h>
+
 #ifndef _WIN32
 // Define WIN32 types at Unix
 #define SD_SEND SHUT_WR
@@ -22,13 +24,15 @@ typedef socklen_t sock_int_converter;
 typedef int sock_int_converter;
 #endif
 
+// Receive buffer length
 #define DEFAULT_BUFLEN 512
+// Timeout to automatic close session
+#define TIMEOUT 120
 
 void TelnetSession::sendPromptAndBuffer()
 {
 	// Output the prompt
-	int iSendResult =
-		send(m_socket, m_telnetServer->promptString().c_str(), m_telnetServer->promptString().length(), 0);
+	int iSendResult = send(m_socket, m_telnetServer->promptString().c_str(), m_telnetServer->promptString().length(), 0);
 
 	if (iSendResult == SOCKET_ERROR)
 		spdlog::error("Error on send {}", iSendResult);
@@ -267,7 +271,8 @@ void TelnetSession::update()
 	readBytes = recv(m_socket, recvbuf, recvbuflen, 0);
 
 	// Check for errors from the read
-	if (readBytes == SOCKET_ERROR)
+
+	if (readBytes == SOCKET_ERROR && WSAGetLastError() != EAGAIN && WSAGetLastError() != WSAEWOULDBLOCK)
 	{
 		spdlog::error("Receive failed with error code {}", WSAGetLastError());
 		closesocket(m_socket);

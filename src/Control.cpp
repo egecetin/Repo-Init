@@ -1,4 +1,9 @@
 #include "Control.h"
+#include "telnet/TelnetServer.h"
+
+#include <zmq.hpp>
+#include <zmq_addon.hpp>
+#include <spdlog/spdlog.h>
 
 void TelnetConnectedCallback(SP_TelnetSession session)
 {
@@ -9,7 +14,11 @@ void TelnetConnectedCallback(SP_TelnetSession session)
 void TelnetMessageCallback(SP_TelnetSession session, std::string line)
 {
 	spdlog::trace("Received message {}", line);
-	session->sendLine("Copy that.");
+
+	// Send received message for user terminal
+	session->sendLine(line);
+
+	// Process received message
 }
 
 // GCOVR_EXCL_START
@@ -39,7 +48,7 @@ void controllerThread()
 
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
-	telnetServerPtr->initialise(TELNET_PORT);
+	telnetServerPtr->initialise(TELNET_PORT, "> ");
 	telnetServerPtr->connectedCallback(TelnetConnectedCallback);
 	telnetServerPtr->newLineCallback(TelnetMessageCallback);
 	spdlog::debug("Telnet server created at {}", TELNET_PORT);
