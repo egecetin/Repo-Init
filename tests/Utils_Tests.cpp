@@ -61,37 +61,13 @@ TEST(Utils_Tests, Telnet_Tests)
 	shResult =
 		std::async(std::launch::async, []() { return system(("expect " + std::string(TEST_TELNET_SH_PATH)).c_str()); });
 
-	// Create pipe to send messages
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	for (size_t idx = 0; idx < 3; ++idx)
-	{
-		telnetServerPtr->update();
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
-	}
-
-	// Test message
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	for (size_t idx = 0; idx < 3; ++idx)
-	{
-		telnetServerPtr->update();
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
-	}
-
-	// Session close
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	for (size_t idx = 0; idx < 3; ++idx)
-	{
-		telnetServerPtr->update();
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
-	}
-
-	// Closing server
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	for (size_t idx = 0; idx < 100; ++idx)
 	{
 		telnetServerPtr->update();
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
+
 	shResult.wait();
 	telnetServerPtr->shutdown();
 

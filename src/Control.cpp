@@ -27,6 +27,8 @@ void TelnetConnectedCallback(SP_TelnetSession session)
 
 void TelnetMessageCallback(SP_TelnetSession session, std::string line)
 {
+	spdlog::trace("Received message {}", line);
+	
 	// Send received message for user terminal
 	session->sendLine(line);
 
