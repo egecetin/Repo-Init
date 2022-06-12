@@ -35,7 +35,6 @@ FILE(GLOB ProjectTestSources
 configure_file(test-static-definitions.h.in test-static-definitions.h)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
-include_directories(${PROJECT_SOURCE_DIR}/thirdparty/telnetserver/include)
 include_directories(${PROJECT_SOURCE_DIR}/tests/MemPlumber)
 include_directories(${GTEST_INCLUDE_DIRS})
 

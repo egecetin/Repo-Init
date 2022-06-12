@@ -1,4 +1,4 @@
-#include "telnetservlib.hpp"
+#include "TelnetServer.h"
 #include "iostream"
 #include <array>
 #include <assert.h>
@@ -7,7 +7,7 @@
 #ifndef _WIN32
 // Define WIN32 types at Unix
 #define SD_SEND SHUT_WR
-#define SOCKET_ERROR -1
+#define SOCKET_ERROR u_long(-1)
 #define INVALID_SOCKET -1
 #define WSAEWOULDBLOCK 0
 
@@ -35,10 +35,15 @@ void TelnetSession::sendPromptAndBuffer()
 	iSendResult =
 		send(m_socket, m_telnetServer->promptString().c_str(), (u_long)m_telnetServer->promptString().length(), 0);
 
+	if(iSendResult == SOCKET_ERROR)
+		std::cout << "Error on send" << std::endl;
+
 	if (m_buffer.length() > 0)
 	{
 		// resend the buffer
 		iSendResult = send(m_socket, m_buffer.c_str(), (u_long)m_buffer.length(), 0);
+		if(iSendResult == SOCKET_ERROR)
+			std::cout << "Error on send" << std::endl;
 	}
 }
 
@@ -51,6 +56,8 @@ void TelnetSession::eraseLine()
 	// Move the cursor to the beginning of the line
 	std::string moveBack = "\x1b[80D";
 	iSendResult = send(m_socket, moveBack.c_str(), (u_long)moveBack.length(), 0);
+	if(iSendResult == SOCKET_ERROR)
+		std::cout << "Error on send" << std::endl;
 }
 
 void TelnetSession::sendLine(std::string data)
@@ -64,6 +71,8 @@ void TelnetSession::sendLine(std::string data)
 
 	data.append("\r\n");
 	iSendResult = send(m_socket, data.c_str(), (u_long)data.length(), 0);
+	if(iSendResult == SOCKET_ERROR)
+		std::cout << "Error on send" << std::endl;
 
 	if (m_telnetServer->interactivePrompt())
 		sendPromptAndBuffer();
@@ -109,7 +118,8 @@ void TelnetSession::echoBack(char *buffer, u_long length)
 void TelnetSession::initialise()
 {
 	// get details of connection
-	SOCKADDR_IN client_info = {0};
+	SOCKADDR_IN client_info;
+	memset(&client_info, 0, sizeof(client_info));
 	int addrsize = sizeof(client_info);
 	getpeername(m_socket, (struct sockaddr *)&client_info, (sock_int_converter *)&addrsize);
 
@@ -126,14 +136,20 @@ void TelnetSession::initialise()
 	u_long iSendResult;
 	unsigned char willEcho[3] = {0xff, 0xfb, 0x01};
 	iSendResult = send(m_socket, (char *)willEcho, 3, 0);
+	if(iSendResult == SOCKET_ERROR)
+		std::cout << "Error on send" << std::endl;
 
 	// Set NVT requesting that the remote system not/dont echo back characters
 	unsigned char dontEcho[3] = {0xff, 0xfe, 0x01};
 	iSendResult = send(m_socket, (char *)dontEcho, 3, 0);
+	if(iSendResult == SOCKET_ERROR)
+		std::cout << "Error on send" << std::endl;
 
 	// Set NVT mode to say that I will supress go-ahead. Stops remote clients from doing local linemode.
 	unsigned char willSGA[3] = {0xff, 0xfb, 0x03};
 	iSendResult = send(m_socket, (char *)willSGA, 3, 0);
+	if(iSendResult == SOCKET_ERROR)
+		std::cout << "Error on send" << std::endl;
 
 	if (m_telnetServer->connectedCallback())
 		m_telnetServer->connectedCallback()(shared_from_this());
@@ -227,6 +243,8 @@ bool TelnetSession::processCommandHistory(std::string &buffer)
 			// Issue a cursor command to counter it
 			u_long iSendResult;
 			iSendResult = send(m_socket, ANSI_ARROW_DOWN.c_str(), (u_long)ANSI_ARROW_DOWN.length(), 0);
+			if(iSendResult == SOCKET_ERROR)
+				std::cout << "Error on send" << std::endl;
 			return true;
 		}
 		if (buffer.find(ANSI_ARROW_DOWN) != std::string::npos && m_history.size() > 0)
@@ -240,6 +258,8 @@ bool TelnetSession::processCommandHistory(std::string &buffer)
 			// Issue a cursor command to counter it
 			u_long iSendResult;
 			iSendResult = send(m_socket, ANSI_ARROW_UP.c_str(), (u_long)ANSI_ARROW_UP.length(), 0);
+			if(iSendResult == SOCKET_ERROR)
+				std::cout << "Error on send" << std::endl;
 			return true;
 		}
 		if (buffer.find(ANSI_ARROW_LEFT) != std::string::npos || buffer.find(ANSI_ARROW_RIGHT) != std::string::npos)
@@ -254,8 +274,6 @@ bool TelnetSession::processCommandHistory(std::string &buffer)
 std::vector<std::string> TelnetSession::getCompleteLines(std::string &buffer)
 {
 	// Now find all new lines (<CR><LF>) and place in a vector and delete from buffer
-
-	char CRLF[2] = {0x0D, 0x0A};
 	std::vector<std::string> lines;
 	size_t found;
 	do
@@ -378,7 +396,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString)
 
 	std::cout << "Starting Telnet Server on port " << std::to_string(m_listenPort) << "\n";
 
-	int iResult;
+	u_long iResult;
 	struct addrinfo *result = NULL;
 	struct addrinfo hints;
 
@@ -406,7 +424,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString)
 	iResult = getaddrinfo(NULL, std::to_string(m_listenPort).c_str(), &hints, &result);
 	if (iResult != 0)
 	{
-		printf("getaddrinfo failed with error: %d\n", iResult);
+		printf("getaddrinfo failed with error: %ld\n", iResult);
 		return false;
 	}
 
