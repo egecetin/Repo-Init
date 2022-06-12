@@ -30,11 +30,11 @@ TEST(Utils_Tests, ConfigReader_Tests)
 
 	ASSERT_EQ(1000, ZMQ_SEND_TIMEOUT);
 	ASSERT_EQ(1000, ZMQ_RECV_TIMEOUT);
-	ASSERT_EQ("/tmp", CONTROL_IPC_PATH);
+	ASSERT_EQ("ipc:///tmp", CONTROL_IPC_PATH);
 
 	ASSERT_EQ("1000", readSingleConfig(TEST_CONFIG_PATH, "ZMQ_SEND_TIMEOUT"));
 	ASSERT_EQ("1000", readSingleConfig(TEST_CONFIG_PATH, "ZMQ_RECV_TIMEOUT"));
-	ASSERT_EQ("/tmp", readSingleConfig(TEST_CONFIG_PATH, "CONTROL_IPC_PATH"));
+	ASSERT_EQ("ipc:///tmp", readSingleConfig(TEST_CONFIG_PATH, "CONTROL_IPC_PATH"));
 
 	ASSERT_FALSE(readConfig("dummypath"));
 	ASSERT_EQ("", readSingleConfig("dummypath", "ZMQ_SEND_TIMEOUT"));
