@@ -1,8 +1,4 @@
-#include "TelnetServer.h"
-#include "iostream"
-#include <array>
-#include <assert.h>
-#include <iterator>
+#include "telnet/TelnetServer.h"
 
 #ifndef _WIN32
 // Define WIN32 types at Unix
@@ -23,7 +19,7 @@ typedef socklen_t sock_int_converter;
 #pragma comment(lib, "Ws2_32.lib")
 // #pragma comment (lib, "Mswsock.lib")
 
-typedef socklen_t int;
+typedef int sock_int_converter;
 #endif
 
 #define DEFAULT_BUFLEN 512
@@ -31,10 +27,7 @@ typedef socklen_t int;
 void TelnetSession::sendPromptAndBuffer()
 {
 	// Output the prompt
-	u_long iSendResult;
-	iSendResult =
-		send(m_socket, m_telnetServer->promptString().c_str(), (u_long)m_telnetServer->promptString().length(), 0);
-
+	u_long iSendResult = send(m_socket, m_telnetServer->promptString().c_str(), (u_long)m_telnetServer->promptString().length(), 0);
 	if(iSendResult == SOCKET_ERROR)
 		std::cout << "Error on send" << std::endl;
 
@@ -108,7 +101,7 @@ void TelnetSession::echoBack(char *buffer, u_long length)
 
 	if (iSendResult == SOCKET_ERROR && iSendResult != WSAEWOULDBLOCK)
 	{
-		printf("Send failed with Winsock error: %d\n", WSAGetLastError());
+		printf("Send failed with error: %d\n", WSAGetLastError());
 		std::cout << "Closing session and socket.\r\n";
 		closesocket(m_socket);
 		return;
@@ -301,7 +294,7 @@ void TelnetSession::update()
 	int error = WSAGetLastError();
 	if (error != WSAEWOULDBLOCK && error != 0)
 	{
-		std::cout << "Receive failed with Winsock error code: " << error << "\r\n";
+		std::cout << "Receive failed with error code: " << error << "\r\n";
 		std::cout << "Closing session and socket.\r\n";
 		closesocket(m_socket);
 		return;
@@ -489,7 +482,7 @@ void TelnetServer::update()
 	timeout.tv_sec = 0; // Zero timeout (poll)
 	timeout.tv_usec = 0;
 
-	if (select(m_listenSocket, &readSet, NULL, NULL, &timeout) == 1)
+	if (select(m_listenSocket + 1, &readSet, NULL, NULL, &timeout) > 0)
 	{
 		// There is a connection pending, so accept it.
 		acceptConnection();

@@ -28,4 +28,4 @@ All scripts should be executed from top level directory
  - [RapidJSON](https://github.com/Tencent/rapidjson.git)
  - [Spdlog](https://github.com/gabime/spdlog.git)
  - [MemPlumber](https://github.com/seladb/MemPlumber.git)
- - [TelnetServLib](https://github.com/lukemalcolm/TelnetServLib.git) (Modified to support Linux)
+ - [TelnetServLib](https://github.com/lukemalcolm/TelnetServLib.git) (Modified and embedded to source directory)

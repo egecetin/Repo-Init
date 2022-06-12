@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Utils.h"
+#include "telnet/TelnetServer.h"
 
 #include <zmq.hpp>
 #include <zmq_addon.hpp>

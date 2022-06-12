@@ -1,5 +1,5 @@
 #include "Utils.h"
-#include "TelnetServer.h"
+#include "telnet/TelnetServer.h"
 #include "test-static-definitions.h"
 
 #include <gtest/gtest.h>

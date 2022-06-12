@@ -1,5 +1,17 @@
 #include "Control.h"
 
+void TelnetConnectedCallback(SP_TelnetSession session)
+{
+    spdlog::info("New connection received");
+	session->sendLine("Wellcome!");
+}
+
+void TelnetMessageCallback(SP_TelnetSession session, std::string line)
+{
+	spdlog::trace("Received message {}", line);
+    session->sendLine("Copy that.");
+}
+
 // GCOVR_EXCL_START
 void controllerThread()
 {
@@ -24,6 +36,13 @@ void controllerThread()
 		spdlog::critical("Can't bind to {} {}", hostAddrRep, e.what());
 		loopFlag = false;
 	}
+
+	// Init Telnet Server
+	auto telnetServerPtr = std::make_shared<TelnetServer>();
+    telnetServerPtr->initialise(TELNET_PORT);
+    telnetServerPtr->connectedCallback(TelnetConnectedCallback);
+    telnetServerPtr->newLineCallback(TelnetMessageCallback);
+	spdlog::debug("Telnet server created at {}", TELNET_PORT);
 
 	while (loopFlag)
 	{
@@ -59,13 +78,17 @@ void controllerThread()
 			socketRep.send(zmq::const_buffer(&reply, sizeof(reply)));
 		}
 		else
-			spdlog::trace("Controller receive timeout");
+			spdlog::trace("Controller ZMQ receive timeout");
+
+		// Update Telnet connection
+		telnetServerPtr->update();
 	}
 
 	// Cleanup
 	spdlog::debug("Cleaning control thread ...");
 	socketRep.unbind(hostAddrRep);
 	socketRep.close();
+	telnetServerPtr->shutdown();
 
 	spdlog::debug("Control thread done");
 }
