@@ -1,6 +1,9 @@
-#include "Utils.h"
-#include "telnet/TelnetServer.h"
+#include "Control.h"
 #include "test-static-definitions.h"
+
+#include <chrono>
+#include <future>
+#include <thread>
 
 #include <gtest/gtest.h>
 
@@ -43,5 +46,54 @@ TEST(Utils_Tests, ConfigReader_Tests)
 
 TEST(Utils_Tests, Telnet_Tests)
 {
+	// Internal tests
 	ASSERT_FALSE(TelnetSession::UNIT_TEST());
+
+	std::future<int> shResult;
+
+	// Init Telnet Server
+	auto telnetServerPtr = std::make_shared<TelnetServer>();
+	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), "> "));
+	telnetServerPtr->connectedCallback(TelnetConnectedCallback);
+	telnetServerPtr->newLineCallback(TelnetMessageCallback);
+
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	shResult =
+		std::async(std::launch::async, []() { return system(("expect " + std::string(TEST_TELNET_SH_PATH)).c_str()); });
+
+	// Create pipe to send messages
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	for (size_t idx = 0; idx < 3; ++idx)
+	{
+		telnetServerPtr->update();
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+	}
+
+	// Test message
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	for (size_t idx = 0; idx < 3; ++idx)
+	{
+		telnetServerPtr->update();
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+	}
+
+	// Session close
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	for (size_t idx = 0; idx < 3; ++idx)
+	{
+		telnetServerPtr->update();
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+	}
+
+	// Closing server
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	for (size_t idx = 0; idx < 100; ++idx)
+	{
+		telnetServerPtr->update();
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+	}
+	shResult.wait();
+	telnetServerPtr->shutdown();
+
+	ASSERT_EQ(0, shResult.get());
 }

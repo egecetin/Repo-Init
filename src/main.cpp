@@ -58,9 +58,10 @@ int main(int argc, char **argv)
 	// Join threads
 	if (telnetControlTh.joinable())
 		telnetControlTh.join();
+	spdlog::warn("Telnet Controller joined");
 	if (zmqControlTh.joinable())
 		zmqControlTh.join();
-	spdlog::warn("Controller joined");
+	spdlog::warn("ZMQ Controller joined");
 
 	spdlog::warn("Decryptor Exit");
 	return EXIT_SUCCESS;

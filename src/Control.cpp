@@ -1,5 +1,4 @@
 #include "Control.h"
-#include "telnet/TelnetServer.h"
 
 #include <chrono>
 #include <thread>
@@ -8,22 +7,44 @@
 #include <zmq.hpp>
 #include <zmq_addon.hpp>
 
+constexpr size_t constHasher(const char *s, size_t index = 0)
+{
+	return s + index == nullptr || s[index] == '\0' ? 55 : constHasher(s, index + 1) * 33 + (unsigned char)(s[index]);
+}
+
 void TelnetConnectedCallback(SP_TelnetSession session)
 {
 	session->sendLine("\r\n"
 					  "𝑲𝒆𝒆𝒑 𝒚𝒐𝒖𝒓 𝒆𝒚𝒆𝒔 𝒐𝒏 𝒕𝒉𝒆 𝒔𝒕𝒂𝒓𝒔 "
 					  "𝒂𝒏𝒅 𝒚𝒐𝒖𝒓 𝒇𝒆𝒆𝒕 𝒐𝒏 𝒕𝒉𝒆 𝒈𝒓𝒐𝒖𝒏𝒅 "
 					  "\r\n");
+
+	// Print available commands
+	session->sendLine("Available commands:");
+	session->sendLine("");
+	session->sendLine("quit         : Ends the connection");
 }
 
 void TelnetMessageCallback(SP_TelnetSession session, std::string line)
 {
-	spdlog::trace("Received message {}", line);
-
 	// Send received message for user terminal
 	session->sendLine(line);
 
 	// Process received message
+	switch (constHasher(line.c_str()))
+	{
+	case constHasher("Test Message"):
+		session->sendLine("OK");
+		break;
+	case constHasher("quit"):
+		session->sendLine("Closing connection");
+		session->sendLine("Goodbye!");
+		session->markTimeout();
+		break;
+	default:
+		session->sendLine("Unknown command received");
+		break;
+	}
 }
 
 // GCOVR_EXCL_START

@@ -107,6 +107,11 @@ bool TelnetSession::checkTimeout()
 	return (currentTime - lastSeenTime > TELNET_TIMEOUT);
 }
 
+void TelnetSession::markTimeout()
+{
+	lastSeenTime = 0;
+}
+
 void TelnetSession::echoBack(char *buffer, u_long length)
 {
 	// If you are an NVT command (i.e. first it of data is 255) then ignore the echo back
@@ -492,7 +497,7 @@ void TelnetServer::update()
 		m_sessions[idx]->update();
 		if (m_sessions[idx]->checkTimeout())
 		{
-			spdlog::info("Connection timeout to {}", m_sessions[idx]->getPeerIP());
+			spdlog::info("Connection closing to {}", m_sessions[idx]->getPeerIP());
 			m_sessions[idx]->closeClient();
 			m_sessions.erase(m_sessions.begin() + idx);
 			--idx;

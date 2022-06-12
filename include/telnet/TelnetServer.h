@@ -86,6 +86,8 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	void closeClient();
 	/// Checks the connection timeout
 	bool checkTimeout();
+	/// Marks timeout to close session
+	void markTimeout();
 
 	/// For internal unit tests
 	static int UNIT_TEST();
