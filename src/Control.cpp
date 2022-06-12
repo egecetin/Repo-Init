@@ -1,14 +1,17 @@
 #include "Control.h"
 #include "telnet/TelnetServer.h"
 
+#include <chrono>
+#include <thread>
+
 #include <zmq.hpp>
 #include <zmq_addon.hpp>
 #include <spdlog/spdlog.h>
 
 void TelnetConnectedCallback(SP_TelnetSession session)
 {
-	spdlog::info("New connection received");
-	session->sendLine("Wellcome!");
+	session->sendLine(	"𝑲𝒆𝒆𝒑 𝒚𝒐𝒖𝒓 𝒆𝒚𝒆𝒔 𝒐𝒏 𝒕𝒉𝒆 𝒔𝒕𝒂𝒓𝒔 "
+						"𝒂𝒏𝒅 𝒚𝒐𝒖𝒓 𝒇𝒆𝒆𝒕 𝒐𝒏 𝒕𝒉𝒆 𝒈𝒓𝒐𝒖𝒏𝒅 \r\n");
 }
 
 void TelnetMessageCallback(SP_TelnetSession session, std::string line)
@@ -22,7 +25,31 @@ void TelnetMessageCallback(SP_TelnetSession session, std::string line)
 }
 
 // GCOVR_EXCL_START
-void controllerThread()
+void telnetControlThread()
+{
+	// Init Telnet Server
+	auto telnetServerPtr = std::make_shared<TelnetServer>();
+	telnetServerPtr->initialise(TELNET_PORT, "> ");
+	telnetServerPtr->connectedCallback(TelnetConnectedCallback);
+	telnetServerPtr->newLineCallback(TelnetMessageCallback);
+	spdlog::debug("Telnet server created at {}", TELNET_PORT);
+
+	while (loopFlag)
+	{
+		// Update Telnet connection
+		telnetServerPtr->update();
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+	}
+	
+	// Closing server
+	telnetServerPtr->shutdown();
+	spdlog::debug("Telnet Control thread done");
+
+}
+// GCOVR_EXCL_STOP
+
+// GCOVR_EXCL_START
+void zmqControlThread()
 {
 	// Init ZMQ connection
 	zmq::context_t ctx(1);
@@ -45,13 +72,6 @@ void controllerThread()
 		spdlog::critical("Can't bind to {} {}", hostAddrRep, e.what());
 		loopFlag = false;
 	}
-
-	// Init Telnet Server
-	auto telnetServerPtr = std::make_shared<TelnetServer>();
-	telnetServerPtr->initialise(TELNET_PORT, "> ");
-	telnetServerPtr->connectedCallback(TelnetConnectedCallback);
-	telnetServerPtr->newLineCallback(TelnetMessageCallback);
-	spdlog::debug("Telnet server created at {}", TELNET_PORT);
 
 	while (loopFlag)
 	{
@@ -88,17 +108,13 @@ void controllerThread()
 		}
 		else
 			spdlog::trace("Controller ZMQ receive timeout");
-
-		// Update Telnet connection
-		telnetServerPtr->update();
 	}
 
 	// Cleanup
-	spdlog::debug("Cleaning control thread ...");
+	spdlog::debug("Cleaning ZMQ control thread ...");
 	socketRep.unbind(hostAddrRep);
 	socketRep.close();
-	telnetServerPtr->shutdown();
 
-	spdlog::debug("Control thread done");
+	spdlog::debug("ZMQ Control thread done");
 }
 // GCOVR_EXCL_STOP
