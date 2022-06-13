@@ -42,7 +42,7 @@ jobs:
       - name: Prepare system
         run:  |
               mkdir -p dist/temp dist/rpm dist/makeself
-              sudo apt install expect -y
+              sudo apt install gcovr -y
       - name: Build
         run:  cmake --build $BUILD_DIR -j -t coverage
       - name: Test
