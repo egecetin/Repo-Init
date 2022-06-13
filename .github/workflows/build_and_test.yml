@@ -29,22 +29,26 @@ jobs:
         run:  cmake --build $BUILD_DIR -j -t TestMain
       - name: Test
         run:  $BUILD_DIR/Release/bin/TestMain
-  
+
   coverage:
     runs-on: ubuntu-latest
     steps:
-    - name: Configure
-      run:  cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
-    - name: Prepare system
-      run:  |
-            mkdir -p dist/temp dist/rpm dist/makeself
-            sudo apt install expect -y
-    - name: Build
-      run:  cmake --build $BUILD_DIR -j -t coverage
-    - name: Test
-      run:  $BUILD_DIR/Debug/bin/TestMain
-    - name: Upload coverage reports to Codecov
-      run: |
-        curl -Os https://uploader.codecov.io/latest/linux/codecov
-        chmod +x codecov
-        ./codecov
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Configure
+        run:  cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
+      - name: Prepare system
+        run:  |
+              mkdir -p dist/temp dist/rpm dist/makeself
+              sudo apt install expect -y
+      - name: Build
+        run:  cmake --build $BUILD_DIR -j -t coverage
+      - name: Test
+        run:  $BUILD_DIR/Debug/bin/TestMain
+      - name: Upload coverage reports to Codecov
+        run: |
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov
