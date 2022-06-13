@@ -20,6 +20,10 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 										EXECUTABLE TestMain
 										DEPENDENCIES TestMain
 										EXCLUDE "${PROJECT_SOURCE_DIR}/src/main.cpp" "${PROJECT_SOURCE_DIR}/thirdparty/*" "${PROJECT_SOURCE_DIR}/build/*" "${PROJECT_SOURCE_DIR}/tests/*")
+	setup_target_for_coverage_gcovr_xml(NAME coverage-xml
+										EXECUTABLE TestMain
+										DEPENDENCIES TestMain
+										EXCLUDE "${PROJECT_SOURCE_DIR}/src/main.cpp" "${PROJECT_SOURCE_DIR}/thirdparty/*" "${PROJECT_SOURCE_DIR}/build/*" "${PROJECT_SOURCE_DIR}/tests/*")
 endif()
 
 # Enable test framework
@@ -44,6 +48,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/tests/MemPlumber)
 add_executable(TestMain ${ProjectTestSources})
 target_include_directories(TestMain PRIVATE "${PROJECT_BINARY_DIR}/tests")
 target_link_libraries(TestMain gtest_main memplumber XXX_Lib)
+add_custom_target(test DEPENDS TestMain)
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 	target_compile_options(TestMain PUBLIC --coverage)
