@@ -40,13 +40,11 @@ jobs:
       - name: Prepare system
         run:  |
               mkdir -p dist/temp dist/rpm dist/makeself
-              sudo apt install gcovr -y
+              sudo apt install expect gcovr -y
       - name: Configure
         run:  cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
       - name: Build
         run:  cmake --build $BUILD_DIR -j -t coverage
-      - name: Test
-        run:  $BUILD_DIR/Debug/bin/TestMain
       - name: Upload coverage reports to Codecov
         run: |
           curl -Os https://uploader.codecov.io/latest/linux/codecov
