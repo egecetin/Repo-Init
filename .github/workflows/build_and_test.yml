@@ -24,7 +24,7 @@ jobs:
       - name: Prepare system
         run:  |
               mkdir -p dist/temp dist/rpm dist/makeself
-              apt install expect -y
+              sudo apt install expect -y
       - name: Build
         run:  cmake --build $BUILD_DIR -j -t TestMain
       - name: Test
