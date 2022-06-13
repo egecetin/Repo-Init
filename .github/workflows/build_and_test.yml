@@ -19,11 +19,36 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: recursive
+      - name: Prepare system
+        run:  |
+              mkdir -p dist/temp dist/rpm dist/makeself
+              sudo apt install expect -y
       - name: Configure
         run:  cmake -DCMAKE_BUILD_TYPE=Release -S . -B $BUILD_DIR
-      - name: Create Temp Directories
-        run:  mkdir -p dist/temp dist/rpm dist/makeself
       - name: Build
         run:  cmake --build $BUILD_DIR -j -t TestMain
       - name: Test
         run:  $BUILD_DIR/Release/bin/TestMain
+
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Prepare system
+        run:  |
+              mkdir -p dist/temp dist/rpm dist/makeself
+              sudo apt install expect gcovr -y
+      - name: Configure
+        run:  cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
+      - name: Build
+        run:  cmake --build $BUILD_DIR -j -t coverage-xml
+      - uses: codecov/codecov-action@v3
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          files: ./build/coverage-xml.xml
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true

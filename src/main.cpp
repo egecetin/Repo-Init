@@ -47,7 +47,8 @@ int main(int argc, char **argv)
 	ALARM_INTERVAL = 1;
 
 	// Start threads
-	std::thread controlTh(controllerThread);
+	std::thread zmqControlTh(zmqControlThread);
+	std::thread telnetControlTh(telnetControlThread);
 	spdlog::debug("Threads started");
 
 	// SIGALRM should be registered after all sleep calls
@@ -55,9 +56,12 @@ int main(int argc, char **argv)
 	alarm(ALARM_INTERVAL);
 
 	// Join threads
-	if (controlTh.joinable())
-		controlTh.join();
-	spdlog::warn("Controller joined");
+	if (telnetControlTh.joinable())
+		telnetControlTh.join();
+	spdlog::warn("Telnet Controller joined");
+	if (zmqControlTh.joinable())
+		zmqControlTh.join();
+	spdlog::warn("ZMQ Controller joined");
 
 	spdlog::warn("Decryptor Exit");
 	return EXIT_SUCCESS;

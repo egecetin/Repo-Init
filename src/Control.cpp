@@ -1,7 +1,108 @@
 #include "Control.h"
 
+#include <chrono>
+#include <thread>
+
+#include <spdlog/spdlog.h>
+#include <zmq.hpp>
+#include <zmq_addon.hpp>
+
+constexpr size_t constHasher(const char *s, size_t index = 0)
+{
+	return s + index == nullptr || s[index] == '\0' ? 55 : constHasher(s, index + 1) * 33 + (unsigned char)(s[index]);
+}
+
+void TelnetPrintAvailableCommands(SP_TelnetSession session)
+{
+	// Print available commands
+	session->sendLine("");
+	session->sendLine("Available commands:");
+	session->sendLine("");
+	session->sendLine("help               : Prints available commands");
+	session->sendLine("disable log        : Resets logger level");
+	session->sendLine("enable log v       : Enable info logger level");
+	session->sendLine("enable log vv      : Enable debug logger level");
+	session->sendLine("enable log vvv     : Enable trace logger level");
+	session->sendLine("quit               : Ends the connection");
+}
+
+void TelnetConnectedCallback(SP_TelnetSession session)
+{
+	session->sendLine("\r\n"
+					  "𝑲𝒆𝒆𝒑 𝒚𝒐𝒖𝒓 𝒆𝒚𝒆𝒔 𝒐𝒏 𝒕𝒉𝒆 𝒔𝒕𝒂𝒓𝒔 "
+					  "𝒂𝒏𝒅 𝒚𝒐𝒖𝒓 𝒇𝒆𝒆𝒕 𝒐𝒏 𝒕𝒉𝒆 𝒈𝒓𝒐𝒖𝒏𝒅 "
+					  "\r\n");
+	TelnetPrintAvailableCommands(session);
+}
+
+void TelnetMessageCallback(SP_TelnetSession session, std::string line)
+{
+	spdlog::trace("Received message {}", line);
+
+	// Send received message for user terminal
+	session->sendLine(line);
+
+	// Process received message
+	switch (constHasher(line.c_str()))
+	{
+	case constHasher("Test Message"):
+		session->sendLine("OK");
+		break;
+	case constHasher("help"):
+		TelnetPrintAvailableCommands(session);
+		break;
+	case constHasher("disable log"):
+		session->sendLine("Default log mode enabled");
+		spdlog::set_level(spdlog::level::info);
+		break;
+	case constHasher("enable log v"):
+		session->sendLine("Info log mode enabled");
+		spdlog::set_level(spdlog::level::info);
+		break;
+	case constHasher("enable log vv"):
+		session->sendLine("Debug log mode enabled");
+		spdlog::set_level(spdlog::level::debug);
+		break;
+	case constHasher("enable log vvv"):
+		session->sendLine("Trace log mode enabled");
+		spdlog::set_level(spdlog::level::trace);
+		break;
+	case constHasher("quit"):
+		session->sendLine("Closing connection");
+		session->sendLine("Goodbye!");
+		session->markTimeout();
+		break;
+	default:
+		session->sendLine("Unknown command received");
+		break;
+	}
+}
+
 // GCOVR_EXCL_START
-void controllerThread()
+void telnetControlThread()
+{
+	// Init Telnet Server
+	auto telnetServerPtr = std::make_shared<TelnetServer>();
+	telnetServerPtr->initialise(TELNET_PORT, "> ");
+	telnetServerPtr->connectedCallback(TelnetConnectedCallback);
+	telnetServerPtr->newLineCallback(TelnetMessageCallback);
+	spdlog::debug("Telnet server created at {}", TELNET_PORT);
+
+	while (loopFlag)
+	{
+		// Update Telnet connection
+		telnetServerPtr->update();
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+	}
+
+	// Closing server
+	telnetServerPtr->shutdown();
+	spdlog::debug("Telnet Control thread done");
+}
+// GCOVR_EXCL_STOP
+
+// GCOVR_EXCL_START
+void zmqControlThread()
 {
 	// Init ZMQ connection
 	zmq::context_t ctx(1);
@@ -48,7 +149,6 @@ void controllerThread()
 				}
 				else
 					spdlog::error("Receive unknown number of messages for log level change");
-
 				break;
 			}
 			default:
@@ -59,14 +159,14 @@ void controllerThread()
 			socketRep.send(zmq::const_buffer(&reply, sizeof(reply)));
 		}
 		else
-			spdlog::trace("Controller receive timeout");
+			spdlog::trace("Controller ZMQ receive timeout");
 	}
 
 	// Cleanup
-	spdlog::debug("Cleaning control thread ...");
+	spdlog::debug("Cleaning ZMQ control thread ...");
 	socketRep.unbind(hostAddrRep);
 	socketRep.close();
 
-	spdlog::debug("Control thread done");
+	spdlog::debug("ZMQ Control thread done");
 }
 // GCOVR_EXCL_STOP

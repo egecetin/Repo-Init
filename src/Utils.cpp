@@ -16,6 +16,7 @@ uintmax_t ALARM_INTERVAL;
 
 int ZMQ_SEND_TIMEOUT;
 int ZMQ_RECV_TIMEOUT;
+uint16_t TELNET_PORT;
 std::string CONTROL_IPC_PATH;
 
 volatile time_t currentTime;
@@ -72,6 +73,7 @@ bool readConfig(const char *dir)
 	std::vector<std::string> list = {
 		"ZMQ_RECV_TIMEOUT",
 		"ZMQ_SEND_TIMEOUT",
+		"TELNET_PORT",
 		"CONTROL_IPC_PATH",
 	};
 
@@ -91,6 +93,7 @@ bool readConfig(const char *dir)
 	// Set variables
 	ZMQ_RECV_TIMEOUT = doc["ZMQ_RECV_TIMEOUT"].GetUint64();
 	ZMQ_SEND_TIMEOUT = doc["ZMQ_SEND_TIMEOUT"].GetUint64();
+	TELNET_PORT = doc["TELNET_PORT"].GetUint();
 
 	CONTROL_IPC_PATH = doc["CONTROL_IPC_PATH"].GetString();
 

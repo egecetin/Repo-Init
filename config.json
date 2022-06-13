@@ -1,5 +1,6 @@
 {
     "ZMQ_SEND_TIMEOUT": 1000,
     "ZMQ_RECV_TIMEOUT": 1000,
-    "CONTROL_IPC_PATH": "/tmp"
+    "TELNET_PORT": 23000,
+    "CONTROL_IPC_PATH": "ipc:///tmp"
 }

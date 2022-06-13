@@ -20,9 +20,9 @@ int main(int argc, char **argv)
 	uint64_t memLeakSz;
 	MemPlumber::memLeakCheck(memLeakCtr, memLeakSz, true);
 
+	// Comes from gtest itself
 	if (memLeakCtr == 1 && memLeakSz == 8)
-		printf("No memory leak detected! (Only os_stack_trace_getter_ from"
-			   " googletest-src/googletest/src/gtest.cc:6171)\n");
+		printf("No memory leak detected!\n");
 	else if (memLeakCtr || memLeakSz)
 	{
 		printf("Number of leaked objects: %d\nTotal amount of memory leaked: %d[bytes]\n", (int)memLeakCtr,

@@ -19,6 +19,8 @@ extern uintmax_t ALARM_INTERVAL;
 extern int ZMQ_RECV_TIMEOUT;
 /// Send timeout of ZMQ sockets. Read from config at startup
 extern int ZMQ_SEND_TIMEOUT;
+/// Port number to server Telnet
+extern uint16_t TELNET_PORT;
 /// Interprocess path of controller thread
 extern std::string CONTROL_IPC_PATH;
 

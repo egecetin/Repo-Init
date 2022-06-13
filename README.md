@@ -1,3 +1,17 @@
+## Project
+
+![GitHub top language](https://img.shields.io/github/languages/top/egecetin/Repo-Init?style=plastic)
+![GitHub](https://img.shields.io/github/license/egecetin/Repo-Init?style=plastic)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/egecetin/Repo-Init/Build%20and%20test?style=plastic)
+![Codecov](https://img.shields.io/codecov/c/github/egecetin/Repo-Init?style=plastic&token=G65MG0J07F)
+
+## Contents
+
+- [Project](#project)
+- [Contents](#contents)
+- [CMake](#cmake)
+- [Scripts](#scripts)
+- [Dependencies](#dependencies)
 
 ## CMake
 
@@ -28,3 +42,4 @@ All scripts should be executed from top level directory
  - [RapidJSON](https://github.com/Tencent/rapidjson.git)
  - [Spdlog](https://github.com/gabime/spdlog.git)
  - [MemPlumber](https://github.com/seladb/MemPlumber.git)
+ - [TelnetServLib](https://github.com/lukemalcolm/TelnetServLib.git) (Modified and embedded to source directory)
