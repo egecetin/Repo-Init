@@ -46,6 +46,11 @@ TEST(Utils_Tests, ConfigReader_Tests)
 
 TEST(Utils_Tests, Telnet_Tests)
 {
+	// Internally used by Telnet Server sessions
+	struct timespec ts;
+	clock_gettime(CLOCK_TAI, &ts);
+	currentTime = ts.tv_sec;
+
 	// Internal tests
 	ASSERT_FALSE(TelnetSession::UNIT_TEST());
 
