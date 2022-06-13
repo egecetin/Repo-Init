@@ -32,18 +32,17 @@ jobs:
   
   coverage:
     runs-on: ubuntu-latest
-      name: Test python API
-      steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - name: Install requirements
-        run: pip install -r requirements.txt
-      - name: Run tests and collect coverage
-        run: pytest --cov .
-      - name: Upload coverage reports to Codecov
-        run: |
-          curl -Os https://uploader.codecov.io/latest/linux/codecov
-          chmod +x codecov
-          ./codecov
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - name: Install requirements
+      run: pip install -r requirements.txt
+    - name: Run tests and collect coverage
+      run: pytest --cov .
+    - name: Upload coverage reports to Codecov
+      run: |
+        curl -Os https://uploader.codecov.io/latest/linux/codecov
+        chmod +x codecov
+        ./codecov
