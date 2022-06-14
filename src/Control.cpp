@@ -12,18 +12,23 @@ constexpr size_t constHasher(const char *s, size_t index = 0)
 	return s + index == nullptr || s[index] == '\0' ? 55 : constHasher(s, index + 1) * 33 + (unsigned char)(s[index]);
 }
 
+std::vector<std::pair<std::string, std::string>> telnetCommands = {
+	{"help", "Prints available commands"},			 {"disable log", "Resets logger level"},
+	{"enable log v", "Enable info logger level"},	 {"enable log vv", "Enable debug logger level"},
+	{"enable log vvv", "Enable trace logger level"}, {"quit", "Ends the connection"}};
+
 void TelnetPrintAvailableCommands(SP_TelnetSession session)
 {
 	// Print available commands
 	session->sendLine("");
 	session->sendLine("Available commands:");
 	session->sendLine("");
-	session->sendLine("help               : Prints available commands");
-	session->sendLine("disable log        : Resets logger level");
-	session->sendLine("enable log v       : Enable info logger level");
-	session->sendLine("enable log vv      : Enable debug logger level");
-	session->sendLine("enable log vvv     : Enable trace logger level");
-	session->sendLine("quit               : Ends the connection");
+	for(const auto &entry : telnetCommands)
+	{
+		char buffer[BUFSIZ] = {'\0'};
+		std::snprintf(buffer, BUFSIZ, "%-25s : %s", entry.first.c_str(), entry.second.c_str());
+		session->sendLine(buffer);
+	}
 }
 
 void TelnetConnectedCallback(SP_TelnetSession session)

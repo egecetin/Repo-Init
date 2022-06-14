@@ -76,7 +76,7 @@ void TelnetSession::closeClient()
 	// attempt to cleanly shutdown the connection since we're done
 	int iResult = shutdown(m_socket, SHUT_WR);
 	if (iResult < 0)
-		spdlog::error("Shutdown failed with error {}", strerror(errno));
+		spdlog::error("Shutdown failed with error: {}", strerror(errno));
 
 	// cleanup
 	close(m_socket);
@@ -102,7 +102,7 @@ void TelnetSession::echoBack(char *buffer, u_long length)
 	int iSendResult = send(m_socket, buffer, length, 0);
 	if (iSendResult < 0)
 	{
-		spdlog::error("Send failed with error {}", strerror(errno));
+		spdlog::error("Send failed with error: {}", strerror(errno));
 		close(m_socket);
 	}
 }
@@ -275,7 +275,7 @@ void TelnetSession::update()
 	// Check for errors from the read
 	if (readBytes < 0 && errno != EAGAIN)
 	{
-		spdlog::error("Receive failed with error code {}", strerror(errno));
+		spdlog::error("Receive failed with error: {}", strerror(errno));
 		close(m_socket);
 	}
 	else if (readBytes > 0)
@@ -399,7 +399,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString)
 	m_listenSocket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
 	if (m_listenSocket == INVALID_SOCKET)
 	{
-		spdlog::error("Socket failed with error {}", strerror(errno));
+		spdlog::error("Socket failed with error: {}", strerror(errno));
 		freeaddrinfo(result);
 		return false;
 	}
@@ -408,7 +408,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString)
 	iResult = bind(m_listenSocket, result->ai_addr, (int)result->ai_addrlen);
 	if (iResult < 0)
 	{
-		spdlog::error("Bind failed with error {}", strerror(errno));
+		spdlog::error("Bind failed with error: {}", strerror(errno));
 		freeaddrinfo(result);
 		close(m_listenSocket);
 		return false;
@@ -419,7 +419,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString)
 	iResult = listen(m_listenSocket, SOMAXCONN);
 	if (iResult < 0)
 	{
-		spdlog::error("Listen failed with error {}", strerror(errno));
+		spdlog::error("Listen failed with error: {}", strerror(errno));
 		close(m_listenSocket);
 		return false;
 	}
@@ -434,7 +434,7 @@ void TelnetServer::acceptConnection()
 	ClientSocket = accept(m_listenSocket, NULL, NULL);
 	if (ClientSocket == INVALID_SOCKET)
 	{
-		spdlog::error("Accept failed with error {}", strerror(errno));
+		spdlog::error("Accept failed with error: {}", strerror(errno));
 		close(m_listenSocket);
 		return;
 	}
