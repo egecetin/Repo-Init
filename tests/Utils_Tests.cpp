@@ -60,7 +60,7 @@ TEST(Utils_Tests, Telnet_Tests)
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
 	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT"))));
 	telnetServerPtr->shutdown();
-	
+
 	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), "> "));
 	telnetServerPtr->connectedCallback(TelnetConnectedCallback);
 	telnetServerPtr->newLineCallback(TelnetMessageCallback);

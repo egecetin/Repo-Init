@@ -65,7 +65,6 @@ typedef int Socket;
 
 /**
  * @brief Session class for manage connections
- * 
  */
 class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 {
