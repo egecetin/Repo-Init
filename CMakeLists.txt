@@ -15,8 +15,8 @@ endif()
 # Set project properties
 set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_VERSION_MINOR 0)
-if(EXISTS "../BuildNumberCache.txt")
-	file(READ "BuildNumberCache.txt" BUILD_NUMBER)
+if(EXISTS "${PROJECT_SOURCE_DIR}/BuildNumberCache.txt")
+	file(READ "${PROJECT_SOURCE_DIR}/BuildNumberCache.txt" BUILD_NUMBER)
 else()
 	set(BUILD_NUMBER "1")
 endif()
@@ -110,7 +110,7 @@ install(TARGETS XXX XXX_Lib spdlog libzmq RUNTIME DESTINATION bin LIBRARY DESTIN
 add_custom_command(
 	TARGET XXX_Lib
 	PRE_BUILD
-	COMMAND ${CMAKE_COMMAND} -P "../cmake/AutoBuildNumber.cmake"
+	COMMAND ${CMAKE_COMMAND} -P "${PROJECT_SOURCE_DIR}/cmake/AutoBuildNumber.cmake"
 	COMMENT "${BoldBlue}Updating build number${ColourReset}"
 )
 
