@@ -1,16 +1,10 @@
 #pragma once
 
-#ifndef _WIN32
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <unistd.h>
-#else
-#include <windows.h>
-#include <winsock2.h>
-#include <ws2tcpip.h>
-#endif
 
 #include <array>
 #include <functional>
@@ -67,15 +61,17 @@ const std::string ANSI_ARROW_LEFT("\x1b\x5b\x44");
 
 const std::string TELNET_ERASE_LINE("\xff\xf8");
 
-#ifndef _WIN32
-typedef int SOCKET;
-#endif
+typedef int Socket;
 
+/**
+ * @brief Session class for manage connections
+ * 
+ */
 class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 {
   public:
 	/// Constructor for session
-	TelnetSession(SOCKET ClientSocket, std::shared_ptr<TelnetServer> ts) : m_socket(ClientSocket), m_telnetServer(ts)
+	TelnetSession(Socket ClientSocket, std::shared_ptr<TelnetServer> ts) : m_socket(ClientSocket), m_telnetServer(ts)
 	{
 		m_historyCursor = m_history.end();
 	};
@@ -124,7 +120,7 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	// Last seen
 	time_t lastSeenTime;
 	// The socket
-	SOCKET m_socket;
+	Socket m_socket;
 	// Parent TelnetServer class
 	std::shared_ptr<TelnetServer> m_telnetServer;
 	// Buffer of input data (mid line)
@@ -206,7 +202,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 
   private:
 	u_long m_listenPort;
-	SOCKET m_listenSocket;
+	Socket m_listenSocket;
 	VEC_SP_TelnetSession m_sessions;
 	bool m_initialised;
 	// A string that denotes the current prompt
