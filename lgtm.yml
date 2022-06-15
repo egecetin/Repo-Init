@@ -20,4 +20,4 @@ extraction:
         - cmake -DCMAKE_BUILD_TYPE=Release -S . -B build
     index:
       build_command:
-        - make -j
+        - cmake --build build
