@@ -17,3 +17,7 @@ extraction:
     configure:
       command:
         - mkdir -p dist/temp dist/rpm dist/makeself
+        - cmake -DCMAKE_BUILD_TYPE=Release -S . -B build
+    index:
+      build_command:
+        - make -j
