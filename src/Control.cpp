@@ -23,7 +23,7 @@ void TelnetPrintAvailableCommands(SP_TelnetSession session)
 	session->sendLine("");
 	session->sendLine("Available commands:");
 	session->sendLine("");
-	for(const auto &entry : telnetCommands)
+	for (const auto &entry : telnetCommands)
 	{
 		char buffer[BUFSIZ] = {'\0'};
 		std::snprintf(buffer, BUFSIZ, "%-25s : %s", entry.first.c_str(), entry.second.c_str());
