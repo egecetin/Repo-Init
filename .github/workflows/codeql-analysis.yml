@@ -24,8 +24,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-        with:
-          submodules: recursive
+      with:
+        submodules: recursive
     - name: Prepare system
       run:  mkdir -p dist/temp dist/rpm dist/makeself
     - name: Initialize CodeQL
