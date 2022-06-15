@@ -4,11 +4,6 @@ path_classifiers:
   test:
     - exclude: test
   library:
-    - exclude: path/to/libary/code/**/*.c
-  # The default behavior is to tag template files as `template`. Results are hidden
-  # for template files. You can tag further files as being template files by adding
-  # them to the `template` section.
-  template:
     - exclude: thirdparty/**
 
 queries:

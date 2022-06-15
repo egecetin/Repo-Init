@@ -4,6 +4,7 @@
 ![GitHub](https://img.shields.io/github/license/egecetin/Repo-Init?style=plastic)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/egecetin/Repo-Init/Build%20and%20test?style=plastic)
 ![Codecov](https://img.shields.io/codecov/c/github/egecetin/Repo-Init?style=plastic&token=G65MG0J07F)
+![LGTM Grade](https://img.shields.io/lgtm/grade/cpp/github/egecetin/Repo-Init?style=plastic)
 
 ## Contents
 
