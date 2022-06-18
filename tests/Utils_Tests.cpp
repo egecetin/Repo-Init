@@ -17,14 +17,14 @@ TEST(Utils_Tests, InputParser_Tests)
 	ASSERT_EQ("", parser.getCmdOption("program"));
 	ASSERT_FALSE(parser.cmdOptionExists("program"));
 
+	ASSERT_EQ("", parser.getCmdOption("unknownArg"));
+	ASSERT_FALSE(parser.cmdOptionExists("unknownArg"));
+
 	ASSERT_EQ("option1", parser.getCmdOption("argument1"));
 	ASSERT_TRUE(parser.cmdOptionExists("argument1"));
 
 	ASSERT_EQ("", parser.getCmdOption("--argument2"));
 	ASSERT_TRUE(parser.cmdOptionExists("--argument2"));
-
-	ASSERT_EQ("", parser.getCmdOption("unknownArg"));
-	ASSERT_FALSE(parser.cmdOptionExists("unknownArg"));
 }
 
 TEST(Utils_Tests, ConfigReader_Tests)
@@ -74,11 +74,12 @@ TEST(Utils_Tests, Telnet_Tests)
 	telnetServerPtr->tabCallback(TelnetTabCallback);
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	shResult =
-		std::async(std::launch::async, []() { return system(("expect " + std::string(TEST_TELNET_SH_PATH) + " >/dev/null").c_str()); });
+	shResult = std::async(std::launch::async, []() {
+		return system(("expect " + std::string(TEST_TELNET_SH_PATH) + " >/dev/null").c_str());
+	});
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	for (size_t idx = 0; idx < 100; ++idx)
+	for (size_t idx = 0; idx < 150; ++idx)
 	{
 		telnetServerPtr->update();
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
