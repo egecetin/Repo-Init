@@ -79,7 +79,7 @@ TEST(Utils_Tests, Telnet_Tests)
 	});
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	for (size_t idx = 0; idx < 150; ++idx)
+	for (size_t idx = 0; idx < 250; ++idx)
 	{
 		telnetServerPtr->update();
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
