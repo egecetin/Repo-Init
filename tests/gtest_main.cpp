@@ -8,7 +8,6 @@ int main(int argc, char **argv)
 	::testing::InitGoogleTest(&argc, argv);
 	int retval = EXIT_FAILURE;
 
-	// Log triggers memleak warnings
 	spdlog::set_level(spdlog::level::off);
 
 	MemPlumber::start();
