@@ -144,12 +144,12 @@ start:
 		{
 			// Update Telnet connection
 			telnetServerPtr->update();
-			std::this_thread::sleep_for(std::chrono::milliseconds(50));
 		}
 		catch (const std::exception &e)
 		{
 			spdlog::error("Telnet {}", e.what());
 		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
 	}
 
 	// Closing server
