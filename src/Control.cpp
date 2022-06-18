@@ -61,6 +61,10 @@ void TelnetMessageCallback(SP_TelnetSession session, std::string line)
 		session->sendLine("Default log mode enabled");
 		spdlog::set_level(spdlog::level::info);
 		break;
+	case constHasher("disable log all"):
+		session->sendLine("Disabling all logs");
+		spdlog::set_level(spdlog::level::off);
+		break;
 	case constHasher("enable log v"):
 		session->sendLine("Info log mode enabled");
 		spdlog::set_level(spdlog::level::info);
@@ -136,9 +140,16 @@ start:
 
 	while (loopFlag)
 	{
-		// Update Telnet connection
-		telnetServerPtr->update();
-		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		try
+		{
+			// Update Telnet connection
+			telnetServerPtr->update();
+			std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Telnet {}", e.what());
+		}
 	}
 
 	// Closing server
@@ -174,38 +185,45 @@ void zmqControlThread()
 
 	while (loopFlag)
 	{
-		std::vector<zmq::message_t> recv_msgs;
-		if (zmq::recv_multipart(socketRep, std::back_inserter(recv_msgs)))
+		try
 		{
-			int reply = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;
-			switch (*((uint64_t *)recv_msgs[0].data()))
+			std::vector<zmq::message_t> recv_msgs;
+			if (zmq::recv_multipart(socketRep, std::back_inserter(recv_msgs)))
 			{
-			case LOG_LEVEL_ID: {
-				if (recv_msgs.size() == 2)
+				int reply = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;
+				switch (*((uint64_t *)recv_msgs[0].data()))
 				{
-					spdlog::warn("Log level change request received");
-					std::string receivedMsg = std::string((char *)recv_msgs[1].data(), recv_msgs[1].size());
+				case LOG_LEVEL_ID: {
+					if (recv_msgs.size() == 2)
+					{
+						spdlog::warn("Log level change request received");
+						std::string receivedMsg = std::string((char *)recv_msgs[1].data(), recv_msgs[1].size());
 
-					if (!receivedMsg.compare("-v"))
-						spdlog::set_level(spdlog::level::info);
-					if (!receivedMsg.compare("-vv"))
-						spdlog::set_level(spdlog::level::debug);
-					if (!receivedMsg.compare("-vvv"))
-						spdlog::set_level(spdlog::level::trace);
+						if (!receivedMsg.compare("-v"))
+							spdlog::set_level(spdlog::level::info);
+						if (!receivedMsg.compare("-vv"))
+							spdlog::set_level(spdlog::level::debug);
+						if (!receivedMsg.compare("-vvv"))
+							spdlog::set_level(spdlog::level::trace);
+					}
+					else
+						spdlog::error("Receive unknown number of messages for log level change");
+					break;
 				}
-				else
-					spdlog::error("Receive unknown number of messages for log level change");
-				break;
-			}
-			default:
-				spdlog::error("Unknown command received from control");
-				break;
-			}
+				default:
+					spdlog::error("Unknown command received from control");
+					break;
+				}
 
-			socketRep.send(zmq::const_buffer(&reply, sizeof(reply)));
+				socketRep.send(zmq::const_buffer(&reply, sizeof(reply)));
+			}
+			else
+				spdlog::trace("Controller ZMQ receive timeout");
 		}
-		else
-			spdlog::trace("Controller ZMQ receive timeout");
+		catch (const std::exception &e)
+		{
+			spdlog::error("ZMQ {}", e.what());
+		}
 	}
 
 	// Cleanup

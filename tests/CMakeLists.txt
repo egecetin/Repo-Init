@@ -16,6 +16,7 @@ FetchContent_MakeAvailable(googletest)
 # Enable gcov if Debug
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 	include(CodeCoverage)
+	set(GCOVR_ADDITIONAL_ARGS "--exclude-throw-branches")
 	setup_target_for_coverage_gcovr_html(NAME coverage
 										EXECUTABLE TestMain
 										DEPENDENCIES TestMain

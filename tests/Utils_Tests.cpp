@@ -42,6 +42,12 @@ TEST(Utils_Tests, ConfigReader_Tests)
 	ASSERT_FALSE(readConfig("dummypath"));
 	ASSERT_EQ("", readSingleConfig("dummypath", "ZMQ_SEND_TIMEOUT"));
 	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_PATH, "dummyoption"));
+
+	ASSERT_FALSE(readConfig(TEST_CONFIG_EMPTY_PATH));
+	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_EMPTY_PATH, "ZMQ_SEND_TIMEOUT"));
+	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_EMPTY_PATH, "dummyoption"));
+
+	ASSERT_FALSE(readConfig(TEST_CONFIG_MISS_ELEMENT_PATH));
 }
 
 TEST(Utils_Tests, Telnet_Tests)
@@ -59,15 +65,17 @@ TEST(Utils_Tests, Telnet_Tests)
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
 	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT"))));
+	ASSERT_FALSE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT"))));
 	telnetServerPtr->shutdown();
 
 	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), "> "));
 	telnetServerPtr->connectedCallback(TelnetConnectedCallback);
 	telnetServerPtr->newLineCallback(TelnetMessageCallback);
+	telnetServerPtr->tabCallback(TelnetTabCallback);
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	shResult =
-		std::async(std::launch::async, []() { return system(("expect " + std::string(TEST_TELNET_SH_PATH)).c_str()); });
+		std::async(std::launch::async, []() { return system(("expect " + std::string(TEST_TELNET_SH_PATH) + " >/dev/null").c_str()); });
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	for (size_t idx = 0; idx < 100; ++idx)
