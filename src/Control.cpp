@@ -1,7 +1,6 @@
 #include "Control.h"
 
 #include <chrono>
-#include <string>
 #include <thread>
 
 #include <spdlog/spdlog.h>
