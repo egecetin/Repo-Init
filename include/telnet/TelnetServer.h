@@ -59,6 +59,9 @@ const std::string ANSI_ARROW_DOWN("\x1b\x5b\x42");
 const std::string ANSI_ARROW_RIGHT("\x1b\x5b\x43");
 const std::string ANSI_ARROW_LEFT("\x1b\x5b\x44");
 
+const std::string ANSI_DOUBLE_HORIZONTAL_TAB("\t\t");
+const std::string ANSI_HORIZONTAL_TAB("\t");
+
 const std::string TELNET_ERASE_LINE("\xff\xf8");
 
 typedef int Socket;
@@ -109,6 +112,8 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	// Takes backspace commands and removes them and the preceding character from the m_buffer. Handles arrow key
 	// actions for history management. Returns true if the input buffer was changed.
 	static bool processBackspace(std::string &buffer);
+	// Takes tab commands and completes or suggests commands
+	bool processTab(std::string &buffer);
 	// Add a command into the command history
 	void addToHistory(std::string line);
 	// Handles arrow key actions for history management. Returns true if the input buffer was changed.
@@ -137,6 +142,7 @@ typedef std::vector<SP_TelnetSession> VEC_SP_TelnetSession;
 
 typedef std::function<void(SP_TelnetSession)> FPTR_ConnectedCallback;
 typedef std::function<void(SP_TelnetSession, std::string)> FPTR_NewLineCallback;
+typedef std::function<std::string(SP_TelnetSession, std::string)> FPTR_TabCallback;
 
 class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 {
@@ -178,6 +184,15 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 		return m_newlineCallback;
 	}
 
+	void tabCallback(FPTR_TabCallback f)
+	{
+		m_tabCallback = f;
+	}
+	FPTR_TabCallback tabCallback() const
+	{
+		return m_tabCallback;
+	}
+
 	VEC_SP_TelnetSession sessions() const
 	{
 		return m_sessions;
@@ -212,4 +227,6 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	FPTR_ConnectedCallback m_connectedCallback;
 	// Called after every new line (from CR or LF) function(SP_TelnetSession, std::string) {}
 	FPTR_NewLineCallback m_newlineCallback;
+	// Called after TAB detected. function(SP_TelnetSession, std::string, PredictSignalType) {}
+	FPTR_TabCallback m_tabCallback;
 };

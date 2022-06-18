@@ -1,6 +1,7 @@
 #include "Control.h"
 
 #include <chrono>
+#include <string>
 #include <thread>
 
 #include <spdlog/spdlog.h>
@@ -13,9 +14,10 @@ constexpr size_t constHasher(const char *s, size_t index = 0)
 }
 
 std::vector<std::pair<std::string, std::string>> telnetCommands = {
-	{"help", "Prints available commands"},			 {"disable log", "Resets logger level"},
-	{"enable log v", "Enable info logger level"},	 {"enable log vv", "Enable debug logger level"},
-	{"enable log vvv", "Enable trace logger level"}, {"quit", "Ends the connection"}};
+	{"help", "Prints available commands"},
+	{"disable log", "Resets logger level"},
+	{"enable log", "Enable specified logger level. Level can be \"v\" (info), \"vv\" (debug) and \"vvv\" (trace)"},
+	{"quit", "Ends the connection"}};
 
 void TelnetPrintAvailableCommands(SP_TelnetSession session)
 {
@@ -83,15 +85,55 @@ void TelnetMessageCallback(SP_TelnetSession session, std::string line)
 	}
 }
 
+std::string TelnetTabCallback(SP_TelnetSession session, std::string line)
+{
+	std::string retval = "";
+
+	size_t ctr = 0;
+	std::stringstream ss;
+	for (const auto &entry : telnetCommands)
+	{
+		if (entry.first.rfind(line, 0) == 0)
+		{
+			++ctr;
+			retval = entry.first;
+			ss << entry.first << std::setw(25);
+		}
+	}
+	// Send suggestions if found any. If there is only one command retval will invoke completion
+	if (ctr != 1 && ss.str().size())
+	{
+		session->sendLine(ss.str());
+		retval = "";
+	}
+
+	return retval;
+}
+
 // GCOVR_EXCL_START
 void telnetControlThread()
 {
+	bool tryAgain = false;
+
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
-	telnetServerPtr->initialise(TELNET_PORT, "> ");
-	telnetServerPtr->connectedCallback(TelnetConnectedCallback);
-	telnetServerPtr->newLineCallback(TelnetMessageCallback);
-	spdlog::debug("Telnet server created at {}", TELNET_PORT);
+
+start:
+	if (tryAgain)
+		TELNET_PORT = std::stoi(readSingleConfig(CONFIG_FILE_PATH, "TELNET_PORT"));
+	if (telnetServerPtr->initialise(TELNET_PORT, "> "))
+	{
+		telnetServerPtr->connectedCallback(TelnetConnectedCallback);
+		telnetServerPtr->newLineCallback(TelnetMessageCallback);
+		telnetServerPtr->tabCallback(TelnetTabCallback);
+		spdlog::info("Telnet server created at {}", TELNET_PORT);
+	}
+	else
+	{
+		tryAgain = true;
+		sleep(30);
+		goto start;
+	}
 
 	while (loopFlag)
 	{

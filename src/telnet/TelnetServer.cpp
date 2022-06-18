@@ -1,6 +1,7 @@
 #include "telnet/TelnetServer.h"
 #include "Utils.h"
 
+#include <iostream>
 #include <spdlog/spdlog.h>
 
 // Invalid socket identifier for readability
@@ -186,7 +187,7 @@ bool TelnetSession::processBackspace(std::string &buffer)
 
 		if (found != std::string::npos)
 		{
-			if (buffer.length() > 1)
+			if (buffer.length() > 1 && found)
 				buffer.erase(found - 1, 2);
 			else
 				buffer = "";
@@ -194,6 +195,36 @@ bool TelnetSession::processBackspace(std::string &buffer)
 		}
 	} while (found != std::string::npos);
 	return foundBackspaces;
+}
+
+bool TelnetSession::processTab(std::string &buffer)
+{
+	bool foundTabs = false;
+	size_t found;
+	do
+	{
+		const char findChar = '\t';
+		found = buffer.find_first_of(findChar);
+		if (found != std::string::npos)
+		{
+			// Remove single tab
+			if (buffer.length())
+				buffer.erase(found, 1);
+			foundTabs = true;
+
+			// Process
+			if (m_telnetServer->tabCallback())
+			{
+				std::string retCommand = m_telnetServer->tabCallback()(shared_from_this(), buffer.substr(0, found));
+				if (retCommand.size())
+				{
+					buffer.erase(0, found);
+					buffer.insert(0, retCommand);
+				}
+			}
+		}
+	} while (found != std::string::npos);
+	return foundTabs;
 }
 
 void TelnetSession::addToHistory(std::string line)
@@ -302,14 +333,21 @@ void TelnetSession::update()
 		bool requirePromptReprint = false;
 		if (m_telnetServer->interactivePrompt())
 		{
-			if (processCommandHistory(m_buffer)) // Read up and down arrow keys and scroll through history
+			// Read up and down arrow keys and scroll through history
+			if (processCommandHistory(m_buffer))
 				requirePromptReprint = true;
 			stripEscapeCharacters(m_buffer);
 
+			// Remove characters
 			if (processBackspace(m_buffer))
+				requirePromptReprint = true;
+
+			// Complete commands
+			if (processTab(m_buffer))
 				requirePromptReprint = true;
 		}
 
+		// Process commands
 		auto lines = getCompleteLines(m_buffer);
 		for (auto line : lines)
 		{
