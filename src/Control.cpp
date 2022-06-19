@@ -134,7 +134,7 @@ start:
 	else
 	{
 		tryAgain = true;
-		sleep(30);
+		std::this_thread::sleep_for(std::chrono::seconds(30));
 		goto start;
 	}
 
@@ -191,6 +191,7 @@ void zmqControlThread()
 			if (zmq::recv_multipart(socketRep, std::back_inserter(recv_msgs)))
 			{
 				int reply = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;
+				std::string replyBody = "";
 				switch (*((uint64_t *)recv_msgs[0].data()))
 				{
 				case LOG_LEVEL_ID: {
@@ -205,6 +206,7 @@ void zmqControlThread()
 							spdlog::set_level(spdlog::level::debug);
 						if (!receivedMsg.compare("-vvv"))
 							spdlog::set_level(spdlog::level::trace);
+						reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;
 					}
 					else
 						spdlog::error("Receive unknown number of messages for log level change");
@@ -215,7 +217,9 @@ void zmqControlThread()
 					break;
 				}
 
-				socketRep.send(zmq::const_buffer(&reply, sizeof(reply)));
+				// Send reply
+				socketRep.send(zmq::const_buffer(&reply, sizeof(reply)), zmq::send_flags::sndmore);
+				socketRep.send(zmq::const_buffer(replyBody.c_str(), replyBody.size()));
 			}
 			else
 				spdlog::trace("Controller ZMQ receive timeout");
