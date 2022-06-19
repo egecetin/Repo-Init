@@ -88,27 +88,38 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/spdlog EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests EXCLUDE_FROM_ALL)
 
 # Set Targets
-add_library(XXX_Lib SHARED ${ProjectSources})
+add_library(XXX_Lib_Shared SHARED ${ProjectSources})
 set_target_properties(
-	XXX_Lib PROPERTIES
+	XXX_Lib_Shared PROPERTIES
 	OUTPUT_NAME "XXX"
 	VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
 	SOVERSION ${PROJECT_VERSION_MAJOR}
 )
-target_compile_options(XXX_Lib PRIVATE -Wall -Wextra -Werror -pedantic)
-target_include_directories(XXX_Lib PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries(XXX_Lib stdc++fs spdlog libzmq)
+target_compile_options(XXX_Lib_Shared PRIVATE -Wall -Wextra -Werror -pedantic)
+target_include_directories(XXX_Lib_Shared PRIVATE "${PROJECT_BINARY_DIR}")
+target_link_libraries(XXX_Lib_Shared stdc++fs spdlog libzmq)
+
+add_library(XXX_Lib_Static STATIC ${ProjectSources})
+set_target_properties(
+	XXX_Lib_Static PROPERTIES
+	OUTPUT_NAME "XXX"
+	VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
+	SOVERSION ${PROJECT_VERSION_MAJOR}
+)
+target_compile_options(XXX_Lib_Static PRIVATE -Wall -Wextra -Werror -pedantic)
+target_include_directories(XXX_Lib_Static PRIVATE "${PROJECT_BINARY_DIR}")
+target_link_libraries(XXX_Lib_Static stdc++fs spdlog libzmq)
 
 add_executable(XXX ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_compile_options(XXX PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories(XXX PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries(XXX XXX_Lib)
+target_link_libraries(XXX XXX_Lib_Shared)
 
-install(TARGETS XXX XXX_Lib spdlog libzmq RUNTIME DESTINATION bin LIBRARY DESTINATION lib)
+install(TARGETS XXX XXX_Lib_Shared spdlog libzmq RUNTIME DESTINATION bin LIBRARY DESTINATION lib)
 
 # Update build number at every build
 add_custom_command(
-	TARGET XXX_Lib
+	TARGET XXX_Lib_Shared
 	PRE_BUILD
 	COMMAND ${CMAKE_COMMAND} -P "${PROJECT_SOURCE_DIR}/cmake/AutoBuildNumber.cmake"
 	COMMENT "${BoldBlue}Updating build number${ColourReset}"
