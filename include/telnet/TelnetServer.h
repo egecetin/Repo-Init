@@ -166,50 +166,20 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	/// Closes the Telnet Server
 	void shutdown();
 
-	void connectedCallback(FPTR_ConnectedCallback f)
-	{
-		m_connectedCallback = f;
-	}
-	FPTR_ConnectedCallback connectedCallback() const
-	{
-		return m_connectedCallback;
-	}
+	void connectedCallback(FPTR_ConnectedCallback f) { m_connectedCallback = f; }
+	FPTR_ConnectedCallback connectedCallback() const { return m_connectedCallback; }
 
-	void newLineCallback(FPTR_NewLineCallback f)
-	{
-		m_newlineCallback = f;
-	}
-	FPTR_NewLineCallback newLineCallBack() const
-	{
-		return m_newlineCallback;
-	}
+	void newLineCallback(FPTR_NewLineCallback f) { m_newlineCallback = f; }
+	FPTR_NewLineCallback newLineCallBack() const { return m_newlineCallback; }
 
-	void tabCallback(FPTR_TabCallback f)
-	{
-		m_tabCallback = f;
-	}
-	FPTR_TabCallback tabCallback() const
-	{
-		return m_tabCallback;
-	}
+	void tabCallback(FPTR_TabCallback f) { m_tabCallback = f; }
+	FPTR_TabCallback tabCallback() const { return m_tabCallback; }
 
-	VEC_SP_TelnetSession sessions() const
-	{
-		return m_sessions;
-	}
+	VEC_SP_TelnetSession sessions() const { return m_sessions; }
 
-	bool interactivePrompt() const
-	{
-		return m_promptString.length() > 0;
-	}
-	void promptString(std::string prompt)
-	{
-		m_promptString = prompt;
-	}
-	std::string promptString() const
-	{
-		return m_promptString;
-	}
+	bool interactivePrompt() const { return m_promptString.length() > 0; }
+	void promptString(std::string prompt) { m_promptString = prompt; }
+	std::string promptString() const { return m_promptString; }
 
   private:
 	void acceptConnection();
