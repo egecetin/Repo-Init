@@ -83,15 +83,9 @@ void TelnetSession::closeClient()
 	close(m_socket);
 }
 
-bool TelnetSession::checkTimeout()
-{
-	return (currentTime - lastSeenTime > TELNET_TIMEOUT);
-}
+bool TelnetSession::checkTimeout() { return (currentTime - lastSeenTime > TELNET_TIMEOUT); }
 
-void TelnetSession::markTimeout()
-{
-	lastSeenTime = 0;
-}
+void TelnetSession::markTimeout() { lastSeenTime = 0; }
 
 void TelnetSession::echoBack(char *buffer, u_long length)
 {
