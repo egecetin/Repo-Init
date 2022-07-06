@@ -35,7 +35,7 @@ void print_version(void)
 	spdlog::info("  Rapidjson                       : v{}", RAPIDJSON_VERSION_STRING);
 	zmq_version(&major, &minor, &patch);
 	spdlog::info("  ZeroMQ                          : v{}.{}.{}", major, minor, patch);
-	spdlog::info("  CPPZMQ                          : v{}.{}.{}", CPPZMQ_VERSION_MAJOR, CPPZMQ_VERSION_MINOR,
+	spdlog::info("  CppZMQ                          : v{}.{}.{}", CPPZMQ_VERSION_MAJOR, CPPZMQ_VERSION_MINOR,
 				 CPPZMQ_VERSION_PATCH);
 	spdlog::info("  Sentry                          : v{}", SENTRY_SDK_VERSION);
 }
@@ -44,31 +44,32 @@ void print_version(void)
 // GCOVR_EXCL_START
 void sentry_logger_spdlog(sentry_level_t level, const char *message, va_list args, void *)
 {
-    //process format
-    char buf[BUFSIZ];
-    vsprintf(buf, message, args);
+	// process format
+	char buf[BUFSIZ];
+	vsprintf(buf, message, args);
 
-    //write to spdlog
-    switch (level) {
-    case SENTRY_LEVEL_DEBUG:
-        spdlog::debug(buf);
-        break;
-    case SENTRY_LEVEL_INFO:
-        spdlog::info(buf);
-        break;
-    case SENTRY_LEVEL_WARNING:
-        spdlog::warn(buf);
-        break;
-    case SENTRY_LEVEL_ERROR:
-        spdlog::error(buf);
-        break;
-    case SENTRY_LEVEL_FATAL:
-        spdlog::critical(buf);
-        break;
-    default:
+	// write to spdlog
+	switch (level)
+	{
+	case SENTRY_LEVEL_DEBUG:
+		spdlog::debug(buf);
+		break;
+	case SENTRY_LEVEL_INFO:
+		spdlog::info(buf);
+		break;
+	case SENTRY_LEVEL_WARNING:
+		spdlog::warn(buf);
+		break;
+	case SENTRY_LEVEL_ERROR:
+		spdlog::error(buf);
+		break;
+	case SENTRY_LEVEL_FATAL:
+		spdlog::critical(buf);
+		break;
+	default:
 		spdlog::warn("Unknown Sentry log level {}", static_cast<int>(level));
-        break;
-    }
+		break;
+	}
 }
 // GCOVR_EXCL_STOP
 
@@ -110,7 +111,7 @@ bool prepare_sentry(void)
 	sentry_value_set_by_key(versionContext, "ZeroMQ", sentry_value_new_string(versionBuffer.c_str()));
 	versionBuffer = "v" + std::to_string(CPPZMQ_VERSION_MAJOR) + "." + std::to_string(CPPZMQ_VERSION_MINOR) + "." +
 					std::to_string(CPPZMQ_VERSION_PATCH);
-	sentry_value_set_by_key(versionContext, "CPPZMQ", sentry_value_new_string(versionBuffer.c_str()));
+	sentry_value_set_by_key(versionContext, "CppZMQ", sentry_value_new_string(versionBuffer.c_str()));
 	// Sentry send its version on default
 	sentry_set_context("Version", versionContext);
 
@@ -137,8 +138,6 @@ bool prepare_sentry(void)
 	fclose(cpu_info);
 
 	sentry_set_context("Host", hostContext);
-
-	// Set custom logger
 
 	return true;
 }
