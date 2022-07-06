@@ -30,6 +30,9 @@ int main(int argc, char **argv)
 	if (!readConfig(CONFIG_FILE_PATH))
 		return -1;
 
+	if (!prepare_sentry())
+		spdlog::warn("Can't init Sentry");
+
 	// Register alarms
 	signal(SIGINT, interruptFunc);
 	signal(SIGTERM, interruptFunc);

@@ -23,6 +23,8 @@ extern int ZMQ_SEND_TIMEOUT;
 extern uint16_t TELNET_PORT;
 /// Interprocess path of controller thread
 extern std::string CONTROL_IPC_PATH;
+/// Sentry API path
+extern std::string SENTRY_ADDRESS;
 
 /// Current time value set by SIGALRM
 extern volatile time_t currentTime;
@@ -87,6 +89,13 @@ class InputParser
  * @brief Prints the version
  */
 void print_version(void);
+
+/**
+ * @brief Prepares Sentry API
+ * @return true If initialized
+ * @return false otherwise
+ */
+bool prepare_sentry(void);
 
 /**
  * @brief Read initial config from JSON

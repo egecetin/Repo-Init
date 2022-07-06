@@ -68,6 +68,7 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/libzmq)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/spdlog/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/include)
 
 # Disable/Enable options of subprojects
 option(BUILD_TESTS "" OFF) # libzmq
@@ -83,6 +84,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/libzmq EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/spdlog EXCLUDE_FROM_ALL)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/sentry EXCLUDE_FROM_ALL)
 
 # Add tests
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests EXCLUDE_FROM_ALL)
@@ -97,7 +99,7 @@ set_target_properties(
 )
 target_compile_options(XXX_Lib_Shared PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories(XXX_Lib_Shared PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries(XXX_Lib_Shared stdc++fs spdlog libzmq)
+target_link_libraries(XXX_Lib_Shared stdc++fs spdlog libzmq sentry)
 
 add_library(XXX_Lib_Static STATIC ${ProjectSources})
 set_target_properties(
@@ -108,7 +110,7 @@ set_target_properties(
 )
 target_compile_options(XXX_Lib_Static PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories(XXX_Lib_Static PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries(XXX_Lib_Static stdc++fs spdlog libzmq)
+target_link_libraries(XXX_Lib_Static stdc++fs spdlog libzmq sentry)
 
 add_executable(XXX ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_compile_options(XXX PRIVATE -Wall -Wextra -Werror -pedantic)
