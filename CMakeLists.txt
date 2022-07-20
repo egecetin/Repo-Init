@@ -7,6 +7,7 @@ include(Colorize)
 include(GitVersion)
 include(SvnVersion)
 include(Doxy)
+include(GraphViz)
 
 if(NOT DEFINED REVISION_VERSION)
 	message(SEND_ERROR "Can't find SVN or Git. The folder is not under version control.")
@@ -15,11 +16,13 @@ endif()
 # Set project properties
 set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_VERSION_MINOR 0)
+
 if(EXISTS "${PROJECT_SOURCE_DIR}/BuildNumberCache.txt")
 	file(READ "${PROJECT_SOURCE_DIR}/BuildNumberCache.txt" BUILD_NUMBER)
 else()
 	set(BUILD_NUMBER "1")
 endif()
+
 set(PROJECT_VERSION_PATCH ${BUILD_NUMBER})
 set(PROJECT_VERSION_TWEAK ${REVISION_VERSION})
 set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${BUILD_NUMBER}-rev${REVISION_VERSION}")
@@ -46,6 +49,7 @@ if(CMAKE_C_COMPILER STREQUAL "icc")
 	set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -xHost -use-intel-optimized-headers -static-intel")
 	set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -xHost -ipo -use-intel-optimized-headers -static-intel")
 endif()
+
 if(CMAKE_CXX_COMPILER STREQUAL "icpc")
 	message("${BoldBlue}Intel C++ Compiler detected. Updating flags ...${ColourReset}")
 	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -xHost -use-intel-optimized-headers -static-intel")
@@ -56,10 +60,10 @@ configure_file(build_number.h.in XXX_Version.h)
 
 # Sources
 FILE(GLOB ProjectSources
-				${PROJECT_SOURCE_DIR}/src/*.cpp
-				${PROJECT_SOURCE_DIR}/src/*.c
-				${PROJECT_SOURCE_DIR}/src/**/*.cpp
-				${PROJECT_SOURCE_DIR}/src/**/*.c)
+	${PROJECT_SOURCE_DIR}/src/*.cpp
+	${PROJECT_SOURCE_DIR}/src/*.c
+	${PROJECT_SOURCE_DIR}/src/**/*.cpp
+	${PROJECT_SOURCE_DIR}/src/**/*.c)
 
 # Include directories
 include_directories(${PROJECT_SOURCE_DIR}/include)
@@ -130,29 +134,29 @@ add_custom_command(
 	TARGET XXX
 	POST_BUILD
 	COMMAND $<$<CONFIG:Release>:find>
-			$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/temp/>
-			$<$<CONFIG:Release>:-maxdepth>
-			$<$<CONFIG:Release>:1>
-			$<$<CONFIG:Release>:-type>
-			$<$<CONFIG:Release>:f>
-			$<$<CONFIG:Release>:-delete>
+	$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/temp/>
+	$<$<CONFIG:Release>:-maxdepth>
+	$<$<CONFIG:Release>:1>
+	$<$<CONFIG:Release>:-type>
+	$<$<CONFIG:Release>:f>
+	$<$<CONFIG:Release>:-delete>
 	COMMAND $<$<CONFIG:Release>:sh>
-			$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/scripts/ldd-copy-dependencies.sh>
-			$<$<CONFIG:Release>:-b>
-			$<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/XXX>
-			$<$<CONFIG:Release>:-t>
-			$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/temp>
+	$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/scripts/ldd-copy-dependencies.sh>
+	$<$<CONFIG:Release>:-b>
+	$<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/XXX>
+	$<$<CONFIG:Release>:-t>
+	$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/temp>
 	COMMAND $<$<CONFIG:Release>:sh>
-			$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/scripts/makeself/makeself.sh>
-			$<$<CONFIG:Release>:--notemp>
-			$<$<CONFIG:Release>:--sha256>
-			$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/temp>
-			$<$<CONFIG:Release>:"${PROJECT_NAME}.${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}.run">
-			$<$<CONFIG:Release>:"${PROJECT_NAME}">
+	$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/scripts/makeself/makeself.sh>
+	$<$<CONFIG:Release>:--notemp>
+	$<$<CONFIG:Release>:--sha256>
+	$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/temp>
+	$<$<CONFIG:Release>:"${PROJECT_NAME}.${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}.run">
+	$<$<CONFIG:Release>:"${PROJECT_NAME}">
 	COMMAND $<$<CONFIG:Release>:mv>
-			$<$<CONFIG:Release>:-f>
-			$<$<CONFIG:Release>:"${PROJECT_NAME}.${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}.run">
-			$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/makeself>
+	$<$<CONFIG:Release>:-f>
+	$<$<CONFIG:Release>:"${PROJECT_NAME}.${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}.run">
+	$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/makeself>
 	COMMENT "${BoldBlue}Updating dist folder${ColourReset}"
 )
 
