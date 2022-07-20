@@ -61,7 +61,7 @@ void TelnetMessageCallback(SP_TelnetSession session, std::string line)
 		session->sendLine("Default log mode enabled");
 		spdlog::set_level(spdlog::level::info);
 		break;
-	case constHasher("disable log all"):
+	case constHasher("disable log all"): // Internal use only
 		session->sendLine("Disabling all logs");
 		spdlog::set_level(spdlog::level::off);
 		break;
@@ -200,11 +200,11 @@ void zmqControlThread()
 						spdlog::warn("Log level change request received");
 						std::string receivedMsg = std::string((char *)recv_msgs[1].data(), recv_msgs[1].size());
 
-						if (!receivedMsg.compare("-v"))
+						if (!receivedMsg.compare("v"))
 							spdlog::set_level(spdlog::level::info);
-						if (!receivedMsg.compare("-vv"))
+						if (!receivedMsg.compare("vv"))
 							spdlog::set_level(spdlog::level::debug);
-						if (!receivedMsg.compare("-vvv"))
+						if (!receivedMsg.compare("vvv"))
 							spdlog::set_level(spdlog::level::trace);
 						reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;
 					}

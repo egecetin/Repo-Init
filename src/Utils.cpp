@@ -44,11 +44,11 @@ void print_version(void)
 // GCOVR_EXCL_START
 void sentry_logger_spdlog(sentry_level_t level, const char *message, va_list args, void *)
 {
-	// process format
+	// Process format
 	char buf[BUFSIZ];
 	vsprintf(buf, message, args);
 
-	// write to spdlog
+	// Write to spdlog
 	switch (level)
 	{
 	case SENTRY_LEVEL_DEBUG:
@@ -73,7 +73,6 @@ void sentry_logger_spdlog(sentry_level_t level, const char *message, va_list arg
 }
 // GCOVR_EXCL_STOP
 
-// GCOVR_EXCL_START
 bool prepare_sentry(void)
 {
 	if (SENTRY_ADDRESS.empty())
@@ -126,12 +125,15 @@ bool prepare_sentry(void)
 	while (!fscanf(cpu_info, "siblings\t: %u", &thread_count))
 		(void)!fscanf(cpu_info, "%*[^s]");
 	sentry_value_set_by_key(hostContext, "Thread count", sentry_value_new_int32(thread_count));
+	rewind(cpu_info);
 	while (!fscanf(cpu_info, "cpu cores\t: %u", &core_count))
 		(void)!fscanf(cpu_info, "%*[^c]");
 	sentry_value_set_by_key(hostContext, "Core count", sentry_value_new_int32(core_count));
+	rewind(cpu_info);
 	while (!fscanf(cpu_info, "model name\t: %8191[^\n]", hostBuffer))
 		(void)!fscanf(cpu_info, "%*[^m]");
 	sentry_value_set_by_key(hostContext, "Model", sentry_value_new_string(hostBuffer));
+	rewind(cpu_info);
 	while (!fscanf(cpu_info, "vendor_id\t: %s", hostBuffer))
 		(void)!fscanf(cpu_info, "%*[^v]");
 	sentry_value_set_by_key(hostContext, "Vendor ID", sentry_value_new_string(hostBuffer));
@@ -141,7 +143,6 @@ bool prepare_sentry(void)
 
 	return true;
 }
-// GCOVR_EXCL_STOP
 
 template <typename T> std::string stringify(const T &o)
 {
