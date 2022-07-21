@@ -2,8 +2,14 @@
 
 #include "XXX_Version.h"
 
+#include <arpa/inet.h>
 #include <execinfo.h>
+#include <ifaddrs.h>
+#include <net/if.h>
+#include <netdb.h>
+#include <netpacket/packet.h>
 #include <signal.h>
+#include <sys/socket.h>
 
 #include <rapidjson/document.h>
 #include <rapidjson/filereadstream.h>
@@ -140,6 +146,56 @@ bool prepare_sentry(void)
 	fclose(cpu_info);
 
 	sentry_set_context("Host", hostContext);
+
+	// Context: Network
+	sentry_value_t networkContext = sentry_value_new_object();
+
+	struct ifaddrs *ifaddr, *ifa;
+	char host[INET6_ADDRSTRLEN];
+	if (getifaddrs(&ifaddr) != -1)
+	{
+		// Iterate interfaces
+		for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
+		{
+			if (ifa->ifa_addr == NULL)
+				continue;
+
+			switch (ifa->ifa_addr->sa_family)
+			{
+			case AF_INET:
+				if ((ifa->ifa_flags & IFF_PROMISC) || (ifa->ifa_flags & IFF_UP))
+				{
+					inet_ntop(AF_INET, &((struct sockaddr_in *)ifa->ifa_addr)->sin_addr, host, INET6_ADDRSTRLEN);
+					sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".ipv4").c_str(),
+											sentry_value_new_string(host));
+				}
+				break;
+			case AF_INET6:
+				if ((ifa->ifa_flags & IFF_PROMISC) || (ifa->ifa_flags & IFF_UP))
+				{
+					inet_ntop(AF_INET6, &((struct sockaddr_in6 *)ifa->ifa_addr)->sin6_addr, host, INET6_ADDRSTRLEN);
+					sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".ipv6").c_str(),
+											sentry_value_new_string(host));
+				}
+				break;
+			case AF_PACKET:
+				if ((ifa->ifa_flags & IFF_PROMISC) || (ifa->ifa_flags & IFF_UP))
+				{
+					struct sockaddr_ll *s = (struct sockaddr_ll *)(ifa->ifa_addr);
+					sprintf(host, "%02x:%02x:%02x:%02x:%02x:%02x", s->sll_addr[0], s->sll_addr[1], s->sll_addr[2],
+							s->sll_addr[3], s->sll_addr[4], s->sll_addr[5]);
+					sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".mac").c_str(),
+											sentry_value_new_string(host));
+				}
+				break;
+			default:
+				break;
+			}
+		}
+		freeifaddrs(ifaddr);
+	}
+
+	sentry_set_context("Network", networkContext);
 
 	return true;
 }
