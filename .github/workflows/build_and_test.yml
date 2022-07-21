@@ -40,7 +40,7 @@ jobs:
       - name: Prepare system
         run: |
           mkdir -p dist/temp dist/rpm dist/makeself
-          sudo apt install expect gcovr -y
+          sudo apt install gcovr expect libcurl4-openssl-dev -y
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
       - name: Build
