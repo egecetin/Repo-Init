@@ -162,7 +162,7 @@ add_custom_command(
 	COMMAND $<$<CONFIG:Release>:mv>
 	$<$<CONFIG:Release>:-f>
 	$<$<CONFIG:Release>:"${PROJECT_NAME}.${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}.run">
-	$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/makeself>
+	$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/makeself/>
 	COMMENT "${BoldBlue}Updating dist folder${ColourReset}"
 )
 
