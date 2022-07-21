@@ -22,7 +22,7 @@ jobs:
       - name: Prepare system
         run: |
           mkdir -p dist/temp dist/rpm dist/makeself
-          sudo apt install expect curl -y
+          sudo apt install expect curl pkg-config -y
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B $BUILD_DIR
       - name: Build
