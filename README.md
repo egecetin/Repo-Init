@@ -38,9 +38,10 @@ All scripts should be executed from top level directory
 
 ## Dependencies
 
- - [ZeroMQ](https://github.com/zeromq/libzmq.git)
  - [CppZMQ](https://github.com/zeromq/cppzmq.git)
+ - [MemPlumber](https://github.com/seladb/MemPlumber.git)
  - [RapidJSON](https://github.com/Tencent/rapidjson.git)
  - [Spdlog](https://github.com/gabime/spdlog.git)
- - [MemPlumber](https://github.com/seladb/MemPlumber.git)
+ - [Sentry](https://github.com/getsentry/sentry-native.git)
  - [TelnetServLib](https://github.com/lukemalcolm/TelnetServLib.git) (Modified and embedded to source directory)
+ - [ZeroMQ](https://github.com/zeromq/libzmq.git)

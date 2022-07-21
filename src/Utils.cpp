@@ -41,7 +41,7 @@ void print_version(void)
 	spdlog::info("  Rapidjson                       : v{}", RAPIDJSON_VERSION_STRING);
 	zmq_version(&major, &minor, &patch);
 	spdlog::info("  ZeroMQ                          : v{}.{}.{}", major, minor, patch);
-	spdlog::info("  CPPZMQ                          : v{}.{}.{}", CPPZMQ_VERSION_MAJOR, CPPZMQ_VERSION_MINOR,
+	spdlog::info("  CppZMQ                          : v{}.{}.{}", CPPZMQ_VERSION_MAJOR, CPPZMQ_VERSION_MINOR,
 				 CPPZMQ_VERSION_PATCH);
 	spdlog::info("  Sentry                          : v{}", SENTRY_SDK_VERSION);
 }
@@ -116,7 +116,7 @@ bool prepare_sentry(void)
 	sentry_value_set_by_key(versionContext, "ZeroMQ", sentry_value_new_string(versionBuffer.c_str()));
 	versionBuffer = "v" + std::to_string(CPPZMQ_VERSION_MAJOR) + "." + std::to_string(CPPZMQ_VERSION_MINOR) + "." +
 					std::to_string(CPPZMQ_VERSION_PATCH);
-	sentry_value_set_by_key(versionContext, "CPPZMQ", sentry_value_new_string(versionBuffer.c_str()));
+	sentry_value_set_by_key(versionContext, "CppZMQ", sentry_value_new_string(versionBuffer.c_str()));
 	// Sentry send its version on default
 	sentry_set_context("Version", versionContext);
 
