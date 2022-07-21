@@ -86,6 +86,7 @@ option(RAPIDJSON_BUILD_DOC "" OFF)
 option(RAPIDJSON_BUILD_EXAMPLES "" OFF)
 option(RAPIDJSON_BUILD_TESTS "" OFF)
 option(SPDLOG_BUILD_SHARED "" ON)
+option(SENTRY_BUILD_SHARED_LIBS "" ON)
 
 # Subdirectories
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/libzmq EXCLUDE_FROM_ALL)
@@ -125,7 +126,7 @@ target_compile_options(XXX PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories(XXX PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(XXX XXX_Lib_Shared)
 
-install(TARGETS XXX XXX_Lib_Shared spdlog libzmq RUNTIME DESTINATION bin LIBRARY DESTINATION lib)
+install(TARGETS XXX XXX_Lib_Shared spdlog libzmq sentry RUNTIME DESTINATION bin LIBRARY DESTINATION lib)
 
 # Update build number at every build
 add_custom_command(
@@ -175,4 +176,6 @@ set(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
 set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}.${CMAKE_SYSTEM_PROCESSOR}")
 set(CPACK_RPM_SPEC_MORE_DEFINE "%define _build_id_links none")
 set(CPACK_OUTPUT_FILE_PREFIX ${PROJECT_SOURCE_DIR}/dist/rpm)
+set(CPACK_RESOURCE_FILE_LICENSE ${PROJECT_SOURCE_DIR}/LICENSE)
+set(CPACK_RESOURCE_FILE_README ${PROJECT_SOURCE_DIR}/README.md)
 include(CPack)
