@@ -91,11 +91,13 @@ class InputParser
 void print_version(void);
 
 /**
- * @brief Prepares Sentry API
- * @return true If initialized
+ * @brief Initializes the logger
+ * @param argc
+ * @param argv
+ * @return true On success
  * @return false otherwise
  */
-bool prepare_sentry(void);
+bool init_logger(int argc, char **argv);
 
 /**
  * @brief Read initial config from JSON

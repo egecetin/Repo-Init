@@ -88,12 +88,12 @@ bool prepare_sentry(void)
 	}
 
 	// Set options
-	sentry_options_t *options = sentry_options_new();
-	sentry_options_set_dsn(options, SENTRY_ADDRESS.c_str());
-	sentry_options_set_logger(options, sentry_logger_spdlog, nullptr);
+	sentry_options_t *sentryOptions = sentry_options_new();
+	sentry_options_set_dsn(sentryOptions, SENTRY_ADDRESS.c_str());
+	sentry_options_set_logger(sentryOptions, sentry_logger_spdlog, nullptr);
 
 	// Init
-	sentry_init(options);
+	sentry_init(sentryOptions);
 
 	// Tags
 	sentry_set_tag("compiler.name", COMPILER_NAME);
@@ -198,6 +198,37 @@ bool prepare_sentry(void)
 	sentry_set_context("Network", networkContext);
 
 	return true;
+}
+
+void closeSentry() { sentry_close(); }
+
+bool init_logger(int argc, char **argv)
+{
+	// Initial config
+	spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [XXX] [%^%l%$] : %v");
+	print_version();
+
+#ifdef NDEBUG
+	spdlog::set_level(spdlog::level::warn);
+#else
+	spdlog::set_level(spdlog::level::info);
+#endif
+
+	// Parse input arguments
+	InputParser input(argc, argv);
+	if (input.cmdOptionExists("-v"))
+		spdlog::set_level(spdlog::level::info);
+	if (input.cmdOptionExists("-vv"))
+		spdlog::set_level(spdlog::level::debug);
+	if (input.cmdOptionExists("-vvv"))
+		spdlog::set_level(spdlog::level::trace);
+
+	// Prepare spdlog loggers
+
+	// Prepare Sentry API
+	SENTRY_ADDRESS = readSingleConfig(CONFIG_FILE_PATH, "SENTRY_ADDRESS");
+	if (!prepare_sentry())
+		spdlog::warn("Can't init Sentry");
 }
 
 template <typename T> std::string stringify(const T &o)
