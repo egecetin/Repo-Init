@@ -198,7 +198,7 @@ bool init_logger(int argc, char **argv)
 	auto dup_filter = std::make_shared<spdlog::sinks::dup_filter_sink_mt>(std::chrono::seconds(5));
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::rotating_file_sink_mt>("log", 1048576 * 5, 3, false));
-	dup_filter->add_sink(std::make_shared<spdlog::sinks::syslog_sink_mt>("XXX"));
+	dup_filter->add_sink(std::make_shared<spdlog::sinks::syslog_sink_mt>("XXX", LOG_USER, 0, false));
 
 	// Prepare Sentry API
 	SENTRY_ADDRESS = readSingleConfig(CONFIG_FILE_PATH, "SENTRY_ADDRESS");
@@ -206,10 +206,13 @@ bool init_logger(int argc, char **argv)
 		spdlog::warn("Can't init Sentry");
 	else
 		void(); // <- Add custom logger for sentry
-	
+
 	// Register main logger
 	auto combined_logger = std::make_shared<spdlog::logger>("main", dup_filter);
-	spdlog::register_logger(combined_logger);
+	spdlog::set_default_logger(combined_logger);
+	spdlog::info("Logging started");
+
+	return true;
 }
 
 template <typename T> std::string stringify(const T &o)
