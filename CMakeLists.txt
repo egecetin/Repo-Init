@@ -126,11 +126,13 @@ target_compile_options(XXX PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories(XXX PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(XXX XXX_Lib_Shared)
 
+# Set install targets
 install(TARGETS XXX XXX_Lib_Shared spdlog libzmq sentry
 	RUNTIME DESTINATION bin
 	LIBRARY DESTINATION lib
 )
 
+# Add thirdparty dependencies
 install(CODE [[
   file(GET_RUNTIME_DEPENDENCIES
     LIBRARIES $<TARGET_FILE:XXX_Lib_Shared>
