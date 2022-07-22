@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.21)
 project(XXX)
 
 # CMake Modules
@@ -126,7 +126,32 @@ target_compile_options(XXX PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories(XXX PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(XXX XXX_Lib_Shared)
 
-install(TARGETS XXX XXX_Lib_Shared spdlog libzmq sentry RUNTIME DESTINATION bin LIBRARY DESTINATION lib)
+install(TARGETS XXX XXX_Lib_Shared spdlog libzmq sentry
+	RUNTIME DESTINATION bin
+	LIBRARY DESTINATION lib
+)
+
+install(CODE [[
+  file(GET_RUNTIME_DEPENDENCIES
+    LIBRARIES $<TARGET_FILE:XXX_Lib_Shared>
+    EXECUTABLES $<TARGET_FILE:XXX>
+    RESOLVED_DEPENDENCIES_VAR _r_deps
+    UNRESOLVED_DEPENDENCIES_VAR _u_deps
+  )
+  foreach(_file ${_r_deps})
+    file(INSTALL
+      DESTINATION "${CMAKE_INSTALL_PREFIX}/lib"
+      TYPE SHARED_LIBRARY
+      FOLLOW_SYMLINK_CHAIN
+      FILES "${_file}"
+    )
+	message(STATUS "Detected dependency ${_file}")
+  endforeach()
+  list(LENGTH _u_deps _u_length)
+  if("${_u_length}" GREATER 0)
+    message(WARNING "Unresolved dependencies detected!")
+  endif()
+]])
 
 # Update build number at every build
 add_custom_command(
@@ -169,13 +194,15 @@ add_custom_command(
 
 # CPack
 set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
-set(CPACK_GENERATOR "RPM")
+set(CPACK_GENERATOR "RPM" "DEB")
 set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
 set(CPACK_PACKAGE_RELEASE ${PROJECT_VERSION_PATCH})
 set(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
 set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}.${CMAKE_SYSTEM_PROCESSOR}")
 set(CPACK_RPM_SPEC_MORE_DEFINE "%define _build_id_links none")
-set(CPACK_OUTPUT_FILE_PREFIX ${PROJECT_SOURCE_DIR}/dist/rpm)
+set(CPACK_OUTPUT_FILE_PREFIX ${PROJECT_SOURCE_DIR}/dist/packages)
 set(CPACK_RESOURCE_FILE_LICENSE ${PROJECT_SOURCE_DIR}/LICENSE)
 set(CPACK_RESOURCE_FILE_README ${PROJECT_SOURCE_DIR}/README.md)
+set(CPACK_PACKAGE_CONTACT "Humanity")
+include(InstallRequiredSystemLibraries)
 include(CPack)
