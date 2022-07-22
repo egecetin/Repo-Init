@@ -8,6 +8,10 @@
 
 int main(int argc, char **argv)
 {
+	// Init logger
+	if (!init_logger(argc, argv))
+		return -1;
+
 	// Read config
 	if (!readConfig(CONFIG_FILE_PATH))
 		return -1;
@@ -21,7 +25,7 @@ int main(int argc, char **argv)
 	// Move SIGALRM to bottom because of invoking sleep
 
 	// Init variables
-	alarmCtr = 1;
+	alarmCtr = 1; // Should be non-zero at startup
 	currentTime = 0;
 	loopFlag = true;
 	sigReadyFlag = false;

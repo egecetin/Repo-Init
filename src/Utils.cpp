@@ -19,6 +19,11 @@
 #include <spdlog/spdlog.h>
 #include <zmq.hpp>
 
+#include <spdlog/sinks/dup_filter_sink.h>
+#include <spdlog/sinks/rotating_file_sink.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/sinks/syslog_sink.h>
+
 uintmax_t ALARM_INTERVAL;
 
 int ZMQ_SEND_TIMEOUT;
@@ -47,38 +52,6 @@ void print_version(void)
 }
 // GCOVR_EXCL_STOP
 
-// GCOVR_EXCL_START
-void sentry_logger_spdlog(sentry_level_t level, const char *message, va_list args, void *)
-{
-	// Process format
-	char buf[BUFSIZ];
-	vsprintf(buf, message, args);
-
-	// Write to spdlog
-	switch (level)
-	{
-	case SENTRY_LEVEL_DEBUG:
-		spdlog::debug(buf);
-		break;
-	case SENTRY_LEVEL_INFO:
-		spdlog::info(buf);
-		break;
-	case SENTRY_LEVEL_WARNING:
-		spdlog::warn(buf);
-		break;
-	case SENTRY_LEVEL_ERROR:
-		spdlog::error(buf);
-		break;
-	case SENTRY_LEVEL_FATAL:
-		spdlog::critical(buf);
-		break;
-	default:
-		spdlog::warn("Unknown Sentry log level {}", static_cast<int>(level));
-		break;
-	}
-}
-// GCOVR_EXCL_STOP
-
 bool prepare_sentry(void)
 {
 	if (SENTRY_ADDRESS.empty())
@@ -90,7 +63,6 @@ bool prepare_sentry(void)
 	// Set options
 	sentry_options_t *sentryOptions = sentry_options_new();
 	sentry_options_set_dsn(sentryOptions, SENTRY_ADDRESS.c_str());
-	sentry_options_set_logger(sentryOptions, sentry_logger_spdlog, nullptr);
 
 	// Init
 	sentry_init(sentryOptions);
@@ -196,7 +168,6 @@ bool prepare_sentry(void)
 	}
 
 	sentry_set_context("Network", networkContext);
-
 	return true;
 }
 
@@ -224,11 +195,21 @@ bool init_logger(int argc, char **argv)
 		spdlog::set_level(spdlog::level::trace);
 
 	// Prepare spdlog loggers
+	auto dup_filter = std::make_shared<spdlog::sinks::dup_filter_sink_mt>(std::chrono::seconds(5));
+	dup_filter->add_sink(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
+	dup_filter->add_sink(std::make_shared<spdlog::sinks::rotating_file_sink_mt>("log", 1048576 * 5, 3, false));
+	dup_filter->add_sink(std::make_shared<spdlog::sinks::syslog_sink_mt>("XXX"));
 
 	// Prepare Sentry API
 	SENTRY_ADDRESS = readSingleConfig(CONFIG_FILE_PATH, "SENTRY_ADDRESS");
 	if (!prepare_sentry())
 		spdlog::warn("Can't init Sentry");
+	else
+		void(); // <- Add custom logger for sentry
+	
+	// Register main logger
+	auto combined_logger = std::make_shared<spdlog::logger>("main", dup_filter);
+	spdlog::register_logger(combined_logger);
 }
 
 template <typename T> std::string stringify(const T &o)
