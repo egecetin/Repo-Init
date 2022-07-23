@@ -13,6 +13,7 @@
 - [CMake](#cmake)
 - [Scripts](#scripts)
 - [Dependencies](#dependencies)
+- [Targets](#targets)
 
 ## CMake
 
@@ -45,3 +46,11 @@ All scripts should be executed from top level directory
  - [Sentry](https://github.com/getsentry/sentry-native.git)
  - [TelnetServLib](https://github.com/lukemalcolm/TelnetServLib.git) (Modified and embedded to source directory)
  - [ZeroMQ](https://github.com/zeromq/libzmq.git)
+
+## Targets
+
+ - all              : Prepares all targets
+ - coverage         : Prepares coverage report
+ - docs             : Prepares documentation
+ - dependency-graph : Prepares graphviz visualization of dependencies
+ - test             : Prepares gtest target
