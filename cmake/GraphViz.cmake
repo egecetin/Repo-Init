@@ -18,6 +18,6 @@ if(DOT_EXE)
         TARGET dependency-graph POST_BUILD
         COMMAND ;
         COMMENT
-        "Dependency graph generated and located at ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.${DOT_OUTPUT_TYPE}"
+        "Dependency graph generated and located at ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-tree.${DOT_OUTPUT_TYPE}"
     )
 endif()

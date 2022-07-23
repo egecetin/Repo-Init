@@ -16,3 +16,6 @@
 [submodule "scripts/makeself"]
 	path = scripts/makeself
 	url = https://github.com/megastep/makeself.git
+[submodule "thirdparty/sentry"]
+	path = thirdparty/sentry
+	url = https://github.com/getsentry/sentry-native.git

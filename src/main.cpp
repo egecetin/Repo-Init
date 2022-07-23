@@ -8,27 +8,13 @@
 
 int main(int argc, char **argv)
 {
-	spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [XXX] [%^%l%$] : %v");
-	print_version();
-
-#ifdef NDEBUG
-	spdlog::set_level(spdlog::level::warn);
-#else
-	spdlog::set_level(spdlog::level::info);
-#endif
-
-	// Parse input arguments
-	InputParser input(argc, argv);
-	if (input.cmdOptionExists("-v"))
-		spdlog::set_level(spdlog::level::info);
-	if (input.cmdOptionExists("-vv"))
-		spdlog::set_level(spdlog::level::debug);
-	if (input.cmdOptionExists("-vvv"))
-		spdlog::set_level(spdlog::level::trace);
+	// Init logger
+	if (!init_logger(argc, argv))
+		return EXIT_FAILURE;
 
 	// Read config
 	if (!readConfig(CONFIG_FILE_PATH))
-		return -1;
+		return EXIT_FAILURE;
 
 	// Register alarms
 	signal(SIGINT, interruptFunc);
@@ -39,7 +25,7 @@ int main(int argc, char **argv)
 	// Move SIGALRM to bottom because of invoking sleep
 
 	// Init variables
-	alarmCtr = 1;
+	alarmCtr = 1; // Should be non-zero at startup
 	currentTime = 0;
 	loopFlag = true;
 	sigReadyFlag = false;

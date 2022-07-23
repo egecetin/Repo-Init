@@ -3,6 +3,8 @@ dist
 doc
 .git
 .vscode
+.sentry-native
 
 BuildNumberCache.txt
 Doxyfile
+log

@@ -20,15 +20,15 @@ jobs:
         with:
           submodules: recursive
       - name: Prepare system
-        run:  |
-              mkdir -p dist/temp dist/rpm dist/makeself
-              sudo apt install expect -y
+        run: |
+          mkdir -p dist/temp dist/rpm dist/makeself
+          sudo apt install expect libcurl4-openssl-dev -y
       - name: Configure
-        run:  cmake -DCMAKE_BUILD_TYPE=Release -S . -B $BUILD_DIR
+        run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B $BUILD_DIR
       - name: Build
-        run:  cmake --build $BUILD_DIR -j -t TestMain
+        run: cmake --build $BUILD_DIR -j -t TestMain
       - name: Test
-        run:  $BUILD_DIR/Release/bin/TestMain
+        run: $BUILD_DIR/Release/bin/TestMain
 
   coverage:
     runs-on: ubuntu-latest
@@ -38,13 +38,13 @@ jobs:
         with:
           submodules: recursive
       - name: Prepare system
-        run:  |
-              mkdir -p dist/temp dist/rpm dist/makeself
-              sudo apt install expect gcovr -y
+        run: |
+          mkdir -p dist/temp dist/rpm dist/makeself
+          sudo apt install gcovr expect libcurl4-openssl-dev -y
       - name: Configure
-        run:  cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
+        run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
       - name: Build
-        run:  cmake --build $BUILD_DIR -j -t coverage-xml
+        run: cmake --build $BUILD_DIR -j -t coverage-xml
       - uses: codecov/codecov-action@v3
         with:
           token: ${{secrets.CODECOV_TOKEN}}

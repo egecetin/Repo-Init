@@ -1,5 +1,5 @@
 #include "Utils.h"
-
+#include "Sentry.h"
 #include "XXX_Version.h"
 
 #include <execinfo.h>
@@ -9,8 +9,14 @@
 #include <rapidjson/filereadstream.h>
 #include <rapidjson/rapidjson.h>
 #include <rapidjson/writer.h>
+#include <sentry.h>
 #include <spdlog/spdlog.h>
 #include <zmq.hpp>
+
+#include <spdlog/sinks/dup_filter_sink.h>
+#include <spdlog/sinks/rotating_file_sink.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/sinks/syslog_sink.h>
 
 uintmax_t ALARM_INTERVAL;
 
@@ -33,9 +39,53 @@ void print_version(void)
 	spdlog::info("  Rapidjson                       : v{}", RAPIDJSON_VERSION_STRING);
 	zmq_version(&major, &minor, &patch);
 	spdlog::info("  ZeroMQ                          : v{}.{}.{}", major, minor, patch);
-	spdlog::info("  CPPZMQ                          : v{}.{}.{}", CPPZMQ_VERSION_MAJOR, CPPZMQ_VERSION_MINOR,
+	spdlog::info("  CppZMQ                          : v{}.{}.{}", CPPZMQ_VERSION_MAJOR, CPPZMQ_VERSION_MINOR,
 				 CPPZMQ_VERSION_PATCH);
+	spdlog::info("  Sentry                          : v{}", SENTRY_SDK_VERSION);
 }
+// GCOVR_EXCL_STOP
+
+// GCOVR_EXCL_START
+bool init_logger(int argc, char **argv)
+{
+	// Initial config
+	spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [XXX] [%^%l%$] : %v");
+	print_version();
+
+#ifdef NDEBUG
+	spdlog::set_level(spdlog::level::warn);
+#else
+	spdlog::set_level(spdlog::level::info);
+#endif
+
+	// Parse input arguments
+	InputParser input(argc, argv);
+	if (input.cmdOptionExists("-v"))
+		spdlog::set_level(spdlog::level::info);
+	if (input.cmdOptionExists("-vv"))
+		spdlog::set_level(spdlog::level::debug);
+	if (input.cmdOptionExists("-vvv"))
+		spdlog::set_level(spdlog::level::trace);
+
+	// Prepare spdlog loggers
+	auto dup_filter = std::make_shared<spdlog::sinks::dup_filter_sink_mt>(std::chrono::seconds(5));
+	dup_filter->add_sink(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
+	dup_filter->add_sink(std::make_shared<spdlog::sinks::rotating_file_sink_mt>("log", 1048576 * 5, 3, false));
+	dup_filter->add_sink(std::make_shared<spdlog::sinks::syslog_sink_mt>("XXX", LOG_USER, 0, false));
+	dup_filter->add_sink(
+		std::make_shared<spdlog::sinks::sentry_api_sink_mt>(readSingleConfig(CONFIG_FILE_PATH, "SENTRY_ADDRESS")));
+
+	// Register main logger
+	auto combined_logger = std::make_shared<spdlog::logger>("XXX", dup_filter);
+	spdlog::set_default_logger(combined_logger);
+	spdlog::info("All loggers started");
+
+	return true;
+}
+// GCOVR_EXCL_STOP
+
+// GCOVR_EXCL_START
+void close_logger(void) { spdlog::shutdown(); }
 // GCOVR_EXCL_STOP
 
 template <typename T> std::string stringify(const T &o)
@@ -70,12 +120,7 @@ bool readConfig(const char *dir)
 	}
 
 	// Check variables exist
-	std::vector<std::string> list = {
-		"ZMQ_RECV_TIMEOUT",
-		"ZMQ_SEND_TIMEOUT",
-		"TELNET_PORT",
-		"CONTROL_IPC_PATH",
-	};
+	std::vector<std::string> list = {"ZMQ_RECV_TIMEOUT", "ZMQ_SEND_TIMEOUT", "TELNET_PORT", "CONTROL_IPC_PATH"};
 
 	spdlog::debug("Reading variables from config ...");
 	for (const auto &entry : list)
