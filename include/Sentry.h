@@ -18,7 +18,7 @@ namespace spdlog
 
 		  protected:
 			void sink_it_(const details::log_msg &msg) override;
-			void flush_() override{};
+			void flush_() override;
 
 		  private:
 			bool sentryAvailable;

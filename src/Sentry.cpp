@@ -14,6 +14,7 @@
 #include <spdlog/spdlog.h>
 #include <zmq.hpp>
 
+// GCOVR_EXCL_START
 namespace spdlog
 {
 	namespace sinks
@@ -171,5 +172,7 @@ namespace spdlog
 			}
 		}
 
+		template <typename Mutex> void sentry_api_sink<Mutex>::flush_() {}
 	} // namespace sinks
 } // namespace spdlog
+// GCOVR_EXCL_STOP
