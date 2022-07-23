@@ -53,4 +53,5 @@ All scripts should be executed from top level directory
  - coverage         : Prepares coverage report
  - docs             : Prepares documentation
  - dependency-graph : Prepares graphviz visualization of dependencies
+ - package          : Prepares Debian, RPM and makeself packages
  - test             : Prepares gtest target

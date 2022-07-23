@@ -164,43 +164,12 @@ add_custom_command(
 	COMMENT "${BoldBlue}Updating build number${ColourReset}"
 )
 
-# Update dist folder after release build
-add_custom_command(
-	TARGET XXX
-	POST_BUILD
-	COMMAND $<$<CONFIG:Release>:find>
-	$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/temp/>
-	$<$<CONFIG:Release>:-maxdepth>
-	$<$<CONFIG:Release>:1>
-	$<$<CONFIG:Release>:-type>
-	$<$<CONFIG:Release>:f>
-	$<$<CONFIG:Release>:-delete>
-	COMMAND $<$<CONFIG:Release>:sh>
-	$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/scripts/ldd-copy-dependencies.sh>
-	$<$<CONFIG:Release>:-b>
-	$<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/XXX>
-	$<$<CONFIG:Release>:-t>
-	$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/temp>
-	COMMAND $<$<CONFIG:Release>:sh>
-	$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/scripts/makeself/makeself.sh>
-	$<$<CONFIG:Release>:--notemp>
-	$<$<CONFIG:Release>:--sha256>
-	$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/temp>
-	$<$<CONFIG:Release>:"${PROJECT_NAME}.${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}.run">
-	$<$<CONFIG:Release>:"${PROJECT_NAME}">
-	COMMAND $<$<CONFIG:Release>:mv>
-	$<$<CONFIG:Release>:-f>
-	$<$<CONFIG:Release>:"${PROJECT_NAME}.${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}.run">
-	$<$<CONFIG:Release>:${PROJECT_SOURCE_DIR}/dist/makeself/>
-	COMMENT "${BoldBlue}Updating dist folder${ColourReset}"
-)
-
 # CPack
 if(${CMAKE_VERSION} VERSION_LESS "3.21.0")
     message("${BoldYellow}Please consider to switch to CMake 3.21.0 or newer to enable CPack support${ColourReset}")
 else()
 	set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
-	set(CPACK_GENERATOR "RPM" "DEB")
+	set(CPACK_GENERATOR "RPM")
 	set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
 	set(CPACK_PACKAGE_RELEASE ${PROJECT_VERSION_PATCH})
 	set(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
@@ -210,6 +179,20 @@ else()
 	set(CPACK_RESOURCE_FILE_LICENSE ${PROJECT_SOURCE_DIR}/LICENSE)
 	set(CPACK_RESOURCE_FILE_README ${PROJECT_SOURCE_DIR}/README.md)
 	set(CPACK_PACKAGE_CONTACT "Humanity")
+	list(APPEND CPACK_POST_BUILD_SCRIPTS "${CMAKE_MODULE_PATH}/PostBuild.cmake")
 	include(InstallRequiredSystemLibraries)
 	include(CPack)
+
+	# Cache variables for scripts
+	set(CacheForScript ${CMAKE_MODULE_PATH}/CMakeCacheForScript.cmake)
+	file(WRITE ${CacheForScript} "")
+
+	get_cmake_property(Vars VARIABLES)
+	foreach(Var ${Vars})
+		if(${Var})
+			string(REPLACE "\\" "\\\\" ${Var} ${${Var}})
+			string(REPLACE "\"" "\\\"" ${Var} ${${Var}})
+		endif()
+		file(APPEND ${CacheForScript} "set(${Var} \"${${Var}}\")\n")
+	endforeach()
 endif()

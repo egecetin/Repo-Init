@@ -1,3 +1,4 @@
+# Directories
 build
 dist
 doc
@@ -5,6 +6,8 @@ doc
 .vscode
 .sentry-native
 
+# Files
+cmake/CMakeCacheForScript.cmake
 BuildNumberCache.txt
 Doxyfile
 log
