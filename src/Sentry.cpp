@@ -57,7 +57,8 @@ namespace spdlog
 			versionBuffer = "v" + std::to_string(CPPZMQ_VERSION_MAJOR) + "." + std::to_string(CPPZMQ_VERSION_MINOR) +
 							"." + std::to_string(CPPZMQ_VERSION_PATCH);
 			sentry_value_set_by_key(versionContext, "CppZMQ", sentry_value_new_string(versionBuffer.c_str()));
-			// Sentry send its version on default
+			versionBuffer = "v" + std::string(SENTRY_SDK_VERSION);
+			sentry_value_set_by_key(versionContext, "Sentry", sentry_value_new_string(versionBuffer.c_str()));
 			sentry_set_context("Version", versionContext);
 
 			// Context: Host

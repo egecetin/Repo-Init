@@ -76,7 +76,7 @@ bool init_logger(int argc, char **argv)
 		std::make_shared<spdlog::sinks::sentry_api_sink_mt>(readSingleConfig(CONFIG_FILE_PATH, "SENTRY_ADDRESS")));
 
 	// Register main logger
-	auto combined_logger = std::make_shared<spdlog::logger>("main", dup_filter);
+	auto combined_logger = std::make_shared<spdlog::logger>("XXX", dup_filter);
 	spdlog::set_default_logger(combined_logger);
 	spdlog::info("All loggers started");
 
