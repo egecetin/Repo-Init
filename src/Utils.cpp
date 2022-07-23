@@ -52,6 +52,7 @@ void print_version(void)
 }
 // GCOVR_EXCL_STOP
 
+// GCOVR_EXCL_START
 bool prepare_sentry(void)
 {
 	if (SENTRY_ADDRESS.empty())
@@ -170,9 +171,9 @@ bool prepare_sentry(void)
 	sentry_set_context("Network", networkContext);
 	return true;
 }
+// GCOVR_EXCL_STOP
 
-void closeSentry() { sentry_close(); }
-
+// GCOVR_EXCL_START
 bool init_logger(int argc, char **argv)
 {
 	// Initial config
@@ -210,10 +211,19 @@ bool init_logger(int argc, char **argv)
 	// Register main logger
 	auto combined_logger = std::make_shared<spdlog::logger>("main", dup_filter);
 	spdlog::set_default_logger(combined_logger);
-	spdlog::info("Logging started");
+	spdlog::info("All loggers started");
 
 	return true;
 }
+// GCOVR_EXCL_STOP
+
+// GCOVR_EXCL_START
+bool close_logger()
+{
+	spdlog::shutdown();
+	return !sentry_close();
+}
+// GCOVR_EXCL_STOP
 
 template <typename T> std::string stringify(const T &o)
 {

@@ -100,6 +100,13 @@ void print_version(void);
 bool init_logger(int argc, char **argv);
 
 /**
+ * @brief Closes and flushes the logger
+ * @return true On success
+ * @return false otherwise
+ */
+bool close_logger(void);
+
+/**
  * @brief Read initial config from JSON
  * @param[in] dir	Path to JSON
  * @return true    	Read all variables

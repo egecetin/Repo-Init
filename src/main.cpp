@@ -10,11 +10,11 @@ int main(int argc, char **argv)
 {
 	// Init logger
 	if (!init_logger(argc, argv))
-		return -1;
+		return EXIT_FAILURE;
 
 	// Read config
 	if (!readConfig(CONFIG_FILE_PATH))
-		return -1;
+		return EXIT_FAILURE;
 
 	// Register alarms
 	signal(SIGINT, interruptFunc);
