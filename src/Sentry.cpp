@@ -6,6 +6,7 @@
 #include <net/if.h>
 #include <netdb.h>
 #include <netpacket/packet.h>
+#include <unistd.h>
 #include <sys/socket.h>
 
 #include <rapidjson/rapidjson.h>
