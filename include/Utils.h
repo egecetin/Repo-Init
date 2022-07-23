@@ -23,8 +23,6 @@ extern int ZMQ_SEND_TIMEOUT;
 extern uint16_t TELNET_PORT;
 /// Interprocess path of controller thread
 extern std::string CONTROL_IPC_PATH;
-/// Sentry API path
-extern std::string SENTRY_ADDRESS;
 
 /// Current time value set by SIGALRM
 extern volatile time_t currentTime;
@@ -101,10 +99,8 @@ bool init_logger(int argc, char **argv);
 
 /**
  * @brief Closes and flushes the logger
- * @return true On success
- * @return false otherwise
  */
-bool close_logger(void);
+void close_logger(void);
 
 /**
  * @brief Read initial config from JSON

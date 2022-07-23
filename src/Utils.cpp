@@ -1,15 +1,9 @@
 #include "Utils.h"
-
+#include "Sentry.h"
 #include "XXX_Version.h"
 
-#include <arpa/inet.h>
 #include <execinfo.h>
-#include <ifaddrs.h>
-#include <net/if.h>
-#include <netdb.h>
-#include <netpacket/packet.h>
 #include <signal.h>
-#include <sys/socket.h>
 
 #include <rapidjson/document.h>
 #include <rapidjson/filereadstream.h>
@@ -30,7 +24,6 @@ int ZMQ_SEND_TIMEOUT;
 int ZMQ_RECV_TIMEOUT;
 uint16_t TELNET_PORT;
 std::string CONTROL_IPC_PATH;
-std::string SENTRY_ADDRESS;
 
 volatile time_t currentTime;
 volatile uintmax_t alarmCtr;
@@ -49,127 +42,6 @@ void print_version(void)
 	spdlog::info("  CppZMQ                          : v{}.{}.{}", CPPZMQ_VERSION_MAJOR, CPPZMQ_VERSION_MINOR,
 				 CPPZMQ_VERSION_PATCH);
 	spdlog::info("  Sentry                          : v{}", SENTRY_SDK_VERSION);
-}
-// GCOVR_EXCL_STOP
-
-// GCOVR_EXCL_START
-bool prepare_sentry(void)
-{
-	if (SENTRY_ADDRESS.empty())
-	{
-		spdlog::warn("Sentry address is empty");
-		return false;
-	}
-
-	// Set options
-	sentry_options_t *sentryOptions = sentry_options_new();
-	sentry_options_set_dsn(sentryOptions, SENTRY_ADDRESS.c_str());
-
-	// Init
-	sentry_init(sentryOptions);
-
-	// Tags
-	sentry_set_tag("compiler.name", COMPILER_NAME);
-	sentry_set_tag("compiler.version", COMPILER_VERSION);
-	sentry_set_tag("build", BUILD_TYPE);
-
-	// Context: Version
-	std::string versionBuffer;
-	int major = 0, minor = 0, patch = 0;
-	sentry_value_t versionContext = sentry_value_new_object();
-	versionBuffer = "v" + std::string(PROJECT_FULL_REVISION);
-	sentry_value_set_by_key(versionContext, "XXX", sentry_value_new_string(versionBuffer.c_str()));
-	versionBuffer = "v" + std::to_string(SPDLOG_VER_MAJOR) + "." + std::to_string(SPDLOG_VER_MINOR) + "." +
-					std::to_string(SPDLOG_VER_PATCH);
-	sentry_value_set_by_key(versionContext, "Spdlog", sentry_value_new_string(versionBuffer.c_str()));
-	versionBuffer = "v" + std::string(RAPIDJSON_VERSION_STRING);
-	sentry_value_set_by_key(versionContext, "Rapidjson", sentry_value_new_string(versionBuffer.c_str()));
-	zmq_version(&major, &minor, &patch);
-	versionBuffer = "v" + std::to_string(major) + "." + std::to_string(minor) + "." + std::to_string(patch);
-	sentry_value_set_by_key(versionContext, "ZeroMQ", sentry_value_new_string(versionBuffer.c_str()));
-	versionBuffer = "v" + std::to_string(CPPZMQ_VERSION_MAJOR) + "." + std::to_string(CPPZMQ_VERSION_MINOR) + "." +
-					std::to_string(CPPZMQ_VERSION_PATCH);
-	sentry_value_set_by_key(versionContext, "CppZMQ", sentry_value_new_string(versionBuffer.c_str()));
-	// Sentry send its version on default
-	sentry_set_context("Version", versionContext);
-
-	// Context: Host
-	char hostBuffer[BUFSIZ];
-	sentry_value_t hostContext = sentry_value_new_object();
-	gethostname(hostBuffer, BUFSIZ);
-	sentry_value_set_by_key(hostContext, "Hostname", sentry_value_new_string(hostBuffer));
-
-	FILE *cpu_info = fopen("/proc/cpuinfo", "r");
-	unsigned int thread_count, core_count;
-	while (!fscanf(cpu_info, "siblings\t: %u", &thread_count))
-		(void)!fscanf(cpu_info, "%*[^s]");
-	sentry_value_set_by_key(hostContext, "Thread count", sentry_value_new_int32(thread_count));
-	rewind(cpu_info);
-	while (!fscanf(cpu_info, "cpu cores\t: %u", &core_count))
-		(void)!fscanf(cpu_info, "%*[^c]");
-	sentry_value_set_by_key(hostContext, "Core count", sentry_value_new_int32(core_count));
-	rewind(cpu_info);
-	while (!fscanf(cpu_info, "model name\t: %8191[^\n]", hostBuffer))
-		(void)!fscanf(cpu_info, "%*[^m]");
-	sentry_value_set_by_key(hostContext, "Model", sentry_value_new_string(hostBuffer));
-	rewind(cpu_info);
-	while (!fscanf(cpu_info, "vendor_id\t: %s", hostBuffer))
-		(void)!fscanf(cpu_info, "%*[^v]");
-	sentry_value_set_by_key(hostContext, "Vendor ID", sentry_value_new_string(hostBuffer));
-	fclose(cpu_info);
-
-	sentry_set_context("Host", hostContext);
-
-	// Context: Network
-	sentry_value_t networkContext = sentry_value_new_object();
-
-	struct ifaddrs *ifaddr, *ifa;
-	char host[INET6_ADDRSTRLEN];
-	if (getifaddrs(&ifaddr) != -1)
-	{
-		// Iterate interfaces
-		for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next)
-		{
-			if (ifa->ifa_addr == NULL)
-				continue;
-
-			switch (ifa->ifa_addr->sa_family)
-			{
-			case AF_INET:
-				if ((ifa->ifa_flags & IFF_PROMISC) || (ifa->ifa_flags & IFF_UP))
-				{
-					inet_ntop(AF_INET, &((struct sockaddr_in *)ifa->ifa_addr)->sin_addr, host, INET6_ADDRSTRLEN);
-					sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".ipv4").c_str(),
-											sentry_value_new_string(host));
-				}
-				break;
-			case AF_INET6:
-				if ((ifa->ifa_flags & IFF_PROMISC) || (ifa->ifa_flags & IFF_UP))
-				{
-					inet_ntop(AF_INET6, &((struct sockaddr_in6 *)ifa->ifa_addr)->sin6_addr, host, INET6_ADDRSTRLEN);
-					sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".ipv6").c_str(),
-											sentry_value_new_string(host));
-				}
-				break;
-			case AF_PACKET:
-				if ((ifa->ifa_flags & IFF_PROMISC) || (ifa->ifa_flags & IFF_UP))
-				{
-					struct sockaddr_ll *s = (struct sockaddr_ll *)(ifa->ifa_addr);
-					sprintf(host, "%02x:%02x:%02x:%02x:%02x:%02x", s->sll_addr[0], s->sll_addr[1], s->sll_addr[2],
-							s->sll_addr[3], s->sll_addr[4], s->sll_addr[5]);
-					sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".mac").c_str(),
-											sentry_value_new_string(host));
-				}
-				break;
-			default:
-				break;
-			}
-		}
-		freeifaddrs(ifaddr);
-	}
-
-	sentry_set_context("Network", networkContext);
-	return true;
 }
 // GCOVR_EXCL_STOP
 
@@ -200,13 +72,8 @@ bool init_logger(int argc, char **argv)
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::rotating_file_sink_mt>("log", 1048576 * 5, 3, false));
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::syslog_sink_mt>("XXX", LOG_USER, 0, false));
-
-	// Prepare Sentry API
-	SENTRY_ADDRESS = readSingleConfig(CONFIG_FILE_PATH, "SENTRY_ADDRESS");
-	if (!prepare_sentry())
-		spdlog::warn("Can't init Sentry");
-	else
-		void(); // <- Add custom logger for sentry
+	dup_filter->add_sink(
+		std::make_shared<spdlog::sinks::sentry_api_sink_mt>(readSingleConfig(CONFIG_FILE_PATH, "SENTRY_ADDRESS")));
 
 	// Register main logger
 	auto combined_logger = std::make_shared<spdlog::logger>("main", dup_filter);
@@ -218,11 +85,7 @@ bool init_logger(int argc, char **argv)
 // GCOVR_EXCL_STOP
 
 // GCOVR_EXCL_START
-bool close_logger()
-{
-	spdlog::shutdown();
-	return !sentry_close();
-}
+void close_logger(void) { spdlog::shutdown(); }
 // GCOVR_EXCL_STOP
 
 template <typename T> std::string stringify(const T &o)
@@ -257,8 +120,7 @@ bool readConfig(const char *dir)
 	}
 
 	// Check variables exist
-	std::vector<std::string> list = {"ZMQ_RECV_TIMEOUT", "ZMQ_SEND_TIMEOUT", "TELNET_PORT", "CONTROL_IPC_PATH",
-									 "SENTRY_ADDRESS"};
+	std::vector<std::string> list = {"ZMQ_RECV_TIMEOUT", "ZMQ_SEND_TIMEOUT", "TELNET_PORT", "CONTROL_IPC_PATH"};
 
 	spdlog::debug("Reading variables from config ...");
 	for (const auto &entry : list)
@@ -279,7 +141,6 @@ bool readConfig(const char *dir)
 	TELNET_PORT = doc["TELNET_PORT"].GetUint();
 
 	CONTROL_IPC_PATH = doc["CONTROL_IPC_PATH"].GetString();
-	SENTRY_ADDRESS = doc["SENTRY_ADDRESS"].GetString();
 
 	// Cleanup
 	doc.GetAllocator().Clear();
