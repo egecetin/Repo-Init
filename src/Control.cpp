@@ -18,10 +18,7 @@ inline void send_heartbeat(CURL *curl)
 // GCOVR_EXCL_STOP
 
 // GCOVR_EXCL_START
-size_t writeData(void *, size_t size, size_t nmemb, void *)
-{
-   return size * nmemb;
-}
+size_t writeData(void *, size_t size, size_t nmemb, void *) { return size * nmemb; }
 // GCOVR_EXCL_STOP
 
 constexpr size_t constHasher(const char *s, size_t index = 0)
