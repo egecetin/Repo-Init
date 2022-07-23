@@ -12,8 +12,10 @@
 
 // Config variables
 
-/// Interval of SIGALRM
+/// Interval of SIGALRM in seconds
 extern uintmax_t ALARM_INTERVAL;
+/// Interval of Heartbeat in seconds
+extern uintmax_t HEARTBEAT_INTERVAL;
 
 /// Receive timeout of ZMQ sockets. Read from config at startup
 extern int ZMQ_RECV_TIMEOUT;

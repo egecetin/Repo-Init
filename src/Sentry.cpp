@@ -9,6 +9,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+#include <curl/curlver.h>
 #include <rapidjson/rapidjson.h>
 #include <sentry.h>
 #include <spdlog/spdlog.h>
@@ -60,6 +61,8 @@ namespace spdlog
 			sentry_value_set_by_key(versionContext, "CppZMQ", sentry_value_new_string(versionBuffer.c_str()));
 			versionBuffer = "v" + std::string(SENTRY_SDK_VERSION);
 			sentry_value_set_by_key(versionContext, "Sentry", sentry_value_new_string(versionBuffer.c_str()));
+			versionBuffer = "v" + std::string(LIBCURL_VERSION);
+			sentry_value_set_by_key(versionContext, "CURL", sentry_value_new_string(versionBuffer.c_str()));
 			sentry_set_context("Version", versionContext);
 
 			// Context: Host
@@ -138,7 +141,6 @@ namespace spdlog
 				}
 				freeifaddrs(ifaddr);
 			}
-
 			sentry_set_context("Network", networkContext);
 		}
 
