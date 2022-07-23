@@ -152,12 +152,6 @@ namespace spdlog
 				return;
 			switch (msg.level)
 			{
-			case spdlog::level::debug:
-				sentry_capture_event(sentry_value_new_message_event(SENTRY_LEVEL_DEBUG, "main", msg.payload.data()));
-				break;
-			case spdlog::level::info:
-				sentry_capture_event(sentry_value_new_message_event(SENTRY_LEVEL_INFO, "main", msg.payload.data()));
-				break;
 			case spdlog::level::warn:
 				sentry_capture_event(sentry_value_new_message_event(SENTRY_LEVEL_WARNING, "main", msg.payload.data()));
 				break;
@@ -167,6 +161,8 @@ namespace spdlog
 			case spdlog::level::critical:
 				sentry_capture_event(sentry_value_new_message_event(SENTRY_LEVEL_FATAL, "main", msg.payload.data()));
 				break;
+			case spdlog::level::debug:
+			case spdlog::level::info:
 			case spdlog::level::off:
 			case spdlog::level::trace:
 			default:
