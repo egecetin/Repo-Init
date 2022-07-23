@@ -5,6 +5,7 @@
 #include <execinfo.h>
 #include <signal.h>
 
+#include <curl/curlver.h>
 #include <rapidjson/document.h>
 #include <rapidjson/filereadstream.h>
 #include <rapidjson/rapidjson.h>
@@ -19,6 +20,7 @@
 #include <spdlog/sinks/syslog_sink.h>
 
 uintmax_t ALARM_INTERVAL;
+uintmax_t HEARTBEAT_INTERVAL;
 
 int ZMQ_SEND_TIMEOUT;
 int ZMQ_RECV_TIMEOUT;
@@ -42,6 +44,7 @@ void print_version(void)
 	spdlog::info("  CppZMQ                          : v{}.{}.{}", CPPZMQ_VERSION_MAJOR, CPPZMQ_VERSION_MINOR,
 				 CPPZMQ_VERSION_PATCH);
 	spdlog::info("  Sentry                          : v{}", SENTRY_SDK_VERSION);
+	spdlog::info("  Curl                            : v{}", LIBCURL_VERSION);
 }
 // GCOVR_EXCL_STOP
 

@@ -31,6 +31,7 @@ int main(int argc, char **argv)
 	sigReadyFlag = false;
 
 	ALARM_INTERVAL = 1;
+	HEARTBEAT_INTERVAL = 20;
 
 	// Start threads
 	std::thread zmqControlTh(zmqControlThread);

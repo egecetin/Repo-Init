@@ -3,9 +3,12 @@
 #include <chrono>
 #include <thread>
 
+#include <curl/curl.h>
 #include <spdlog/spdlog.h>
 #include <zmq.hpp>
 #include <zmq_addon.hpp>
+
+size_t writeData(void *, size_t size, size_t nmemb, void *) { return size * nmemb; }
 
 constexpr size_t constHasher(const char *s, size_t index = 0)
 {
@@ -183,6 +186,22 @@ void zmqControlThread()
 		loopFlag = false;
 	}
 
+	// Prepare heartbeat
+	CURL *curl = nullptr;
+	size_t oldCtr = alarmCtr;
+	std::string heartbeatAddr = readSingleConfig(CONFIG_FILE_PATH, "HEARTBEAT_ADDRESS");
+	if (!heartbeatAddr.empty())
+	{
+		curl = curl_easy_init();
+		if (curl)
+		{
+			curl_easy_setopt(curl, CURLOPT_URL, heartbeatAddr.c_str());
+			curl_easy_setopt(curl, CURLOPT_POST, 1L);
+			curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 100);
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
+		}
+	}
+
 	while (loopFlag)
 	{
 		try
@@ -228,12 +247,20 @@ void zmqControlThread()
 		{
 			spdlog::error("ZMQ {}", e.what());
 		}
+
+		if (curl && (alarmCtr - oldCtr) > HEARTBEAT_INTERVAL)
+		{
+			curl_easy_perform(curl);
+			oldCtr = alarmCtr;
+		}
 	}
 
 	// Cleanup
 	spdlog::debug("Cleaning ZMQ control thread ...");
 	socketRep.unbind(hostAddrRep);
 	socketRep.close();
+
+	curl_easy_cleanup(curl);
 
 	spdlog::debug("ZMQ Control thread done");
 }
