@@ -196,7 +196,7 @@ add_custom_command(
 )
 
 # CPack
-if(${CMAKE_VERSION} VERSION_LESS "3.21.0") 
+if(${CMAKE_VERSION} VERSION_LESS "3.21.0")
     message("${BoldYellow}Please consider to switch to CMake 3.21.0 or newer to enable CPack support${ColourReset}")
 else()
 	set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
