@@ -1,5 +1,7 @@
 ## Project
 
+<img src=logo.png style="max-height:300px">
+
 ![GitHub top language](https://img.shields.io/github/languages/top/egecetin/Repo-Init?style=plastic)
 ![GitHub](https://img.shields.io/github/license/egecetin/Repo-Init?style=plastic)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/egecetin/Repo-Init/Build%20and%20test?style=plastic)
