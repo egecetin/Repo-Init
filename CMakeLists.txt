@@ -7,6 +7,7 @@ include(Colorize)
 include(GitVersion)
 include(SvnVersion)
 include(Doxy)
+include(GraphViz)
 
 if(NOT DEFINED REVISION_VERSION)
 	message(SEND_ERROR "Can't find SVN or Git. The folder is not under version control.")
