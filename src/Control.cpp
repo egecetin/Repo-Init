@@ -8,18 +8,7 @@
 #include <zmq.hpp>
 #include <zmq_addon.hpp>
 
-// GCOVR_EXCL_START
-inline void send_heartbeat(CURL *curl)
-{
-	if (!curl)
-		return;
-	curl_easy_perform(curl);
-}
-// GCOVR_EXCL_STOP
-
-// GCOVR_EXCL_START
 size_t writeData(void *, size_t size, size_t nmemb, void *) { return size * nmemb; }
-// GCOVR_EXCL_STOP
 
 constexpr size_t constHasher(const char *s, size_t index = 0)
 {
@@ -259,9 +248,9 @@ void zmqControlThread()
 			spdlog::error("ZMQ {}", e.what());
 		}
 
-		if ((alarmCtr - oldCtr) > HEARTBEAT_INTERVAL)
+		if (curl && (alarmCtr - oldCtr) > HEARTBEAT_INTERVAL)
 		{
-			send_heartbeat(curl);
+			curl_easy_perform(curl);
 			oldCtr = alarmCtr;
 		}
 	}
