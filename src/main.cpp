@@ -21,7 +21,10 @@ int main(int argc, char **argv)
 	signal(SIGTERM, interruptFunc);
 	signal(SIGKILL, interruptFunc);
 
-	signal(SIGSEGV, backtracer);
+	// If sentry is not available register plain backtracer
+	if (readSingleConfig(CONFIG_FILE_PATH, "SENTRY_ADDRESS").empty())
+		signal(SIGSEGV, backtracer);
+
 	// Move SIGALRM to bottom because of invoking sleep
 
 	// Init variables
@@ -45,11 +48,13 @@ int main(int argc, char **argv)
 	// Join threads
 	if (telnetControlTh.joinable())
 		telnetControlTh.join();
-	spdlog::warn("Telnet Controller joined");
+	spdlog::info("Telnet Controller joined");
 	if (zmqControlTh.joinable())
 		zmqControlTh.join();
-	spdlog::warn("ZMQ Controller joined");
+	spdlog::info("ZMQ Controller joined");
 
 	spdlog::warn("Decryptor Exit");
+	close_logger();
+
 	return EXIT_SUCCESS;
 }
