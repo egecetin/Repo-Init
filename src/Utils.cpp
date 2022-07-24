@@ -81,7 +81,7 @@ bool init_logger(int argc, char **argv)
 	// Register main logger
 	auto combined_logger = std::make_shared<spdlog::logger>("XXX", dup_filter);
 	spdlog::set_default_logger(combined_logger);
-	spdlog::info("All loggers started");
+	spdlog::warn("XXX started");
 
 	return true;
 }

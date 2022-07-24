@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 		zmqControlTh.join();
 	spdlog::info("ZMQ Controller joined");
 
-	spdlog::warn("Decryptor Exit");
+	spdlog::warn("XXX Exited");
 	close_logger();
 
 	return EXIT_SUCCESS;
