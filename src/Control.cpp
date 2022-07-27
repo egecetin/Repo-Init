@@ -119,23 +119,16 @@ std::string TelnetTabCallback(SP_TelnetSession session, std::string line)
 // GCOVR_EXCL_START
 void telnetControlThread()
 {
-	bool tryAgain = false;
-
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
 
 start:
-	std::string portString = readSingleConfig(CONFIG_FILE_PATH, "TELNET_PORT");
-	if (portString.size())
+	if (TELNET_PORT && telnetServerPtr->initialise(TELNET_PORT, "> "))
 	{
-		TELNET_PORT = std::stoi(portString);
-		if (telnetServerPtr->initialise(TELNET_PORT, "> "))
-		{
-			telnetServerPtr->connectedCallback(TelnetConnectedCallback);
-			telnetServerPtr->newLineCallback(TelnetMessageCallback);
-			telnetServerPtr->tabCallback(TelnetTabCallback);
-			spdlog::info("Telnet server created at {}", TELNET_PORT);
-		}
+		telnetServerPtr->connectedCallback(TelnetConnectedCallback);
+		telnetServerPtr->newLineCallback(TelnetMessageCallback);
+		telnetServerPtr->tabCallback(TelnetTabCallback);
+		spdlog::info("Telnet server created at {}", TELNET_PORT);
 	}
 	else
 	{

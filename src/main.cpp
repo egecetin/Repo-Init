@@ -16,6 +16,16 @@ int main(int argc, char **argv)
 	if (!readConfig(CONFIG_FILE_PATH))
 		return EXIT_FAILURE;
 
+	InputParser input(argc, argv);
+	if (input.cmdOptionExists("--enable-telnet"))
+	{
+		std::string portString = input.getCmdOption("--enable-telnet");
+		if (portString.size())
+			TELNET_PORT = std::stoi(portString);
+		else
+			spdlog::warn("Enable Telnet option requires a port number");
+	}
+
 	// Register alarms
 	signal(SIGINT, interruptFunc);
 	signal(SIGTERM, interruptFunc);
