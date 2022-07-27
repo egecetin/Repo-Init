@@ -125,19 +125,26 @@ void telnetControlThread()
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
 
 start:
-	if (tryAgain)
-		TELNET_PORT = std::stoi(readSingleConfig(CONFIG_FILE_PATH, "TELNET_PORT"));
-	if (telnetServerPtr->initialise(TELNET_PORT, "> "))
+	std::string portString = readSingleConfig(CONFIG_FILE_PATH, "TELNET_PORT");
+	if (portString.size())
 	{
-		telnetServerPtr->connectedCallback(TelnetConnectedCallback);
-		telnetServerPtr->newLineCallback(TelnetMessageCallback);
-		telnetServerPtr->tabCallback(TelnetTabCallback);
-		spdlog::info("Telnet server created at {}", TELNET_PORT);
+		TELNET_PORT = std::stoi(portString);
+		if (telnetServerPtr->initialise(TELNET_PORT, "> "))
+		{
+			telnetServerPtr->connectedCallback(TelnetConnectedCallback);
+			telnetServerPtr->newLineCallback(TelnetMessageCallback);
+			telnetServerPtr->tabCallback(TelnetTabCallback);
+			spdlog::info("Telnet server created at {}", TELNET_PORT);
+		}
 	}
 	else
 	{
-		tryAgain = true;
-		std::this_thread::sleep_for(std::chrono::seconds(30));
+		for (size_t idx = 0; idx < 15; ++idx)
+		{
+			std::this_thread::sleep_for(std::chrono::seconds(2));
+			if (!loopFlag)
+				return;
+		}
 		goto start;
 	}
 
@@ -189,13 +196,13 @@ void zmqControlThread()
 	// Prepare heartbeat
 	CURL *curl = nullptr;
 	size_t oldCtr = alarmCtr;
-	std::string heartbeatAddr = readSingleConfig(CONFIG_FILE_PATH, "HEARTBEAT_ADDRESS");
-	if (!heartbeatAddr.empty())
+	std::string HEARTBEAT_ADDRESS = readSingleConfig(CONFIG_FILE_PATH, "HEARTBEAT_ADDRESS");
+	if (!HEARTBEAT_ADDRESS.empty())
 	{
 		curl = curl_easy_init();
 		if (curl)
 		{
-			curl_easy_setopt(curl, CURLOPT_URL, heartbeatAddr.c_str());
+			curl_easy_setopt(curl, CURLOPT_URL, HEARTBEAT_ADDRESS.c_str());
 			curl_easy_setopt(curl, CURLOPT_POST, 1L);
 			curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 100);
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);

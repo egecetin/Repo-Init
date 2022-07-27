@@ -3,5 +3,6 @@
     "ZMQ_RECV_TIMEOUT": 1000,
     "TELNET_PORT": 23000,
     "CONTROL_IPC_PATH": "ipc:///tmp",
-    "SENTRY_ADDRESS": ""
+    "SENTRY_ADDRESS": "",
+    "HEARTBEAT_ADDRESS": ""
 }

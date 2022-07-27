@@ -123,7 +123,7 @@ bool readConfig(const char *dir)
 	}
 
 	// Check variables exist
-	std::vector<std::string> list = {"ZMQ_RECV_TIMEOUT", "ZMQ_SEND_TIMEOUT", "TELNET_PORT", "CONTROL_IPC_PATH"};
+	std::vector<std::string> list = {"ZMQ_RECV_TIMEOUT", "ZMQ_SEND_TIMEOUT", "CONTROL_IPC_PATH"};
 
 	spdlog::debug("Reading variables from config ...");
 	for (const auto &entry : list)
@@ -141,7 +141,6 @@ bool readConfig(const char *dir)
 	// Set variables
 	ZMQ_RECV_TIMEOUT = doc["ZMQ_RECV_TIMEOUT"].GetUint64();
 	ZMQ_SEND_TIMEOUT = doc["ZMQ_SEND_TIMEOUT"].GetUint64();
-	TELNET_PORT = doc["TELNET_PORT"].GetUint();
 
 	CONTROL_IPC_PATH = doc["CONTROL_IPC_PATH"].GetString();
 
