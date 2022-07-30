@@ -37,14 +37,14 @@ void print_version(void)
 {
 	int major = 0, minor = 0, patch = 0;
 	spdlog::info("XXX                               : v{}", PROJECT_FULL_REVISION);
-	spdlog::info("  Spdlog                          : v{}.{}.{}", SPDLOG_VER_MAJOR, SPDLOG_VER_MINOR, SPDLOG_VER_PATCH);
-	spdlog::info("  Rapidjson                       : v{}", RAPIDJSON_VERSION_STRING);
-	zmq_version(&major, &minor, &patch);
-	spdlog::info("  ZeroMQ                          : v{}.{}.{}", major, minor, patch);
 	spdlog::info("  CppZMQ                          : v{}.{}.{}", CPPZMQ_VERSION_MAJOR, CPPZMQ_VERSION_MINOR,
 				 CPPZMQ_VERSION_PATCH);
-	spdlog::info("  Sentry                          : v{}", SENTRY_SDK_VERSION);
 	spdlog::info("  Curl                            : v{}", LIBCURL_VERSION);
+	spdlog::info("  Rapidjson                       : v{}", RAPIDJSON_VERSION_STRING);
+	spdlog::info("  Sentry                          : v{}", SENTRY_SDK_VERSION);
+	spdlog::info("  Spdlog                          : v{}.{}.{}", SPDLOG_VER_MAJOR, SPDLOG_VER_MINOR, SPDLOG_VER_PATCH);
+	zmq_version(&major, &minor, &patch);
+	spdlog::info("  ZeroMQ                          : v{}.{}.{}", major, minor, patch);
 }
 // GCOVR_EXCL_STOP
 
