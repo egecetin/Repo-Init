@@ -1,6 +1,6 @@
 #include "Utils.h"
 #include "Sentry.h"
-#include "XXX_Version.h"
+#include "Version.h"
 
 #include <execinfo.h>
 #include <signal.h>
@@ -36,7 +36,7 @@ volatile bool sigReadyFlag;
 void print_version(void)
 {
 	int major = 0, minor = 0, patch = 0;
-	spdlog::info("XXX                               : v{}", PROJECT_FULL_REVISION);
+	spdlog::info("{}                                : v{}", PROJECT_NAME, PROJECT_FULL_REVISION);
 	spdlog::info("  CppZMQ                          : v{}.{}.{}", CPPZMQ_VERSION_MAJOR, CPPZMQ_VERSION_MINOR,
 				 CPPZMQ_VERSION_PATCH);
 	spdlog::info("  Curl                            : v{}", LIBCURL_VERSION);
@@ -52,7 +52,7 @@ void print_version(void)
 bool init_logger(int argc, char **argv)
 {
 	// Initial config
-	spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [XXX] [%^%l%$] : %v");
+	spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [" + std::string(PROJECT_NAME) + "] [%^%l%$] : %v");
 	print_version();
 
 #ifdef NDEBUG
@@ -74,14 +74,14 @@ bool init_logger(int argc, char **argv)
 	auto dup_filter = std::make_shared<spdlog::sinks::dup_filter_sink_mt>(std::chrono::seconds(5));
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::rotating_file_sink_mt>("log", 1048576 * 5, 3, false));
-	dup_filter->add_sink(std::make_shared<spdlog::sinks::syslog_sink_mt>("XXX", LOG_USER, 0, false));
+	dup_filter->add_sink(std::make_shared<spdlog::sinks::syslog_sink_mt>(PROJECT_NAME, LOG_USER, 0, false));
 	dup_filter->add_sink(
 		std::make_shared<spdlog::sinks::sentry_api_sink_mt>(readSingleConfig(CONFIG_FILE_PATH, "SENTRY_ADDRESS")));
 
 	// Register main logger
-	auto combined_logger = std::make_shared<spdlog::logger>("XXX", dup_filter);
+	auto combined_logger = std::make_shared<spdlog::logger>(PROJECT_NAME, dup_filter);
 	spdlog::set_default_logger(combined_logger);
-	spdlog::warn("XXX started");
+	spdlog::warn("{} started", PROJECT_NAME);
 
 	return true;
 }

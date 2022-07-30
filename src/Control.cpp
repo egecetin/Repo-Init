@@ -1,4 +1,5 @@
 #include "Control.h"
+#include "Version.h"
 
 #include <chrono>
 #include <thread>
@@ -174,7 +175,7 @@ void zmqControlThread()
 	socketRep.set(zmq::sockopt::heartbeat_ttl, 3000);
 	socketRep.set(zmq::sockopt::heartbeat_timeout, 3000);
 
-	std::string hostAddrRep = CONTROL_IPC_PATH + "/XXX";
+	std::string hostAddrRep = CONTROL_IPC_PATH + "/" + PROJECT_NAME;
 	try
 	{
 		socketRep.bind(hostAddrRep);

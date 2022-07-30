@@ -11,7 +11,7 @@ execute_process(COMMAND "find" "${PROJECT_SOURCE_DIR}/dist/temp/" "-maxdepth" "1
 execute_process(COMMAND "sh"
                         "${PROJECT_SOURCE_DIR}/scripts/ldd-copy-dependencies.sh"
                         "-b"
-                        "${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/XXX"
+                        "${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}"
                         "-t"
                         "${PROJECT_SOURCE_DIR}/dist/temp"
                         )

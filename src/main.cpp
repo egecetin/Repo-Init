@@ -1,5 +1,6 @@
 #include "Control.h"
 #include "Utils.h"
+#include "Version.h"
 
 #include <signal.h>
 #include <thread>
@@ -64,7 +65,7 @@ int main(int argc, char **argv)
 		zmqControlTh.join();
 	spdlog::info("ZMQ Controller joined");
 
-	spdlog::warn("XXX Exited");
+	spdlog::warn("{} Exited", PROJECT_NAME);
 	close_logger();
 
 	return EXIT_SUCCESS;

@@ -66,7 +66,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} --coverage")
 endif()
 
-configure_file(build_number.h.in XXX_Version.h)
+configure_file(build_number.h.in "Version.h")
 
 # Sources
 FILE(GLOB ProjectSources
@@ -106,35 +106,35 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/sentry EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests EXCLUDE_FROM_ALL)
 
 # Set Targets
-add_library(XXX_Lib_Shared SHARED ${ProjectSources})
+add_library("${PROJECT_NAME}_Lib_Shared" SHARED ${ProjectSources})
 set_target_properties(
-	XXX_Lib_Shared PROPERTIES
-	OUTPUT_NAME "XXX"
+	"${PROJECT_NAME}_Lib_Shared" PROPERTIES
+	OUTPUT_NAME "${PROJECT_NAME}"
 	VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
 	SOVERSION ${PROJECT_VERSION_MAJOR}
 )
-target_compile_options(XXX_Lib_Shared PRIVATE -Wall -Wextra -Werror -pedantic)
-target_include_directories(XXX_Lib_Shared PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries(XXX_Lib_Shared stdc++fs spdlog libzmq sentry)
+target_compile_options("${PROJECT_NAME}_Lib_Shared" PRIVATE -Wall -Wextra -Werror -pedantic)
+target_include_directories("${PROJECT_NAME}_Lib_Shared" PRIVATE "${PROJECT_BINARY_DIR}")
+target_link_libraries("${PROJECT_NAME}_Lib_Shared" stdc++fs spdlog libzmq sentry)
 
-add_library(XXX_Lib_Static STATIC ${ProjectSources})
+add_library("${PROJECT_NAME}_Lib_Static" STATIC ${ProjectSources})
 set_target_properties(
-	XXX_Lib_Static PROPERTIES
-	OUTPUT_NAME "XXX"
+	"${PROJECT_NAME}_Lib_Static" PROPERTIES
+	OUTPUT_NAME "${PROJECT_NAME}"
 	VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
 	SOVERSION ${PROJECT_VERSION_MAJOR}
 )
-target_compile_options(XXX_Lib_Static PRIVATE -Wall -Wextra -Werror -pedantic)
-target_include_directories(XXX_Lib_Static PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries(XXX_Lib_Static stdc++fs spdlog libzmq sentry)
+target_compile_options("${PROJECT_NAME}_Lib_Static" PRIVATE -Wall -Wextra -Werror -pedantic)
+target_include_directories("${PROJECT_NAME}_Lib_Static" PRIVATE "${PROJECT_BINARY_DIR}")
+target_link_libraries("${PROJECT_NAME}_Lib_Static" stdc++fs spdlog libzmq sentry)
 
-add_executable(XXX ${PROJECT_SOURCE_DIR}/src/main.cpp)
-target_compile_options(XXX PRIVATE -Wall -Wextra -Werror -pedantic)
-target_include_directories(XXX PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries(XXX XXX_Lib_Shared)
+add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp)
+target_compile_options("${PROJECT_NAME}" PRIVATE -Wall -Wextra -Werror -pedantic)
+target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
+target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared")
 
 # Set install targets
-install(TARGETS XXX XXX_Lib_Shared spdlog libzmq sentry
+install(TARGETS "${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared" spdlog libzmq sentry
 	RUNTIME DESTINATION bin
 	LIBRARY DESTINATION lib
 )
@@ -164,7 +164,7 @@ install(CODE [[
 
 # Update build number at every build
 add_custom_command(
-	TARGET XXX_Lib_Shared
+	TARGET "${PROJECT_NAME}_Lib_Shared"
 	PRE_BUILD
 	COMMAND ${CMAKE_COMMAND} -P "${PROJECT_SOURCE_DIR}/cmake/AutoBuildNumber.cmake"
 	COMMENT "${BoldBlue}Updating build number${ColourReset}"

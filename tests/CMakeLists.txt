@@ -49,7 +49,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/tests/MemPlumber)
 # Test cases
 add_executable(TestMain ${ProjectTestSources})
 target_include_directories(TestMain PRIVATE "${PROJECT_BINARY_DIR}/tests")
-target_link_libraries(TestMain gtest_main memplumber XXX_Lib_Shared)
+target_link_libraries(TestMain gtest_main memplumber "${PROJECT_NAME}_Lib_Shared")
 add_custom_target(test DEPENDS TestMain)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
