@@ -50,7 +50,7 @@ namespace spdlog
 			sentry_value_t versionContext = sentry_value_new_object();
 			versionBuffer = "v" + std::string(PROJECT_FULL_REVISION);
 			sentry_value_set_by_key(versionContext, "XXX", sentry_value_new_string(versionBuffer.c_str()));
-			
+
 			versionBuffer = "v" + std::to_string(CPPZMQ_VERSION_MAJOR) + "." + std::to_string(CPPZMQ_VERSION_MINOR) +
 							"." + std::to_string(CPPZMQ_VERSION_PATCH);
 			sentry_value_set_by_key(versionContext, "CppZMQ", sentry_value_new_string(versionBuffer.c_str()));
@@ -66,7 +66,7 @@ namespace spdlog
 			zmq_version(&major, &minor, &patch);
 			versionBuffer = "v" + std::to_string(major) + "." + std::to_string(minor) + "." + std::to_string(patch);
 			sentry_value_set_by_key(versionContext, "ZeroMQ", sentry_value_new_string(versionBuffer.c_str()));
-			
+
 			sentry_set_context("Version", versionContext);
 
 			// Context: Host
