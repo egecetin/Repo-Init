@@ -8,14 +8,7 @@
 
 int main(int argc, char **argv)
 {
-	// Init logger
-	if (!init_logger(argc, argv))
-		return EXIT_FAILURE;
-
-	// Read config
-	if (!readConfig(CONFIG_FILE_PATH))
-		return EXIT_FAILURE;
-
+	// Parse inputs
 	InputParser input(argc, argv);
 	if (input.cmdOptionExists("--enable-telnet"))
 	{
@@ -25,6 +18,14 @@ int main(int argc, char **argv)
 		else
 			spdlog::warn("Enable Telnet option requires a port number");
 	}
+
+	// Init logger
+	if (!init_logger(argc, argv))
+		return EXIT_FAILURE;
+
+	// Read config
+	if (!readConfig(CONFIG_FILE_PATH))
+		return EXIT_FAILURE;
 
 	// Register alarms
 	signal(SIGINT, interruptFunc);
