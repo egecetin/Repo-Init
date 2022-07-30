@@ -10,4 +10,4 @@ doc
 cmake/CMakeCacheForScript.cmake
 BuildNumberCache.txt
 Doxyfile
-log
+error.log
