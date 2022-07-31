@@ -36,4 +36,16 @@ execute_process(COMMAND "mv"
                         "${PROJECT_SOURCE_DIR}/dist/makeself/"
                         )
 
+# Move debug symbols
+execute_process(COMMAND "mv"
+                        "-f"
+                        "${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}.dbg"
+                        "${PROJECT_SOURCE_DIR}/dist/debug/${PROJECT_NAME}.${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}.dbg"
+                        )
+execute_process(COMMAND "mv"
+                        "-f"
+                        "${CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE}/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}.dbg"
+                        "${PROJECT_SOURCE_DIR}/dist/debug/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}.${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}.dbg"
+                        )
+
 message(STATUS "${PROJECT_NAME}.${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}.run generated")

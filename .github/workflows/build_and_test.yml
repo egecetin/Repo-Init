@@ -21,7 +21,7 @@ jobs:
           submodules: recursive
       - name: Prepare system
         run: |
-          mkdir -p dist/temp dist/rpm dist/makeself
+          mkdir -p dist/temp dist/rpm dist/makeself dist/debug
           sudo apt install expect libcurl4-openssl-dev -y
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B $BUILD_DIR
@@ -39,7 +39,7 @@ jobs:
           submodules: recursive
       - name: Prepare system
         run: |
-          mkdir -p dist/temp dist/rpm dist/makeself
+          mkdir -p dist/temp dist/rpm dist/makeself dist/debug
           sudo apt install gcovr expect libcurl4-openssl-dev -y
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR

@@ -170,6 +170,40 @@ add_custom_command(
 	COMMENT "${BoldBlue}Updating build number${ColourReset}"
 )
 
+# Strip debug information from executable
+add_custom_command(
+	TARGET "${PROJECT_NAME}"
+	POST_BUILD
+	COMMAND $<$<CONFIG:Release>:${CMAKE_OBJCOPY}>
+			$<$<CONFIG:Release>:--only-keep-debug>
+			$<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}>
+			$<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}.dbg>
+	COMMAND $<$<CONFIG:Release>:${CMAKE_STRIP}>
+			$<$<CONFIG:Release>:--strip-debug>
+			$<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}>
+	COMMAND $<$<CONFIG:Release>:${CMAKE_OBJCOPY}>
+			$<$<CONFIG:Release>:--add-gnu-debuglink=${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}.dbg>
+			$<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}>
+	COMMENT "${BoldBlue}Stripping debug information from executable${ColourReset}"
+)
+
+# Strip debug information from shared lib
+add_custom_command(
+	TARGET "${PROJECT_NAME}_Lib_Shared"
+	POST_BUILD
+	COMMAND $<$<CONFIG:Release>:${CMAKE_OBJCOPY}>
+			$<$<CONFIG:Release>:--only-keep-debug>
+			$<$<CONFIG:Release>:"${CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE}/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}">
+			$<$<CONFIG:Release>:"${CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE}/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}.dbg">
+	COMMAND $<$<CONFIG:Release>:${CMAKE_STRIP}>
+			$<$<CONFIG:Release>:--strip-debug>
+			$<$<CONFIG:Release>:"${CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE}/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}">
+	COMMAND $<$<CONFIG:Release>:${CMAKE_OBJCOPY}>
+			$<$<CONFIG:Release>:--add-gnu-debuglink="${CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE}/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}.dbg">
+			$<$<CONFIG:Release>:"${CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE}/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}">
+	COMMENT "${BoldBlue}Stripping debug information from shared library${ColourReset}"
+)
+
 # CPack
 if(${CMAKE_VERSION} VERSION_LESS "3.21.0")
     message("${BoldYellow}Please consider to switch to CMake 3.21.0 or newer to enable CPack support${ColourReset}")
