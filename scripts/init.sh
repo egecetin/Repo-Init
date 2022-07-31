@@ -3,4 +3,4 @@
 # Create empty directories
 mkdir -p build cmake doc dist example include scripts src tests thirdparty
 mkdir -p dist/packages dist/makeself dist/temp dist/debug
-touch build/.keep cmake/.keep doc/.keep dist/.keep example/.keep include/.keep scripts/.keep src/.keep tests/.keep thirdparty/.keep
+touch build/.gitkeep cmake/.gitkeep doc/.gitkeep dist/.gitkeep example/.gitkeep include/.gitkeep scripts/.gitkeep src/.gitkeep tests/.gitkeep thirdparty/.gitkeep
