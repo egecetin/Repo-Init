@@ -11,6 +11,7 @@ ANSI_FG_MAGENTA="\x1b[35m"
 ANSI_FG_CYAN="\x1b[36m"
 ANSI_RESET_ALL="\x1b[0m"
 
+# Install
 echo -e "${ANSI_FG_YELLOW}Installing packages ...${ANSI_RESET_ALL}"
 yum install epel-release -y
 yum install htop cockpit cockpit-pcp chrony mlocate lm_sensors smartmontools -y
@@ -27,7 +28,7 @@ tar -xzvf 7.1.0.tar.gz neofetch-7.1.0/
 make install -C neofetch-7.1.0
 rm -rf neofetch-7.1.0
 mkdir -p /root/.config/neofetch
-mv -f scripts/data/neofetch_config.conf /root/.config/neofetch/config.conf
+\cp scripts/data/neofetch_config.conf /root/.config/neofetch/config.conf
 echo "neofetch" >> /etc/profile.d/neofetch-init.sh
 
 # echo -e "${ANSI_FG_YELLOW}Installing IDRAC tools ...${ANSI_RESET_ALL}"
@@ -47,14 +48,14 @@ gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
 EOF
-mv /tmp/oneAPI.repo /etc/yum.repos.d
+mv -f /tmp/oneAPI.repo /etc/yum.repos.d
 yum install intel-basekit -y
 
 # echo -e "${ANSI_FG_YELLOW}Installing Hyper-V tools"
 # yum install WALinuxAgent cloud-init cloud-utils-growpart gdisk hyperv-daemons -y
 
 # Add config for VS Code
-mv -f scripts/data/cmake-tools-kits.json /root/.local/share/CMakeTools/
+# \cp scripts/data/cmake-tools-kits.json /root/.local/share/CMakeTools/
 
 echo -e "${ANSI_FG_YELLOW}Detecting sensors ...${ANSI_RESET_ALL}"
 sensors-detect --auto > /dev/null
@@ -83,6 +84,26 @@ echo "MACs hmac-sha1,umac-64@openssh.com" >> /etc/ssh/sshd_config
 echo -e "${ANSI_FG_YELLOW}Restarting sshd service ...${ANSI_RESET_ALL}"
 systemctl restart sshd.service
 
+echo -e "${ANSI_FG_YELLOW}Branding ...${ANSI_RESET_ALL}"
+
+mv -f /usr/share/cockpit/branding/rhel/branding.css /usr/share/cockpit/branding/rhel/branding.css.old
+mv -f /usr/share/cockpit/branding/rhel/logo.png /usr/share/cockpit/branding/rhel/logo.png.old
+mv -f /usr/share/cockpit/branding/rhel/apple-touch-icon.png /usr/share/cockpit/branding/rhel/apple-touch-icon.png.old
+mv -f /usr/share/cockpit/branding/rhel/favicon.ico /usr/share/cockpit/branding/rhel/favicon.ico.old
+
+\cp scripts/data/branding/branding.css /usr/share/cockpit/branding/rhel/branding.css
+\cp scripts/data/branding/logo.png /usr/share/cockpit/branding/rhel/logo.png
+\cp scripts/data/branding/apple-touch-icon.png /usr/share/cockpit/branding/rhel/apple-touch-icon.png
+\cp scripts/data/branding/favicon.ico /usr/share/cockpit/branding/rhel/favicon.ico
+
+semanage fcontext -a -t usr_t /usr/share/cockpit/branding/rhel/logo.png || true
+semanage fcontext -a -t usr_t /usr/share/cockpit/branding/rhel/apple-touch-icon.png || true
+semanage fcontext -a -t usr_t /usr/share/cockpit/branding/rhel/favicon.ico || true
+restorecon -v /usr/share/cockpit/branding/rhel/logo.png || true
+restorecon -v /usr/share/cockpit/branding/rhel/apple-touch-icon.png || true
+restorecon -v /usr/share/cockpit/branding/rhel/favicon.ico || true
+restorecon -v /usr/share/cockpit/branding/centos/branding.css || true
+
 echo -e "${ANSI_FG_YELLOW}Configuring firewall ...${ANSI_RESET_ALL}"
 firewall-cmd --permanent --zone=public --add-service=ssh
 firewall-cmd --permanent --zone=public --add-service=cockpit
@@ -100,5 +121,7 @@ echo ""
 ip addr
 echo ""
 echo ""
-
+sestatus
+echo ""
+echo ""
 echo "Done!"

@@ -16,6 +16,7 @@
 - [Scripts](#scripts)
 - [Dependencies](#dependencies)
 - [Targets](#targets)
+- [Developer comments](#developer-comments)
 
 ## CMake
 
@@ -59,3 +60,11 @@ All scripts should be executed from top level directory
  - dependency-graph : Prepares graphviz visualization of dependencies
  - package          : Prepares RPM and makeself packages
  - test             : Prepares gtest target
+
+## Developer comments
+
+ - Update branding information after cloning. The folder should include three icons/logos and a css file. Look the branding.css or RHEL branding folder for recomended image sizes
+   - logo.png
+   - favicon.ico
+   - apple-touch-icon.png
+   - branding.css
