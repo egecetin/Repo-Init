@@ -15,6 +15,7 @@ echo -e "${ANSI_FG_YELLOW}Installing packages ...${ANSI_RESET_ALL}"
 yum install epel-release -y
 yum install htop cockpit cockpit-pcp chrony mlocate lm_sensors smartmontools -y
 yum install OpenIPMI ipmitool -y
+yum install grafana grafana-pcp redis -y
 
 echo -e "${ANSI_FG_YELLOW}Installing cockpit-navigator ...${ANSI_RESET_ALL}"
 curl -sSL https://repo.45drives.com/setup | sudo bash
@@ -50,7 +51,7 @@ mv /tmp/oneAPI.repo /etc/yum.repos.d
 yum install intel-basekit -y
 
 # echo -e "${ANSI_FG_YELLOW}Installing Hyper-V tools"
-# yum install -y WALinuxAgent cloud-init cloud-utils-growpart gdisk hyperv-daemons
+# yum install WALinuxAgent cloud-init cloud-utils-growpart gdisk hyperv-daemons -y
 
 # Add config for VS Code
 mv -f scripts/data/cmake-tools-kits.json /root/.local/share/CMakeTools/
@@ -61,18 +62,15 @@ sensors-detect --auto > /dev/null
 echo -e "${ANSI_FG_YELLOW}Enabling services ...${ANSI_RESET_ALL}"
 /sbin/chkconfig ipmi on
 systemctl start ipmi
-systemctl enable cockpit.socket
-systemctl start cockpit.socket
-systemctl enable pmlogger
-systemctl start pmlogger
+systemctl enable --now chronyd
+systemctl enable --now redis
+systemctl enable --now pmlogger
+systemctl enable --now pmproxy
+# systemctl enable --now waagent
+# systemctl enable --now cloud-init
 
-systemctl enable chronyd
-systemctl start chronyd
-
-# systemctl enable waagent
-# systemctl start waagent
-# systemctl enable cloud-init
-# systemctl start cloud-init
+systemctl enable --now cockpit.socket
+systemctl enable --now grafana-server
 
 systemctl stop dnf-makecache.timer
 systemctl disable dnf-makecache.timer
@@ -88,6 +86,8 @@ systemctl restart sshd.service
 echo -e "${ANSI_FG_YELLOW}Configuring firewall ...${ANSI_RESET_ALL}"
 firewall-cmd --permanent --zone=public --add-service=ssh
 firewall-cmd --permanent --zone=public --add-service=cockpit
+firewall-cmd --permanent --zone=public --add-service=pmproxy
+firewall-cmd --permanent --zone=public --add-port=3000/tcp # Default grafana interface port
 firewall-cmd --reload
 
 echo -e "${ANSI_FG_YELLOW}Displaying information ...${ANSI_RESET_ALL}"
