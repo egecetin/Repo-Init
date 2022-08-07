@@ -38,6 +38,9 @@ EOF
 mv /tmp/oneAPI.repo /etc/yum.repos.d
 yum install intel-basekit -y
 
+# echo "Installing Hyper-V tools"
+# yum install -y WALinuxAgent cloud-init cloud-utils-growpart gdisk hyperv-daemons
+
 # Add config for VS Code
 mv -f scripts/data/cmake-tools-kits.json /root/.local/share/CMakeTools/
 
@@ -51,6 +54,11 @@ systemctl enable cockpit.socket
 systemctl start cockpit.socket
 systemctl enable pmlogger
 systemctl start pmlogger
+
+# systemctl enable waagent
+# systemctl start waagent
+# systemctl enable cloud-init
+# systemctl start cloud-init
 
 systemctl stop dnf-makecache.timer
 systemctl disable dnf-makecache.timer
