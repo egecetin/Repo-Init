@@ -63,7 +63,7 @@ All scripts should be executed from top level directory
 
 ## Developer comments
 
- - Update branding information after cloning. The folder should include three icons/logos and a css file. Look the branding.css or RHEL branding folder for recomended image sizes
+ - Update branding information after cloning. The folder should include three icons/logos and a css file. Look the branding.css or RHEL branding folder for recommended image sizes
    - logo.png
    - favicon.ico
    - apple-touch-icon.png
