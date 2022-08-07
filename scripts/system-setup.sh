@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Color Variables
 ANSI_FG_BLACK="\x1b[30m"
