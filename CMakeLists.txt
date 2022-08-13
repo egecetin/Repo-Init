@@ -115,7 +115,7 @@ set_target_properties(
 )
 target_compile_options("${PROJECT_NAME}_Lib_Shared" PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories("${PROJECT_NAME}_Lib_Shared" PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries("${PROJECT_NAME}_Lib_Shared" stdc++fs spdlog libzmq sentry curl)
+target_link_libraries("${PROJECT_NAME}_Lib_Shared" stdc++fs spdlog libzmq sentry)
 
 add_library("${PROJECT_NAME}_Lib_Static" STATIC ${ProjectSources})
 set_target_properties(
@@ -126,7 +126,7 @@ set_target_properties(
 )
 target_compile_options("${PROJECT_NAME}_Lib_Static" PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories("${PROJECT_NAME}_Lib_Static" PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries("${PROJECT_NAME}_Lib_Static" stdc++fs spdlog libzmq sentry curl)
+target_link_libraries("${PROJECT_NAME}_Lib_Static" stdc++fs spdlog libzmq sentry)
 
 add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_compile_options("${PROJECT_NAME}" PRIVATE -Wall -Wextra -Werror -pedantic)
