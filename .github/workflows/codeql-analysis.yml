@@ -24,7 +24,7 @@ jobs:
         submodules: recursive
     - name: Prepare system
       run:  |
-        mkdir -p dist/temp dist/rpm dist/makeself dist/debug
+        mkdir -p dist/temp dist/rpm dist/makeself
         sudo apt install libcurl4-openssl-dev -y
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
