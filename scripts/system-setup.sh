@@ -58,9 +58,6 @@ yum install intel-oneapi-runtime-libs -y
 # echo -e "${ANSI_FG_YELLOW}Installing Hyper-V tools"
 # yum install WALinuxAgent cloud-init cloud-utils-growpart gdisk hyperv-daemons -y
 
-# Add config for VS Code
-# \cp scripts/data/cmake-tools-kits.json /root/.local/share/CMakeTools/
-
 echo -e "${ANSI_FG_YELLOW}Detecting sensors ...${ANSI_RESET_ALL}"
 sensors-detect --auto > /dev/null
 
@@ -109,7 +106,6 @@ restorecon -v /usr/share/cockpit/branding/centos/branding.css || true
 echo -e "${ANSI_FG_YELLOW}Configuring firewall ...${ANSI_RESET_ALL}"
 firewall-cmd --permanent --zone=public --add-service=ssh
 firewall-cmd --permanent --zone=public --add-service=cockpit
-firewall-cmd --permanent --zone=public --add-service=pmproxy
 firewall-cmd --permanent --zone=public --add-service=grafana
 firewall-cmd --reload
 
