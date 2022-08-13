@@ -108,7 +108,7 @@ echo -e "${ANSI_FG_YELLOW}Configuring firewall ...${ANSI_RESET_ALL}"
 firewall-cmd --permanent --zone=public --add-service=ssh
 firewall-cmd --permanent --zone=public --add-service=cockpit
 firewall-cmd --permanent --zone=public --add-service=pmproxy
-firewall-cmd --permanent --zone=public --add-port=3000/tcp # Default grafana interface port
+firewall-cmd --permanent --zone=public --add-service=grafana
 firewall-cmd --reload
 
 echo -e "${ANSI_FG_YELLOW}Displaying information ...${ANSI_RESET_ALL}"
