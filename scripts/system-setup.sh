@@ -16,7 +16,7 @@ echo -e "${ANSI_FG_YELLOW}Installing packages ...${ANSI_RESET_ALL}"
 yum install epel-release -y
 yum install htop cockpit cockpit-pcp chrony mlocate lm_sensors smartmontools -y
 yum install OpenIPMI ipmitool -y
-yum install grafana grafana-pcp redis -y
+yum install grafana grafana-pcp -y
 
 echo -e "${ANSI_FG_YELLOW}Installing cockpit-navigator ...${ANSI_RESET_ALL}"
 curl -sSL https://repo.45drives.com/setup | sudo bash
@@ -37,6 +37,10 @@ echo "neofetch" >> /etc/profile.d/neofetch-init.sh
 # rm -f bootstrap.cgi
 # yum install dell-system-update -y
 # yum install srvadmin-* -y
+# cat << EOF >> /etc/ld.so.conf.d/idrac.conf
+# /opt/dell/srvadmin/sbin/
+# EOF
+# ldconfig
 
 echo -e "${ANSI_FG_YELLOW}Installing Intel oneAPI ...${ANSI_RESET_ALL}"
 tee > /tmp/oneAPI.repo << EOF
@@ -49,13 +53,10 @@ repo_gpgcheck=1
 gpgkey=https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
 EOF
 mv -f /tmp/oneAPI.repo /etc/yum.repos.d
-yum install intel-basekit -y
+yum install intel-oneapi-runtime-libs -y
 
 # echo -e "${ANSI_FG_YELLOW}Installing Hyper-V tools"
 # yum install WALinuxAgent cloud-init cloud-utils-growpart gdisk hyperv-daemons -y
-
-# Add config for VS Code
-# \cp scripts/data/cmake-tools-kits.json /root/.local/share/CMakeTools/
 
 echo -e "${ANSI_FG_YELLOW}Detecting sensors ...${ANSI_RESET_ALL}"
 sensors-detect --auto > /dev/null
@@ -64,9 +65,7 @@ echo -e "${ANSI_FG_YELLOW}Enabling services ...${ANSI_RESET_ALL}"
 /sbin/chkconfig ipmi on
 systemctl start ipmi
 systemctl enable --now chronyd
-systemctl enable --now redis
 systemctl enable --now pmlogger
-systemctl enable --now pmproxy
 # systemctl enable --now waagent
 # systemctl enable --now cloud-init
 
@@ -107,8 +106,7 @@ restorecon -v /usr/share/cockpit/branding/centos/branding.css || true
 echo -e "${ANSI_FG_YELLOW}Configuring firewall ...${ANSI_RESET_ALL}"
 firewall-cmd --permanent --zone=public --add-service=ssh
 firewall-cmd --permanent --zone=public --add-service=cockpit
-firewall-cmd --permanent --zone=public --add-service=pmproxy
-firewall-cmd --permanent --zone=public --add-port=3000/tcp # Default grafana interface port
+firewall-cmd --permanent --zone=public --add-service=grafana
 firewall-cmd --reload
 
 echo -e "${ANSI_FG_YELLOW}Displaying information ...${ANSI_RESET_ALL}"

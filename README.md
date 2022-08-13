@@ -1,12 +1,25 @@
-## Project
-
-<img src=logo.png style="max-height:300px">
+<div align="center" width="50">
+<img src=scripts/data/branding/logo.png>
 
 ![GitHub top language](https://img.shields.io/github/languages/top/egecetin/Repo-Init?style=plastic)
 ![GitHub](https://img.shields.io/github/license/egecetin/Repo-Init?style=plastic)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/egecetin/Repo-Init/Build%20and%20test?style=plastic)
 ![Codecov](https://img.shields.io/codecov/c/github/egecetin/Repo-Init?style=plastic&token=G65MG0J07F)
 ![LGTM Grade](https://img.shields.io/lgtm/grade/cpp/github/egecetin/Repo-Init?style=plastic)
+</div>
+
+## Project
+CMake template to create new C++ applications with basic codes/interfaces are already defined.
+
+It provides the following features
+  - Logging
+    - Spdlog with rotating file, syslog and coloured stdout outputs
+    - Sentry for automatic forwarding of logs to a HTTP server
+  - Crash reporting
+    - Minidump generation and uploading to a HTTP server
+  - User interactivity
+    - Telnet
+    - ZeroMQ
 
 ## Contents
 

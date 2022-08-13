@@ -139,29 +139,6 @@ install(TARGETS "${PROJECT_NAME}" crashpad_handler "${PROJECT_NAME}_Lib_Shared" 
 	LIBRARY DESTINATION lib
 )
 
-# Add thirdparty dependencies
-install(CODE [[
-  file(GET_RUNTIME_DEPENDENCIES
-    LIBRARIES $<TARGET_FILE:XXX_Lib_Shared>
-    EXECUTABLES $<TARGET_FILE:XXX>
-    RESOLVED_DEPENDENCIES_VAR _r_deps
-    UNRESOLVED_DEPENDENCIES_VAR _u_deps
-  )
-  foreach(_file ${_r_deps})
-    file(INSTALL
-      DESTINATION "${CMAKE_INSTALL_PREFIX}/lib"
-      TYPE SHARED_LIBRARY
-      FOLLOW_SYMLINK_CHAIN
-      FILES "${_file}"
-    )
-	message(STATUS "Detected dependency ${_file}")
-  endforeach()
-  list(LENGTH _u_deps _u_length)
-  if("${_u_length}" GREATER 0)
-    message(WARNING "Unresolved dependencies detected!")
-  endif()
-]])
-
 # Update build number at every build
 add_custom_command(
 	TARGET "${PROJECT_NAME}_Lib_Shared"
