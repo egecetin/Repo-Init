@@ -16,7 +16,6 @@ echo -e "${ANSI_FG_YELLOW}Installing packages ...${ANSI_RESET_ALL}"
 yum install epel-release -y
 yum install htop cockpit cockpit-pcp chrony mlocate lm_sensors smartmontools -y
 yum install OpenIPMI ipmitool -y
-yum install grafana grafana-pcp -y
 
 echo -e "${ANSI_FG_YELLOW}Installing cockpit-navigator ...${ANSI_RESET_ALL}"
 curl -sSL https://repo.45drives.com/setup | sudo bash
@@ -70,7 +69,6 @@ systemctl enable --now pmlogger
 # systemctl enable --now cloud-init
 
 systemctl enable --now cockpit.socket
-systemctl enable --now grafana-server
 
 systemctl stop dnf-makecache.timer
 systemctl disable dnf-makecache.timer
@@ -106,7 +104,6 @@ restorecon -v /usr/share/cockpit/branding/centos/branding.css || true
 echo -e "${ANSI_FG_YELLOW}Configuring firewall ...${ANSI_RESET_ALL}"
 firewall-cmd --permanent --zone=public --add-service=ssh
 firewall-cmd --permanent --zone=public --add-service=cockpit
-firewall-cmd --permanent --zone=public --add-service=grafana
 firewall-cmd --reload
 
 echo -e "${ANSI_FG_YELLOW}Displaying information ...${ANSI_RESET_ALL}"
