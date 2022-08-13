@@ -33,9 +33,8 @@ int main(int argc, char **argv)
 	signal(SIGTERM, interruptFunc);
 	signal(SIGKILL, interruptFunc);
 
-	// If sentry is not available register plain backtracer
-	if (readSingleConfig(CONFIG_FILE_PATH, "SENTRY_ADDRESS").empty())
-		signal(SIGSEGV, backtracer);
+	// Register backtracer
+	signal(SIGSEGV, backtracer);
 
 	// Move SIGALRM to bottom because of invoking sleep
 

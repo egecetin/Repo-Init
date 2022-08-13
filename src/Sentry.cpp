@@ -34,7 +34,6 @@ namespace spdlog
 			sentry_options_t *sentryOptions = sentry_options_new();
 			sentry_options_set_release(sentryOptions, PROJECT_FULL_REVISION);
 			sentry_options_set_dsn(sentryOptions, sentryAddress.c_str());
-			sentry_options_set_symbolize_stacktraces(sentryOptions, true);
 
 			// Init
 			sentry_init(sentryOptions);

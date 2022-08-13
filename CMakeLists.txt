@@ -39,10 +39,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/bin)
 set(CMAKE_DEBUG_POSTFIX d)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} -O0")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -O0")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} -O0 -g")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -O0 -g")
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS} -DNDEBUG -O3")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -DNDEBUG -O3")
 
@@ -93,7 +91,7 @@ option(RAPIDJSON_BUILD_EXAMPLES "" OFF)
 option(RAPIDJSON_BUILD_TESTS "" OFF)
 option(SPDLOG_BUILD_SHARED "" ON)
 option(SENTRY_BUILD_SHARED_LIBS "" ON)
-set(SENTRY_BACKEND crashpad)
+set(SENTRY_BACKEND none)
 
 # Subdirectories
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/libzmq EXCLUDE_FROM_ALL)
@@ -134,7 +132,7 @@ target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared")
 
 # Set install targets
-install(TARGETS "${PROJECT_NAME}" crashpad_handler "${PROJECT_NAME}_Lib_Shared" spdlog libzmq sentry
+install(TARGETS "${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared" spdlog libzmq sentry
 	RUNTIME DESTINATION bin
 	LIBRARY DESTINATION lib
 )
@@ -145,40 +143,6 @@ add_custom_command(
 	PRE_BUILD
 	COMMAND ${CMAKE_COMMAND} -P "${PROJECT_SOURCE_DIR}/cmake/AutoBuildNumber.cmake"
 	COMMENT "${BoldBlue}Updating build number${ColourReset}"
-)
-
-# Strip debug information from executable
-add_custom_command(
-	TARGET "${PROJECT_NAME}"
-	POST_BUILD
-	COMMAND $<$<CONFIG:Release>:${CMAKE_OBJCOPY}>
-			$<$<CONFIG:Release>:--only-keep-debug>
-			$<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}>
-			$<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}.dbg>
-	COMMAND $<$<CONFIG:Release>:${CMAKE_STRIP}>
-			$<$<CONFIG:Release>:--strip-debug>
-			$<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}>
-	COMMAND $<$<CONFIG:Release>:${CMAKE_OBJCOPY}>
-			$<$<CONFIG:Release>:--add-gnu-debuglink=${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}.dbg>
-			$<$<CONFIG:Release>:${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}>
-	COMMENT "${BoldBlue}Stripping debug information from executable${ColourReset}"
-)
-
-# Strip debug information from shared lib
-add_custom_command(
-	TARGET "${PROJECT_NAME}_Lib_Shared"
-	POST_BUILD
-	COMMAND $<$<CONFIG:Release>:${CMAKE_OBJCOPY}>
-			$<$<CONFIG:Release>:--only-keep-debug>
-			$<$<CONFIG:Release>:"${CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE}/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}">
-			$<$<CONFIG:Release>:"${CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE}/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}.dbg">
-	COMMAND $<$<CONFIG:Release>:${CMAKE_STRIP}>
-			$<$<CONFIG:Release>:--strip-debug>
-			$<$<CONFIG:Release>:"${CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE}/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}">
-	COMMAND $<$<CONFIG:Release>:${CMAKE_OBJCOPY}>
-			$<$<CONFIG:Release>:--add-gnu-debuglink="${CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE}/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}.dbg">
-			$<$<CONFIG:Release>:"${CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE}/lib${PROJECT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}">
-	COMMENT "${BoldBlue}Stripping debug information from shared library${ColourReset}"
 )
 
 # CPack
@@ -197,7 +161,6 @@ else()
 	set(CPACK_RESOURCE_FILE_README ${PROJECT_SOURCE_DIR}/README.md)
 	set(CPACK_PACKAGE_CONTACT "Humanity")
 	list(APPEND CPACK_POST_BUILD_SCRIPTS "${CMAKE_MODULE_PATH}/PostBuild.cmake")
-	include(InstallRequiredSystemLibraries)
 	include(CPack)
 
 	# Cache variables for scripts
