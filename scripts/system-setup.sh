@@ -66,7 +66,7 @@ wget https://github.com/prometheus/prometheus/releases/download/v$VER_PROMETHEUS
 tar -xzf /tmp/prometheus-$VER_PROMETHEUS.linux-amd64.tar.gz
 \cp /tmp/prometheus-$VER_PROMETHEUS.linux-amd64/{prometheus,promtool} /usr/local/bin/
 \cp -r /tmp/prometheus-$VER_PROMETHEUS.linux-amd64/{consoles,console_libraries} /etc/prometheus/
-\cp scripts/data/prometheus.yml /etc/prometheus/
+\cp scripts/data/prometheus-config.yml /etc/prometheus/prometheus.yml
 chown -R prometheus:prometheus /etc/prometheus
 chown -R prometheus:prometheus /var/lib/prometheus
 chown prometheus.prometheus /usr/local/bin/{prometheus,promtool}
@@ -97,7 +97,7 @@ wget https://github.com/prometheus/node_exporter/releases/download/v$VER_NODE_EX
 tar -xf node_exporter-$VER_NODE_EXPORTER.linux-amd64.tar.gz
 mv node_exporter-$VER_NODE_EXPORTER.linux-amd64/node_exporter /usr/local/bin/
 adduser -M -r -s /sbin/nologin node_exporter
-\cp scripts/data/prometheus.xml /etc/firewalld/services/
+\cp scripts/data/prometheus-firewalld.xml /etc/firewalld/services/prometheus.xml
 tee > /etc/systemd/system/node_exporter.service << EOF
 [Unit]
 Description=Node Exporter
