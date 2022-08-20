@@ -172,16 +172,28 @@ firewall-cmd --permanent --zone=trusted --add-service=prometheus
 firewall-cmd --reload
 
 echo -e "${ANSI_FG_YELLOW}Displaying information ...${ANSI_RESET_ALL}"
+echo ""
+echo -e "${ANSI_FG_GREEN}Host${ANSI_RESET_ALL}"
 hostnamectl
 echo ""
 echo ""
+sleep 3
+echo -e "${ANSI_FG_GREEN}NTP${ANSI_RESET_ALL}"
 chronyc sources -v
 echo ""
 echo ""
+sleep 3
+echo -e "${ANSI_FG_GREEN}Network${ANSI_RESET_ALL}"
 ip addr
 echo ""
 echo ""
+sleep 3
+echo -e "${ANSI_FG_GREEN}SELinux${ANSI_RESET_ALL}"
 sestatus
 echo ""
 echo ""
-echo "Done!"
+sleep 3
+echo -e "${ANSI_FG_GREEN}Firewall${ANSI_RESET_ALL}"
+firewall-cmd --list-all
+sleep 1
+echo "${ANSI_FG_GREEN}Done!${ANSI_RESET_ALL}"
