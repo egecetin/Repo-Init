@@ -63,7 +63,7 @@ adduser -M -r -s /sbin/nologin prometheus
 mkdir /etc/prometheus
 mkdir /var/lib/prometheus
 wget https://github.com/prometheus/prometheus/releases/download/v$VER_PROMETHEUS/prometheus-$VER_PROMETHEUS.linux-amd64.tar.gz -P /tmp
-tar -xzf /tmp/prometheus-$VER_PROMETHEUS.linux-amd64.tar.gz
+tar -xzf /tmp/prometheus-$VER_PROMETHEUS.linux-amd64.tar.gz --directory=/tmp
 \cp /tmp/prometheus-$VER_PROMETHEUS.linux-amd64/{prometheus,promtool} /usr/local/bin/
 \cp -r /tmp/prometheus-$VER_PROMETHEUS.linux-amd64/{consoles,console_libraries} /etc/prometheus/
 \cp scripts/data/prometheus-config.yml /etc/prometheus/prometheus.yml
@@ -93,9 +93,9 @@ WantedBy=multi-user.target
 EOF
 
 echo -e "${ANSI_FG_YELLOW}Installing Prometheus Node Exporter v${VER_NODE_EXPORTER}...${ANSI_RESET_ALL}"
-wget https://github.com/prometheus/node_exporter/releases/download/v$VER_NODE_EXPORTER/node_exporter-v$VER_NODE_EXPORTER.linux-amd64.tar.gz
-tar -xf node_exporter-$VER_NODE_EXPORTER.linux-amd64.tar.gz
-mv node_exporter-$VER_NODE_EXPORTER.linux-amd64/node_exporter /usr/local/bin/
+wget https://github.com/prometheus/node_exporter/releases/download/v$VER_NODE_EXPORTER/node_exporter-$VER_NODE_EXPORTER.linux-amd64.tar.gz -P /tmp
+tar -xf /tmp/node_exporter-$VER_NODE_EXPORTER.linux-amd64.tar.gz --directory=/tmp
+mv /tmp/node_exporter-$VER_NODE_EXPORTER.linux-amd64/node_exporter /usr/local/bin/
 adduser -M -r -s /sbin/nologin node_exporter
 \cp scripts/data/prometheus-firewalld.xml /etc/firewalld/services/prometheus.xml
 tee > /etc/systemd/system/node_exporter.service << EOF
