@@ -11,6 +11,10 @@ ANSI_FG_MAGENTA="\x1b[35m"
 ANSI_FG_CYAN="\x1b[36m"
 ANSI_RESET_ALL="\x1b[0m"
 
+# Versions
+VER_PROMETHEUS=2.37.0
+VER_NODE_EXPORTER=1.3.1
+
 # Install
 echo -e "${ANSI_FG_YELLOW}Installing packages ...${ANSI_RESET_ALL}"
 yum install epel-release -y
@@ -54,6 +58,62 @@ EOF
 mv -f /tmp/oneAPI.repo /etc/yum.repos.d
 yum install intel-oneapi-runtime-libs -y
 
+echo -e "${ANSI_FG_YELLOW}Installing Prometheus v${VER_PROMETHEUS}...${ANSI_RESET_ALL}"
+adduser -M -r -s /sbin/nologin prometheus
+mkdir /etc/prometheus
+mkdir /var/lib/prometheus
+wget https://github.com/prometheus/prometheus/releases/download/v$VER_PROMETHEUS/prometheus-$VER_PROMETHEUS.linux-amd64.tar.gz -P /tmp
+tar -xzf /tmp/prometheus-$VER_PROMETHEUS.linux-amd64.tar.gz
+\cp /tmp/prometheus-$VER_PROMETHEUS.linux-amd64/{prometheus,promtool} /usr/local/bin/
+\cp -r /tmp/prometheus-$VER_PROMETHEUS.linux-amd64/{consoles,console_libraries} /etc/prometheus/
+\cp scripts/data/prometheus.yml /etc/prometheus/
+chown -R prometheus:prometheus /etc/prometheus
+chown -R prometheus:prometheus /var/lib/prometheus
+chown prometheus.prometheus /usr/local/bin/{prometheus,promtool}
+tee > /etc/systemd/system/prometheus.service << EOF
+[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=prometheus
+Group=prometheus
+Type=simple
+ExecStart=/usr/local/bin/prometheus \
+    --config.file /etc/prometheus/prometheus.yml \
+    --storage.tsdb.path /var/lib/prometheus/ \
+    --web.console.templates=/etc/prometheus/consoles \
+    --web.console.libraries=/etc/prometheus/console_libraries \
+    --web.listen-address=:9080
+
+[Install]
+WantedBy=multi-user.target
+
+EOF
+
+echo -e "${ANSI_FG_YELLOW}Installing Prometheus Node Exporter v${VER_NODE_EXPORTER}...${ANSI_RESET_ALL}"
+wget https://github.com/prometheus/node_exporter/releases/download/v$VER_NODE_EXPORTER/node_exporter-v$VER_NODE_EXPORTER.linux-amd64.tar.gz
+tar -xf node_exporter-$VER_NODE_EXPORTER.linux-amd64.tar.gz
+mv node_exporter-$VER_NODE_EXPORTER.linux-amd64/node_exporter /usr/local/bin/
+adduser -M -r -s /sbin/nologin node_exporter
+\cp scripts/data/prometheus.xml /etc/firewalld/services/
+tee > /etc/systemd/system/node_exporter.service << EOF
+[Unit]
+Description=Node Exporter
+After=network.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+
+EOF
+
 # echo -e "${ANSI_FG_YELLOW}Installing Hyper-V tools"
 # yum install WALinuxAgent cloud-init cloud-utils-growpart gdisk hyperv-daemons -y
 
@@ -61,13 +121,16 @@ echo -e "${ANSI_FG_YELLOW}Detecting sensors ...${ANSI_RESET_ALL}"
 sensors-detect --auto > /dev/null
 
 echo -e "${ANSI_FG_YELLOW}Enabling services ...${ANSI_RESET_ALL}"
+systemctl daemon-reload
+
 /sbin/chkconfig ipmi on
 systemctl start ipmi
 systemctl enable --now chronyd
 systemctl enable --now pmlogger
 # systemctl enable --now waagent
 # systemctl enable --now cloud-init
-
+systemctl enable --now prometheus
+systemctl enable --now node_exporter
 systemctl enable --now cockpit.socket
 
 systemctl stop dnf-makecache.timer
@@ -102,8 +165,10 @@ restorecon -v /usr/share/cockpit/branding/rhel/favicon.ico || true
 restorecon -v /usr/share/cockpit/branding/centos/branding.css || true
 
 echo -e "${ANSI_FG_YELLOW}Configuring firewall ...${ANSI_RESET_ALL}"
+firewall-cmd --reload
 firewall-cmd --permanent --zone=public --add-service=ssh
 firewall-cmd --permanent --zone=public --add-service=cockpit
+firewall-cmd --permanent --zone=trusted --add-service=prometheus
 firewall-cmd --reload
 
 echo -e "${ANSI_FG_YELLOW}Displaying information ...${ANSI_RESET_ALL}"
