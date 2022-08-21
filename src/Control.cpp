@@ -251,7 +251,9 @@ void zmqControlThread()
 
 		if (curl && (alarmCtr - oldCtr) > HEARTBEAT_INTERVAL)
 		{
-			curl_easy_perform(curl);
+			CURLcode retCode = curl_easy_perform(curl);
+			if (retCode != CURLE_OK)
+				spdlog::info("Heartbeat failed: {}", curl_easy_strerror(retCode));
 			oldCtr = alarmCtr;
 		}
 	}
