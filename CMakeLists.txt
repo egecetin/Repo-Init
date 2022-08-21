@@ -64,6 +64,8 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} --coverage")
 endif()
 
+option(ENABLE_PROMETHEUS OFF)
+
 configure_file(build_number.h.in "Version.h")
 
 # Sources
