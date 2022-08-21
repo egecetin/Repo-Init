@@ -65,11 +65,12 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} --coverage")
 endif()
 
+# Configure main options
 option(ENABLE_PROMETHEUS OFF)
 
 configure_file(build_number.h.in "Version.h")
 
-# Sources
+# Define sources
 FILE(GLOB ProjectSources
 	${PROJECT_SOURCE_DIR}/src/*.cpp
 	${PROJECT_SOURCE_DIR}/src/*.c
@@ -131,7 +132,6 @@ target_link_libraries("${PROJECT_NAME}_Lib_Shared" stdc++fs spdlog libzmq sentry
 if (ENABLE_PROMETHEUS)
 	target_link_libraries("${PROJECT_NAME}_Lib_Shared" core push)
 endif()
-
 
 add_library("${PROJECT_NAME}_Lib_Static" STATIC ${ProjectSources})
 set_target_properties(
