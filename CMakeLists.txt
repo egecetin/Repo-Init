@@ -65,9 +65,6 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} --coverage")
 endif()
 
-# Configure main options
-option(ENABLE_PROMETHEUS OFF)
-
 configure_file(build_number.h.in "Version.h")
 
 # Define sources
@@ -95,14 +92,11 @@ option(RAPIDJSON_BUILD_EXAMPLES "" OFF)
 option(RAPIDJSON_BUILD_TESTS "" OFF)
 option(SPDLOG_BUILD_SHARED "" ON)
 option(SENTRY_BUILD_SHARED_LIBS "" ON)
+option(BUILD_SHARED_LIBS "" ON) # prometheus-cpp
+option(ENABLE_PULL "" OFF) # prometheus-cpp
+option(ENABLE_COMPRESSION "" OFF) # prometheus-cpp
+option(ENABLE_TESTING "" OFF) # prometheus-cpp
 set(SENTRY_BACKEND none)
-
-if (ENABLE_PROMETHEUS)
-	option(BUILD_SHARED_LIBS "" ON) # prometheus-cpp
-	option(ENABLE_PULL "" OFF) # prometheus-cpp
-	option(ENABLE_COMPRESSION "" OFF) # prometheus-cpp
-	option(ENABLE_TESTING "" OFF) # prometheus-cpp
-endif()
 
 # Subdirectories
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/libzmq EXCLUDE_FROM_ALL)
@@ -110,10 +104,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/spdlog EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/sentry EXCLUDE_FROM_ALL)
-
-if (ENABLE_PROMETHEUS)
-	add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
-endif()
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
 
 # Add tests
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests EXCLUDE_FROM_ALL)
@@ -128,10 +119,7 @@ set_target_properties(
 )
 target_compile_options("${PROJECT_NAME}_Lib_Shared" PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories("${PROJECT_NAME}_Lib_Shared" PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries("${PROJECT_NAME}_Lib_Shared" stdc++fs spdlog libzmq sentry)
-if (ENABLE_PROMETHEUS)
-	target_link_libraries("${PROJECT_NAME}_Lib_Shared" core push)
-endif()
+target_link_libraries("${PROJECT_NAME}_Lib_Shared" stdc++fs spdlog libzmq sentry core push)
 
 add_library("${PROJECT_NAME}_Lib_Static" STATIC ${ProjectSources})
 set_target_properties(
@@ -143,9 +131,6 @@ set_target_properties(
 target_compile_options("${PROJECT_NAME}_Lib_Static" PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories("${PROJECT_NAME}_Lib_Static" PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries("${PROJECT_NAME}_Lib_Static" stdc++fs spdlog libzmq sentry core push)
-if (ENABLE_PROMETHEUS)
-	target_link_libraries("${PROJECT_NAME}_Lib_Static" core push)
-endif()
 
 add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_compile_options("${PROJECT_NAME}" PRIVATE -Wall -Wextra -Werror -pedantic)
@@ -153,17 +138,10 @@ target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared")
 
 # Set install targets
-install(TARGETS "${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared" spdlog libzmq sentry
+install(TARGETS "${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared" spdlog libzmq sentry core push
 	RUNTIME DESTINATION bin
 	LIBRARY DESTINATION lib
 )
-
-if (ENABLE_PROMETHEUS)
-	install(TARGETS core push
-		RUNTIME DESTINATION bin
-		LIBRARY DESTINATION lib
-	)
-endif()
 
 # Update build number at every build
 add_custom_command(

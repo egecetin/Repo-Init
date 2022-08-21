@@ -4,5 +4,3 @@
 #define TEST_CONFIG_EMPTY_PATH "@PROJECT_SOURCE_DIR@/tests/data/config_empty.json"
 #define TEST_CONFIG_MISS_ELEMENT_PATH "@PROJECT_SOURCE_DIR@/tests/data/config_missing_element.json"
 #define TEST_TELNET_SH_PATH "@PROJECT_SOURCE_DIR@/tests/data/telnet-test.sh"
-
-#cmakedefine ENABLE_PROMETHEUS

@@ -19,6 +19,14 @@ int main(int argc, char **argv)
 		else
 			spdlog::warn("Enable Telnet option requires a port number");
 	}
+	if (input.cmdOptionExists("--enable-prometheus"))
+	{
+		std::string portString = input.getCmdOption("--enable-prometheus");
+		if (portString.size())
+			PROMETHEUS_PORT = std::stoi(portString);
+		else
+			spdlog::warn("Enable Prometheus option requires a port number");
+	}
 
 	// Init logger
 	if (!init_logger(argc, argv))

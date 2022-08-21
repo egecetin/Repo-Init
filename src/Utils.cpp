@@ -25,6 +25,7 @@ uintmax_t HEARTBEAT_INTERVAL;
 int ZMQ_SEND_TIMEOUT;
 int ZMQ_RECV_TIMEOUT;
 uint16_t TELNET_PORT;
+uint16_t PROMETHEUS_PORT;
 std::string CONTROL_IPC_PATH;
 
 volatile time_t currentTime;
