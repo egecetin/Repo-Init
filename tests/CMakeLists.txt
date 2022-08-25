@@ -28,10 +28,6 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug" AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 		EXCLUDE "${PROJECT_SOURCE_DIR}/src/main.cpp" "${PROJECT_SOURCE_DIR}/thirdparty/*" "${PROJECT_SOURCE_DIR}/build/*" "${PROJECT_SOURCE_DIR}/tests/*")
 endif()
 
-# Enable test framework
-include(CTest)
-enable_testing()
-
 # Add sources
 FILE(GLOB ProjectTestSources
 	${PROJECT_SOURCE_DIR}/tests/*.cpp
@@ -50,7 +46,6 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/tests/MemPlumber)
 add_executable(TestMain ${ProjectTestSources})
 target_include_directories(TestMain PRIVATE "${PROJECT_BINARY_DIR}/tests")
 target_link_libraries(TestMain gtest_main memplumber "${PROJECT_NAME}_Lib_Shared")
-add_custom_target(test DEPENDS TestMain)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 	target_compile_options(TestMain PUBLIC --coverage)

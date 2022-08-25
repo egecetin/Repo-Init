@@ -100,8 +100,11 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/spdlog EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/sentry EXCLUDE_FROM_ALL)
 
-# Add tests
-add_subdirectory(${PROJECT_SOURCE_DIR}/tests EXCLUDE_FROM_ALL)
+# Enable test framework
+include(CTest)
+enable_testing()
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
 
 # Set Targets
 add_library("${PROJECT_NAME}_Lib_Shared" SHARED ${ProjectSources})
