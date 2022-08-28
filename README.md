@@ -15,8 +15,6 @@ It provides the following features
   - Logging
     - Spdlog with rotating file, syslog and coloured stdout outputs
     - Sentry for automatic forwarding of logs to a HTTP server
-  - Crash reporting
-    - Minidump generation and uploading to a HTTP server
   - User interactivity
     - Telnet
     - ZeroMQ
