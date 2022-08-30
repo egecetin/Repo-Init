@@ -1,4 +1,5 @@
 #include "Control.h"
+#include "Performance.h"
 #include "Version.h"
 
 #include <chrono>
@@ -123,6 +124,13 @@ void telnetControlThread()
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
 
+	// Init performance tracker if prometheus enabled
+	std::shared_ptr<PerformanceTracker> telnetPerformanceTracker;
+	if (mainPrometheusHandler)
+		telnetPerformanceTracker = mainPrometheusHandler->addNewTracker("telnet_server");
+	else
+		telnetPerformanceTracker = nullptr;
+
 start:
 	if (TELNET_PORT && telnetServerPtr->initialise(TELNET_PORT, "> "))
 	{
@@ -147,7 +155,11 @@ start:
 		try
 		{
 			// Update Telnet connection
+			if (telnetPerformanceTracker)
+				telnetPerformanceTracker->startTimer();
 			telnetServerPtr->update();
+			if (telnetPerformanceTracker)
+				telnetPerformanceTracker->endTimer();
 		}
 		catch (const std::exception &e)
 		{
@@ -203,6 +215,13 @@ void zmqControlThread()
 		}
 	}
 
+	// Init performance tracker if prometheus enabled
+	std::shared_ptr<PerformanceTracker> zmqControlPerformanceTracker;
+	if (mainPrometheusHandler)
+		zmqControlPerformanceTracker = mainPrometheusHandler->addNewTracker("zmq_control_server");
+	else
+		zmqControlPerformanceTracker = nullptr;
+
 	while (loopFlag)
 	{
 		try
@@ -210,6 +229,7 @@ void zmqControlThread()
 			std::vector<zmq::message_t> recv_msgs;
 			if (zmq::recv_multipart(socketRep, std::back_inserter(recv_msgs)))
 			{
+				zmqControlPerformanceTracker->startTimer();
 				int reply = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;
 				std::string replyBody = "";
 				switch (*((uint64_t *)recv_msgs[0].data()))
@@ -240,6 +260,7 @@ void zmqControlThread()
 				// Send reply
 				socketRep.send(zmq::const_buffer(&reply, sizeof(reply)), zmq::send_flags::sndmore);
 				socketRep.send(zmq::const_buffer(replyBody.c_str(), replyBody.size()));
+				zmqControlPerformanceTracker->endTimer();
 			}
 			else
 				spdlog::trace("Controller ZMQ receive timeout");

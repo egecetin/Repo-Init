@@ -24,9 +24,10 @@ uintmax_t HEARTBEAT_INTERVAL;
 
 int ZMQ_SEND_TIMEOUT;
 int ZMQ_RECV_TIMEOUT;
-uint16_t TELNET_PORT;
-uint16_t PROMETHEUS_PORT;
 std::string CONTROL_IPC_PATH;
+
+uint16_t TELNET_PORT;
+std::string PROMETHEUS_ADDR;
 
 volatile time_t currentTime;
 volatile uintmax_t alarmCtr;
@@ -68,7 +69,7 @@ bool init_logger(int argc, char **argv)
 	auto combined_logger = std::make_shared<spdlog::logger>(PROJECT_NAME, dup_filter);
 	spdlog::set_default_logger(combined_logger);
 	spdlog::warn("{} started", PROJECT_NAME);
-	
+
 #ifdef NDEBUG
 	spdlog::set_level(spdlog::level::warn);
 #else

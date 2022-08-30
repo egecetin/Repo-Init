@@ -1,4 +1,5 @@
 #include "Control.h"
+#include "Performance.h"
 #include "Utils.h"
 #include "Version.h"
 
@@ -21,10 +22,8 @@ int main(int argc, char **argv)
 	}
 	if (input.cmdOptionExists("--enable-prometheus"))
 	{
-		std::string portString = input.getCmdOption("--enable-prometheus");
-		if (portString.size())
-			PROMETHEUS_PORT = std::stoi(portString);
-		else
+		PROMETHEUS_ADDR = input.getCmdOption("--enable-prometheus");
+		if (PROMETHEUS_ADDR.empty())
 			spdlog::warn("Enable Prometheus option requires a port number");
 	}
 
@@ -54,6 +53,10 @@ int main(int argc, char **argv)
 
 	ALARM_INTERVAL = 1;
 	HEARTBEAT_INTERVAL = 20;
+
+	// Init prometheus server
+	if (PROMETHEUS_ADDR.size())
+		mainPrometheusHandler = new Reporter(PROMETHEUS_ADDR);
 
 	// Start threads
 	std::thread zmqControlTh(zmqControlThread);

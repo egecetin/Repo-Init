@@ -82,6 +82,8 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/spdlog/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/core/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/pull/include)
 
 # Disable/Enable options of subprojects
 option(BUILD_TESTS "" OFF) # libzmq
@@ -93,7 +95,6 @@ option(RAPIDJSON_BUILD_TESTS "" OFF)
 option(SPDLOG_BUILD_SHARED "" ON)
 option(SENTRY_BUILD_SHARED_LIBS "" ON)
 option(BUILD_SHARED_LIBS "" ON) # prometheus-cpp
-option(ENABLE_PULL "" OFF) # prometheus-cpp
 option(ENABLE_COMPRESSION "" OFF) # prometheus-cpp
 option(ENABLE_TESTING "" OFF) # prometheus-cpp
 set(SENTRY_BACKEND none)
@@ -119,7 +120,7 @@ set_target_properties(
 )
 target_compile_options("${PROJECT_NAME}_Lib_Shared" PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories("${PROJECT_NAME}_Lib_Shared" PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries("${PROJECT_NAME}_Lib_Shared" stdc++fs spdlog libzmq sentry core push)
+target_link_libraries("${PROJECT_NAME}_Lib_Shared" stdc++fs spdlog libzmq sentry core pull)
 
 add_library("${PROJECT_NAME}_Lib_Static" STATIC ${ProjectSources})
 set_target_properties(
@@ -130,7 +131,7 @@ set_target_properties(
 )
 target_compile_options("${PROJECT_NAME}_Lib_Static" PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories("${PROJECT_NAME}_Lib_Static" PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries("${PROJECT_NAME}_Lib_Static" stdc++fs spdlog libzmq sentry core push)
+target_link_libraries("${PROJECT_NAME}_Lib_Static" stdc++fs spdlog libzmq sentry core pull)
 
 add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_compile_options("${PROJECT_NAME}" PRIVATE -Wall -Wextra -Werror -pedantic)
@@ -138,7 +139,7 @@ target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared")
 
 # Set install targets
-install(TARGETS "${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared" spdlog libzmq sentry core push
+install(TARGETS "${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared" spdlog libzmq sentry core
 	RUNTIME DESTINATION bin
 	LIBRARY DESTINATION lib
 )
