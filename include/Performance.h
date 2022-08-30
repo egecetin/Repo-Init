@@ -50,7 +50,8 @@ class PerformanceTracker
 	 * @param[in] tsc_hz TSC clock frequency
 	 * @param[in] id Optional ID to add to metric names
 	 */
-	PerformanceTracker(std::shared_ptr<prometheus::Registry> &reg, const std::string &name, const uint64_t tsc_hz, const uint64_t id = 0);
+	PerformanceTracker(std::shared_ptr<prometheus::Registry> &reg, const std::string &name, const uint64_t tsc_hz,
+					   const uint64_t id = 0);
 
 	/**
 	 * @brief Starts the chronometer
