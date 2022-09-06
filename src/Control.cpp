@@ -229,6 +229,12 @@ void zmqControlThread()
 	else
 		zmqControlPerformanceTracker = nullptr;
 
+	std::shared_ptr<StatusTracker> zmqControlStatusTracker;
+	if (mainPrometheusHandler)
+		zmqControlStatusTracker = mainPrometheusHandler->addNewStatTracker("zmq_control_server");
+	else
+		zmqControlStatusTracker = nullptr;
+
 	while (loopFlag)
 	{
 		try
@@ -263,6 +269,12 @@ void zmqControlThread()
 					spdlog::error("Unknown command received from control");
 					break;
 				}
+
+				// Update status
+				if (reply == ZMQ_EVENT_HANDSHAKE_SUCCEEDED)
+					zmqControlStatusTracker->incrementSuccess();
+				else
+					zmqControlStatusTracker->incrementFail();
 
 				// Send reply
 				socketRep.send(zmq::const_buffer(&reply, sizeof(reply)), zmq::send_flags::sndmore);
