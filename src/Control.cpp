@@ -46,7 +46,7 @@ void TelnetConnectedCallback(SP_TelnetSession session)
 	TelnetPrintAvailableCommands(session);
 }
 
-void TelnetMessageCallback(SP_TelnetSession session, std::string line)
+bool TelnetMessageCallback(SP_TelnetSession session, std::string line)
 {
 	spdlog::trace("Received message {}", line);
 
@@ -89,8 +89,9 @@ void TelnetMessageCallback(SP_TelnetSession session, std::string line)
 		break;
 	default:
 		session->sendLine("Unknown command received");
-		break;
+		return false;
 	}
+	return true;
 }
 
 std::string TelnetTabCallback(SP_TelnetSession session, std::string line)
@@ -127,12 +128,18 @@ void telnetControlThread()
 	// Init performance tracker if prometheus enabled
 	std::shared_ptr<PerformanceTracker> telnetPerformanceTracker;
 	if (mainPrometheusHandler)
-		telnetPerformanceTracker = mainPrometheusHandler->addNewTracker("telnet_server");
+		telnetPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("telnet_server");
 	else
 		telnetPerformanceTracker = nullptr;
 
+	std::shared_ptr<StatusTracker> telnetStatusTracker;
+	if (mainPrometheusHandler)
+		telnetStatusTracker = mainPrometheusHandler->addNewStatTracker("telnet_server");
+	else
+		telnetStatusTracker = nullptr;
+
 start:
-	if (TELNET_PORT && telnetServerPtr->initialise(TELNET_PORT, "> "))
+	if (TELNET_PORT && telnetServerPtr->initialise(TELNET_PORT, "> ", telnetStatusTracker))
 	{
 		telnetServerPtr->connectedCallback(TelnetConnectedCallback);
 		telnetServerPtr->newLineCallback(TelnetMessageCallback);
@@ -218,7 +225,7 @@ void zmqControlThread()
 	// Init performance tracker if prometheus enabled
 	std::shared_ptr<PerformanceTracker> zmqControlPerformanceTracker;
 	if (mainPrometheusHandler)
-		zmqControlPerformanceTracker = mainPrometheusHandler->addNewTracker("zmq_control_server");
+		zmqControlPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("zmq_control_server");
 	else
 		zmqControlPerformanceTracker = nullptr;
 

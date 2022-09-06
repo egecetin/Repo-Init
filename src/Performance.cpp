@@ -90,6 +90,41 @@ void PerformanceTracker::endTimer()
 	updateStatistic(double(currCtr - lastTimeCtr) / tsc_hz_internal);
 }
 
+StatusTracker::StatusTracker(std::shared_ptr<prometheus::Registry> &reg, const std::string &name, const uint64_t id)
+{
+	metricName = name;
+	trackerID = id;
+
+	// Register values
+	totalCtr.reset(&prometheus::BuildCounter()
+						.Name(name + "_total_event_ctr_" + std::to_string(id))
+						.Help("Total occurrences of " + name)
+						.Register(*reg)
+						.Add({}));
+	successCtr.reset(&prometheus::BuildCounter()
+						.Name(name + "_success_event_ctr_" + std::to_string(id))
+						.Help("Successful events of " + name)
+						.Register(*reg)
+						.Add({}));
+	failedCtr.reset(&prometheus::BuildCounter()
+						.Name(name + "_fail_event_ctr_" + std::to_string(id))
+						.Help("Failed events of " + name)
+						.Register(*reg)
+						.Add({}));
+}
+
+void StatusTracker::incrementSuccess()
+{
+	successCtr->Increment();
+	totalCtr->Increment();
+}
+
+void StatusTracker::incrementFail()
+{
+	failedCtr->Increment();
+	totalCtr->Increment();
+}
+
 Reporter::Reporter(const std::string &serverAddr)
 {
 	// From linux kernel (https://github.com/torvalds/linux/blob/master/tools/power/x86/turbostat/turbostat.c)
@@ -110,7 +145,7 @@ Reporter::Reporter(const std::string &serverAddr)
 	spdlog::debug("Prometheus server start at {}", serverAddr);
 }
 
-std::shared_ptr<PerformanceTracker> Reporter::addNewTracker(const std::string &name, uint64_t id)
+std::shared_ptr<PerformanceTracker> Reporter::addNewPerfTracker(const std::string &name, uint64_t id)
 {
 	guardLock.lock();
 	auto reg = std::make_shared<prometheus::Registry>();
@@ -118,7 +153,21 @@ std::shared_ptr<PerformanceTracker> Reporter::addNewTracker(const std::string &n
 	mainExposer->RegisterCollectable(reg);
 
 	vRegister.push_back(reg);
-	vTracker.push_back(tracker);
+	vPerfTracker.push_back(tracker);
+	guardLock.unlock();
+
+	return tracker;
+}
+
+std::shared_ptr<StatusTracker> Reporter::addNewStatTracker(const std::string &name, uint64_t id)
+{
+	guardLock.lock();
+	auto reg = std::make_shared<prometheus::Registry>();
+	auto tracker = std::make_shared<StatusTracker>(reg, name, id);
+	mainExposer->RegisterCollectable(reg);
+
+	vRegister.push_back(reg);
+	vStatTracker.push_back(tracker);
 	guardLock.unlock();
 
 	return tracker;

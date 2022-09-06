@@ -346,7 +346,12 @@ void TelnetSession::update()
 		for (auto line : lines)
 		{
 			if (m_telnetServer->newLineCallBack())
-				m_telnetServer->newLineCallBack()(shared_from_this(), line);
+			{
+				if (m_telnetServer->newLineCallBack()(shared_from_this(), line) && m_telnetServer->trackerPtr)
+					m_telnetServer->trackerPtr->incrementSuccess();
+				else if (m_telnetServer->trackerPtr)
+					m_telnetServer->trackerPtr->incrementFail();
+			}
 			addToHistory(line);
 		}
 
@@ -386,7 +391,7 @@ int TelnetSession::UNIT_TEST()
 }
 
 /* ------------------ Telnet Server -------------------*/
-bool TelnetServer::initialise(u_long listenPort, std::string promptString)
+bool TelnetServer::initialise(u_long listenPort, std::string promptString, std::shared_ptr<StatusTracker> tracker)
 {
 	if (m_initialised)
 	{
@@ -396,20 +401,10 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString)
 
 	m_listenPort = listenPort;
 	m_promptString = promptString;
+	trackerPtr = tracker;
 	spdlog::info("Starting Telnet Server on port {}", std::to_string(m_listenPort));
 
 	int iResult;
-#ifdef _WIN32
-	WSADATA wsaData;
-
-	// Initialize Winsock
-	iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
-	if (iResult != 0)
-	{
-		spdlog::error("WSAStartup failed with error {}", iResult);
-		return false;
-	}
-#endif
 	struct addrinfo hints;
 	memset(&hints, 0, sizeof(hints));
 
