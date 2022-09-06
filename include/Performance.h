@@ -131,6 +131,8 @@ class Reporter
 	std::mutex guardLock;
 	/// TSC frequency
 	uint64_t tsc_hz;
+	/// Initialize time
+	std::unique_ptr<prometheus::Info> initTime;
 
   public:
 	/**

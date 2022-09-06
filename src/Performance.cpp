@@ -1,4 +1,5 @@
 #include "Performance.h"
+#include "Utils.h"
 
 #include <stdexcept>
 
@@ -8,6 +9,7 @@
 
 #include <prometheus/counter.h>
 #include <prometheus/gauge.h>
+#include <prometheus/info.h>
 #include <spdlog/spdlog.h>
 
 Reporter *mainPrometheusHandler;
@@ -102,15 +104,15 @@ StatusTracker::StatusTracker(std::shared_ptr<prometheus::Registry> &reg, const s
 						.Register(*reg)
 						.Add({}));
 	successCtr.reset(&prometheus::BuildCounter()
-						.Name(name + "_success_event_ctr_" + std::to_string(id))
-						.Help("Successful events of " + name)
-						.Register(*reg)
-						.Add({}));
+						  .Name(name + "_success_event_ctr_" + std::to_string(id))
+						  .Help("Successful events of " + name)
+						  .Register(*reg)
+						  .Add({}));
 	failedCtr.reset(&prometheus::BuildCounter()
-						.Name(name + "_fail_event_ctr_" + std::to_string(id))
-						.Help("Failed events of " + name)
-						.Register(*reg)
-						.Add({}));
+						 .Name(name + "_fail_event_ctr_" + std::to_string(id))
+						 .Help("Failed events of " + name)
+						 .Register(*reg)
+						 .Add({}));
 }
 
 void StatusTracker::incrementSuccess()
@@ -143,6 +145,19 @@ Reporter::Reporter(const std::string &serverAddr)
 	// Init service
 	mainExposer = std::make_unique<prometheus::Exposer>(serverAddr);
 	spdlog::debug("Prometheus server start at {}", serverAddr);
+
+	struct timespec ts;
+	clock_gettime(CLOCK_TAI, &ts);
+
+	auto reg = std::make_shared<prometheus::Registry>();
+	initTime.reset(&prometheus::BuildInfo()
+						.Name("start_time")
+						.Help("Initialization time of the application")
+						.Register(*reg)
+						.Add({{"init_time", std::to_string(ts.tv_sec)}}));
+	vRegister.push_back(reg);
+
+	mainExposer->RegisterCollectable(reg);
 }
 
 std::shared_ptr<PerformanceTracker> Reporter::addNewPerfTracker(const std::string &name, uint64_t id)
