@@ -115,16 +115,25 @@ StatusTracker::StatusTracker(std::shared_ptr<prometheus::Registry> &reg, const s
 						 .Add({}));
 }
 
+void StatusTracker::incrementActive()
+{
+	activeCtr->Increment();
+}
+
 void StatusTracker::incrementSuccess()
 {
 	successCtr->Increment();
 	totalCtr->Increment();
+	if (activeCtr->Value() > 0)
+		activeCtr->Decrement();
 }
 
 void StatusTracker::incrementFail()
 {
 	failedCtr->Increment();
 	totalCtr->Increment();
+	if (activeCtr->Value() > 0)
+		activeCtr->Decrement();
 }
 
 Reporter::Reporter(const std::string &serverAddr)

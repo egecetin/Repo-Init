@@ -84,6 +84,8 @@ class StatusTracker
 	std::unique_ptr<prometheus::Counter> successCtr;
 	/// Number of fail
 	std::unique_ptr<prometheus::Counter> failedCtr;
+	/// Active number of events
+	std::unique_ptr<prometheus::Gauge> activeCtr;
 
   public:
 	/**
@@ -93,6 +95,11 @@ class StatusTracker
 	 * @param[in] id Optional ID to add to metric names
 	 */
 	StatusTracker(std::shared_ptr<prometheus::Registry> &reg, const std::string &name, const uint64_t id = 0);
+
+	/**
+	 * @brief Increment number of current events
+	 */
+	void incrementActive();
 
 	/**
 	 * @brief Increment number of success
