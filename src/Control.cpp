@@ -1,5 +1,5 @@
-#include "Control.h"
-#include "Performance.h"
+#include "Control.hpp"
+#include "Performance.hpp"
 #include "Version.h"
 
 #include <chrono>

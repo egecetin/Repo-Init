@@ -1,5 +1,5 @@
-#include "telnet/TelnetServer.h"
-#include "Utils.h"
+#include "telnet/TelnetServer.hpp"
+#include "Utils.hpp"
 
 #include <iostream>
 #include <spdlog/spdlog.h>

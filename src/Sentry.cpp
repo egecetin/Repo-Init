@@ -1,4 +1,4 @@
-#include "Sentry.h"
+#include "Sentry.hpp"
 #include "Version.h"
 
 #include <arpa/inet.h>

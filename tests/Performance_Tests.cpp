@@ -1,6 +1,6 @@
 #include "test-static-definitions.h"
 
-#include "Performance.h"
+#include "Performance.hpp"
 
 #include <chrono>
 #include <fstream>

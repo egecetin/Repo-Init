@@ -1,5 +1,5 @@
-#include "Performance.h"
-#include "Utils.h"
+#include "Performance.hpp"
+#include "Utils.hpp"
 
 #include <stdexcept>
 
