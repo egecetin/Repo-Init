@@ -1,4 +1,5 @@
 #include "Control.h"
+#include "Performance.h"
 #include "Version.h"
 
 #include <chrono>
@@ -45,7 +46,7 @@ void TelnetConnectedCallback(SP_TelnetSession session)
 	TelnetPrintAvailableCommands(session);
 }
 
-void TelnetMessageCallback(SP_TelnetSession session, std::string line)
+bool TelnetMessageCallback(SP_TelnetSession session, std::string line)
 {
 	spdlog::trace("Received message {}", line);
 
@@ -88,8 +89,9 @@ void TelnetMessageCallback(SP_TelnetSession session, std::string line)
 		break;
 	default:
 		session->sendLine("Unknown command received");
-		break;
+		return false;
 	}
+	return true;
 }
 
 std::string TelnetTabCallback(SP_TelnetSession session, std::string line)
@@ -123,8 +125,21 @@ void telnetControlThread()
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
 
+	// Init performance tracker if prometheus enabled
+	std::shared_ptr<PerformanceTracker> telnetPerformanceTracker;
+	if (mainPrometheusHandler)
+		telnetPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("telnet_server");
+	else
+		telnetPerformanceTracker = nullptr;
+
+	std::shared_ptr<StatusTracker> telnetStatusTracker;
+	if (mainPrometheusHandler)
+		telnetStatusTracker = mainPrometheusHandler->addNewStatTracker("telnet_server");
+	else
+		telnetStatusTracker = nullptr;
+
 start:
-	if (TELNET_PORT && telnetServerPtr->initialise(TELNET_PORT, "> "))
+	if (TELNET_PORT && telnetServerPtr->initialise(TELNET_PORT, "> ", telnetStatusTracker))
 	{
 		telnetServerPtr->connectedCallback(TelnetConnectedCallback);
 		telnetServerPtr->newLineCallback(TelnetMessageCallback);
@@ -147,7 +162,11 @@ start:
 		try
 		{
 			// Update Telnet connection
+			if (telnetPerformanceTracker)
+				telnetPerformanceTracker->startTimer();
 			telnetServerPtr->update();
+			if (telnetPerformanceTracker)
+				telnetPerformanceTracker->endTimer();
 		}
 		catch (const std::exception &e)
 		{
@@ -203,6 +222,19 @@ void zmqControlThread()
 		}
 	}
 
+	// Init performance tracker if prometheus enabled
+	std::shared_ptr<PerformanceTracker> zmqControlPerformanceTracker;
+	if (mainPrometheusHandler)
+		zmqControlPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("zmq_control_server");
+	else
+		zmqControlPerformanceTracker = nullptr;
+
+	std::shared_ptr<StatusTracker> zmqControlStatusTracker;
+	if (mainPrometheusHandler)
+		zmqControlStatusTracker = mainPrometheusHandler->addNewStatTracker("zmq_control_server");
+	else
+		zmqControlStatusTracker = nullptr;
+
 	while (loopFlag)
 	{
 		try
@@ -210,6 +242,7 @@ void zmqControlThread()
 			std::vector<zmq::message_t> recv_msgs;
 			if (zmq::recv_multipart(socketRep, std::back_inserter(recv_msgs)))
 			{
+				zmqControlPerformanceTracker->startTimer();
 				int reply = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;
 				std::string replyBody = "";
 				switch (*((uint64_t *)recv_msgs[0].data()))
@@ -237,9 +270,16 @@ void zmqControlThread()
 					break;
 				}
 
+				// Update status
+				if (reply == ZMQ_EVENT_HANDSHAKE_SUCCEEDED)
+					zmqControlStatusTracker->incrementSuccess();
+				else
+					zmqControlStatusTracker->incrementFail();
+
 				// Send reply
 				socketRep.send(zmq::const_buffer(&reply, sizeof(reply)), zmq::send_flags::sndmore);
 				socketRep.send(zmq::const_buffer(replyBody.c_str(), replyBody.size()));
+				zmqControlPerformanceTracker->endTimer();
 			}
 			else
 				spdlog::trace("Controller ZMQ receive timeout");
@@ -251,7 +291,9 @@ void zmqControlThread()
 
 		if (curl && (alarmCtr - oldCtr) > HEARTBEAT_INTERVAL)
 		{
-			curl_easy_perform(curl);
+			CURLcode retCode = curl_easy_perform(curl);
+			if (retCode != CURLE_OK)
+				spdlog::info("Heartbeat failed: {}", curl_easy_strerror(retCode));
 			oldCtr = alarmCtr;
 		}
 	}

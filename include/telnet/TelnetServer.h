@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Performance.h"
+
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <sys/ioctl.h>
@@ -141,12 +143,14 @@ typedef std::shared_ptr<TelnetSession> SP_TelnetSession;
 typedef std::vector<SP_TelnetSession> VEC_SP_TelnetSession;
 
 typedef std::function<void(SP_TelnetSession)> FPTR_ConnectedCallback;
-typedef std::function<void(SP_TelnetSession, std::string)> FPTR_NewLineCallback;
+typedef std::function<bool(SP_TelnetSession, std::string)> FPTR_NewLineCallback;
 typedef std::function<std::string(SP_TelnetSession, std::string)> FPTR_TabCallback;
 
 class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 {
   public:
+	std::shared_ptr<StatusTracker> trackerPtr;
+
 	/// Constructor for server
 	TelnetServer() : m_initialised(false), m_promptString(""){};
 
@@ -158,7 +162,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	 * @return true If initialized
 	 * @return false otherwise
 	 */
-	bool initialise(u_long listenPort, std::string promptString = "");
+	bool initialise(u_long listenPort, std::string promptString = "", std::shared_ptr<StatusTracker> tracker = nullptr);
 
 	/// Process new connections and messages
 	void update();
@@ -184,7 +188,6 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
   private:
 	void acceptConnection();
 
-  private:
 	u_long m_listenPort;
 	Socket m_listenSocket;
 	VEC_SP_TelnetSession m_sessions;

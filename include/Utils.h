@@ -21,10 +21,13 @@ extern uintmax_t HEARTBEAT_INTERVAL;
 extern int ZMQ_RECV_TIMEOUT;
 /// Send timeout of ZMQ sockets. Read from config at startup
 extern int ZMQ_SEND_TIMEOUT;
-/// Port number to server Telnet
-extern uint16_t TELNET_PORT;
 /// Interprocess path of controller thread
 extern std::string CONTROL_IPC_PATH;
+
+/// Port number to Telnet server
+extern uint16_t TELNET_PORT;
+/// Bind address of Prometheus service
+extern std::string PROMETHEUS_ADDR;
 
 /// Current time value set by SIGALRM
 extern volatile time_t currentTime;

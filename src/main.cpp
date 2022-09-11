@@ -1,4 +1,5 @@
 #include "Control.h"
+#include "Performance.h"
 #include "Utils.h"
 #include "Version.h"
 
@@ -18,6 +19,12 @@ int main(int argc, char **argv)
 			TELNET_PORT = std::stoi(portString);
 		else
 			spdlog::warn("Enable Telnet option requires a port number");
+	}
+	if (input.cmdOptionExists("--enable-prometheus"))
+	{
+		PROMETHEUS_ADDR = input.getCmdOption("--enable-prometheus");
+		if (PROMETHEUS_ADDR.empty())
+			spdlog::warn("Enable Prometheus option requires a port number");
 	}
 
 	// Init logger
@@ -46,6 +53,10 @@ int main(int argc, char **argv)
 
 	ALARM_INTERVAL = 1;
 	HEARTBEAT_INTERVAL = 20;
+
+	// Init prometheus server
+	if (PROMETHEUS_ADDR.size())
+		mainPrometheusHandler = new Reporter(PROMETHEUS_ADDR);
 
 	// Start threads
 	std::thread zmqControlTh(zmqControlThread);
