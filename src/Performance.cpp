@@ -6,6 +6,7 @@
 #include <cpuid.h>
 #include <float.h>
 #include <immintrin.h>
+#include <x86intrin.h>
 
 #include <spdlog/spdlog.h>
 
@@ -76,14 +77,14 @@ PerformanceTracker::PerformanceTracker(std::shared_ptr<prometheus::Registry> &re
 void PerformanceTracker::startTimer()
 {
 	_mm_lfence();
-	lastTimeCtr = _rdtsc();
+	lastTimeCtr = __rdtsc();
 	_mm_lfence();
 }
 
 void PerformanceTracker::endTimer()
 {
 	_mm_lfence();
-	uint64_t currCtr = _rdtsc();
+	uint64_t currCtr = __rdtsc();
 	_mm_lfence();
 
 	updateStatistic(double(currCtr - lastTimeCtr) / tsc_hz_internal);
