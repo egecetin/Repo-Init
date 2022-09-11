@@ -1,5 +1,5 @@
-#include "Utils.h"
-#include "Sentry.h"
+#include "Utils.hpp"
+#include "Sentry.hpp"
 #include "Version.h"
 
 #include <execinfo.h>

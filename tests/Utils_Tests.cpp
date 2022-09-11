@@ -1,4 +1,4 @@
-#include "Control.h"
+#include "Control.hpp"
 #include "test-static-definitions.h"
 
 #include <chrono>

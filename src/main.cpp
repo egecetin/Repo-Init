@@ -1,6 +1,6 @@
-#include "Control.h"
-#include "Performance.h"
-#include "Utils.h"
+#include "Control.hpp"
+#include "Performance.hpp"
+#include "Utils.hpp"
 #include "Version.h"
 
 #include <signal.h>
