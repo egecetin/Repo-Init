@@ -4,11 +4,11 @@
 #include <string>
 #include <vector>
 
-#include <prometheus/exposer.h>
-#include <prometheus/registry.h>
 #include <prometheus/counter.h>
+#include <prometheus/exposer.h>
 #include <prometheus/gauge.h>
 #include <prometheus/info.h>
+#include <prometheus/registry.h>
 
 /**
  * @brief Measures and calculates performance metrics
@@ -160,7 +160,7 @@ class Reporter
 	std::shared_ptr<PerformanceTracker> addNewPerfTracker(const std::string &name, uint64_t id = 0);
 
 	/**
-	 * @brief 
+	 * @brief Adds a new Status tracker to prometheus service
 	 * @param[in] name Name of the metric
 	 * @param[in] id Optional ID to add metric names
 	 * @return std::shared_ptr<StatusTracker> Pointer to new status tracker

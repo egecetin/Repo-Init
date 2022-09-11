@@ -111,16 +111,13 @@ StatusTracker::StatusTracker(std::shared_ptr<prometheus::Registry> &reg, const s
 						 .Register(*reg)
 						 .Add({}));
 	activeCtr.reset(&prometheus::BuildGauge()
-						.Name(name + "_active_event_ctr_" + std::to_string(id))
-						.Help("Currently active number of events of " + name)
-						.Register(*reg)
-						.Add({}));
+						 .Name(name + "_active_event_ctr_" + std::to_string(id))
+						 .Help("Currently active number of events of " + name)
+						 .Register(*reg)
+						 .Add({}));
 }
 
-void StatusTracker::incrementActive()
-{
-	activeCtr->Increment();
-}
+void StatusTracker::incrementActive() { activeCtr->Increment(); }
 
 void StatusTracker::incrementSuccess()
 {
