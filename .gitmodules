@@ -21,4 +21,4 @@
 	url = https://github.com/getsentry/sentry-native.git
 [submodule "thirdparty/prometheus-cpp"]
 	path = thirdparty/prometheus-cpp
-	url = https://github.com/jupp0r/prometheus-cpp.git
+	url = https://github.com/egecetin/prometheus-cpp.git
