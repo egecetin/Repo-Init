@@ -6,6 +6,9 @@
 
 #include <prometheus/exposer.h>
 #include <prometheus/registry.h>
+#include <prometheus/counter.h>
+#include <prometheus/gauge.h>
+#include <prometheus/info.h>
 
 /**
  * @brief Measures and calculates performance metrics

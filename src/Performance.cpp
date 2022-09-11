@@ -7,9 +7,6 @@
 #include <float.h>
 #include <immintrin.h>
 
-#include <prometheus/counter.h>
-#include <prometheus/gauge.h>
-#include <prometheus/info.h>
 #include <spdlog/spdlog.h>
 
 Reporter *mainPrometheusHandler;
@@ -113,6 +110,11 @@ StatusTracker::StatusTracker(std::shared_ptr<prometheus::Registry> &reg, const s
 						 .Help("Failed events of " + name)
 						 .Register(*reg)
 						 .Add({}));
+	activeCtr.reset(&prometheus::BuildGauge()
+						.Name(name + "_active_event_ctr_" + std::to_string(id))
+						.Help("Currently active number of events of " + name)
+						.Register(*reg)
+						.Add({}));
 }
 
 void StatusTracker::incrementActive()
