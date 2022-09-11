@@ -26,15 +26,15 @@ class PerformanceTracker
 	uint64_t tsc_hz_internal;
 
 	/// Total counter of start/stop period
-	std::unique_ptr<prometheus::Counter> eventCtr;
+	prometheus::Counter *eventCtr;
 	/// Mean value of timer in nanoseconds
-	std::unique_ptr<prometheus::Gauge> meanTiming;
+	prometheus::Gauge *meanTiming;
 	/// Variance of timer in nanoseconds
-	std::unique_ptr<prometheus::Gauge> varTiming;
+	prometheus::Gauge *varTiming;
 	/// Maximum value of timer in nanoseconds
-	std::unique_ptr<prometheus::Gauge> maxTiming;
+	prometheus::Gauge *maxTiming;
 	/// Minimum value of timer in nanoseconds
-	std::unique_ptr<prometheus::Gauge> minTiming;
+	prometheus::Gauge *minTiming;
 
 	/// Standard deviation buffer (Internal use only)
 	double stdBuffTiming;
@@ -82,13 +82,13 @@ class StatusTracker
 	uint64_t trackerID;
 
 	/// Total number of counters
-	std::unique_ptr<prometheus::Counter> totalCtr;
+	prometheus::Counter *totalCtr;
 	/// Number of success
-	std::unique_ptr<prometheus::Counter> successCtr;
+	prometheus::Counter *successCtr;
 	/// Number of fail
-	std::unique_ptr<prometheus::Counter> failedCtr;
+	prometheus::Counter *failedCtr;
 	/// Active number of events
-	std::unique_ptr<prometheus::Gauge> activeCtr;
+	prometheus::Gauge *activeCtr;
 
   public:
 	/**
@@ -142,7 +142,7 @@ class Reporter
 	/// TSC frequency
 	uint64_t tsc_hz;
 	/// Initialize time
-	std::unique_ptr<prometheus::Info> initTime;
+	prometheus::Info *initTime;
 
   public:
 	/**

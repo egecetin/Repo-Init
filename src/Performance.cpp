@@ -40,31 +40,31 @@ PerformanceTracker::PerformanceTracker(std::shared_ptr<prometheus::Registry> &re
 	stdBuffTiming = 0.0;
 
 	// Register values
-	eventCtr.reset(&prometheus::BuildCounter()
-						.Name(name + "_event_ctr_" + std::to_string(id))
-						.Help("Number of occurrences of " + name)
-						.Register(*reg)
-						.Add({}));
-	meanTiming.reset(&prometheus::BuildGauge()
-						  .Name(name + "_mean_timing_" + std::to_string(id))
-						  .Help("Mean of processing time")
-						  .Register(*reg)
-						  .Add({}));
-	varTiming.reset(&prometheus::BuildGauge()
-						 .Name(name + "_var_timing_" + std::to_string(id))
-						 .Help("Variance of processing time")
-						 .Register(*reg)
-						 .Add({}));
-	maxTiming.reset(&prometheus::BuildGauge()
-						 .Name(name + "_max_timing_" + std::to_string(id))
-						 .Help("Maximum processing time")
-						 .Register(*reg)
-						 .Add({}));
-	minTiming.reset(&prometheus::BuildGauge()
-						 .Name(name + "_min_timing_" + std::to_string(id))
-						 .Help("Minimum processing time")
-						 .Register(*reg)
-						 .Add({}));
+	eventCtr = &prometheus::BuildCounter()
+					.Name(name + "_event_ctr_" + std::to_string(id))
+					.Help("Number of occurrences of " + name)
+					.Register(*reg)
+					.Add({});
+	meanTiming = &prometheus::BuildGauge()
+					  .Name(name + "_mean_timing_" + std::to_string(id))
+					  .Help("Mean of processing time")
+					  .Register(*reg)
+					  .Add({});
+	varTiming = &prometheus::BuildGauge()
+					 .Name(name + "_var_timing_" + std::to_string(id))
+					 .Help("Variance of processing time")
+					 .Register(*reg)
+					 .Add({});
+	maxTiming = &prometheus::BuildGauge()
+					 .Name(name + "_max_timing_" + std::to_string(id))
+					 .Help("Maximum processing time")
+					 .Register(*reg)
+					 .Add({});
+	minTiming = &prometheus::BuildGauge()
+					 .Name(name + "_min_timing_" + std::to_string(id))
+					 .Help("Minimum processing time")
+					 .Register(*reg)
+					 .Add({});
 
 	// Set initial values
 	meanTiming->Set(0.0);
@@ -95,26 +95,26 @@ StatusTracker::StatusTracker(std::shared_ptr<prometheus::Registry> &reg, const s
 	trackerID = id;
 
 	// Register values
-	totalCtr.reset(&prometheus::BuildCounter()
-						.Name(name + "_total_event_ctr_" + std::to_string(id))
-						.Help("Total occurrences of " + name)
-						.Register(*reg)
-						.Add({}));
-	successCtr.reset(&prometheus::BuildCounter()
-						  .Name(name + "_success_event_ctr_" + std::to_string(id))
-						  .Help("Successful events of " + name)
-						  .Register(*reg)
-						  .Add({}));
-	failedCtr.reset(&prometheus::BuildCounter()
-						 .Name(name + "_fail_event_ctr_" + std::to_string(id))
-						 .Help("Failed events of " + name)
-						 .Register(*reg)
-						 .Add({}));
-	activeCtr.reset(&prometheus::BuildGauge()
-						 .Name(name + "_active_event_ctr_" + std::to_string(id))
-						 .Help("Currently active number of events of " + name)
-						 .Register(*reg)
-						 .Add({}));
+	totalCtr = &prometheus::BuildCounter()
+					.Name(name + "_total_event_ctr_" + std::to_string(id))
+					.Help("Total occurrences of " + name)
+					.Register(*reg)
+					.Add({});
+	successCtr = &prometheus::BuildCounter()
+					  .Name(name + "_success_event_ctr_" + std::to_string(id))
+					  .Help("Successful events of " + name)
+					  .Register(*reg)
+					  .Add({});
+	failedCtr = &prometheus::BuildCounter()
+					 .Name(name + "_fail_event_ctr_" + std::to_string(id))
+					 .Help("Failed events of " + name)
+					 .Register(*reg)
+					 .Add({});
+	activeCtr = &prometheus::BuildGauge()
+					 .Name(name + "_active_event_ctr_" + std::to_string(id))
+					 .Help("Currently active number of events of " + name)
+					 .Register(*reg)
+					 .Add({});
 }
 
 void StatusTracker::incrementActive() { activeCtr->Increment(); }
@@ -158,11 +158,11 @@ Reporter::Reporter(const std::string &serverAddr)
 	clock_gettime(CLOCK_TAI, &ts);
 
 	auto reg = std::make_shared<prometheus::Registry>();
-	initTime.reset(&prometheus::BuildInfo()
-						.Name("start_time")
-						.Help("Initialization time of the application")
-						.Register(*reg)
-						.Add({{"init_time", std::to_string(ts.tv_sec)}}));
+	initTime = &prometheus::BuildInfo()
+					.Name("start_time")
+					.Help("Initialization time of the application")
+					.Register(*reg)
+					.Add({{"init_time", std::to_string(ts.tv_sec)}});
 	vRegister.push_back(reg);
 
 	mainExposer->RegisterCollectable(reg);
