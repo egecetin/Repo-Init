@@ -18,7 +18,7 @@ VER_NODE_EXPORTER=1.3.1
 # Install
 echo -e "${ANSI_FG_YELLOW}Installing packages ...${ANSI_RESET_ALL}"
 yum install epel-release -y
-yum install htop cockpit cockpit-pcp chrony mlocate lm_sensors smartmontools -y
+yum install btop htop cockpit cockpit-pcp chrony mlocate lm_sensors smartmontools -y
 yum install OpenIPMI ipmitool -y
 
 echo -e "${ANSI_FG_YELLOW}Installing cockpit-navigator ...${ANSI_RESET_ALL}"
