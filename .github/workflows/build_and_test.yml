@@ -28,7 +28,7 @@ jobs:
       - name: Build Tests
         run: cmake --build $BUILD_DIR -j -t TestMain
       - name: Run Tests
-        run: ctest --test-dir build
+        run: ctest --test-dir $BUILD_DIR
 
   coverage:
     runs-on: ubuntu-latest
