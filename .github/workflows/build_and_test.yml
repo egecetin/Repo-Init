@@ -15,29 +15,29 @@ jobs:
   linux:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
         with:
           submodules: recursive
-      - name: Prepare system
+      - name: Prepare System
         run: |
           mkdir -p dist/temp dist/rpm dist/makeself
           sudo apt install expect libcurl4-openssl-dev -y
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B $BUILD_DIR
-      - name: Build
+      - name: Build Tests
         run: cmake --build $BUILD_DIR -j -t TestMain
-      - name: Test
-        run: $BUILD_DIR/Release/bin/TestMain
+      - name: Run Tests
+        run: ctest --test-dir build
 
   coverage:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
         with:
           submodules: recursive
-      - name: Prepare system
+      - name: Prepare System
         run: |
           mkdir -p dist/temp dist/rpm dist/makeself
           sudo apt install gcovr expect libcurl4-openssl-dev -y
@@ -45,7 +45,8 @@ jobs:
         run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
       - name: Build
         run: cmake --build $BUILD_DIR -j -t coverage-xml
-      - uses: codecov/codecov-action@v3
+      - name: Process Results
+        uses: codecov/codecov-action@v3
         with:
           token: ${{secrets.CODECOV_TOKEN}}
           files: ./build/coverage-xml.xml
