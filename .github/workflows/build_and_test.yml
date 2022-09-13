@@ -25,8 +25,8 @@ jobs:
           sudo apt install expect libcurl4-openssl-dev -y
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B $BUILD_DIR
-      - name: Build Tests
-        run: cmake --build $BUILD_DIR -j -t TestMain
+      - name: Build
+        run: cmake --build $BUILD_DIR --parallel
       - name: Run Tests
         run: ctest --test-dir $BUILD_DIR
 
@@ -44,7 +44,7 @@ jobs:
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
       - name: Build
-        run: cmake --build $BUILD_DIR -j -t coverage-xml
+        run: cmake --build $BUILD_DIR --parallel --target coverage-xml
       - name: Process Results
         uses: codecov/codecov-action@v3
         with:
