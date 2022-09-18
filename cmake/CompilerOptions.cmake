@@ -14,7 +14,7 @@
 # the License.
 
 option(ENABLE_ALL_WARNINGS "Compile with all warnings for the major compilers" ON)
-option(ENABLE_EFFECTIVE_CXX "Enable Effective C++ warnings" ON)
+option(ENABLE_EFFECTIVE_CXX "Enable Effective C++ warnings" OFF)
 option(GENERATE_DEPENDENCY_DATA "Generates .d files with header dependencies" OFF)
 
 if(ENABLE_ALL_WARNINGS)
