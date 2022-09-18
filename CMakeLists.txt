@@ -4,10 +4,12 @@ project(XXX)
 # CMake Modules
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
 include(Colorize)
-include(GitVersion)
-include(SvnVersion)
+include(CompilerOptions)
+include(CompilerFlags)
 include(Doxy)
+include(GitVersion)
 include(GraphViz)
+include(SvnVersion)
 
 if(NOT DEFINED REVISION_VERSION)
 	message(SEND_ERROR "Can't find SVN or Git. The folder is not under version control.")
@@ -40,30 +42,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/bin)
 set(CMAKE_DEBUG_POSTFIX d)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS} -O0 -g -fdiagnostics-color=always")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -O0 -g -fdiagnostics-color=always")
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS} -DNDEBUG -O3 -fdiagnostics-color=always")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -DNDEBUG -O3 -fdiagnostics-color=always")
-
-if(CMAKE_C_COMPILER_ID STREQUAL "Intel")
-	message("${BoldBlue}Intel C Compiler detected. Updating flags ...${ColourReset}")
-	set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -xHost -use-intel-optimized-headers -static-intel")
-	set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -xHost -ipo -use-intel-optimized-headers -static-intel")
-endif()
-
-if(CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
-	message("${BoldBlue}Intel C++ Compiler detected. Updating flags ...${ColourReset}")
-	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -xHost -use-intel-optimized-headers -static-intel")
-	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -xHost -ipo -use-intel-optimized-headers -static-intel")
-endif()
-
-if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
-	set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} --coverage")
-endif()
-
-if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} --coverage")
-endif()
 
 configure_file(build_number.h.in "Version.h")
 
@@ -124,17 +102,6 @@ set_target_properties(
 target_compile_options("${PROJECT_NAME}_Lib_Shared" PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories("${PROJECT_NAME}_Lib_Shared" PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries("${PROJECT_NAME}_Lib_Shared" stdc++fs spdlog libzmq sentry core pull)
-
-add_library("${PROJECT_NAME}_Lib_Static" STATIC ${ProjectSources})
-set_target_properties(
-	"${PROJECT_NAME}_Lib_Static" PROPERTIES
-	OUTPUT_NAME "${PROJECT_NAME}"
-	VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
-	SOVERSION ${PROJECT_VERSION_MAJOR}
-)
-target_compile_options("${PROJECT_NAME}_Lib_Static" PRIVATE -Wall -Wextra -Werror -pedantic)
-target_include_directories("${PROJECT_NAME}_Lib_Static" PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries("${PROJECT_NAME}_Lib_Static" stdc++fs spdlog libzmq sentry core pull)
 
 add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_compile_options("${PROJECT_NAME}" PRIVATE -Wall -Wextra -Werror -pedantic)
