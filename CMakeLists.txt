@@ -99,12 +99,10 @@ set_target_properties(
 	VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
 	SOVERSION ${PROJECT_VERSION_MAJOR}
 )
-target_compile_options("${PROJECT_NAME}_Lib_Shared" PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories("${PROJECT_NAME}_Lib_Shared" PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries("${PROJECT_NAME}_Lib_Shared" stdc++fs spdlog libzmq sentry core pull)
 
 add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp)
-target_compile_options("${PROJECT_NAME}" PRIVATE -Wall -Wextra -Werror -pedantic)
 target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared")
 
