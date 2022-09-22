@@ -1,3 +1,5 @@
+# From https://stackoverflow.com/questions/3780667/use-cmake-to-get-build-time-subversion-revision
+
 #create a pretty commit id using git
 #uses 'git describe --tags', so tags are required in the repo
 #create a tag with 'git tag <name>' and 'git push --tags'

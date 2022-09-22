@@ -1,3 +1,5 @@
+# From https://stackoverflow.com/questions/18968979/how-to-make-colorized-message-with-cmake
+
 if(NOT WIN32)
 	string(ASCII 27 Esc)
 	set(ColourReset "${Esc}[m")

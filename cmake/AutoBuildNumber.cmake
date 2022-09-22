@@ -1,3 +1,5 @@
+# From https://stackoverflow.com/questions/35745344/cmake-target-version-increment
+
 set(CACHE_FILE "../BuildNumberCache.txt")
 
 #Reading data from file + incrementation

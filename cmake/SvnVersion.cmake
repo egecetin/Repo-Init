@@ -1,5 +1,5 @@
+# From https://stackoverflow.com/questions/3780667/use-cmake-to-get-build-time-subversion-revision
 
-# the FindSubversion.cmake module is part of the standard distribution
 include(CustomFindSubversion)
 if(SUBVERSION_FOUND)
 	# extract working copy information for SOURCE_DIR into MY_X variables
