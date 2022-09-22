@@ -9,6 +9,7 @@ include(CompilerFlags)
 include(Doxy)
 include(GitVersion)
 include(GraphViz)
+include(Sanitizers)
 include(SvnVersion)
 
 if(NOT DEFINED REVISION_VERSION)
@@ -105,6 +106,7 @@ target_link_libraries("${PROJECT_NAME}_Lib_Shared" stdc++fs spdlog libzmq sentry
 add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared")
+add_sanitizers("${PROJECT_NAME}")
 
 # Set install targets
 install(TARGETS "${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared" spdlog libzmq sentry core pull
