@@ -17,9 +17,6 @@ if (${CMAKE_BUILD_TYPE} STREQUAL "Release")
 							"${PROJECT_SOURCE_DIR}/dist/temp"
 							)
 
-	# Copy crashpad executable
-	execute_process(COMMAND "cp" "-f" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/crashpad_handler" "${PROJECT_SOURCE_DIR}/dist/temp")
-
 	# Create makeself package
 	execute_process(COMMAND "sh"
 							"${PROJECT_SOURCE_DIR}/scripts/makeself/makeself.sh"
