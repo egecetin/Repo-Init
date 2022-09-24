@@ -32,15 +32,23 @@ It provides the following features
 
 ## CMake
 
+- AddressSanitizer      : Defines address sanitizer
 - AutoBuildNumber       : Auto increments the build number
 - CodeCoverage          : Detects and enables gcovr
 - Colorize              : Color commands for message outputs
+- CompilerFlags         : Defines compiler flags for GCC and Intel Compiler for compile types
+- CompilerOptions       : Enables/Disables compiler warnings
 - CustomFindSubversion  : Modified version of FindSubversion.cmake to ignore errors
 - Doxy                  : Find doxygen package and prepare doc environment
 - GitVersion            : Get SHA1 hash of current commit
 - GraphViz              : Find graphviz and dot executable to create dependency graph
+- LinkTimeOptimization  : Enables Link Time Optimization
+- MemorySanitizer       : Defines memory sanitizer
 - PostBuild             : Post build action to prepare makeself package after CPack
+- Sanitizers            : Controls sanitizer targets
 - SvnVersion            : Get revision number of current commit
+- ThreadSanitizer       : Defines thread sanitizer
+- UndefinedBehaviourSan : Defines undefined behaviour sanitizer
 
 ## Scripts
 
