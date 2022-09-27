@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Obfuscation.hpp"
+
 #include <algorithm>
 #include <cstdint>
 #include <string>

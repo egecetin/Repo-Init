@@ -31,18 +31,18 @@ either expressed or implied, of the FreeBSD Project.
 
 #include "metrics/Status.hpp"
 
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <sys/ioctl.h>
-#include <sys/socket.h>
-#include <unistd.h>
-
 #include <array>
 #include <functional>
 #include <list>
 #include <memory>
 #include <string>
 #include <vector>
+
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <sys/ioctl.h>
+#include <sys/socket.h>
+#include <unistd.h>
 
 class TelnetServer;
 class TelnetSession;

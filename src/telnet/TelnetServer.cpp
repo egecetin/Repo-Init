@@ -2,6 +2,7 @@
 #include "Utils.hpp"
 
 #include <iostream>
+
 #include <spdlog/spdlog.h>
 
 // Invalid socket identifier for readability
