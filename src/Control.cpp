@@ -1,6 +1,8 @@
 #include "Control.hpp"
-#include "Performance.hpp"
 #include "Version.h"
+#include "metrics/Performance.hpp"
+#include "metrics/Reporter.hpp"
+#include "metrics/Status.hpp"
 
 #include <chrono>
 #include <thread>
