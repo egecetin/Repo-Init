@@ -26,6 +26,9 @@ int main(int argc, char **argv)
 		if (PROMETHEUS_ADDR.empty())
 			spdlog::warn("Enable Prometheus option requires a port number");
 	}
+	/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+	/* ################################ END MODIFICATIONS ################################ */
 
 	// Init logger
 	if (!init_logger(argc, argv))
@@ -53,12 +56,18 @@ int main(int argc, char **argv)
 
 	ALARM_INTERVAL = 1;
 	HEARTBEAT_INTERVAL = 20;
+	/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+	/* ################################ END MODIFICATIONS ################################ */
 
 	// Init prometheus server
 	if (PROMETHEUS_ADDR.size())
 		mainPrometheusHandler = new Reporter(PROMETHEUS_ADDR);
 
 	// Start threads
+	/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+	/* ################################ END MODIFICATIONS ################################ */
 	std::thread zmqControlTh(zmqControlThread);
 	std::thread telnetControlTh(telnetControlThread);
 	spdlog::debug("Threads started");
@@ -74,6 +83,9 @@ int main(int argc, char **argv)
 	if (zmqControlTh.joinable())
 		zmqControlTh.join();
 	spdlog::info("ZMQ Controller joined");
+	/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+	/* ################################ END MODIFICATIONS ################################ */
 
 	spdlog::warn("{} Exited", PROJECT_NAME);
 	close_logger();

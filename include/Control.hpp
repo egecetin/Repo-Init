@@ -4,6 +4,9 @@
 #include "telnet/TelnetServer.hpp"
 
 constexpr uint32_t LOG_LEVEL_ID = (('L') | ('O' << 8) | ('G' << 16) | ('L' << 24));
+/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+/* ################################ END MODIFICATIONS ################################ */
 
 /**
  * @brief Telnet session connection start callback

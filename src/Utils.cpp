@@ -28,17 +28,24 @@ std::string CONTROL_IPC_PATH;
 
 uint16_t TELNET_PORT;
 std::string PROMETHEUS_ADDR;
+/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+/* ################################ END MODIFICATIONS ################################ */
 
 volatile time_t currentTime;
 volatile uintmax_t alarmCtr;
 volatile bool loopFlag;
 volatile bool sigReadyFlag;
+/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+/* ################################ END MODIFICATIONS ################################ */
 
 // GCOVR_EXCL_START
 void print_version(void)
 {
 	int major = 0, minor = 0, patch = 0;
-	spdlog::info("{}                                : v{}", PROJECT_NAME, PROJECT_FULL_REVISION);
+	spdlog::info("{}                                : v{}", PROJECT_NAME, PROJECT_FULL_REVISION);	
+	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	spdlog::info("  CppZMQ                          : v{}.{}.{}", CPPZMQ_VERSION_MAJOR, CPPZMQ_VERSION_MINOR,
 				 CPPZMQ_VERSION_PATCH);
 	spdlog::info("  Curl                            : v{}", LIBCURL_VERSION);
@@ -47,6 +54,8 @@ void print_version(void)
 	spdlog::info("  Spdlog                          : v{}.{}.{}", SPDLOG_VER_MAJOR, SPDLOG_VER_MINOR, SPDLOG_VER_PATCH);
 	zmq_version(&major, &minor, &patch);
 	spdlog::info("  ZeroMQ                          : v{}.{}.{}", major, minor, patch);
+
+	/* ################################ END MODIFICATIONS ################################ */
 }
 // GCOVR_EXCL_STOP
 
@@ -125,7 +134,9 @@ bool readConfig(const char *dir)
 	}
 
 	// Check variables exist
+	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	std::vector<std::string> list = {"ZMQ_RECV_TIMEOUT", "ZMQ_SEND_TIMEOUT", "CONTROL_IPC_PATH"};
+	/* ################################ END MODIFICATIONS ################################ */
 
 	spdlog::debug("Reading variables from config ...");
 	for (const auto &entry : list)
@@ -145,6 +156,9 @@ bool readConfig(const char *dir)
 	ZMQ_SEND_TIMEOUT = doc["ZMQ_SEND_TIMEOUT"].GetUint64();
 
 	CONTROL_IPC_PATH = doc["CONTROL_IPC_PATH"].GetString();
+	/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+	/* ################################ END MODIFICATIONS ################################ */
 
 	// Cleanup
 	doc.GetAllocator().Clear();

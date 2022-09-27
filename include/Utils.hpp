@@ -28,6 +28,9 @@ extern std::string CONTROL_IPC_PATH;
 extern uint16_t TELNET_PORT;
 /// Bind address of Prometheus service
 extern std::string PROMETHEUS_ADDR;
+/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+/* ################################ END MODIFICATIONS ################################ */
 
 /// Current time value set by SIGALRM
 extern volatile time_t currentTime;
@@ -37,6 +40,9 @@ extern volatile uintmax_t alarmCtr;
 extern volatile bool loopFlag;
 /// Indicates whether the variables updated by SIGALRM are ready
 extern volatile bool sigReadyFlag;
+/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+/* ################################ END MODIFICATIONS ################################ */
 
 /**
  * @brief Parses command line inputs

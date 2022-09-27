@@ -21,6 +21,9 @@ std::vector<std::pair<std::string, std::string>> telnetCommands = {
 	{"help", "Prints available commands"},
 	{"disable log", "Resets logger level"},
 	{"enable log", "Enable specified logger level. Level can be \"v\" (info), \"vv\" (debug) and \"vvv\" (trace)"},
+	/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+	/* ################################ END MODIFICATIONS ################################ */
 	{"quit", "Ends the connection"}};
 
 void TelnetPrintAvailableCommands(SP_TelnetSession session)
@@ -82,6 +85,9 @@ bool TelnetMessageCallback(SP_TelnetSession session, std::string line)
 		session->sendLine("Trace log mode enabled");
 		spdlog::set_level(spdlog::level::trace);
 		break;
+	/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+	/* ################################ END MODIFICATIONS ################################ */
 	case constHasher("quit"):
 		session->sendLine("Closing connection");
 		session->sendLine("Goodbye!");
@@ -265,6 +271,9 @@ void zmqControlThread()
 						spdlog::error("Receive unknown number of messages for log level change");
 					break;
 				}
+				/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+				/* ################################ END MODIFICATIONS ################################ */
 				default:
 					spdlog::error("Unknown command received from control");
 					break;
