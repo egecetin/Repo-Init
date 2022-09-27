@@ -44,7 +44,7 @@ It provides the following features
 - GraphViz              : Find graphviz and dot executable to create dependency graph
 - LinkTimeOptimization  : Enables Link Time Optimization
 - MemorySanitizer       : Defines memory sanitizer
-- PostBuild             : Post build action to prepare makeself package after CPack
+- PostBuild             : Post build action to prepare makeself package after CPack while calculating checksums for all binaries
 - Sanitizers            : Controls sanitizer targets
 - SvnVersion            : Get revision number of current commit
 - ThreadSanitizer       : Defines thread sanitizer
