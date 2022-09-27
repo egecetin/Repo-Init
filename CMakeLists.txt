@@ -63,6 +63,7 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/spdlog/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/pull/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/obfuscate)
 
 # Disable/Enable options of subprojects
 option(BUILD_TESTS "" OFF) # libzmq
@@ -76,6 +77,7 @@ option(SENTRY_BUILD_SHARED_LIBS "" ON)
 option(BUILD_SHARED_LIBS "" ON) # prometheus-cpp
 option(ENABLE_COMPRESSION "" OFF) # prometheus-cpp
 option(ENABLE_TESTING "" OFF) # prometheus-cpp
+option(GENERATE_TESTS "" OFF) # obfuscate
 set(SENTRY_BACKEND none)
 
 # Subdirectories
@@ -85,6 +87,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/spdlog EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/sentry EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/obfuscate EXCLUDE_FROM_ALL)
 
 # Enable test framework
 include(CTest)
