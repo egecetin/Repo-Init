@@ -66,7 +66,7 @@ namespace spdlog
 			zmq_version(&major, &minor, &patch);
 			versionBuffer = "v" + std::to_string(major) + "." + std::to_string(minor) + "." + std::to_string(patch);
 			sentry_value_set_by_key(versionContext, "ZeroMQ", sentry_value_new_string(versionBuffer.c_str()));
-			
+
 			/* ################################ END MODIFICATIONS ################################ */
 
 			sentry_set_context("Version", versionContext);

@@ -44,7 +44,7 @@ volatile bool sigReadyFlag;
 void print_version(void)
 {
 	int major = 0, minor = 0, patch = 0;
-	spdlog::info("{}                                : v{}", PROJECT_NAME, PROJECT_FULL_REVISION);	
+	spdlog::info("{}                                : v{}", PROJECT_NAME, PROJECT_FULL_REVISION);
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	spdlog::info("  CppZMQ                          : v{}.{}.{}", CPPZMQ_VERSION_MAJOR, CPPZMQ_VERSION_MINOR,
 				 CPPZMQ_VERSION_PATCH);
