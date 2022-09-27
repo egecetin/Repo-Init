@@ -1,4 +1,4 @@
-#include "Sentry.hpp"
+#include "logging/Sentry.hpp"
 #include "Version.h"
 
 #include <arpa/inet.h>

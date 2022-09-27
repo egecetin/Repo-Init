@@ -1,7 +1,7 @@
 #include "Control.hpp"
-#include "Performance.hpp"
 #include "Utils.hpp"
 #include "Version.h"
+#include "metrics/Reporter.hpp"
 
 #include <signal.h>
 #include <thread>
