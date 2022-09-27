@@ -1,6 +1,6 @@
 #include "Utils.hpp"
-#include "Sentry.hpp"
 #include "Version.h"
+#include "logging/Sentry.hpp"
 
 #include <execinfo.h>
 #include <signal.h>

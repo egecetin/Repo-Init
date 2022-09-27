@@ -29,7 +29,7 @@ either expressed or implied, of the FreeBSD Project.
 
 #pragma once
 
-#include "Performance.hpp"
+#include "metrics/Status.hpp"
 
 #include <arpa/inet.h>
 #include <netdb.h>
