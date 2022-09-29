@@ -2,29 +2,36 @@
 #include "Utils.hpp"
 #include "Version.h"
 #include "metrics/Reporter.hpp"
+#include "rng/LehmerRNG.hpp"
 
 #include <signal.h>
 #include <thread>
 
+#include <obfuscate.h>
 #include <spdlog/spdlog.h>
 
 int main(int argc, char **argv)
 {
 	// Parse inputs
 	InputParser input(argc, argv);
-	if (input.cmdOptionExists("--enable-telnet"))
+	if (input.cmdOptionExists(static_cast<char *>(AY_OBFUSCATE_KEY("--enable-telnet", mlcg::seed(__FILE__, __LINE__)))))
 	{
-		std::string portString = input.getCmdOption("--enable-telnet");
+		std::string portString = input.getCmdOption(
+			static_cast<char *>(AY_OBFUSCATE_KEY("--enable-telnet", mlcg::seed(__FILE__, __LINE__))));
 		if (portString.size())
 			TELNET_PORT = std::stoi(portString);
 		else
-			spdlog::warn("Enable Telnet option requires a port number");
+			spdlog::warn(static_cast<char *>(
+				AY_OBFUSCATE_KEY("Enable Telnet option requires a port number", mlcg::seed(__FILE__, __LINE__))));
 	}
-	if (input.cmdOptionExists("--enable-prometheus"))
+	if (input.cmdOptionExists(
+			static_cast<char *>(AY_OBFUSCATE_KEY("--enable-prometheus", mlcg::seed(__FILE__, __LINE__)))))
 	{
-		PROMETHEUS_ADDR = input.getCmdOption("--enable-prometheus");
+		PROMETHEUS_ADDR = input.getCmdOption(
+			static_cast<char *>(AY_OBFUSCATE_KEY("--enable-prometheus", mlcg::seed(__FILE__, __LINE__))));
 		if (PROMETHEUS_ADDR.empty())
-			spdlog::warn("Enable Prometheus option requires a port number");
+			spdlog::warn(static_cast<char *>(
+				AY_OBFUSCATE_KEY("Enable Prometheus option requires a port number", mlcg::seed(__FILE__, __LINE__))));
 	}
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 
@@ -70,7 +77,7 @@ int main(int argc, char **argv)
 	/* ################################ END MODIFICATIONS ################################ */
 	std::thread zmqControlTh(zmqControlThread);
 	std::thread telnetControlTh(telnetControlThread);
-	spdlog::debug("Threads started");
+	spdlog::debug(static_cast<char *>(AY_OBFUSCATE_KEY("Threads started", mlcg::seed(__FILE__, __LINE__))));
 
 	// SIGALRM should be registered after all sleep calls
 	signal(SIGALRM, alarmFunc);
@@ -79,15 +86,15 @@ int main(int argc, char **argv)
 	// Join threads
 	if (telnetControlTh.joinable())
 		telnetControlTh.join();
-	spdlog::info("Telnet Controller joined");
+	spdlog::info(static_cast<char *>(AY_OBFUSCATE_KEY("Telnet Controller joined", mlcg::seed(__FILE__, __LINE__))));
 	if (zmqControlTh.joinable())
 		zmqControlTh.join();
-	spdlog::info("ZMQ Controller joined");
+	spdlog::info(static_cast<char *>(AY_OBFUSCATE_KEY("ZMQ Controller joined", mlcg::seed(__FILE__, __LINE__))));
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 
 	/* ################################ END MODIFICATIONS ################################ */
 
-	spdlog::warn("{} Exited", PROJECT_NAME);
+	spdlog::warn(static_cast<char *>(AY_OBFUSCATE_KEY("{} Exited", mlcg::seed(__FILE__, __LINE__))), PROJECT_NAME);
 	close_logger();
 
 	return EXIT_SUCCESS;
