@@ -1,6 +1,6 @@
 #include "telnet/TelnetServer.hpp"
-#include "rng/Hasher.hpp"
 #include "Utils.hpp"
+#include "rng/Hasher.hpp"
 
 #include <iomanip>
 #include <sstream>
@@ -15,6 +15,15 @@
 #define TELNET_TIMEOUT 120
 // Maximum number of concurrent sessions
 #define MAX_AVAILABLE_SESSION 5
+
+const std::vector<std::pair<std::string, std::string>> telnetCommands = {
+	{"help", "Prints available commands"},
+	{"disable log", "Resets logger level"},
+	{"enable log", "Enable specified logger level. Level can be \"v\" (info), \"vv\" (debug) and \"vvv\" (trace)"},
+	/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+	/* ################################ END MODIFICATIONS ################################ */
+	{"quit", "Ends the connection"}};
 
 const std::string ANSI_FG_BLACK("\x1b[30m");
 const std::string ANSI_FG_RED("\x1b[31m");
@@ -573,16 +582,6 @@ void TelnetServer::shutdown()
 	close(m_listenSocket);
 	m_initialised = false;
 }
-
-
-std::vector<std::pair<std::string, std::string>> telnetCommands = {
-	{"help", "Prints available commands"},
-	{"disable log", "Resets logger level"},
-	{"enable log", "Enable specified logger level. Level can be \"v\" (info), \"vv\" (debug) and \"vvv\" (trace)"},
-	/* ############################# MAKE MODIFICATIONS HERE ############################# */
-
-	/* ################################ END MODIFICATIONS ################################ */
-	{"quit", "Ends the connection"}};
 
 void TelnetPrintAvailableCommands(SP_TelnetSession session)
 {
