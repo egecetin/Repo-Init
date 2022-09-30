@@ -23,7 +23,7 @@
 # SOFTWARE.
 
 option(SANITIZE_UNDEFINED
-    "Enable UndefinedBehaviorSanitizer for sanitized targets." Off)
+    "Enable UndefinedBehaviorSanitizer for sanitized targets." OFF)
 
 set(FLAG_CANDIDATES
     "-g -fsanitize=undefined"

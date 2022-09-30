@@ -3,6 +3,7 @@
 #include "metrics/Performance.hpp"
 #include "metrics/Reporter.hpp"
 #include "metrics/Status.hpp"
+#include "rng/Hasher.hpp"
 
 #include <chrono>
 #include <thread>
@@ -13,11 +14,6 @@
 #include <zmq_addon.hpp>
 
 size_t writeData(void *, size_t size, size_t nmemb, void *) { return size * nmemb; }
-
-constexpr size_t constHasher(const char *s, size_t index = 0)
-{
-	return s + index == nullptr || s[index] == '\0' ? 55 : constHasher(s, index + 1) * 33 + (unsigned char)(s[index]);
-}
 
 std::vector<std::pair<std::string, std::string>> telnetCommands = {
 	{"help", "Prints available commands"},

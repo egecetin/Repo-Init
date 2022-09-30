@@ -1,6 +1,6 @@
 include(LinkTimeOptimization)
 
-link_time_optimization(OPTIONAL)
+link_time_optimization()
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -DNDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DNDEBUG")
 
@@ -20,12 +20,12 @@ endif()
 # Intel Compiler
 if(CMAKE_C_COMPILER_ID MATCHES "Intel")
 	message("${BoldBlue}Intel C Compiler detected. Updating flags ...${ColourReset}")
-	set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0 -g -xHost -use-intel-optimized-headers -static-intel")
-	set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -O0 -g -xHost -ipo -use-intel-optimized-headers -static-intel")
+	set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0 -g -xHost")
+	set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -O3 -xHost")
 endif()
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "Intel")
 	message("${BoldBlue}Intel C++ Compiler detected. Updating flags ...${ColourReset}")
-	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O3 -xHost -use-intel-optimized-headers -static-intel")
-	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -xHost -ipo -use-intel-optimized-headers -static-intel")
+	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -xHost")
+	set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -xHost")
 endif()
