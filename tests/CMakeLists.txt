@@ -5,34 +5,46 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
 
 # Include Google Test
 include(FetchContent)
-FetchContent_Declare(
-	googletest
-	URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip
-)
+FetchContent_Declare(googletest URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip)
 
 # For Windows: Prevent overriding the parent project's compiler/linker settings
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+set(gtest_force_shared_crt
+    ON
+    CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 # Enable gcov if Debug
 if(CMAKE_BUILD_TYPE STREQUAL "Debug" AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-	include(CodeCoverage)
-	set(GCOVR_ADDITIONAL_ARGS "--exclude-throw-branches")
-	setup_target_for_coverage_gcovr_html(NAME coverage
-		EXECUTABLE TestMain
-		DEPENDENCIES TestMain
-		EXCLUDE "${PROJECT_SOURCE_DIR}/src/main.cpp" "${PROJECT_SOURCE_DIR}/thirdparty/*" "${PROJECT_SOURCE_DIR}/build/*" "${PROJECT_SOURCE_DIR}/tests/*")
-	setup_target_for_coverage_gcovr_xml(NAME coverage-xml
-		EXECUTABLE TestMain
-		DEPENDENCIES TestMain
-		EXCLUDE "${PROJECT_SOURCE_DIR}/src/main.cpp" "${PROJECT_SOURCE_DIR}/thirdparty/*" "${PROJECT_SOURCE_DIR}/build/*" "${PROJECT_SOURCE_DIR}/tests/*")
+  include(CodeCoverage)
+  set(GCOVR_ADDITIONAL_ARGS "--exclude-throw-branches")
+  setup_target_for_coverage_gcovr_html(
+    NAME
+    coverage
+    EXECUTABLE
+    TestMain
+    DEPENDENCIES
+    TestMain
+    EXCLUDE
+    "${PROJECT_SOURCE_DIR}/src/main.cpp"
+    "${PROJECT_SOURCE_DIR}/thirdparty/*"
+    "${PROJECT_SOURCE_DIR}/build/*"
+    "${PROJECT_SOURCE_DIR}/tests/*")
+  setup_target_for_coverage_gcovr_xml(
+    NAME
+    coverage-xml
+    EXECUTABLE
+    TestMain
+    DEPENDENCIES
+    TestMain
+    EXCLUDE
+    "${PROJECT_SOURCE_DIR}/src/main.cpp"
+    "${PROJECT_SOURCE_DIR}/thirdparty/*"
+    "${PROJECT_SOURCE_DIR}/build/*"
+    "${PROJECT_SOURCE_DIR}/tests/*")
 endif()
 
 # Add sources
-FILE(GLOB ProjectTestSources
-	${PROJECT_SOURCE_DIR}/tests/*.cpp
-	${PROJECT_SOURCE_DIR}/tests/**/*.cpp
-)
+file(GLOB ProjectTestSources ${PROJECT_SOURCE_DIR}/tests/*.cpp ${PROJECT_SOURCE_DIR}/tests/**/*.cpp)
 
 configure_file(test-static-definitions.h.in test-static-definitions.h)
 
@@ -48,8 +60,8 @@ target_include_directories(TestMain PRIVATE "${PROJECT_BINARY_DIR}/tests")
 target_link_libraries(TestMain gtest_main memplumber "${PROJECT_NAME}_Lib_Shared")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-	target_compile_options(TestMain PUBLIC --coverage)
-	target_link_libraries(TestMain gcov)
+  target_compile_options(TestMain PUBLIC --coverage)
+  target_link_libraries(TestMain gcov)
 endif()
 
 # Enum tests
