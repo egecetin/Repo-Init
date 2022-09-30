@@ -2,7 +2,6 @@
 #include "Utils.hpp"
 #include "Version.h"
 #include "metrics/Reporter.hpp"
-#include "rng/LehmerRNG.hpp"
 
 #include <signal.h>
 #include <thread>

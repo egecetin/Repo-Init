@@ -11,11 +11,11 @@
 #include <rapidjson/rapidjson.h>
 #include <rapidjson/writer.h>
 #include <sentry.h>
-#include <spdlog/spdlog.h>
 #include <spdlog/sinks/dup_filter_sink.h>
 #include <spdlog/sinks/rotating_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/sinks/syslog_sink.h>
+#include <spdlog/spdlog.h>
 #include <zmq.hpp>
 
 uintmax_t ALARM_INTERVAL;
