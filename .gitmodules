@@ -22,6 +22,3 @@
 [submodule "thirdparty/prometheus-cpp"]
 	path = thirdparty/prometheus-cpp
 	url = https://github.com/jupp0r/prometheus-cpp.git
-[submodule "thirdparty/obfuscate"]
-	path = thirdparty/obfuscate
-	url = https://github.com/adamyaxley/Obfuscate.git

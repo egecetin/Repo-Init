@@ -66,7 +66,6 @@ All scripts should be executed from top level directory
 
  - [CppZMQ](https://github.com/zeromq/cppzmq.git)
  - [MemPlumber](https://github.com/seladb/MemPlumber.git)
- - [Obfuscate](https://github.com/adamyaxley/Obfuscate.git)
  - [Prometheus-cpp](https://github.com/jupp0r/prometheus-cpp.git)
  - [RapidJSON](https://github.com/Tencent/rapidjson.git)
  - [Spdlog](https://github.com/gabime/spdlog.git)
