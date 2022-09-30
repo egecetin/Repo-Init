@@ -184,3 +184,24 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	// Called after TAB detected. function(SP_TelnetSession, std::string, PredictSignalType) {}
 	FPTR_TabCallback m_tabCallback;
 };
+
+/**
+ * @brief Telnet session connection start callback
+ * @param[in] session Handle to session
+ */
+void TelnetConnectedCallback(SP_TelnetSession session);
+
+/**
+ * @brief Telnet session message received callback
+ * @param[in] session Handle to session
+ * @param[in] line Received message
+ */
+bool TelnetMessageCallback(SP_TelnetSession session, std::string line);
+
+/**
+ * @brief Telnet session TAB received callback
+ * @param[in] session Handle to session
+ * @param[in] line Received message
+ * @return std::string Command to complete
+ */
+std::string TelnetTabCallback(SP_TelnetSession session, std::string line);
