@@ -13,7 +13,7 @@ include(Sanitizers)
 include(SvnVersion)
 
 if(NOT DEFINED REVISION_VERSION)
-	message(SEND_ERROR "Can't find SVN or Git. The folder is not under version control.")
+  message(SEND_ERROR "Can't find SVN or Git. The folder is not under version control.")
 endif()
 
 # Set project properties
@@ -21,9 +21,9 @@ set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_VERSION_MINOR 0)
 
 if(EXISTS "${PROJECT_SOURCE_DIR}/BuildNumberCache.txt")
-	file(READ "${PROJECT_SOURCE_DIR}/BuildNumberCache.txt" BUILD_NUMBER)
+  file(READ "${PROJECT_SOURCE_DIR}/BuildNumberCache.txt" BUILD_NUMBER)
 else()
-	set(BUILD_NUMBER "1")
+  set(BUILD_NUMBER "1")
 endif()
 
 set(PROJECT_VERSION_PATCH ${BUILD_NUMBER})
@@ -47,11 +47,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 configure_file(build_number.h.in "Version.h")
 
 # Define sources
-FILE(GLOB ProjectSources
-	${PROJECT_SOURCE_DIR}/src/*.cpp
-	${PROJECT_SOURCE_DIR}/src/*.c
-	${PROJECT_SOURCE_DIR}/src/**/*.cpp
-	${PROJECT_SOURCE_DIR}/src/**/*.c)
+file(GLOB ProjectSources ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.c
+     ${PROJECT_SOURCE_DIR}/src/**/*.cpp ${PROJECT_SOURCE_DIR}/src/**/*.c)
 
 # Include directories
 include_directories(${PROJECT_SOURCE_DIR}/include)
@@ -95,13 +92,19 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
 # Set Targets
 add_library("${PROJECT_NAME}_Lib_Shared" SHARED ${ProjectSources})
 set_target_properties(
-	"${PROJECT_NAME}_Lib_Shared" PROPERTIES
-	OUTPUT_NAME "${PROJECT_NAME}"
-	VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
-	SOVERSION ${PROJECT_VERSION_MAJOR}
-)
+  "${PROJECT_NAME}_Lib_Shared"
+  PROPERTIES OUTPUT_NAME "${PROJECT_NAME}"
+             VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
+             SOVERSION ${PROJECT_VERSION_MAJOR})
 target_include_directories("${PROJECT_NAME}_Lib_Shared" PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries("${PROJECT_NAME}_Lib_Shared" stdc++fs spdlog libzmq sentry core pull)
+target_link_libraries(
+  "${PROJECT_NAME}_Lib_Shared"
+  stdc++fs
+  spdlog
+  libzmq
+  sentry
+  core
+  pull)
 
 add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
@@ -109,47 +112,52 @@ target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared")
 add_sanitizers("${PROJECT_NAME}")
 
 # Set install targets
-install(TARGETS "${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared" spdlog libzmq sentry core pull
-	RUNTIME DESTINATION bin
-	LIBRARY DESTINATION lib
-)
+install(
+  TARGETS "${PROJECT_NAME}"
+          "${PROJECT_NAME}_Lib_Shared"
+          spdlog
+          libzmq
+          sentry
+          core
+          pull
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib)
 
 # Update build number at every build
 add_custom_command(
-	TARGET "${PROJECT_NAME}_Lib_Shared"
-	PRE_BUILD
-	COMMAND ${CMAKE_COMMAND} -P "${PROJECT_SOURCE_DIR}/cmake/AutoBuildNumber.cmake"
-	COMMENT "${BoldBlue}Updating build number${ColourReset}"
-)
+  TARGET "${PROJECT_NAME}_Lib_Shared"
+  PRE_BUILD
+  COMMAND ${CMAKE_COMMAND} -P "${PROJECT_SOURCE_DIR}/cmake/AutoBuildNumber.cmake"
+  COMMENT "${BoldBlue}Updating build number${ColourReset}")
 
 # CPack
 if(${CMAKE_VERSION} VERSION_LESS "3.21.0")
-    message("${BoldYellow}Please consider to switch to CMake 3.21.0 or newer to enable CPack support${ColourReset}")
+  message("${BoldYellow}Please consider to switch to CMake 3.21.0 or newer to enable CPack support${ColourReset}")
 else()
-	set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
-	set(CPACK_GENERATOR "RPM")
-	set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
-	set(CPACK_PACKAGE_RELEASE ${PROJECT_VERSION_PATCH})
-	set(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
-	set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}.${CMAKE_SYSTEM_PROCESSOR}")
-	set(CPACK_RPM_SPEC_MORE_DEFINE "%define _build_id_links none")
-	set(CPACK_OUTPUT_FILE_PREFIX ${PROJECT_SOURCE_DIR}/dist/packages)
-	set(CPACK_RESOURCE_FILE_LICENSE ${PROJECT_SOURCE_DIR}/LICENSE)
-	set(CPACK_RESOURCE_FILE_README ${PROJECT_SOURCE_DIR}/README.md)
-	set(CPACK_PACKAGE_CONTACT "Humanity")
-	list(APPEND CPACK_POST_BUILD_SCRIPTS "${CMAKE_MODULE_PATH}/PostBuild.cmake")
-	include(CPack)
+  set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
+  set(CPACK_GENERATOR "RPM")
+  set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+  set(CPACK_PACKAGE_RELEASE ${PROJECT_VERSION_PATCH})
+  set(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
+  set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}.${CMAKE_SYSTEM_PROCESSOR}")
+  set(CPACK_RPM_SPEC_MORE_DEFINE "%define _build_id_links none")
+  set(CPACK_OUTPUT_FILE_PREFIX ${PROJECT_SOURCE_DIR}/dist/packages)
+  set(CPACK_RESOURCE_FILE_LICENSE ${PROJECT_SOURCE_DIR}/LICENSE)
+  set(CPACK_RESOURCE_FILE_README ${PROJECT_SOURCE_DIR}/README.md)
+  set(CPACK_PACKAGE_CONTACT "Humanity")
+  list(APPEND CPACK_POST_BUILD_SCRIPTS "${CMAKE_MODULE_PATH}/PostBuild.cmake")
+  include(CPack)
 
-	# Cache variables for scripts
-	set(CacheForScript ${CMAKE_MODULE_PATH}/CMakeCacheForScript.cmake)
-	file(WRITE ${CacheForScript} "")
+  # Cache variables for scripts
+  set(CacheForScript ${CMAKE_MODULE_PATH}/CMakeCacheForScript.cmake)
+  file(WRITE ${CacheForScript} "")
 
-	get_cmake_property(Vars VARIABLES)
-	foreach(Var ${Vars})
-		if(${Var})
-			string(REPLACE "\\" "\\\\" ${Var} "${${Var}}")
-			string(REPLACE "\"" "\\\"" ${Var} "${${Var}}")
-		endif()
-		file(APPEND ${CacheForScript} "set(${Var} \"${${Var}}\")\n")
-	endforeach()
+  get_cmake_property(Vars VARIABLES)
+  foreach(Var ${Vars})
+    if(${Var})
+      string(REPLACE "\\" "\\\\" ${Var} "${${Var}}")
+      string(REPLACE "\"" "\\\"" ${Var} "${${Var}}")
+    endif()
+    file(APPEND ${CacheForScript} "set(${Var} \"${${Var}}\")\n")
+  endforeach()
 endif()

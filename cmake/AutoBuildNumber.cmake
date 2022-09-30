@@ -2,14 +2,14 @@
 
 set(CACHE_FILE "../BuildNumberCache.txt")
 
-#Reading data from file + incrementation
-IF(EXISTS ${CACHE_FILE})
-    file(READ ${CACHE_FILE} INCREMENTED_VALUE)
-    math(EXPR INCREMENTED_VALUE "${INCREMENTED_VALUE}+1")
-ELSE()
-    set(INCREMENTED_VALUE "1")
-ENDIF()
+# Reading data from file + incrementation
+if(EXISTS ${CACHE_FILE})
+  file(READ ${CACHE_FILE} INCREMENTED_VALUE)
+  math(EXPR INCREMENTED_VALUE "${INCREMENTED_VALUE}+1")
+else()
+  set(INCREMENTED_VALUE "1")
+endif()
 
-#Update the cache
+# Update the cache
 file(WRITE ${CACHE_FILE} "${INCREMENTED_VALUE}")
 set(BUILD_VERSION ${INCREMENTED_VALUE})
