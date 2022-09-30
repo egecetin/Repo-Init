@@ -1,7 +1,9 @@
 #include "telnet/TelnetServer.hpp"
+#include "rng/Hasher.hpp"
 #include "Utils.hpp"
 
-#include <iostream>
+#include <iomanip>
+#include <sstream>
 
 #include <spdlog/spdlog.h>
 
@@ -570,4 +572,113 @@ void TelnetServer::shutdown()
 	// No longer need server socket so close it.
 	close(m_listenSocket);
 	m_initialised = false;
+}
+
+
+std::vector<std::pair<std::string, std::string>> telnetCommands = {
+	{"help", "Prints available commands"},
+	{"disable log", "Resets logger level"},
+	{"enable log", "Enable specified logger level. Level can be \"v\" (info), \"vv\" (debug) and \"vvv\" (trace)"},
+	/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+	/* ################################ END MODIFICATIONS ################################ */
+	{"quit", "Ends the connection"}};
+
+void TelnetPrintAvailableCommands(SP_TelnetSession session)
+{
+	// Print available commands
+	session->sendLine("");
+	session->sendLine("Available commands:");
+	session->sendLine("");
+	for (const auto &entry : telnetCommands)
+	{
+		char buffer[BUFSIZ] = {'\0'};
+		std::snprintf(buffer, BUFSIZ, "%-25s : %s", entry.first.c_str(), entry.second.c_str());
+		session->sendLine(buffer);
+	}
+}
+
+void TelnetConnectedCallback(SP_TelnetSession session)
+{
+	session->sendLine("\r\n"
+					  "𝑲𝒆𝒆𝒑 𝒚𝒐𝒖𝒓 𝒆𝒚𝒆𝒔 𝒐𝒏 𝒕𝒉𝒆 𝒔𝒕𝒂𝒓𝒔 "
+					  "𝒂𝒏𝒅 𝒚𝒐𝒖𝒓 𝒇𝒆𝒆𝒕 𝒐𝒏 𝒕𝒉𝒆 𝒈𝒓𝒐𝒖𝒏𝒅 "
+					  "\r\n");
+	TelnetPrintAvailableCommands(session);
+}
+
+bool TelnetMessageCallback(SP_TelnetSession session, std::string line)
+{
+	spdlog::trace("Received message {}", line);
+
+	// Send received message for user terminal
+	session->sendLine(line);
+
+	// Process received message
+	switch (constHasher(line.c_str()))
+	{
+	case constHasher("Test Message"):
+		session->sendLine("OK");
+		break;
+	case constHasher("help"):
+		TelnetPrintAvailableCommands(session);
+		break;
+	case constHasher("disable log"):
+		session->sendLine("Default log mode enabled");
+		spdlog::set_level(spdlog::level::info);
+		break;
+	case constHasher("disable log all"): // Internal use only
+		session->sendLine("Disabling all logs");
+		spdlog::set_level(spdlog::level::off);
+		break;
+	case constHasher("enable log v"):
+		session->sendLine("Info log mode enabled");
+		spdlog::set_level(spdlog::level::info);
+		break;
+	case constHasher("enable log vv"):
+		session->sendLine("Debug log mode enabled");
+		spdlog::set_level(spdlog::level::debug);
+		break;
+	case constHasher("enable log vvv"):
+		session->sendLine("Trace log mode enabled");
+		spdlog::set_level(spdlog::level::trace);
+		break;
+	/* ############################# MAKE MODIFICATIONS HERE ############################# */
+
+	/* ################################ END MODIFICATIONS ################################ */
+	case constHasher("quit"):
+		session->sendLine("Closing connection");
+		session->sendLine("Goodbye!");
+		session->markTimeout();
+		break;
+	default:
+		session->sendLine("Unknown command received");
+		return false;
+	}
+	return true;
+}
+
+std::string TelnetTabCallback(SP_TelnetSession session, std::string line)
+{
+	std::string retval = "";
+
+	size_t ctr = 0;
+	std::stringstream ss;
+	for (const auto &entry : telnetCommands)
+	{
+		if (entry.first.rfind(line, 0) == 0)
+		{
+			++ctr;
+			retval = entry.first;
+			ss << entry.first << std::setw(25);
+		}
+	}
+	// Send suggestions if found any. If there is only one command retval will invoke completion
+	if (ctr != 1 && ss.str().size())
+	{
+		session->sendLine(ss.str());
+		retval = "";
+	}
+
+	return retval;
 }
