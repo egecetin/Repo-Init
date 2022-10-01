@@ -1,19 +1,15 @@
 #include "Control.hpp"
 #include "Version.h"
+#include "connection/Http.hpp"
+#include "connection/Zeromq.hpp"
 #include "metrics/Performance.hpp"
 #include "metrics/Reporter.hpp"
 #include "metrics/Status.hpp"
-#include "rng/Hasher.hpp"
 
 #include <chrono>
 #include <thread>
 
-#include <curl/curl.h>
 #include <spdlog/spdlog.h>
-#include <zmq.hpp>
-#include <zmq_addon.hpp>
-
-size_t writeData(void *, size_t size, size_t nmemb, void *) { return size * nmemb; }
 
 // GCOVR_EXCL_START
 void telnetControlThread()
@@ -22,17 +18,13 @@ void telnetControlThread()
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
 
 	// Init performance tracker if prometheus enabled
-	std::shared_ptr<PerformanceTracker> telnetPerformanceTracker;
+	std::shared_ptr<PerformanceTracker> telnetPerformanceTracker(nullptr);
 	if (mainPrometheusHandler)
 		telnetPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("telnet_server");
-	else
-		telnetPerformanceTracker = nullptr;
 
-	std::shared_ptr<StatusTracker> telnetStatusTracker;
+	std::shared_ptr<StatusTracker> telnetStatusTracker(nullptr);
 	if (mainPrometheusHandler)
 		telnetStatusTracker = mainPrometheusHandler->addNewStatTracker("telnet_server");
-	else
-		telnetStatusTracker = nullptr;
 
 start:
 	if (TELNET_PORT && telnetServerPtr->initialise(TELNET_PORT, "> ", telnetStatusTracker))
@@ -66,7 +58,7 @@ start:
 		}
 		catch (const std::exception &e)
 		{
-			spdlog::error("Telnet {}", e.what());
+			spdlog::error("Telnet failed: {}", e.what());
 		}
 		std::this_thread::sleep_for(std::chrono::milliseconds(50));
 	}
@@ -81,62 +73,50 @@ start:
 void zmqControlThread()
 {
 	// Init ZMQ connection
-	zmq::context_t ctx(1);
-	zmq::socket_t socketRep(ctx, zmq::socket_type::rep);
-	socketRep.set(zmq::sockopt::linger, 0);
-	socketRep.set(zmq::sockopt::sndtimeo, ZMQ_SEND_TIMEOUT);
-	socketRep.set(zmq::sockopt::rcvtimeo, ZMQ_RECV_TIMEOUT);
-	socketRep.set(zmq::sockopt::heartbeat_ivl, 1000);
-	socketRep.set(zmq::sockopt::heartbeat_ttl, 3000);
-	socketRep.set(zmq::sockopt::heartbeat_timeout, 3000);
-
+	std::unique_ptr<ZeroMQ> zmqContext(nullptr);
 	std::string hostAddrRep = CONTROL_IPC_PATH + "/" + PROJECT_NAME;
+
 	try
 	{
-		socketRep.bind(hostAddrRep);
-		spdlog::debug("Receiver created to {}", hostAddrRep);
+		zmqContext = std::make_unique<ZeroMQ>(zmq::socket_type::rep, hostAddrRep, true);
 	}
 	catch (const std::exception &e)
 	{
-		spdlog::critical("Can't bind to {} {}", hostAddrRep, e.what());
+		spdlog::critical("Can't bind to {}: {}", hostAddrRep, e.what());
 		loopFlag = false;
 	}
 
 	// Prepare heartbeat
-	CURL *curl = nullptr;
 	size_t oldCtr = alarmCtr;
+	std::unique_ptr<HTTP> heartBeat(nullptr);
 	std::string HEARTBEAT_ADDRESS = readSingleConfig(CONFIG_FILE_PATH, "HEARTBEAT_ADDRESS");
-	if (!HEARTBEAT_ADDRESS.empty())
+
+	try
 	{
-		curl = curl_easy_init();
-		if (curl)
-		{
-			curl_easy_setopt(curl, CURLOPT_URL, HEARTBEAT_ADDRESS.c_str());
-			curl_easy_setopt(curl, CURLOPT_POST, 1L);
-			curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 100);
-			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
-		}
+		if (!HEARTBEAT_ADDRESS.empty())
+			heartBeat = std::make_unique<HTTP>(HEARTBEAT_ADDRESS, 100);
+	}
+	catch (const std::exception &e)
+	{
+		spdlog::error("Can't init heartbeat handler: {}", e.what());
+		loopFlag = false;
 	}
 
 	// Init performance and status tracker if prometheus enabled
-	std::shared_ptr<PerformanceTracker> zmqControlPerformanceTracker;
+	std::shared_ptr<PerformanceTracker> zmqControlPerformanceTracker(nullptr);
 	if (mainPrometheusHandler)
 		zmqControlPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("zmq_control_server");
-	else
-		zmqControlPerformanceTracker = nullptr;
 
-	std::shared_ptr<StatusTracker> zmqControlStatusTracker;
+	std::shared_ptr<StatusTracker> zmqControlStatusTracker(nullptr);
 	if (mainPrometheusHandler)
 		zmqControlStatusTracker = mainPrometheusHandler->addNewStatTracker("zmq_control_server");
-	else
-		zmqControlStatusTracker = nullptr;
 
 	while (loopFlag)
 	{
 		try
 		{
-			std::vector<zmq::message_t> recv_msgs;
-			if (zmq::recv_multipart(socketRep, std::back_inserter(recv_msgs)))
+			std::vector<zmq::message_t> recv_msgs = zmqContext->recvMessages();
+			if (!recv_msgs.empty())
 			{
 				if (zmqControlStatusTracker)
 					zmqControlStatusTracker->incrementActive();
@@ -181,9 +161,15 @@ void zmqControlThread()
 						zmqControlStatusTracker->incrementFail();
 				}
 
-				// Send reply
-				socketRep.send(zmq::const_buffer(&reply, sizeof(reply)), zmq::send_flags::sndmore);
-				socketRep.send(zmq::const_buffer(replyBody.c_str(), replyBody.size()));
+				// Prepare reply
+				std::vector<zmq::const_buffer> replyMessages;
+				replyMessages.push_back(zmq::const_buffer(&reply, sizeof(reply)));
+				replyMessages.push_back(zmq::const_buffer(replyBody.c_str(), replyBody.size()));
+
+				size_t nSentMsg = zmqContext->sendMessages(replyMessages);
+				if (nSentMsg != replyMessages.size())
+					spdlog::warn("Can't send whole reply: Sent messages {} / {}", nSentMsg, replyMessages.size());
+
 				if (zmqControlPerformanceTracker)
 					zmqControlPerformanceTracker->endTimer();
 			}
@@ -192,12 +178,13 @@ void zmqControlThread()
 		}
 		catch (const std::exception &e)
 		{
-			spdlog::error("ZMQ {}", e.what());
+			spdlog::error("ZMQ failed: {}", e.what());
 		}
 
-		if (curl && (alarmCtr - oldCtr) > HEARTBEAT_INTERVAL)
+		if (heartBeat && (alarmCtr - oldCtr) > HEARTBEAT_INTERVAL)
 		{
-			CURLcode retCode = curl_easy_perform(curl);
+			std::string recvPayload;
+			CURLcode retCode = heartBeat->sendPOSTRequest("", "", recvPayload);
 			if (retCode != CURLE_OK)
 				spdlog::info("Heartbeat failed: {}", curl_easy_strerror(retCode));
 			oldCtr = alarmCtr;
@@ -206,10 +193,6 @@ void zmqControlThread()
 
 	// Cleanup
 	spdlog::debug("Cleaning ZMQ control thread ...");
-	socketRep.unbind(hostAddrRep);
-	socketRep.close();
-
-	curl_easy_cleanup(curl);
 
 	spdlog::debug("ZMQ Control thread done");
 }
