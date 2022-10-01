@@ -153,7 +153,6 @@ bool readConfig(const char *dir)
 	// Set variables
 	ZMQ_RECV_TIMEOUT = doc["ZMQ_RECV_TIMEOUT"].GetUint64();
 	ZMQ_SEND_TIMEOUT = doc["ZMQ_SEND_TIMEOUT"].GetUint64();
-
 	CONTROL_IPC_PATH = doc["CONTROL_IPC_PATH"].GetString();
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 

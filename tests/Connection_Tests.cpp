@@ -51,12 +51,10 @@ TEST(Connection_Tests, ZeroMQTests)
 	vSendMsg.push_back(zmq::const_buffer(&testData1, sizeof(testData1)));
 	vSendMsg.push_back(zmq::const_buffer(&testData2, sizeof(testData2)));
 	vSendMsg.push_back(zmq::const_buffer(testData3.c_str(), testData3.size()));
-
 	ASSERT_EQ(handler.sendMessages(vSendMsg), vSendMsg.size());
 
 	auto vRecvMsgs = handler.recvMessages();
 	ASSERT_EQ(vSendMsg.size(), vRecvMsgs.size());
-
 	for (size_t idx = 0; idx < vSendMsg.size(); ++idx)
 	{
 		ASSERT_EQ(vSendMsg[idx].size(), vRecvMsgs[idx].size());

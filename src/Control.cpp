@@ -23,12 +23,10 @@ void telnetControlThread()
 	std::shared_ptr<PerformanceTracker> telnetPerformanceTracker(nullptr);
 	if (mainPrometheusHandler)
 		telnetPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("telnet_server");
-
 	std::shared_ptr<StatusTracker> telnetStatusTracker(nullptr);
 	if (mainPrometheusHandler)
 		telnetStatusTracker = mainPrometheusHandler->addNewStatTracker("telnet_server");
 
-start:
 	if (TELNET_PORT && telnetServerPtr->initialise(TELNET_PORT, "> ", telnetStatusTracker))
 	{
 		telnetServerPtr->connectedCallback(TelnetConnectedCallback);
@@ -37,15 +35,7 @@ start:
 		spdlog::info("Telnet server created at {}", TELNET_PORT);
 	}
 	else
-	{
-		for (size_t idx = 0; idx < 15; ++idx)
-		{
-			std::this_thread::sleep_for(std::chrono::seconds(2));
-			if (!loopFlag)
-				return;
-		}
-		goto start;
-	}
+		loopFlag =false;
 
 	while (loopFlag)
 	{
@@ -77,7 +67,6 @@ void zmqControlThread()
 	// Init ZMQ connection
 	std::unique_ptr<ZeroMQ> zmqContext(nullptr);
 	std::string hostAddrRep = CONTROL_IPC_PATH + "/" + PROJECT_NAME;
-
 	try
 	{
 		zmqContext = std::make_unique<ZeroMQ>(zmq::socket_type::rep, hostAddrRep, true);
@@ -92,7 +81,6 @@ void zmqControlThread()
 	size_t oldCtr = alarmCtr;
 	std::unique_ptr<HTTP> heartBeat(nullptr);
 	std::string HEARTBEAT_ADDRESS = readSingleConfig(CONFIG_FILE_PATH, "HEARTBEAT_ADDRESS");
-
 	try
 	{
 		if (!HEARTBEAT_ADDRESS.empty())
@@ -108,7 +96,6 @@ void zmqControlThread()
 	std::shared_ptr<PerformanceTracker> zmqControlPerformanceTracker(nullptr);
 	if (mainPrometheusHandler)
 		zmqControlPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("zmq_control_server");
-
 	std::shared_ptr<StatusTracker> zmqControlStatusTracker(nullptr);
 	if (mainPrometheusHandler)
 		zmqControlStatusTracker = mainPrometheusHandler->addNewStatTracker("zmq_control_server");
@@ -124,8 +111,9 @@ void zmqControlThread()
 					zmqControlStatusTracker->incrementActive();
 				if (zmqControlPerformanceTracker)
 					zmqControlPerformanceTracker->startTimer();
-				int reply = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;
+					
 				std::string replyBody = "";
+				int reply = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;
 				switch (*((uint64_t *)recv_msgs[0].data()))
 				{
 				case LOG_LEVEL_ID: {
