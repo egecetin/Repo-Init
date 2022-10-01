@@ -33,9 +33,6 @@ size_t HTTP::writeDataCallback(void *contents, size_t size, size_t nmemb, void *
 
 HTTP::HTTP(const std::string &addr, int timeoutInMs)
 {
-	if (addr.empty())
-		throw std::runtime_error("Server address can't be empty");
-
 	hostAddr = addr;
 	curl = curl_easy_init();
 	if (!curl)
