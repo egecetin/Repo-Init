@@ -37,6 +37,7 @@ It provides the following features
 - Colorize              : Color commands for message outputs
 - CompilerFlags         : Defines compiler flags for GCC and Intel Compiler for compile types
 - CompilerOptions       : Enables/Disables compiler warnings
+- CStandards            : Defines c standard
 - CppStandards          : Defines cpp standard
 - CustomFindSubversion  : Modified version of FindSubversion.cmake to ignore errors
 - Doxy                  : Find doxygen package and prepare doc environment
