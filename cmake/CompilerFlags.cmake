@@ -1,6 +1,6 @@
 include(LinkTimeOptimization)
 
-link_time_optimization(OPTIONAL)
+link_time_optimization()
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -DNDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DNDEBUG")
 

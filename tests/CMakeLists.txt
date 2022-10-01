@@ -29,6 +29,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug" AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     "${PROJECT_SOURCE_DIR}/thirdparty/*"
     "${PROJECT_SOURCE_DIR}/build/*"
     "${PROJECT_SOURCE_DIR}/tests/*")
+
   setup_target_for_coverage_gcovr_xml(
     NAME
     coverage-xml
@@ -44,7 +45,13 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug" AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 endif()
 
 # Add sources
-file(GLOB ProjectTestSources ${PROJECT_SOURCE_DIR}/tests/*.cpp ${PROJECT_SOURCE_DIR}/tests/**/*.cpp)
+file(GLOB ProjectTestSources
+    ${PROJECT_SOURCE_DIR}/tests/Connection_Tests.cpp
+    ${PROJECT_SOURCE_DIR}/tests/Performance_Tests.cpp
+    ${PROJECT_SOURCE_DIR}/tests/Telnet_Tests.cpp
+    ${PROJECT_SOURCE_DIR}/tests/Utils_Tests.cpp
+    ${PROJECT_SOURCE_DIR}/tests/gtest_main.cpp
+    )
 
 configure_file(test-static-definitions.h.in test-static-definitions.h)
 

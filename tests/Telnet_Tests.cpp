@@ -46,6 +46,5 @@ TEST(Telnet_Tests, TelnetServerTests)
 
 	shResult.wait();
 	telnetServerPtr->shutdown();
-
 	ASSERT_EQ(0, shResult.get());
 }

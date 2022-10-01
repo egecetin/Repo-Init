@@ -6,6 +6,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
 include(Colorize)
 include(CompilerOptions)
 include(CompilerFlags)
+include(CppStandards)
 include(Doxy)
 include(GitVersion)
 include(GraphViz)
@@ -41,14 +42,23 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/bin)
 
 # Set Compiler Properties
 set(CMAKE_DEBUG_POSTFIX d)
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+cxx_14()
 
 configure_file(build_number.h.in "Version.h")
 
 # Define sources
-file(GLOB ProjectSources ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.c
-     ${PROJECT_SOURCE_DIR}/src/**/*.cpp ${PROJECT_SOURCE_DIR}/src/**/*.c)
+file(GLOB ProjectSources
+    ${PROJECT_SOURCE_DIR}/src/connection/Http.cpp
+    ${PROJECT_SOURCE_DIR}/src/connection/Zeromq.cpp
+    ${PROJECT_SOURCE_DIR}/src/logging/Sentry.cpp
+    ${PROJECT_SOURCE_DIR}/src/metrics/Performance.cpp
+    ${PROJECT_SOURCE_DIR}/src/metrics/Reporter.cpp
+    ${PROJECT_SOURCE_DIR}/src/metrics/Status.cpp
+    ${PROJECT_SOURCE_DIR}/src/telnet/TelnetServer.cpp
+    ${PROJECT_SOURCE_DIR}/src/Control.cpp
+    ${PROJECT_SOURCE_DIR}/src/Utils.cpp
+    ${PROJECT_SOURCE_DIR}/src/main.cpp
+    )
 
 # Include directories
 include_directories(${PROJECT_SOURCE_DIR}/include)
