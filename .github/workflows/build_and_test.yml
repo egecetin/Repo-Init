@@ -23,6 +23,10 @@ jobs:
         run: |
           mkdir -p dist/temp dist/rpm dist/makeself
           sudo apt install expect libcurl4-openssl-dev -y
+      - uses: actions/setup-python@v2
+      - name: Install Test Requirements
+        run: |
+          pip install -r tests/data/requirements.txt
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B $BUILD_DIR
       - name: Build
@@ -41,6 +45,10 @@ jobs:
         run: |
           mkdir -p dist/temp dist/rpm dist/makeself
           sudo apt install gcovr expect libcurl4-openssl-dev -y
+      - uses: actions/setup-python@v2
+      - name: Install Test Requirements
+        run: |
+          pip install -r tests/data/requirements.txt
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
       - name: Build
