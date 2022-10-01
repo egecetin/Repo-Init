@@ -5,6 +5,7 @@
 #include "metrics/Performance.hpp"
 #include "metrics/Reporter.hpp"
 #include "metrics/Status.hpp"
+#include "telnet/TelnetServer.hpp"
 
 #include <chrono>
 #include <thread>
