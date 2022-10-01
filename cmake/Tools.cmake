@@ -92,7 +92,8 @@ if(CPPCHECK_EXE)
   message(STATUS "cppcheck found: ${CPPCHECK_EXE}")
   if(CPPECHECK)
     set(CMAKE_CXX_CPPCHECK
-        "${CPPCHECK_EXE};--enable=warning,performance,portability,missingInclude;--template=\"[{severity}][{id}] {message} {callstack} \(On {file}:{line}\)\";--suppress=missingIncludeSystem;--quiet;--verbose;--force"
+        "${CPPCHECK_EXE};--enable=warning,performance,portability,missingInclude;--template=\"[{severity}][{id}]"
+        " {message} {callstack} \(On {file}:{line}\)\";--suppress=missingIncludeSystem;--quiet;--verbose;--force"
     )
   endif()
   if(NOT CPPCHECK)
