@@ -25,6 +25,9 @@ TEST(Connection_Tests, HttpTests)
 	ASSERT_EQ("Test POST Message", recvData);
 	handler.sendGETRequest("", recvData);
 	ASSERT_EQ("", recvData);
+
+	pyResult.wait();
+	ASSERT_EQ(0, pyResult.get());
 }
 
 TEST(Connection_Tests, ZeroMQTests)
