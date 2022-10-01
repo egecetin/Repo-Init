@@ -1,4 +1,5 @@
 #include "Control.hpp"
+#include "Utils.hpp"
 #include "Version.h"
 #include "connection/Http.hpp"
 #include "connection/Zeromq.hpp"

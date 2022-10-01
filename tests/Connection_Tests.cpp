@@ -11,7 +11,6 @@
 
 TEST(Connection_Tests, HttpTests)
 {
-	// python -m restapi_echo_server --host 0.0.0.0 --port 8080
 	// Launch echo server
 	std::future<int> pyResult;
 	pyResult = std::async(std::launch::async, []() {
