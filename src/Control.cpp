@@ -118,7 +118,7 @@ void zmqControlThread()
 		}
 	}
 
-	// Init performance tracker if prometheus enabled
+	// Init performance and status tracker if prometheus enabled
 	std::shared_ptr<PerformanceTracker> zmqControlPerformanceTracker;
 	if (mainPrometheusHandler)
 		zmqControlPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("zmq_control_server");
@@ -138,7 +138,10 @@ void zmqControlThread()
 			std::vector<zmq::message_t> recv_msgs;
 			if (zmq::recv_multipart(socketRep, std::back_inserter(recv_msgs)))
 			{
-				zmqControlPerformanceTracker->startTimer();
+				if (zmqControlStatusTracker)
+					zmqControlStatusTracker->incrementActive();
+				if (zmqControlPerformanceTracker)
+					zmqControlPerformanceTracker->startTimer();
 				int reply = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;
 				std::string replyBody = "";
 				switch (*((uint64_t *)recv_msgs[0].data()))
@@ -170,15 +173,19 @@ void zmqControlThread()
 				}
 
 				// Update status
-				if (reply == ZMQ_EVENT_HANDSHAKE_SUCCEEDED)
-					zmqControlStatusTracker->incrementSuccess();
-				else
-					zmqControlStatusTracker->incrementFail();
+				if (zmqControlStatusTracker)
+				{
+					if (reply == ZMQ_EVENT_HANDSHAKE_SUCCEEDED)
+						zmqControlStatusTracker->incrementSuccess();
+					else
+						zmqControlStatusTracker->incrementFail();
+				}
 
 				// Send reply
 				socketRep.send(zmq::const_buffer(&reply, sizeof(reply)), zmq::send_flags::sndmore);
 				socketRep.send(zmq::const_buffer(replyBody.c_str(), replyBody.size()));
-				zmqControlPerformanceTracker->endTimer();
+				if (zmqControlPerformanceTracker)
+					zmqControlPerformanceTracker->endTimer();
 			}
 			else
 				spdlog::trace("Controller ZMQ receive timeout");
