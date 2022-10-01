@@ -35,7 +35,7 @@ void telnetControlThread()
 		spdlog::info("Telnet server created at {}", TELNET_PORT);
 	}
 	else
-		loopFlag =false;
+		loopFlag = false;
 
 	while (loopFlag)
 	{
@@ -111,7 +111,7 @@ void zmqControlThread()
 					zmqControlStatusTracker->incrementActive();
 				if (zmqControlPerformanceTracker)
 					zmqControlPerformanceTracker->startTimer();
-					
+
 				std::string replyBody = "";
 				int reply = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;
 				switch (*((uint64_t *)recv_msgs[0].data()))
