@@ -49,6 +49,7 @@ It provides the following features
 - Sanitizers            : Controls sanitizer targets
 - SvnVersion            : Get revision number of current commit
 - ThreadSanitizer       : Defines thread sanitizer
+- Tools                 : Prepares ClangTidy, IWYU and CppCheck
 - UndefinedBehaviourSan : Defines undefined behaviour sanitizer
 
 ## Scripts
