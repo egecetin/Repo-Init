@@ -20,9 +20,6 @@ namespace spdlog
 {
 	namespace sinks
 	{
-		template class SPDLOG_API sentry_api_sink<std::mutex>;
-		template class SPDLOG_API sentry_api_sink<details::null_mutex>;
-
 		template <typename Mutex> sentry_api_sink<Mutex>::sentry_api_sink(const std::string &sentryAddress)
 		{
 			sentryAvailable = false;
@@ -177,6 +174,9 @@ namespace spdlog
 		}
 
 		template <typename Mutex> void sentry_api_sink<Mutex>::flush_() {}
+
+		template class SPDLOG_API sentry_api_sink<std::mutex>;
+		template class SPDLOG_API sentry_api_sink<details::null_mutex>;
 	} // namespace sinks
 } // namespace spdlog
 // GCOVR_EXCL_STOP
