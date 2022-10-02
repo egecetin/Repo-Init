@@ -60,7 +60,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /opt/intel/oneapi
-          key: install-${{ hashFiles('**/intel-dependencies.txt') }}
+          key: oneapi-${{ hashFiles('**/intel-dependencies.txt') }}
       - name: Direct Install oneAPI
         if: steps.cache-install.outputs.cache-hit != 'true'
         run: |
