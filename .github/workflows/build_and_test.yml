@@ -22,7 +22,7 @@ jobs:
       - name: Prepare System
         run: |
           mkdir -p dist/temp dist/rpm dist/makeself
-          sudo apt install expect libcurl4-openssl-dev -y
+          sudo apt install gcovr expect libcurl4-openssl-dev -y
       - uses: actions/setup-python@v2
       - name: Install Test Requirements
         run: |
@@ -43,7 +43,7 @@ jobs:
       - name: Prepare System
         run: |
           mkdir -p dist/temp dist/rpm dist/makeself
-          sudo apt install expect libcurl4-openssl-dev -y
+          sudo apt install gcovr expect libcurl4-openssl-dev -y
       - uses: actions/setup-python@v2
       - name: Install Test Requirements
         run: |
