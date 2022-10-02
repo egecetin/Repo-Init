@@ -28,7 +28,7 @@ jobs:
         run: |
           pip install -r tests/data/requirements.txt
       - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B $BUILD_DIR
+        run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
       - name: Build
         run: cmake --build $BUILD_DIR --parallel
       - name: Run Tests
@@ -69,7 +69,7 @@ jobs:
       - name: Configure
         run: |
           source /opt/intel/oneapi/setvars.sh
-          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -S . -B $BUILD_DIR
+          cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -S . -B $BUILD_DIR
       - name: Build
         run: |
           source /opt/intel/oneapi/setvars.sh
