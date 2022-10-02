@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-python@v2
       - uses: pre-commit/action@v2.0.3
 
-  linux:
+  linux-gnu:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -33,6 +33,35 @@ jobs:
         run: cmake --build $BUILD_DIR --parallel
       - name: Run Tests
         run: ctest --test-dir $BUILD_DIR
+  linux-intel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Prepare System
+        run: |
+          mkdir -p dist/temp dist/rpm dist/makeself
+          sudo apt install expect libcurl4-openssl-dev -y
+      - uses: actions/setup-python@v2
+      - name: Install Test Requirements
+        run: |
+          pip install -r tests/data/requirements.txt
+      - name: Prepare Intel apt repository
+        run: |
+          wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | sudo tee /usr/share/keyrings/oneapi-archive-keyring.gpg > /dev/null
+          echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main"
+          sudo tee /etc/apt/sources.list.d/oneAPI.list
+          sudo apt get update
+      - name: Prepare dependencies
+        run: apt-cache depends intel-oneapi-compiler-dpcpp-cpp | tee intel-dependencies.txt
+      - name: Install oneAPI
+        id: cache-install
+        uses: actions/cache@v3
+        with:
+          path: /opt/intel/oneapi
+          key: install-${{ hashFiles('**/dependencies.txt') }}
 
   coverage:
     runs-on: ubuntu-latest
