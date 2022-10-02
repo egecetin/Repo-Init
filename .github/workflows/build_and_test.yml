@@ -68,12 +68,16 @@ jobs:
           sudo apt-get clean
       - name: Configure
         run: |
-          source /opt/intel/oneapi/setvars.sh 
+          source /opt/intel/oneapi/setvars.sh
           cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -S . -B $BUILD_DIR
       - name: Build
-        run: cmake --build $BUILD_DIR --parallel
+        run: |
+          source /opt/intel/oneapi/setvars.sh
+          cmake --build $BUILD_DIR --parallel
       - name: Run Tests
-        run: ctest --test-dir $BUILD_DIR
+        run: |
+          source /opt/intel/oneapi/setvars.sh
+          ctest --test-dir $BUILD_DIR
 
   coverage:
     runs-on: ubuntu-latest
