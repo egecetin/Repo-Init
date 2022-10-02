@@ -55,12 +55,25 @@ jobs:
           sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/oneAPI.list" -o APT::Get::List-Cleanup="0"
       - name: Prepare dependencies
         run: apt-cache depends intel-oneapi-compiler-dpcpp-cpp | tee intel-dependencies.txt
-      - name: Install oneAPI
+      - name: Cache Install oneAPI
         id: cache-install
         uses: actions/cache@v3
         with:
           path: /opt/intel/oneapi
           key: install-${{ hashFiles('**/intel-dependencies.txt') }}
+      - name: Direct Install oneAPI
+        if: steps.cache-install.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get install -y intel-oneapi-compiler-dpcpp-cpp
+          sudo apt-get clean
+      - name: Configure
+        run: |
+          source /opt/intel/oneapi/setvars.sh 
+          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -S . -B $BUILD_DIR
+      - name: Build
+        run: cmake --build $BUILD_DIR --parallel
+      - name: Run Tests
+        run: ctest --test-dir $BUILD_DIR
 
   coverage:
     runs-on: ubuntu-latest
