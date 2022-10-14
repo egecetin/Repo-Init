@@ -37,7 +37,7 @@ bool ZeroMQ::start()
 {
 	if (isActive)
 	{
-		spdlog::warn("Connection already initalized");
+		spdlog::warn("Connection already initialized");
 		return false;
 	}
 	if (isBinded)

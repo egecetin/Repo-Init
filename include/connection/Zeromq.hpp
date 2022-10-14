@@ -40,7 +40,7 @@ class ZeroMQ
 
 	/**
 	 * @brief Starts the connection
-	 * @return True if succesfully initialized
+	 * @return True if successfully initialized
 	 */
 	bool start();
 
