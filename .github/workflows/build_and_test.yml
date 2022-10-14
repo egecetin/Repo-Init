@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
-      - uses: pre-commit/action@v2.0.3
+      - uses: actions/setup-python@v4
+      - uses: pre-commit/action@v3.0.0
 
   linux-gnu:
     runs-on: ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
         run: |
           mkdir -p dist/temp dist/rpm dist/makeself
           sudo apt install gcovr expect libcurl4-openssl-dev -y
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
       - name: Install Test Requirements
         run: |
           pip install -r tests/data/requirements.txt
@@ -44,7 +44,7 @@ jobs:
         run: |
           mkdir -p dist/temp dist/rpm dist/makeself
           sudo apt install gcovr expect libcurl4-openssl-dev -y
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
       - name: Install Test Requirements
         run: |
           pip install -r tests/data/requirements.txt
@@ -90,7 +90,7 @@ jobs:
         run: |
           mkdir -p dist/temp dist/rpm dist/makeself
           sudo apt install gcovr expect libcurl4-openssl-dev -y
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
       - name: Install Test Requirements
         run: |
           pip install -r tests/data/requirements.txt
