@@ -46,6 +46,12 @@ TEST(Connection_Tests, ZeroMQTests)
 	std::shared_ptr<zmq::context_t> ctx = std::make_shared<zmq::context_t>(1);
 	ZeroMQ handler(ctx, zmq::socket_type::req, TEST_ZEROMQ_ECHO_SERVER_ADDR, false);
 
+	handler.getSocket()->set(zmq::sockopt::linger, 1234);
+	ASSERT_EQ(handler.getSocket()->get(zmq::sockopt::linger), 1234);
+
+	ASSERT_TRUE(handler.start());
+	ASSERT_FALSE(handler.start());
+
 	int testData1 = 15;
 	double testData2 = 3.14;
 	std::string testData3 = "Test Message";
@@ -67,5 +73,11 @@ TEST(Connection_Tests, ZeroMQTests)
 	pyResult.wait();
 	ASSERT_EQ(0, pyResult.get());
 
-	ZeroMQ handler2(ctx, zmq::socket_type::rep, TEST_ZEROMQ_ECHO_SERVER_ADDR2, true);
+	ZeroMQ handler2(zmq::socket_type::rep, TEST_ZEROMQ_ECHO_SERVER_ADDR2, true);
+
+	ASSERT_EQ(handler2.recvMessages().size(), 0);
+	ASSERT_EQ(handler2.sendMessages(vSendMsg), 0);
+
+	handler2.stop();
+	ASSERT_TRUE(handler2.start());
 }

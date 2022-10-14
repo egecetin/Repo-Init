@@ -10,6 +10,7 @@ void ZeroMQ::init(std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &
 	contextPtr = ctx;
 	socketAddr = addr;
 	isBinded = isBind;
+	isActive = false;
 
 	// Init ZMQ connection
 	socketPtr = std::make_unique<zmq::socket_t>(*contextPtr, type);
@@ -19,12 +20,6 @@ void ZeroMQ::init(std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &
 	socketPtr->set(zmq::sockopt::heartbeat_ivl, 1000);
 	socketPtr->set(zmq::sockopt::heartbeat_ttl, 3000);
 	socketPtr->set(zmq::sockopt::heartbeat_timeout, 3000);
-
-	if (isBinded)
-		socketPtr->bind(socketAddr);
-	else
-		socketPtr->connect(socketAddr);
-	spdlog::debug("Receiver created to {}", socketAddr);
 }
 
 ZeroMQ::ZeroMQ(const zmq::socket_type &type, const std::string &addr, bool isBind)
@@ -38,25 +33,53 @@ ZeroMQ::ZeroMQ(std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &typ
 	init(ctx, type, addr, isBind);
 }
 
-std::vector<zmq::message_t> ZeroMQ::recvMessages()
+bool ZeroMQ::start()
 {
-	std::vector<zmq::message_t> recvMsgs;
-	zmq::recv_multipart(*socketPtr, std::back_inserter(recvMsgs));
-	return recvMsgs;
+	if (isActive)
+	{
+		spdlog::warn("Connection already initalized");
+		return false;
+	}
+	if (isBinded)
+		socketPtr->bind(socketAddr);
+	else
+		socketPtr->connect(socketAddr);
+	isActive = true;
+	spdlog::debug("Receiver created to {}", socketAddr);
+
+	return true;
 }
 
-size_t ZeroMQ::sendMessages(const std::vector<zmq::const_buffer> &msg)
+void ZeroMQ::stop()
 {
-	zmq::send_result_t res = zmq::send_multipart(*socketPtr, msg);
-	if (res.has_value())
-		return res.value();
-	return 0;
-}
-
-ZeroMQ::~ZeroMQ()
-{
+	if (!isActive)
+		return;
 	if (isBinded)
 		socketPtr->unbind(socketAddr);
 	else
 		socketPtr->disconnect(socketAddr);
 }
+
+std::vector<zmq::message_t> ZeroMQ::recvMessages()
+{
+	std::vector<zmq::message_t> recvMsgs;
+	if (!isActive)
+		spdlog::warn("Connection needs to starting");
+	else
+		zmq::recv_multipart(*socketPtr, std::back_inserter(recvMsgs));
+	return recvMsgs;
+}
+
+size_t ZeroMQ::sendMessages(const std::vector<zmq::const_buffer> &msg)
+{
+	zmq::send_result_t res;
+	if (!isActive)
+		spdlog::warn("Connection needs to starting");
+	else
+		res = zmq::send_multipart(*socketPtr, msg);
+	if (res.has_value())
+		return res.value();
+	return 0;
+}
+
+ZeroMQ::~ZeroMQ() { stop(); }

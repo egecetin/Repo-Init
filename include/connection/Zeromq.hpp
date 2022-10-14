@@ -10,7 +10,9 @@ class ZeroMQ
 	// Internal socket
 	std::unique_ptr<zmq::socket_t> socketPtr;
 
-	// Should be binded?
+	// Is currently active
+	bool isActive;
+	// Should be binded
 	bool isBinded;
 	// Address to bind/connect
 	std::string socketAddr;
@@ -37,6 +39,17 @@ class ZeroMQ
 	ZeroMQ(std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr, bool isBind);
 
 	/**
+	 * @brief Starts the connection
+	 * @return True if succesfully initialized
+	 */
+	bool start();
+
+	/**
+	 * @brief Stops the connection
+	 */
+	void stop();
+
+	/**
 	 * @brief Receives multipart message
 	 * @return std::vector<zmq::message_t> Received messages
 	 */
@@ -48,6 +61,12 @@ class ZeroMQ
 	 * @return size_t Number of sent messages
 	 */
 	size_t sendMessages(const std::vector<zmq::const_buffer> &msg);
+
+	/**
+	 * @brief Get the reference of socket
+	 * @return const std::unique_ptr<zmq::socket_t>&
+	 */
+	const std::unique_ptr<zmq::socket_t> &getSocket() { return socketPtr; }
 
 	~ZeroMQ();
 };
