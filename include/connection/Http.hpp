@@ -20,7 +20,7 @@ class HTTP
 	 * @param[in] addr Full path to server
 	 * @param[in] timeoutInMs Connection timeout in milliseconds
 	 */
-	HTTP(const std::string &addr, int timeoutInMs = 1000);
+	explicit HTTP(const std::string &addr, int timeoutInMs = 1000);
 
 	/**
 	 * @brief Sends a POST request

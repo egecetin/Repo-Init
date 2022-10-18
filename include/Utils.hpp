@@ -55,7 +55,7 @@ class InputParser
 	 * @param[in] argc Number of input arguments
 	 * @param[in] argv Input arguments
 	 */
-	InputParser(int &argc, char **argv)
+	InputParser(const int &argc, char **argv)
 	{
 		for (int i = 1; i < argc; ++i)
 			this->tokens.push_back(std::string(argv[i]));

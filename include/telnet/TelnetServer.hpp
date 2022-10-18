@@ -163,7 +163,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	VEC_SP_TelnetSession sessions() const { return m_sessions; }
 
 	bool interactivePrompt() const { return m_promptString.length() > 0; }
-	void promptString(std::string prompt) { m_promptString = prompt; }
+	void promptString(const std::string &prompt) { m_promptString = prompt; }
 	std::string promptString() const { return m_promptString; }
 
   private:

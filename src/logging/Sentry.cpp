@@ -88,7 +88,7 @@ namespace spdlog
 				(void)!fscanf(cpu_info, "%*[^m]");
 			sentry_value_set_by_key(hostContext, "Model", sentry_value_new_string(hostBuffer));
 			rewind(cpu_info);
-			while (!fscanf(cpu_info, "vendor_id\t: %s", hostBuffer))
+			while (!fscanf(cpu_info, "vendor_id\t: %8191s", hostBuffer))
 				(void)!fscanf(cpu_info, "%*[^v]");
 			sentry_value_set_by_key(hostContext, "Vendor ID", sentry_value_new_string(hostBuffer));
 			fclose(cpu_info);
@@ -99,7 +99,6 @@ namespace spdlog
 			sentry_value_t networkContext = sentry_value_new_object();
 
 			struct ifaddrs *ifaddr, *ifa;
-			char host[INET6_ADDRSTRLEN];
 			if (getifaddrs(&ifaddr) != -1)
 			{
 				// Iterate interfaces
@@ -108,6 +107,7 @@ namespace spdlog
 					if (ifa->ifa_addr == NULL)
 						continue;
 
+					char host[INET6_ADDRSTRLEN];
 					switch (ifa->ifa_addr->sa_family)
 					{
 					case AF_INET:
