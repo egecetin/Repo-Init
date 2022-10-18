@@ -107,14 +107,13 @@ namespace spdlog
 					if (ifa->ifa_addr == NULL)
 						continue;
 
-					char host[INET6_ADDRSTRLEN];
 					switch (ifa->ifa_addr->sa_family)
 					{
 					case AF_INET:
 						if ((ifa->ifa_flags & IFF_PROMISC) || (ifa->ifa_flags & IFF_UP))
 						{
-							inet_ntop(AF_INET, &((struct sockaddr_in *)ifa->ifa_addr)->sin_addr, host,
-									  INET6_ADDRSTRLEN);
+							char host[INET_ADDRSTRLEN];
+							inet_ntop(AF_INET, &((struct sockaddr_in *)ifa->ifa_addr)->sin_addr, host, INET_ADDRSTRLEN);
 							sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".ipv4").c_str(),
 													sentry_value_new_string(host));
 						}
@@ -122,6 +121,7 @@ namespace spdlog
 					case AF_INET6:
 						if ((ifa->ifa_flags & IFF_PROMISC) || (ifa->ifa_flags & IFF_UP))
 						{
+							char host[INET6_ADDRSTRLEN];
 							inet_ntop(AF_INET6, &((struct sockaddr_in6 *)ifa->ifa_addr)->sin6_addr, host,
 									  INET6_ADDRSTRLEN);
 							sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".ipv6").c_str(),
@@ -131,6 +131,7 @@ namespace spdlog
 					case AF_PACKET:
 						if ((ifa->ifa_flags & IFF_PROMISC) || (ifa->ifa_flags & IFF_UP))
 						{
+							char host[18];
 							struct sockaddr_ll *s = (struct sockaddr_ll *)(ifa->ifa_addr);
 							sprintf(host, "%02x:%02x:%02x:%02x:%02x:%02x", s->sll_addr[0], s->sll_addr[1],
 									s->sll_addr[2], s->sll_addr[3], s->sll_addr[4], s->sll_addr[5]);
