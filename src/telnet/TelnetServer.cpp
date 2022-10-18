@@ -201,8 +201,7 @@ void TelnetSession::stripNVT(std::string &buffer)
 	size_t found;
 	do
 	{
-		unsigned char findChar = 0xff;
-		found = buffer.find_first_of((char)findChar);
+		found = buffer.find_first_of(0xff);
 		if (found != std::string::npos && (found + 2) <= buffer.length() - 1)
 			buffer.erase(found, 3);
 	} while (found != std::string::npos);
@@ -231,13 +230,9 @@ bool TelnetSession::processBackspace(std::string &buffer)
 	do
 	{
 		// Need to handle both \x7f and \b backspaces
-		unsigned char findChar = '\x7f';
-		found = buffer.find_first_of((char)findChar);
+		found = buffer.find_first_of('\x7f');
 		if (found == std::string::npos)
-		{
-			findChar = '\b';
-			found = buffer.find_first_of((char)findChar);
-		}
+			found = buffer.find_first_of('\b');
 
 		if (found != std::string::npos)
 		{
@@ -257,8 +252,7 @@ bool TelnetSession::processTab(std::string &buffer)
 	size_t found;
 	do
 	{
-		const char findChar = '\t';
-		found = buffer.find_first_of(findChar);
+		found = buffer.find_first_of('\t');
 		if (found != std::string::npos)
 		{
 			// Remove single tab
