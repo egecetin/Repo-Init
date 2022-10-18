@@ -35,7 +35,7 @@ class Reporter
 	 * @brief Construct a new Performance Reporter
 	 * @param[in] serverAddr Server address in <IP>:<Port> format
 	 */
-	Reporter(const std::string &serverAddr);
+	explicit Reporter(const std::string &serverAddr);
 
 	/**
 	 * @brief Adds a new Performance tracker to prometheus service

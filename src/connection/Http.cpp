@@ -51,10 +51,8 @@ HTTP::HTTP(const std::string &addr, int timeoutInMs)
 
 CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payload, std::string &receivedData)
 {
-	MemoryStruct chunk;
-	CURLcode retval = CURLcode::CURLE_FAILED_INIT;
-
 	// Prepare memory
+	MemoryStruct chunk;
 	chunk.size = 0;
 	chunk.memory = (char *)malloc(1);
 	if (!(chunk.memory))
@@ -70,7 +68,7 @@ CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payl
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&chunk);
 
 	// Perform request
-	retval = curl_easy_perform(curl);
+	CURLcode retval = curl_easy_perform(curl);
 
 	// Cleanup
 	receivedData = std::string(chunk.memory, chunk.size);
@@ -81,10 +79,8 @@ CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payl
 
 CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedData)
 {
-	MemoryStruct chunk;
-	CURLcode retval = CURLcode::CURLE_FAILED_INIT;
-
 	// Prepare memory
+	MemoryStruct chunk;
 	chunk.size = 0;
 	chunk.memory = (char *)malloc(1);
 	if (!(chunk.memory))
@@ -99,7 +95,7 @@ CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedDat
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&chunk); // Register user-supplied memory
 
 	// Perform request
-	retval = curl_easy_perform(curl);
+	CURLcode retval = curl_easy_perform(curl);
 	receivedData = std::string(chunk.memory, chunk.size);
 
 	// Cleanup
