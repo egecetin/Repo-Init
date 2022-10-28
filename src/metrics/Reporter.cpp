@@ -8,18 +8,15 @@ Reporter *mainPrometheusHandler;
 
 Reporter::Reporter(const std::string &serverAddr)
 {
-	// From linux kernel (https://github.com/torvalds/linux/blob/master/tools/power/x86/turbostat/turbostat.c)
-	uint32_t eax_crystal, ebx_tsc, crystal_hz, edx;
-	eax_crystal = ebx_tsc = crystal_hz = edx = 0;
-	__cpuid(0x15, eax_crystal, ebx_tsc, crystal_hz, edx);
-
-	if (!ebx_tsc || !crystal_hz || !eax_crystal)
+	uint32_t eax = 0, ebx = 0, ecx = 0, edx = 0;
+	__cpuid(0x16, eax, ebx, ecx, edx);
+	if (eax)
+		tsc_hz = eax * uint64_t(1000000);
+	else
 	{
 		spdlog::error("Can't determine TSC frequency");
 		tsc_hz = 1;
 	}
-	else
-		tsc_hz = (uint64_t)crystal_hz * ebx_tsc / eax_crystal;
 
 	// Init service
 	mainExposer = std::make_unique<prometheus::Exposer>(serverAddr);
