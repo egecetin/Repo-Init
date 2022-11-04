@@ -42,7 +42,6 @@ namespace spdlog
 
 			// Context: Version
 			std::string versionBuffer;
-			int major = 0, minor = 0, patch = 0;
 			sentry_value_t versionContext = sentry_value_new_object();
 			versionBuffer = "v" + std::string(PROJECT_FULL_REVISION);
 			sentry_value_set_by_key(versionContext, PROJECT_NAME, sentry_value_new_string(versionBuffer.c_str()));
