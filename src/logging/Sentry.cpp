@@ -46,23 +46,7 @@ namespace spdlog
 			sentry_value_t versionContext = sentry_value_new_object();
 			versionBuffer = "v" + std::string(PROJECT_FULL_REVISION);
 			sentry_value_set_by_key(versionContext, PROJECT_NAME, sentry_value_new_string(versionBuffer.c_str()));
-
 			/* ############################# MAKE MODIFICATIONS HERE ############################# */
-			versionBuffer = "v" + std::to_string(CPPZMQ_VERSION_MAJOR) + "." + std::to_string(CPPZMQ_VERSION_MINOR) +
-							"." + std::to_string(CPPZMQ_VERSION_PATCH);
-			sentry_value_set_by_key(versionContext, "CppZMQ", sentry_value_new_string(versionBuffer.c_str()));
-			versionBuffer = "v" + std::string(LIBCURL_VERSION);
-			sentry_value_set_by_key(versionContext, "Curl", sentry_value_new_string(versionBuffer.c_str()));
-			versionBuffer = "v" + std::string(RAPIDJSON_VERSION_STRING);
-			sentry_value_set_by_key(versionContext, "Rapidjson", sentry_value_new_string(versionBuffer.c_str()));
-			versionBuffer = "v" + std::string(SENTRY_SDK_VERSION);
-			sentry_value_set_by_key(versionContext, "Sentry", sentry_value_new_string(versionBuffer.c_str()));
-			versionBuffer = "v" + std::to_string(SPDLOG_VER_MAJOR) + "." + std::to_string(SPDLOG_VER_MINOR) + "." +
-							std::to_string(SPDLOG_VER_PATCH);
-			sentry_value_set_by_key(versionContext, "Spdlog", sentry_value_new_string(versionBuffer.c_str()));
-			zmq_version(&major, &minor, &patch);
-			versionBuffer = "v" + std::to_string(major) + "." + std::to_string(minor) + "." + std::to_string(patch);
-			sentry_value_set_by_key(versionContext, "ZeroMQ", sentry_value_new_string(versionBuffer.c_str()));
 
 			/* ################################ END MODIFICATIONS ################################ */
 
