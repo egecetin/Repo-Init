@@ -42,8 +42,7 @@ volatile bool sigReadyFlag;
 // GCOVR_EXCL_START
 void print_version(void)
 {
-	int major = 0, minor = 0, patch = 0;
-	spdlog::info("{}                                : v{}", PROJECT_NAME, PROJECT_FULL_REVISION);
+	spdlog::info("{}                      : v{}", PROJECT_NAME, PROJECT_FULL_REVISION);
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 
 	/* ################################ END MODIFICATIONS ################################ */
