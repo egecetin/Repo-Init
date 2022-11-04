@@ -45,6 +45,8 @@ namespace spdlog
 			sentry_value_t versionContext = sentry_value_new_object();
 			versionBuffer = "v" + std::string(PROJECT_FULL_REVISION);
 			sentry_value_set_by_key(versionContext, PROJECT_NAME, sentry_value_new_string(versionBuffer.c_str()));
+			versionBuffer = std::string(PROJECT_BUILD_DATE) + " " + PROJECT_BUILD_TIME;
+			sentry_value_set_by_key(versionContext, "Release Date", sentry_value_new_string(versionBuffer.c_str()));
 			/* ############################# MAKE MODIFICATIONS HERE ############################# */
 
 			/* ################################ END MODIFICATIONS ################################ */

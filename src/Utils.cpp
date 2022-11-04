@@ -43,6 +43,7 @@ volatile bool sigReadyFlag;
 void print_version(void)
 {
 	spdlog::info("{}                      : v{}", PROJECT_NAME, PROJECT_FULL_REVISION);
+	spdlog::info("Release date             : {} {}", PROJECT_BUILD_DATE, PROJECT_BUILD_TIME);
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 
 	/* ################################ END MODIFICATIONS ################################ */
