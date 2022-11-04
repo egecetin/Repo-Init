@@ -35,7 +35,7 @@ void telnetControlThread()
 		spdlog::info("Telnet server created at {}", TELNET_PORT);
 	}
 	else
-		loopFlag = false;
+		return;
 
 	while (loopFlag)
 	{
@@ -70,6 +70,8 @@ void zmqControlThread()
 	try
 	{
 		zmqContext = std::make_unique<ZeroMQ>(zmq::socket_type::rep, hostAddrRep, true);
+		if (!zmqContext->start())
+			throw std::runtime_error("Can't init ZMQ control channel");
 	}
 	catch (const std::exception &e)
 	{

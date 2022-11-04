@@ -77,12 +77,12 @@ int main(int argc, char **argv)
 	alarm(ALARM_INTERVAL);
 
 	// Join threads
-	if (telnetControlTh.joinable())
-		telnetControlTh.join();
-	spdlog::info("Telnet Controller joined");
 	if (zmqControlTh.joinable())
 		zmqControlTh.join();
 	spdlog::info("ZMQ Controller joined");
+	if (telnetControlTh.joinable())
+		telnetControlTh.join();
+	spdlog::info("Telnet Controller joined");
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 
 	/* ################################ END MODIFICATIONS ################################ */
