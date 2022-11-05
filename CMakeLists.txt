@@ -63,15 +63,18 @@ file(GLOB ProjectSources
 # Include directories
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-include_directories(${PROJECT_SOURCE_DIR}/thirdparty/libzmq)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/libzmq/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/spdlog/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/pull/include)
+include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/core/include)
+include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/pull/include)
 
 # Disable/Enable options of subprojects
+option(BUILD_STATIC "" OFF) # libzmq
 option(BUILD_TESTS "" OFF) # libzmq
 option(WITH_DOCS "" OFF) # libzmq
 option(CPPZMQ_BUILD_TESTS "" OFF)

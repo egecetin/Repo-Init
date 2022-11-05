@@ -42,17 +42,9 @@ volatile bool sigReadyFlag;
 // GCOVR_EXCL_START
 void print_version(void)
 {
-	int major = 0, minor = 0, patch = 0;
-	spdlog::info("{}                                : v{}", PROJECT_NAME, PROJECT_FULL_REVISION);
+	spdlog::info("{}                      : v{}", PROJECT_NAME, PROJECT_FULL_REVISION);
+	spdlog::info("Release date             : {} {}", PROJECT_BUILD_DATE, PROJECT_BUILD_TIME);
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
-	spdlog::info("  CppZMQ                          : v{}.{}.{}", CPPZMQ_VERSION_MAJOR, CPPZMQ_VERSION_MINOR,
-				 CPPZMQ_VERSION_PATCH);
-	spdlog::info("  Curl                            : v{}", LIBCURL_VERSION);
-	spdlog::info("  Rapidjson                       : v{}", RAPIDJSON_VERSION_STRING);
-	spdlog::info("  Sentry                          : v{}", SENTRY_SDK_VERSION);
-	spdlog::info("  Spdlog                          : v{}.{}.{}", SPDLOG_VER_MAJOR, SPDLOG_VER_MINOR, SPDLOG_VER_PATCH);
-	zmq_version(&major, &minor, &patch);
-	spdlog::info("  ZeroMQ                          : v{}.{}.{}", major, minor, patch);
 
 	/* ################################ END MODIFICATIONS ################################ */
 }
