@@ -19,7 +19,7 @@ Reporter::Reporter(const std::string &serverAddr)
 	}
 
 	// Init service
-	mainExposer = std::make_unique<prometheus::Exposer>(serverAddr);
+	mainExposer = std::make_unique<prometheus::Exposer>(serverAddr, 1);
 	spdlog::debug("Prometheus server start at {}", serverAddr);
 
 	struct timespec ts;
