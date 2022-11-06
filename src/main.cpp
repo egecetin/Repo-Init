@@ -52,7 +52,6 @@ int main(int argc, char **argv)
 	alarmCtr = 1; // Should be non-zero at startup
 	currentTime = 0;
 	loopFlag = true;
-	sigReadyFlag = false;
 
 	ALARM_INTERVAL = 1;
 	HEARTBEAT_INTERVAL = 20;

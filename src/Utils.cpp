@@ -34,7 +34,6 @@ std::string PROMETHEUS_ADDR;
 volatile time_t currentTime;
 volatile uintmax_t alarmCtr;
 volatile bool loopFlag;
-volatile bool sigReadyFlag;
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 
 /* ################################ END MODIFICATIONS ################################ */
@@ -202,8 +201,6 @@ void alarmFunc(int)
 	clock_gettime(CLOCK_TAI, &ts);
 	currentTime = ts.tv_sec;
 
-	if (!sigReadyFlag)
-		sigReadyFlag = true;
 	if (loopFlag)
 		alarm(ALARM_INTERVAL);
 }

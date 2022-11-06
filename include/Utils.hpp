@@ -38,8 +38,6 @@ extern volatile time_t currentTime;
 extern volatile uintmax_t alarmCtr;
 /// Main flag to control loops. Can be modified by SIGINT
 extern volatile bool loopFlag;
-/// Indicates whether the variables updated by SIGALRM are ready
-extern volatile bool sigReadyFlag;
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 
 /* ################################ END MODIFICATIONS ################################ */
