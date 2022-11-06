@@ -42,8 +42,8 @@ volatile bool sigReadyFlag;
 // GCOVR_EXCL_START
 void print_version(void)
 {
-	spdlog::info("{}                      : v{}", PROJECT_NAME, PROJECT_FULL_REVISION);
-	spdlog::info("Release date             : {} {}", PROJECT_BUILD_DATE, PROJECT_BUILD_TIME);
+	spdlog::info("{:<15}: v{} {} {} {}", PROJECT_NAME, PROJECT_FULL_REVISION, BUILD_TYPE, PROJECT_BUILD_DATE,
+				 PROJECT_BUILD_TIME);
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 
 	/* ################################ END MODIFICATIONS ################################ */
