@@ -18,10 +18,7 @@ size_t HTTP::writeDataCallback(void *contents, size_t size, size_t nmemb, void *
 
 	char *ptr = (char *)realloc(mem->memory, mem->size + realsize + 1);
 	if (!ptr)
-	{
-		spdlog::error("Not enough memory (realloc returned NULL)");
-		return 0;
-	}
+		throw std::runtime_error("Out of memory (realloc returned NULL)");
 
 	mem->memory = ptr;
 	memcpy(&(mem->memory[mem->size]), contents, realsize);
@@ -57,10 +54,8 @@ CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payl
 	chunk.size = 0;
 	chunk.memory = (char *)malloc(1);
 	if (!(chunk.memory))
-	{
-		spdlog::error("Not enough memory (malloc returned NULL)");
-		return CURLE_OUT_OF_MEMORY;
-	}
+		throw std::runtime_error("Out of memory (malloc returned NULL)");
+
 	// Prepare request specific options
 	curl_easy_setopt(curl, CURLOPT_POST, 1L);
 	curl_easy_setopt(curl, CURLOPT_URL, (hostAddr + index).c_str());
@@ -87,10 +82,7 @@ CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedDat
 	chunk.size = 0;
 	chunk.memory = (char *)malloc(1);
 	if (!(chunk.memory))
-	{
-		spdlog::error("Not enough memory (malloc returned NULL)");
-		return CURLE_OUT_OF_MEMORY;
-	}
+		throw std::runtime_error("Out of memory (malloc returned NULL)");
 
 	// Prepare request specific options
 	curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);

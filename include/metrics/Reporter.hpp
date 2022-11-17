@@ -26,7 +26,7 @@ class Reporter
 	/// Mutex for concurrent add tracker calls
 	std::mutex guardLock;
 	/// TSC frequency
-	uint64_t tsc_hz;
+	uint64_t tscHz;
 	/// Initialize time
 	prometheus::Info *initTime;
 
@@ -40,10 +40,12 @@ class Reporter
 	/**
 	 * @brief Adds a new Performance tracker to prometheus service
 	 * @param[in] name Name of the metric
+	 * @param[in] windowLength Length of the window for moving statistical properties
 	 * @param[in] id Optional ID to add metric names
 	 * @return std::shared_ptr<PerformanceTracker> Pointer to new performance tracker
 	 */
-	std::shared_ptr<PerformanceTracker> addNewPerfTracker(const std::string &name, uint64_t id = 0);
+	std::shared_ptr<PerformanceTracker> addNewPerfTracker(const std::string &name, size_t windowLength,
+														  uint64_t id = 0);
 
 	/**
 	 * @brief Adds a new Status tracker to prometheus service

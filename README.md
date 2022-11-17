@@ -15,9 +15,12 @@ It provides the following features
   - Logging
     - Spdlog with rotating file, syslog and coloured stdout outputs
     - Sentry for automatic forwarding of logs to a HTTP server
-    - Prometheus client for track internal metrics like error counts, performance of functions
+    - Prometheus client for track internal metrics like error counts, performance of functions including
+      - Incremental counters to track success/fail rates and active processes,
+      - Minimum and maximum timings,
+      - Global and moving mean and variances to detect performance bottlenecks caused by environmental effects
   - User interactivity
-    - Telnet
+    - Embedded Telnet Server
     - ZeroMQ
 
 ## Contents

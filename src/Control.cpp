@@ -22,7 +22,7 @@ void telnetControlThread()
 	// Init performance tracker if prometheus enabled
 	std::shared_ptr<PerformanceTracker> telnetPerformanceTracker(nullptr);
 	if (mainPrometheusHandler)
-		telnetPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("telnet_server");
+		telnetPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("telnet_server", 1000);
 	std::shared_ptr<StatusTracker> telnetStatusTracker(nullptr);
 	if (mainPrometheusHandler)
 		telnetStatusTracker = mainPrometheusHandler->addNewStatTracker("telnet_server");
@@ -97,13 +97,14 @@ void zmqControlThread()
 	// Init performance and status tracker if prometheus enabled
 	std::shared_ptr<PerformanceTracker> zmqControlPerformanceTracker(nullptr);
 	if (mainPrometheusHandler)
-		zmqControlPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("zmq_control_server");
+		zmqControlPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("zmq_control_server", 1000);
 	std::shared_ptr<StatusTracker> zmqControlStatusTracker(nullptr);
 	if (mainPrometheusHandler)
 		zmqControlStatusTracker = mainPrometheusHandler->addNewStatTracker("zmq_control_server");
 
 	while (loopFlag)
 	{
+		// ZeroMQ
 		try
 		{
 			std::vector<zmq::message_t> recv_msgs = zmqContext->recvMessages();
@@ -173,16 +174,25 @@ void zmqControlThread()
 			spdlog::error("ZMQ failed: {}", e.what());
 		}
 
-		if (heartBeat && (alarmCtr - oldCtr) > HEARTBEAT_INTERVAL)
+		// Heartbeat
+		try
 		{
-			long statusCode = -1;
-			std::string recvPayload;
-			CURLcode retCode = heartBeat->sendPOSTRequest("", "", recvPayload, statusCode);
-			if (retCode != CURLE_OK)
-				spdlog::info("Heartbeat failed: {}", curl_easy_strerror(retCode));
-			if (statusCode != 200)
-				spdlog::info("Heartbeat failed: {}", statusCode);
-			oldCtr = alarmCtr;
+			if (heartBeat && (alarmCtr - oldCtr) > HEARTBEAT_INTERVAL)
+			{
+				long statusCode = -1;
+				std::string recvPayload;
+
+				CURLcode retCode = heartBeat->sendPOSTRequest("", "", recvPayload, statusCode);
+				if (retCode != CURLE_OK)
+					spdlog::info("Heartbeat failed: {}", curl_easy_strerror(retCode));
+				if (statusCode != 200)
+					spdlog::info("Heartbeat failed: {}", statusCode);
+				oldCtr = alarmCtr;
+			}
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Heartbeat failed: {}", e.what());
 		}
 	}
 

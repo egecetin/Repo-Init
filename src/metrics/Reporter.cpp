@@ -11,11 +11,11 @@ Reporter::Reporter(const std::string &serverAddr)
 	uint32_t eax = 0, ebx = 0, ecx = 0, edx = 0;
 	__cpuid(0x16, eax, ebx, ecx, edx);
 	if (eax)
-		tsc_hz = eax * uint64_t(1000000);
+		tscHz = eax * uint64_t(1000000);
 	else
 	{
 		spdlog::error("Can't determine TSC frequency");
-		tsc_hz = 1;
+		tscHz = 1;
 	}
 
 	// Init service
@@ -36,12 +36,13 @@ Reporter::Reporter(const std::string &serverAddr)
 	mainExposer->RegisterCollectable(reg);
 }
 
-std::shared_ptr<PerformanceTracker> Reporter::addNewPerfTracker(const std::string &name, uint64_t id)
+std::shared_ptr<PerformanceTracker> Reporter::addNewPerfTracker(const std::string &name, size_t windowLength,
+																uint64_t id)
 {
 	std::lock_guard<std::mutex> guard(guardLock);
 
 	auto reg = std::make_shared<prometheus::Registry>();
-	auto tracker = std::make_shared<PerformanceTracker>(reg, name, tsc_hz, id);
+	auto tracker = std::make_shared<PerformanceTracker>(reg, name, tscHz, windowLength, id);
 	mainExposer->RegisterCollectable(reg);
 
 	vRegister.push_back(reg);
