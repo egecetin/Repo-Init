@@ -64,8 +64,8 @@ class PerformanceTracker
 	 * @param[in] winLen Window length for moving operations
 	 * @param[in] id Optional ID to add to metric names
 	 */
-	PerformanceTracker(std::shared_ptr<prometheus::Registry> &reg, const std::string &name, const uint64_t tscHz, const size_t winLen,
-					   const uint64_t id = 0);
+	PerformanceTracker(std::shared_ptr<prometheus::Registry> &reg, const std::string &name, const uint64_t tscHz,
+					   const size_t winLen, const uint64_t id = 0);
 
 	/**
 	 * @brief Starts the chronometer

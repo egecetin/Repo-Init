@@ -86,7 +86,7 @@ TEST(Performance_Tests, ReporterTests)
 	ASSERT_TRUE(std::stoi(readValues[2]));	  // testPerformanceTracker_var_timing_1
 	ASSERT_TRUE(std::stoi(readValues[3]));	  // testPerformanceTracker_moving_mean_timing_1
 	ASSERT_TRUE(std::stoi(readValues[4]));	  // testPerformanceTracker_moving_var_timing_1
-	ASSERT_GT(std::stoi(readValues[5]), 10); // testPerformanceTracker_max_timing_1
+	ASSERT_GT(std::stoi(readValues[5]), 10);  // testPerformanceTracker_max_timing_1
 	ASSERT_LE(std::stoi(readValues[6]), 1e6); // testPerformanceTracker_min_timing_1
 	ASSERT_EQ(2, std::stoi(readValues[7]));	  // testStatTracker_total_event_ctr_2
 	ASSERT_EQ(1, std::stoi(readValues[8]));	  // testStatTracker_success_event_ctr_2

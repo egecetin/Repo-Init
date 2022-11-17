@@ -44,7 +44,8 @@ class Reporter
 	 * @param[in] id Optional ID to add metric names
 	 * @return std::shared_ptr<PerformanceTracker> Pointer to new performance tracker
 	 */
-	std::shared_ptr<PerformanceTracker> addNewPerfTracker(const std::string &name, size_t windowLength, uint64_t id = 0);
+	std::shared_ptr<PerformanceTracker> addNewPerfTracker(const std::string &name, size_t windowLength,
+														  uint64_t id = 0);
 
 	/**
 	 * @brief Adds a new Status tracker to prometheus service

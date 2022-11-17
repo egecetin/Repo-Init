@@ -36,7 +36,8 @@ Reporter::Reporter(const std::string &serverAddr)
 	mainExposer->RegisterCollectable(reg);
 }
 
-std::shared_ptr<PerformanceTracker> Reporter::addNewPerfTracker(const std::string &name, size_t windowLength, uint64_t id)
+std::shared_ptr<PerformanceTracker> Reporter::addNewPerfTracker(const std::string &name, size_t windowLength,
+																uint64_t id)
 {
 	std::lock_guard<std::mutex> guard(guardLock);
 
