@@ -30,7 +30,8 @@ class HTTP
 	 * @param[out] statusCode HTTP status code. Set if CURLE_OK, otherwise unchanged
 	 * @return CURLcode Status of operation. CURLE_OK if successful.
 	 */
-	CURLcode sendPOSTRequest(const std::string &index, const std::string &payload, std::string &receivedData, long &statusCode);
+	CURLcode sendPOSTRequest(const std::string &index, const std::string &payload, std::string &receivedData,
+							 long &statusCode);
 
 	/**
 	 * @brief Sends a GET request

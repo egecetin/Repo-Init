@@ -49,7 +49,8 @@ HTTP::HTTP(const std::string &addr, int timeoutInMs)
 	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, false);
 }
 
-CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payload, std::string &receivedData, long &statusCode)
+CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payload, std::string &receivedData,
+							   long &statusCode)
 {
 	// Prepare memory
 	MemoryStruct chunk;
