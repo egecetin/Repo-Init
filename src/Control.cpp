@@ -175,10 +175,13 @@ void zmqControlThread()
 
 		if (heartBeat && (alarmCtr - oldCtr) > HEARTBEAT_INTERVAL)
 		{
+			long statusCode = -1;
 			std::string recvPayload;
-			CURLcode retCode = heartBeat->sendPOSTRequest("", "", recvPayload);
+			CURLcode retCode = heartBeat->sendPOSTRequest("", "", recvPayload, statusCode);
 			if (retCode != CURLE_OK)
 				spdlog::info("Heartbeat failed: {}", curl_easy_strerror(retCode));
+			if (statusCode != 200)
+				spdlog::info("Heartbeat failed: {}", statusCode);
 			oldCtr = alarmCtr;
 		}
 	}

@@ -17,7 +17,7 @@ size_t HTTP::writeDataCallback(void *contents, size_t size, size_t nmemb, void *
 	MemoryStruct *mem = (MemoryStruct *)userp;
 
 	char *ptr = (char *)realloc(mem->memory, mem->size + realsize + 1);
-	if (ptr == NULL)
+	if (!ptr)
 	{
 		spdlog::error("Not enough memory (realloc returned NULL)");
 		return 0;
@@ -49,7 +49,8 @@ HTTP::HTTP(const std::string &addr, int timeoutInMs)
 	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, false);
 }
 
-CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payload, std::string &receivedData)
+CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payload, std::string &receivedData,
+							   long &statusCode)
 {
 	// Prepare memory
 	MemoryStruct chunk;
@@ -69,15 +70,17 @@ CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payl
 
 	// Perform request
 	CURLcode retval = curl_easy_perform(curl);
+	if (retval == CURLE_OK)
+		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &statusCode);
+	receivedData = std::string(chunk.memory, chunk.size);
 
 	// Cleanup
-	receivedData = std::string(chunk.memory, chunk.size);
 	free(chunk.memory);
 
 	return retval;
 }
 
-CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedData)
+CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedData, long &statusCode)
 {
 	// Prepare memory
 	MemoryStruct chunk;
@@ -96,6 +99,8 @@ CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedDat
 
 	// Perform request
 	CURLcode retval = curl_easy_perform(curl);
+	if (retval == CURLE_OK)
+		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &statusCode);
 	receivedData = std::string(chunk.memory, chunk.size);
 
 	// Cleanup

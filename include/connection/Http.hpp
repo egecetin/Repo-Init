@@ -27,17 +27,20 @@ class HTTP
 	 * @param[in] index Value to append to server address
 	 * @param[in] payload Payload to send to server
 	 * @param[out] receivedData Received reply from server
+	 * @param[out] statusCode HTTP status code. Set if CURLE_OK, otherwise unchanged
 	 * @return CURLcode Status of operation. CURLE_OK if successful.
 	 */
-	CURLcode sendPOSTRequest(const std::string &index, const std::string &payload, std::string &receivedData);
+	CURLcode sendPOSTRequest(const std::string &index, const std::string &payload, std::string &receivedData,
+							 long &statusCode);
 
 	/**
 	 * @brief Sends a GET request
 	 * @param[in] index Value to append to server address
 	 * @param[in] receivedData Received reply from server
+	 * @param[out] statusCode HTTP status code, Set if CURLE_OK, otherwise unchanged
 	 * @return CURLcode Status of operation. CURLE_OK if successful.
 	 */
-	CURLcode sendGETRequest(const std::string &index, std::string &receivedData);
+	CURLcode sendGETRequest(const std::string &index, std::string &receivedData, long &statusCode);
 
 	/**
 	 * @brief Destroys the HTTP object
