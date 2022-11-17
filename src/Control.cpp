@@ -104,6 +104,7 @@ void zmqControlThread()
 
 	while (loopFlag)
 	{
+		// ZeroMQ
 		try
 		{
 			std::vector<zmq::message_t> recv_msgs = zmqContext->recvMessages();
@@ -173,16 +174,25 @@ void zmqControlThread()
 			spdlog::error("ZMQ failed: {}", e.what());
 		}
 
-		if (heartBeat && (alarmCtr - oldCtr) > HEARTBEAT_INTERVAL)
+		// Heartbeat
+		try
 		{
-			long statusCode = -1;
-			std::string recvPayload;
-			CURLcode retCode = heartBeat->sendPOSTRequest("", "", recvPayload, statusCode);
-			if (retCode != CURLE_OK)
-				spdlog::info("Heartbeat failed: {}", curl_easy_strerror(retCode));
-			if (statusCode != 200)
-				spdlog::info("Heartbeat failed: {}", statusCode);
-			oldCtr = alarmCtr;
+			if (heartBeat && (alarmCtr - oldCtr) > HEARTBEAT_INTERVAL)
+			{
+				long statusCode = -1;
+				std::string recvPayload;
+
+				CURLcode retCode = heartBeat->sendPOSTRequest("", "", recvPayload, statusCode);
+				if (retCode != CURLE_OK)
+					spdlog::info("Heartbeat failed: {}", curl_easy_strerror(retCode));
+				if (statusCode != 200)
+					spdlog::info("Heartbeat failed: {}", statusCode);
+				oldCtr = alarmCtr;
+			}
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Heartbeat failed: {}", e.what());
 		}
 	}
 
