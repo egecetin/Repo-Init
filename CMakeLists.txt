@@ -13,6 +13,8 @@ include(GraphViz)
 include(Sanitizers)
 include(SvnVersion)
 
+option(XXX_ENABLE_TESTS "Enables XXX tests" ON)
+
 if(NOT DEFINED REVISION_VERSION)
   message(SEND_ERROR "Can't find SVN or Git. The folder is not under version control.")
 endif()
@@ -97,11 +99,13 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/sentry EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
 
 # Enable test framework
-set_property(GLOBAL PROPERTY CTEST_TARGETS_ADDED 1)
-include(CTest)
-enable_testing()
+if(XXX_ENABLE_TESTS)
+  set_property(GLOBAL PROPERTY CTEST_TARGETS_ADDED 1)
+  include(CTest)
+  enable_testing()
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
+  add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
+endif()
 
 # Set Targets
 add_library("${PROJECT_NAME}_Lib_Shared" SHARED ${ProjectSources})
@@ -119,6 +123,7 @@ target_link_libraries(
   sentry
   core
   pull)
+add_sanitizers("${PROJECT_NAME}_Lib_Shared")
 
 add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
