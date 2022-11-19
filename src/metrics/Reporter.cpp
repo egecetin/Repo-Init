@@ -2,8 +2,6 @@
 
 #include <cpuid.h>
 
-#include <spdlog/spdlog.h>
-
 Reporter *mainPrometheusHandler;
 
 Reporter::Reporter(const std::string &serverAddr)
@@ -13,14 +11,10 @@ Reporter::Reporter(const std::string &serverAddr)
 	if (eax)
 		tscHz = eax * uint64_t(1000000);
 	else
-	{
-		spdlog::error("Can't determine TSC frequency");
 		tscHz = 1;
-	}
 
 	// Init service
 	mainExposer = std::make_unique<prometheus::Exposer>(serverAddr, 1);
-	spdlog::debug("Prometheus server start at {}", serverAddr);
 
 	struct timespec ts;
 	clock_gettime(CLOCK_TAI, &ts);

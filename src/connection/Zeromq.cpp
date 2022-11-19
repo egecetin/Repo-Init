@@ -36,16 +36,12 @@ ZeroMQ::ZeroMQ(std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &typ
 bool ZeroMQ::start()
 {
 	if (isActive)
-	{
-		spdlog::warn("Connection already initialized");
 		return false;
-	}
 	if (isBinded)
 		socketPtr->bind(socketAddr);
 	else
 		socketPtr->connect(socketAddr);
 	isActive = true;
-	spdlog::debug("Receiver created to {}", socketAddr);
 
 	return true;
 }

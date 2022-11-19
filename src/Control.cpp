@@ -184,9 +184,9 @@ void zmqControlThread()
 
 				CURLcode retCode = heartBeat->sendPOSTRequest("", "", recvPayload, statusCode);
 				if (retCode != CURLE_OK)
-					spdlog::info("Heartbeat failed: {}", curl_easy_strerror(retCode));
+					spdlog::warn("Heartbeat failed: {}", curl_easy_strerror(retCode));
 				if (statusCode != 200)
-					spdlog::info("Heartbeat failed: {}", statusCode);
+					spdlog::warn("Heartbeat failed: {}", statusCode);
 				oldCtr = alarmCtr;
 			}
 		}
