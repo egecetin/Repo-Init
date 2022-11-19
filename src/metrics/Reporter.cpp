@@ -6,14 +6,11 @@ Reporter *mainPrometheusHandler;
 
 Reporter::Reporter(const std::string &serverAddr)
 {
-	std::string unit;
+	std::string unit = "seconds";
 	uint32_t eax = 0, ebx = 0, ecx = 0, edx = 0;
 	__cpuid(0x16, eax, ebx, ecx, edx);
 	if (eax)
-	{
 		tscHz = eax * uint64_t(1000000);
-		unit = "seconds";
-	}
 	else
 	{
 		tscHz = 1;
