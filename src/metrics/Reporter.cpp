@@ -33,10 +33,10 @@ Reporter::Reporter(const std::string &serverAddr)
 					.Register(*reg)
 					.Add({{"init_time", std::to_string(ts.tv_sec)}});
 	unitPerformance = &prometheus::BuildInfo()
-					.Name("unit_performance")
-					.Help("Unit of performance values")
-					.Register(*reg)
-					.Add({{"unit_time", unit}});
+						   .Name("unit_performance")
+						   .Help("Unit of performance values")
+						   .Register(*reg)
+						   .Add({{"unit_time", unit}});
 	vRegister.push_back(reg);
 
 	mainExposer->RegisterCollectable(reg);
