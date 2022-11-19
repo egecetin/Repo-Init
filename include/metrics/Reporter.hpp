@@ -29,6 +29,8 @@ class Reporter
 	uint64_t tscHz;
 	/// Initialize time
 	prometheus::Info *initTime;
+	/// Performance metric is in clock counter or in seconds
+	prometheus::Info *unitPerformance;
 
   public:
 	/**

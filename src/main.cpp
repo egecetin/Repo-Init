@@ -61,7 +61,10 @@ int main(int argc, char **argv)
 
 	// Init prometheus server
 	if (PROMETHEUS_ADDR.size())
+	{
 		mainPrometheusHandler = new Reporter(PROMETHEUS_ADDR);
+		spdlog::info("Prometheus server start at {}", PROMETHEUS_ADDR);
+	}
 
 	// Start threads
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */

@@ -1,8 +1,7 @@
 #include "connection/Http.hpp"
 
+#include <cstring>
 #include <stdexcept>
-
-#include <spdlog/spdlog.h>
 
 struct MemoryStruct_t
 {

@@ -2,25 +2,23 @@
 
 #include <cpuid.h>
 
-#include <spdlog/spdlog.h>
-
 Reporter *mainPrometheusHandler;
 
 Reporter::Reporter(const std::string &serverAddr)
 {
+	std::string unit = "seconds";
 	uint32_t eax = 0, ebx = 0, ecx = 0, edx = 0;
 	__cpuid(0x16, eax, ebx, ecx, edx);
 	if (eax)
 		tscHz = eax * uint64_t(1000000);
 	else
 	{
-		spdlog::error("Can't determine TSC frequency");
 		tscHz = 1;
+		unit = "counter";
 	}
 
 	// Init service
 	mainExposer = std::make_unique<prometheus::Exposer>(serverAddr, 1);
-	spdlog::debug("Prometheus server start at {}", serverAddr);
 
 	struct timespec ts;
 	clock_gettime(CLOCK_TAI, &ts);
@@ -31,6 +29,11 @@ Reporter::Reporter(const std::string &serverAddr)
 					.Help("Initialization time of the application")
 					.Register(*reg)
 					.Add({{"init_time", std::to_string(ts.tv_sec)}});
+	unitPerformance = &prometheus::BuildInfo()
+						   .Name("unit_performance")
+						   .Help("Unit of performance values")
+						   .Register(*reg)
+						   .Add({{"unit_time", unit}});
 	vRegister.push_back(reg);
 
 	mainExposer->RegisterCollectable(reg);

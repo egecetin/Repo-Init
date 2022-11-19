@@ -4,16 +4,10 @@
 #include <arpa/inet.h>
 #include <ifaddrs.h>
 #include <net/if.h>
-#include <netdb.h>
 #include <netpacket/packet.h>
-#include <sys/socket.h>
-#include <unistd.h>
 
-#include <curl/curlver.h>
-#include <rapidjson/rapidjson.h>
 #include <sentry.h>
 #include <spdlog/spdlog.h>
-#include <zmq.hpp>
 
 // GCOVR_EXCL_START
 namespace spdlog
