@@ -1,6 +1,7 @@
 #include "Utils.hpp"
 #include "Version.h"
 #include "logging/Sentry.hpp"
+#include "logging/Loki.hpp"
 
 #include <execinfo.h>
 #include <signal.h>
@@ -59,6 +60,8 @@ bool init_logger(int argc, char **argv)
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::syslog_sink_mt>(PROJECT_NAME, LOG_USER, 0, false));
 	dup_filter->add_sink(
 		std::make_shared<spdlog::sinks::sentry_api_sink_mt>(readSingleConfig(CONFIG_FILE_PATH, "SENTRY_ADDRESS")));
+	dup_filter->add_sink(
+		std::make_shared<spdlog::sinks::loki_api_sink_mt>(readSingleConfig(CONFIG_FILE_PATH, "LOKI_ADDRESS")));
 
 	// Register main logger
 	auto combined_logger = std::make_shared<spdlog::logger>(PROJECT_NAME, dup_filter);
