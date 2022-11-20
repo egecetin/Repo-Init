@@ -179,14 +179,14 @@ void zmqControlThread()
 		{
 			if (heartBeat && (alarmCtr - oldCtr) > HEARTBEAT_INTERVAL)
 			{
-				long statusCode = -1;
+				HttpStatus::Code statusCode = HttpStatus::Code::xxx_max;
 				std::string recvPayload;
 
 				CURLcode retCode = heartBeat->sendPOSTRequest("", "", recvPayload, statusCode);
 				if (retCode != CURLE_OK)
 					spdlog::warn("Heartbeat failed: {}", curl_easy_strerror(retCode));
-				if (statusCode != 200)
-					spdlog::warn("Heartbeat failed: {}", statusCode);
+				if (statusCode != HttpStatus::Code::OK)
+					spdlog::warn("Heartbeat failed: {}", HttpStatus::reasonPhrase(statusCode));
 				oldCtr = alarmCtr;
 			}
 		}

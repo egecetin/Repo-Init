@@ -22,3 +22,6 @@
 [submodule "thirdparty/prometheus-cpp"]
 	path = thirdparty/prometheus-cpp
 	url = https://github.com/jupp0r/prometheus-cpp.git
+[submodule "thirdparty/http-status-codes"]
+	path = thirdparty/http-status-codes
+	url = https://github.com/j-ulrich/http-status-codes-cpp.git
