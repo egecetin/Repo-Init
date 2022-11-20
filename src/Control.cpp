@@ -86,7 +86,7 @@ void zmqControlThread()
 	try
 	{
 		if (!HEARTBEAT_ADDRESS.empty())
-			heartBeat = std::make_unique<HTTP>(HEARTBEAT_ADDRESS, 100);
+			heartBeat = std::make_unique<HTTP>(HEARTBEAT_ADDRESS, 1000);
 	}
 	catch (const std::exception &e)
 	{
@@ -185,7 +185,7 @@ void zmqControlThread()
 				CURLcode retCode = heartBeat->sendPOSTRequest("", "", recvPayload, statusCode);
 				if (retCode != CURLE_OK)
 					spdlog::warn("Heartbeat failed: {}", curl_easy_strerror(retCode));
-				if (statusCode != HttpStatus::Code::OK)
+				else if (!HttpStatus::isSuccessful(statusCode))
 					spdlog::warn("Heartbeat failed: {}", HttpStatus::reasonPhrase(statusCode));
 				oldCtr = alarmCtr;
 			}
