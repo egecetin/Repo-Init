@@ -98,8 +98,7 @@ CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedDat
 	if (retval == CURLE_OK)
 		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
 	receivedData = std::string(chunk.memory, chunk.size);
-	if (status > 0)
-		statusCode = static_cast<HttpStatus::Code>(status);
+	statusCode = static_cast<HttpStatus::Code>(status);
 
 	// Cleanup
 	free(chunk.memory);
