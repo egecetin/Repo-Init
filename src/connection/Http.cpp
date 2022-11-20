@@ -46,7 +46,7 @@ HTTP::HTTP(const std::string &addr, int timeoutInMs)
 }
 
 CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payload, std::string &receivedData,
-							   long &statusCode)
+							   HttpStatus::Code &statusCode)
 {
 	// Prepare memory
 	MemoryStruct chunk;
@@ -62,6 +62,10 @@ CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payl
 	curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE_LARGE, payload.size());
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&chunk);
 
+	struct curl_slist *headers = NULL;
+	headers = curl_slist_append(headers, "Content-Type: application/json");
+	curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
 	// Perform request
 	CURLcode retval = curl_easy_perform(curl);
 	if (retval == CURLE_OK)
@@ -74,7 +78,7 @@ CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payl
 	return retval;
 }
 
-CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedData, long &statusCode)
+CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedData, HttpStatus::Code &statusCode)
 {
 	// Prepare memory
 	MemoryStruct chunk;
@@ -89,10 +93,12 @@ CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedDat
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&chunk); // Register user-supplied memory
 
 	// Perform request
+	long status = static_cast<long>(HttpStatus::Code::xxx_max);
 	CURLcode retval = curl_easy_perform(curl);
 	if (retval == CURLE_OK)
-		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &statusCode);
+		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
 	receivedData = std::string(chunk.memory, chunk.size);
+	statusCode = static_cast<HttpStatus::Code>(status);
 
 	// Cleanup
 	free(chunk.memory);

@@ -11,3 +11,4 @@ cmake/CMakeCacheForScript.cmake
 BuildNumberCache.txt
 Doxyfile
 error.log
+config-private.json

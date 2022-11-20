@@ -3,7 +3,7 @@
 #include "Version.h"
 #include "metrics/Reporter.hpp"
 
-#include <signal.h>
+#include <csignal>
 #include <thread>
 
 #include <spdlog/spdlog.h>

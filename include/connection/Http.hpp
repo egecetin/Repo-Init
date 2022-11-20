@@ -2,6 +2,7 @@
 
 #include <string>
 
+#include <HttpStatusCodes_C++11.h>
 #include <curl/curl.h>
 
 class HTTP
@@ -31,7 +32,7 @@ class HTTP
 	 * @return CURLcode Status of operation. CURLE_OK if successful.
 	 */
 	CURLcode sendPOSTRequest(const std::string &index, const std::string &payload, std::string &receivedData,
-							 long &statusCode);
+							 HttpStatus::Code &statusCode);
 
 	/**
 	 * @brief Sends a GET request
@@ -40,7 +41,7 @@ class HTTP
 	 * @param[out] statusCode HTTP status code, Set if CURLE_OK, otherwise unchanged
 	 * @return CURLcode Status of operation. CURLE_OK if successful.
 	 */
-	CURLcode sendGETRequest(const std::string &index, std::string &receivedData, long &statusCode);
+	CURLcode sendGETRequest(const std::string &index, std::string &receivedData, HttpStatus::Code &statusCode);
 
 	/**
 	 * @brief Destroys the HTTP object

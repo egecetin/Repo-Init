@@ -53,6 +53,7 @@ file(GLOB ProjectSources
     ${PROJECT_SOURCE_DIR}/src/connection/Http.cpp
     ${PROJECT_SOURCE_DIR}/src/connection/Zeromq.cpp
     ${PROJECT_SOURCE_DIR}/src/logging/Sentry.cpp
+    ${PROJECT_SOURCE_DIR}/src/logging/Loki.cpp
     ${PROJECT_SOURCE_DIR}/src/metrics/Performance.cpp
     ${PROJECT_SOURCE_DIR}/src/metrics/Reporter.cpp
     ${PROJECT_SOURCE_DIR}/src/metrics/Status.cpp
@@ -72,6 +73,7 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/spdlog/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/pull/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/http-status-codes)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/pull/include)
 

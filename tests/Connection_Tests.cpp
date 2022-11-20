@@ -20,31 +20,31 @@ TEST(Connection_Tests, HttpTests)
 
 	HTTP handler("http://127.0.0.1:8080");
 
-	long statusCode = -1;
+	HttpStatus::Code statusCode = HttpStatus::Code::xxx_max;
 	std::string recvData;
 	ASSERT_EQ(handler.sendPOSTRequest("", "Test POST Message", recvData, statusCode), CURLE_OK);
 	ASSERT_EQ("Test POST Message", recvData);
-	ASSERT_EQ(200, statusCode);
+	ASSERT_EQ(HttpStatus::Code::OK, statusCode);
 
-	statusCode = -1;
+	statusCode = HttpStatus::Code::xxx_max;
 	recvData.clear();
 	ASSERT_EQ(handler.sendGETRequest("", recvData, statusCode), CURLE_OK);
 	ASSERT_EQ("", recvData);
-	ASSERT_EQ(200, statusCode);
+	ASSERT_EQ(HttpStatus::Code::OK, statusCode);
 
 	pyResult.wait();
 	ASSERT_EQ(0, pyResult.get());
 
 	// Send requests to closed server
-	statusCode = -1;
+	statusCode = HttpStatus::Code::xxx_max;
 	recvData.clear();
 	ASSERT_EQ(handler.sendPOSTRequest("", "Test POST Message", recvData, statusCode), CURLE_COULDNT_CONNECT);
 	ASSERT_EQ("", recvData);
-	ASSERT_EQ(-1, statusCode);
+	ASSERT_EQ(HttpStatus::Code::xxx_max, statusCode);
 
 	ASSERT_EQ(handler.sendGETRequest("", recvData, statusCode), CURLE_COULDNT_CONNECT);
 	ASSERT_EQ("", recvData);
-	ASSERT_EQ(-1, statusCode);
+	ASSERT_EQ(HttpStatus::Code::xxx_max, statusCode);
 }
 
 TEST(Connection_Tests, ZeroMQTests)
