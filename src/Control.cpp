@@ -86,7 +86,7 @@ void zmqControlThread()
 	try
 	{
 		if (!HEARTBEAT_ADDRESS.empty())
-			heartBeat = std::make_unique<HTTP>(HEARTBEAT_ADDRESS, 1000);
+			heartBeat = std::make_unique<HTTP>(HEARTBEAT_ADDRESS);
 	}
 	catch (const std::exception &e)
 	{
