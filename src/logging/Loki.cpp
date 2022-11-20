@@ -18,14 +18,6 @@ namespace spdlog
 
 			connHandler = std::make_unique<HTTP>(lokiAddress);
 
-			// Check Loki is ready
-			std::string recvString;
-			HttpStatus::Code statusCode = HttpStatus::Code::xxx_max;
-			if (connHandler->sendGETRequest("/ready", recvString, statusCode) != CURLE_OK)
-				return;
-			if (statusCode != HttpStatus::Code::OK)
-				return;
-
 			// Pre-allocate buffers
 			internalLogBuffer.push_back({"debug", std::vector<std::pair<std::string, std::string>>()});
 			internalLogBuffer.push_back({"info", std::vector<std::pair<std::string, std::string>>()});

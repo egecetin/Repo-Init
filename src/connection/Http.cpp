@@ -62,6 +62,10 @@ CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payl
 	curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE_LARGE, payload.size());
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&chunk);
 
+	struct curl_slist *headers = NULL;
+	headers = curl_slist_append(headers, "Content-Type: application/json");
+	curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
 	// Perform request
 	CURLcode retval = curl_easy_perform(curl);
 	if (retval == CURLE_OK)
