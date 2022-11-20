@@ -2,8 +2,8 @@
 
 #include <string>
 
-#include <curl/curl.h>
 #include <HttpStatusCodes_C++11.h>
+#include <curl/curl.h>
 
 class HTTP
 {
