@@ -89,7 +89,11 @@ bool init_logger(int argc, char **argv)
 // GCOVR_EXCL_STOP
 
 // GCOVR_EXCL_START
-void close_logger(void) { spdlog::shutdown(); }
+void close_logger(void)
+{
+	spdlog::default_logger()->flush();
+	spdlog::shutdown();
+}
 // GCOVR_EXCL_STOP
 
 template <typename T> std::string stringify(const T &o)
