@@ -1,7 +1,6 @@
+#include <gtest/gtest.h>
 #include <memplumber.h>
 #include <spdlog/spdlog.h>
-
-#include <gtest/gtest.h>
 
 int main(int argc, char **argv)
 {
