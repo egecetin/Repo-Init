@@ -29,7 +29,6 @@ volatile bool loopFlag;
 
 /* ################################ END MODIFICATIONS ################################ */
 
-// GCOVR_EXCL_START
 void print_version(void)
 {
 	spdlog::info("{:<15}: v{} {} {} {}", PROJECT_NAME, PROJECT_FULL_REVISION, BUILD_TYPE, PROJECT_BUILD_DATE,
@@ -38,7 +37,6 @@ void print_version(void)
 
 	/* ################################ END MODIFICATIONS ################################ */
 }
-// GCOVR_EXCL_STOP
 
 template <typename T> std::string stringify(const T &o)
 {

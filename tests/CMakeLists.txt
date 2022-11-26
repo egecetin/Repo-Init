@@ -3,16 +3,6 @@ set(CMAKE_CXX_STANDARD 14)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
 
-# Include Google Test
-include(FetchContent)
-FetchContent_Declare(googletest URL https://github.com/google/googletest/archive/refs/tags/release-1.12.1.zip)
-
-# For Windows: Prevent overriding the parent project's compiler/linker settings
-set(gtest_force_shared_crt
-    ON
-    CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
-
 # Enable gcov if Debug
 if(CMAKE_BUILD_TYPE STREQUAL "Debug" AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   include(CodeCoverage)
@@ -47,7 +37,7 @@ endif()
 # Add sources
 file(GLOB ProjectTestSources
     ${PROJECT_SOURCE_DIR}/tests/Connection_Tests.cpp
-    ${PROJECT_SOURCE_DIR}/tests/Performance_Tests.cpp
+    ${PROJECT_SOURCE_DIR}/tests/Metrics_Tests.cpp
     ${PROJECT_SOURCE_DIR}/tests/Telnet_Tests.cpp
     ${PROJECT_SOURCE_DIR}/tests/Utils_Tests.cpp
     ${PROJECT_SOURCE_DIR}/tests/gtest_main.cpp
@@ -60,6 +50,7 @@ include_directories(${PROJECT_SOURCE_DIR}/tests/MemPlumber)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests/MemPlumber)
+add_subdirectory(${PROJECT_SOURCE_DIR}/tests/gtest)
 
 # Test cases
 add_executable(TestMain ${ProjectTestSources})

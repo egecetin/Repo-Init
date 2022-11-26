@@ -74,7 +74,8 @@ All scripts should be executed from top level directory
 
  - [CppZMQ](https://github.com/zeromq/cppzmq.git)
  - [Http-status-codes](https://github.com/j-ulrich/http-status-codes-cpp.git)
- - [MemPlumber](https://github.com/seladb/MemPlumber.git)
+ - [GoogleTest](https://github.com/google/googletest.git) (For tests only)
+ - [MemPlumber](https://github.com/seladb/MemPlumber.git) (For tests only)
  - [Prometheus-cpp](https://github.com/jupp0r/prometheus-cpp.git)
  - [RapidJSON](https://github.com/Tencent/rapidjson.git)
  - [Spdlog](https://github.com/gabime/spdlog.git)

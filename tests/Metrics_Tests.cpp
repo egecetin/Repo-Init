@@ -9,7 +9,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(Performance_Tests, ReporterTests)
+TEST(Metrics_Tests, ReporterTests)
 {
 	Reporter reporter(TEST_PROMETHEUS_SERVER_ADDR);
 
