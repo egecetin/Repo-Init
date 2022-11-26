@@ -44,7 +44,4 @@ MainLogger::MainLogger(int argc, char **argv, const std::string &configPath)
 		mainLogger->set_level(spdlog::level::trace);
 }
 
-MainLogger::~MainLogger()
-{
-	mainLogger->flush();
-}
+MainLogger::~MainLogger() { mainLogger->flush(); }

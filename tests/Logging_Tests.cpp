@@ -45,7 +45,7 @@ TEST(Logging_Tests, ModifiedLoggerWithConfig)
 	nArgv[1] = "-vvv";
 	logger = MainLogger(nArgc, nArgv, TEST_CONFIG_PATH);
 
-    logger.getLogger()->trace("Trace Message");
+	logger.getLogger()->trace("Trace Message");
 	logger.getLogger()->debug("Debug Message");
 	logger.getLogger()->info("Info Message");
 	logger.getLogger()->warn("Warn Message");
@@ -82,7 +82,7 @@ TEST(Logging_Tests, ModifiedLoggerWithoutConfig)
 	nArgv[1] = "-vvv";
 	logger = MainLogger(nArgc, nArgv, TEST_CONFIG_EMPTY_PATH);
 
-    logger.getLogger()->trace("Trace Message");
+	logger.getLogger()->trace("Trace Message");
 	logger.getLogger()->debug("Debug Message");
 	logger.getLogger()->info("Info Message");
 	logger.getLogger()->warn("Warn Message");
