@@ -52,6 +52,7 @@ configure_file(build_number.h.in "Version.h")
 file(GLOB ProjectSources
     ${PROJECT_SOURCE_DIR}/src/connection/Http.cpp
     ${PROJECT_SOURCE_DIR}/src/connection/Zeromq.cpp
+    ${PROJECT_SOURCE_DIR}/src/logging/Logger.cpp
     ${PROJECT_SOURCE_DIR}/src/logging/Sentry.cpp
     ${PROJECT_SOURCE_DIR}/src/logging/Loki.cpp
     ${PROJECT_SOURCE_DIR}/src/metrics/Performance.cpp
