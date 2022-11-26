@@ -98,20 +98,6 @@ class InputParser
 void print_version(void);
 
 /**
- * @brief Initializes the logger
- * @param argc
- * @param argv
- * @return true On success
- * @return false otherwise
- */
-bool init_logger(int argc, char **argv);
-
-/**
- * @brief Closes and flushes the logger
- */
-void close_logger(void);
-
-/**
  * @brief Read initial config from JSON
  * @param[in] dir	Path to JSON
  * @return true    	Read all variables

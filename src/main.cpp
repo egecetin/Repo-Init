@@ -1,6 +1,7 @@
 #include "Control.hpp"
 #include "Utils.hpp"
 #include "Version.h"
+#include "logging/Logger.hpp"
 #include "metrics/Reporter.hpp"
 
 #include <csignal>
@@ -31,8 +32,9 @@ int main(int argc, char **argv)
 	/* ################################ END MODIFICATIONS ################################ */
 
 	// Init logger
-	if (!init_logger(argc, argv))
-		return EXIT_FAILURE;
+	MainLogger logger(argc, argv, CONFIG_FILE_PATH);
+	spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [" + std::string(PROJECT_NAME) + "] [%^%l%$] : %v");
+	print_version();
 
 	// Read config
 	if (!readConfig(CONFIG_FILE_PATH))
@@ -89,8 +91,6 @@ int main(int argc, char **argv)
 
 	/* ################################ END MODIFICATIONS ################################ */
 
-	spdlog::warn("{} Exited", PROJECT_NAME);
-	close_logger();
-
+	spdlog::info("{} Exited", PROJECT_NAME);
 	return EXIT_SUCCESS;
 }

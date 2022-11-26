@@ -9,7 +9,6 @@
 #include <sentry.h>
 #include <spdlog/spdlog.h>
 
-// GCOVR_EXCL_START
 namespace spdlog
 {
 	namespace sinks
@@ -162,4 +161,3 @@ namespace spdlog
 		template class SPDLOG_API sentry_api_sink<details::null_mutex>;
 	} // namespace sinks
 } // namespace spdlog
-// GCOVR_EXCL_STOP

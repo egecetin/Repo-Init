@@ -1,7 +1,6 @@
+#include <gtest/gtest.h>
 #include <memplumber.h>
 #include <spdlog/spdlog.h>
-
-#include <gtest/gtest.h>
 
 int main(int argc, char **argv)
 {
@@ -12,6 +11,7 @@ int main(int argc, char **argv)
 
 	MemPlumber::start();
 	retval = RUN_ALL_TESTS();
+	spdlog::shutdown();
 	MemPlumber::stop();
 
 	// Check memory leak
