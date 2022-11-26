@@ -6,6 +6,8 @@ extend-exclude = [
                     "doc",
                     "scripts",
                     "thirdparty",
+                    "tests/gtest",
+                    "tests/MemPlumber",
                     "codespell-ignore-list.txt"
                  ]
 
