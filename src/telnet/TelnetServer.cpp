@@ -602,7 +602,7 @@ std::string TelnetTabCallback(SP_TelnetSession session, std::string line)
 	std::string retval = "";
 
 	size_t ctr = 0;
-	std::stringstream ss;
+	std::ostringstream ss;
 	for (const auto &entry : telnetCommands)
 	{
 		if (entry.first.rfind(line, 0) == 0)

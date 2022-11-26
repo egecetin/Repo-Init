@@ -44,7 +44,7 @@ namespace spdlog
 			bool flag = false;
 
 			// Prepare JSON
-			std::stringstream ss;
+			std::ostringstream ss;
 
 			ss << "{\"streams\":[";
 			for (auto &entry : internalLogBuffer)
