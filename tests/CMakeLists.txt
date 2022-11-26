@@ -37,6 +37,7 @@ endif()
 # Add sources
 file(GLOB ProjectTestSources
     ${PROJECT_SOURCE_DIR}/tests/Connection_Tests.cpp
+    ${PROJECT_SOURCE_DIR}/tests/Logging_Tests.cpp
     ${PROJECT_SOURCE_DIR}/tests/Metrics_Tests.cpp
     ${PROJECT_SOURCE_DIR}/tests/Telnet_Tests.cpp
     ${PROJECT_SOURCE_DIR}/tests/Utils_Tests.cpp

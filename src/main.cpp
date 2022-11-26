@@ -32,7 +32,9 @@ int main(int argc, char **argv)
 	/* ################################ END MODIFICATIONS ################################ */
 
 	// Init logger
-	MainLogger logger(argc, argv);
+	MainLogger logger(argc, argv, CONFIG_FILE_PATH);
+	spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [" + std::string(PROJECT_NAME) + "] [%^%l%$] : %v");
+	print_version();
 
 	// Read config
 	if (!readConfig(CONFIG_FILE_PATH))
@@ -89,6 +91,6 @@ int main(int argc, char **argv)
 
 	/* ################################ END MODIFICATIONS ################################ */
 
-	spdlog::warn("{} Exited", PROJECT_NAME);
+	spdlog::info("{} Exited", PROJECT_NAME);
 	return EXIT_SUCCESS;
 }

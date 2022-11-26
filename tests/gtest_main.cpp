@@ -11,6 +11,7 @@ int main(int argc, char **argv)
 
 	MemPlumber::start();
 	retval = RUN_ALL_TESTS();
+	spdlog::shutdown();
 	MemPlumber::stop();
 
 	// Check memory leak

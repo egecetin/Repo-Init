@@ -45,3 +45,8 @@ TEST(Utils_Tests, ConfigReaderTests)
 
 	ASSERT_FALSE(readConfig(TEST_CONFIG_MISS_ELEMENT_PATH));
 }
+
+TEST(Utils_Tests, VersionTests)
+{
+	print_version();
+}
