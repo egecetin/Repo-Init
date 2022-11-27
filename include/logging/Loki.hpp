@@ -26,6 +26,7 @@ namespace spdlog
 		  private:
 			bool lokiAvailable;
 			std::unique_ptr<HTTP> connHandler;
+			std::string basicInformation;
 
 			struct logInfo_t
 			{

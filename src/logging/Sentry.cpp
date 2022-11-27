@@ -48,8 +48,8 @@ namespace spdlog
 
 			// Context: Host
 			char hostBuffer[BUFSIZ];
-			sentry_value_t hostContext = sentry_value_new_object();
 			gethostname(hostBuffer, BUFSIZ);
+			sentry_value_t hostContext = sentry_value_new_object();
 			sentry_value_set_by_key(hostContext, "Hostname", sentry_value_new_string(hostBuffer));
 
 			FILE *cpu_info = fopen("/proc/cpuinfo", "r");
