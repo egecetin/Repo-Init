@@ -1,5 +1,7 @@
 #pragma once
 
+#include <linux/if_packet.h>
+
 #include <string>
 
 /**

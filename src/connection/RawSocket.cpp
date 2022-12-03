@@ -1,6 +1,5 @@
 #include "connection/RawSocket.hpp"
 
-#include <linux/if_packet.h>
 #include <net/ethernet.h>
 #include <net/if.h>
 #include <netinet/in.h>
@@ -29,7 +28,7 @@ RawSocket::RawSocket(const std::string &iface, bool isWrite)
 	// Interface request
 	struct ifreq ifr;
 	memset((void *)&addr, 0, sizeof(struct ifreq));
-	snprintf(ifr.ifr_name, sizeof(ifr.ifr_name), iFace.c_str());
+	memcpy(ifr.ifr_name, iFace.c_str(), iFace.size()); // Size should be sufficient because if_nametoindex not failed
 
 	if (isWrite)
 	{
