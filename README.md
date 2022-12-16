@@ -3,8 +3,8 @@
 
 ![GitHub top language](https://img.shields.io/github/languages/top/egecetin/Repo-Init)
 ![GitHub](https://img.shields.io/github/license/egecetin/Repo-Init)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/egecetin/Repo-Init/Build%20and%20test?label=Actions&logo=github)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/egecetin/Repo-Init/CodeQL?label=CodeQL&logo=github&style=flat)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/egecetin/Repo-Init/build_and_test.yml?label=Actions&branch=master&logo=github)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/egecetin/Repo-Init/codeql-analysis.yml?label=CodeQL&branch=master&logo=github&style=flat)
 ![codecov](https://codecov.io/gh/egecetin/Repo-Init/branch/master/graph/badge.svg?token=G65MG0J07F)
 </div>
 
