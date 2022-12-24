@@ -51,6 +51,7 @@ configure_file(build_number.h.in "Version.h")
 # Define sources
 file(GLOB ProjectSources
     ${PROJECT_SOURCE_DIR}/src/connection/Http.cpp
+    ${PROJECT_SOURCE_DIR}/src/connection/RawSocket.cpp
     ${PROJECT_SOURCE_DIR}/src/connection/Zeromq.cpp
     ${PROJECT_SOURCE_DIR}/src/logging/Logger.cpp
     ${PROJECT_SOURCE_DIR}/src/logging/Sentry.cpp
