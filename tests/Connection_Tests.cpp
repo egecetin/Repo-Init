@@ -47,11 +47,6 @@ TEST(Connection_Tests, HttpTests)
 	ASSERT_EQ(HttpStatus::Code::xxx_max, statusCode);
 }
 
-TEST(Connection_Tests, RawSocketTests)
-{
-
-}
-
 TEST(Connection_Tests, ZeroMQTests)
 {
 	// Internally used by ZeroMQ sessions
