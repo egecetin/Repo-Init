@@ -117,11 +117,13 @@ void PerformanceTracker::startTimer()
 	_mm_lfence();
 }
 
-void PerformanceTracker::endTimer()
+double PerformanceTracker::endTimer()
 {
 	_mm_lfence();
 	uint64_t currCtr = __rdtsc();
 	_mm_lfence();
 
-	updateStatistic(double(currCtr - lastTimeCtr) / tscHzInternal);
+	double val = double(currCtr - lastTimeCtr) / tscHzInternal;
+	updateStatistic(val);
+	return val;
 }

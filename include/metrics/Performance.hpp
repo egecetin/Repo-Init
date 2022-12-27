@@ -74,8 +74,9 @@ class PerformanceTracker
 
 	/**
 	 * @brief Ends the chronometer and updates internal statistics
+	 * @return Result of the chronometer
 	 */
-	void endTimer();
+	double endTimer();
 
 	/**
 	 * @brief Get the name of the metric
