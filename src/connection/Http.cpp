@@ -67,10 +67,12 @@ CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payl
 	curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
 	// Perform request
+	long status = static_cast<long>(HttpStatus::Code::xxx_max);
 	CURLcode retval = curl_easy_perform(curl);
 	if (retval == CURLE_OK)
-		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &statusCode);
+		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
 	receivedData = std::string(chunk.memory, chunk.size);
+	statusCode = static_cast<HttpStatus::Code>(status);
 
 	// Cleanup
 	free(chunk.memory);
