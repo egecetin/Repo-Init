@@ -13,6 +13,8 @@
 
 MainLogger::MainLogger(int argc, char **argv, const std::string &configPath)
 {
+	spdlog::set_level(spdlog::level::off);
+
 	// Prepare spdlog loggers
 	auto dup_filter = std::make_shared<spdlog::sinks::dup_filter_sink_mt>(std::chrono::seconds(5));
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
