@@ -8,7 +8,6 @@ from optparse import OptionParser
 
 class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-
         request_path = self.path
 
         print("\n----- Request Start ----->\n")
@@ -21,7 +20,6 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_POST(self):
-
         request_path = self.path
 
         print("\n----- Request Start ----->\n")

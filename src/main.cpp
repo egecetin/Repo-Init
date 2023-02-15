@@ -81,11 +81,10 @@ int main(int argc, char **argv)
 			mainPrometheusHandler = new Reporter(PROMETHEUS_ADDR);
 			spdlog::info("Prometheus server start at {}", PROMETHEUS_ADDR);
 		}
-		catch(const std::exception& e)
+		catch (const std::exception &e)
 		{
 			spdlog::warn("Can't start Prometheus Server: {}", e.what());
 		}
-		
 	}
 
 	// Start threads
