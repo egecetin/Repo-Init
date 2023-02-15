@@ -64,8 +64,16 @@ int main(int argc, char **argv)
 	// Init prometheus server
 	if (PROMETHEUS_ADDR.size())
 	{
-		mainPrometheusHandler = new Reporter(PROMETHEUS_ADDR);
-		spdlog::info("Prometheus server start at {}", PROMETHEUS_ADDR);
+		try
+		{
+			mainPrometheusHandler = new Reporter(PROMETHEUS_ADDR);
+			spdlog::info("Prometheus server start at {}", PROMETHEUS_ADDR);
+		}
+		catch(const std::exception& e)
+		{
+			spdlog::warn("Can't start Prometheus Server: {}", e.what());
+		}
+		
 	}
 
 	// Start threads

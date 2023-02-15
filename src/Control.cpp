@@ -35,7 +35,11 @@ void telnetControlThread()
 		spdlog::info("Telnet server created at {}", TELNET_PORT);
 	}
 	else
+	{
+		if (TELNET_PORT)
+			spdlog::warn("Can't start Telnet Server: {}", strerror(errno));
 		return;
+	}
 
 	while (loopFlag)
 	{
