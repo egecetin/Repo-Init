@@ -20,9 +20,13 @@ const std::vector<std::pair<std::string, std::string>> telnetCommands = {
 	{"help", "Prints available commands"},
 	{"disable log", "Resets logger level"},
 	{"enable log", "Enable specified logger level. Level can be \"v\" (info), \"vv\" (debug) and \"vvv\" (trace)"},
+	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
+	/* ################################################################################### */
 
+	/* ################################################################################### */
 	/* ################################ END MODIFICATIONS ################################ */
+	/* ################################################################################### */
 	{"quit", "Ends the connection"}};
 
 const std::string ANSI_FG_BLACK("\x1b[30m");
@@ -582,9 +586,13 @@ bool TelnetMessageCallback(SP_TelnetSession session, std::string line)
 		session->sendLine("Trace log mode enabled");
 		spdlog::set_level(spdlog::level::trace);
 		break;
+	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
+	/* ################################################################################### */
 
+	/* ################################################################################### */
 	/* ################################ END MODIFICATIONS ################################ */
+	/* ################################################################################### */
 	case constHasher("quit"):
 		session->sendLine("Closing connection");
 		session->sendLine("Goodbye!");
