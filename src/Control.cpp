@@ -186,7 +186,7 @@ void zmqControlThread()
 				HttpStatus::Code statusCode = HttpStatus::Code::xxx_max;
 				std::string recvPayload;
 
-				CURLcode retCode = heartBeat->sendPOSTRequest("", "", recvPayload, statusCode);
+				CURLcode retCode = heartBeat->sendPOSTRequest(HEARTBEAT_INDEX, "", recvPayload, statusCode);
 				if (retCode != CURLE_OK)
 					spdlog::warn("Heartbeat failed: {}", curl_easy_strerror(retCode));
 				else if (!HttpStatus::isSuccessful(statusCode))

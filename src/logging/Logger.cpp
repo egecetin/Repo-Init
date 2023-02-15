@@ -19,9 +19,9 @@ MainLogger::MainLogger(int argc, char **argv, const std::string &configPath)
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::rotating_file_sink_mt>("error.log", 1048576 * 5, 3, false));
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::syslog_sink_mt>(PROJECT_NAME, LOG_USER, 0, false));
 	dup_filter->add_sink(
-		std::make_shared<spdlog::sinks::loki_api_sink_mt>(readSingleConfig(configPath.c_str(), "LOKI_ADDRESS")));
+		std::make_shared<spdlog::sinks::loki_api_sink_mt>(readSingleConfig(configPath, "LOKI_ADDRESS")));
 	dup_filter->add_sink(
-		std::make_shared<spdlog::sinks::sentry_api_sink_mt>(readSingleConfig(configPath.c_str(), "SENTRY_ADDRESS")));
+		std::make_shared<spdlog::sinks::sentry_api_sink_mt>(readSingleConfig(configPath, "SENTRY_ADDRESS")));
 
 	// Register main logger
 	mainLogger = std::make_shared<spdlog::logger>(PROJECT_NAME, dup_filter);

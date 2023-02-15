@@ -9,6 +9,8 @@
 #include <rapidjson/writer.h>
 #include <spdlog/spdlog.h>
 
+std::string CONFIG_FILE_PATH = "config.json";
+
 uintmax_t ALARM_INTERVAL;
 uintmax_t HEARTBEAT_INTERVAL;
 
@@ -18,6 +20,7 @@ std::string CONTROL_IPC_PATH;
 
 uint16_t TELNET_PORT;
 std::string PROMETHEUS_ADDR;
+std::string HEARTBEAT_INDEX;
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 
 /* ################################ END MODIFICATIONS ################################ */
@@ -46,9 +49,9 @@ template <typename T> std::string stringify(const T &o)
 	return sb.GetString();
 }
 
-bool readConfig(const char *dir)
+bool readConfig(const std::string &dir)
 {
-	FILE *fptr = fopen(dir, "r");
+	FILE *fptr = fopen(dir.c_str(), "r");
 	if (!fptr)
 	{
 		spdlog::critical("Can't open config file");
@@ -102,9 +105,9 @@ bool readConfig(const char *dir)
 	return true;
 }
 
-std::string readSingleConfig(const char *dir, std::string value)
+std::string readSingleConfig(const std::string &dir, std::string value)
 {
-	FILE *fptr = fopen(dir, "r");
+	FILE *fptr = fopen(dir.c_str(), "r");
 	if (!fptr)
 	{
 		spdlog::critical("Can't open config file");

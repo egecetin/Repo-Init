@@ -27,6 +27,10 @@ int main(int argc, char **argv)
 		if (PROMETHEUS_ADDR.empty())
 			spdlog::warn("Enable Prometheus option requires a port number");
 	}
+	if (input.cmdOptionExists("--heartbeat-index"))
+		HEARTBEAT_INDEX = input.getCmdOption("--heartbeat-index");
+	if (input.cmdOptionExists("--config"))
+		CONFIG_FILE_PATH = input.getCmdOption("--config");
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 
 	/* ################################ END MODIFICATIONS ################################ */

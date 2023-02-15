@@ -8,7 +8,7 @@
 #include <unistd.h>
 
 /// Variable to define path to config file
-#define CONFIG_FILE_PATH "config.json"
+extern std::string CONFIG_FILE_PATH;
 
 // Config variables
 
@@ -28,6 +28,8 @@ extern std::string CONTROL_IPC_PATH;
 extern uint16_t TELNET_PORT;
 /// Bind address of Prometheus service
 extern std::string PROMETHEUS_ADDR;
+/// Optional index of Heartbeat URL
+extern std::string HEARTBEAT_INDEX;
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 
 /* ################################ END MODIFICATIONS ################################ */
@@ -103,7 +105,7 @@ void print_version(void);
  * @return true    	Read all variables
  * @return false    Can't find some variables
  */
-bool readConfig(const char *dir);
+bool readConfig(const std::string &dir);
 
 /**
  * @brief Reads a single entry from config
@@ -111,7 +113,7 @@ bool readConfig(const char *dir);
  * @param[in] value 	Value to read
  * @return std::string 	Read value
  */
-std::string readSingleConfig(const char *dir, std::string value);
+std::string readSingleConfig(const std::string &dir, std::string value);
 
 /**
  * @brief Function invoked by SIGALRM signal
