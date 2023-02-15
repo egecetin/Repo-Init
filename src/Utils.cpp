@@ -176,35 +176,6 @@ void alarmFunc(int)
 // GCOVR_EXCL_STOP
 
 // GCOVR_EXCL_START
-void backtracer(int)
-{
-	if (loopFlag)
-	{
-		// Give chance to break loops
-		loopFlag = false;
-		sleep(2);
-
-		// Trace error
-		void *array[100];
-		int size;
-
-		// get void*'s for all entries on the stack
-		size = backtrace(array, 100);
-
-		// print strings for all entries
-		(void)!write(STDERR_FILENO, "Error signal\n", 14);
-		backtrace_symbols_fd(array, size, STDERR_FILENO);
-		(void)!write(STDERR_FILENO, "Error printed\n", 15);
-
-		sleep(3);
-
-		(void)!write(STDERR_FILENO, "Aborting\n", 9);
-		abort();
-	}
-}
-// GCOVR_EXCL_STOP
-
-// GCOVR_EXCL_START
 void interruptFunc(int)
 {
 	if (loopFlag)

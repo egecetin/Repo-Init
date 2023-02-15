@@ -28,3 +28,6 @@
 [submodule "tests/gtest"]
 	path = tests/gtest
 	url = https://github.com/google/googletest.git
+[submodule "thirdparty/backtrace"]
+	path = thirdparty/backtrace
+	url = https://github.com/bombela/backward-cpp.git
