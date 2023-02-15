@@ -48,13 +48,10 @@ int main(int argc, char **argv)
 	if (!readConfig(CONFIG_FILE_PATH))
 		return EXIT_FAILURE;
 
-	// Register alarms
+	// Register signals
 	signal(SIGINT, interruptFunc);
 	signal(SIGTERM, interruptFunc);
 	signal(SIGKILL, interruptFunc);
-
-	// Register backtracer
-	signal(SIGSEGV, backtracer);
 
 	// Move SIGALRM to bottom because of invoking sleep
 

@@ -97,6 +97,7 @@ set(SENTRY_BACKEND none)
 # Subdirectories
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/libzmq EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq EXCLUDE_FROM_ALL)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/backtrace EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/spdlog EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/sentry EXCLUDE_FROM_ALL)
@@ -129,10 +130,11 @@ target_link_libraries(
   pull)
 add_sanitizers("${PROJECT_NAME}_Lib_Shared")
 
-add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp)
+add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp ${BACKWARD_ENABLE})
 target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared")
 add_sanitizers("${PROJECT_NAME}")
+add_backward("${PROJECT_NAME}")
 
 # Set install targets
 install(
