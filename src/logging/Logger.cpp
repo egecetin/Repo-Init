@@ -17,7 +17,8 @@ MainLogger::MainLogger(int argc, char **argv, const std::string &configPath)
 
 	// Prepare spdlog loggers
 	auto dup_filter = std::make_shared<spdlog::sinks::dup_filter_sink_mt>(std::chrono::seconds(5));
-	dup_filter->add_sink(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
+	if (getppid() != 1) // Disable stdout output for systemd
+		dup_filter->add_sink(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::rotating_file_sink_mt>("error.log", 1048576 * 5, 3, false));
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::syslog_sink_mt>(PROJECT_NAME, LOG_USER, 0, false));
 	dup_filter->add_sink(
