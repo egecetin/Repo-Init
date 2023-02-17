@@ -5,6 +5,7 @@
 #include <ifaddrs.h>
 #include <net/if.h>
 #include <netpacket/packet.h>
+#include <unistd.h>
 
 #include <sentry.h>
 #include <spdlog/spdlog.h>
