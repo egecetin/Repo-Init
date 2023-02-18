@@ -18,8 +18,7 @@ VER_NODE_EXPORTER=1.3.1
 # Install
 echo -e "${ANSI_FG_YELLOW}Installing packages ...${ANSI_RESET_ALL}"
 yum install epel-release -y
-yum install btop htop cockpit cockpit-pcp chrony mlocate lm_sensors smartmontools -y
-yum install OpenIPMI ipmitool -y
+yum install make wget btop htop cockpit cockpit-pcp chrony mlocate lm_sensors policycoreutils-python-utils smartmontools -y
 
 echo -e "${ANSI_FG_YELLOW}Installing cockpit-navigator ...${ANSI_RESET_ALL}"
 curl -sSL https://repo.45drives.com/setup | sudo bash
@@ -30,6 +29,7 @@ wget https://github.com/dylanaraps/neofetch/archive/refs/tags/7.1.0.tar.gz
 tar -xzvf 7.1.0.tar.gz neofetch-7.1.0/
 make install -C neofetch-7.1.0
 rm -rf neofetch-7.1.0
+rm -f 7.1.0.tar.gz
 mkdir -p /root/.config/neofetch
 \cp scripts/data/neofetch_config.conf /root/.config/neofetch/config.conf
 echo "neofetch" >> /etc/profile.d/neofetch-init.sh
@@ -131,8 +131,6 @@ sensors-detect --auto > /dev/null
 echo -e "${ANSI_FG_YELLOW}Enabling services ...${ANSI_RESET_ALL}"
 systemctl daemon-reload
 
-/sbin/chkconfig ipmi on
-systemctl start ipmi
 systemctl enable --now chronyd
 systemctl enable --now pmlogger
 # systemctl enable --now waagent
@@ -204,4 +202,4 @@ sleep 3
 echo -e "${ANSI_FG_GREEN}Firewall${ANSI_RESET_ALL}"
 firewall-cmd --list-all
 sleep 1
-echo "${ANSI_FG_GREEN}Done!${ANSI_RESET_ALL}"
+echo -e "${ANSI_FG_GREEN}Done!${ANSI_RESET_ALL}"
