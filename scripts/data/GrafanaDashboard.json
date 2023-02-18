@@ -168,7 +168,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "node_time_seconds{instance=\"$host\",job=\"$job\"} - node_boot_time_seconds{instance=\"$host\",job=\"$job\"}",
+          "expr": "node_time_seconds{instance=~\"$host\",job=\"$job\"} - node_boot_time_seconds{instance=~\"$host\",job=\"$job\"}",
           "intervalFactor": 1,
           "refId": "A",
           "step": 240
@@ -333,7 +333,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "(sum by(instance) (irate(node_cpu_seconds_total{instance=\"$host\",job=\"$job\", mode!=\"idle\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{instance=\"$host\",job=\"$job\"}[$__rate_interval])))) * 100",
+          "expr": "(sum by(instance) (irate(node_cpu_seconds_total{instance=~\"$host\",job=\"$job\", mode!=\"idle\"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{instance=~\"$host\",job=\"$job\"}[$__rate_interval])))) * 100",
           "hide": false,
           "intervalFactor": 1,
           "legendFormat": "",
@@ -409,7 +409,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "((node_memory_MemTotal_bytes{instance=\"$host\",job=\"$job\"} - node_memory_MemFree_bytes{instance=\"$host\",job=\"$job\"}) / (node_memory_MemTotal_bytes{instance=\"$host\",job=\"$job\"} )) * 100",
+          "expr": "((node_memory_MemTotal_bytes{instance=~\"$host\",job=\"$job\"} - node_memory_MemFree_bytes{instance=~\"$host\",job=\"$job\"}) / (node_memory_MemTotal_bytes{instance=~\"$host\",job=\"$job\"} )) * 100",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
@@ -421,7 +421,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "100 - ((node_memory_MemAvailable_bytes{instance=\"$host\",job=\"$job\"} * 100) / node_memory_MemTotal_bytes{instance=\"$host\",job=\"$job\"})",
+          "expr": "100 - ((node_memory_MemAvailable_bytes{instance=~\"$host\",job=\"$job\"} * 100) / node_memory_MemTotal_bytes{instance=~\"$host\",job=\"$job\"})",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -914,7 +914,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "node_hwmon_temp_celsius{instance=\"$host\",job=\"$job\"}",
+          "expr": "node_hwmon_temp_celsius{instance=~\"$host\",job=\"$job\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -927,7 +927,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "node_hwmon_temp_crit_alarm_celsius{instance=\"$host\",job=\"$job\"}",
+          "expr": "node_hwmon_temp_crit_alarm_celsius{instance=~\"$host\",job=\"$job\"}",
           "format": "time_series",
           "hide": true,
           "interval": "",
@@ -941,7 +941,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "node_hwmon_temp_crit_celsius{instance=\"$host\",job=\"$job\"}",
+          "expr": "node_hwmon_temp_crit_celsius{instance=~\"$host\",job=\"$job\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -954,7 +954,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "node_hwmon_temp_crit_hyst_celsius{instance=\"$host\",job=\"$job\"}",
+          "expr": "node_hwmon_temp_crit_hyst_celsius{instance=~\"$host\",job=\"$job\"}",
           "format": "time_series",
           "hide": true,
           "interval": "",
@@ -968,7 +968,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "node_hwmon_temp_max_celsius{instance=\"$host\",job=\"$job\"}",
+          "expr": "node_hwmon_temp_max_celsius{instance=~\"$host\",job=\"$job\"}",
           "format": "time_series",
           "hide": true,
           "interval": "",
@@ -1051,7 +1051,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "node_memory_SwapTotal_bytes{instance=\"$host\",job=\"$job\"}",
+          "expr": "node_memory_SwapTotal_bytes{instance=~\"$host\",job=\"$job\"}",
           "intervalFactor": 1,
           "refId": "A",
           "step": 240
@@ -1216,7 +1216,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "node_filesystem_size_bytes{instance=\"$host\",job=\"$job\",mountpoint=\"/\",fstype!=\"rootfs\"}",
+          "expr": "node_filesystem_size_bytes{instance=~\"$host\",job=\"$job\",mountpoint=\"/\",fstype!=\"rootfs\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -1299,7 +1299,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "100 - ((node_filesystem_avail_bytes{instance=\"$host\",job=\"$job\",mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{instance=\"$host\",job=\"$job\",mountpoint=\"/\",fstype!=\"rootfs\"})",
+          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"$host\",job=\"$job\",mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{instance=~\"$host\",job=\"$job\",mountpoint=\"/\",fstype!=\"rootfs\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A",
@@ -1381,7 +1381,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "((node_memory_SwapTotal_bytes{instance=\"$host\",job=\"$job\"} - node_memory_SwapFree_bytes{instance=\"$host\",job=\"$job\"}) / (node_memory_SwapTotal_bytes{instance=\"$host\",job=\"$job\"} )) * 100",
+          "expr": "((node_memory_SwapTotal_bytes{instance=~\"$host\",job=\"$job\"} - node_memory_SwapFree_bytes{instance=~\"$host\",job=\"$job\"}) / (node_memory_SwapTotal_bytes{instance=~\"$host\",job=\"$job\"} )) * 100",
           "intervalFactor": 1,
           "refId": "A",
           "step": 240
@@ -1629,7 +1629,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "irate(node_vmstat_oom_kill{instance=\"$host\",job=\"$job\"}[$__rate_interval])",
+          "expr": "irate(node_vmstat_oom_kill{instance=~\"$host\",job=\"$job\"}[$__rate_interval])",
           "refId": "A"
         }
       ],
@@ -1900,7 +1900,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "irate(node_network_receive_bytes_total{instance=\"$host\",job=\"$job\"}[$__rate_interval])*8",
+          "expr": "irate(node_network_receive_bytes_total{instance=~\"$host\",job=\"$job\"}[$__rate_interval])*8",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{device}} - Receive",
@@ -1912,7 +1912,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "irate(node_network_transmit_bytes_total{instance=\"$host\",job=\"$job\"}[$__rate_interval])*8",
+          "expr": "irate(node_network_transmit_bytes_total{instance=~\"$host\",job=\"$job\"}[$__rate_interval])*8",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{device}} - Transmit",
@@ -2088,7 +2088,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "irate(node_network_receive_packets_total{instance=\"$host\",job=\"$job\"}[$__rate_interval])",
+          "expr": "irate(node_network_receive_packets_total{instance=~\"$host\",job=\"$job\"}[$__rate_interval])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2101,7 +2101,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "irate(node_network_transmit_packets_total{instance=\"$host\",job=\"$job\"}[$__rate_interval])",
+          "expr": "irate(node_network_transmit_packets_total{instance=~\"$host\",job=\"$job\"}[$__rate_interval])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -2166,7 +2166,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "node_timex_estimated_error_seconds{instance=\"$host\",job=\"$job\"}",
+          "expr": "node_timex_estimated_error_seconds{instance=~\"$host\",job=\"$job\"}",
           "refId": "A"
         }
       ],
@@ -2797,7 +2797,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "irate(node_disk_read_bytes_total{instance=\"$host\",job=\"$job\"}[$__rate_interval])",
+          "expr": "irate(node_disk_read_bytes_total{instance=~\"$host\",job=\"$job\"}[$__rate_interval])",
           "format": "time_series",
           "intervalFactor": 4,
           "legendFormat": "{{device}} - Read bytes",
@@ -2809,7 +2809,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "irate(node_disk_written_bytes_total{instance=\"$host\",job=\"$job\"}[$__rate_interval])",
+          "expr": "irate(node_disk_written_bytes_total{instance=~\"$host\",job=\"$job\"}[$__rate_interval])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{device}} - Written bytes",
@@ -2882,7 +2882,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "process_open_fds{instance=\"$host\",job=\"$job\"} / process_max_fds{instance=\"$host\",job=\"$job\"}",
+          "expr": "process_open_fds{instance=~\"$host\",job=\"$job\"} / process_max_fds{instance=~\"$host\",job=\"$job\"}",
           "refId": "A"
         }
       ],
