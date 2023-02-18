@@ -12,9 +12,7 @@
  */
 class MeanVarTracker
 {
-  protected:
-	/// Name of the metric
-	std::string metricName;
+  private:
 	/// ID of the tracker
 	uint64_t trackerID;
 	/// Window length of moving operations
@@ -45,9 +43,13 @@ class MeanVarTracker
 	/// Element queue for moving operations
 	std::queue<double> qMeasurements;
 
+  protected:
+	/// Name of the metric
+	std::string metricName;
+
 	/**
 	 * @brief Update statistics with provided value
-	 * @param[in] newValue New performance timing
+	 * @param[in] newValue Value
 	 */
 	void updateStatistic(double newValue);
 
@@ -59,8 +61,8 @@ class MeanVarTracker
 	 * @param[in] winLen Window length for moving operations
 	 * @param[in] id Optional ID to add to metric names
 	 */
-	MeanVarTracker(std::shared_ptr<prometheus::Registry> &reg, const std::string &name,
-					   const size_t winLen, const uint64_t id = 0);
+	MeanVarTracker(std::shared_ptr<prometheus::Registry> &reg, const std::string &name, const size_t winLen,
+				   const uint64_t id = 0);
 
 	/**
 	 * @brief Updates internal statistics with value
