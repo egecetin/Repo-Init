@@ -58,6 +58,22 @@ EOF
 mv -f /tmp/oneAPI.repo /etc/yum.repos.d
 yum install intel-oneapi-runtime-libs -y
 
+echo -e "${ANSI_FG_YELLOW}Installing Grafana... ${ANSI_RESET_ALL}"
+tee > /etc/yum.repos.d/grafana.repo << EOF
+[grafana]
+name=grafana
+baseurl=https://rpm.grafana.com
+repo_gpgcheck=1
+enabled=1
+gpgcheck=1
+gpgkey=https://rpm.grafana.com/gpg.key
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+exclude=*beta*
+EOF
+yum install grafana -y
+\cp scripts/data/grafana-firewalld.xml /etc/firewalld/services/grafana.xml
+
 echo -e "${ANSI_FG_YELLOW}Installing Prometheus v${VER_PROMETHEUS}...${ANSI_RESET_ALL}"
 adduser -M -r -s /sbin/nologin prometheus
 mkdir /etc/prometheus
@@ -138,6 +154,7 @@ systemctl enable --now pmlogger
 systemctl enable --now prometheus
 systemctl enable --now node_exporter
 systemctl enable --now cockpit.socket
+systemctl enable --now grafana-server
 
 systemctl stop dnf-makecache.timer
 systemctl disable dnf-makecache.timer
@@ -175,6 +192,7 @@ firewall-cmd --reload
 firewall-cmd --permanent --zone=public --add-service=ssh
 firewall-cmd --permanent --zone=public --add-service=cockpit
 firewall-cmd --permanent --zone=trusted --add-service=prometheus
+firewall-cmd --permanent --zone=trusted --add-service=grafana
 firewall-cmd --reload
 
 echo -e "${ANSI_FG_YELLOW}Displaying information ...${ANSI_RESET_ALL}"
