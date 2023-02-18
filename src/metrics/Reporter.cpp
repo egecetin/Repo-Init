@@ -67,3 +67,17 @@ std::shared_ptr<StatusTracker> Reporter::addNewStatTracker(const std::string &na
 
 	return tracker;
 }
+
+std::shared_ptr<MeanVarTracker> Reporter::addNewMeanTracker(const std::string &name, size_t windowLength, uint64_t id)
+{
+	std::lock_guard<std::mutex> guard(guardLock);
+
+	auto reg = std::make_shared<prometheus::Registry>();
+	auto tracker = std::make_shared<MeanVarTracker>(reg, name, windowLength, id);
+	mainExposer->RegisterCollectable(reg);
+
+	vRegister.push_back(reg);
+	vMeanTracker.push_back(tracker);
+
+	return tracker;
+}

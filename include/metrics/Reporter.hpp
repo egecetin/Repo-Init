@@ -22,6 +22,8 @@ class Reporter
 	std::vector<std::shared_ptr<PerformanceTracker>> vPerfTracker;
 	/// All status trackers
 	std::vector<std::shared_ptr<StatusTracker>> vStatTracker;
+	/// All mean trackers
+	std::vector<std::shared_ptr<MeanVarTracker>> vMeanTracker;
 
 	/// Mutex for concurrent add tracker calls
 	std::mutex guardLock;
@@ -56,6 +58,15 @@ class Reporter
 	 * @return std::shared_ptr<StatusTracker> Pointer to new status tracker
 	 */
 	std::shared_ptr<StatusTracker> addNewStatTracker(const std::string &name, uint64_t id = 0);
+
+	/**
+	 * @brief Adds a new custom mean tracker to prometheus service
+	 * @param[in] name Name of the metric
+	 * @param[in] windowLength Length of the window for moving statistical properties
+	 * @param[in] id Optional ID to add metric names
+	 * @return std::shared_ptr<MeanVarTracker> Pointer to new mean tracker
+	 */
+	std::shared_ptr<MeanVarTracker> addNewMeanTracker(const std::string &name, size_t windowLength, uint64_t id = 0);
 };
 
 /// Class to maintain prometheus calls

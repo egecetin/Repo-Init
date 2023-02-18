@@ -25,11 +25,12 @@ void MeanVarTracker::updateStatistic(double newValue)
 		movStdBuffVal = movStdBuffVal + (newValue - movOldMean) * (newValue - movingMeanVal->Value()) -
 						(qMeasurements.front() - movOldMean) * (qMeasurements.front() - movingMeanVal->Value());
 
-		if (counter > 1)
-			movingVarVal->Set(movStdBuffVal / (counter - 1));
+		if (winLenInternal > 1)
+			movingVarVal->Set(movStdBuffVal / (winLenInternal - 1));
 	}
 	else
 	{
+		movStdBuffVal = stdBuffVal;
 		movingMeanVal->Set(meanVal->Value());
 		movingVarVal->Set(varVal->Value());
 	}
