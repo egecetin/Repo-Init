@@ -11,6 +11,8 @@
 #include <spdlog/sinks/syslog_sink.h>
 #include <spdlog/spdlog.h>
 
+// GCOVR_EXCL_START
+
 MainLogger::MainLogger(int argc, char **argv, const std::string &configPath)
 {
 	spdlog::set_level(spdlog::level::off);
@@ -48,3 +50,5 @@ MainLogger::MainLogger(int argc, char **argv, const std::string &configPath)
 }
 
 MainLogger::~MainLogger() { mainLogger->flush(); }
+
+// GCOVR_EXCL_STOP
