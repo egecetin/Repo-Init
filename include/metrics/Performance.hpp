@@ -1,59 +1,19 @@
 #pragma once
 
-#include <queue>
+#include "metrics/MeanVar.hpp"
 
-#include <prometheus/counter.h>
-#include <prometheus/gauge.h>
-#include <prometheus/info.h>
-#include <prometheus/registry.h>
+#include <queue>
 
 /**
  * @brief Measures and calculates performance metrics
  */
-class PerformanceTracker
+class PerformanceTracker : private MeanVarTracker
 {
   private:
-	/// Name of the metric
-	std::string metricName;
-	/// ID of the tracker
-	uint64_t trackerID;
 	/// Set after startTimer to measure counter difference
 	uint64_t lastTimeCtr;
 	/// TSC clock frequency
 	uint64_t tscHzInternal;
-	/// Window length of moving operations
-	size_t winLenInternal;
-
-	/// Total counter of start/stop period
-	prometheus::Counter *eventCtr;
-	/// Mean value of timer in nanoseconds
-	prometheus::Gauge *meanTiming;
-	/// Variance of timer in nanoseconds
-	prometheus::Gauge *varTiming;
-	/// Moving mean value of timer in nanoseconds
-	prometheus::Gauge *movingMeanTiming;
-	/// Variance of timer in nanoseconds
-	prometheus::Gauge *movingVarTiming;
-	/// Maximum value of timer in nanoseconds
-	prometheus::Gauge *maxTiming;
-	/// Minimum value of timer in nanoseconds
-	prometheus::Gauge *minTiming;
-	/// Window length for moving statistical operations
-	prometheus::Info *windowLength;
-
-	/// Standard deviation buffer (Internal use only)
-	double stdBuffTiming;
-	/// Moving standard deviation buffer (Internal use only)
-	double movStdBuffTiming;
-
-	/// Element queue for moving operations
-	std::queue<double> qMeasurements;
-
-	/**
-	 * @brief Update statistics with provided value
-	 * @param[in] newValue New performance timing
-	 */
-	void updateStatistic(double newValue);
 
   public:
 	/**
