@@ -21,7 +21,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "8.5.20"
+      "version": ""
     },
     {
       "type": "datasource",
@@ -71,12 +71,12 @@
     ]
   },
   "description": "Basic overview of linux host metrics, based on node_exporter",
-  "editable": true,
+  "editable": false,
   "fiscalYearStartMonth": 0,
   "gnetId": 10180,
-  "graphTooltip": 1,
+  "graphTooltip": 0,
   "id": null,
-  "iteration": 1676734674690,
+  "iteration": 1676741351845,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -161,7 +161,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "targets": [
         {
           "datasource": {
@@ -240,7 +240,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "repeat": "host",
       "repeatDirection": "v",
       "targets": [
@@ -325,7 +325,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "targets": [
         {
           "datasource": {
@@ -402,7 +402,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "targets": [
         {
           "datasource": {
@@ -495,7 +495,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "repeat": "host",
       "repeatDirection": "v",
       "targets": [
@@ -577,7 +577,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "repeat": "host",
       "repeatDirection": "v",
       "targets": [
@@ -607,6 +607,7 @@
             "mode": "thresholds"
           },
           "custom": {
+            "align": "auto",
             "displayMode": "auto",
             "inspect": false
           },
@@ -748,7 +749,7 @@
           }
         ]
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "repeat": "host",
       "repeatDirection": "v",
       "targets": [
@@ -1043,7 +1044,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "targets": [
         {
           "datasource": {
@@ -1122,7 +1123,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "repeat": "host",
       "repeatDirection": "v",
       "targets": [
@@ -1208,7 +1209,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "targets": [
         {
           "datasource": {
@@ -1291,7 +1292,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "targets": [
         {
           "datasource": {
@@ -1373,7 +1374,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "targets": [
         {
           "datasource": {
@@ -1452,7 +1453,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "repeatDirection": "v",
       "targets": [
         {
@@ -1533,7 +1534,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "repeatDirection": "v",
       "targets": [
         {
@@ -1621,7 +1622,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "targets": [
         {
           "datasource": {
@@ -2158,7 +2159,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "targets": [
         {
           "datasource": {
@@ -2874,7 +2875,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "8.5.20",
+      "pluginVersion": "",
       "targets": [
         {
           "datasource": {
@@ -2985,6 +2986,6 @@
   "timezone": "",
   "title": "Linux Hosts Metrics | Base",
   "uid": "ov0oEgdik",
-  "version": 13,
+  "version": 15,
   "weekStart": ""
 }

@@ -73,6 +73,7 @@ exclude=*beta*
 EOF
 yum install grafana -y
 \cp scripts/data/grafana-firewalld.xml /etc/firewalld/services/grafana.xml
+\cp scripts/data/grafana.ini /etc/grafana/grafana.ini
 
 echo -e "${ANSI_FG_YELLOW}Installing Prometheus v${VER_PROMETHEUS}...${ANSI_RESET_ALL}"
 adduser -M -r -s /sbin/nologin prometheus
