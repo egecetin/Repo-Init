@@ -14,11 +14,13 @@ ANSI_RESET_ALL="\x1b[0m"
 # Versions
 VER_PROMETHEUS=2.37.0
 VER_NODE_EXPORTER=1.3.1
+VER_LOKI=2.7.3
+VER_PROMTAIL=2.7.3
 
 # Install
 echo -e "${ANSI_FG_YELLOW}Installing packages ...${ANSI_RESET_ALL}"
 yum install epel-release -y
-yum install make wget btop htop cockpit cockpit-pcp chrony mlocate lm_sensors policycoreutils-python-utils smartmontools -y
+yum install make wget btop htop cockpit cockpit-pcp chrony mlocate lm_sensors policycoreutils-python-utils setroubleshoot smartmontools -y
 
 echo -e "${ANSI_FG_YELLOW}Installing cockpit-navigator ...${ANSI_RESET_ALL}"
 curl -sSL https://repo.45drives.com/setup | sudo bash
@@ -75,6 +77,42 @@ yum install grafana -y
 \cp scripts/data/grafana-firewalld.xml /etc/firewalld/services/grafana.xml
 \cp scripts/data/grafana.ini /etc/grafana/grafana.ini
 
+echo -e "${ANSI_FG_YELLOW}Installing Loki v${VER_LOKI}...${ANSI_RESET_ALL}"
+wget https://github.com/grafana/loki/releases/download/v$VER_LOKI/loki-$VER_LOKI.x86_64.rpm
+rpm -i loki-$VER_LOKI.x86_64.rpm
+\cp scripts/data/loki-firewalld.xml /etc/firewalld/services/loki.xml
+
+echo -e "${ANSI_FG_YELLOW}Installing Promtail v${VER_PROMTAIL}...${ANSI_RESET_ALL}"
+wget https://github.com/grafana/loki/releases/download/v$VER_PROMTAIL/promtail-$VER_PROMTAIL.x86_64.rpm
+rpm -i promtail-$VER_PROMTAIL.x86_64.rpm
+systemctl stop promtail
+usermod -a -G systemd-journal promtail
+setfacl -R -m u:promtail:rX /var/log
+\cp scripts/data/promtail-firewalld.xml /etc/firewalld/services/promtail.xml
+
+rm -f /etc/promtail/config.yml
+tee > /etc/promtail/config.yml << EOF
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://localhost:3100/loki/api/v1/push
+
+scrape_configs:
+- job_name: system
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: varlogs
+      __path__: /var/log/**/*log
+
+EOF
+
 echo -e "${ANSI_FG_YELLOW}Installing Prometheus v${VER_PROMETHEUS}...${ANSI_RESET_ALL}"
 adduser -M -r -s /sbin/nologin prometheus
 mkdir /etc/prometheus
@@ -105,7 +143,7 @@ ExecStart=/usr/local/bin/prometheus \
     --storage.tsdb.path /var/lib/prometheus/ \
     --web.console.templates=/etc/prometheus/consoles \
     --web.console.libraries=/etc/prometheus/console_libraries \
-    --web.listen-address=:9080
+    --web.listen-address=:9000
 
 [Install]
 WantedBy=multi-user.target
@@ -156,6 +194,8 @@ systemctl enable --now prometheus
 systemctl enable --now node_exporter
 systemctl enable --now cockpit.socket
 systemctl enable --now grafana-server
+systemctl enable --now loki
+systemctl enable --now promtail
 
 systemctl stop dnf-makecache.timer
 systemctl disable dnf-makecache.timer
@@ -194,6 +234,8 @@ firewall-cmd --permanent --zone=public --add-service=ssh
 firewall-cmd --permanent --zone=public --add-service=cockpit
 firewall-cmd --permanent --zone=trusted --add-service=prometheus
 firewall-cmd --permanent --zone=trusted --add-service=grafana
+firewall-cmd --permanent --zone=trusted --add-service=loki
+firewall-cmd --permanent --zone=trusted --add-service=promtail
 firewall-cmd --reload
 
 echo -e "${ANSI_FG_YELLOW}Displaying information ...${ANSI_RESET_ALL}"

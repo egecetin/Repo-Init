@@ -7,6 +7,14 @@
       "type": "datasource",
       "pluginId": "prometheus",
       "pluginName": "Prometheus"
+    },
+    {
+      "name": "DS_LOKI",
+      "label": "Loki",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "loki",
+      "pluginName": "Loki"
     }
   ],
   "__elements": [],
@@ -21,7 +29,19 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
+      "version": "8.5.20"
+    },
+    {
+      "type": "panel",
+      "id": "logs",
+      "name": "Logs",
       "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "loki",
+      "name": "Loki",
+      "version": "1.0.0"
     },
     {
       "type": "datasource",
@@ -71,32 +91,15 @@
     ]
   },
   "description": "Basic overview of linux host metrics, based on node_exporter",
-  "editable": false,
+  "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 10180,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1676741351845,
+  "iteration": 1676812204219,
   "links": [],
   "liveNow": false,
   "panels": [
-    {
-      "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "a9KLDY14z"
-      },
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 42,
-      "panels": [],
-      "title": "Host Overview",
-      "type": "row"
-    },
     {
       "datasource": {
         "type": "prometheus",
@@ -141,7 +144,7 @@
         "h": 4,
         "w": 2,
         "x": 0,
-        "y": 1
+        "y": 0
       },
       "hideTimeOverride": true,
       "id": 49,
@@ -161,7 +164,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "targets": [
         {
           "datasource": {
@@ -221,7 +224,7 @@
         "h": 2,
         "w": 2,
         "x": 2,
-        "y": 1
+        "y": 0
       },
       "id": 4,
       "links": [],
@@ -240,21 +243,21 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "repeat": "host",
       "repeatDirection": "v",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "node_memory_MemTotal_bytes{instance=~\"$host\"}",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
           "legendFormat": "",
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          }
+          "refId": "A"
         }
       ],
       "title": "RAM",
@@ -309,7 +312,7 @@
         "h": 4,
         "w": 3,
         "x": 4,
-        "y": 1
+        "y": 0
       },
       "id": 47,
       "links": [],
@@ -325,7 +328,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "targets": [
         {
           "datasource": {
@@ -385,7 +388,7 @@
         "h": 4,
         "w": 3,
         "x": 7,
-        "y": 1
+        "y": 0
       },
       "hideTimeOverride": false,
       "id": 51,
@@ -402,7 +405,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "targets": [
         {
           "datasource": {
@@ -476,7 +479,7 @@
         "h": 4,
         "w": 2,
         "x": 10,
-        "y": 1
+        "y": 0
       },
       "id": 10,
       "links": [],
@@ -495,20 +498,20 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "repeat": "host",
       "repeatDirection": "v",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(increase(node_network_receive_bytes_total{instance=~\"$host\"}[24h]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "",
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          }
+          "refId": "A"
         }
       ],
       "title": "Net IN (24h)",
@@ -558,7 +561,7 @@
         "h": 4,
         "w": 2,
         "x": 12,
-        "y": 1
+        "y": 0
       },
       "id": 12,
       "links": [],
@@ -577,20 +580,20 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "repeat": "host",
       "repeatDirection": "v",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum(increase(node_network_transmit_bytes_total{instance=~\"$host\"}[24h]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "",
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          }
+          "refId": "A"
         }
       ],
       "title": "Net OUT (24h)",
@@ -729,7 +732,7 @@
         "h": 8,
         "w": 5,
         "x": 14,
-        "y": 1
+        "y": 0
       },
       "id": 37,
       "links": [],
@@ -749,21 +752,21 @@
           }
         ]
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "repeat": "host",
       "repeatDirection": "v",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "node_filesystem_free_bytes{fstype!~\"(tmpfs|rootfs).*\",instance=~\"$host\"}",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
           "legendFormat": "",
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          }
+          "refId": "A"
         }
       ],
       "title": "Disk (Free)",
@@ -886,7 +889,7 @@
         "h": 8,
         "w": 5,
         "x": 19,
-        "y": 1
+        "y": 0
       },
       "id": 61,
       "links": [],
@@ -1025,7 +1028,7 @@
         "h": 2,
         "w": 2,
         "x": 2,
-        "y": 3
+        "y": 2
       },
       "id": 55,
       "links": [],
@@ -1044,7 +1047,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "targets": [
         {
           "datasource": {
@@ -1103,7 +1106,7 @@
         "h": 4,
         "w": 2,
         "x": 0,
-        "y": 5
+        "y": 4
       },
       "id": 2,
       "interval": "",
@@ -1123,20 +1126,20 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "repeat": "host",
       "repeatDirection": "v",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "count(count(node_cpu_seconds_total{instance=~\"$host\"}) by (cpu))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "",
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          }
+          "refId": "A"
         }
       ],
       "title": "Processors",
@@ -1190,7 +1193,7 @@
         "h": 4,
         "w": 2,
         "x": 2,
-        "y": 5
+        "y": 4
       },
       "id": 57,
       "links": [],
@@ -1209,7 +1212,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "targets": [
         {
           "datasource": {
@@ -1276,7 +1279,7 @@
         "h": 4,
         "w": 3,
         "x": 4,
-        "y": 5
+        "y": 4
       },
       "id": 53,
       "links": [],
@@ -1292,7 +1295,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "targets": [
         {
           "datasource": {
@@ -1358,7 +1361,7 @@
         "h": 4,
         "w": 3,
         "x": 7,
-        "y": 5
+        "y": 4
       },
       "id": 45,
       "links": [],
@@ -1374,7 +1377,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "targets": [
         {
           "datasource": {
@@ -1434,7 +1437,7 @@
         "h": 4,
         "w": 2,
         "x": 10,
-        "y": 5
+        "y": 4
       },
       "id": 68,
       "links": [],
@@ -1453,7 +1456,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "repeatDirection": "v",
       "targets": [
         {
@@ -1515,7 +1518,7 @@
         "h": 4,
         "w": 2,
         "x": 12,
-        "y": 5
+        "y": 4
       },
       "id": 69,
       "links": [],
@@ -1534,7 +1537,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "repeatDirection": "v",
       "targets": [
         {
@@ -1553,18 +1556,153 @@
       "type": "stat"
     },
     {
-      "collapsed": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "a9KLDY14z"
+        "uid": "${DS_PROMETHEUS}"
       },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "warn"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-yellow",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "error"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-red",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 0,
+        "y": 8
+      },
+      "id": 79,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.20",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "sum(idelta(loki_internal_log_messages_total{job=~\".+\",level=~\"warn|error\"}[1m])) by (level)",
+          "legendFormat": "{{level}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Log Rate",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "${DS_LOKI}"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 20,
+        "x": 4,
+        "y": 8
+      },
+      "id": 77,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": true,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "${DS_LOKI}"
+          },
+          "expr": "{job=~\".+\"} | logfmt | lvl=\"warn\" or lvl=\"error\"",
+          "maxLines": 50,
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Recent logs",
+      "type": "logs"
+    },
+    {
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 13
       },
-      "id": 26,
+      "id": 81,
       "panels": [],
       "title": "Details",
       "type": "row"
@@ -1605,7 +1743,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 10
+        "y": 14
       },
       "id": 73,
       "options": {
@@ -1622,7 +1760,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "targets": [
         {
           "datasource": {
@@ -1698,7 +1836,7 @@
         "h": 7,
         "w": 7,
         "x": 3,
-        "y": 10
+        "y": 14
       },
       "id": 14,
       "links": [],
@@ -1721,19 +1859,19 @@
       "repeatDirection": "v",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "sum by (mode) (irate(node_cpu_seconds_total{instance=~\"$host\"}[5m]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{mode}}",
-          "refId": "B",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          }
+          "refId": "B"
         }
       ],
-      "title": "CPU Load | $host",
+      "title": "CPU Load",
       "type": "timeseries"
     },
     {
@@ -1870,7 +2008,7 @@
         "h": 7,
         "w": 7,
         "x": 10,
-        "y": 10
+        "y": 14
       },
       "id": 59,
       "links": [],
@@ -2057,7 +2195,7 @@
         "h": 7,
         "w": 7,
         "x": 17,
-        "y": 10
+        "y": 14
       },
       "id": 67,
       "links": [],
@@ -2142,7 +2280,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 14
+        "y": 18
       },
       "id": 71,
       "options": {
@@ -2159,7 +2297,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "targets": [
         {
           "datasource": {
@@ -2233,7 +2371,7 @@
         "h": 7,
         "w": 7,
         "x": 3,
-        "y": 17
+        "y": 21
       },
       "id": 30,
       "links": [],
@@ -2256,32 +2394,32 @@
       "repeatDirection": "v",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "irate(node_disk_read_bytes_total{instance=~\"$host\"}[5m]) > 0",
           "format": "time_series",
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Read ({{device}})",
-          "refId": "A",
+          "refId": "A"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "expr": "- irate(node_disk_written_bytes_total{instance=~\"$host\"}[5m]) < 0",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Write ({{device}})",
-          "refId": "B",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          }
+          "refId": "B"
         }
       ],
-      "title": "Disk Activity | $host",
+      "title": "Disk Activity",
       "type": "timeseries"
     },
     {
@@ -2344,7 +2482,7 @@
         "h": 7,
         "w": 7,
         "x": 10,
-        "y": 17
+        "y": 21
       },
       "id": 32,
       "links": [],
@@ -2367,29 +2505,29 @@
       "repeatDirection": "v",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "expr": "irate(node_disk_read_time_seconds_total{instance=~\"$host\"}[5m]) > 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Read ({{device}})",
-          "refId": "A",
+          "refId": "A"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "expr": "- irate(node_disk_write_time_seconds_total{instance=~\"$host\"}[5m]) < 0",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Write ({{device}})",
-          "refId": "B",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          }
+          "refId": "B"
         }
       ],
-      "title": "Disk IO | $host",
+      "title": "Disk IO",
       "type": "timeseries"
     },
     {
@@ -2767,7 +2905,7 @@
         "h": 7,
         "w": 7,
         "x": 17,
-        "y": 17
+        "y": 21
       },
       "id": 65,
       "links": [],
@@ -2844,6 +2982,10 @@
               },
               {
                 "color": "dark-yellow",
+                "value": 50
+              },
+              {
+                "color": "dark-orange",
                 "value": 65
               },
               {
@@ -2860,7 +3002,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 19
+        "y": 23
       },
       "id": 75,
       "options": {
@@ -2875,7 +3017,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "",
+      "pluginVersion": "8.5.20",
       "targets": [
         {
           "datasource": {
@@ -2890,7 +3032,7 @@
       "type": "gauge"
     }
   ],
-  "refresh": "5s",
+  "refresh": "",
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
@@ -2985,7 +3127,7 @@
   },
   "timezone": "",
   "title": "Linux Hosts Metrics | Base",
-  "uid": "ov0oEgdik",
-  "version": 15,
+  "uid": "ov0oEgdik1",
+  "version": 11,
   "weekStart": ""
 }
