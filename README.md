@@ -63,12 +63,10 @@ All scripts should be executed from top level directory
 - create_installer      : Creates installer package using makeself
 - firstName             : Script to change placeholder name
 - generateKey           : Generates public/private key pairs
-- init                  : Script used initialization of this repo
 - ldd-copy-dependencies : Script to copy dynamic dependencies of a binary
 - makeself              : [Makeself](https://github.com/megastep/makeself) self-extractable archive creator
 - passwordless-ssh      : Script to enable passwordless ssh from Windows hosts
-- prepare-release       : Prepares a release package
-- system-setup          : Installs desired packages on RedHat based systems
+- system-setup          : Installs desired packages on RedHat based systems. Check scripts/SYSTEMSETUP.md for details
 
 ## Dependencies
 
