@@ -1,4 +1,4 @@
-system-setup.sh prepares and install applications to RedHat based systems. 
+system-setup.sh prepares and install applications to RedHat based systems.
 
 It installs the following packages,
 
