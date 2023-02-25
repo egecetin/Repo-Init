@@ -10,7 +10,6 @@ include(CppStandards)
 include(Doxy)
 include(GitVersion)
 include(GraphViz)
-include(Sanitizers)
 include(SvnVersion)
 
 option(XXX_ENABLE_TESTS "Enables XXX tests" ON)
@@ -129,12 +128,10 @@ target_link_libraries(
   sentry
   core
   pull)
-add_sanitizers("${PROJECT_NAME}_Lib_Shared")
 
 add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp ${BACKWARD_ENABLE})
 target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared")
-add_sanitizers("${PROJECT_NAME}")
 add_backward("${PROJECT_NAME}")
 
 # Set install targets
