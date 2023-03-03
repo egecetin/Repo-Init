@@ -80,16 +80,13 @@ include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/pull/include)
 
 # Disable/Enable options of subprojects
-option(BUILD_STATIC "" OFF) # libzmq
+option(BUILD_SHARED "" OFF) # libzmq
 option(BUILD_TESTS "" OFF) # libzmq
 option(WITH_DOCS "" OFF) # libzmq
 option(CPPZMQ_BUILD_TESTS "" OFF)
 option(RAPIDJSON_BUILD_DOC "" OFF)
 option(RAPIDJSON_BUILD_EXAMPLES "" OFF)
 option(RAPIDJSON_BUILD_TESTS "" OFF)
-option(SPDLOG_BUILD_SHARED "" ON)
-option(SENTRY_BUILD_SHARED_LIBS "" ON)
-option(BUILD_SHARED_LIBS "" ON) # prometheus-cpp
 option(ENABLE_COMPRESSION "" OFF) # prometheus-cpp
 option(ENABLE_TESTING "" OFF) # prometheus-cpp
 set(SENTRY_BACKEND none)
@@ -113,74 +110,30 @@ if(XXX_ENABLE_TESTS)
 endif()
 
 # Set Targets
-add_library("${PROJECT_NAME}_Lib_Shared" SHARED ${ProjectSources})
+add_library("${PROJECT_NAME}-static" STATIC ${ProjectSources})
 set_target_properties(
-  "${PROJECT_NAME}_Lib_Shared"
+  "${PROJECT_NAME}-static"
   PROPERTIES OUTPUT_NAME "${PROJECT_NAME}"
              VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
              SOVERSION ${PROJECT_VERSION_MAJOR})
-target_include_directories("${PROJECT_NAME}_Lib_Shared" PRIVATE "${PROJECT_BINARY_DIR}")
+target_include_directories("${PROJECT_NAME}-static" PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(
-  "${PROJECT_NAME}_Lib_Shared"
+  "${PROJECT_NAME}-static"
   stdc++fs
   spdlog
-  libzmq
+  libzmq-static
   sentry
   core
   pull)
 
 add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp ${BACKWARD_ENABLE})
 target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}_Lib_Shared")
+target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}-static")
 add_backward("${PROJECT_NAME}")
-
-# Set install targets
-install(
-  TARGETS "${PROJECT_NAME}"
-          "${PROJECT_NAME}_Lib_Shared"
-          spdlog
-          libzmq
-          sentry
-          core
-          pull
-  RUNTIME DESTINATION bin
-  LIBRARY DESTINATION lib)
 
 # Update build number at every build
 add_custom_command(
-  TARGET "${PROJECT_NAME}_Lib_Shared"
+  TARGET "${PROJECT_NAME}-static"
   PRE_BUILD
   COMMAND ${CMAKE_COMMAND} -P "${PROJECT_SOURCE_DIR}/cmake/AutoBuildNumber.cmake"
   COMMENT "${BoldBlue}Updating build number${ColourReset}")
-
-# CPack
-if(${CMAKE_VERSION} VERSION_LESS "3.21.0")
-  message("${BoldYellow}Please consider to switch to CMake 3.21.0 or newer to enable CPack support${ColourReset}")
-else()
-  set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
-  set(CPACK_GENERATOR "RPM")
-  set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
-  set(CPACK_PACKAGE_RELEASE ${PROJECT_VERSION_PATCH})
-  set(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
-  set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}.${CMAKE_SYSTEM_PROCESSOR}")
-  set(CPACK_RPM_SPEC_MORE_DEFINE "%define _build_id_links none")
-  set(CPACK_OUTPUT_FILE_PREFIX ${PROJECT_SOURCE_DIR}/dist/packages)
-  set(CPACK_RESOURCE_FILE_LICENSE ${PROJECT_SOURCE_DIR}/LICENSE)
-  set(CPACK_RESOURCE_FILE_README ${PROJECT_SOURCE_DIR}/README.md)
-  set(CPACK_PACKAGE_CONTACT "Humanity")
-  list(APPEND CPACK_POST_BUILD_SCRIPTS "${CMAKE_MODULE_PATH}/PostBuild.cmake")
-  include(CPack)
-
-  # Cache variables for scripts
-  set(CacheForScript ${CMAKE_MODULE_PATH}/CMakeCacheForScript.cmake)
-  file(WRITE ${CacheForScript} "")
-
-  get_cmake_property(Vars VARIABLES)
-  foreach(Var ${Vars})
-    if(${Var})
-      string(REPLACE "\\" "\\\\" ${Var} "${${Var}}")
-      string(REPLACE "\"" "\\\"" ${Var} "${${Var}}")
-    endif()
-    file(APPEND ${CacheForScript} "set(${Var} \"${${Var}}\")\n")
-  endforeach()
-endif()

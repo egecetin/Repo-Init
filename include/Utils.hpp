@@ -130,12 +130,6 @@ std::string readSingleConfig(const std::string &dir, std::string value);
 void alarmFunc(int signum);
 
 /**
- * @brief Function invoked by abnormal (e.g. SIGSEGV) signals
- * @param[in] signum Signal indicator
- */
-void backtracer(int signum);
-
-/**
  * @brief Function invoked by user interruption signals
  * @param[in] signum Signal indicator
  */

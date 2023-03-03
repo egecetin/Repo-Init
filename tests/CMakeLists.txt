@@ -55,7 +55,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/tests/gtest)
 # Test cases
 add_executable(TestMain ${ProjectTestSources})
 target_include_directories(TestMain PRIVATE "${PROJECT_BINARY_DIR}/tests")
-target_link_libraries(TestMain gtest_main memplumber "${PROJECT_NAME}_Lib_Shared")
+target_link_libraries(TestMain gtest_main memplumber "${PROJECT_NAME}-static")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   target_compile_options(TestMain PUBLIC --coverage)
