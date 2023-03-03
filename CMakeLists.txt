@@ -151,5 +151,5 @@ add_custom_target(
     -e ${PROJECT_SOURCE_DIR}/scripts/makeself/makeself.sh
     -v ${PROJECT_VERSION}
     -n "${PROJECT_NAME}"
-    DEPENDS "${PROJECT_NAME}"
+  DEPENDS "${PROJECT_NAME}"
 )
