@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Grafana Server</short>
+  <description>Multi-platform open source analytics and interactive visualization web application.</description>
+  <port protocol="tcp" port="3000"/>
+</service>

@@ -2,6 +2,6 @@
 <service>
   <short>prometheus</short>
   <description>The Prometheus monitoring system and time series database.</description>
-  <port protocol="tcp" port="9080"/>
+  <port protocol="tcp" port="9000"/>
   <port protocol="tcp" port="9100"/>
 </service>
