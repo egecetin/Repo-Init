@@ -35,7 +35,6 @@ It provides the following features
 
 ## CMake
 
-- AddressSanitizer      : Defines address sanitizer
 - AutoBuildNumber       : Auto increments the build number
 - CodeCoverage          : Detects and enables gcovr
 - Colorize              : Color commands for message outputs
@@ -47,14 +46,8 @@ It provides the following features
 - Doxy                  : Find doxygen package and prepare doc environment
 - GitVersion            : Get SHA1 hash of current commit
 - GraphViz              : Find graphviz and dot executable to create dependency graph
-- LinkTimeOptimization  : Enables Link Time Optimization
-- MemorySanitizer       : Defines memory sanitizer
 - PostBuild             : Post build action to prepare makeself package after CPack while calculating checksums for all binaries
-- Sanitizers            : Controls sanitizer targets
 - SvnVersion            : Get revision number of current commit
-- ThreadSanitizer       : Defines thread sanitizer
-- Tools                 : Prepares ClangTidy, IWYU and CppCheck
-- UndefinedBehaviourSan : Defines undefined behaviour sanitizer
 
 ## Scripts
 
