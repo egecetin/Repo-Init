@@ -22,6 +22,7 @@ do
 	case $option in
 		b) ARGUMENT_BINARY="$OPTARG" ;;
 		t) ARGUMENT_TARGET="$OPTARG" ;;
+		r) ARGUMENT_REGEX="$OPTARG" ;;
 	esac
 done
 
@@ -52,8 +53,11 @@ cp --verbose --parents "${ARGUMENT_BINARY}" "${ARGUMENT_TARGET}"
 #===============================================================================
 for library in $(ldd "${ARGUMENT_BINARY}" | cut -d '>' -f 2 | awk '{print $1}')
 do
-	[ -f "${library}" ] && cp --verbose --parents "${library}" "${ARGUMENT_TARGET}"
+	if echo "${library}" | grep -Ev "${ARGUMENT_REGEX}";
+	then
+		[ -f "${library}" ] && cp --verbose --parents "${library}" "${ARGUMENT_TARGET}"
+	fi
 done
 
-find "${ARGUMENT_TARGET}" -type f -exec mv --backup=numbered -t "${ARGUMENT_TARGET}" {} +
+find "${ARGUMENT_TARGET}" -type f -exec mv -t "${ARGUMENT_TARGET}" {} +
 find "${ARGUMENT_TARGET}" -type d -empty -delete

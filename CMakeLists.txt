@@ -30,7 +30,7 @@ endif()
 
 set(PROJECT_VERSION_PATCH ${BUILD_NUMBER})
 set(PROJECT_VERSION_TWEAK ${REVISION_VERSION})
-set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${BUILD_NUMBER}-rev${REVISION_VERSION}")
+set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${BUILD_NUMBER}-${REVISION_VERSION}")
 message("${BoldBlue}Compiling Version ${PROJECT_VERSION}${ColourReset}")
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug/lib/static)
@@ -133,7 +133,23 @@ add_backward("${PROJECT_NAME}")
 
 # Update build number at every build
 add_custom_command(
-  TARGET "${PROJECT_NAME}-static"
+  TARGET "${PROJECT_NAME}"
   PRE_BUILD
   COMMAND ${CMAKE_COMMAND} -P "${PROJECT_SOURCE_DIR}/cmake/AutoBuildNumber.cmake"
   COMMENT "${BoldBlue}Updating build number${ColourReset}")
+
+add_custom_target(
+  package
+  COMMAND rm -rf ${CMAKE_BINARY_DIR}/temp/*
+  COMMAND mkdir -p ${CMAKE_BINARY_DIR}/temp
+  COMMAND /bin/bash ${PROJECT_SOURCE_DIR}/scripts/ldd-copy-dependencies.sh
+    -b ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/"${PROJECT_NAME}"
+    -t ${CMAKE_BINARY_DIR}/temp
+    -r ""
+  COMMAND /bin/bash ${PROJECT_SOURCE_DIR}/scripts/create_installer.sh
+    -f ${CMAKE_BINARY_DIR}/temp
+    -e ${PROJECT_SOURCE_DIR}/scripts/makeself/makeself.sh
+    -v ${PROJECT_VERSION}
+    -n "${PROJECT_NAME}"
+    DEPENDS "${PROJECT_NAME}"
+)
