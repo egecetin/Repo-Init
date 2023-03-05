@@ -3,7 +3,7 @@
 #===============================================================================
 # Parsing command-line arguments with the getopts shell builtin
 #===============================================================================
-while getopts :f:e:v:n:s: option
+while getopts :f:e:v:n: option
 do
 	case $option in
 		f) ARGUMENT_FILES="$OPTARG" ;;
