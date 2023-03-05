@@ -3,12 +3,13 @@
 #===============================================================================
 # Parsing command-line arguments with the getopts shell builtin
 #===============================================================================
-while getopts :f:e:v: option
+while getopts :f:e:v:n: option
 do
 	case $option in
 		f) ARGUMENT_FILES="$OPTARG" ;;
 		e) ARGUMENT_MAKESELF="$OPTARG" ;;
 		v) ARGUMENT_VERSION="$OPTARG" ;;
+		n) ARGUMENT_NAME="$OPTARG" ;;
 	esac
 done
 
@@ -28,4 +29,4 @@ done
 #===============================================================================
 [ ! -d "${ARGUMENT_FILES}" ] && echo "$0: Files path does not exists." >&2 && exit 1
 
-"${ARGUMENT_MAKESELF}" --notemp --sha256 "${ARGUMENT_FILES}" "${ARGUMENT_NAME}installer_${ARGUMENT_VERSION}.run" "${ARGUMENT_NAME} ${ARGUMENT_VERSION}"
+"${ARGUMENT_MAKESELF}" --notemp --sha256 "${ARGUMENT_FILES}" "${ARGUMENT_NAME}-${ARGUMENT_VERSION}.run" "${ARGUMENT_NAME} ${ARGUMENT_VERSION}"
