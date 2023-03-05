@@ -17,7 +17,7 @@
 #===============================================================================
 # Parsing command-line arguments with the getopts shell builtin
 #===============================================================================
-while getopts :b:t: option
+while getopts :b:t:r: option
 do
 	case $option in
 		b) ARGUMENT_BINARY="$OPTARG" ;;

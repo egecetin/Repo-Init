@@ -145,7 +145,8 @@ add_custom_target(
   COMMAND /bin/bash ${PROJECT_SOURCE_DIR}/scripts/ldd-copy-dependencies.sh
     -b ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/"${PROJECT_NAME}"
     -t ${CMAKE_BINARY_DIR}/temp
-    -r ""
+    # Regex to exclude system library path
+    -r "^/usr/lib64"
   COMMAND /bin/bash ${PROJECT_SOURCE_DIR}/scripts/create_installer.sh
     -f ${CMAKE_BINARY_DIR}/temp
     -e ${PROJECT_SOURCE_DIR}/scripts/makeself/makeself.sh
