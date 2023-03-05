@@ -81,7 +81,7 @@ All scripts should be executed from top level directory
  - coverage         : Prepares coverage report
  - docs             : Prepares documentation
  - dependency-graph : Prepares graphviz visualization of dependencies
- - package          : Prepares RPM and makeself packages
+ - package          : Prepares makeself package
  - test             : Prepares gtest target
 
 ## Developer comments
