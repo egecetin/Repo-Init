@@ -17,9 +17,11 @@
 #define MAX_AVAILABLE_SESSION 5
 
 const std::vector<std::pair<std::string, std::string>> telnetCommands = {
-	{"help", "Prints available commands"},
+	{"clear", "Clears the terminal screen"},
 	{"disable log", "Resets logger level"},
 	{"enable log", "Enable specified logger level. Level can be \"v\" (info), \"vv\" (debug) and \"vvv\" (trace)"},
+	{"help", "Prints available commands"},
+	{"version", "Displays the current version"},
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */
@@ -76,6 +78,7 @@ const std::string ANSI_DOUBLE_HORIZONTAL_TAB("\t\t");
 const std::string ANSI_HORIZONTAL_TAB("\t");
 
 const std::string TELNET_ERASE_LINE("\xff\xf8");
+const std::string TELNET_CLEAR_SCREEN("\033[2J");
 
 std::string TelnetSession::getPeerIP()
 {
@@ -124,6 +127,8 @@ void TelnetSession::sendLine(std::string data)
 
 void TelnetSession::closeClient()
 {
+	spdlog::info("Telnet connection to {} closed", getPeerIP());
+
 	// Attempt to cleanly shutdown the connection since we're done
 	shutdown(m_socket, SHUT_WR);
 
@@ -147,7 +152,7 @@ void TelnetSession::echoBack(char *buffer, u_long length)
 void TelnetSession::initialise()
 {
 	// Get details of connection
-	spdlog::info("Connection received from {}", getPeerIP());
+	spdlog::info("Telnet connection received from {}", getPeerIP());
 
 	// Set the connection to be non-blocking
 	u_long iMode = 1;
@@ -585,6 +590,12 @@ bool TelnetMessageCallback(SP_TelnetSession session, std::string line)
 	case constHasher("enable log vvv"):
 		session->sendLine("Trace log mode enabled");
 		spdlog::set_level(spdlog::level::trace);
+		break;
+	case constHasher("version"):
+		session->sendLine(get_version());
+		break;
+	case constHasher("clear"):
+		session->sendLine(TELNET_CLEAR_SCREEN);
 		break;
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
