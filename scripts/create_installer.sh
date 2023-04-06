@@ -5,12 +5,12 @@
 #===============================================================================
 while getopts :f:e:v:n: option
 do
-	case $option in
-		f) ARGUMENT_FILES="$OPTARG" ;;
-		e) ARGUMENT_MAKESELF="$OPTARG" ;;
-		v) ARGUMENT_VERSION="$OPTARG" ;;
-		n) ARGUMENT_NAME="$OPTARG" ;;
-	esac
+    case $option in
+        f) ARGUMENT_FILES="$OPTARG" ;;
+        e) ARGUMENT_MAKESELF="$OPTARG" ;;
+        v) ARGUMENT_VERSION="$OPTARG" ;;
+        n) ARGUMENT_NAME="$OPTARG" ;;
+    esac
 done
 
 #===============================================================================
