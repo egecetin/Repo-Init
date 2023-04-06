@@ -108,6 +108,12 @@ class InputParser
 void print_version(void);
 
 /**
+ * @brief Returns the version
+ * @return std::string Version string
+ */
+std::string get_version(void);
+
+/**
  * @brief Read initial config from JSON
  * @param[in] dir	Path to JSON
  * @return true    	Read all variables

@@ -124,21 +124,33 @@ void zmqControlThread()
 				switch (*((uint64_t *)recv_msgs[0].data()))
 				{
 				case LOG_LEVEL_ID: {
-					if (recv_msgs.size() == 2)
+					if (recv_msgs.size() != 2)
 					{
-						spdlog::warn("Log level change request received");
-						std::string receivedMsg = std::string((char *)recv_msgs[1].data(), recv_msgs[1].size());
-
-						if (!receivedMsg.compare("v"))
-							spdlog::set_level(spdlog::level::info);
-						if (!receivedMsg.compare("vv"))
-							spdlog::set_level(spdlog::level::debug);
-						if (!receivedMsg.compare("vvv"))
-							spdlog::set_level(spdlog::level::trace);
-						reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;
-					}
-					else
 						spdlog::error("Receive unknown number of messages for log level change");
+						break;
+					}
+
+					spdlog::warn("Log level change request received");
+					std::string receivedMsg = std::string((char *)recv_msgs[1].data(), recv_msgs[1].size());
+
+					if (!receivedMsg.compare("v"))
+						spdlog::set_level(spdlog::level::info);
+					if (!receivedMsg.compare("vv"))
+						spdlog::set_level(spdlog::level::debug);
+					if (!receivedMsg.compare("vvv"))
+						spdlog::set_level(spdlog::level::trace);
+					reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;
+					break;
+				}
+				case VERSION_INFO_ID: {
+					if (recv_msgs.size() != 1)
+					{
+						spdlog::error("Receive unknown number of messages for version information");
+						break;
+					}
+
+					reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;
+					replyBody = get_version();
 					break;
 				}
 				/* ################################################################################### */

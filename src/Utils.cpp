@@ -55,6 +55,14 @@ void print_version(void)
 }
 // GCOVR_EXCL_STOP
 
+// GCOVR_EXCL_START
+std::string get_version(void)
+{
+	return std::string("v") + PROJECT_FULL_REVISION + " " + BUILD_TYPE + " " + PROJECT_BUILD_DATE + " " +
+		   PROJECT_BUILD_TIME;
+}
+// GCOVR_EXCL_STOP
+
 template <typename T> std::string stringify(const T &o)
 {
 	rapidjson::StringBuffer sb;
