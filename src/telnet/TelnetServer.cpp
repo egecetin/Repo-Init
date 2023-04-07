@@ -562,6 +562,9 @@ bool TelnetMessageCallback(SP_TelnetSession session, std::string line)
 	// Send received message for user terminal
 	session->sendLine(line);
 
+	if (line.empty())
+		return true;
+
 	// Process received message
 	switch (constHasher(line.c_str()))
 	{
