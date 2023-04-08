@@ -41,8 +41,6 @@ HTTP::HTTP(const std::string &addr, int timeoutInMs)
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeDataCallback);
 
 	curl_easy_setopt(curl, CURLOPT_SSLENGINE_DEFAULT, 1L);
-	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, false);
-	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, false);
 }
 
 CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payload, std::string &receivedData,
