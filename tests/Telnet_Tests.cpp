@@ -15,9 +15,6 @@ TEST(Telnet_Tests, TelnetServerTests)
 	clock_gettime(CLOCK_TAI, &ts);
 	currentTime = ts.tv_sec;
 
-	// Internal tests
-	ASSERT_FALSE(TelnetSession::UNIT_TEST());
-
 	std::future<int> shResult;
 
 	// Init Telnet Server

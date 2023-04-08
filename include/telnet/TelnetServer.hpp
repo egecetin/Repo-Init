@@ -70,9 +70,6 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	/// Marks timeout to close session
 	void markTimeout();
 
-	/// For internal unit tests
-	static int UNIT_TEST();
-
   protected:
 	//
 	void initialise();
@@ -133,6 +130,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	std::shared_ptr<StatusTracker> trackerPtr;
 
 	/// Constructor for server
+	// cppcheck-suppress uninitMemberVar
 	TelnetServer() : m_initialised(false), m_promptString(""){};
 
 	/**

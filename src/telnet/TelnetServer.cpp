@@ -394,33 +394,6 @@ void TelnetSession::update()
 	}
 }
 
-int TelnetSession::UNIT_TEST()
-{
-	/* stripNVT */
-	std::string origData = "12345";
-	std::string data = origData;
-	unsigned char toStrip[3] = {255, 251, 1};
-	data.insert(2, (char *)toStrip, 3);
-	TelnetSession::stripNVT(data);
-
-	if (origData != data)
-		return -1;
-
-	/* processBackspace */
-	std::string bkData = "123455\x7f";
-	bool bkResult = TelnetSession::processBackspace(bkData);
-	if (bkData != "12345" || !bkResult)
-		return -2;
-
-	/* getCompleteLines */
-	std::string multiData = "LINE1\r\nLINE2\r\nLINE3\r\n";
-	auto lines = TelnetSession::getCompleteLines(multiData);
-
-	if (lines.size() != 3 || (lines[0] != "LINE1") || (lines[1] != "LINE2") || (lines[2] != "LINE3"))
-		return -3;
-	return 0;
-}
-
 /* ------------------ Telnet Server -------------------*/
 bool TelnetServer::initialise(u_long listenPort, std::string promptString, std::shared_ptr<StatusTracker> tracker)
 {

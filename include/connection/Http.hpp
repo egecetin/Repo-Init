@@ -24,6 +24,18 @@ class HTTP
 	explicit HTTP(const std::string &addr, int timeoutInMs = 1000);
 
 	/**
+	 * @brief Set the option of HTTP class
+	 * @param option CURL option
+	 * @param value Corresponding value
+	 * @return true If successful
+	 * @return false Otherwise
+	 */
+	template <typename T> bool setOption(CURLoption option, T value)
+	{
+		return curl_easy_setopt(curl, option, value) == CURLE_OK;
+	}
+
+	/**
 	 * @brief Sends a POST request
 	 * @param[in] index Value to append to server address
 	 * @param[in] payload Payload to send to server
