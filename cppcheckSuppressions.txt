@@ -1,4 +1,2 @@
 *:thirdparty/*
 missingInclude:*
-pointerAdditionResultNotNull:include/rng/Hasher.hpp:7
-uninitMemberVar:include/telnet/TelnetServer.hpp:136
