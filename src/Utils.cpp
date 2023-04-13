@@ -16,7 +16,7 @@ uintmax_t HEARTBEAT_INTERVAL;
 
 int ZMQ_SEND_TIMEOUT;
 int ZMQ_RECV_TIMEOUT;
-std::string CONTROL_IPC_PATH;
+std::string ZEROMQ_SERVER_PATH;
 
 uint16_t TELNET_PORT;
 std::string PROMETHEUS_ADDR;
@@ -98,7 +98,7 @@ bool readConfig(const std::string &dir)
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */
-	std::vector<std::string> list = {"ZMQ_RECV_TIMEOUT", "ZMQ_SEND_TIMEOUT", "CONTROL_IPC_PATH"};
+	std::vector<std::string> list = {"ZMQ_RECV_TIMEOUT", "ZMQ_SEND_TIMEOUT", "ZEROMQ_SERVER_PATH"};
 	/* ################################################################################### */
 	/* ################################ END MODIFICATIONS ################################ */
 	/* ################################################################################### */
@@ -119,7 +119,7 @@ bool readConfig(const std::string &dir)
 	// Set variables
 	ZMQ_RECV_TIMEOUT = doc["ZMQ_RECV_TIMEOUT"].GetUint64();
 	ZMQ_SEND_TIMEOUT = doc["ZMQ_SEND_TIMEOUT"].GetUint64();
-	CONTROL_IPC_PATH = doc["CONTROL_IPC_PATH"].GetString();
+	ZEROMQ_SERVER_PATH = doc["ZEROMQ_SERVER_PATH"].GetString();
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */

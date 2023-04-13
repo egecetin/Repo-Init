@@ -70,7 +70,7 @@ void zmqControlThread()
 {
 	// Init ZMQ connection
 	std::unique_ptr<ZeroMQ> zmqContext(nullptr);
-	std::string hostAddrRep = CONTROL_IPC_PATH + "/" + PROJECT_NAME;
+	std::string hostAddrRep = ZEROMQ_SERVER_PATH + "/" + PROJECT_NAME;
 	try
 	{
 		zmqContext = std::make_unique<ZeroMQ>(zmq::socket_type::rep, hostAddrRep, true);
