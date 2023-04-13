@@ -22,7 +22,7 @@ void telnetControlThread()
 	// Init performance tracker if prometheus enabled
 	std::shared_ptr<PerformanceTracker> telnetPerformanceTracker(nullptr);
 	if (mainPrometheusHandler)
-		telnetPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("telnet_server", 1000);
+		telnetPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("telnet_server", 0);
 	std::shared_ptr<StatusTracker> telnetStatusTracker(nullptr);
 	if (mainPrometheusHandler)
 		telnetStatusTracker = mainPrometheusHandler->addNewStatTracker("telnet_server");
@@ -101,7 +101,7 @@ void zmqControlThread()
 	// Init performance and status tracker if prometheus enabled
 	std::shared_ptr<PerformanceTracker> zmqControlPerformanceTracker(nullptr);
 	if (mainPrometheusHandler)
-		zmqControlPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("zmq_control_server", 1000);
+		zmqControlPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("zmq_control_server", 0);
 	std::shared_ptr<StatusTracker> zmqControlStatusTracker(nullptr);
 	if (mainPrometheusHandler)
 		zmqControlStatusTracker = mainPrometheusHandler->addNewStatTracker("zmq_control_server");
