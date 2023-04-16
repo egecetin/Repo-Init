@@ -29,7 +29,7 @@ either expressed or implied, of the FreeBSD Project.
 
 #pragma once
 
-#include "metrics/Status.hpp"
+#include "telnet/TelnetStats.hpp"
 
 #include <array>
 #include <functional>
@@ -71,10 +71,12 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	void markTimeout();
 
   protected:
-	//
+	/// Initialise session
 	void initialise();
-	// Called every frame/loop by the Terminal Server
+	/// Called every frame/loop by the Terminal Server
 	void update();
+	/// Statistics variables
+	TelnetSessionStats stats;
 
   private:
 	// Returns ip of the peer
@@ -127,21 +129,19 @@ typedef std::function<std::string(SP_TelnetSession, std::string)> FPTR_TabCallba
 class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 {
   public:
-	std::shared_ptr<StatusTracker> trackerPtr;
-
 	/// Constructor for server
 	// cppcheck-suppress uninitMemberVar
 	TelnetServer() : m_initialised(false), m_promptString(""){};
 
 	/**
 	 * @brief Initializes a new Telnet server
-	 *
 	 * @param[in] listenPort Port to listen
 	 * @param[in] promptString Prompt string for connected users
 	 * @return true If initialized
 	 * @return false otherwise
 	 */
-	bool initialise(u_long listenPort, std::string promptString = "", std::shared_ptr<StatusTracker> tracker = nullptr);
+	bool initialise(u_long listenPort, std::string promptString = "",
+					std::shared_ptr<prometheus::Registry> reg = nullptr);
 
 	/// Process new connections and messages
 	void update();
@@ -164,8 +164,16 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	void promptString(const std::string &prompt) { m_promptString = prompt; }
 	std::string promptString() const { return m_promptString; }
 
+  protected:
+	// Called after the telnet session is initialised. function(SP_TelnetSession) {}
+	FPTR_ConnectedCallback m_connectedCallback;
+	// Called after every new line (from CR or LF) function(SP_TelnetSession, std::string) {}
+	FPTR_NewLineCallback m_newlineCallback;
+	// Called after TAB detected. function(SP_TelnetSession, std::string, PredictSignalType) {}
+	FPTR_TabCallback m_tabCallback;
+
   private:
-	void acceptConnection();
+	bool acceptConnection();
 
 	u_long m_listenPort;
 	Socket m_listenSocket;
@@ -174,13 +182,8 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	// A string that denotes the current prompt
 	std::string m_promptString;
 
-  protected:
-	// Called after the telnet session is initialised. function(SP_TelnetSession) {}
-	FPTR_ConnectedCallback m_connectedCallback;
-	// Called after every new line (from CR or LF) function(SP_TelnetSession, std::string) {}
-	FPTR_NewLineCallback m_newlineCallback;
-	// Called after TAB detected. function(SP_TelnetSession, std::string, PredictSignalType) {}
-	FPTR_TabCallback m_tabCallback;
+	// Statistics
+	std::unique_ptr<TelnetStats> stats;
 };
 
 /**

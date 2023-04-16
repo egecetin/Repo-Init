@@ -64,6 +64,7 @@ All scripts should be executed from top level directory
 ## Dependencies
 
  - [Backward-cpp](https://github.com/bombela/backward-cpp)
+ - [Date](https://github.com/HowardHinnant/date.git)
  - [CppZMQ](https://github.com/zeromq/cppzmq.git)
  - [Http-status-codes](https://github.com/j-ulrich/http-status-codes-cpp.git)
  - [GoogleTest](https://github.com/google/googletest.git) (For tests only)

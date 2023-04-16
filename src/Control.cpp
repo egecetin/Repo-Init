@@ -18,16 +18,7 @@ void telnetControlThread()
 {
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
-
-	// Init performance tracker if prometheus enabled
-	std::shared_ptr<PerformanceTracker> telnetPerformanceTracker(nullptr);
-	if (mainPrometheusHandler)
-		telnetPerformanceTracker = mainPrometheusHandler->addNewPerfTracker("telnet_server", 0);
-	std::shared_ptr<StatusTracker> telnetStatusTracker(nullptr);
-	if (mainPrometheusHandler)
-		telnetStatusTracker = mainPrometheusHandler->addNewStatTracker("telnet_server");
-
-	if (TELNET_PORT && telnetServerPtr->initialise(TELNET_PORT, "> ", telnetStatusTracker))
+	if (TELNET_PORT && telnetServerPtr->initialise(TELNET_PORT, "> ", mainPrometheusHandler->getRegistry()))
 	{
 		telnetServerPtr->connectedCallback(TelnetConnectedCallback);
 		telnetServerPtr->newLineCallback(TelnetMessageCallback);
@@ -45,12 +36,7 @@ void telnetControlThread()
 	{
 		try
 		{
-			// Update Telnet connection
-			if (telnetPerformanceTracker)
-				telnetPerformanceTracker->startTimer();
 			telnetServerPtr->update();
-			if (telnetPerformanceTracker)
-				telnetPerformanceTracker->endTimer();
 		}
 		catch (const std::exception &e)
 		{

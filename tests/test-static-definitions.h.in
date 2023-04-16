@@ -7,6 +7,7 @@
 #define TEST_ZEROMQ_ECHO_SERVER_PY_PATH "@PROJECT_SOURCE_DIR@/tests/data/zeromqEchoServer.py"
 #define TEST_REST_ECHO_SERVER_PY_PATH "@PROJECT_SOURCE_DIR@/tests/data/restEchoServer.py"
 #define TEST_PROMETHEUS_SERVER_ADDR "localhost:9080"
+#define TEST_PROMETHEUS_SERVER_ADDR_2 "localhost:9081"
 #define TEST_ZEROMQ_ECHO_SERVER_ADDR "tcp://127.0.0.1:8081"
 #define TEST_ZEROMQ_ECHO_SERVER_ADDR2 "tcp://127.0.0.1:8082"
 #define TEST_HTTP_ECHO_SERVER_ADDR "http://localhost:8080"
