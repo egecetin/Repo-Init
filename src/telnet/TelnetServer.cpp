@@ -153,9 +153,13 @@ void TelnetSession::closeClient()
 	stats.disconnectTime = std::chrono::high_resolution_clock::now();
 }
 
-bool TelnetSession::checkTimeout() { return (currentTime - lastSeenTime > TELNET_TIMEOUT); }
+bool TelnetSession::checkTimeout()
+{
+	return (std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - lastSeenTime)
+				.count() > TELNET_TIMEOUT);
+}
 
-void TelnetSession::markTimeout() { lastSeenTime = 0; }
+void TelnetSession::markTimeout() { lastSeenTime = std::chrono::system_clock::time_point::min(); }
 
 void TelnetSession::echoBack(char *buffer, u_long length)
 {
@@ -202,7 +206,7 @@ void TelnetSession::initialise()
 		m_telnetServer->connectedCallback()(shared_from_this());
 
 	// Set last seen
-	lastSeenTime = currentTime;
+	lastSeenTime = std::chrono::system_clock::now();
 }
 
 void TelnetSession::stripNVT(std::string &buffer)
@@ -380,7 +384,7 @@ void TelnetSession::update()
 		stats.downloadBytes += readBytes;
 
 		// Update last seen
-		lastSeenTime = currentTime;
+		lastSeenTime = std::chrono::system_clock::now();
 
 		// Echo it back to the sender
 		echoBack(recvbuf, readBytes);

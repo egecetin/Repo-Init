@@ -57,7 +57,6 @@ int main(int argc, char **argv)
 
 	// Init variables
 	alarmCtr = 1; // Should be non-zero at startup
-	currentTime = 0;
 	loopFlag = true;
 
 	ALARM_INTERVAL = 1;

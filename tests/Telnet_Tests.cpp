@@ -11,11 +11,6 @@
 
 TEST(Telnet_Tests, TelnetServerTests)
 {
-	// Internally used by Telnet Server sessions
-	struct timespec ts;
-	clock_gettime(CLOCK_TAI, &ts);
-	currentTime = ts.tv_sec;
-
 	std::future<int> shResult;
 
 	// For internal statistics
