@@ -38,8 +38,6 @@ extern std::string HEARTBEAT_INDEX;
 /* ################################ END MODIFICATIONS ################################ */
 /* ################################################################################### */
 
-/// Current time value set by SIGALRM
-extern volatile time_t currentTime;
 /// Alarm counter to track. Incremented by SIGALRM
 extern volatile uintmax_t alarmCtr;
 /// Main flag to control loops. Can be modified by SIGINT

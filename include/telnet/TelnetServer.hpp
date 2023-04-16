@@ -104,7 +104,7 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	static std::vector<std::string> getCompleteLines(std::string &buffer);
 
 	// Last seen
-	time_t lastSeenTime;
+	std::chrono::system_clock::time_point lastSeenTime;
 	// The socket
 	Socket m_socket;
 	// Parent TelnetServer class

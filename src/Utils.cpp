@@ -29,7 +29,6 @@ std::string HEARTBEAT_INDEX;
 /* ################################ END MODIFICATIONS ################################ */
 /* ################################################################################### */
 
-volatile time_t currentTime;
 volatile uintmax_t alarmCtr;
 volatile bool loopFlag;
 /* ################################################################################### */
@@ -175,11 +174,6 @@ void alarmFunc(int)
 	struct timespec ts;
 
 	++alarmCtr;
-
-	// Get time
-	clock_gettime(CLOCK_TAI, &ts);
-	currentTime = ts.tv_sec;
-
 	if (loopFlag)
 		alarm(ALARM_INTERVAL);
 }
