@@ -18,7 +18,7 @@ jobs:
           sudo apt install cppcheck
       - uses: pre-commit/action@v3.0.0
 
-  linux-gnu:
+  coverage:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -27,7 +27,6 @@ jobs:
           submodules: recursive
       - name: Prepare System
         run: |
-          mkdir -p dist/temp dist/rpm dist/makeself
           sudo apt update
           sudo apt install gcovr expect libcurl4-openssl-dev -y
       - uses: actions/setup-python@v4
@@ -39,9 +38,16 @@ jobs:
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
       - name: Build
-        run: cmake --build $BUILD_DIR --parallel
-      - name: Run Tests
-        run: ctest --test-dir $BUILD_DIR
+        run: cmake --build $BUILD_DIR --parallel --target coverage-xml
+      - name: Process Results
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          files: ./build/coverage-xml.xml
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true
+
   linux-intel:
     runs-on: ubuntu-latest
     steps:
@@ -51,7 +57,6 @@ jobs:
           submodules: recursive
       - name: Prepare System
         run: |
-          mkdir -p dist/temp dist/rpm dist/makeself
           sudo apt update
           sudo apt install gcovr expect libcurl4-openssl-dev -y
       - uses: actions/setup-python@v4
@@ -90,34 +95,3 @@ jobs:
         run: |
           source /opt/intel/oneapi/setvars.sh
           ctest --test-dir $BUILD_DIR
-
-  coverage:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - name: Prepare System
-        run: |
-          mkdir -p dist/temp dist/rpm dist/makeself
-          sudo apt update
-          sudo apt install gcovr expect libcurl4-openssl-dev -y
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-      - name: Install Test Requirements
-        run: |
-          pip install -r tests/data/requirements.txt
-      - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
-      - name: Build
-        run: cmake --build $BUILD_DIR --parallel --target coverage-xml
-      - name: Process Results
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{secrets.CODECOV_TOKEN}}
-          files: ./build/coverage-xml.xml
-          name: codecov-umbrella
-          fail_ci_if_error: true
-          verbose: true
