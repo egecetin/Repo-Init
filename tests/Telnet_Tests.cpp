@@ -23,7 +23,8 @@ TEST(Telnet_Tests, TelnetServerTests)
 
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
-	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), "", reporter.getRegistry()));
+	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), "",
+											reporter.getRegistry()));
 	ASSERT_FALSE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT"))));
 	telnetServerPtr->shutdown();
 
