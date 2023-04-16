@@ -18,7 +18,8 @@ void telnetControlThread()
 {
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
-	if (TELNET_PORT && telnetServerPtr->initialise(TELNET_PORT, "> ", mainPrometheusHandler ? mainPrometheusHandler->getRegistry() : nullptr))
+	if (TELNET_PORT && telnetServerPtr->initialise(
+						   TELNET_PORT, "> ", mainPrometheusHandler ? mainPrometheusHandler->getRegistry() : nullptr))
 	{
 		telnetServerPtr->connectedCallback(TelnetConnectedCallback);
 		telnetServerPtr->newLineCallback(TelnetMessageCallback);

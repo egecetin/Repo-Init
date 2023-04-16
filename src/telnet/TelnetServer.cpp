@@ -155,8 +155,8 @@ void TelnetSession::closeClient()
 
 bool TelnetSession::checkTimeout()
 {
-	return (std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - lastSeenTime)
-				.count() > TELNET_TIMEOUT);
+	return (std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - lastSeenTime).count() >
+			TELNET_TIMEOUT);
 }
 
 void TelnetSession::markTimeout() { lastSeenTime = std::chrono::system_clock::time_point::min(); }
