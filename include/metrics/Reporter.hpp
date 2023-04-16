@@ -67,6 +67,12 @@ class Reporter
 	 * @return std::shared_ptr<MeanVarTracker> Pointer to new mean tracker
 	 */
 	std::shared_ptr<MeanVarTracker> addNewMeanTracker(const std::string &name, size_t windowLength, uint64_t id = 0);
+
+	/**
+	 * @brief Adds and returns a prometheus registry
+	 * @return std::shared_ptr<prometheus::Registry>
+	 */
+	std::shared_ptr<prometheus::Registry> getRegistry();
 };
 
 /// Class to maintain prometheus calls

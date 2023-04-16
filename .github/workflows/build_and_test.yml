@@ -42,6 +42,7 @@ jobs:
         run: cmake --build $BUILD_DIR --parallel
       - name: Run Tests
         run: ctest --test-dir $BUILD_DIR
+
   linux-intel:
     runs-on: ubuntu-latest
     steps:

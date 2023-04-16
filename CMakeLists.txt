@@ -60,6 +60,7 @@ file(GLOB ProjectSources
     ${PROJECT_SOURCE_DIR}/src/metrics/Reporter.cpp
     ${PROJECT_SOURCE_DIR}/src/metrics/Status.cpp
     ${PROJECT_SOURCE_DIR}/src/telnet/TelnetServer.cpp
+    ${PROJECT_SOURCE_DIR}/src/telnet/TelnetStats.cpp
     ${PROJECT_SOURCE_DIR}/src/Control.cpp
     ${PROJECT_SOURCE_DIR}/src/Utils.cpp
     ${PROJECT_SOURCE_DIR}/src/main.cpp
@@ -68,14 +69,15 @@ file(GLOB ProjectSources
 # Include directories
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-include_directories(${PROJECT_SOURCE_DIR}/thirdparty/libzmq/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq)
-include_directories(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson/include)
-include_directories(${PROJECT_SOURCE_DIR}/thirdparty/spdlog/include)
-include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/date/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/http-status-codes)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/libzmq/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/pull/include)
-include_directories(${PROJECT_SOURCE_DIR}/thirdparty/http-status-codes)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/spdlog/include)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/pull/include)
 
@@ -92,12 +94,12 @@ option(ENABLE_TESTING "" OFF) # prometheus-cpp
 set(SENTRY_BACKEND none)
 
 # Subdirectories
-add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/libzmq EXCLUDE_FROM_ALL)
-add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/backtrace EXCLUDE_FROM_ALL)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/libzmq EXCLUDE_FROM_ALL)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq EXCLUDE_FROM_ALL) # Should be after libzmq
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson EXCLUDE_FROM_ALL)
-add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/spdlog EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/sentry EXCLUDE_FROM_ALL)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/spdlog EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
 
 # Enable test framework

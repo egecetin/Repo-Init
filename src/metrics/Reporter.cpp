@@ -81,3 +81,11 @@ std::shared_ptr<MeanVarTracker> Reporter::addNewMeanTracker(const std::string &n
 
 	return tracker;
 }
+
+std::shared_ptr<prometheus::Registry> Reporter::getRegistry()
+{
+	auto reg = std::make_shared<prometheus::Registry>();
+	mainExposer->RegisterCollectable(reg);
+	vRegister.push_back(reg);
+	return reg;
+}
