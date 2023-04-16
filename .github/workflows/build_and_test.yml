@@ -18,7 +18,7 @@ jobs:
           sudo apt install cppcheck
       - uses: pre-commit/action@v3.0.0
 
-  coverage:
+  linux-gnu:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
