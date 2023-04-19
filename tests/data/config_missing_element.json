@@ -1,4 +1,3 @@
 {
-    "ZMQ_SEND_TIMEOUT": 1000,
-    "ZEROMQ_SERVER_PATH": "ipc:///tmp"
+    "ZMQ_SEND_TIMEOUT": 1000
 }

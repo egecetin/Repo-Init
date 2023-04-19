@@ -61,6 +61,8 @@ file(GLOB ProjectSources
     ${PROJECT_SOURCE_DIR}/src/metrics/Status.cpp
     ${PROJECT_SOURCE_DIR}/src/telnet/TelnetServer.cpp
     ${PROJECT_SOURCE_DIR}/src/telnet/TelnetStats.cpp
+    ${PROJECT_SOURCE_DIR}/src/zeromq/ZeromqServer.cpp
+    ${PROJECT_SOURCE_DIR}/src/zeromq/ZeromqStats.cpp
     ${PROJECT_SOURCE_DIR}/src/Control.cpp
     ${PROJECT_SOURCE_DIR}/src/Utils.cpp
     ${PROJECT_SOURCE_DIR}/src/main.cpp
@@ -97,10 +99,10 @@ set(SENTRY_BACKEND none)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/backtrace EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/libzmq EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq EXCLUDE_FROM_ALL) # Should be after libzmq
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/sentry EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/spdlog EXCLUDE_FROM_ALL)
-add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
 
 # Enable test framework
 if(XXX_ENABLE_TESTS)

@@ -137,6 +137,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	 * @brief Initializes a new Telnet server
 	 * @param[in] listenPort Port to listen
 	 * @param[in] promptString Prompt string for connected users
+	 * @param[in] reg Prometheus registry for stats
 	 * @return true If initialized
 	 * @return false otherwise
 	 */
