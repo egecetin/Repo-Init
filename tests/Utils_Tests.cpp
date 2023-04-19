@@ -29,11 +29,9 @@ TEST(Utils_Tests, ConfigReaderTests)
 
 	ASSERT_EQ(1000, ZMQ_SEND_TIMEOUT);
 	ASSERT_EQ(1000, ZMQ_RECV_TIMEOUT);
-	ASSERT_EQ("ipc:///tmp", ZEROMQ_SERVER_PATH);
 
 	ASSERT_EQ("1000", readSingleConfig(TEST_CONFIG_PATH, "ZMQ_SEND_TIMEOUT"));
 	ASSERT_EQ("1000", readSingleConfig(TEST_CONFIG_PATH, "ZMQ_RECV_TIMEOUT"));
-	ASSERT_EQ("ipc:///tmp", readSingleConfig(TEST_CONFIG_PATH, "ZEROMQ_SERVER_PATH"));
 
 	ASSERT_FALSE(readConfig("dummypath"));
 	ASSERT_EQ("", readSingleConfig("dummypath", "ZMQ_SEND_TIMEOUT"));

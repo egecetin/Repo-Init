@@ -128,11 +128,14 @@ void TelnetStats::consumeStats(TelnetServerStats &stat)
 	refusedConnection->Increment(stat.refusedConnectionCtr);
 	totalConnection->Increment(stat.acceptedConnectionCtr);
 
-	// Performance stats
-	double processTime = (stat.processingTimeEnd - stat.processingTimeStart).count();
-	processingTime->Observe(processTime);
-	if (processTime < minProcessingTime->Value())
-		minProcessingTime->Set(processTime);
-	if (processTime > maxProcessingTime->Value())
-		maxProcessingTime->Set(processTime);
+	// Performance stats if there is an active connection
+	if (stat.activeConnectionCtr)
+	{
+		double processTime = (stat.processingTimeEnd - stat.processingTimeStart).count();
+		processingTime->Observe(processTime);
+		if (processTime < minProcessingTime->Value())
+			minProcessingTime->Set(processTime);
+		if (processTime > maxProcessingTime->Value())
+			maxProcessingTime->Set(processTime);
+	}
 }

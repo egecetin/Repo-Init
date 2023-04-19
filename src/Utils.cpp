@@ -97,7 +97,7 @@ bool readConfig(const std::string &dir)
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */
-	std::vector<std::string> list = {"ZMQ_RECV_TIMEOUT", "ZMQ_SEND_TIMEOUT", "ZEROMQ_SERVER_PATH"};
+	std::vector<std::string> list = {"ZMQ_RECV_TIMEOUT", "ZMQ_SEND_TIMEOUT"};
 	/* ################################################################################### */
 	/* ################################ END MODIFICATIONS ################################ */
 	/* ################################################################################### */
@@ -118,7 +118,6 @@ bool readConfig(const std::string &dir)
 	// Set variables
 	ZMQ_RECV_TIMEOUT = doc["ZMQ_RECV_TIMEOUT"].GetUint64();
 	ZMQ_SEND_TIMEOUT = doc["ZMQ_SEND_TIMEOUT"].GetUint64();
-	ZEROMQ_SERVER_PATH = doc["ZEROMQ_SERVER_PATH"].GetString();
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */
@@ -171,8 +170,6 @@ std::string readSingleConfig(const std::string &dir, std::string value)
 // GCOVR_EXCL_START
 void alarmFunc(int)
 {
-	struct timespec ts;
-
 	++alarmCtr;
 	if (loopFlag)
 		alarm(ALARM_INTERVAL);

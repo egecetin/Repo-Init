@@ -25,7 +25,13 @@ int main(int argc, char **argv)
 	{
 		PROMETHEUS_ADDR = input.getCmdOption("--enable-prometheus");
 		if (PROMETHEUS_ADDR.empty())
-			spdlog::warn("Enable Prometheus option requires a port number");
+			spdlog::warn("Enable Prometheus option requires a bind address");
+	}
+	if (input.cmdOptionExists("--enable-zeromq"))
+	{
+		ZEROMQ_SERVER_PATH = input.getCmdOption("--enable-zeromq");
+		if (ZEROMQ_SERVER_PATH.empty())
+			spdlog::warn("Enable ZeroMQ option requires a connection address");
 	}
 	if (input.cmdOptionExists("--heartbeat-index"))
 		HEARTBEAT_INDEX = input.getCmdOption("--heartbeat-index");

@@ -54,6 +54,7 @@ void ZeroMQ::stop()
 		socketPtr->unbind(socketAddr);
 	else
 		socketPtr->disconnect(socketAddr);
+	isActive = false;
 }
 
 std::vector<zmq::message_t> ZeroMQ::recvMessages()
