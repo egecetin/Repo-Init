@@ -22,5 +22,5 @@
 
 // ZeroMQ_Tests
 #define TEST_PROMETHEUS_SERVER_ADDR_3 "localhost:9082"
-#define TEST_ZMQ_SERVER_PATH "ipc://zmq.sock"
+#define TEST_ZMQ_SERVER_PATH "tcp://127.0.0.1:7000"
 #define TEST_ZEROMQ_PY_PATH "@PROJECT_SOURCE_DIR@/tests/data/zeromq-test.py"
