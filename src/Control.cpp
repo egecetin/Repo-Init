@@ -2,7 +2,7 @@
 #include "Utils.hpp"
 #include "metrics/Reporter.hpp"
 #include "telnet/TelnetServer.hpp"
-#include "zeromq/ZeromqServer.hpp"
+#include "zeromq/ZeroMQServer.hpp"
 
 #include <chrono>
 #include <thread>

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "connection/Zeromq.hpp"
-#include "zeromq/ZeromqStats.hpp"
+#include "zeromq/ZeroMQStats.hpp"
 
 #include <functional>
 
@@ -51,4 +51,5 @@ class ZeroMQServer
  * @param[in] recvMsgs Received messages
  * @param[out] replyMsgs Reply messages returned by callback
  */
-bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, std::vector<zmq::const_buffer> &replyMsgs);
+bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs,
+								 std::vector<zmq::const_buffer> &replyMsgs);

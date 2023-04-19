@@ -1,4 +1,4 @@
-#include "zeromq/ZeromqStats.hpp"
+#include "zeromq/ZeroMQStats.hpp"
 
 #include <date/date.h>
 
@@ -48,20 +48,20 @@ ZeroMQStats::ZeroMQStats(std::shared_ptr<prometheus::Registry> reg)
 						.Register(*reg)
 						.Add({});
 	succeededCommandParts = &prometheus::BuildCounter()
-							.Name("zeromq_succeeded_command_parts")
-							.Help("Number of received succeeded message parts")
-							.Register(*reg)
-							.Add({});
+								 .Name("zeromq_succeeded_command_parts")
+								 .Help("Number of received succeeded message parts")
+								 .Register(*reg)
+								 .Add({});
 	failedCommandParts = &prometheus::BuildCounter()
-							.Name("zeromq_failed_command_parts")
-							.Help("Number of received failed message parts")
-							.Register(*reg)
-							.Add({});
-	totalCommandParts= &prometheus::BuildCounter()
-							.Name("zeromq_total_command_parts")
-							.Help("Number of received total message parts")
-							.Register(*reg)
-							.Add({});
+							  .Name("zeromq_failed_command_parts")
+							  .Help("Number of received failed message parts")
+							  .Register(*reg)
+							  .Add({});
+	totalCommandParts = &prometheus::BuildCounter()
+							 .Name("zeromq_total_command_parts")
+							 .Help("Number of received total message parts")
+							 .Register(*reg)
+							 .Add({});
 
 	// Bandwidth stats
 	totalUploadBytes =
@@ -71,7 +71,7 @@ ZeroMQStats::ZeroMQStats(std::shared_ptr<prometheus::Registry> reg)
 							  .Help("Total downloaded bytes")
 							  .Register(*reg)
 							  .Add({});
-    
+
 	// Set defaults
 	minProcessingTime->Set(std::numeric_limits<double>::max());
 }
@@ -79,26 +79,26 @@ ZeroMQStats::ZeroMQStats(std::shared_ptr<prometheus::Registry> reg)
 void ZeroMQStats::consumeStats(const std::vector<zmq::message_t> &recvMsgs,
 							   const std::vector<zmq::const_buffer> &sendMsgs, const ZeroMQServerStats &serverStats)
 {
-    succeededCommand->Increment(serverStats.isSuccessful);
-    failedCommand->Increment(!serverStats.isSuccessful);
-    totalCommand->Increment();
+	succeededCommand->Increment(serverStats.isSuccessful);
+	failedCommand->Increment(!serverStats.isSuccessful);
+	totalCommand->Increment();
 
-    for (const auto &entry : recvMsgs)
-    {
-        totalCommandParts->Increment();
-        totalDownloadBytes->Increment(entry.size());
+	for (const auto &entry : recvMsgs)
+	{
+		totalCommandParts->Increment();
+		totalDownloadBytes->Increment(entry.size());
 
-        if (serverStats.isSuccessful)
-            succeededCommandParts->Increment();
-        else
-            failedCommandParts->Increment();
-    }
+		if (serverStats.isSuccessful)
+			succeededCommandParts->Increment();
+		else
+			failedCommandParts->Increment();
+	}
 
-    for (const auto &entry : sendMsgs)
-        totalUploadBytes->Increment(entry.size());
+	for (const auto &entry : sendMsgs)
+		totalUploadBytes->Increment(entry.size());
 
-    double processTime = (serverStats.processingTimeEnd - serverStats.processingTimeStart).count();
-    processingTime->Observe(processTime);
+	double processTime = (serverStats.processingTimeEnd - serverStats.processingTimeStart).count();
+	processingTime->Observe(processTime);
 	if (processTime < minProcessingTime->Value())
 		minProcessingTime->Set(processTime);
 	if (processTime > maxProcessingTime->Value())

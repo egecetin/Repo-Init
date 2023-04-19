@@ -1,4 +1,4 @@
-#include "zeromq/ZeromqServer.hpp"
+#include "zeromq/ZeroMQServer.hpp"
 
 #include "Utils.hpp"
 
@@ -64,7 +64,7 @@ void ZeroMQServer::update()
 		if (nSentMsg != replyMsgs.size())
 			spdlog::warn("Can't send whole reply: Sent messages {} / {}", nSentMsg, replyMsgs.size());
 		serverStats.processingTimeEnd = std::chrono::high_resolution_clock::now();
-		
+
 		if (stats)
 			stats->consumeStats(recvMsgs, replyMsgs, serverStats);
 	}

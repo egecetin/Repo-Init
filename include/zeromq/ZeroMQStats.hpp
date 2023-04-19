@@ -9,12 +9,12 @@
 
 struct ZeroMQServerStats
 {
-    /// Processing time start
+	/// Processing time start
 	std::chrono::high_resolution_clock::time_point processingTimeStart;
 	/// Processing time end
 	std::chrono::high_resolution_clock::time_point processingTimeEnd;
-    /// Is processing successful for this connection
-    bool isSuccessful;
+	/// Is processing successful for this connection
+	bool isSuccessful;
 };
 
 class ZeroMQStats
@@ -53,13 +53,13 @@ class ZeroMQStats
 	 * @brief Construct a new ZeroMQ server statistics
 	 * @param[in] reg Prometheus registry
 	 */
-	ZeroMQStats(std::shared_ptr<prometheus::Registry> reg);
+	explicit ZeroMQStats(std::shared_ptr<prometheus::Registry> reg);
 
 	/**
 	 * @brief Updates statistics with messages
 	 * @param[in] recvMsgs Received messages
 	 * @param[in] sendMsgs Send messages
-     * @param[in] serverStats ZeroMQ server stats
+	 * @param[in] serverStats ZeroMQ server stats
 	 */
 	void consumeStats(const std::vector<zmq::message_t> &recvMsgs, const std::vector<zmq::const_buffer> &sendMsgs,
 					  const ZeroMQServerStats &serverStats);
