@@ -1,35 +1,30 @@
 import zmq
+import time
 import struct
 
 context = zmq.Context()
 socketMng = context.socket(zmq.REQ)
 socketMng.connect("ipc://zmq.sock")
 
-# Ask version
-socketMng.send_multipart(
-    [
-        struct.pack("L", 1230128470)
-    ]
-)
-msg = socketMng.recv_multipart()
-print("Server received message: %s" % (msg))
+msgArray = [
+    # Ask version (success)
+    [struct.pack("L", 1230128470)],
+    # Ask version (fail)
+    [struct.pack("L", 1230128470), b"dummy"],
+    # Ask log level (info)
+    [struct.pack("L", 1279741772), b"v"],
+    # Ask log level (debug)
+    [struct.pack("L", 1279741772), b"vv"],
+    # Ask log level (trace)
+    [struct.pack("L", 1279741772), b"vvv"],
+    # Ask log level (fail)
+    [struct.pack("L", 1279741772), b"v", b"dummy"]
+]
 
-# Ask log level change
-socketMng.send_multipart(
-    [
-        struct.pack("L", 1279741772),
-        b"v"
-    ]
-)
-msg = socketMng.recv_multipart()
-print("Server received message: %s" % (msg))
+for msg in msgArray:
+    socketMng.send_multipart(msg)
 
-# Send unknown command
-socketMng.send_multipart(
-    [
-        struct.pack("L", 1111111),
-        b"v"
-    ]
-)
-msg = socketMng.recv_multipart()
-print("Server received message: %s" % (msg))
+    time.sleep(0.5)
+    recvMsg = socketMng.recv_multipart(zmq.NOBLOCK)
+    print("Server received message: %s" % (recvMsg))
+    
