@@ -18,7 +18,7 @@ TEST(Connection_Tests, HttpTests)
 	});
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-	HTTP handler("http://127.0.0.1:8080");
+	HTTP handler(TEST_HTTP_ECHO_SERVER_ADDR);
 
 	handler.setOption(CURLOPT_SSL_VERIFYPEER, false);
 	handler.setOption(CURLOPT_SSL_VERIFYHOST, false);

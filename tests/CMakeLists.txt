@@ -40,6 +40,7 @@ file(GLOB ProjectTestSources
     ${PROJECT_SOURCE_DIR}/tests/Metrics_Tests.cpp
     ${PROJECT_SOURCE_DIR}/tests/Telnet_Tests.cpp
     ${PROJECT_SOURCE_DIR}/tests/Utils_Tests.cpp
+    ${PROJECT_SOURCE_DIR}/tests/ZeroMQ_Tests.cpp
     ${PROJECT_SOURCE_DIR}/tests/gtest_main.cpp
     )
 
