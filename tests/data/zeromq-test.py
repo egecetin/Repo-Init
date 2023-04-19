@@ -18,7 +18,7 @@ msgArray = [
     # Ask log level (trace)
     [struct.pack("L", 1279741772), b"vvv"],
     # Ask log level (fail)
-    [struct.pack("L", 1279741772), b"v", b"dummy"]
+    [struct.pack("L", 1279741772), b"v", b"dummy"],
 ]
 
 for msg in msgArray:
@@ -27,4 +27,3 @@ for msg in msgArray:
     time.sleep(0.5)
     recvMsg = socketMng.recv_multipart(zmq.NOBLOCK)
     print("Server received message: %s" % (recvMsg))
-    
