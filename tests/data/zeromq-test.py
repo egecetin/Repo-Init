@@ -23,7 +23,5 @@ msgArray = [
 
 for msg in msgArray:
     socketMng.send_multipart(msg)
-
-    time.sleep(0.5)
-    recvMsg = socketMng.recv_multipart(zmq.NOBLOCK)
+    recvMsg = socketMng.recv_multipart()
     print("Server received message: %s" % (recvMsg))
