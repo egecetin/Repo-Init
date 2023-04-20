@@ -39,20 +39,17 @@ TEST(Metrics_Tests, PrometheusServerTests)
 {
 	PrometheusServer reporter(TEST_PROMETHEUS_SERVER_ADDR);
 
-	// Collect data from socket
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	ASSERT_FALSE(system((std::string("curl ") + TEST_PROMETHEUS_SERVER_ADDR + "/metrics --output metrics").c_str()));
+	ASSERT_NE(reporter.createNewRegistry(), nullptr);
 
-	// Metrics
-	std::vector<std::string> readValues;
-	std::vector<std::string> testValues = {};
+	uint64_t regId = 10; // Just random number
+	auto reg2 = reporter.createNewRegistry(regId);
+	ASSERT_EQ(regId, 1);
+	ASSERT_NE(reg2, nullptr);
+	ASSERT_EQ(reporter.getRegistry(regId), reg2);
 
-	// Parse output
-	std::ifstream promFileStream("metrics");
-
-	ASSERT_TRUE(promFileStream.is_open());
-	ASSERT_TRUE(isAllValuesExist(promFileStream, testValues, readValues));
-	ASSERT_EQ(testValues.size(), readValues.size());
+	ASSERT_FALSE(reporter.deleteRegistry(std::numeric_limits<uint64_t>::max()));
+	ASSERT_TRUE(reporter.deleteRegistry(regId));
+	ASSERT_TRUE(reporter.deleteRegistry(regId));
 }
 
 TEST(Metrics_Tests, PerformanceTrackerTests)
