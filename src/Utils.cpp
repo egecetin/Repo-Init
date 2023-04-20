@@ -99,6 +99,7 @@ bool readConfig(const std::string &dir)
 	/* ################################################################################### */
 
 	spdlog::debug("Reading variables from config ...");
+	// cppcheck-suppress knownEmptyContainer
 	for (const auto &entry : list)
 	{
 		if (!doc.HasMember(entry.c_str()))
