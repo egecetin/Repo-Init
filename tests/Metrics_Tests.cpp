@@ -46,6 +46,7 @@ TEST(Metrics_Tests, PrometheusServerTests)
 	ASSERT_EQ(regId, 1);
 	ASSERT_NE(reg2, nullptr);
 	ASSERT_EQ(reporter.getRegistry(regId), reg2);
+	ASSERT_EQ(reporter.getRegistry(1000), nullptr);
 
 	ASSERT_FALSE(reporter.deleteRegistry(std::numeric_limits<uint64_t>::max()));
 	ASSERT_TRUE(reporter.deleteRegistry(regId));
