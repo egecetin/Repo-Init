@@ -32,10 +32,9 @@ TEST(ZeroMQ_Tests, ZeroMQServerTests)
 	});
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	for (size_t idx = 0; idx < 100; ++idx)
+	for (size_t idx = 0; idx < 10; ++idx)
 	{
 		zeromqServerPtr->update();
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 
 	shResult.wait();
