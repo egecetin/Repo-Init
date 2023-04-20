@@ -15,11 +15,6 @@ extern std::string CONFIG_FILE_PATH;
 /// Interval of SIGALRM in seconds
 extern uintmax_t ALARM_INTERVAL;
 
-/// Receive timeout of ZMQ sockets. Read from config at startup
-extern int ZMQ_RECV_TIMEOUT;
-/// Send timeout of ZMQ sockets. Read from config at startup
-extern int ZMQ_SEND_TIMEOUT;
-
 /// Port number to Telnet server
 extern uint16_t TELNET_PORT;
 /// Bind address of Prometheus service

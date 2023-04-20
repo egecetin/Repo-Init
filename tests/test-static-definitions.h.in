@@ -4,7 +4,6 @@
 // Utils_Tests
 #define TEST_CONFIG_PATH "@PROJECT_SOURCE_DIR@/tests/data/config.json"
 #define TEST_CONFIG_EMPTY_PATH "@PROJECT_SOURCE_DIR@/tests/data/config_empty.json"
-#define TEST_CONFIG_MISS_ELEMENT_PATH "@PROJECT_SOURCE_DIR@/tests/data/config_missing_element.json"
 
 // Connection_Tests
 #define TEST_ZEROMQ_ECHO_SERVER_PY_PATH "@PROJECT_SOURCE_DIR@/tests/data/zeromqEchoServer.py"

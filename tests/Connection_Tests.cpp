@@ -52,10 +52,6 @@ TEST(Connection_Tests, HttpTests)
 
 TEST(Connection_Tests, ZeroMQTests)
 {
-	// Internally used by ZeroMQ sessions
-	ZMQ_SEND_TIMEOUT = 1000;
-	ZMQ_RECV_TIMEOUT = 1000;
-
 	// Launch echo server
 	std::future<int> pyResult;
 	pyResult = std::async(std::launch::async, []() {
