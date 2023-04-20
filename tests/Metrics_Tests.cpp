@@ -41,8 +41,7 @@ TEST(Metrics_Tests, PrometheusServerTests)
 
 	// Collect data from socket
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	ASSERT_FALSE(system(
-		(std::string("curl ") + TEST_PROMETHEUS_SERVER_ADDR + "/metrics --output metrics &> /dev/null").c_str()));
+	ASSERT_FALSE(system((std::string("curl ") + TEST_PROMETHEUS_SERVER_ADDR + "/metrics --output metrics").c_str()));
 
 	// Metrics
 	std::vector<std::string> readValues;
@@ -73,8 +72,7 @@ TEST(Metrics_Tests, PerformanceTrackerTests)
 
 	// Collect data from socket
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	ASSERT_FALSE(system(
-		(std::string("curl ") + TEST_PROMETHEUS_SERVER_ADDR_2 + "/metrics --output metrics2 &> /dev/null").c_str()));
+	ASSERT_FALSE(system((std::string("curl ") + TEST_PROMETHEUS_SERVER_ADDR_2 + "/metrics --output metrics2").c_str()));
 
 	// Metrics
 	std::vector<std::string> readValues;
@@ -107,8 +105,7 @@ TEST(Metrics_Tests, StatusTrackerTests)
 
 	// Collect data from socket
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	ASSERT_FALSE(system(
-		(std::string("curl ") + TEST_PROMETHEUS_SERVER_ADDR_3 + "/metrics --output metrics3 &> /dev/null").c_str()));
+	ASSERT_FALSE(system((std::string("curl ") + TEST_PROMETHEUS_SERVER_ADDR_3 + "/metrics --output metrics3").c_str()));
 
 	// Metrics
 	std::vector<std::string> readValues;
