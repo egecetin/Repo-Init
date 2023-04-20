@@ -56,8 +56,8 @@ std::shared_ptr<prometheus::Registry> PrometheusServer::createNewRegistry(uint64
 	mainExposer->RegisterCollectable(reg);
 
 	// Push to vector (At least information registry always exist so back is valid)
-	vRegister.push_back(std::make_pair(vRegister.back().first + 1, reg));
 	id = vRegister.back().first + 1;
+	vRegister.push_back(std::make_pair(vRegister.back().first + 1, reg));
 	return reg;
 }
 
