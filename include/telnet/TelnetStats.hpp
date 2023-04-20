@@ -1,10 +1,6 @@
 #pragma once
 
-#include <prometheus/counter.h>
-#include <prometheus/gauge.h>
-#include <prometheus/info.h>
 #include <prometheus/registry.h>
-#include <prometheus/summary.h>
 
 /**
  * @brief Telnet session statistics

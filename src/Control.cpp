@@ -1,6 +1,6 @@
 #include "Control.hpp"
 #include "Utils.hpp"
-#include "metrics/Reporter.hpp"
+#include "metrics/PrometheusServer.hpp"
 #include "telnet/TelnetServer.hpp"
 #include "zeromq/ZeroMQServer.hpp"
 
@@ -14,8 +14,9 @@ void telnetControlThread()
 {
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
-	if (TELNET_PORT && telnetServerPtr->initialise(
-						   TELNET_PORT, "> ", mainPrometheusHandler ? mainPrometheusHandler->getRegistry() : nullptr))
+	if (TELNET_PORT &&
+		telnetServerPtr->initialise(TELNET_PORT, "> ",
+									mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr))
 	{
 		telnetServerPtr->connectedCallback(TelnetConnectedCallback);
 		telnetServerPtr->newLineCallback(TelnetMessageCallback);
@@ -57,7 +58,7 @@ void zmqControlThread()
 	{
 		if (!ZEROMQ_SERVER_PATH.empty() &&
 			zeroMqServerPtr->initialise(ZEROMQ_SERVER_PATH,
-										mainPrometheusHandler ? mainPrometheusHandler->getRegistry() : nullptr))
+										mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr))
 		{
 			zeroMqServerPtr->messageCallback(ZeroMQServerMessageCallback);
 			spdlog::info("ZeroMQ server created at {}", ZEROMQ_SERVER_PATH);

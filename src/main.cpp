@@ -2,7 +2,7 @@
 #include "Utils.hpp"
 #include "Version.h"
 #include "logging/Logger.hpp"
-#include "metrics/Reporter.hpp"
+#include "metrics/PrometheusServer.hpp"
 
 #include <csignal>
 #include <thread>
@@ -80,7 +80,7 @@ int main(int argc, char **argv)
 	{
 		try
 		{
-			mainPrometheusHandler = new Reporter(PROMETHEUS_ADDR);
+			mainPrometheusServer = new PrometheusServer(PROMETHEUS_ADDR);
 			spdlog::info("Prometheus server start at {}", PROMETHEUS_ADDR);
 		}
 		catch (const std::exception &e)

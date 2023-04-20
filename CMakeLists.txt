@@ -53,11 +53,10 @@ file(GLOB ProjectSources
     ${PROJECT_SOURCE_DIR}/src/connection/RawSocket.cpp
     ${PROJECT_SOURCE_DIR}/src/connection/Zeromq.cpp
     ${PROJECT_SOURCE_DIR}/src/logging/Logger.cpp
-    ${PROJECT_SOURCE_DIR}/src/logging/Sentry.cpp
     ${PROJECT_SOURCE_DIR}/src/logging/Loki.cpp
-    ${PROJECT_SOURCE_DIR}/src/metrics/MeanVar.cpp
+    ${PROJECT_SOURCE_DIR}/src/logging/Sentry.cpp
     ${PROJECT_SOURCE_DIR}/src/metrics/Performance.cpp
-    ${PROJECT_SOURCE_DIR}/src/metrics/Reporter.cpp
+    ${PROJECT_SOURCE_DIR}/src/metrics/PrometheusServer.cpp
     ${PROJECT_SOURCE_DIR}/src/metrics/Status.cpp
     ${PROJECT_SOURCE_DIR}/src/telnet/TelnetServer.cpp
     ${PROJECT_SOURCE_DIR}/src/telnet/TelnetStats.cpp

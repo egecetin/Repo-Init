@@ -1,8 +1,12 @@
 #include "telnet/TelnetStats.hpp"
 
-#include <limits>
-
 #include <date/date.h>
+#include <prometheus/counter.h>
+#include <prometheus/gauge.h>
+#include <prometheus/info.h>
+#include <prometheus/summary.h>
+
+#include <limits>
 
 TelnetStats::TelnetStats(std::shared_ptr<prometheus::Registry> reg, uint16_t portNumber)
 {

@@ -1,30 +1,41 @@
 #include "metrics/Performance.hpp"
 
-#include <immintrin.h>
-#include <x86intrin.h>
+#include <prometheus/gauge.h>
+#include <prometheus/summary.h>
 
-PerformanceTracker::PerformanceTracker(std::shared_ptr<prometheus::Registry> &reg, const std::string &name,
-									   const uint64_t tscHz, const size_t winLen, const uint64_t id)
-	: MeanVarTracker(reg, name + "_timing", winLen, id)
+PerformanceTracker::PerformanceTracker(std::shared_ptr<prometheus::Registry> reg, const std::string &name,
+									   const uint64_t id)
 {
-	tscHzInternal = tscHz;
-	lastTimeCtr = 0;
+	perfTiming = &prometheus::BuildSummary()
+					  .Name(name + "_processing_time_" + std::to_string(id))
+					  .Help(name + " processing performance")
+					  .Register(*reg)
+					  .Add({}, prometheus::Summary::Quantiles{{0.5, 0.1}, {0.9, 0.1}, {0.99, 0.1}});
+	maxTiming = &prometheus::BuildGauge()
+					 .Name(name + "_maximum_processing_time_" + std::to_string(id))
+					 .Help("Maximum value of the " + name + " processing performance")
+					 .Register(*reg)
+					 .Add({});
+	minTiming = &prometheus::BuildGauge()
+					 .Name(name + "_minimum_processing_time_" + std::to_string(id))
+					 .Help("Minimum value of the " + name + " processing performance")
+					 .Register(*reg)
+					 .Add({});
+
+	minTiming->Set(std::numeric_limits<double>::max());
 }
 
-void PerformanceTracker::startTimer()
-{
-	_mm_lfence();
-	lastTimeCtr = __rdtsc();
-	_mm_lfence();
-}
+void PerformanceTracker::startTimer() { startTime = std::chrono::high_resolution_clock::now(); }
 
 double PerformanceTracker::endTimer()
 {
-	_mm_lfence();
-	uint64_t currCtr = __rdtsc();
-	_mm_lfence();
+	double val = (std::chrono::high_resolution_clock::now() - startTime).count();
 
-	double val = double(currCtr - lastTimeCtr) / tscHzInternal;
-	updateStatistic(val);
+	perfTiming->Observe(val);
+	if (val < minTiming->Value())
+		minTiming->Set(val);
+	if (val > maxTiming->Value())
+		maxTiming->Set(val);
+
 	return val;
 }

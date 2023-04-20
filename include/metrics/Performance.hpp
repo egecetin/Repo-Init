@@ -1,31 +1,31 @@
 #pragma once
 
-#include "metrics/MeanVar.hpp"
-
-#include <queue>
+#include <prometheus/registry.h>
 
 /**
  * @brief Measures and calculates performance metrics
  */
-class PerformanceTracker : private MeanVarTracker
+class PerformanceTracker
 {
   private:
 	/// Set after startTimer to measure counter difference
-	uint64_t lastTimeCtr;
-	/// TSC clock frequency
-	uint64_t tscHzInternal;
+	std::chrono::high_resolution_clock::time_point startTime;
+
+	/// Overall performance
+	prometheus::Summary *perfTiming;
+	/// Maximum observed value
+	prometheus::Gauge *maxTiming;
+	/// Minimum observed value
+	prometheus::Gauge *minTiming;
 
   public:
 	/**
 	 * @brief Construct a new Performance Tracker
 	 * @param[in] reg Registry to prometheus
 	 * @param[in] name Name of the metric
-	 * @param[in] tscHz TSC clock frequency
-	 * @param[in] winLen Window length for moving operations
-	 * @param[in] id Optional ID to add to metric names
+	 * @param[in] id ID to append to metric names
 	 */
-	PerformanceTracker(std::shared_ptr<prometheus::Registry> &reg, const std::string &name, const uint64_t tscHz,
-					   const size_t winLen, const uint64_t id = 0);
+	PerformanceTracker(std::shared_ptr<prometheus::Registry> reg, const std::string &name, const uint64_t id = 0);
 
 	/**
 	 * @brief Starts the chronometer
@@ -34,13 +34,7 @@ class PerformanceTracker : private MeanVarTracker
 
 	/**
 	 * @brief Ends the chronometer and updates internal statistics
-	 * @return Result of the chronometer
+	 * @return Result of the chronometer in nanoseconds
 	 */
 	double endTimer();
-
-	/**
-	 * @brief Get the name of the metric
-	 * @return std::string Metric name
-	 */
-	std::string getName() { return metricName; }
 };

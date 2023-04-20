@@ -1,6 +1,10 @@
 #include "zeromq/ZeroMQStats.hpp"
 
 #include <date/date.h>
+#include <prometheus/counter.h>
+#include <prometheus/gauge.h>
+#include <prometheus/info.h>
+#include <prometheus/summary.h>
 
 ZeroMQStats::ZeroMQStats(std::shared_ptr<prometheus::Registry> reg)
 {

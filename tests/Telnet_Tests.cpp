@@ -1,5 +1,5 @@
 #include "Utils.hpp"
-#include "metrics/Reporter.hpp"
+#include "metrics/PrometheusServer.hpp"
 #include "telnet/TelnetServer.hpp"
 #include "test-static-definitions.h"
 
@@ -14,12 +14,12 @@ TEST(Telnet_Tests, TelnetServerTests)
 	std::future<int> shResult;
 
 	// For internal statistics
-	Reporter reporter(TEST_PROMETHEUS_SERVER_ADDR_2);
+	PrometheusServer reporter(TEST_PROMETHEUS_SERVER_ADDR_4);
 
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
 	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), "",
-											reporter.getRegistry()));
+											reporter.createNewRegistry()));
 	ASSERT_FALSE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT"))));
 	telnetServerPtr->shutdown();
 
@@ -38,7 +38,7 @@ TEST(Telnet_Tests, TelnetServerTests)
 	for (size_t idx = 0; idx < 250; ++idx)
 	{
 		telnetServerPtr->update();
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		std::this_thread::sleep_for(std::chrono::milliseconds(20));
 	}
 
 	shResult.wait();
