@@ -13,10 +13,9 @@ std::string CONFIG_FILE_PATH = "config.json";
 
 uintmax_t ALARM_INTERVAL;
 
-std::string ZEROMQ_SERVER_PATH;
-
 uint16_t TELNET_PORT;
 std::string PROMETHEUS_ADDR;
+std::string ZEROMQ_SERVER_PATH;
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */

@@ -10,8 +10,6 @@
 /// Variable to define path to config file
 extern std::string CONFIG_FILE_PATH;
 
-// Config variables
-
 /// Interval of SIGALRM in seconds
 extern uintmax_t ALARM_INTERVAL;
 

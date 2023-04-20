@@ -60,7 +60,7 @@ int main(int argc, char **argv)
 	// Move SIGALRM to bottom because of invoking sleep
 
 	// Init variables
-	alarmCtr = 1; // Should be non-zero at startup
+	alarmCtr = 0;
 	loopFlag = true;
 
 	ALARM_INTERVAL = 1;
