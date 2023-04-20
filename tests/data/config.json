@@ -1,6 +1,4 @@
 {
-    "ZMQ_SEND_TIMEOUT": 1000,
-    "ZMQ_RECV_TIMEOUT": 1000,
     "TELNET_PORT": 23000,
     "SENTRY_ADDRESS": "http://localhost:9000",
     "LOKI_ADDRESS": "http://localhost:9000"

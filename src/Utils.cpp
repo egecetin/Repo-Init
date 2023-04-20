@@ -13,8 +13,6 @@ std::string CONFIG_FILE_PATH = "config.json";
 
 uintmax_t ALARM_INTERVAL;
 
-int ZMQ_SEND_TIMEOUT;
-int ZMQ_RECV_TIMEOUT;
 std::string ZEROMQ_SERVER_PATH;
 
 uint16_t TELNET_PORT;
@@ -95,12 +93,13 @@ bool readConfig(const std::string &dir)
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */
-	std::vector<std::string> list = {"ZMQ_RECV_TIMEOUT", "ZMQ_SEND_TIMEOUT"};
+	std::vector<std::string> list = {};
 	/* ################################################################################### */
 	/* ################################ END MODIFICATIONS ################################ */
 	/* ################################################################################### */
 
 	spdlog::debug("Reading variables from config ...");
+	// cppcheck-suppress knownEmptyContainer
 	for (const auto &entry : list)
 	{
 		if (!doc.HasMember(entry.c_str()))
@@ -114,8 +113,6 @@ bool readConfig(const std::string &dir)
 	spdlog::debug("All variables read");
 
 	// Set variables
-	ZMQ_RECV_TIMEOUT = doc["ZMQ_RECV_TIMEOUT"].GetUint64();
-	ZMQ_SEND_TIMEOUT = doc["ZMQ_SEND_TIMEOUT"].GetUint64();
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */

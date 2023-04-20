@@ -27,19 +27,11 @@ TEST(Utils_Tests, ConfigReaderTests)
 {
 	ASSERT_TRUE(readConfig(TEST_CONFIG_PATH));
 
-	ASSERT_EQ(1000, ZMQ_SEND_TIMEOUT);
-	ASSERT_EQ(1000, ZMQ_RECV_TIMEOUT);
-
-	ASSERT_EQ("1000", readSingleConfig(TEST_CONFIG_PATH, "ZMQ_SEND_TIMEOUT"));
-	ASSERT_EQ("1000", readSingleConfig(TEST_CONFIG_PATH, "ZMQ_RECV_TIMEOUT"));
-
 	ASSERT_FALSE(readConfig("dummypath"));
-	ASSERT_EQ("", readSingleConfig("dummypath", "ZMQ_SEND_TIMEOUT"));
+	ASSERT_EQ("", readSingleConfig("dummypath", "SENTRY_ADDRESS"));
 	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_PATH, "dummyoption"));
 
 	ASSERT_FALSE(readConfig(TEST_CONFIG_EMPTY_PATH));
-	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_EMPTY_PATH, "ZMQ_SEND_TIMEOUT"));
+	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_EMPTY_PATH, "SENTRY_ADDRESS"));
 	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_EMPTY_PATH, "dummyoption"));
-
-	ASSERT_FALSE(readConfig(TEST_CONFIG_MISS_ELEMENT_PATH));
 }

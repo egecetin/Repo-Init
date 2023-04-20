@@ -15,8 +15,8 @@ void ZeroMQ::init(std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &
 	// Init ZMQ connection
 	socketPtr = std::make_unique<zmq::socket_t>(*contextPtr, type);
 	socketPtr->set(zmq::sockopt::linger, 0);
-	socketPtr->set(zmq::sockopt::sndtimeo, ZMQ_SEND_TIMEOUT);
-	socketPtr->set(zmq::sockopt::rcvtimeo, ZMQ_RECV_TIMEOUT);
+	socketPtr->set(zmq::sockopt::sndtimeo, 1000);
+	socketPtr->set(zmq::sockopt::rcvtimeo, 1000);
 	socketPtr->set(zmq::sockopt::heartbeat_ivl, 1000);
 	socketPtr->set(zmq::sockopt::heartbeat_ttl, 3000);
 	socketPtr->set(zmq::sockopt::heartbeat_timeout, 3000);
