@@ -1,5 +1,5 @@
 #include "Utils.hpp"
-#include "metrics/Reporter.hpp"
+#include "metrics/PrometheusServer.hpp"
 #include "test-static-definitions.h"
 #include "zeromq/ZeroMQServer.hpp"
 
@@ -14,7 +14,7 @@ TEST(ZeroMQ_Tests, ZeroMQServerTests)
 	std::future<int> shResult;
 
 	// For internal statistics
-	Reporter reporter(TEST_PROMETHEUS_SERVER_ADDR_3);
+	PrometheusServer reporter(TEST_PROMETHEUS_SERVER_ADDR_5);
 
 	// Init ZeroMQ Server
 	auto zeromqServerPtr = std::make_shared<ZeroMQServer>();
@@ -22,7 +22,7 @@ TEST(ZeroMQ_Tests, ZeroMQServerTests)
 	ASSERT_FALSE(zeromqServerPtr->initialise(TEST_ZMQ_SERVER_PATH));
 	zeromqServerPtr->shutdown();
 
-	ASSERT_TRUE(zeromqServerPtr->initialise(TEST_ZMQ_SERVER_PATH, reporter.getRegistry()));
+	ASSERT_TRUE(zeromqServerPtr->initialise(TEST_ZMQ_SERVER_PATH, reporter.createNewRegistry()));
 	zeromqServerPtr->messageCallback(ZeroMQServerMessageCallback);
 
 	// Launch script
