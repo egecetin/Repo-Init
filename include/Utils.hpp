@@ -14,8 +14,6 @@ extern std::string CONFIG_FILE_PATH;
 
 /// Interval of SIGALRM in seconds
 extern uintmax_t ALARM_INTERVAL;
-/// Interval of Heartbeat in seconds
-extern uintmax_t HEARTBEAT_INTERVAL;
 
 /// Receive timeout of ZMQ sockets. Read from config at startup
 extern int ZMQ_RECV_TIMEOUT;
@@ -28,8 +26,6 @@ extern uint16_t TELNET_PORT;
 extern std::string PROMETHEUS_ADDR;
 /// Interprocess path of controller thread
 extern std::string ZEROMQ_SERVER_PATH;
-/// Optional index of Heartbeat URL
-extern std::string HEARTBEAT_INDEX;
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */

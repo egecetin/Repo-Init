@@ -2,6 +2,5 @@
     "ZMQ_SEND_TIMEOUT": 1000,
     "ZMQ_RECV_TIMEOUT": 1000,
     "SENTRY_ADDRESS": "",
-    "LOKI_ADDRESS": "",
-    "HEARTBEAT_ADDRESS": ""
+    "LOKI_ADDRESS": ""
 }

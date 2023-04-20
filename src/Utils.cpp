@@ -12,7 +12,6 @@
 std::string CONFIG_FILE_PATH = "config.json";
 
 uintmax_t ALARM_INTERVAL;
-uintmax_t HEARTBEAT_INTERVAL;
 
 int ZMQ_SEND_TIMEOUT;
 int ZMQ_RECV_TIMEOUT;
@@ -20,7 +19,6 @@ std::string ZEROMQ_SERVER_PATH;
 
 uint16_t TELNET_PORT;
 std::string PROMETHEUS_ADDR;
-std::string HEARTBEAT_INDEX;
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */

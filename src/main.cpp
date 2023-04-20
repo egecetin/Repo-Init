@@ -33,8 +33,6 @@ int main(int argc, char **argv)
 		if (ZEROMQ_SERVER_PATH.empty())
 			spdlog::warn("Enable ZeroMQ option requires a connection address");
 	}
-	if (input.cmdOptionExists("--heartbeat-index"))
-		HEARTBEAT_INDEX = input.getCmdOption("--heartbeat-index");
 	if (input.cmdOptionExists("--config"))
 		CONFIG_FILE_PATH = input.getCmdOption("--config");
 	/* ################################################################################### */
@@ -66,7 +64,6 @@ int main(int argc, char **argv)
 	loopFlag = true;
 
 	ALARM_INTERVAL = 1;
-	HEARTBEAT_INTERVAL = 20;
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */

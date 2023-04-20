@@ -18,7 +18,7 @@ It provides the following features
     - [Prometheus](https://prometheus.io/) client for track internal metrics like error counts, performance of functions including
       - Incremental counters to track success/fail rates and active processes,
       - Minimum and maximum timings,
-      - Global and moving mean and variances to detect performance bottlenecks caused by environmental effects
+      - Quantile based performance metrics to determine bottlenecks
   - User interactivity
     - Embedded Telnet Server
     - [ZeroMQ](https://zeromq.org/) socket
