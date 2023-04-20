@@ -64,10 +64,10 @@ TEST(Metrics_Tests, PerformanceTrackerTests)
 	perfTracker.endTimer();
 
 	perfTracker.startTimer();
-	std::this_thread::sleep_for(std::chrono::milliseconds(50));
+	std::this_thread::sleep_for(std::chrono::milliseconds(150));
 	perfTracker.endTimer();
 	perfTracker.startTimer();
-	std::this_thread::sleep_for(std::chrono::milliseconds(150));
+	std::this_thread::sleep_for(std::chrono::milliseconds(50));
 	perfTracker.endTimer();
 
 	// Collect data from socket
