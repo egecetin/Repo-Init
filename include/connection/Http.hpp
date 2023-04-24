@@ -25,8 +25,8 @@ class HTTP
 
 	/**
 	 * @brief Set the option of HTTP class
-	 * @param option CURL option
-	 * @param value Corresponding value
+	 * @param[in] option CURL option
+	 * @param[in] value Corresponding value
 	 * @return true If successful
 	 * @return false Otherwise
 	 */
@@ -34,6 +34,24 @@ class HTTP
 	{
 		return curl_easy_setopt(curl, option, value) == CURLE_OK;
 	}
+
+	/**
+	 * @brief Sends a GET request
+	 * @param[in] index Value to append to server address
+	 * @param[in] receivedData Received reply from server
+	 * @param[out] statusCode HTTP status code, Set if CURLE_OK, otherwise unchanged
+	 * @return CURLcode Status of operation. CURLE_OK if successful.
+	 */
+	CURLcode sendGETRequest(const std::string &index, std::string &receivedData, HttpStatus::Code &statusCode);
+
+	/**
+	 * @brief Sends a HEAD request
+	 * @param index Value to append to server address
+	 * @param receivedData Received reply from server
+	 * @param statusCode HTTP status code. Set if CURLE_OK, otherwise unchanged
+	 * @return CURLcode Status of operation. CURLE_OK if successful.
+	 */
+	CURLcode sendHEADRequest(const std::string &index, std::string &receivedData, HttpStatus::Code &statusCode);
 
 	/**
 	 * @brief Sends a POST request
@@ -47,13 +65,15 @@ class HTTP
 							 HttpStatus::Code &statusCode);
 
 	/**
-	 * @brief Sends a GET request
+	 * @brief Sends a PUT request
 	 * @param[in] index Value to append to server address
-	 * @param[in] receivedData Received reply from server
-	 * @param[out] statusCode HTTP status code, Set if CURLE_OK, otherwise unchanged
+	 * @param[in] payload Payload to send to server
+	 * @param[out] receivedData Received reply from server
+	 * @param[out] statusCode HTTP status code. Set if CURLE_OK, otherwise unchanged
 	 * @return CURLcode Status of operation. CURLE_OK if successful.
 	 */
-	CURLcode sendGETRequest(const std::string &index, std::string &receivedData, HttpStatus::Code &statusCode);
+	CURLcode sendPUTRequest(const std::string &index, const std::string &payload, std::string &receivedData,
+							HttpStatus::Code &statusCode);
 
 	/**
 	 * @brief Destroys the HTTP object

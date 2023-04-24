@@ -41,12 +41,15 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     do_PUT = do_POST
     do_DELETE = do_GET
+    do_HEAD = do_GET
 
 
 def main():
     port = 8080
     print("Listening on 0.0.0.0:%s" % port)
     server = HTTPServer(("", port), RequestHandler)
+    server.handle_request()
+    server.handle_request()
     server.handle_request()
     server.handle_request()
 
