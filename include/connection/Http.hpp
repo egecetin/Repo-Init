@@ -46,9 +46,9 @@ class HTTP
 
 	/**
 	 * @brief Sends a HEAD request
-	 * @param index Value to append to server address
-	 * @param receivedData Received reply from server
-	 * @param statusCode HTTP status code. Set if CURLE_OK, otherwise unchanged
+	 * @param[in] index Value to append to server address
+	 * @param[out] receivedData Received reply from server
+	 * @param[out] statusCode HTTP status code. Set if CURLE_OK, otherwise unchanged
 	 * @return CURLcode Status of operation. CURLE_OK if successful.
 	 */
 	CURLcode sendHEADRequest(const std::string &index, std::string &receivedData, HttpStatus::Code &statusCode);
