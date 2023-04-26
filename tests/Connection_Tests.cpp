@@ -75,14 +75,18 @@ TEST(Connection_Tests, HttpTests)
 
 TEST(Connection_Tests, RawSocketTests)
 {
-	RawSocket sock(TEST_RAWSOCKET_INTERFACE, false);
 	uint8_t data[RAWSOCKET_BUFFER_SIZE];
-	size_t len = RAWSOCKET_BUFFER_SIZE;
+	RawSocket sockRead(TEST_RAWSOCKET_INTERFACE, false);
 
-	size_t recvSize = sock.readData(data, len);
+	size_t recvSize = sockRead.readData(data, sizeof(data));
 	ASSERT_GT(recvSize, 0);
-	ASSERT_GT(sock.writeData(data, recvSize), 0);
-	ASSERT_EQ(sock.getInterfaceName(), TEST_RAWSOCKET_INTERFACE);
+	ASSERT_LT(sockRead.writeData(data, recvSize), 0);
+	ASSERT_EQ(sockRead.getInterfaceName(), TEST_RAWSOCKET_INTERFACE);
+
+	RawSocket sockWrite(TEST_RAWSOCKET_INTERFACE, true);
+	ASSERT_GT(sockWrite.writeData(data, recvSize), 0);
+	ASSERT_LT(sockWrite.readData(data, sizeof(data)), 0);
+	ASSERT_EQ(sockWrite.getInterfaceName(), TEST_RAWSOCKET_INTERFACE);
 }
 
 TEST(Connection_Tests, ZeroMQTests)
