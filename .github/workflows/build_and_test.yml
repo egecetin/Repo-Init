@@ -29,8 +29,6 @@ jobs:
         run: |
           sudo apt update
           sudo apt install gcovr expect libcurl4-openssl-dev -y
-          # Rawsocket requires privileges
-          sudo chmod 4755 `which ctest`
       - uses: actions/setup-python@v4
         with:
           python-version: "3.10.x"
@@ -60,8 +58,6 @@ jobs:
         run: |
           sudo apt update
           sudo apt install gcovr expect libcurl4-openssl-dev -y
-          # Rawsocket requires privileges
-          sudo chmod 4755 `which ctest`
       - uses: actions/setup-python@v4
         with:
           python-version: "3.10.x"
