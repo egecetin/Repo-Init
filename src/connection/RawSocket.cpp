@@ -27,7 +27,7 @@ RawSocket::RawSocket(const std::string &iface, bool isWrite)
 
 	// Interface request
 	struct ifreq ifr;
-	memset((void *)&addr, 0, sizeof(struct ifreq));
+	memset((void *)&ifr, 0, sizeof(struct ifreq));
 	memcpy(ifr.ifr_name, iFace.c_str(), iFace.size()); // Size should be sufficient because if_nametoindex not failed
 
 	if (isWrite)
