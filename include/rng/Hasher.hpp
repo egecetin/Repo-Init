@@ -2,11 +2,7 @@
 
 #include <cstdio>
 
-constexpr size_t constHasher(const char *s, size_t index = 0)
-{
-	// cppcheck-suppress pointerAdditionResultNotNull
-	return s + index == nullptr || s[index] == '\0' ? 55 : constHasher(s, index + 1) * 33 + (unsigned char)(s[index]);
-}
+constexpr size_t constHasher(const char *s) { return *s ? *s + 33 * constHasher(s + 1) : 5381; }
 
 // Create entropy using __FILE__ and __LINE__. Derived from Evan McBroom's
 // https://gist.github.com/EvanMcBroom/ad683e394f84b623da63c2b95f6fb547

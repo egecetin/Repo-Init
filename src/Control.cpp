@@ -63,7 +63,7 @@ void zmqControlThread()
 			zeroMqServerPtr->messageCallback(ZeroMQServerMessageCallback);
 			spdlog::info("ZeroMQ server created at {}", ZEROMQ_SERVER_PATH);
 		}
-		else if (!ZEROMQ_SERVER_PATH.empty())
+		else
 			throw std::runtime_error("Unknown error");
 	}
 	catch (const std::exception &e)
