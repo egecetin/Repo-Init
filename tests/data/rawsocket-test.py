@@ -4,7 +4,7 @@ import socket
 import sys
 import time
 
-interface = "lo"
+interface = "eth0"
 packet = bytearray(str("I'm a dumb message.").encode("utf-8"))
 
 with socket.socket(socket.AF_PACKET, socket.SOCK_RAW) as rs:
