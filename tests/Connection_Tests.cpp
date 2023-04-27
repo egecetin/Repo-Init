@@ -91,7 +91,10 @@ TEST(Connection_Tests, RawSocketTests)
 		recvSize = sockRead.readData(data, sizeof(data));
 		ASSERT_GT(recvSize, 0);
 		if (recvSize == sizeof("I'm a dumb message.") - 1 && !memcmp(data, "I'm a dumb message.", recvSize))
+		{
 			found = true;
+			break;
+		}
 	}
 	ASSERT_TRUE(found);
 	ASSERT_LT(sockRead.writeData(data, recvSize), 0);
