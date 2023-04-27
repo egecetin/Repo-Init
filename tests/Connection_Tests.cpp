@@ -75,11 +75,25 @@ TEST(Connection_Tests, HttpTests)
 
 TEST(Connection_Tests, RawSocketTests)
 {
+	// Launch packet sender
+	std::future<int> pyResult;
+	pyResult = std::async(std::launch::async, []() {
+		return system(("python3 " + std::string(TEST_RAWSOCKET_SENDER_PY_PATH) + " >/dev/null").c_str());
+	});
+
+	bool found = false;
 	uint8_t data[RAWSOCKET_BUFFER_SIZE];
 	RawSocket sockRead(TEST_RAWSOCKET_INTERFACE, false);
 
-	size_t recvSize = sockRead.readData(data, sizeof(data));
-	ASSERT_GT(recvSize, 0);
+	size_t recvSize = 0;
+	for (size_t idx = 0; idx < 1e2; ++idx)
+	{
+		recvSize = sockRead.readData(data, sizeof(data));
+		ASSERT_GT(recvSize, 0);
+		if (recvSize == sizeof("I'm a dumb message.") - 1 && !memcmp(data, "I'm a dumb message.", recvSize))
+			found = true;
+	}
+	ASSERT_TRUE(found);
 	ASSERT_LT(sockRead.writeData(data, recvSize), 0);
 	ASSERT_EQ(sockRead.getInterfaceName(), TEST_RAWSOCKET_INTERFACE);
 
@@ -87,6 +101,9 @@ TEST(Connection_Tests, RawSocketTests)
 	ASSERT_GT(sockWrite.writeData(data, recvSize), 0);
 	ASSERT_LT(sockWrite.readData(data, sizeof(data)), 0);
 	ASSERT_EQ(sockWrite.getInterfaceName(), TEST_RAWSOCKET_INTERFACE);
+
+	pyResult.wait();
+	ASSERT_EQ(0, pyResult.get());
 }
 
 TEST(Connection_Tests, ZeroMQTests)
