@@ -101,9 +101,14 @@ TEST(Connection_Tests, RawSocketTests)
 	ASSERT_LT(sockRead.writeData(data, recvSize), 0);
 	ASSERT_EQ(sockRead.getInterfaceName(), TEST_RAWSOCKET_INTERFACE);
 
-	RawSocketStats statsRead = sockRead.getStats();
+	RawSocketStats statsRead = sockRead.getStats(true);
 	ASSERT_GT(statsRead.processingTime, 0.0);
 	ASSERT_GT(statsRead.receivedBytes, 0);
+	ASSERT_EQ(statsRead.sentBytes, 0);
+
+	statsRead = sockRead.getStats();
+	ASSERT_DOUBLE_EQ(statsRead.processingTime, 0.0);
+	ASSERT_EQ(statsRead.receivedBytes, 0);
 	ASSERT_EQ(statsRead.sentBytes, 0);
 
 	// Write tests
@@ -112,10 +117,15 @@ TEST(Connection_Tests, RawSocketTests)
 	ASSERT_LT(sockWrite.readData(data, sizeof(data)), 0);
 	ASSERT_EQ(sockWrite.getInterfaceName(), TEST_RAWSOCKET_INTERFACE);
 
-	RawSocketStats statsWrite = sockWrite.getStats();
+	RawSocketStats statsWrite = sockWrite.getStats(true);
 	ASSERT_GT(statsWrite.processingTime, 0.0);
 	ASSERT_EQ(statsWrite.receivedBytes, 0);
 	ASSERT_EQ(statsWrite.sentBytes, recvSize);
+
+	statsWrite = sockWrite.getStats();
+	ASSERT_DOUBLE_EQ(statsWrite.processingTime, 0.0);
+	ASSERT_EQ(statsWrite.receivedBytes, 0);
+	ASSERT_EQ(statsWrite.sentBytes, 0);
 
 	pyResult.wait();
 	ASSERT_EQ(0, pyResult.get());
