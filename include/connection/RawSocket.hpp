@@ -5,6 +5,19 @@
 #include <string>
 
 /**
+ * @brief Stats produced by RawSocket
+ */
+struct RawSocketStats
+{
+	/// Number of bytes written to socket
+	size_t sentBytes;
+	/// Number of bytes read from socket
+	size_t receivedBytes;
+	/// Total execution time in nanoseconds
+	double processingTime;
+};
+
+/**
  * @brief Raw socket reads and writes binary data to provided interface. Write operations does not modify any field
  * (MAC, IP etc). Only writes the full data directly like file write operations.
  */
@@ -21,6 +34,8 @@ class RawSocket
 	std::string iFace;
 	/// Socket structure
 	struct sockaddr_ll addr;
+	/// Internal structure for statistics
+	RawSocketStats stats;
 
   public:
 	/**
@@ -51,6 +66,13 @@ class RawSocket
 	 * @return int Status of operation. Return the number of read bytes, negative on errors.
 	 */
 	int readData(void *data, size_t dataLen);
+
+	/**
+	 * @brief Get the statistics of class
+	 * @param[in] resetInternalStats Whether internal statistics structure should be reset after returned
+	 * @return RawSocketStats Produced statistics
+	 */
+	RawSocketStats getStats(bool resetInternalStats = false);
 
 	/**
 	 * @brief Destroy the RawSocket object
