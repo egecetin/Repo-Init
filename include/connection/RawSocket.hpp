@@ -69,7 +69,7 @@ class RawSocket
 
 	/**
 	 * @brief Get the statistics of class
-	 * @param[in] resetInternalStats Whether internal statistics structure should be reseted after returned
+	 * @param[in] resetInternalStats Whether internal statistics structure should be reset after returned
 	 * @return RawSocketStats Produced statistics
 	 */
 	RawSocketStats getStats(bool resetInternalStats = false);
