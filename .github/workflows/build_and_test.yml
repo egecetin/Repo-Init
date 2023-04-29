@@ -33,12 +33,11 @@ jobs:
         with:
           python-version: "3.10.x"
       - name: Install Test Requirements
-        run: |
-          pip install -r tests/data/requirements.txt
+        run: sudo pip install -r tests/data/requirements.txt
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
       - name: Build
-        run: cmake --build $BUILD_DIR --parallel --target coverage-xml
+        run: sudo cmake --build $BUILD_DIR --parallel --target coverage-xml
       - name: Process Results
         uses: codecov/codecov-action@v3
         with:
@@ -63,8 +62,7 @@ jobs:
         with:
           python-version: "3.10.x"
       - name: Install Test Requirements
-        run: |
-          pip install -r tests/data/requirements.txt
+        run: sudo pip install -r tests/data/requirements.txt
       - name: Prepare Intel apt repository
         run: |
           wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | sudo tee /usr/share/keyrings/oneapi-archive-keyring.gpg > /dev/null
@@ -83,15 +81,13 @@ jobs:
         run: |
           sudo apt-get install -y intel-oneapi-compiler-dpcpp-cpp
           sudo apt-get clean
+      - name: Set variables
+        run: |
+          . /opt/intel/oneapi/setvars.sh
+          printenv >> $GITHUB_ENV
       - name: Configure
-        run: |
-          source /opt/intel/oneapi/setvars.sh
-          cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -S . -B $BUILD_DIR
+        run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -S . -B $BUILD_DIR
       - name: Build
-        run: |
-          source /opt/intel/oneapi/setvars.sh
-          cmake --build $BUILD_DIR --parallel
+        run: cmake --build $BUILD_DIR --parallel
       - name: Run Tests
-        run: |
-          source /opt/intel/oneapi/setvars.sh
-          ctest --test-dir $BUILD_DIR
+        run: sudo ctest --test-dir $BUILD_DIR

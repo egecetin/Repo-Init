@@ -6,6 +6,8 @@
 #define TEST_CONFIG_EMPTY_PATH "@PROJECT_SOURCE_DIR@/tests/data/config_empty.json"
 
 // Connection_Tests
+#define TEST_RAWSOCKET_INTERFACE "eth0"
+#define TEST_RAWSOCKET_SENDER_PY_PATH "@PROJECT_SOURCE_DIR@/tests/data/rawsocket-test.py"
 #define TEST_ZEROMQ_ECHO_SERVER_PY_PATH "@PROJECT_SOURCE_DIR@/tests/data/zeromqEchoServer.py"
 #define TEST_REST_ECHO_SERVER_PY_PATH "@PROJECT_SOURCE_DIR@/tests/data/restEchoServer.py"
 #define TEST_ZEROMQ_ECHO_SERVER_ADDR "tcp://127.0.0.1:8081"
