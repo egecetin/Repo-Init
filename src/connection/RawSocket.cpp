@@ -7,6 +7,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+#include <chrono>
 #include <stdexcept>
 
 RawSocket::RawSocket(const std::string &iface, bool isWrite)
@@ -55,7 +56,15 @@ int RawSocket::writeData(const void *data, size_t dataLen)
 {
 	if (!isReady || !writeMode)
 		return -EPERM;
-	return write(sockFd, data, dataLen);
+
+	auto startTime = std::chrono::high_resolution_clock::now();
+	int retval = write(sockFd, data, dataLen);
+
+	// Update stats
+	stats.processingTime += (std::chrono::high_resolution_clock::now() - startTime).count();
+	stats.sentBytes += dataLen;
+
+	return retval;
 }
 
 int RawSocket::readData(void *data, size_t dataLen)
@@ -63,7 +72,26 @@ int RawSocket::readData(void *data, size_t dataLen)
 	if (!isReady || writeMode)
 		return -EPERM;
 	socklen_t socketLen = sizeof(addr);
-	return recvfrom(sockFd, data, dataLen, 0, (struct sockaddr *)&addr, &socketLen);
+
+	auto startTime = std::chrono::high_resolution_clock::now();
+	int retval = recvfrom(sockFd, data, dataLen, 0, (struct sockaddr *)&addr, &socketLen);
+
+	// Update stats
+	stats.processingTime += (std::chrono::high_resolution_clock::now() - startTime).count();
+	stats.receivedBytes += dataLen;
+
+	return retval;
+}
+
+RawSocketStats RawSocket::getStats(bool resetInternalStats)
+{
+	if (resetInternalStats)
+	{
+		RawSocketStats buffer = stats;
+		stats = {0, 0, 0.0};
+		return buffer;
+	}
+	return stats;
 }
 
 RawSocket::~RawSocket() { close(sockFd); }
