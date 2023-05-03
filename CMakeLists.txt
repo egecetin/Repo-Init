@@ -13,6 +13,7 @@ include(GraphViz)
 include(SvnVersion)
 
 option(XXX_ENABLE_TESTS "Enables XXX tests" ON)
+option(XXX_ENABLE_COVERAGE "Enables XXX coverage report" OFF)
 
 if(NOT DEFINED REVISION_VERSION)
   message(SEND_ERROR "Can't find SVN or Git. The folder is not under version control.")

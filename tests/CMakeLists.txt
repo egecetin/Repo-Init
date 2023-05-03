@@ -4,7 +4,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
 
 # Enable gcov if Debug
-if(CMAKE_BUILD_TYPE STREQUAL "Debug" AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+if(XXX_ENABLE_COVERAGE)
   include(CodeCoverage)
   set(GCOVR_ADDITIONAL_ARGS "--exclude-throw-branches")
   setup_target_for_coverage_gcovr_html(
