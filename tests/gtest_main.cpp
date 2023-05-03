@@ -15,17 +15,19 @@ int main(int argc, char **argv)
 	MemPlumber::stop();
 
 	// Check memory leak
-	size_t memLeakCtr;
-	uint64_t memLeakSz;
+	size_t memLeakCtr = 0;
+	uint64_t memLeakSz = 0;
 	MemPlumber::memLeakCheck(memLeakCtr, memLeakSz, true);
 
 	// Comes from gtest itself
 	if (memLeakCtr == 1 && memLeakSz == 8)
-		printf("No memory leak detected!\n");
-	else if (memLeakCtr || memLeakSz)
 	{
-		printf("Number of leaked objects: %d\nTotal amount of memory leaked: %d[bytes]\n", (int)memLeakCtr,
-			   (int)memLeakSz);
+		std::cout << "No memory leak detected!" << std::endl;
+	}
+	else if (memLeakCtr > 0 || memLeakSz > 0)
+	{
+		std::cout << "Number of leaked objects: " << memLeakCtr << std::endl;
+		std::cout << "Total amount of memory leaked: " << memLeakSz << "[bytes]" << std::endl;
 		retval = EXIT_FAILURE;
 	}
 
