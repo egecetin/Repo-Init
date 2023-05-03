@@ -2,23 +2,6 @@ name: Build and test
 on: [push, pull_request]
 
 jobs:
-  pre-commit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-      - name: Install dependencies
-        run: |
-          sudo apt update
-          sudo apt install cppcheck
-          pip install clang-tidy
-      - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B build
-      - name: Build
-        run: cmake --build build --parallel
-      - uses: pre-commit/action@v3.0.0
 
   linux-gnu:
     runs-on: ubuntu-latest
@@ -30,7 +13,7 @@ jobs:
       - name: Prepare System
         run: |
           sudo apt update
-          sudo apt install gcovr expect libcurl4-openssl-dev -y
+          sudo apt install gcovr expect libcurl4-openssl-dev cppcheck clang-tidy -y
       - uses: actions/setup-python@v4
         with:
           python-version: "3.10.x"
@@ -40,6 +23,7 @@ jobs:
         run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B build
       - name: Build
         run: sudo cmake --build build --parallel --target coverage-xml
+      - uses: pre-commit/action@v3.0.0
       - name: Process Results
         uses: codecov/codecov-action@v3
         with:
@@ -59,7 +43,7 @@ jobs:
       - name: Prepare System
         run: |
           sudo apt update
-          sudo apt install gcovr expect libcurl4-openssl-dev -y
+          sudo apt install gcovr expect libcurl4-openssl-dev cppcheck clang-tidy -y
       - uses: actions/setup-python@v4
         with:
           python-version: "3.10.x"
@@ -93,3 +77,4 @@ jobs:
         run: cmake --build build --parallel
       - name: Run Tests
         run: sudo ctest --test-dir build
+      - uses: pre-commit/action@v3.0.0
