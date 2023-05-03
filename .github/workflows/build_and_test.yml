@@ -5,15 +5,20 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
       - uses: actions/checkout@v3
+        with:
+          submodules: recursive
       - uses: actions/setup-python@v4
         with:
           python-version: "3.10"
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install cppcheck
+          sudo apt install cppcheck -y
           pip install clang-tidy
+      - name: Configure
+        run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build
       - uses: pre-commit/action@v3.0.0
 
   linux-gnu:
