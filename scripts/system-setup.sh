@@ -43,7 +43,7 @@ echo "neowofetch" >> /etc/profile.d/neofetch.sh
 # EOF
 # ldconfig
 
-echo -e "${ANSI_FG_YELLOW}Installing Intel oneAPI ...${ANSI_RESET_ALL}"
+echo -e "${ANSI_FG_YELLOW}Installing Intel oneAPI Repo...${ANSI_RESET_ALL}"
 tee > /tmp/oneAPI.repo << EOF
 [oneAPI]
 name=Intel® oneAPI repository
@@ -54,7 +54,6 @@ repo_gpgcheck=1
 gpgkey=https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
 EOF
 mv -f /tmp/oneAPI.repo /etc/yum.repos.d
-dnf install intel-oneapi-runtime-libs -y
 
 echo -e "${ANSI_FG_YELLOW}Installing Grafana... ${ANSI_RESET_ALL}"
 tee > /etc/yum.repos.d/grafana.repo << EOF
