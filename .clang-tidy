@@ -8,3 +8,5 @@ performance-*,
 portability-*,
 readability-*,
 -modernize-use-trailing-return-type'
+
+WarningsAsErrors: '*'
