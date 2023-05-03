@@ -15,11 +15,11 @@ int main(int argc, char **argv)
 	std::string configPath = "config.json";
 
 	// Parse inputs
-	InputParser input(argc, argv);
+	const InputParser input(argc, argv);
 	if (input.cmdOptionExists("--enable-telnet"))
 	{
-		std::string portString = input.getCmdOption("--enable-telnet");
-		if (portString.size())
+		const std::string portString = input.getCmdOption("--enable-telnet");
+		if (!portString.empty())
 		{
 			telnetPort = std::stoi(portString);
 			if (telnetPort <= 0 || telnetPort > std::numeric_limits<uint16_t>::max())
@@ -29,22 +29,30 @@ int main(int argc, char **argv)
 			}
 		}
 		else
+		{
 			spdlog::warn("Enable Telnet option requires a port number");
+		}
 	}
 	if (input.cmdOptionExists("--enable-prometheus"))
 	{
 		PROMETHEUS_ADDR = input.getCmdOption("--enable-prometheus");
 		if (PROMETHEUS_ADDR.empty())
+		{
 			spdlog::warn("Enable Prometheus option requires a bind address");
+		}
 	}
 	if (input.cmdOptionExists("--enable-zeromq"))
 	{
 		ZEROMQ_SERVER_PATH = input.getCmdOption("--enable-zeromq");
 		if (ZEROMQ_SERVER_PATH.empty())
+		{
 			spdlog::warn("Enable ZeroMQ option requires a connection address");
+		}
 	}
 	if (input.cmdOptionExists("--config"))
+	{
 		configPath = input.getCmdOption("--config");
+	}
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */
@@ -54,18 +62,32 @@ int main(int argc, char **argv)
 	/* ################################################################################### */
 
 	// Init logger
-	MainLogger logger(argc, argv, configPath);
+	const MainLogger logger(argc, argv, configPath);
 	spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [" + std::string(PROJECT_NAME) + "] [%^%l%$] : %v");
 	print_version();
 
 	// Read config
 	if (!readConfig(configPath))
+	{
 		return EXIT_FAILURE;
+	}
 
 	// Register signals
-	signal(SIGINT, interruptFunc);
-	signal(SIGTERM, interruptFunc);
-	signal(SIGKILL, interruptFunc);
+	if (signal(SIGINT, interruptFunc) == SIG_ERR)
+	{
+		spdlog::critical("Can't set signal handler (SIGINT): {}", strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+		return EXIT_FAILURE;
+	}
+	if (signal(SIGTERM, interruptFunc) == SIG_ERR)
+	{
+		spdlog::critical("Can't set signal handler (SIGTERM): {}", strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+		return EXIT_FAILURE;
+	}
+	if (signal(SIGKILL, interruptFunc) == SIG_ERR)
+	{
+		spdlog::critical("Can't set signal handler (SIGKILL): {}", strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+		return EXIT_FAILURE;
+	}
 
 	// Move SIGALRM to bottom because of invoking sleep
 
@@ -82,7 +104,7 @@ int main(int argc, char **argv)
 	/* ################################################################################### */
 
 	// Init prometheus server
-	if (PROMETHEUS_ADDR.size())
+	if (!PROMETHEUS_ADDR.empty())
 	{
 		try
 		{
@@ -108,16 +130,24 @@ int main(int argc, char **argv)
 	spdlog::debug("Threads started");
 
 	// SIGALRM should be registered after all sleep calls
-	signal(SIGALRM, alarmFunc);
+	if (signal(SIGALRM, alarmFunc) == SIG_ERR)
+	{
+		spdlog::critical("Can't set signal handler (SIGALRM): {}", strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+		return EXIT_FAILURE;
+	}
 	alarm(alarmInterval);
 
 	// Join threads
 	if (zmqControlTh.joinable())
+	{
 		zmqControlTh.join();
-	spdlog::info("ZMQ Controller joined");
+		spdlog::info("ZMQ Controller joined");
+	}
 	if (telnetControlTh.joinable())
+	{
 		telnetControlTh.join();
-	spdlog::info("Telnet Controller joined");
+		spdlog::info("Telnet Controller joined");
+	}
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */

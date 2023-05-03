@@ -47,7 +47,7 @@ either expressed or implied, of the FreeBSD Project.
 class TelnetServer;
 class TelnetSession;
 
-typedef int Socket;
+using Socket = int;
 
 /**
  * @brief Session class for manage connections
@@ -56,7 +56,8 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 {
   public:
 	/// Constructor for session
-	TelnetSession(Socket ClientSocket, std::shared_ptr<TelnetServer> ts) : m_socket(ClientSocket), m_telnetServer(ts)
+	TelnetSession(Socket ClientSocket, std::shared_ptr<TelnetServer> ts)
+		: m_socket(ClientSocket), m_telnetServer(std::move(ts))
 	{
 		m_historyCursor = m_history.end();
 	};

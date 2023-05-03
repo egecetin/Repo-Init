@@ -13,6 +13,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install cppcheck
+          pip install clang-tidy
       - uses: pre-commit/action@v3.0.0
 
   linux-gnu:
