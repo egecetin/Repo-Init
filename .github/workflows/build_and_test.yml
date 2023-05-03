@@ -1,9 +1,6 @@
 name: Build and test
 on: [push, pull_request]
 
-env:
-  BUILD_DIR: build
-
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
@@ -35,9 +32,9 @@ jobs:
       - name: Install Test Requirements
         run: sudo pip install -r tests/data/requirements.txt
       - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
+        run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build
       - name: Build
-        run: sudo cmake --build $BUILD_DIR --parallel --target coverage-xml
+        run: sudo cmake --build build --parallel --target coverage-xml
       - name: Process Results
         uses: codecov/codecov-action@v3
         with:
@@ -86,8 +83,8 @@ jobs:
           . /opt/intel/oneapi/setvars.sh
           printenv >> $GITHUB_ENV
       - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -S . -B $BUILD_DIR
+        run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -S . -B build
       - name: Build
-        run: cmake --build $BUILD_DIR --parallel
+        run: cmake --build build --parallel
       - name: Run Tests
-        run: sudo ctest --test-dir $BUILD_DIR
+        run: sudo ctest --test-dir build
