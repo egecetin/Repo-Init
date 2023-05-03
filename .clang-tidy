@@ -8,6 +8,8 @@ performance-*,
 portability-*,
 readability-*,
 -modernize-use-trailing-return-type,
--readability-identifier-length'
+-readability-identifier-length,
+-cppcoreguidelines-avoid-magic-numbers,
+-readability-magic-numbers'
 
 WarningsAsErrors: '*'
