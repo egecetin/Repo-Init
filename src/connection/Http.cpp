@@ -8,7 +8,7 @@ struct MemoryStruct_t
 	char *memory;
 	size_t size;
 };
-typedef struct MemoryStruct_t MemoryStruct;
+using MemoryStruct = struct MemoryStruct_t;
 
 size_t HTTP::writeDataCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {

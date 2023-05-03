@@ -9,11 +9,6 @@
 #include <rapidjson/writer.h>
 #include <spdlog/spdlog.h>
 
-std::string CONFIG_FILE_PATH = "config.json";
-
-uintmax_t ALARM_INTERVAL;
-
-uint16_t TELNET_PORT;
 std::string PROMETHEUS_ADDR;
 std::string ZEROMQ_SERVER_PATH;
 /* ################################################################################### */
@@ -162,20 +157,26 @@ std::string readSingleConfig(const std::string &dir, std::string value)
 }
 
 // GCOVR_EXCL_START
-void alarmFunc(int)
+void alarmFunc(int /*unused*/)
 {
 	++alarmCtr;
 	if (loopFlag)
-		alarm(ALARM_INTERVAL);
+	{
+		alarm(alarmInterval);
+	}
 }
 // GCOVR_EXCL_STOP
 
 // GCOVR_EXCL_START
-void interruptFunc(int)
+void interruptFunc(int /*unused*/)
 {
 	if (loopFlag)
+	{
 		loopFlag = false;
+	}
 	else
+	{
 		(void)!write(STDERR_FILENO, "Interrupt in progress...\n", 26);
+	}
 }
 // GCOVR_EXCL_STOP

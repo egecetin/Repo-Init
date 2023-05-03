@@ -25,7 +25,7 @@ class PerformanceTracker
 	 * @param[in] name Name of the metric
 	 * @param[in] id ID to append to metric names
 	 */
-	PerformanceTracker(std::shared_ptr<prometheus::Registry> reg, const std::string &name, const uint64_t id = 0);
+	PerformanceTracker(std::shared_ptr<prometheus::Registry> reg, const std::string &name, uint64_t id = 0);
 
 	/**
 	 * @brief Starts the chronometer

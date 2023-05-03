@@ -3,8 +3,7 @@
 #include <prometheus/gauge.h>
 #include <prometheus/summary.h>
 
-PerformanceTracker::PerformanceTracker(std::shared_ptr<prometheus::Registry> reg, const std::string &name,
-									   const uint64_t id)
+PerformanceTracker::PerformanceTracker(std::shared_ptr<prometheus::Registry> reg, const std::string &name, uint64_t id)
 {
 	perfTiming = &prometheus::BuildSummary()
 					  .Name(name + "_processing_time_" + std::to_string(id))

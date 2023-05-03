@@ -10,22 +10,21 @@
 #include <spdlog/spdlog.h>
 
 // GCOVR_EXCL_START
-void telnetControlThread()
+void telnetControlThread(uint16_t telnetPort)
 {
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
-	if (TELNET_PORT &&
-		telnetServerPtr->initialise(TELNET_PORT, "> ",
-									mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr))
+	if (telnetPort && telnetServerPtr->initialise(
+						  telnetPort, "> ", mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr))
 	{
 		telnetServerPtr->connectedCallback(TelnetConnectedCallback);
 		telnetServerPtr->newLineCallback(TelnetMessageCallback);
 		telnetServerPtr->tabCallback(TelnetTabCallback);
-		spdlog::info("Telnet server created at {}", TELNET_PORT);
+		spdlog::info("Telnet server created at {}", telnetPort);
 	}
 	else
 	{
-		if (TELNET_PORT)
+		if (telnetPort)
 			spdlog::warn("Can't start Telnet Server: {}", strerror(errno));
 		return;
 	}

@@ -11,13 +11,23 @@
 
 int main(int argc, char **argv)
 {
+	int telnetPort = 0;
+	std::string configPath = "config.json";
+
 	// Parse inputs
 	InputParser input(argc, argv);
 	if (input.cmdOptionExists("--enable-telnet"))
 	{
 		std::string portString = input.getCmdOption("--enable-telnet");
 		if (portString.size())
-			TELNET_PORT = std::stoi(portString);
+		{
+			telnetPort = std::stoi(portString);
+			if (telnetPort <= 0 || telnetPort > std::numeric_limits<uint16_t>::max())
+			{
+				spdlog::warn("Telnet port should be between [1-65535]: provided value is {}", telnetPort);
+				telnetPort = 0;
+			}
+		}
 		else
 			spdlog::warn("Enable Telnet option requires a port number");
 	}
@@ -34,7 +44,7 @@ int main(int argc, char **argv)
 			spdlog::warn("Enable ZeroMQ option requires a connection address");
 	}
 	if (input.cmdOptionExists("--config"))
-		CONFIG_FILE_PATH = input.getCmdOption("--config");
+		configPath = input.getCmdOption("--config");
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */
@@ -44,12 +54,12 @@ int main(int argc, char **argv)
 	/* ################################################################################### */
 
 	// Init logger
-	MainLogger logger(argc, argv, CONFIG_FILE_PATH);
+	MainLogger logger(argc, argv, configPath);
 	spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [" + std::string(PROJECT_NAME) + "] [%^%l%$] : %v");
 	print_version();
 
 	// Read config
-	if (!readConfig(CONFIG_FILE_PATH))
+	if (!readConfig(configPath))
 		return EXIT_FAILURE;
 
 	// Register signals
@@ -63,7 +73,6 @@ int main(int argc, char **argv)
 	alarmCtr = 0;
 	loopFlag = true;
 
-	ALARM_INTERVAL = 1;
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */
@@ -95,12 +104,12 @@ int main(int argc, char **argv)
 	/* ################################ END MODIFICATIONS ################################ */
 	/* ################################################################################### */
 	std::thread zmqControlTh(zmqControlThread);
-	std::thread telnetControlTh(telnetControlThread);
+	std::thread telnetControlTh(telnetControlThread, telnetPort);
 	spdlog::debug("Threads started");
 
 	// SIGALRM should be registered after all sleep calls
 	signal(SIGALRM, alarmFunc);
-	alarm(ALARM_INTERVAL);
+	alarm(alarmInterval);
 
 	// Join threads
 	if (zmqControlTh.joinable())
