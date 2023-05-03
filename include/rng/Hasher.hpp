@@ -1,7 +1,9 @@
 #pragma once
 
+#include <cstdint>
 #include <cstdio>
 
+// NOLINTBEGIN
 constexpr size_t constHasher(const char *s) { return *s ? *s + 33 * constHasher(s + 1) : 5381; }
 
 // Create entropy using __FILE__ and __LINE__. Derived from Evan McBroom's
@@ -18,3 +20,4 @@ template <size_t N> constexpr uint64_t constSeeder(const char (&entropy)[N], con
 	}
 	return value ^ iv;
 }
+// NOLINTEND
