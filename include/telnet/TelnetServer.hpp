@@ -76,8 +76,6 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	void initialise();
 	/// Called every frame/loop by the Terminal Server
 	void update();
-	/// Statistics variables
-	TelnetSessionStats stats;
 
   private:
 	// Returns ip of the peer
@@ -104,6 +102,8 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	//
 	static std::vector<std::string> getCompleteLines(std::string &buffer);
 
+	/// Statistics variables
+	TelnetSessionStats stats;
 	// Last seen
 	std::chrono::system_clock::time_point lastSeenTime;
 	// The socket
@@ -120,19 +120,18 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	friend TelnetServer;
 };
 
-typedef std::shared_ptr<TelnetSession> SP_TelnetSession;
-typedef std::vector<SP_TelnetSession> VEC_SP_TelnetSession;
+using SP_TelnetSession = std::shared_ptr<TelnetSession>;
+using VEC_SP_TelnetSession = std::vector<SP_TelnetSession>;
 
-typedef std::function<void(SP_TelnetSession)> FPTR_ConnectedCallback;
-typedef std::function<bool(SP_TelnetSession, std::string)> FPTR_NewLineCallback;
-typedef std::function<std::string(SP_TelnetSession, std::string)> FPTR_TabCallback;
+using FPTR_ConnectedCallback = std::function<void(SP_TelnetSession)>;
+using FPTR_NewLineCallback = std::function<bool(SP_TelnetSession, std::string)>;
+using FPTR_TabCallback = std::function<std::string(SP_TelnetSession, std::string)>;
 
 class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 {
   public:
 	/// Constructor for server
-	// cppcheck-suppress uninitMemberVar
-	TelnetServer() : m_initialised(false), m_promptString(""){};
+	TelnetServer() = default;
 
 	/**
 	 * @brief Initializes a new Telnet server
@@ -151,13 +150,13 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	/// Closes the Telnet Server
 	void shutdown();
 
-	void connectedCallback(FPTR_ConnectedCallback f) { m_connectedCallback = f; }
+	void connectedCallback(FPTR_ConnectedCallback f) { m_connectedCallback = std::move(f); }
 	FPTR_ConnectedCallback connectedCallback() const { return m_connectedCallback; }
 
-	void newLineCallback(FPTR_NewLineCallback f) { m_newlineCallback = f; }
+	void newLineCallback(FPTR_NewLineCallback f) { m_newlineCallback = std::move(f); }
 	FPTR_NewLineCallback newLineCallBack() const { return m_newlineCallback; }
 
-	void tabCallback(FPTR_TabCallback f) { m_tabCallback = f; }
+	void tabCallback(FPTR_TabCallback f) { m_tabCallback = std::move(f); }
 	FPTR_TabCallback tabCallback() const { return m_tabCallback; }
 
 	VEC_SP_TelnetSession sessions() const { return m_sessions; }
@@ -166,7 +165,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	void promptString(const std::string &prompt) { m_promptString = prompt; }
 	std::string promptString() const { return m_promptString; }
 
-  protected:
+  private:
 	// Called after the telnet session is initialised. function(SP_TelnetSession) {}
 	FPTR_ConnectedCallback m_connectedCallback;
 	// Called after every new line (from CR or LF) function(SP_TelnetSession, std::string) {}
@@ -174,13 +173,12 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	// Called after TAB detected. function(SP_TelnetSession, std::string, PredictSignalType) {}
 	FPTR_TabCallback m_tabCallback;
 
-  private:
 	bool acceptConnection();
 
-	u_long m_listenPort;
-	Socket m_listenSocket;
+	u_long m_listenPort{0};
+	Socket m_listenSocket{-1};
 	VEC_SP_TelnetSession m_sessions;
-	bool m_initialised;
+	bool m_initialised{false};
 	// A string that denotes the current prompt
 	std::string m_promptString;
 

@@ -54,6 +54,3 @@ class PrometheusServer
 	 */
 	bool deleteRegistry(uint64_t id);
 };
-
-/// Class to maintain prometheus calls
-extern PrometheusServer *mainPrometheusServer;

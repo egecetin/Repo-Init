@@ -8,10 +8,12 @@
 
 #include <limits>
 
-TelnetStats::TelnetStats(std::shared_ptr<prometheus::Registry> reg, uint16_t portNumber)
+TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint16_t portNumber)
 {
 	if (!reg)
+	{
 		throw std::runtime_error("Can't init Telnet statistics. Registry is null");
+	}
 
 	// Basic information
 	infoFamily = &prometheus::BuildInfo().Name("telnet").Help("Telnet server information").Register(*reg);
@@ -105,41 +107,49 @@ TelnetStats::TelnetStats(std::shared_ptr<prometheus::Registry> reg, uint16_t por
 
 void TelnetStats::consumeStats(TelnetSessionStats &stat, bool sessionClosed)
 {
-	succeededCommand->Increment(stat.successCmdCtr);
-	failedCommand->Increment(stat.failCmdCtr);
-	totalCommand->Increment(stat.successCmdCtr + stat.failCmdCtr);
+	succeededCommand->Increment(static_cast<double>(stat.successCmdCtr));
+	failedCommand->Increment(static_cast<double>(stat.failCmdCtr));
+	totalCommand->Increment(static_cast<double>(stat.successCmdCtr + stat.failCmdCtr));
 
-	totalUploadBytes->Increment(stat.uploadBytes);
-	totalDownloadBytes->Increment(stat.downloadBytes);
+	totalUploadBytes->Increment(static_cast<double>(stat.uploadBytes));
+	totalDownloadBytes->Increment(static_cast<double>(stat.downloadBytes));
 
 	if (sessionClosed)
 	{
 		// Session durations
-		double sessionTime =
-			std::chrono::duration_cast<std::chrono::seconds>(stat.disconnectTime - stat.connectTime).count();
+		double sessionTime = static_cast<double>(
+			std::chrono::duration_cast<std::chrono::seconds>(stat.disconnectTime - stat.connectTime).count());
 		sessionDuration->Observe(sessionTime);
 		if (sessionTime < minSessionDuration->Value())
+		{
 			minSessionDuration->Set(sessionTime);
+		}
 		if (sessionTime > maxSessionDuration->Value())
+		{
 			maxSessionDuration->Set(sessionTime);
+		}
 	}
 }
 
 void TelnetStats::consumeStats(TelnetServerStats &stat)
 {
 	// Connection stats
-	activeConnection->Set(stat.activeConnectionCtr);
-	refusedConnection->Increment(stat.refusedConnectionCtr);
-	totalConnection->Increment(stat.acceptedConnectionCtr);
+	activeConnection->Set(static_cast<double>(stat.activeConnectionCtr));
+	refusedConnection->Increment(static_cast<double>(stat.refusedConnectionCtr));
+	totalConnection->Increment(static_cast<double>(stat.acceptedConnectionCtr));
 
 	// Performance stats if there is an active connection
-	if (stat.activeConnectionCtr)
+	if (stat.activeConnectionCtr > 0)
 	{
-		double processTime = (stat.processingTimeEnd - stat.processingTimeStart).count();
+		double processTime = static_cast<double>((stat.processingTimeEnd - stat.processingTimeStart).count());
 		processingTime->Observe(processTime);
 		if (processTime < minProcessingTime->Value())
+		{
 			minProcessingTime->Set(processTime);
+		}
 		if (processTime > maxProcessingTime->Value())
+		{
 			maxProcessingTime->Set(processTime);
+		}
 	}
 }

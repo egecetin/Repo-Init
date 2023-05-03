@@ -10,10 +10,6 @@
 /// Interval of SIGALRM in seconds
 constexpr uintmax_t alarmInterval = 1;
 
-/// Bind address of Prometheus service
-extern std::string PROMETHEUS_ADDR;
-/// Interprocess path of controller thread
-extern std::string ZEROMQ_SERVER_PATH;
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */
@@ -23,9 +19,9 @@ extern std::string ZEROMQ_SERVER_PATH;
 /* ################################################################################### */
 
 /// Alarm counter to track. Incremented by SIGALRM
-extern volatile uintmax_t alarmCtr;
+extern volatile uintmax_t alarmCtr; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 /// Main flag to control loops. Can be modified by SIGINT
-extern volatile bool loopFlag;
+extern volatile bool loopFlag; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */

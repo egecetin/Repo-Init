@@ -7,8 +7,6 @@
 
 #include <limits>
 
-PrometheusServer *mainPrometheusServer;
-
 PrometheusServer::PrometheusServer(const std::string &serverAddr)
 {
 	// Init service

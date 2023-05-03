@@ -36,7 +36,9 @@ void StatusTracker::incrementSuccess()
 	successCtr->Increment();
 	totalCtr->Increment();
 	if (activeCtr->Value() > 0)
+	{
 		activeCtr->Decrement();
+	}
 }
 
 void StatusTracker::incrementFail()
@@ -44,5 +46,7 @@ void StatusTracker::incrementFail()
 	failedCtr->Increment();
 	totalCtr->Increment();
 	if (activeCtr->Value() > 0)
+	{
 		activeCtr->Decrement();
+	}
 }

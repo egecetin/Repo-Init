@@ -49,7 +49,7 @@ class ZeroMQStats
 	 * @brief Construct a new ZeroMQ server statistics
 	 * @param[in] reg Prometheus registry
 	 */
-	explicit ZeroMQStats(std::shared_ptr<prometheus::Registry> reg);
+	explicit ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg);
 
 	/**
 	 * @brief Updates statistics with messages

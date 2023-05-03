@@ -3,7 +3,7 @@
 #include <prometheus/gauge.h>
 #include <prometheus/summary.h>
 
-PerformanceTracker::PerformanceTracker(std::shared_ptr<prometheus::Registry> reg, const std::string &name,
+PerformanceTracker::PerformanceTracker(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name,
 									   uint64_t metricID)
 {
 	perfTiming = &prometheus::BuildSummary()
@@ -29,13 +29,17 @@ void PerformanceTracker::startTimer() { startTime = std::chrono::high_resolution
 
 double PerformanceTracker::endTimer()
 {
-	double val = (std::chrono::high_resolution_clock::now() - startTime).count();
+	double val = static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
 
 	perfTiming->Observe(val);
 	if (val < minTiming->Value())
+	{
 		minTiming->Set(val);
+	}
 	if (val > maxTiming->Value())
+	{
 		maxTiming->Set(val);
+	}
 
 	return val;
 }

@@ -13,6 +13,10 @@ int main(int argc, char **argv)
 {
 	int telnetPort = 0;
 	std::string configPath = "config.json";
+	std::string zeromqServerAddr;
+
+	std::string prometheusAddr;
+	std::unique_ptr<PrometheusServer> mainPrometheusServer;
 
 	// Parse inputs
 	const InputParser input(argc, argv);
@@ -35,16 +39,16 @@ int main(int argc, char **argv)
 	}
 	if (input.cmdOptionExists("--enable-prometheus"))
 	{
-		PROMETHEUS_ADDR = input.getCmdOption("--enable-prometheus");
-		if (PROMETHEUS_ADDR.empty())
+		prometheusAddr = input.getCmdOption("--enable-prometheus");
+		if (prometheusAddr.empty())
 		{
 			spdlog::warn("Enable Prometheus option requires a bind address");
 		}
 	}
 	if (input.cmdOptionExists("--enable-zeromq"))
 	{
-		ZEROMQ_SERVER_PATH = input.getCmdOption("--enable-zeromq");
-		if (ZEROMQ_SERVER_PATH.empty())
+		zeromqServerAddr = input.getCmdOption("--enable-zeromq");
+		if (zeromqServerAddr.empty())
 		{
 			spdlog::warn("Enable ZeroMQ option requires a connection address");
 		}
@@ -104,12 +108,12 @@ int main(int argc, char **argv)
 	/* ################################################################################### */
 
 	// Init prometheus server
-	if (!PROMETHEUS_ADDR.empty())
+	if (!prometheusAddr.empty())
 	{
 		try
 		{
-			mainPrometheusServer = new PrometheusServer(PROMETHEUS_ADDR);
-			spdlog::info("Prometheus server start at {}", PROMETHEUS_ADDR);
+			mainPrometheusServer = std::make_unique<PrometheusServer>(prometheusAddr);
+			spdlog::info("Prometheus server start at {}", prometheusAddr);
 		}
 		catch (const std::exception &e)
 		{
@@ -125,8 +129,8 @@ int main(int argc, char **argv)
 	/* ################################################################################### */
 	/* ################################ END MODIFICATIONS ################################ */
 	/* ################################################################################### */
-	std::thread zmqControlTh(zmqControlThread);
-	std::thread telnetControlTh(telnetControlThread, telnetPort);
+	std::thread zmqControlTh(zmqControlThread, std::ref(mainPrometheusServer), std::ref(zeromqServerAddr));
+	std::thread telnetControlTh(telnetControlThread, std::ref(mainPrometheusServer), telnetPort);
 	spdlog::debug("Threads started");
 
 	// SIGALRM should be registered after all sleep calls

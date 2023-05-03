@@ -47,11 +47,6 @@ class TelnetStats
 	// Information metric family
 	prometheus::Family<prometheus::Info> *infoFamily;
 
-	// Last failed connection remote peer
-	prometheus::Info *lastRefusedConnectionIP;
-	// Last failed connection time
-	prometheus::Info *lastRefusedConnectionTime;
-
 	// Number of active connections
 	prometheus::Gauge *activeConnection;
 	// Number of refused connections
@@ -91,7 +86,7 @@ class TelnetStats
 	 * @param[in] reg Prometheus registry
 	 * @param[in] portNumber Telnet server port
 	 */
-	TelnetStats(std::shared_ptr<prometheus::Registry> reg, uint16_t portNumber);
+	TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint16_t portNumber);
 
 	/**
 	 * @brief Updates statistics with session values
