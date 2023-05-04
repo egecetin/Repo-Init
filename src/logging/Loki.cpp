@@ -42,6 +42,7 @@ namespace spdlog
 			basicInformation += std::string(R"("compiler_version":")") + COMPILER_VERSION + "\",";
 			basicInformation += std::string(R"("build":")") + BUILD_TYPE + "\",";
 
+			// NOLINTBEGIN
 			char hostBuffer[BUFSIZ];
 			gethostname(hostBuffer, BUFSIZ);
 			basicInformation += std::string(R"("hostname":")") + hostBuffer + "\",";
@@ -51,28 +52,32 @@ namespace spdlog
 			unsigned int thread_count = 0;
 			while (fscanf(cpu_info, "siblings\t: %u", &thread_count) == 0)
 			{
-				(void)!fscanf(cpu_info, "%*[^s]");
+				fscanf(cpu_info, "%*[^s]");
 			}
 			basicInformation += std::string(R"("cpu_threadcount":")") + std::to_string(thread_count) + "\",";
 			rewind(cpu_info);
+
 			while (fscanf(cpu_info, "cpu cores\t: %u", &core_count) == 0)
 			{
-				(void)!fscanf(cpu_info, "%*[^c]");
+				fscanf(cpu_info, "%*[^c]");
 			}
 			basicInformation += std::string(R"("cpu_corecount":")") + std::to_string(core_count) + "\",";
 			rewind(cpu_info);
+
 			while (fscanf(cpu_info, "model name\t: %8191[^\n]", hostBuffer) == 0)
 			{
-				(void)!fscanf(cpu_info, "%*[^m]");
+				fscanf(cpu_info, "%*[^m]");
 			}
 			basicInformation += std::string(R"("cpu_model":")") + hostBuffer + "\",";
 			rewind(cpu_info);
+
 			while (fscanf(cpu_info, "vendor_id\t: %8191s", hostBuffer) == 0)
 			{
-				(void)!fscanf(cpu_info, "%*[^v]");
+				fscanf(cpu_info, "%*[^v]");
 			}
 			basicInformation += std::string(R"("cpu_vendorid":")") + hostBuffer + "\",";
 			fclose(cpu_info);
+			// NOLINTEND
 
 			lokiAvailable = true;
 		}
