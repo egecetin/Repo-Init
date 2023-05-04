@@ -16,10 +16,9 @@ namespace spdlog
 {
 	namespace sinks
 	{
-		template <typename Mutex>
-		sentry_api_sink<Mutex>::sentry_api_sink(const std::string &sentryAddress) : sentryAvailable(false)
+		// NOLINTNEXTLINE(readability-function-cognitive-complexity)
+		template <typename Mutex> sentry_api_sink<Mutex>::sentry_api_sink(const std::string &sentryAddress)
 		{
-
 			if (sentryAddress.empty())
 			{
 				return;

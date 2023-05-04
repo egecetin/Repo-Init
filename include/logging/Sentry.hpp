@@ -21,7 +21,7 @@ namespace spdlog
 			void flush_() override;
 
 		  private:
-			bool sentryAvailable;
+			bool sentryAvailable{false};
 		};
 
 		using sentry_api_sink_mt = sentry_api_sink<std::mutex>;

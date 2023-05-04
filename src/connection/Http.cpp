@@ -2,6 +2,7 @@
 
 #include <cstring>
 #include <stdexcept>
+#include <utility>
 
 struct MemoryStruct_t
 {
@@ -12,12 +13,14 @@ using MemoryStruct = struct MemoryStruct_t;
 
 size_t HTTP::writeDataCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
-	size_t realsize = size * nmemb;
-	MemoryStruct *mem = (MemoryStruct *)userp;
+	const size_t realsize = size * nmemb;
+	auto *mem = reinterpret_cast<MemoryStruct *>(userp);
 
-	char *ptr = (char *)realloc(mem->memory, mem->size + realsize + 1);
-	if (!ptr)
+	char *ptr = static_cast<char *>(realloc(mem->memory, mem->size + realsize + 1));
+	if (ptr == nullptr)
+	{
 		throw std::runtime_error("Out of memory (realloc returned NULL)");
+	}
 
 	mem->memory = ptr;
 	memcpy(&(mem->memory[mem->size]), contents, realsize);
@@ -27,12 +30,12 @@ size_t HTTP::writeDataCallback(void *contents, size_t size, size_t nmemb, void *
 	return realsize;
 }
 
-HTTP::HTTP(const std::string &addr, int timeoutInMs)
+HTTP::HTTP(std::string addr, int timeoutInMs) : curl(curl_easy_init()), hostAddr(std::move(addr))
 {
-	hostAddr = addr;
-	curl = curl_easy_init();
-	if (!curl)
+	if (curl == nullptr)
+	{
 		throw std::runtime_error("Can't init curl context");
+	}
 
 	curl_easy_setopt(curl, CURLOPT_VERBOSE, 0L);
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
@@ -49,8 +52,10 @@ CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedDat
 	MemoryStruct chunk;
 	chunk.size = 0;
 	chunk.memory = (char *)malloc(1);
-	if (!(chunk.memory))
+	if ((chunk.memory) == nullptr)
+	{
 		throw std::runtime_error("Out of memory (malloc returned NULL)");
+	}
 
 	// Prepare request specific options
 	curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
@@ -59,9 +64,11 @@ CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedDat
 
 	// Perform request
 	long status = static_cast<long>(HttpStatus::Code::xxx_max);
-	CURLcode retval = curl_easy_perform(curl);
+	const CURLcode retval = curl_easy_perform(curl);
 	if (retval == CURLE_OK)
+	{
 		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+	}
 	receivedData = std::string(chunk.memory, chunk.size);
 	statusCode = static_cast<HttpStatus::Code>(status);
 
@@ -77,8 +84,10 @@ CURLcode HTTP::sendHEADRequest(const std::string &index, std::string &receivedDa
 	MemoryStruct chunk;
 	chunk.size = 0;
 	chunk.memory = (char *)malloc(1);
-	if (!(chunk.memory))
+	if ((chunk.memory) == nullptr)
+	{
 		throw std::runtime_error("Out of memory (malloc returned NULL)");
+	}
 
 	// Prepare request specific options
 	curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
@@ -87,9 +96,11 @@ CURLcode HTTP::sendHEADRequest(const std::string &index, std::string &receivedDa
 
 	// Perform request
 	long status = static_cast<long>(HttpStatus::Code::xxx_max);
-	CURLcode retval = curl_easy_perform(curl);
+	const CURLcode retval = curl_easy_perform(curl);
 	if (retval == CURLE_OK)
+	{
 		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+	}
 	receivedData = std::string(chunk.memory, chunk.size);
 	statusCode = static_cast<HttpStatus::Code>(status);
 
@@ -106,8 +117,10 @@ CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payl
 	MemoryStruct chunk;
 	chunk.size = 0;
 	chunk.memory = (char *)malloc(1);
-	if (!(chunk.memory))
+	if ((chunk.memory) == nullptr)
+	{
 		throw std::runtime_error("Out of memory (malloc returned NULL)");
+	}
 
 	// Prepare request specific options
 	curl_easy_setopt(curl, CURLOPT_POST, 1L);
@@ -118,9 +131,11 @@ CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payl
 
 	// Perform request
 	long status = static_cast<long>(HttpStatus::Code::xxx_max);
-	CURLcode retval = curl_easy_perform(curl);
+	const CURLcode retval = curl_easy_perform(curl);
 	if (retval == CURLE_OK)
+	{
 		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+	}
 	receivedData = std::string(chunk.memory, chunk.size);
 	statusCode = static_cast<HttpStatus::Code>(status);
 
@@ -137,8 +152,10 @@ CURLcode HTTP::sendPUTRequest(const std::string &index, const std::string &paylo
 	MemoryStruct chunk;
 	chunk.size = 0;
 	chunk.memory = (char *)malloc(1);
-	if (!(chunk.memory))
+	if ((chunk.memory) == nullptr)
+	{
 		throw std::runtime_error("Out of memory (malloc returned NULL)");
+	}
 
 	// Prepare request specific options
 	curl_easy_setopt(curl, CURLOPT_URL, (hostAddr + index).c_str());
@@ -149,9 +166,11 @@ CURLcode HTTP::sendPUTRequest(const std::string &index, const std::string &paylo
 
 	// Perform request
 	long status = static_cast<long>(HttpStatus::Code::xxx_max);
-	CURLcode retval = curl_easy_perform(curl);
+	const CURLcode retval = curl_easy_perform(curl);
 	if (retval == CURLE_OK)
+	{
 		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+	}
 	receivedData = std::string(chunk.memory, chunk.size);
 	statusCode = static_cast<HttpStatus::Code>(status);
 
