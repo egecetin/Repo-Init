@@ -12,13 +12,13 @@ struct TelnetSessionStats
 	/// Connection end time
 	std::chrono::high_resolution_clock::time_point disconnectTime;
 	/// Uploaded bytes
-	size_t uploadBytes;
+	size_t uploadBytes{};
 	/// Downloaded bytes
-	size_t downloadBytes;
+	size_t downloadBytes{};
 	/// Successful commands
-	uint64_t successCmdCtr;
+	uint64_t successCmdCtr{};
 	/// Failed commands
-	uint64_t failCmdCtr;
+	uint64_t failCmdCtr{};
 };
 
 /**
@@ -31,11 +31,11 @@ struct TelnetServerStats
 	/// Processing time end
 	std::chrono::high_resolution_clock::time_point processingTimeEnd;
 	/// Number of active connections
-	uint64_t activeConnectionCtr;
+	uint64_t activeConnectionCtr{0};
 	/// Number of accepted connections
-	uint64_t acceptedConnectionCtr;
+	uint64_t acceptedConnectionCtr{0};
 	/// Number of refused connections
-	uint64_t refusedConnectionCtr;
+	uint64_t refusedConnectionCtr{0};
 };
 
 /**

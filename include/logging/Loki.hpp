@@ -24,7 +24,7 @@ namespace spdlog
 			void flush_() override;
 
 		  private:
-			bool lokiAvailable;
+			bool lokiAvailable{false};
 			std::unique_ptr<HTTP> connHandler;
 			std::string basicInformation;
 

@@ -4,7 +4,7 @@
 #include <prometheus/gauge.h>
 
 StatusTracker::StatusTracker(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name,
-							 const uint64_t metricID)
+							 uint64_t metricID)
 {
 	// Register values
 	activeCtr = &prometheus::BuildGauge()

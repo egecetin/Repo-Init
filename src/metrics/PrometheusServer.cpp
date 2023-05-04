@@ -22,32 +22,34 @@ PrometheusServer::PrometheusServer(const std::string &serverAddr)
 															  std::chrono::high_resolution_clock::now()))}});
 	infoFamily->Add({{"version", get_version()}});
 
-	vRegister.push_back(std::make_pair(std::numeric_limits<uint64_t>::max(), reg));
+	vRegister.emplace_back(std::numeric_limits<uint64_t>::max(), reg);
 	mainExposer->RegisterCollectable(reg);
 }
 
 std::shared_ptr<prometheus::Registry> PrometheusServer::getRegistry(uint64_t id)
 {
-	std::lock_guard<std::mutex> guard(guardLock);
+	const std::lock_guard<std::mutex> guard(guardLock);
 
 	auto it = std::find_if(
 		vRegister.begin(), vRegister.end(),
 		[id](const std::pair<uint64_t, std::shared_ptr<prometheus::Registry>> &val) { return id == val.first; });
 
 	if (it != vRegister.end())
+	{
 		return it->second;
+	}
 	return nullptr;
 }
 
 std::shared_ptr<prometheus::Registry> PrometheusServer::createNewRegistry()
 {
-	uint64_t id;
+	uint64_t id = 0;
 	return createNewRegistry(id);
 }
 
 std::shared_ptr<prometheus::Registry> PrometheusServer::createNewRegistry(uint64_t &id)
 {
-	std::lock_guard<std::mutex> guard(guardLock);
+	const std::lock_guard<std::mutex> guard(guardLock);
 
 	// Create registry
 	auto reg = std::make_shared<prometheus::Registry>();
@@ -55,16 +57,18 @@ std::shared_ptr<prometheus::Registry> PrometheusServer::createNewRegistry(uint64
 
 	// Push to vector (At least information registry always exist so back is valid)
 	id = vRegister.back().first + 1;
-	vRegister.push_back(std::make_pair(vRegister.back().first + 1, reg));
+	vRegister.emplace_back(vRegister.back().first + 1, reg);
 	return reg;
 }
 
 bool PrometheusServer::deleteRegistry(uint64_t id)
 {
 	if (id == std::numeric_limits<uint64_t>::max())
+	{
 		return false;
+	}
 
-	std::lock_guard<std::mutex> guard(guardLock);
+	const std::lock_guard<std::mutex> guard(guardLock);
 
 	vRegister.erase(std::remove_if(
 		vRegister.begin(), vRegister.end(),

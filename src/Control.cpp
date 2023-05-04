@@ -13,8 +13,9 @@ void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheus
 {
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
-	if (telnetPort && telnetServerPtr->initialise(
-						  telnetPort, "> ", mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr))
+	if (telnetPort > 0 &&
+		telnetServerPtr->initialise(telnetPort, "> ",
+									mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr))
 	{
 		telnetServerPtr->connectedCallback(TelnetConnectedCallback);
 		telnetServerPtr->newLineCallback(TelnetMessageCallback);
@@ -23,8 +24,10 @@ void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheus
 	}
 	else
 	{
-		if (telnetPort)
-			spdlog::warn("Can't start Telnet Server: {}", strerror(errno));
+		if (telnetPort > 0)
+		{
+			spdlog::warn("Can't start Telnet Server: {}", strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+		}
 		return;
 	}
 
@@ -62,7 +65,9 @@ void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusSer
 			spdlog::info("ZeroMQ server created at {}", serverAddr);
 		}
 		else
+		{
 			throw std::runtime_error("Unknown error");
+		}
 	}
 	catch (const std::exception &e)
 	{

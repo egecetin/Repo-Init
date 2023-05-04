@@ -25,8 +25,7 @@ class StatusTracker
 	 * @param[in] name Name of the metric
 	 * @param[in] metricID ID to append to metric names
 	 */
-	StatusTracker(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name,
-				  const uint64_t metricID = 0);
+	StatusTracker(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name, uint64_t metricID = 0);
 
 	/**
 	 * @brief Increment number of current events

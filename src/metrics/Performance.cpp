@@ -29,7 +29,7 @@ void PerformanceTracker::startTimer() { startTime = std::chrono::high_resolution
 
 double PerformanceTracker::endTimer()
 {
-	double val = static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
+	const double val = static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
 
 	perfTiming->Observe(val);
 	if (val < minTiming->Value())

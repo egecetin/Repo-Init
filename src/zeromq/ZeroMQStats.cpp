@@ -109,7 +109,8 @@ void ZeroMQStats::consumeStats(const std::vector<zmq::message_t> &recvMsgs,
 		totalUploadBytes->Increment(static_cast<double>(entry.size()));
 	}
 
-	double processTime = static_cast<double>((serverStats.processingTimeEnd - serverStats.processingTimeStart).count());
+	const double processTime =
+		static_cast<double>((serverStats.processingTimeEnd - serverStats.processingTimeStart).count());
 	processingTime->Observe(processTime);
 	if (processTime < minProcessingTime->Value())
 	{

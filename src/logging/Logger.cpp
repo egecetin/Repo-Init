@@ -42,7 +42,7 @@ MainLogger::MainLogger(int argc, char **argv, const std::string &configPath)
 #endif
 
 	// Parse input arguments
-	InputParser input(argc, argv);
+	const InputParser input(argc, argv);
 	if (input.cmdOptionExists("-v"))
 	{
 		mainLogger->set_level(spdlog::level::info);

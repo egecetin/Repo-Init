@@ -117,7 +117,7 @@ void TelnetStats::consumeStats(TelnetSessionStats &stat, bool sessionClosed)
 	if (sessionClosed)
 	{
 		// Session durations
-		double sessionTime = static_cast<double>(
+		const double sessionTime = static_cast<double>(
 			std::chrono::duration_cast<std::chrono::seconds>(stat.disconnectTime - stat.connectTime).count());
 		sessionDuration->Observe(sessionTime);
 		if (sessionTime < minSessionDuration->Value())
@@ -141,7 +141,7 @@ void TelnetStats::consumeStats(TelnetServerStats &stat)
 	// Performance stats if there is an active connection
 	if (stat.activeConnectionCtr > 0)
 	{
-		double processTime = static_cast<double>((stat.processingTimeEnd - stat.processingTimeStart).count());
+		const double processTime = static_cast<double>((stat.processingTimeEnd - stat.processingTimeStart).count());
 		processingTime->Observe(processTime);
 		if (processTime < minProcessingTime->Value())
 		{
