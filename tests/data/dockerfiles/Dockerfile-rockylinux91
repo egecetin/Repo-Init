@@ -11,5 +11,5 @@ RUN dnf -y update && dnf -y install \
 	libcurl-devel \
 	python3-devel \
 	telnet
-	
+
 RUN python3 -m pip install --upgrade pip
