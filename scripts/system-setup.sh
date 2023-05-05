@@ -27,7 +27,7 @@ curl -sSL https://repo.45drives.com/setup | sudo bash
 dnf install cockpit-navigator -y
 
 echo -e "${ANSI_FG_YELLOW}Installing neofetch ...${ANSI_RESET_ALL}"
-pip install hyfetch
+pip3 install hyfetch
 mkdir -p /root/.config/neofetch
 \cp scripts/data/neofetch_config.conf /root/.config/neofetch/config.conf
 echo "neowofetch" >> /etc/profile.d/neofetch.sh
