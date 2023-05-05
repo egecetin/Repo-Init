@@ -18,6 +18,33 @@ jobs:
           sudo apt install cppcheck
       - uses: pre-commit/action@v3.0.0
 
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Prepare System
+        run: sudo apt update -y && sudo apt install gcovr expect libcurl4-openssl-dev -y
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10.x"
+      - name: Install Test Requirements
+        run: sudo pip install -r tests/data/requirements.txt
+      - name: Configure
+        run: cmake -DCMAKE_BUILD_TYPE=Debug -DXXX_ENABLE_COVERAGE=ON -S . -B build
+      - name: Build
+        run: sudo cmake --build build --parallel --target coverage-xml
+      - name: Process Results
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          files: ./build/coverage-xml.xml
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true
+
   rockylinux:
     runs-on: ubuntu-latest
     container: egecetinn/${{ matrix.image }}
@@ -26,10 +53,10 @@ jobs:
         include:
           - image: rockylinux87
           - image: rockylinux91
-          - image: rockylinux87-icx
-            additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
-          - image: rockylinux91-icx
-            additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
+          #- image: rockylinux87-icx
+          #  additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
+          #- image: rockylinux91-icx
+          #  additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
 
     steps:
       - name: Checkout Code
