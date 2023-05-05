@@ -23,96 +23,29 @@ jobs:
     container: egecetinn/${{ matrix.container }}
     strategy:
       matrix:
-        container:
-          [
-            rockylinux87,
-            rockylinux91
-          ]
+        include:
+          - image: rockylinux87
+          - image: rockylinux91
+          - image: rockylinux87-icx
+            additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
+          - image: rockylinux91-icx
+            additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           submodules: recursive
+      - name: Setup Intel Compiler variables
+        if: contains(matrix.image, 'icpx')
+        run: |
+          . /opt/intel/oneapi/setvars.sh
+          printenv >> $GITHUB_ENV
       - name: Install Test Requirements
         run: pip3 install -r tests/data/requirements.txt
       - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B $BUILD_DIR
+        run: cmake -DCMAKE_BUILD_TYPE=Release ${{ matrix.additional-flags }} -S . -B $BUILD_DIR
       - name: Build
         run: cmake --build $BUILD_DIR --parallel
       - name: Run Tests
         run: ctest --test-dir $BUILD_DIR
-
-  linux-gnu:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - name: Prepare System
-        run: |
-          sudo apt update
-          sudo apt install gcovr expect libcurl4-openssl-dev -y
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.10.x"
-      - name: Install Test Requirements
-        run: sudo pip install -r tests/data/requirements.txt
-      - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
-      - name: Build
-        run: sudo cmake --build $BUILD_DIR --parallel --target coverage-xml
-      - name: Process Results
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{secrets.CODECOV_TOKEN}}
-          files: ./build/coverage-xml.xml
-          name: codecov-umbrella
-          fail_ci_if_error: true
-          verbose: true
-
-  linux-intel:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - name: Prepare System
-        run: |
-          sudo apt update
-          sudo apt install gcovr expect libcurl4-openssl-dev -y
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.10.x"
-      - name: Install Test Requirements
-        run: sudo pip install -r tests/data/requirements.txt
-      - name: Prepare Intel apt repository
-        run: |
-          wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | sudo tee /usr/share/keyrings/oneapi-archive-keyring.gpg > /dev/null
-          echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
-          sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/oneAPI.list" -o APT::Get::List-Cleanup="0"
-      - name: Prepare dependencies
-        run: apt-cache depends intel-oneapi-compiler-dpcpp-cpp | tee intel-dependencies.txt
-      - name: Cache Install oneAPI
-        id: cache-install
-        uses: actions/cache@v3
-        with:
-          path: /opt/intel/oneapi
-          key: oneapi-${{ hashFiles('**/intel-dependencies.txt') }}
-      - name: Direct Install oneAPI
-        if: steps.cache-install.outputs.cache-hit != 'true'
-        run: |
-          sudo apt-get install -y intel-oneapi-compiler-dpcpp-cpp
-          sudo apt-get clean
-      - name: Set variables
-        run: |
-          . /opt/intel/oneapi/setvars.sh
-          printenv >> $GITHUB_ENV
-      - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -S . -B $BUILD_DIR
-      - name: Build
-        run: cmake --build $BUILD_DIR --parallel
-      - name: Run Tests
-        run: sudo ctest --test-dir $BUILD_DIR
