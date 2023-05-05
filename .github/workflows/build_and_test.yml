@@ -20,7 +20,14 @@ jobs:
 
   rockylinux:
     runs-on: ubuntu-latest
-    container: egecetinn/rockylinux87
+    container: egecetinn/${{ matrix.container }}
+    strategy:
+      matrix:
+        container:
+          [
+            rockylinux87,
+            rockylinux91
+          ]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
