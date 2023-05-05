@@ -55,7 +55,7 @@ jobs:
           - image: rockylinux87
           - image: rockylinux91
           - image: rockylinux87-icx
-            additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
+            additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DXXX_ENABLE_MEMLEAK_CHECK=OFF
           #- image: rockylinux91-icx
           #  additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
 

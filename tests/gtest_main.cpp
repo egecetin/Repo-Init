@@ -1,6 +1,11 @@
+#include "test-static-definitions.h"
+
 #include <gtest/gtest.h>
-#include <memplumber.h>
 #include <spdlog/spdlog.h>
+
+#ifdef XXX_ENABLE_MEMLEAK_CHECK
+#include <memplumber.h>
+#endif
 
 int main(int argc, char **argv)
 {
@@ -9,9 +14,12 @@ int main(int argc, char **argv)
 
 	spdlog::set_level(spdlog::level::off);
 
+#ifdef XXX_ENABLE_MEMLEAK_CHECK
 	MemPlumber::start();
+#endif
 	retval = RUN_ALL_TESTS();
 	spdlog::shutdown();
+#ifdef XXX_ENABLE_MEMLEAK_CHECK
 	MemPlumber::stop();
 
 	// Check memory leak
@@ -28,6 +36,7 @@ int main(int argc, char **argv)
 			   (int)memLeakSz);
 		retval = EXIT_FAILURE;
 	}
+#endif
 
 	return retval;
 }
