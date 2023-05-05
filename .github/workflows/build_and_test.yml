@@ -29,7 +29,7 @@ jobs:
       - name: Install Test Requirements
         run: pip3 install -r tests/data/requirements.txt
       - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
+        run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B $BUILD_DIR
       - name: Build
         run: cmake --build $BUILD_DIR --parallel
       - name: Run Tests
