@@ -20,7 +20,7 @@ jobs:
 
   rockylinux:
     runs-on: ubuntu-latest
-    container: egecetinn/${{ matrix.container }}
+    container: egecetinn/${{ matrix.image }}
     strategy:
       matrix:
         include:
