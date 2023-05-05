@@ -18,6 +18,23 @@ jobs:
           sudo apt install cppcheck
       - uses: pre-commit/action@v3.0.0
 
+  rockylinux:
+    runs-on: ubuntu-latest
+    container: egecetinn/rockylinux87
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Install Test Requirements
+        run: sudo pip install -r tests/data/requirements.txt
+      - name: Configure
+        run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
+      - name: Build
+        run: cmake --build $BUILD_DIR --parallel
+      - name: Run Tests
+        run: ctest --test-dir $BUILD_DIR
+
   linux-gnu:
     runs-on: ubuntu-latest
     steps:
