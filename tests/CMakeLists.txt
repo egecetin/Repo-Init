@@ -53,6 +53,10 @@ include_directories(${GTEST_INCLUDE_DIRS})
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests/MemPlumber)
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests/gtest)
 
+# Disable MemPlumber tests from parent
+add_custom_target(ExcludeMemPlumberTests ALL
+    COMMAND rm -f "${PROJECT_BINARY_DIR}/tests/MemPlumber/CTestTestfile.cmake")
+
 # Test cases
 add_executable(TestMain ${ProjectTestSources})
 target_include_directories(TestMain PRIVATE "${PROJECT_BINARY_DIR}/tests")
