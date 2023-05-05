@@ -37,7 +37,7 @@ jobs:
         with:
           submodules: recursive
       - name: Setup Intel Compiler variables
-        if: contains(matrix.image, 'icpx')
+        if: contains(matrix.image, 'icx')
         run: |
           . /opt/intel/oneapi/setvars.sh
           printenv >> $GITHUB_ENV
