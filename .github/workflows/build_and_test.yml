@@ -27,7 +27,7 @@ jobs:
         with:
           submodules: recursive
       - name: Install Test Requirements
-        run: sudo pip install -r tests/data/requirements.txt
+        run: pip3 install -r tests/data/requirements.txt
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -S . -B $BUILD_DIR
       - name: Build
