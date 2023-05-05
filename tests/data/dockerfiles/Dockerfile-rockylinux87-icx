@@ -11,6 +11,7 @@ RUN dnf -y update && dnf -y install \
 	intel-oneapi-compiler-dpcpp-cpp \
 	libcurl-devel \
 	procps \
+	python3-devel \
 	telnet
 
 RUN python3 -m pip install --upgrade pip
