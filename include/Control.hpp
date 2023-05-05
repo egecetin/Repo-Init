@@ -2,8 +2,6 @@
 
 #include "metrics/PrometheusServer.hpp"
 
-#include <cstdint>
-
 /**
  * @brief Thread function to receive control messages or config changes from Telnet connections
  * @param[in] mainPrometheusServer Pointer to prometheus server

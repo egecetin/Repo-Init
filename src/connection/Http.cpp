@@ -2,7 +2,6 @@
 
 #include <cstring>
 #include <stdexcept>
-#include <utility>
 
 size_t HTTP::writeDataCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {

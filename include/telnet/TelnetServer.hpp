@@ -175,7 +175,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 
 	bool acceptConnection();
 
-	u_long m_listenPort{0};
+	u_long m_listenPort{};
 	Socket m_listenSocket{-1};
 	VEC_SP_TelnetSession m_sessions;
 	bool m_initialised{false};

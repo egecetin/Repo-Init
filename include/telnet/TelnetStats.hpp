@@ -31,11 +31,11 @@ struct TelnetServerStats
 	/// Processing time end
 	std::chrono::high_resolution_clock::time_point processingTimeEnd;
 	/// Number of active connections
-	uint64_t activeConnectionCtr{0};
+	uint64_t activeConnectionCtr{};
 	/// Number of accepted connections
-	uint64_t acceptedConnectionCtr{0};
+	uint64_t acceptedConnectionCtr{};
 	/// Number of refused connections
-	uint64_t refusedConnectionCtr{0};
+	uint64_t refusedConnectionCtr{};
 };
 
 /**
