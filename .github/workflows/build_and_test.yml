@@ -34,7 +34,7 @@ jobs:
       - name: Install Test Requirements
         run: sudo pip install -r tests/data/requirements.txt
       - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Debug -DXXX_ENABLE_COVERAGE=ON -S . -B build
+        run: cmake -DCMAKE_BUILD_TYPE=Debug -DXXX_ENABLE_COVERAGE=ON -DXXX_ENABLE_MEMLEAK_CHECK=ON -S . -B build
       - name: Build
         run: sudo cmake --build build --parallel --target coverage-xml
       - name: Process Results
@@ -55,7 +55,7 @@ jobs:
           - image: rockylinux87
           - image: rockylinux91
           - image: rockylinux87-icx
-            additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DXXX_ENABLE_MEMLEAK_CHECK=OFF
+            additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
           #- image: rockylinux91-icx
           #  additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
 
