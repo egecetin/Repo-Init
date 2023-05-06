@@ -36,27 +36,38 @@ endif()
 
 # Add sources
 file(GLOB ProjectTestSources
-    ${PROJECT_SOURCE_DIR}/tests/Connection_Tests.cpp
-    ${PROJECT_SOURCE_DIR}/tests/Metrics_Tests.cpp
-    ${PROJECT_SOURCE_DIR}/tests/Telnet_Tests.cpp
-    ${PROJECT_SOURCE_DIR}/tests/Utils_Tests.cpp
-    ${PROJECT_SOURCE_DIR}/tests/ZeroMQ_Tests.cpp
-    ${PROJECT_SOURCE_DIR}/tests/gtest_main.cpp
-    )
+  ${PROJECT_SOURCE_DIR}/tests/Connection_Tests.cpp
+  ${PROJECT_SOURCE_DIR}/tests/Metrics_Tests.cpp
+  ${PROJECT_SOURCE_DIR}/tests/Telnet_Tests.cpp
+  ${PROJECT_SOURCE_DIR}/tests/Utils_Tests.cpp
+  ${PROJECT_SOURCE_DIR}/tests/ZeroMQ_Tests.cpp
+  ${PROJECT_SOURCE_DIR}/tests/gtest_main.cpp
+)
 
 configure_file(test-static-definitions.h.in test-static-definitions.h)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
-include_directories(${PROJECT_SOURCE_DIR}/tests/MemPlumber)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/tests/MemPlumber)
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests/gtest)
+
+if(XXX_ENABLE_MEMLEAK_CHECK)
+  include_directories(${PROJECT_SOURCE_DIR}/tests/MemPlumber)
+  add_subdirectory(${PROJECT_SOURCE_DIR}/tests/MemPlumber)
+
+  # Disable MemPlumber tests from parent
+  add_custom_target(ExcludeMemPlumberTests ALL
+    COMMAND rm -f "${PROJECT_BINARY_DIR}/tests/MemPlumber/CTestTestfile.cmake")
+endif()
 
 # Test cases
 add_executable(TestMain ${ProjectTestSources})
 target_include_directories(TestMain PRIVATE "${PROJECT_BINARY_DIR}/tests")
-target_link_libraries(TestMain gtest_main memplumber "${PROJECT_NAME}-static")
+target_link_libraries(TestMain gtest_main "${PROJECT_NAME}-static")
+
+if(XXX_ENABLE_MEMLEAK_CHECK)
+  target_link_libraries(TestMain memplumber)
+endif()
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   target_compile_options(TestMain PUBLIC --coverage)

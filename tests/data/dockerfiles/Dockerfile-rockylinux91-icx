@@ -1,0 +1,17 @@
+FROM rockylinux:9.1
+MAINTAINER egecetinn <egecetin@hotmail.com.tr>
+CMD bash
+
+COPY ./oneAPI.repo /etc/yum.repos.d/oneAPI.repo
+
+RUN dnf -y update && dnf -y install \
+	cmake \
+	expect \
+	git \
+	intel-oneapi-compiler-dpcpp-cpp \
+	libcurl-devel \
+	procps \
+	python3-devel \
+	telnet
+
+RUN python3 -m pip install --upgrade pip
