@@ -71,6 +71,8 @@ jobs:
           printenv >> $GITHUB_ENV
       - name: Install Test Requirements
         run: pip3 install -r tests/data/requirements.txt
+      - name: Test
+        run: dnf -y install llvm
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Release ${{matrix.additional-flags}} -S . -B build
       - name: Build
