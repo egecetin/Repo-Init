@@ -67,7 +67,6 @@ jobs:
       - name: Setup Intel Compiler variables
         if: contains(matrix.image, 'icx')
         run: |
-          dnf -y group install "Development Tools"
           . /opt/intel/oneapi/setvars.sh
           printenv >> $GITHUB_ENV
       - name: Install Test Requirements
