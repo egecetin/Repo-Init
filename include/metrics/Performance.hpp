@@ -5,8 +5,7 @@
 /**
  * @brief Measures and calculates performance metrics
  */
-class PerformanceTracker
-{
+class PerformanceTracker {
   private:
 	/// Set after startTimer to measure counter difference
 	std::chrono::high_resolution_clock::time_point startTime;

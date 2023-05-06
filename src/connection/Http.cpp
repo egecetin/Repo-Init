@@ -9,7 +9,7 @@ size_t HTTP::writeDataCallback(void *contents, size_t size, size_t nmemb, void *
 	const auto *dataPtr = static_cast<char *>(contents);
 	auto *userMemPtr = static_cast<std::string *>(userp);
 
-	userMemPtr->assign(dataPtr, dataPtr + recvSize); // NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+	userMemPtr->assign(dataPtr, dataPtr + recvSize);
 
 	return recvSize;
 }

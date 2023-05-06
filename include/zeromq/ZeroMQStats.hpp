@@ -3,18 +3,16 @@
 #include <prometheus/registry.h>
 #include <zmq.hpp>
 
-struct ZeroMQServerStats
-{
+struct ZeroMQServerStats {
 	/// Processing time start
 	std::chrono::high_resolution_clock::time_point processingTimeStart;
 	/// Processing time end
 	std::chrono::high_resolution_clock::time_point processingTimeEnd;
 	/// Is processing successful for this connection
-	bool isSuccessful;
+	bool isSuccessful{false};
 };
 
-class ZeroMQStats
-{
+class ZeroMQStats {
   private:
 	// Information metric family
 	prometheus::Family<prometheus::Info> *infoFamily;

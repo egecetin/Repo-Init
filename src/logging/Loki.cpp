@@ -52,28 +52,28 @@ namespace spdlog
 			unsigned int thread_count = 0;
 			while (fscanf(cpu_info, "siblings\t: %u", &thread_count) == 0)
 			{
-				fscanf(cpu_info, "%*[^s]");
+				(void)!fscanf(cpu_info, "%*[^s]");
 			}
 			basicInformation += std::string(R"("cpu_threadcount":")") + std::to_string(thread_count) + "\",";
 			rewind(cpu_info);
 
 			while (fscanf(cpu_info, "cpu cores\t: %u", &core_count) == 0)
 			{
-				fscanf(cpu_info, "%*[^c]");
+				(void)!fscanf(cpu_info, "%*[^c]");
 			}
 			basicInformation += std::string(R"("cpu_corecount":")") + std::to_string(core_count) + "\",";
 			rewind(cpu_info);
 
 			while (fscanf(cpu_info, "model name\t: %8191[^\n]", hostBuffer) == 0)
 			{
-				fscanf(cpu_info, "%*[^m]");
+				(void)!fscanf(cpu_info, "%*[^m]");
 			}
 			basicInformation += std::string(R"("cpu_model":")") + hostBuffer + "\",";
 			rewind(cpu_info);
 
 			while (fscanf(cpu_info, "vendor_id\t: %8191s", hostBuffer) == 0)
 			{
-				fscanf(cpu_info, "%*[^v]");
+				(void)!fscanf(cpu_info, "%*[^v]");
 			}
 			basicInformation += std::string(R"("cpu_vendorid":")") + hostBuffer + "\",";
 			fclose(cpu_info);

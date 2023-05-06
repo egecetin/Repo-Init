@@ -6,8 +6,7 @@
  * @brief Measures status counters for prometheus
  *
  */
-class StatusTracker
-{
+class StatusTracker {
   private:
 	/// Active number of events
 	prometheus::Gauge *activeCtr;

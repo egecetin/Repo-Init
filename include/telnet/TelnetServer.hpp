@@ -52,8 +52,7 @@ using Socket = int;
 /**
  * @brief Session class for manage connections
  */
-class TelnetSession : public std::enable_shared_from_this<TelnetSession>
-{
+class TelnetSession : public std::enable_shared_from_this<TelnetSession> {
   public:
 	/// Constructor for session
 	TelnetSession(Socket ClientSocket, std::shared_ptr<TelnetServer> ts)
@@ -79,7 +78,7 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 
   private:
 	// Returns ip of the peer
-	std::string getPeerIP();
+	std::string getPeerIP() const;
 	// Write the prompt and any data sat in the input buffer
 	void sendPromptAndBuffer();
 	// Erase all characters on the current line and move prompt back to beginning of line
@@ -96,7 +95,7 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	// Takes tab commands and completes or suggests commands
 	bool processTab(std::string &buffer);
 	// Add a command into the command history
-	void addToHistory(std::string line);
+	void addToHistory(const std::string &line);
 	// Handles arrow key actions for history management. Returns true if the input buffer was changed.
 	bool processCommandHistory(std::string &buffer);
 	//
@@ -127,8 +126,7 @@ using FPTR_ConnectedCallback = std::function<void(SP_TelnetSession)>;
 using FPTR_NewLineCallback = std::function<bool(SP_TelnetSession, std::string)>;
 using FPTR_TabCallback = std::function<std::string(SP_TelnetSession, std::string)>;
 
-class TelnetServer : public std::enable_shared_from_this<TelnetServer>
-{
+class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
   public:
 	/// Constructor for server
 	TelnetServer() = default;
@@ -142,7 +140,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	 * @return false otherwise
 	 */
 	bool initialise(u_long listenPort, std::string promptString = "",
-					std::shared_ptr<prometheus::Registry> reg = nullptr);
+					const std::shared_ptr<prometheus::Registry> &reg = nullptr);
 
 	/// Process new connections and messages
 	void update();
@@ -190,14 +188,14 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
  * @brief Telnet session connection start callback
  * @param[in] session Handle to session
  */
-void TelnetConnectedCallback(SP_TelnetSession session);
+void TelnetConnectedCallback(const SP_TelnetSession &session);
 
 /**
  * @brief Telnet session message received callback
  * @param[in] session Handle to session
  * @param[in] line Received message
  */
-bool TelnetMessageCallback(SP_TelnetSession session, std::string line);
+bool TelnetMessageCallback(const SP_TelnetSession &session, std::string line);
 
 /**
  * @brief Telnet session TAB received callback
@@ -205,4 +203,4 @@ bool TelnetMessageCallback(SP_TelnetSession session, std::string line);
  * @param[in] line Received message
  * @return std::string Command to complete
  */
-std::string TelnetTabCallback(SP_TelnetSession session, std::string line);
+std::string TelnetTabCallback(const SP_TelnetSession &session, const std::string &line);

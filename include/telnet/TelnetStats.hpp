@@ -5,8 +5,7 @@
 /**
  * @brief Telnet session statistics
  */
-struct TelnetSessionStats
-{
+struct TelnetSessionStats {
 	/// Connection start time
 	std::chrono::high_resolution_clock::time_point connectTime;
 	/// Connection end time
@@ -24,8 +23,7 @@ struct TelnetSessionStats
 /**
  * @brief Telnet server statistics
  */
-struct TelnetServerStats
-{
+struct TelnetServerStats {
 	/// Processing time start
 	std::chrono::high_resolution_clock::time_point processingTimeStart;
 	/// Processing time end
@@ -41,8 +39,7 @@ struct TelnetServerStats
 /**
  * @brief Prometheus statistics for Telnet server
  */
-class TelnetStats
-{
+class TelnetStats {
   private:
 	// Information metric family
 	prometheus::Family<prometheus::Info> *infoFamily;

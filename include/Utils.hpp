@@ -33,8 +33,7 @@ extern volatile bool loopFlag; // NOLINT(cppcoreguidelines-avoid-non-const-globa
 /**
  * @brief Parses command line inputs
  */
-class InputParser
-{
+class InputParser {
   public:
 	/**
 	 * @brief Constructs a new InputParser object

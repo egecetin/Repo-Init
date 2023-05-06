@@ -9,8 +9,8 @@
 #include <rapidjson/writer.h>
 #include <spdlog/spdlog.h>
 
-volatile uintmax_t alarmCtr;
-volatile bool loopFlag;
+volatile uintmax_t alarmCtr; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
+volatile bool loopFlag;		 // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */
@@ -20,7 +20,7 @@ volatile bool loopFlag;
 /* ################################################################################### */
 
 // GCOVR_EXCL_START
-void print_version(void)
+void print_version()
 {
 	spdlog::info("{:<15}: v{} {} {} {}", PROJECT_NAME, PROJECT_FULL_REVISION, BUILD_TYPE, PROJECT_BUILD_DATE,
 				 PROJECT_BUILD_TIME);
@@ -35,7 +35,7 @@ void print_version(void)
 // GCOVR_EXCL_STOP
 
 // GCOVR_EXCL_START
-std::string get_version(void)
+std::string get_version()
 {
 	return std::string("v") + PROJECT_FULL_REVISION + " " + BUILD_TYPE + " " + PROJECT_BUILD_DATE + " " +
 		   PROJECT_BUILD_TIME;
@@ -52,8 +52,9 @@ template <typename T> std::string stringify(const T &o)
 
 bool readConfig(const std::string &dir)
 {
+	// NOLINTBEGIN
 	FILE *fptr = fopen(dir.c_str(), "r");
-	if (!fptr)
+	if (fptr == nullptr)
 	{
 		spdlog::critical("Can't open config file");
 		return false;
@@ -91,8 +92,7 @@ bool readConfig(const std::string &dir)
 			spdlog::critical("Can't read {}", entry);
 			return false;
 		}
-		else
-			spdlog::debug("{}: {}", entry, stringify(doc[entry.c_str()]));
+		spdlog::debug("{}: {}", entry, stringify(doc[entry.c_str()]));
 	}
 	spdlog::debug("All variables read");
 
@@ -110,12 +110,14 @@ bool readConfig(const std::string &dir)
 	doc.RemoveAllMembers();
 
 	return true;
+	// NOLINTEND
 }
 
 std::string readSingleConfig(const std::string &dir, std::string value)
 {
+	// NOLINTBEGIN
 	FILE *fptr = fopen(dir.c_str(), "r");
-	if (!fptr)
+	if (fptr == nullptr)
 	{
 		spdlog::critical("Can't open config file");
 		return "";
@@ -139,11 +141,14 @@ std::string readSingleConfig(const std::string &dir, std::string value)
 	{
 		spdlog::debug("Read config {}: {}", value, stringify(doc[value.c_str()]));
 		if (doc[value.c_str()].IsString())
-			return std::string(doc[value.c_str()].GetString());
+		{
+			return doc[value.c_str()].GetString();
+		}
 		return stringify(doc[value.c_str()]);
 	}
 	spdlog::error("Can't find requested field at config {}", value);
 	return "";
+	// NOLINTEND
 }
 
 // GCOVR_EXCL_START
@@ -166,7 +171,7 @@ void interruptFunc(int /*unused*/)
 	}
 	else
 	{
-		(void)!write(STDERR_FILENO, "Interrupt in progress...\n", 26);
+		(void)!write(STDERR_FILENO, "Interrupt in progress...\n", 26); // NOLINT(readability-implicit-bool-conversion)
 	}
 }
 // GCOVR_EXCL_STOP

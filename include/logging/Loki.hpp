@@ -13,8 +13,8 @@ namespace spdlog
 {
 	namespace sinks
 	{
-		template <typename Mutex> class loki_api_sink : public base_sink<Mutex>
-		{
+		// NOLINTBEGIN
+		template <typename Mutex> class loki_api_sink : public base_sink<Mutex> {
 		  public:
 			explicit loki_api_sink(const std::string &lokiAddress);
 			~loki_api_sink();
@@ -28,13 +28,13 @@ namespace spdlog
 			std::unique_ptr<HTTP> connHandler;
 			std::string basicInformation;
 
-			struct logInfo_t
-			{
+			struct logInfo_t {
 				std::string level;
 				std::vector<std::pair<std::string, std::string>> logs;
 			};
 			std::vector<struct logInfo_t> internalLogBuffer;
 		};
+		// NOLINTEND
 
 		using loki_api_sink_mt = loki_api_sink<std::mutex>;
 		using loki_api_sink_st = loki_api_sink<details::null_mutex>;

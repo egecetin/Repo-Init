@@ -6,8 +6,7 @@
 /**
  * @brief Wrapper class for Prometheus
  */
-class PrometheusServer
-{
+class PrometheusServer {
   private:
 	/// Mutex for concurrent add tracker calls
 	std::mutex guardLock;

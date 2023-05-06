@@ -16,7 +16,6 @@ namespace spdlog
 {
 	namespace sinks
 	{
-		// NOLINTNEXTLINE(readability-function-cognitive-complexity)
 		template <typename Mutex> sentry_api_sink<Mutex>::sentry_api_sink(const std::string &sentryAddress)
 		{
 			if (sentryAddress.empty())
@@ -67,28 +66,28 @@ namespace spdlog
 			unsigned int thread_count;
 			while (fscanf(cpu_info, "siblings\t: %u", &thread_count) == 0)
 			{
-				fscanf(cpu_info, "%*[^s]");
+				(void)!fscanf(cpu_info, "%*[^s]");
 			}
 			sentry_value_set_by_key(hostContext, "Thread count", sentry_value_new_int32(thread_count));
 			rewind(cpu_info);
 
 			while (fscanf(cpu_info, "cpu cores\t: %u", &core_count) == 0)
 			{
-				fscanf(cpu_info, "%*[^c]");
+				(void)!fscanf(cpu_info, "%*[^c]");
 			}
 			sentry_value_set_by_key(hostContext, "Core count", sentry_value_new_int32(core_count));
 			rewind(cpu_info);
 
 			while (fscanf(cpu_info, "model name\t: %8191[^\n]", hostBuffer) == 0)
 			{
-				fscanf(cpu_info, "%*[^m]");
+				(void)!fscanf(cpu_info, "%*[^m]");
 			}
 			sentry_value_set_by_key(hostContext, "Model", sentry_value_new_string(hostBuffer));
 			rewind(cpu_info);
 
 			while (fscanf(cpu_info, "vendor_id\t: %8191s", hostBuffer) == 0)
 			{
-				fscanf(cpu_info, "%*[^v]");
+				(void)!fscanf(cpu_info, "%*[^v]");
 			}
 			sentry_value_set_by_key(hostContext, "Vendor ID", sentry_value_new_string(hostBuffer));
 			fclose(cpu_info);

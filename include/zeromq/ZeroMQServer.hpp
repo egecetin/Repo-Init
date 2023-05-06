@@ -7,8 +7,7 @@
 
 using FPTR_MessageCallback = std::function<bool(const std::vector<zmq::message_t> &, std::vector<zmq::const_buffer> &)>;
 
-class ZeroMQServer
-{
+class ZeroMQServer {
   private:
 	// Connection handling pointer
 	std::unique_ptr<ZeroMQ> connectionPtr;
@@ -32,7 +31,7 @@ class ZeroMQServer
 	 * @return true If initialized
 	 * @return false otherwise
 	 */
-	bool initialise(const std::string &hostAddr, std::shared_ptr<prometheus::Registry> reg = nullptr);
+	bool initialise(const std::string &hostAddr, const std::shared_ptr<prometheus::Registry> &reg = nullptr);
 
 	/// Processes new messages
 	void update();
