@@ -72,7 +72,7 @@ jobs:
       - name: Install Test Requirements
         run: pip3 install -r tests/data/requirements.txt
       - name: Test
-        run: dnf -y install llvm binutils
+        run: dnf -y install llvm binutils gcc gcc-c++
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Release ${{matrix.additional-flags}} -S . -B build
       - name: Build
