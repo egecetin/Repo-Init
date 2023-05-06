@@ -88,8 +88,7 @@ std::string TelnetSession::getPeerIP() const
 	struct sockaddr_in client_info {};
 	memset(&client_info, 0, sizeof(client_info));
 	socklen_t addrsize = sizeof(client_info);
-	getpeername(m_socket, (struct sockaddr *)(&client_info), // NOLINT(cppcoreguidelines-pro-type-cstyle-cast)
-				&addrsize);
+	getpeername(m_socket, (struct sockaddr *)(&client_info), &addrsize);
 
 	std::array<char, INET_ADDRSTRLEN> ip{};
 	inet_ntop(AF_INET, &client_info.sin_addr, ip.data(), INET_ADDRSTRLEN);

@@ -36,7 +36,7 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFac
 		{
 			throw std::runtime_error(strerror(errno)); // NOLINT(concurrency-mt-unsafe)
 		}
-		if (bind(sockFd, (struct sockaddr *)&addr, sizeof(addr)) < 0) // NOLINT(cppcoreguidelines-pro-type-cstyle-cast)
+		if (bind(sockFd, (struct sockaddr *)&addr, sizeof(addr)) < 0)
 		{
 			throw std::runtime_error(std::string("Bind failed: ") + strerror(errno)); // NOLINT(concurrency-mt-unsafe)
 		}
@@ -53,7 +53,7 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFac
 		{
 			throw std::runtime_error(strerror(errno)); // NOLINT(concurrency-mt-unsafe)
 		}
-		if (bind(sockFd, (struct sockaddr *)&addr, sizeof(addr)) < 0) // NOLINT(cppcoreguidelines-pro-type-cstyle-cast)
+		if (bind(sockFd, (struct sockaddr *)&addr, sizeof(addr)) < 0)
 		{
 			throw std::runtime_error(std::string("Bind failed: ") + strerror(errno)); // NOLINT(concurrency-mt-unsafe)
 		}
@@ -87,10 +87,7 @@ int RawSocket::readData(void *data, size_t dataLen)
 	socklen_t socketLen = sizeof(addr);
 
 	auto startTime = std::chrono::high_resolution_clock::now();
-	const int retval =
-		static_cast<int>(recvfrom(sockFd, data, dataLen, 0,
-								  (struct sockaddr *)&addr, // NOLINT(cppcoreguidelines-pro-type-cstyle-cast)
-								  &socketLen));
+	const int retval = static_cast<int>(recvfrom(sockFd, data, dataLen, 0, (struct sockaddr *)&addr, &socketLen));
 
 	// Update stats
 	stats.processingTime += static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
