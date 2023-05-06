@@ -69,7 +69,7 @@ int RawSocket::writeData(const void *data, size_t dataLen)
 	}
 
 	auto startTime = std::chrono::high_resolution_clock::now();
-	int retval = static_cast<int>(write(sockFd, data, dataLen));
+	const int retval = static_cast<int>(write(sockFd, data, dataLen));
 
 	// Update stats
 	stats.processingTime += static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
@@ -87,9 +87,10 @@ int RawSocket::readData(void *data, size_t dataLen)
 	socklen_t socketLen = sizeof(addr);
 
 	auto startTime = std::chrono::high_resolution_clock::now();
-	int retval = static_cast<int>(recvfrom(sockFd, data, dataLen, 0,
-										   (struct sockaddr *)&addr, // NOLINT(cppcoreguidelines-pro-type-cstyle-cast)
-										   &socketLen));
+	const int retval =
+		static_cast<int>(recvfrom(sockFd, data, dataLen, 0,
+								  (struct sockaddr *)&addr, // NOLINT(cppcoreguidelines-pro-type-cstyle-cast)
+								  &socketLen));
 
 	// Update stats
 	stats.processingTime += static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());

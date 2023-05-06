@@ -145,7 +145,7 @@ void TelnetSession::sendLine(std::string data)
 	}
 
 	data.append("\r\n");
-	ssize_t sendBytes = send(m_socket, data.c_str(), data.length(), 0);
+	const ssize_t sendBytes = send(m_socket, data.c_str(), data.length(), 0);
 	if (sendBytes > 0)
 	{
 		stats.uploadBytes += sendBytes;
@@ -188,7 +188,7 @@ void TelnetSession::echoBack(char *buffer, u_long length)
 		return;
 	}
 
-	ssize_t sendBytes = send(m_socket, buffer, length, 0);
+	const ssize_t sendBytes = send(m_socket, buffer, length, 0);
 	if (sendBytes > 0)
 	{
 		stats.uploadBytes += sendBytes;
@@ -255,7 +255,7 @@ void TelnetSession::stripNVT(std::string &buffer)
 void TelnetSession::stripEscapeCharacters(std::string &buffer)
 {
 	size_t found = 0;
-	std::array<std::string, 4> cursors = {ANSI_ARROW_UP, ANSI_ARROW_DOWN, ANSI_ARROW_RIGHT, ANSI_ARROW_LEFT};
+	const std::array<std::string, 4> cursors = {ANSI_ARROW_UP, ANSI_ARROW_DOWN, ANSI_ARROW_RIGHT, ANSI_ARROW_LEFT};
 
 	for (const auto &c : cursors)
 	{
@@ -320,7 +320,8 @@ bool TelnetSession::processTab(std::string &buffer)
 			// Process
 			if (m_telnetServer->tabCallback())
 			{
-				std::string retCommand = m_telnetServer->tabCallback()(shared_from_this(), buffer.substr(0, found));
+				const std::string retCommand =
+					m_telnetServer->tabCallback()(shared_from_this(), buffer.substr(0, found));
 				if (static_cast<int>(!retCommand.empty()) != 0)
 				{
 					buffer.erase(0, found);
@@ -419,7 +420,6 @@ void TelnetSession::update()
 {
 	ssize_t readBytes = 0;
 	std::array<char, DEFAULT_BUFLEN> recvbuf{};
-	u_long recvbuflen = DEFAULT_BUFLEN;
 
 	// Reset stats
 	stats.uploadBytes = 0;
@@ -428,7 +428,7 @@ void TelnetSession::update()
 	stats.failCmdCtr = 0;
 
 	// Receive
-	readBytes = recv(m_socket, recvbuf.data(), recvbuflen, 0);
+	readBytes = recv(m_socket, recvbuf.data(), DEFAULT_BUFLEN, 0);
 
 	// Check for errors from the read
 	if (readBytes < 0 && errno != EAGAIN)
@@ -571,7 +571,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString,
 
 bool TelnetServer::acceptConnection()
 {
-	Socket ClientSocket = accept(m_listenSocket, nullptr, nullptr);
+	const Socket ClientSocket = accept(m_listenSocket, nullptr, nullptr);
 	if (ClientSocket == INVALID_SOCKET)
 	{
 		return false;
@@ -579,7 +579,7 @@ bool TelnetServer::acceptConnection()
 	if (m_sessions.size() >= MAX_AVAILABLE_SESSION)
 	{
 		// Create for only sending error
-		SP_TelnetSession s = std::make_shared<TelnetSession>(ClientSocket, shared_from_this());
+		const SP_TelnetSession s = std::make_shared<TelnetSession>(ClientSocket, shared_from_this());
 		s->initialise();
 
 		s->sendLine("Too many active connections. Please try again later. \r\nClosing...");
@@ -587,7 +587,7 @@ bool TelnetServer::acceptConnection()
 		return false;
 	}
 
-	SP_TelnetSession s = std::make_shared<TelnetSession>(ClientSocket, shared_from_this());
+	const SP_TelnetSession s = std::make_shared<TelnetSession>(ClientSocket, shared_from_this());
 	m_sessions.push_back(s);
 	s->initialise();
 	return true;

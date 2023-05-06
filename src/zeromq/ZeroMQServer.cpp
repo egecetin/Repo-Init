@@ -104,7 +104,7 @@ bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, st
 		}
 
 		spdlog::warn("Log level change request received");
-		std::string receivedMsg = std::string((char *)recvMsgs[1].data(), recvMsgs[1].size());
+		const std::string receivedMsg = std::string((char *)recvMsgs[1].data(), recvMsgs[1].size());
 
 		if (receivedMsg == "v")
 		{
