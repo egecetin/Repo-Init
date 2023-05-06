@@ -19,35 +19,31 @@ VER_PROMTAIL=2.7.3
 
 # Install
 echo -e "${ANSI_FG_YELLOW}Installing packages ...${ANSI_RESET_ALL}"
-yum install epel-release -y
-yum install make wget btop htop cockpit cockpit-pcp chrony mlocate lm_sensors policycoreutils-python-utils setroubleshoot smartmontools -y
+dnf install epel-release -y
+dnf install wget htop cockpit chrony mlocate policycoreutils-python-utils setroubleshoot smartmontools -y
 
 echo -e "${ANSI_FG_YELLOW}Installing cockpit-navigator ...${ANSI_RESET_ALL}"
 curl -sSL https://repo.45drives.com/setup | sudo bash
-yum install cockpit-navigator -y
+dnf install cockpit-navigator -y
 
 echo -e "${ANSI_FG_YELLOW}Installing neofetch ...${ANSI_RESET_ALL}"
-wget https://github.com/dylanaraps/neofetch/archive/refs/tags/7.1.0.tar.gz
-tar -xzvf 7.1.0.tar.gz neofetch-7.1.0/
-make install -C neofetch-7.1.0
-rm -rf neofetch-7.1.0
-rm -f 7.1.0.tar.gz
+pip3 install hyfetch
 mkdir -p /root/.config/neofetch
 \cp scripts/data/neofetch_config.conf /root/.config/neofetch/config.conf
-echo "neofetch" >> /etc/profile.d/neofetch-init.sh
+echo "neowofetch" >> /etc/profile.d/neofetch.sh
 
 # echo -e "${ANSI_FG_YELLOW}Installing IDRAC tools ...${ANSI_RESET_ALL}"
 # curl -O https://linux.dell.com/repo/hardware/dsu/bootstrap.cgi
 # bash bootstrap.cgi
 # rm -f bootstrap.cgi
-# yum install dell-system-update -y
-# yum install srvadmin-* -y
+# dnf install dell-system-update -y
+# dnf install srvadmin-* -y
 # cat << EOF >> /etc/ld.so.conf.d/idrac.conf
 # /opt/dell/srvadmin/sbin/
 # EOF
 # ldconfig
 
-echo -e "${ANSI_FG_YELLOW}Installing Intel oneAPI ...${ANSI_RESET_ALL}"
+echo -e "${ANSI_FG_YELLOW}Installing Intel oneAPI Repo...${ANSI_RESET_ALL}"
 tee > /tmp/oneAPI.repo << EOF
 [oneAPI]
 name=Intel® oneAPI repository
@@ -58,7 +54,6 @@ repo_gpgcheck=1
 gpgkey=https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
 EOF
 mv -f /tmp/oneAPI.repo /etc/yum.repos.d
-yum install intel-oneapi-runtime-libs -y
 
 echo -e "${ANSI_FG_YELLOW}Installing Grafana... ${ANSI_RESET_ALL}"
 tee > /etc/yum.repos.d/grafana.repo << EOF
@@ -73,7 +68,7 @@ sslverify=1
 sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 exclude=*beta*
 EOF
-yum install grafana -y
+dnf install grafana -y
 \cp scripts/data/grafana-firewalld.xml /etc/firewalld/services/grafana.xml
 \cp scripts/data/grafana.ini /etc/grafana/grafana.ini
 
@@ -178,7 +173,7 @@ WantedBy=multi-user.target
 EOF
 
 # echo -e "${ANSI_FG_YELLOW}Installing Hyper-V tools"
-# yum install WALinuxAgent cloud-init cloud-utils-growpart gdisk hyperv-daemons -y
+# dnf install WALinuxAgent cloud-init cloud-utils-growpart gdisk hyperv-daemons -y
 
 echo -e "${ANSI_FG_YELLOW}Detecting sensors ...${ANSI_RESET_ALL}"
 sensors-detect --auto > /dev/null

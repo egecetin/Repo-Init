@@ -1,5 +1,9 @@
 name: Build and test
-on: [push, pull_request]
+on:
+  push:
+    branches:
+    - 'master'
+  pull_request:
 
 jobs:
   pre-commit:
@@ -29,16 +33,14 @@ jobs:
         with:
           submodules: recursive
       - name: Prepare System
-        run: |
-          sudo apt update
-          sudo apt install gcovr expect libcurl4-openssl-dev -y
+        run: sudo apt update -y && sudo apt install gcovr expect libcurl4-openssl-dev -y
       - uses: actions/setup-python@v4
         with:
           python-version: "3.10.x"
       - name: Install Test Requirements
         run: sudo pip install -r tests/data/requirements.txt
       - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Debug -DXXX_ENABLE_COVERAGE=ON -S . -B build
+        run: cmake -DCMAKE_BUILD_TYPE=Debug -DXXX_ENABLE_COVERAGE=ON -DXXX_ENABLE_MEMLEAK_CHECK=ON -S . -B build
       - name: Build
         run: sudo cmake --build build --parallel --target coverage-xml
       - name: Process Results
@@ -50,70 +52,34 @@ jobs:
           fail_ci_if_error: true
           verbose: true
 
-  linux-gnu:
+  rockylinux:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - name: Prepare System
-        run: |
-          sudo apt update
-          sudo apt install expect libcurl4-openssl-dev -y
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.10.x"
-      - name: Install Test Requirements
-        run: sudo pip install -r tests/data/requirements.txt
-      - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B build
-      - name: Build
-        run: cmake --build build --parallel
-      - name: Run Tests
-        run: sudo ctest --test-dir build
+    container: egecetinn/${{matrix.image}}
+    strategy:
+      matrix:
+        include:
+          - image: rockylinux87
+          - image: rockylinux91
+          #- image: rockylinux87-icx
+          #  additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
+          #- image: rockylinux91-icx
+          #  additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
 
-  linux-intel:
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           submodules: recursive
-      - name: Prepare System
-        run: |
-          sudo apt update
-          sudo apt install expect libcurl4-openssl-dev -y
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.10.x"
-      - name: Install Test Requirements
-        run: sudo pip install -r tests/data/requirements.txt
-      - name: Prepare Intel apt repository
-        run: |
-          wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | sudo tee /usr/share/keyrings/oneapi-archive-keyring.gpg > /dev/null
-          echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
-          sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/oneAPI.list" -o APT::Get::List-Cleanup="0"
-      - name: Prepare dependencies
-        run: apt-cache depends intel-oneapi-compiler-dpcpp-cpp | tee intel-dependencies.txt
-      - name: Cache Install oneAPI
-        id: cache-install
-        uses: actions/cache@v3
-        with:
-          path: /opt/intel/oneapi
-          key: oneapi-${{ hashFiles('**/intel-dependencies.txt') }}
-      - name: Direct Install oneAPI
-        if: steps.cache-install.outputs.cache-hit != 'true'
-        run: |
-          sudo apt-get install -y intel-oneapi-compiler-dpcpp-cpp
-          sudo apt-get clean
-      - name: Set variables
+      - name: Setup Intel Compiler variables
+        if: contains(matrix.image, 'icx')
         run: |
           . /opt/intel/oneapi/setvars.sh
           printenv >> $GITHUB_ENV
+      - name: Install Test Requirements
+        run: pip3 install -r tests/data/requirements.txt
       - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -S . -B build
+        run: cmake -DCMAKE_BUILD_TYPE=Release ${{matrix.additional-flags}} -S . -B build
       - name: Build
         run: cmake --build build --parallel
       - name: Run Tests
-        run: sudo ctest --test-dir build
+        run: ctest --test-dir build
