@@ -14,7 +14,7 @@
 RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFace(std::move(iface))
 {
 	// Prepare socket address
-	memset((void *)&addr, 0, sizeof(struct sockaddr_ll));
+	memset((void *)&addr, 0, sizeof(sockaddr_ll));
 	addr.sll_family = AF_PACKET;
 	addr.sll_protocol = htons(ETH_P_ALL);
 	addr.sll_ifindex = static_cast<int>(if_nametoindex(iFace.c_str()));
@@ -25,8 +25,8 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFac
 	}
 
 	// Interface request
-	struct ifreq ifr {};
-	memset((void *)&ifr, 0, sizeof(struct ifreq));
+	ifreq ifr{};
+	memset((void *)&ifr, 0, sizeof(ifreq));
 	memcpy(ifr.ifr_name, iFace.c_str(), iFace.size()); // Size should be sufficient because if_nametoindex not failed
 
 	if (isWrite)
@@ -36,7 +36,7 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFac
 		{
 			throw std::runtime_error(strerror(errno)); // NOLINT(concurrency-mt-unsafe)
 		}
-		if (bind(sockFd, (struct sockaddr *)&addr, sizeof(addr)) < 0)
+		if (bind(sockFd, (sockaddr *)&addr, sizeof(addr)) < 0)
 		{
 			throw std::runtime_error(std::string("Bind failed: ") + strerror(errno)); // NOLINT(concurrency-mt-unsafe)
 		}
@@ -53,7 +53,7 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFac
 		{
 			throw std::runtime_error(strerror(errno)); // NOLINT(concurrency-mt-unsafe)
 		}
-		if (bind(sockFd, (struct sockaddr *)&addr, sizeof(addr)) < 0)
+		if (bind(sockFd, (sockaddr *)&addr, sizeof(addr)) < 0)
 		{
 			throw std::runtime_error(std::string("Bind failed: ") + strerror(errno)); // NOLINT(concurrency-mt-unsafe)
 		}
@@ -87,7 +87,7 @@ int RawSocket::readData(void *data, size_t dataLen)
 	socklen_t socketLen = sizeof(addr);
 
 	auto startTime = std::chrono::high_resolution_clock::now();
-	const int retval = static_cast<int>(recvfrom(sockFd, data, dataLen, 0, (struct sockaddr *)&addr, &socketLen));
+	const int retval = static_cast<int>(recvfrom(sockFd, data, dataLen, 0, (sockaddr *)&addr, &socketLen));
 
 	// Update stats
 	stats.processingTime += static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());

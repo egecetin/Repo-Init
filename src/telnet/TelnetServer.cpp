@@ -85,10 +85,10 @@ const std::string TELNET_CLEAR_SCREEN("\033[2J");
 
 std::string TelnetSession::getPeerIP() const
 {
-	struct sockaddr_in client_info {};
+	sockaddr_in client_info{};
 	memset(&client_info, 0, sizeof(client_info));
 	socklen_t addrsize = sizeof(client_info);
-	getpeername(m_socket, (struct sockaddr *)(&client_info), &addrsize);
+	getpeername(m_socket, (sockaddr *)(&client_info), &addrsize);
 
 	std::array<char, INET_ADDRSTRLEN> ip{};
 	inet_ntop(AF_INET, &client_info.sin_addr, ip.data(), INET_ADDRSTRLEN);
@@ -520,7 +520,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString,
 	m_listenPort = listenPort;
 	m_promptString = std::move(promptString);
 
-	struct addrinfo hints {};
+	addrinfo hints{};
 	memset(&hints, 0, sizeof(hints));
 
 	hints.ai_family = AF_INET;
@@ -529,7 +529,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString,
 	hints.ai_flags = AI_PASSIVE;
 
 	// Resolve the server address and port
-	struct addrinfo *result = nullptr;
+	addrinfo *result = nullptr;
 	if (getaddrinfo(nullptr, std::to_string(m_listenPort).c_str(), &hints, &result) != 0)
 	{
 		return false;

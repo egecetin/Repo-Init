@@ -31,7 +31,7 @@ class RawSocket {
 	/// Currently used ethernet interface
 	std::string iFace;
 	/// Socket structure
-	struct sockaddr_ll addr {};
+	sockaddr_ll addr{};
 	/// Internal structure for statistics
 	RawSocketStats stats{};
 
