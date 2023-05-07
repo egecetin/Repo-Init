@@ -16,7 +16,7 @@ option(XXX_ENABLE_TESTS "Enables XXX tests" ON)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
 
 if(NOT DEFINED REVISION_VERSION)
-  message(WARNING "Can't find SVN or Git. The folder is not under version control.")
+  message(SEND_ERROR "Can't find SVN or Git. The folder is not under version control.")
 endif()
 
 # Set project properties
