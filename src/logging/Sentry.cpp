@@ -112,7 +112,7 @@ namespace spdlog
 					switch (ifa->ifa_addr->sa_family)
 					{
 					case AF_INET:
-						if (((ifa->ifa_flags & IFF_PROMISC) != 0U) || ((ifa->ifa_flags & IFF_UP) != 0U))
+						if (((ifa->ifa_flags & IFF_PROMISC) != 0) || ((ifa->ifa_flags & IFF_UP) != 0))
 						{
 							char host[INET_ADDRSTRLEN];
 							inet_ntop(AF_INET, &((struct sockaddr_in *)ifa->ifa_addr)->sin_addr, host, INET_ADDRSTRLEN);
@@ -121,7 +121,7 @@ namespace spdlog
 						}
 						break;
 					case AF_INET6:
-						if (((ifa->ifa_flags & IFF_PROMISC) != 0U) || ((ifa->ifa_flags & IFF_UP) != 0U))
+						if (((ifa->ifa_flags & IFF_PROMISC) != 0) || ((ifa->ifa_flags & IFF_UP) != 0))
 						{
 							char host[INET6_ADDRSTRLEN];
 							inet_ntop(AF_INET6, &((struct sockaddr_in6 *)ifa->ifa_addr)->sin6_addr, host,
@@ -131,7 +131,7 @@ namespace spdlog
 						}
 						break;
 					case AF_PACKET:
-						if (((ifa->ifa_flags & IFF_PROMISC) != 0U) || ((ifa->ifa_flags & IFF_UP) != 0U))
+						if (((ifa->ifa_flags & IFF_PROMISC) != 0) || ((ifa->ifa_flags & IFF_UP) != 0))
 						{
 							char host[18];
 							auto *s = (struct sockaddr_ll *)(ifa->ifa_addr);

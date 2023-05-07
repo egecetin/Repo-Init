@@ -47,7 +47,7 @@ void ZeroMQServer::update()
 	std::vector<zmq::const_buffer> replyMsgs;
 	auto recvMsgs = connectionPtr->recvMessages();
 
-	if (static_cast<int>(!recvMsgs.empty()) != 0)
+	if (!recvMsgs.empty())
 	{
 		ZeroMQServerStats serverStats;
 		serverStats.processingTimeStart = std::chrono::high_resolution_clock::now();

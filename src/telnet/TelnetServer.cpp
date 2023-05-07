@@ -321,7 +321,7 @@ bool TelnetSession::processTab(std::string &buffer)
 			{
 				const std::string retCommand =
 					m_telnetServer->tabCallback()(shared_from_this(), buffer.substr(0, found));
-				if (static_cast<int>(!retCommand.empty()) != 0)
+				if (!retCommand.empty())
 				{
 					buffer.erase(0, found);
 					buffer.insert(0, retCommand);
@@ -777,7 +777,7 @@ std::string TelnetTabCallback(const SP_TelnetSession &session, const std::string
 		}
 	}
 	// Send suggestions if found any. If there is only one command retval will invoke completion
-	if (ctr != 1 && (static_cast<int>(!ss.str().empty()) != 0))
+	if (ctr != 1 && (!ss.str().empty()))
 	{
 		session->sendLine(ss.str());
 		retval = "";
