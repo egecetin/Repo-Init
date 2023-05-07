@@ -15,7 +15,7 @@ jobs:
         with:
           submodules: recursive
       - name: Prepare
-        run: git config --global --add safe.directory "$GITHUB_WORKSPACE" && apt-get install python-is-python3
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build
       - uses: pre-commit/action@v3.0.0
