@@ -2,8 +2,7 @@
 
 #include <zmq.hpp>
 
-class ZeroMQ
-{
+class ZeroMQ {
   private:
 	// Internal context
 	std::shared_ptr<zmq::context_t> contextPtr;
@@ -11,9 +10,9 @@ class ZeroMQ
 	std::unique_ptr<zmq::socket_t> socketPtr;
 
 	// Is currently active
-	bool isActive;
+	bool isActive{false};
 	// Should be binded
-	bool isBinded;
+	bool isBinded{false};
 	// Address to bind/connect
 	std::string socketAddr;
 
@@ -37,6 +36,18 @@ class ZeroMQ
 	 * @param[in] isBind True if should be binded, false if should be connected
 	 */
 	ZeroMQ(std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr, bool isBind);
+
+	/// @brief Copy constructor
+	ZeroMQ(const ZeroMQ & /*unused*/) = delete;
+
+	/// @brief Move constructor
+	ZeroMQ(ZeroMQ && /*unused*/) = delete;
+
+	/// @brief Copy assignment operator
+	ZeroMQ &operator=(ZeroMQ /*unused*/) = delete;
+
+	/// @brief Move assignment operator
+	ZeroMQ &operator=(ZeroMQ && /*unused*/) = delete;
 
 	/**
 	 * @brief Starts the connection

@@ -5,52 +5,44 @@
 /**
  * @brief Telnet session statistics
  */
-struct TelnetSessionStats
-{
+struct TelnetSessionStats {
 	/// Connection start time
 	std::chrono::high_resolution_clock::time_point connectTime;
 	/// Connection end time
 	std::chrono::high_resolution_clock::time_point disconnectTime;
 	/// Uploaded bytes
-	size_t uploadBytes;
+	size_t uploadBytes{};
 	/// Downloaded bytes
-	size_t downloadBytes;
+	size_t downloadBytes{};
 	/// Successful commands
-	uint64_t successCmdCtr;
+	uint64_t successCmdCtr{};
 	/// Failed commands
-	uint64_t failCmdCtr;
+	uint64_t failCmdCtr{};
 };
 
 /**
  * @brief Telnet server statistics
  */
-struct TelnetServerStats
-{
+struct TelnetServerStats {
 	/// Processing time start
 	std::chrono::high_resolution_clock::time_point processingTimeStart;
 	/// Processing time end
 	std::chrono::high_resolution_clock::time_point processingTimeEnd;
 	/// Number of active connections
-	uint64_t activeConnectionCtr;
+	uint64_t activeConnectionCtr{};
 	/// Number of accepted connections
-	uint64_t acceptedConnectionCtr;
+	uint64_t acceptedConnectionCtr{};
 	/// Number of refused connections
-	uint64_t refusedConnectionCtr;
+	uint64_t refusedConnectionCtr{};
 };
 
 /**
  * @brief Prometheus statistics for Telnet server
  */
-class TelnetStats
-{
+class TelnetStats {
   private:
 	// Information metric family
 	prometheus::Family<prometheus::Info> *infoFamily;
-
-	// Last failed connection remote peer
-	prometheus::Info *lastRefusedConnectionIP;
-	// Last failed connection time
-	prometheus::Info *lastRefusedConnectionTime;
 
 	// Number of active connections
 	prometheus::Gauge *activeConnection;
@@ -91,7 +83,7 @@ class TelnetStats
 	 * @param[in] reg Prometheus registry
 	 * @param[in] portNumber Telnet server port
 	 */
-	TelnetStats(std::shared_ptr<prometheus::Registry> reg, uint16_t portNumber);
+	TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint16_t portNumber);
 
 	/**
 	 * @brief Updates statistics with session values

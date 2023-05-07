@@ -11,30 +11,52 @@
 
 int main(int argc, char **argv)
 {
+	int telnetPort = 0;
+	std::string configPath = "config.json";
+	std::string zeromqServerAddr;
+
+	std::string prometheusAddr;
+	std::unique_ptr<PrometheusServer> mainPrometheusServer;
+
 	// Parse inputs
-	InputParser input(argc, argv);
+	const InputParser input(argc, argv);
 	if (input.cmdOptionExists("--enable-telnet"))
 	{
-		std::string portString = input.getCmdOption("--enable-telnet");
-		if (portString.size())
-			TELNET_PORT = std::stoi(portString);
+		const std::string portString = input.getCmdOption("--enable-telnet");
+		if (!portString.empty())
+		{
+			telnetPort = std::stoi(portString);
+			if (telnetPort <= 0 || telnetPort > std::numeric_limits<uint16_t>::max())
+			{
+				spdlog::warn("Telnet port should be between [1-65535]: provided value is {}", telnetPort);
+				telnetPort = 0;
+			}
+		}
 		else
+		{
 			spdlog::warn("Enable Telnet option requires a port number");
+		}
 	}
 	if (input.cmdOptionExists("--enable-prometheus"))
 	{
-		PROMETHEUS_ADDR = input.getCmdOption("--enable-prometheus");
-		if (PROMETHEUS_ADDR.empty())
+		prometheusAddr = input.getCmdOption("--enable-prometheus");
+		if (prometheusAddr.empty())
+		{
 			spdlog::warn("Enable Prometheus option requires a bind address");
+		}
 	}
 	if (input.cmdOptionExists("--enable-zeromq"))
 	{
-		ZEROMQ_SERVER_PATH = input.getCmdOption("--enable-zeromq");
-		if (ZEROMQ_SERVER_PATH.empty())
+		zeromqServerAddr = input.getCmdOption("--enable-zeromq");
+		if (zeromqServerAddr.empty())
+		{
 			spdlog::warn("Enable ZeroMQ option requires a connection address");
+		}
 	}
 	if (input.cmdOptionExists("--config"))
-		CONFIG_FILE_PATH = input.getCmdOption("--config");
+	{
+		configPath = input.getCmdOption("--config");
+	}
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */
@@ -44,18 +66,32 @@ int main(int argc, char **argv)
 	/* ################################################################################### */
 
 	// Init logger
-	MainLogger logger(argc, argv, CONFIG_FILE_PATH);
+	const MainLogger logger(argc, argv, configPath);
 	spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [" + std::string(PROJECT_NAME) + "] [%^%l%$] : %v");
 	print_version();
 
 	// Read config
-	if (!readConfig(CONFIG_FILE_PATH))
+	if (!readConfig(configPath))
+	{
 		return EXIT_FAILURE;
+	}
 
 	// Register signals
-	signal(SIGINT, interruptFunc);
-	signal(SIGTERM, interruptFunc);
-	signal(SIGKILL, interruptFunc);
+	if (signal(SIGINT, interruptFunc) == SIG_ERR)
+	{
+		spdlog::critical("Can't set signal handler (SIGINT): {}", getErrnoString(errno));
+		return EXIT_FAILURE;
+	}
+	if (signal(SIGTERM, interruptFunc) == SIG_ERR)
+	{
+		spdlog::critical("Can't set signal handler (SIGTERM): {}", getErrnoString(errno));
+		return EXIT_FAILURE;
+	}
+	if (signal(SIGKILL, interruptFunc) == SIG_ERR)
+	{
+		spdlog::critical("Can't set signal handler (SIGKILL): {}", getErrnoString(errno));
+		return EXIT_FAILURE;
+	}
 
 	// Move SIGALRM to bottom because of invoking sleep
 
@@ -63,7 +99,6 @@ int main(int argc, char **argv)
 	alarmCtr = 0;
 	loopFlag = true;
 
-	ALARM_INTERVAL = 1;
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */
@@ -73,12 +108,12 @@ int main(int argc, char **argv)
 	/* ################################################################################### */
 
 	// Init prometheus server
-	if (PROMETHEUS_ADDR.size())
+	if (!prometheusAddr.empty())
 	{
 		try
 		{
-			mainPrometheusServer = new PrometheusServer(PROMETHEUS_ADDR);
-			spdlog::info("Prometheus server start at {}", PROMETHEUS_ADDR);
+			mainPrometheusServer = std::make_unique<PrometheusServer>(prometheusAddr);
+			spdlog::info("Prometheus server start at {}", prometheusAddr);
 		}
 		catch (const std::exception &e)
 		{
@@ -94,21 +129,29 @@ int main(int argc, char **argv)
 	/* ################################################################################### */
 	/* ################################ END MODIFICATIONS ################################ */
 	/* ################################################################################### */
-	std::thread zmqControlTh(zmqControlThread);
-	std::thread telnetControlTh(telnetControlThread);
+	std::thread zmqControlTh(zmqControlThread, std::ref(mainPrometheusServer), std::ref(zeromqServerAddr));
+	std::thread telnetControlTh(telnetControlThread, std::ref(mainPrometheusServer), telnetPort);
 	spdlog::debug("Threads started");
 
 	// SIGALRM should be registered after all sleep calls
-	signal(SIGALRM, alarmFunc);
-	alarm(ALARM_INTERVAL);
+	if (signal(SIGALRM, alarmFunc) == SIG_ERR)
+	{
+		spdlog::critical("Can't set signal handler (SIGALRM): {}", getErrnoString(errno));
+		return EXIT_FAILURE;
+	}
+	alarm(alarmInterval);
 
 	// Join threads
 	if (zmqControlTh.joinable())
+	{
 		zmqControlTh.join();
-	spdlog::info("ZMQ Controller joined");
+		spdlog::info("ZMQ Controller joined");
+	}
 	if (telnetControlTh.joinable())
+	{
 		telnetControlTh.join();
-	spdlog::info("Telnet Controller joined");
+		spdlog::info("Telnet Controller joined");
+	}
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */

@@ -1,12 +1,9 @@
 #pragma once
 
-#include <string>
-
 #include <HttpStatusCodes_C++11.h>
 #include <curl/curl.h>
 
-class HTTP
-{
+class HTTP {
   private:
 	// CURL handler
 	CURL *curl;
@@ -21,7 +18,19 @@ class HTTP
 	 * @param[in] addr Full path to server
 	 * @param[in] timeoutInMs Connection timeout in milliseconds
 	 */
-	explicit HTTP(const std::string &addr, int timeoutInMs = 1000);
+	explicit HTTP(std::string addr, int timeoutInMs = 1000);
+
+	/// @brief Copy constructor
+	HTTP(const HTTP & /*unused*/) = delete;
+
+	/// @brief Move constructor
+	HTTP(HTTP && /*unused*/) = delete;
+
+	/// @brief Copy assignment operator
+	HTTP &operator=(HTTP /*unused*/) = delete;
+
+	/// @brief Move assignment operator
+	HTTP &operator=(HTTP && /*unused*/) = delete;
 
 	/**
 	 * @brief Set the option of HTTP class
@@ -34,6 +43,12 @@ class HTTP
 	{
 		return curl_easy_setopt(curl, option, value) == CURLE_OK;
 	}
+
+	/**
+	 * @brief Get the host address of the object
+	 * @return std::string Host address
+	 */
+	std::string getHostAddress() { return hostAddr; }
 
 	/**
 	 * @brief Sends a GET request

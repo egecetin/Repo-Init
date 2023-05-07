@@ -6,10 +6,12 @@
 #include <prometheus/info.h>
 #include <prometheus/summary.h>
 
-ZeroMQStats::ZeroMQStats(std::shared_ptr<prometheus::Registry> reg)
+ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg)
 {
 	if (!reg)
+	{
 		throw std::runtime_error("Can't init ZeroMQ statistics. Registry is null");
+	}
 
 	// Basic information
 	infoFamily = &prometheus::BuildInfo().Name("zeromq").Help("ZeroMQ server information").Register(*reg);
@@ -83,28 +85,39 @@ ZeroMQStats::ZeroMQStats(std::shared_ptr<prometheus::Registry> reg)
 void ZeroMQStats::consumeStats(const std::vector<zmq::message_t> &recvMsgs,
 							   const std::vector<zmq::const_buffer> &sendMsgs, const ZeroMQServerStats &serverStats)
 {
-	succeededCommand->Increment(serverStats.isSuccessful);
-	failedCommand->Increment(!serverStats.isSuccessful);
+	succeededCommand->Increment(static_cast<double>(serverStats.isSuccessful));
+	failedCommand->Increment(static_cast<double>(!serverStats.isSuccessful));
 	totalCommand->Increment();
 
 	for (const auto &entry : recvMsgs)
 	{
 		totalCommandParts->Increment();
-		totalDownloadBytes->Increment(entry.size());
+		totalDownloadBytes->Increment(static_cast<double>(entry.size()));
 
 		if (serverStats.isSuccessful)
+		{
 			succeededCommandParts->Increment();
+		}
 		else
+		{
 			failedCommandParts->Increment();
+		}
 	}
 
 	for (const auto &entry : sendMsgs)
-		totalUploadBytes->Increment(entry.size());
+	{
+		totalUploadBytes->Increment(static_cast<double>(entry.size()));
+	}
 
-	double processTime = (serverStats.processingTimeEnd - serverStats.processingTimeStart).count();
+	const double processTime =
+		static_cast<double>((serverStats.processingTimeEnd - serverStats.processingTimeStart).count());
 	processingTime->Observe(processTime);
 	if (processTime < minProcessingTime->Value())
+	{
 		minProcessingTime->Set(processTime);
+	}
 	if (processTime > maxProcessingTime->Value())
+	{
 		maxProcessingTime->Set(processTime);
+	}
 }

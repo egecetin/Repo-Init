@@ -5,8 +5,7 @@
 /**
  * @brief Measures and calculates performance metrics
  */
-class PerformanceTracker
-{
+class PerformanceTracker {
   private:
 	/// Set after startTimer to measure counter difference
 	std::chrono::high_resolution_clock::time_point startTime;
@@ -23,9 +22,10 @@ class PerformanceTracker
 	 * @brief Construct a new Performance Tracker
 	 * @param[in] reg Registry to prometheus
 	 * @param[in] name Name of the metric
-	 * @param[in] id ID to append to metric names
+	 * @param[in] metricID ID to append to metric names
 	 */
-	PerformanceTracker(std::shared_ptr<prometheus::Registry> reg, const std::string &name, const uint64_t id = 0);
+	PerformanceTracker(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name,
+					   uint64_t metricID = 0);
 
 	/**
 	 * @brief Starts the chronometer

@@ -36,11 +36,17 @@ ZeroMQ::ZeroMQ(std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &typ
 bool ZeroMQ::start()
 {
 	if (isActive)
+	{
 		return false;
+	}
 	if (isBinded)
+	{
 		socketPtr->bind(socketAddr);
+	}
 	else
+	{
 		socketPtr->connect(socketAddr);
+	}
 	isActive = true;
 
 	return true;
@@ -49,11 +55,17 @@ bool ZeroMQ::start()
 void ZeroMQ::stop()
 {
 	if (!isActive)
+	{
 		return;
+	}
 	if (isBinded)
+	{
 		socketPtr->unbind(socketAddr);
+	}
 	else
+	{
 		socketPtr->disconnect(socketAddr);
+	}
 	isActive = false;
 }
 
@@ -61,9 +73,13 @@ std::vector<zmq::message_t> ZeroMQ::recvMessages()
 {
 	std::vector<zmq::message_t> recvMsgs;
 	if (!isActive)
+	{
 		spdlog::warn("Connection needs to starting");
+	}
 	else
+	{
 		zmq::recv_multipart(*socketPtr, std::back_inserter(recvMsgs));
+	}
 	return recvMsgs;
 }
 
@@ -71,11 +87,17 @@ size_t ZeroMQ::sendMessages(const std::vector<zmq::const_buffer> &msg)
 {
 	zmq::send_result_t res;
 	if (!isActive)
+	{
 		spdlog::warn("Connection needs to starting");
+	}
 	else
+	{
 		res = zmq::send_multipart(*socketPtr, msg);
+	}
 	if (res.has_value())
+	{
 		return res.value();
+	}
 	return 0;
 }
 

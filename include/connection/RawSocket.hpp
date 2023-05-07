@@ -7,8 +7,7 @@
 /**
  * @brief Stats produced by RawSocket
  */
-struct RawSocketStats
-{
+struct RawSocketStats {
 	/// Number of bytes written to socket
 	size_t sentBytes;
 	/// Number of bytes read from socket
@@ -21,21 +20,20 @@ struct RawSocketStats
  * @brief Raw socket reads and writes binary data to provided interface. Write operations does not modify any field
  * (MAC, IP etc). Only writes the full data directly like file write operations.
  */
-class RawSocket
-{
+class RawSocket {
   private:
 	/// Ready flag
-	bool isReady;
+	bool isReady{false};
 	/// Mode indicator. True = Write, False = Read
-	bool writeMode;
+	bool writeMode{false};
 	/// Socket descriptor
-	int sockFd;
+	int sockFd{-1};
 	/// Currently used ethernet interface
 	std::string iFace;
 	/// Socket structure
-	struct sockaddr_ll addr;
+	sockaddr_ll addr{};
 	/// Internal structure for statistics
-	RawSocketStats stats;
+	RawSocketStats stats{};
 
   public:
 	/**
@@ -43,7 +41,19 @@ class RawSocket
 	 * @param[in] iface Ethernet interface
 	 * @param[in] isWrite True if write mode, false if read mode requested
 	 */
-	explicit RawSocket(const std::string &iface, bool isWrite = false);
+	explicit RawSocket(std::string iface, bool isWrite = false);
+
+	/// @brief Copy constructor
+	RawSocket(const RawSocket & /*unused*/) = delete;
+
+	/// @brief Move constructor
+	RawSocket(RawSocket && /*unused*/) = delete;
+
+	/// @brief Copy assignment operator
+	RawSocket &operator=(RawSocket /*unused*/) = delete;
+
+	/// @brief Move assignment operator
+	RawSocket &operator=(RawSocket && /*unused*/) = delete;
 
 	/**
 	 * @brief Returns the binded ethernet interface

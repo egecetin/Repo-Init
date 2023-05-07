@@ -35,3 +35,5 @@ TEST(Utils_Tests, ConfigReaderTests)
 	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_EMPTY_PATH, "SENTRY_ADDRESS"));
 	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_EMPTY_PATH, "dummyoption"));
 }
+
+TEST(Utils_Tests, OtherTests) { ASSERT_EQ(getErrnoString(EACCES), "Permission denied"); }

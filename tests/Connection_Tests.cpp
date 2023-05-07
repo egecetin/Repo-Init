@@ -26,6 +26,8 @@ TEST(Connection_Tests, HttpTests)
 	handler.setOption(CURLOPT_SSL_VERIFYPEER, false);
 	handler.setOption(CURLOPT_SSL_VERIFYHOST, false);
 
+	ASSERT_EQ(TEST_HTTP_ECHO_SERVER_ADDR, handler.getHostAddress());
+
 	HttpStatus::Code statusCode = HttpStatus::Code::xxx_max;
 	std::string recvData;
 	ASSERT_EQ(handler.sendPOSTRequest("", "Test POST Message", recvData, statusCode), CURLE_OK);

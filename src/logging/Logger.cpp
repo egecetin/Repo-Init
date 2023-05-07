@@ -20,7 +20,9 @@ MainLogger::MainLogger(int argc, char **argv, const std::string &configPath)
 	// Prepare spdlog loggers
 	auto dup_filter = std::make_shared<spdlog::sinks::dup_filter_sink_mt>(std::chrono::seconds(5));
 	if (getppid() != 1) // Disable stdout output for systemd
+	{
 		dup_filter->add_sink(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
+	}
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::rotating_file_sink_mt>("error.log", 1048576 * 5, 3, false));
 	dup_filter->add_sink(std::make_shared<spdlog::sinks::syslog_sink_mt>(PROJECT_NAME, LOG_USER, 0, false));
 	dup_filter->add_sink(
@@ -40,13 +42,19 @@ MainLogger::MainLogger(int argc, char **argv, const std::string &configPath)
 #endif
 
 	// Parse input arguments
-	InputParser input(argc, argv);
+	const InputParser input(argc, argv);
 	if (input.cmdOptionExists("-v"))
+	{
 		mainLogger->set_level(spdlog::level::info);
+	}
 	if (input.cmdOptionExists("-vv"))
+	{
 		mainLogger->set_level(spdlog::level::debug);
+	}
 	if (input.cmdOptionExists("-vvv"))
+	{
 		mainLogger->set_level(spdlog::level::trace);
+	}
 }
 
 MainLogger::~MainLogger() { mainLogger->flush(); }

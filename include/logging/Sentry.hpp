@@ -10,8 +10,8 @@ namespace spdlog
 {
 	namespace sinks
 	{
-		template <typename Mutex> class sentry_api_sink : public base_sink<Mutex>
-		{
+		// NOLINTBEGIN
+		template <typename Mutex> class sentry_api_sink : public base_sink<Mutex> {
 		  public:
 			explicit sentry_api_sink(const std::string &sentryAddress);
 			~sentry_api_sink();
@@ -21,8 +21,9 @@ namespace spdlog
 			void flush_() override;
 
 		  private:
-			bool sentryAvailable;
+			bool sentryAvailable{false};
 		};
+		// NOLINTEND
 
 		using sentry_api_sink_mt = sentry_api_sink<std::mutex>;
 		using sentry_api_sink_st = sentry_api_sink<details::null_mutex>;

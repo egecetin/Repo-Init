@@ -47,16 +47,16 @@ either expressed or implied, of the FreeBSD Project.
 class TelnetServer;
 class TelnetSession;
 
-typedef int Socket;
+using Socket = int;
 
 /**
  * @brief Session class for manage connections
  */
-class TelnetSession : public std::enable_shared_from_this<TelnetSession>
-{
+class TelnetSession : public std::enable_shared_from_this<TelnetSession> {
   public:
 	/// Constructor for session
-	TelnetSession(Socket ClientSocket, std::shared_ptr<TelnetServer> ts) : m_socket(ClientSocket), m_telnetServer(ts)
+	TelnetSession(Socket ClientSocket, std::shared_ptr<TelnetServer> ts)
+		: m_socket(ClientSocket), m_telnetServer(std::move(ts))
 	{
 		m_historyCursor = m_history.end();
 	};
@@ -75,12 +75,10 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	void initialise();
 	/// Called every frame/loop by the Terminal Server
 	void update();
-	/// Statistics variables
-	TelnetSessionStats stats;
 
   private:
 	// Returns ip of the peer
-	std::string getPeerIP();
+	std::string getPeerIP() const;
 	// Write the prompt and any data sat in the input buffer
 	void sendPromptAndBuffer();
 	// Erase all characters on the current line and move prompt back to beginning of line
@@ -97,12 +95,14 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	// Takes tab commands and completes or suggests commands
 	bool processTab(std::string &buffer);
 	// Add a command into the command history
-	void addToHistory(std::string line);
+	void addToHistory(const std::string &line);
 	// Handles arrow key actions for history management. Returns true if the input buffer was changed.
 	bool processCommandHistory(std::string &buffer);
 	//
 	static std::vector<std::string> getCompleteLines(std::string &buffer);
 
+	/// Statistics variables
+	TelnetSessionStats stats;
 	// Last seen
 	std::chrono::system_clock::time_point lastSeenTime;
 	// The socket
@@ -119,19 +119,17 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession>
 	friend TelnetServer;
 };
 
-typedef std::shared_ptr<TelnetSession> SP_TelnetSession;
-typedef std::vector<SP_TelnetSession> VEC_SP_TelnetSession;
+using SP_TelnetSession = std::shared_ptr<TelnetSession>;
+using VEC_SP_TelnetSession = std::vector<SP_TelnetSession>;
 
-typedef std::function<void(SP_TelnetSession)> FPTR_ConnectedCallback;
-typedef std::function<bool(SP_TelnetSession, std::string)> FPTR_NewLineCallback;
-typedef std::function<std::string(SP_TelnetSession, std::string)> FPTR_TabCallback;
+using FPTR_ConnectedCallback = std::function<void(SP_TelnetSession)>;
+using FPTR_NewLineCallback = std::function<bool(SP_TelnetSession, std::string)>;
+using FPTR_TabCallback = std::function<std::string(SP_TelnetSession, std::string)>;
 
-class TelnetServer : public std::enable_shared_from_this<TelnetServer>
-{
+class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
   public:
 	/// Constructor for server
-	// cppcheck-suppress uninitMemberVar
-	TelnetServer() : m_initialised(false), m_promptString(""){};
+	TelnetServer() = default;
 
 	/**
 	 * @brief Initializes a new Telnet server
@@ -142,7 +140,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	 * @return false otherwise
 	 */
 	bool initialise(u_long listenPort, std::string promptString = "",
-					std::shared_ptr<prometheus::Registry> reg = nullptr);
+					const std::shared_ptr<prometheus::Registry> &reg = nullptr);
 
 	/// Process new connections and messages
 	void update();
@@ -150,13 +148,13 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	/// Closes the Telnet Server
 	void shutdown();
 
-	void connectedCallback(FPTR_ConnectedCallback f) { m_connectedCallback = f; }
+	void connectedCallback(FPTR_ConnectedCallback f) { m_connectedCallback = std::move(f); }
 	FPTR_ConnectedCallback connectedCallback() const { return m_connectedCallback; }
 
-	void newLineCallback(FPTR_NewLineCallback f) { m_newlineCallback = f; }
+	void newLineCallback(FPTR_NewLineCallback f) { m_newlineCallback = std::move(f); }
 	FPTR_NewLineCallback newLineCallBack() const { return m_newlineCallback; }
 
-	void tabCallback(FPTR_TabCallback f) { m_tabCallback = f; }
+	void tabCallback(FPTR_TabCallback f) { m_tabCallback = std::move(f); }
 	FPTR_TabCallback tabCallback() const { return m_tabCallback; }
 
 	VEC_SP_TelnetSession sessions() const { return m_sessions; }
@@ -165,7 +163,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	void promptString(const std::string &prompt) { m_promptString = prompt; }
 	std::string promptString() const { return m_promptString; }
 
-  protected:
+  private:
 	// Called after the telnet session is initialised. function(SP_TelnetSession) {}
 	FPTR_ConnectedCallback m_connectedCallback;
 	// Called after every new line (from CR or LF) function(SP_TelnetSession, std::string) {}
@@ -173,13 +171,12 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
 	// Called after TAB detected. function(SP_TelnetSession, std::string, PredictSignalType) {}
 	FPTR_TabCallback m_tabCallback;
 
-  private:
 	bool acceptConnection();
 
-	u_long m_listenPort;
-	Socket m_listenSocket;
+	u_long m_listenPort{};
+	Socket m_listenSocket{-1};
 	VEC_SP_TelnetSession m_sessions;
-	bool m_initialised;
+	bool m_initialised{false};
 	// A string that denotes the current prompt
 	std::string m_promptString;
 
@@ -191,14 +188,14 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer>
  * @brief Telnet session connection start callback
  * @param[in] session Handle to session
  */
-void TelnetConnectedCallback(SP_TelnetSession session);
+void TelnetConnectedCallback(const SP_TelnetSession &session);
 
 /**
  * @brief Telnet session message received callback
  * @param[in] session Handle to session
  * @param[in] line Received message
  */
-bool TelnetMessageCallback(SP_TelnetSession session, std::string line);
+bool TelnetMessageCallback(const SP_TelnetSession &session, std::string line);
 
 /**
  * @brief Telnet session TAB received callback
@@ -206,4 +203,4 @@ bool TelnetMessageCallback(SP_TelnetSession session, std::string line);
  * @param[in] line Received message
  * @return std::string Command to complete
  */
-std::string TelnetTabCallback(SP_TelnetSession session, std::string line);
+std::string TelnetTabCallback(const SP_TelnetSession &session, const std::string &line);

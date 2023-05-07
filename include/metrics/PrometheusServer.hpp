@@ -6,8 +6,7 @@
 /**
  * @brief Wrapper class for Prometheus
  */
-class PrometheusServer
-{
+class PrometheusServer {
   private:
 	/// Mutex for concurrent add tracker calls
 	std::mutex guardLock;
@@ -54,6 +53,3 @@ class PrometheusServer
 	 */
 	bool deleteRegistry(uint64_t id);
 };
-
-/// Class to maintain prometheus calls
-extern PrometheusServer *mainPrometheusServer;

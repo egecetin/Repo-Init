@@ -3,21 +3,21 @@
 #include <prometheus/gauge.h>
 #include <prometheus/summary.h>
 
-PerformanceTracker::PerformanceTracker(std::shared_ptr<prometheus::Registry> reg, const std::string &name,
-									   const uint64_t id)
+PerformanceTracker::PerformanceTracker(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name,
+									   uint64_t metricID)
 {
 	perfTiming = &prometheus::BuildSummary()
-					  .Name(name + "_processing_time_" + std::to_string(id))
+					  .Name(name + "_processing_time_" + std::to_string(metricID))
 					  .Help(name + " processing performance")
 					  .Register(*reg)
 					  .Add({}, prometheus::Summary::Quantiles{{0.5, 0.1}, {0.9, 0.1}, {0.99, 0.1}});
 	maxTiming = &prometheus::BuildGauge()
-					 .Name(name + "_maximum_processing_time_" + std::to_string(id))
+					 .Name(name + "_maximum_processing_time_" + std::to_string(metricID))
 					 .Help("Maximum value of the " + name + " processing performance")
 					 .Register(*reg)
 					 .Add({});
 	minTiming = &prometheus::BuildGauge()
-					 .Name(name + "_minimum_processing_time_" + std::to_string(id))
+					 .Name(name + "_minimum_processing_time_" + std::to_string(metricID))
 					 .Help("Minimum value of the " + name + " processing performance")
 					 .Register(*reg)
 					 .Add({});
@@ -29,13 +29,17 @@ void PerformanceTracker::startTimer() { startTime = std::chrono::high_resolution
 
 double PerformanceTracker::endTimer()
 {
-	double val = (std::chrono::high_resolution_clock::now() - startTime).count();
+	const double val = static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
 
 	perfTiming->Observe(val);
 	if (val < minTiming->Value())
+	{
 		minTiming->Set(val);
+	}
 	if (val > maxTiming->Value())
+	{
 		maxTiming->Set(val);
+	}
 
 	return val;
 }

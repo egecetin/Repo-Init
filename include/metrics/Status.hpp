@@ -6,8 +6,7 @@
  * @brief Measures status counters for prometheus
  *
  */
-class StatusTracker
-{
+class StatusTracker {
   private:
 	/// Active number of events
 	prometheus::Gauge *activeCtr;
@@ -23,9 +22,9 @@ class StatusTracker
 	 * @brief Construct a new Status Tracker
 	 * @param[in] reg Registry to prometheus
 	 * @param[in] name Name of the metric
-	 * @param[in] id ID to append to metric names
+	 * @param[in] metricID ID to append to metric names
 	 */
-	StatusTracker(std::shared_ptr<prometheus::Registry> reg, const std::string &name, const uint64_t id = 0);
+	StatusTracker(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name, uint64_t metricID = 0);
 
 	/**
 	 * @brief Increment number of current events

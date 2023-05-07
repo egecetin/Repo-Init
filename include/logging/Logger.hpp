@@ -5,8 +5,7 @@
 /**
  * @brief Main logger class
  */
-class MainLogger
-{
+class MainLogger {
   private:
 	std::shared_ptr<spdlog::logger> mainLogger;
 
@@ -18,6 +17,18 @@ class MainLogger
 	 * @param[in] configPath Path to the config json
 	 */
 	MainLogger(int argc, char **argv, const std::string &configPath);
+
+	/// @brief Copy constructor
+	MainLogger(const MainLogger & /*unused*/) = delete;
+
+	/// @brief Move constructor
+	MainLogger(MainLogger && /*unused*/) = delete;
+
+	/// @brief Copy assignment operator
+	MainLogger &operator=(MainLogger /*unused*/) = delete;
+
+	/// @brief Move assignment operator
+	MainLogger &operator=(MainLogger && /*unused*/) = delete;
 
 	/**
 	 * @brief Returns pointer to mainlogger instance

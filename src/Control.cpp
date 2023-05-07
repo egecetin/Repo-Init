@@ -1,6 +1,5 @@
 #include "Control.hpp"
 #include "Utils.hpp"
-#include "metrics/PrometheusServer.hpp"
 #include "telnet/TelnetServer.hpp"
 #include "zeromq/ZeroMQServer.hpp"
 
@@ -10,23 +9,25 @@
 #include <spdlog/spdlog.h>
 
 // GCOVR_EXCL_START
-void telnetControlThread()
+void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer, uint16_t telnetPort)
 {
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
-	if (TELNET_PORT &&
-		telnetServerPtr->initialise(TELNET_PORT, "> ",
+	if (telnetPort > 0 &&
+		telnetServerPtr->initialise(telnetPort, "> ",
 									mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr))
 	{
 		telnetServerPtr->connectedCallback(TelnetConnectedCallback);
 		telnetServerPtr->newLineCallback(TelnetMessageCallback);
 		telnetServerPtr->tabCallback(TelnetTabCallback);
-		spdlog::info("Telnet server created at {}", TELNET_PORT);
+		spdlog::info("Telnet server created at {}", telnetPort);
 	}
 	else
 	{
-		if (TELNET_PORT)
-			spdlog::warn("Can't start Telnet Server: {}", strerror(errno));
+		if (telnetPort > 0)
+		{
+			spdlog::warn("Can't start Telnet Server: {}", getErrnoString(errno));
+		}
 		return;
 	}
 
@@ -50,21 +51,23 @@ void telnetControlThread()
 // GCOVR_EXCL_STOP
 
 // GCOVR_EXCL_START
-void zmqControlThread()
+void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer, const std::string &serverAddr)
 {
 	// Init ZeroMQ server
 	auto zeroMqServerPtr = std::make_shared<ZeroMQServer>();
 	try
 	{
-		if (!ZEROMQ_SERVER_PATH.empty() &&
-			zeroMqServerPtr->initialise(ZEROMQ_SERVER_PATH,
+		if (!serverAddr.empty() &&
+			zeroMqServerPtr->initialise(serverAddr,
 										mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr))
 		{
 			zeroMqServerPtr->messageCallback(ZeroMQServerMessageCallback);
-			spdlog::info("ZeroMQ server created at {}", ZEROMQ_SERVER_PATH);
+			spdlog::info("ZeroMQ server created at {}", serverAddr);
 		}
 		else
+		{
 			throw std::runtime_error("Unknown error");
+		}
 	}
 	catch (const std::exception &e)
 	{

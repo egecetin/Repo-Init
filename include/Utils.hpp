@@ -7,18 +7,9 @@
 
 #include <unistd.h>
 
-/// Variable to define path to config file
-extern std::string CONFIG_FILE_PATH;
-
 /// Interval of SIGALRM in seconds
-extern uintmax_t ALARM_INTERVAL;
+constexpr uintmax_t alarmInterval = 1;
 
-/// Port number to Telnet server
-extern uint16_t TELNET_PORT;
-/// Bind address of Prometheus service
-extern std::string PROMETHEUS_ADDR;
-/// Interprocess path of controller thread
-extern std::string ZEROMQ_SERVER_PATH;
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */
@@ -28,9 +19,9 @@ extern std::string ZEROMQ_SERVER_PATH;
 /* ################################################################################### */
 
 /// Alarm counter to track. Incremented by SIGALRM
-extern volatile uintmax_t alarmCtr;
+extern volatile uintmax_t alarmCtr; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 /// Main flag to control loops. Can be modified by SIGINT
-extern volatile bool loopFlag;
+extern volatile bool loopFlag; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */
@@ -42,8 +33,7 @@ extern volatile bool loopFlag;
 /**
  * @brief Parses command line inputs
  */
-class InputParser
-{
+class InputParser {
   public:
 	/**
 	 * @brief Constructs a new InputParser object
@@ -53,8 +43,10 @@ class InputParser
 	InputParser(const int &argc, char **argv)
 	{
 		for (int i = 1; i < argc; ++i)
-			this->tokens.push_back(std::string(argv[i]));
-		this->tokens.push_back(std::string(""));
+		{
+			this->tokens.emplace_back(argv[i]); // NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+		}
+		this->tokens.emplace_back("");
 	}
 
 	/**
@@ -70,7 +62,7 @@ class InputParser
 		{
 			return *itr;
 		}
-		static const std::string empty_string("");
+		static const std::string empty_string;
 		return empty_string;
 	}
 
@@ -92,13 +84,13 @@ class InputParser
 /**
  * @brief Prints the version
  */
-void print_version(void);
+void print_version();
 
 /**
  * @brief Returns the version
  * @return std::string Version string
  */
-std::string get_version(void);
+std::string get_version();
 
 /**
  * @brief Read initial config from JSON
@@ -115,6 +107,13 @@ bool readConfig(const std::string &dir);
  * @return std::string 	Read value
  */
 std::string readSingleConfig(const std::string &dir, std::string value);
+
+/**
+ * @brief Converts errno to readable string
+ * @param[in] errVal errno value
+ * @return std::string Error message
+ */
+std::string getErrnoString(int errVal);
 
 /**
  * @brief Function invoked by SIGALRM signal
