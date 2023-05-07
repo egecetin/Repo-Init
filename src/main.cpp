@@ -79,17 +79,17 @@ int main(int argc, char **argv)
 	// Register signals
 	if (signal(SIGINT, interruptFunc) == SIG_ERR)
 	{
-		spdlog::critical("Can't set signal handler (SIGINT): {}", strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+		spdlog::critical("Can't set signal handler (SIGINT): {}", getErrnoString(errno));
 		return EXIT_FAILURE;
 	}
 	if (signal(SIGTERM, interruptFunc) == SIG_ERR)
 	{
-		spdlog::critical("Can't set signal handler (SIGTERM): {}", strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+		spdlog::critical("Can't set signal handler (SIGTERM): {}", getErrnoString(errno));
 		return EXIT_FAILURE;
 	}
 	if (signal(SIGKILL, interruptFunc) == SIG_ERR)
 	{
-		spdlog::critical("Can't set signal handler (SIGKILL): {}", strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+		spdlog::critical("Can't set signal handler (SIGKILL): {}", getErrnoString(errno));
 		return EXIT_FAILURE;
 	}
 
@@ -136,7 +136,7 @@ int main(int argc, char **argv)
 	// SIGALRM should be registered after all sleep calls
 	if (signal(SIGALRM, alarmFunc) == SIG_ERR)
 	{
-		spdlog::critical("Can't set signal handler (SIGALRM): {}", strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+		spdlog::critical("Can't set signal handler (SIGALRM): {}", getErrnoString(errno));
 		return EXIT_FAILURE;
 	}
 	alarm(alarmInterval);

@@ -26,7 +26,7 @@ void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheus
 	{
 		if (telnetPort > 0)
 		{
-			spdlog::warn("Can't start Telnet Server: {}", strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+			spdlog::warn("Can't start Telnet Server: {}", getErrnoString(errno));
 		}
 		return;
 	}

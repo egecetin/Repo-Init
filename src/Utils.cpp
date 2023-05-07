@@ -151,6 +151,12 @@ std::string readSingleConfig(const std::string &dir, std::string value)
 	// NOLINTEND
 }
 
+std::string getErrnoString(int errVal)
+{
+	std::array<char, BUFSIZ> buffer{};
+	return strerror_r(errVal, buffer.data(), BUFSIZ);
+}
+
 // GCOVR_EXCL_START
 void alarmFunc(int /*unused*/)
 {

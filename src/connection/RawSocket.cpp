@@ -1,4 +1,5 @@
 #include "connection/RawSocket.hpp"
+#include "Utils.hpp"
 
 #include <net/ethernet.h>
 #include <net/if.h>
@@ -20,8 +21,7 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFac
 	addr.sll_ifindex = static_cast<int>(if_nametoindex(iFace.c_str()));
 	if (addr.sll_ifindex == 0)
 	{
-		throw std::runtime_error(std::string("Can't find interface: ") +
-								 strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+		throw std::runtime_error(std::string("Can't find interface: ") + getErrnoString(errno));
 	}
 
 	// Interface request
@@ -34,16 +34,15 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFac
 		sockFd = socket(PF_PACKET, SOCK_RAW, IPPROTO_RAW); // Init socket
 		if (sockFd < 0)
 		{
-			throw std::runtime_error(strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+			throw std::runtime_error(getErrnoString(errno));
 		}
 		if (bind(sockFd, (sockaddr *)&addr, sizeof(addr)) < 0)
 		{
-			throw std::runtime_error(std::string("Bind failed: ") + strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+			throw std::runtime_error(std::string("Bind failed: ") + getErrnoString(errno));
 		}
 		if (setsockopt(sockFd, SOL_SOCKET, SO_BINDTODEVICE, (void *)&ifr, sizeof(ifr)) < 0)
 		{ // Set socket options
-			throw std::runtime_error(std::string("Can't set socket options: ") +
-									 strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+			throw std::runtime_error(std::string("Can't set socket options: ") + getErrnoString(errno));
 		}
 	}
 	else
@@ -51,11 +50,11 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFac
 		sockFd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL)); // Init socket
 		if (sockFd < 0)
 		{
-			throw std::runtime_error(strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+			throw std::runtime_error(getErrnoString(errno));
 		}
 		if (bind(sockFd, (sockaddr *)&addr, sizeof(addr)) < 0)
 		{
-			throw std::runtime_error(std::string("Bind failed: ") + strerror(errno)); // NOLINT(concurrency-mt-unsafe)
+			throw std::runtime_error(std::string("Bind failed: ") + getErrnoString(errno));
 		}
 	}
 	isReady = true;

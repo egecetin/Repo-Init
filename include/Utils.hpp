@@ -109,6 +109,13 @@ bool readConfig(const std::string &dir);
 std::string readSingleConfig(const std::string &dir, std::string value);
 
 /**
+ * @brief Converts errno to readable string
+ * @param[in] errVal errno value
+ * @return std::string Error message
+ */
+std::string getErrnoString(int errVal);
+
+/**
  * @brief Function invoked by SIGALRM signal
  * @param[in] signum Signal indicator
  */
