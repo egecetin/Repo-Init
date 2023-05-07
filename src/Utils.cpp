@@ -1,6 +1,7 @@
 #include "Utils.hpp"
 #include "Version.h"
 
+#include <array>
 #include <csignal>
 #include <execinfo.h>
 
