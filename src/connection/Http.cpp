@@ -112,4 +112,37 @@ CURLcode HTTP::sendPUTRequest(const std::string &index, const std::string &paylo
 	return retval;
 }
 
+HTTPStats HTTP::getStats()
+{
+	HTTPStats stats{};
+
+	curl_off_t value;
+	curl_easy_getinfo(curl, CURLINFO_SIZE_UPLOAD_T, &value);
+	stats.uploadBytes = value;
+	curl_easy_getinfo(curl, CURLINFO_SIZE_UPLOAD_T, &value);
+	stats.downloadBytes = value;
+	curl_easy_getinfo(curl, CURLINFO_HEADER_SIZE, &value);
+	stats.headerBytes = value;
+	curl_easy_getinfo(curl, CURLINFO_REQUEST_SIZE, &value);
+	stats.requestBytes = value;
+	curl_easy_getinfo(curl, CURLINFO_SPEED_UPLOAD_T, &value);
+	stats.uploadSpeed = value;
+	curl_easy_getinfo(curl, CURLINFO_SPEED_DOWNLOAD_T, &value);
+	stats.downloadSpeed = value;
+	curl_easy_getinfo(curl, CURLINFO_CONNECT_TIME_T, &value);
+	stats.connectionTime = value;
+	curl_easy_getinfo(curl, CURLINFO_NAMELOOKUP_TIME_T, &value);
+	stats.nameLookupTime = value;
+	curl_easy_getinfo(curl, CURLINFO_PRETRANSFER_TIME_T, &value);
+	stats.preTransferTime = value;
+	curl_easy_getinfo(curl, CURLINFO_REDIRECT_TIME_T, &value);
+	stats.redirectTime = value;
+	curl_easy_getinfo(curl, CURLINFO_STARTTRANSFER_TIME_T, &value);
+	stats.startTransferTime = value;
+	curl_easy_getinfo(curl, CURLINFO_TOTAL_TIME_T, &value);
+	stats.totalTime = value;
+
+	return stats;
+}
+
 HTTP::~HTTP() { curl_easy_cleanup(curl); }
