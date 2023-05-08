@@ -8,41 +8,34 @@ on:
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
+    container: egecetinn/ubuntu2204
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           submodules: recursive
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-      - name: Install dependencies
-        run: |
-          sudo apt update
-          sudo apt install libcurl4-openssl-dev cppcheck -y
-          pip install clang-tidy
+      - name: Prepare
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build
       - uses: pre-commit/action@v3.0.0
 
   coverage:
     runs-on: ubuntu-latest
+    container: egecetinn/ubuntu2204
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           submodules: recursive
-      - name: Prepare System
-        run: sudo apt update -y && sudo apt install gcovr expect libcurl4-openssl-dev -y
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.10.x"
+      - name: Prepare
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Install Test Requirements
-        run: sudo pip install -r tests/data/requirements.txt
+        run: pip install -r tests/data/requirements.txt
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -DXXX_ENABLE_COVERAGE=ON -DXXX_ENABLE_MEMLEAK_CHECK=ON -S . -B build
       - name: Build
-        run: sudo cmake --build build --parallel --target coverage-xml
+        run: cmake --build build --parallel --target coverage-xml
       - name: Process Results
         uses: codecov/codecov-action@v3
         with:
