@@ -4,7 +4,6 @@
 
 /**
  * @brief Measures status counters for prometheus
- *
  */
 class StatusTracker {
   private:

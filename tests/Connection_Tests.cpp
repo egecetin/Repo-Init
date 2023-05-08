@@ -34,6 +34,21 @@ TEST(Connection_Tests, HttpTests)
 	ASSERT_EQ("Test POST Message", recvData);
 	ASSERT_EQ(HttpStatus::Code::OK, statusCode);
 
+	auto stats = handler.getStats();
+
+	ASSERT_NE(stats.uploadBytes, 0);
+	ASSERT_NE(stats.downloadBytes, 0);
+	ASSERT_NE(stats.headerBytes, 0);
+	ASSERT_NE(stats.requestBytes, 0);
+	ASSERT_NE(stats.uploadSpeed, 0);
+	ASSERT_NE(stats.downloadSpeed, 0);
+	ASSERT_NE(stats.connectionTime, 0);
+	ASSERT_NE(stats.nameLookupTime, 0);
+	ASSERT_NE(stats.preTransferTime, 0);
+	ASSERT_EQ(stats.redirectTime, 0);
+	ASSERT_NE(stats.startTransferTime, 0);
+	ASSERT_NE(stats.totalTime, 0);
+
 	statusCode = HttpStatus::Code::xxx_max;
 	recvData.clear();
 	ASSERT_EQ(handler.sendPUTRequest("", "Test PUT Message", recvData, statusCode), CURLE_OK);
@@ -61,6 +76,21 @@ TEST(Connection_Tests, HttpTests)
 	ASSERT_EQ(handler.sendPOSTRequest("", "Test POST Message", recvData, statusCode), CURLE_COULDNT_CONNECT);
 	ASSERT_EQ("", recvData);
 	ASSERT_EQ(HttpStatus::Code::xxx_max, statusCode);
+
+	stats = handler.getStats();
+
+	ASSERT_EQ(stats.uploadBytes, 0);
+	ASSERT_EQ(stats.downloadBytes, 0);
+	ASSERT_EQ(stats.headerBytes, 0);
+	ASSERT_EQ(stats.requestBytes, 0);
+	ASSERT_EQ(stats.uploadSpeed, 0);
+	ASSERT_EQ(stats.downloadSpeed, 0);
+	ASSERT_EQ(stats.connectionTime, 0);
+	ASSERT_NE(stats.nameLookupTime, 0);
+	ASSERT_EQ(stats.preTransferTime, 0);
+	ASSERT_EQ(stats.redirectTime, 0);
+	ASSERT_EQ(stats.startTransferTime, 0);
+	ASSERT_NE(stats.totalTime, 0);
 
 	ASSERT_EQ(handler.sendPUTRequest("", "Test PUT Message", recvData, statusCode), CURLE_COULDNT_CONNECT);
 	ASSERT_EQ("", recvData);
