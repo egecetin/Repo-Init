@@ -116,7 +116,7 @@ HTTPStats HTTP::getStats()
 {
 	HTTPStats stats{};
 
-	curl_off_t value;
+	curl_off_t value = 0;
 	curl_easy_getinfo(curl, CURLINFO_SIZE_UPLOAD_T, &value);
 	stats.uploadBytes = value;
 	curl_easy_getinfo(curl, CURLINFO_SIZE_UPLOAD_T, &value);
