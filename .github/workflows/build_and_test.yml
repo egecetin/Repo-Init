@@ -16,9 +16,11 @@ jobs:
           submodules: recursive
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: pre-commit/action@v3.0.0
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build
-      - uses: pre-commit/action@v3.0.0
+      - name: Clang-tidy
+        run: run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/*
 
   coverage:
     runs-on: ubuntu-latest
