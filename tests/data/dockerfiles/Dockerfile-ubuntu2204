@@ -9,6 +9,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get -y update && apt-get -y install \
 	cppcheck \
 	clang-format \
+	clang-tidy \
 	cmake \
 	curl \
 	expect \
@@ -23,5 +24,3 @@ RUN apt-get -y update && apt-get -y install \
 	telnet
 
 RUN python3 -m pip install --upgrade pip
-
-RUN pip install clang-tidy

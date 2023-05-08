@@ -25,9 +25,6 @@ repos:
     rev: v1.3.5
     hooks:
       - id: clang-format
-      - id: clang-tidy
-        exclude: 'tests/.*|thirdparty/.*'
-        args: ["-p=build"]
       - id: cppcheck
         args: ["--std=c++14", "--language=c++", "--suppressions-list=cppcheckSuppressions.txt", "--inline-suppr"]
   - repo: https://github.com/cmake-lint/cmake-lint
