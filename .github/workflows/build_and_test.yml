@@ -55,10 +55,10 @@ jobs:
         include:
           - image: rockylinux87
           - image: rockylinux91
-          #- image: rockylinux87-icx
-          #  additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
-          #- image: rockylinux91-icx
-          #  additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
+          - image: rockylinux87-icx
+            additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_RANLIB=/opt/intel/oneapi/compiler/latest/linux/bin-llvm/llvm-ranlib -DCMAKE_AR=/opt/intel/oneapi/compiler/latest/linux/bin-llvm/llvm-ar
+          - image: rockylinux91-icx
+            additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_RANLIB=/opt/intel/oneapi/compiler/latest/linux/bin-llvm/llvm-ranlib -DCMAKE_AR=/opt/intel/oneapi/compiler/latest/linux/bin-llvm/llvm-ar
 
     steps:
       - name: Checkout Code
