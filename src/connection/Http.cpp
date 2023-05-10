@@ -3,7 +3,7 @@
 #include <cstring>
 #include <stdexcept>
 
-void HTTP::setCommonFields(std::string fullURL, std::string &receivedData, CURLoption method)
+void HTTP::setCommonFields(const std::string &fullURL, std::string &receivedData, CURLoption method)
 {
 	curl_easy_setopt(curl, CURLOPT_URL, fullURL.c_str());
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&receivedData); // Register user-supplied memory
