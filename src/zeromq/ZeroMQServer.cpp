@@ -51,15 +51,6 @@ void ZeroMQServer::update()
 	{
 		ZeroMQServerStats serverStats;
 		serverStats.processingTimeStart = std::chrono::high_resolution_clock::now();
-		try
-		{
-			// NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.gets)
-			spdlog::info("ZeroMQ control message received from {}", recvMsgs[0].gets("Peer-Address"));
-		}
-		catch (const std::exception &e)
-		{
-		}
-
 		serverStats.isSuccessful = messageCallback() && messageCallback()(recvMsgs, replyMsgs);
 
 		size_t nSentMsg = connectionPtr->sendMessages(replyMsgs);
