@@ -88,5 +88,4 @@ jobs:
         if: ${{ failure() && steps.test-step.conclusion == 'failure' }}
         uses: actions/upload-artifact@v3
         with:
-          name: TestResults
           path: ./build/Testing/Temporary/LastTest.log
