@@ -31,6 +31,7 @@ jobs:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           upload: true
           max-allowed-issues: 2147483647
+          verbose: true
 
   coverage:
     runs-on: ubuntu-latest
