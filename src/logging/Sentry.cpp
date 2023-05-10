@@ -78,14 +78,14 @@ namespace spdlog
 			sentry_value_set_by_key(hostContext, "Core count", sentry_value_new_int32(core_count));
 			rewind(cpu_info);
 
-			while (fscanf(cpu_info, "model name\t: %8191[^\n]", hostBuffer) == 0)
+			while (fscanf(cpu_info, "model name\t: %512[^\n]", hostBuffer) == 0)
 			{
 				(void)!fscanf(cpu_info, "%*[^m]");
 			}
 			sentry_value_set_by_key(hostContext, "Model", sentry_value_new_string(hostBuffer));
 			rewind(cpu_info);
 
-			while (fscanf(cpu_info, "vendor_id\t: %8191s", hostBuffer) == 0)
+			while (fscanf(cpu_info, "vendor_id\t: %512s", hostBuffer) == 0)
 			{
 				(void)!fscanf(cpu_info, "%*[^v]");
 			}
