@@ -44,11 +44,12 @@ bool ZeroMQServer::initialise(const std::string &hostAddr, const std::shared_ptr
 
 void ZeroMQServer::update()
 {
-	std::vector<zmq::const_buffer> replyMsgs;
 	auto recvMsgs = connectionPtr->recvMessages();
 
 	if (!recvMsgs.empty())
 	{
+		std::vector<zmq::const_buffer> replyMsgs;
+
 		ZeroMQServerStats serverStats;
 		serverStats.processingTimeStart = std::chrono::high_resolution_clock::now();
 		serverStats.isSuccessful = messageCallback() && messageCallback()(recvMsgs, replyMsgs);
