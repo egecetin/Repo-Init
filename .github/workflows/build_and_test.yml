@@ -5,6 +5,9 @@ on:
     - 'master'
   pull_request:
 
+env:
+  CODACY_VERSION: "1.3.8"
+
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
@@ -20,7 +23,20 @@ jobs:
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build
       - name: Clang-tidy
-        run: run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/*
+        run: |
+          echo "COMMIT_SHA=$(if [ ${{ github.event_name }} == "pull_request" ]; then echo "${{ github.event.pull_request.head.sha }}"; else echo "${{ github.sha }}"; fi)" >> $GITHUB_ENV
+          echo "$COMMIT_SHA"
+          wget https://github.com/codacy/codacy-clang-tidy/releases/download/$CODACY_VERSION/codacy-clang-tidy-linux-$CODACY_VERSION
+
+          run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/* | \
+          ./codacy-clang-tidy-linux-$CODACY_VERSION | \
+          curl -XPOST -L -H "project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}" \
+              -H "Content-type: application/json" -d @- \
+              "https://api.codacy.com/2.0/commit/$COMMIT/issuesRemoteResults"
+
+          curl -XPOST -L -H "project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}" \
+            -H "Content-type: application/json" \
+            "https://api.codacy.com/2.0/commit/$COMMIT/resultsFinal"
 
   coverage:
     runs-on: ubuntu-latest
