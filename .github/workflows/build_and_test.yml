@@ -26,7 +26,7 @@ jobs:
         shell: bash
         run: |
           export PROJECT_TOKEN=${{ secrets.CODACY_PROJECT_TOKEN }}
-          export "COMMIT=$(if [ ${{ github.event_name }} == "pull_request" ]; then echo "${{ github.event.pull_request.head.sha }}"; else echo "${{ github.sha }}"; fi)"
+          export COMMIT="$(if [ ${{ github.event_name }} == "pull_request" ]; then echo "${{ github.event.pull_request.head.sha }}"; else echo "${{ github.sha }}"; fi)"
           run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/* | bash scripts/send-results.sh
 
   coverage:
