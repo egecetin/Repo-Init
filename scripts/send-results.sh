@@ -24,7 +24,7 @@ then
     echo "\$CODACY_CLANG_TIDY_VERSION not defined. Using $CODACY_CLANG_TIDY_VERSION as tool version"
 fi
 
-./codacy-clang-tidy-$CODACY_CLANG_TIDY_VERSION | \
+./codacy-clang-tidy-"$CODACY_CLANG_TIDY_VERSION" | \
     curl -XPOST -L -H "project-token: $PROJECT_TOKEN" \
     -H "Content-type: application/json" -d @- \
     "$CODACY_URL/2.0/commit/$COMMIT/issuesRemoteResults"
