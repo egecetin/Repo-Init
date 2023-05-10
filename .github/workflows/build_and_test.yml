@@ -22,16 +22,12 @@ jobs:
       - uses: pre-commit/action@v3.0.0
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build
-      - name: Test
-        run: apt-get install wget -y && mkdir -p /home/runner/work/_actions/codacy/codacy-analysis-cli-action/master
-      - name: Run Codacy Analysis CLI
-        uses: codacy/codacy-analysis-cli-action@master
-        with:
-          tool: Clang-Tidy
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          upload: true
-          max-allowed-issues: 2147483647
-          verbose: true
+      - name: Clang-tidy
+        shell: bash
+        run: |
+          echo "PROJECT_TOKEN=${{ secrets.CODACY_PROJECT_TOKEN }}" >> $GITHUB_ENV
+          echo "COMMIT_SHA=$(if [ ${{ github.event_name }} == "pull_request" ]; then echo "${{ github.event.pull_request.head.sha }}"; else echo "${{ github.sha }}"; fi)" >> $GITHUB_ENV
+          run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/* | bash scripts/send-results.sh
 
   coverage:
     runs-on: ubuntu-latest
