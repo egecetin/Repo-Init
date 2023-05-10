@@ -22,20 +22,13 @@ jobs:
       - uses: pre-commit/action@v3.0.0
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build
-      - name: Clang-tidy
-        run: |
-          echo "COMMIT_SHA=$(if [ ${{ github.event_name }} == "pull_request" ]; then echo "${{ github.event.pull_request.head.sha }}"; else echo "${{ github.sha }}"; fi)" >> $GITHUB_ENV
-          curl https://github.com/codacy/codacy-clang-tidy/releases/download/$CODACY_VERSION/codacy-clang-tidy-linux-$CODACY_VERSION -o codacy-clang-tidy-linux-$CODACY_VERSION
-
-          run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/* | \
-          ./codacy-clang-tidy-linux-$CODACY_VERSION | \
-          curl -XPOST -L -H "project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}" \
-              -H "Content-type: application/json" -d @- \
-              "https://api.codacy.com/2.0/commit/$COMMIT/issuesRemoteResults"
-
-          curl -XPOST -L -H "project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}" \
-            -H "Content-type: application/json" \
-            "https://api.codacy.com/2.0/commit/$COMMIT/resultsFinal"
+      - name: Run Codacy Analysis CLI
+        uses: codacy/codacy-analysis-cli-action@master
+        with:
+          tool: Clang-Tidy
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          upload: true
+          max-allowed-issues: 2147483647
 
   coverage:
     runs-on: ubuntu-latest
