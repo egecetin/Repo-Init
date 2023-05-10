@@ -5,9 +5,6 @@ on:
     - 'master'
   pull_request:
 
-env:
-  CODACY_VERSION: "1.3.8"
-
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
@@ -23,15 +20,7 @@ jobs:
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build
       - name: Clang-tidy
-        run: clang-tidy -p=build -header-filter=`pwd`/include/ src/*.cpp src/**/*.cpp &> build/clang-tidy-output.log
-      - name: Upload to Codacy
-        shell: bash
-        run: |
-          export PROJECT_TOKEN=${{ secrets.CODACY_PROJECT_TOKEN }}
-          export COMMIT="$(if [ ${{ github.event_name }} == "pull_request" ]; then echo "${{ github.event.pull_request.head.sha }}"; else echo "${{ github.sha }}"; fi)"
-          curl https://github.com/codacy/codacy-clang-tidy/releases/download/1.3.8/codacy-clang-tidy-linux-1.3.8 -o codacy-clang-tidy-latest
-          chmod +x ./codacy-clang-tidy-latest
-          cat build/clang-tidy-output.log | bash scripts/send-results.sh
+        run: run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/*.cpp src/**/*.cpp
 
   coverage:
     runs-on: ubuntu-latest
