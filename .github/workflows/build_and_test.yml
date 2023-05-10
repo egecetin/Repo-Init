@@ -22,6 +22,8 @@ jobs:
       - uses: pre-commit/action@v3.0.0
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build
+      - name: Test
+        run: apt-get install wget -y
       - name: Run Codacy Analysis CLI
         uses: codacy/codacy-analysis-cli-action@master
         with:
