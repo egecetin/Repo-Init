@@ -40,6 +40,7 @@ jobs:
         run: cmake --build build --parallel --target coverage-xml
       - name: Upload to codacy
         run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r ./build/coverage-xml.xml
+        shell: bash
       - name: Upload to codecov
         uses: codecov/codecov-action@v3
         with:
