@@ -23,7 +23,7 @@ jobs:
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build
       - name: Test
-        run: apt-get install wget -y
+        run: apt-get install wget -y && mkdir -p /home/runner/work/_actions/codacy/codacy-analysis-cli-action/master
       - name: Run Codacy Analysis CLI
         uses: codacy/codacy-analysis-cli-action@master
         with:
