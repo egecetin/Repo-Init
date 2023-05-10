@@ -25,6 +25,7 @@ jobs:
       - name: Clang-tidy
         shell: bash
         run: |
+          export PROJECT_TOKEN=${{ secrets.CODACY_PROJECT_TOKEN }}
           echo "PROJECT_TOKEN=${{ secrets.CODACY_PROJECT_TOKEN }}" >> $GITHUB_ENV
           echo "COMMIT_SHA=$(if [ ${{ github.event_name }} == "pull_request" ]; then echo "${{ github.event.pull_request.head.sha }}"; else echo "${{ github.sha }}"; fi)" >> $GITHUB_ENV
           run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/* | bash scripts/send-results.sh
