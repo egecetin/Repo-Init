@@ -23,7 +23,7 @@ jobs:
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build
       - name: Clang-tidy
-        run: run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/* &> build/clang-tidy-output.log
+        run: run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/*.cpp src/**/*.cpp &> build/clang-tidy-output.log
       - name: Upload to Codacy
         shell: bash
         run: |
