@@ -25,8 +25,7 @@ jobs:
       - name: Clang-tidy
         run: |
           echo "COMMIT_SHA=$(if [ ${{ github.event_name }} == "pull_request" ]; then echo "${{ github.event.pull_request.head.sha }}"; else echo "${{ github.sha }}"; fi)" >> $GITHUB_ENV
-          echo "$COMMIT_SHA"
-          wget https://github.com/codacy/codacy-clang-tidy/releases/download/$CODACY_VERSION/codacy-clang-tidy-linux-$CODACY_VERSION
+          curl https://github.com/codacy/codacy-clang-tidy/releases/download/$CODACY_VERSION/codacy-clang-tidy-linux-$CODACY_VERSION -o codacy-clang-tidy-linux-$CODACY_VERSION
 
           run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/* | \
           ./codacy-clang-tidy-linux-$CODACY_VERSION | \
