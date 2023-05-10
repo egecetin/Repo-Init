@@ -25,10 +25,10 @@ then
 fi
 
 ./codacy-clang-tidy-$CODACY_CLANG_TIDY_VERSION | \
-curl -XPOST -L -H "project-token: $PROJECT_TOKEN" \
+    curl -XPOST -L -H "project-token: $PROJECT_TOKEN" \
     -H "Content-type: application/json" -d @- \
     "$CODACY_URL/2.0/commit/$COMMIT/issuesRemoteResults"
 
 curl -XPOST -L -H "project-token: $PROJECT_TOKEN" \
-	-H "Content-type: application/json" \
-	"$CODACY_URL/2.0/commit/$COMMIT/resultsFinal"
+    -H "Content-type: application/json" \
+    "$CODACY_URL/2.0/commit/$COMMIT/resultsFinal"
