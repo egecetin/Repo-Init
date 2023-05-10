@@ -40,6 +40,9 @@ class HTTP {
 	/// Full path of server
 	std::string hostAddr;
 
+	void setCommonFields(std::string fullURL, std::string &receivedData, CURLoption method);
+	CURLcode performRequest(HttpStatus::Code &statusCode);
+
 	static size_t writeDataCallback(void *contents, size_t size, size_t nmemb, void *userp);
 
   public:
