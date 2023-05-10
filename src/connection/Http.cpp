@@ -3,6 +3,27 @@
 #include <cstring>
 #include <stdexcept>
 
+void HTTP::setCommonFields(const std::string &fullURL, std::string &receivedData, CURLoption method)
+{
+	curl_easy_setopt(curl, CURLOPT_URL, fullURL.c_str());
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&receivedData); // Register user-supplied memory
+	curl_easy_setopt(curl, method, 1L);
+}
+
+CURLcode HTTP::performRequest(HttpStatus::Code &statusCode)
+{
+	// Perform request
+	long status = static_cast<long>(HttpStatus::Code::xxx_max);
+	const CURLcode retval = curl_easy_perform(curl);
+	if (retval == CURLE_OK)
+	{
+		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+	}
+	statusCode = static_cast<HttpStatus::Code>(status);
+
+	return retval;
+}
+
 size_t HTTP::writeDataCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
 	const size_t recvSize = size * nmemb;
@@ -33,83 +54,37 @@ HTTP::HTTP(std::string addr, int timeoutInMs) : curl(curl_easy_init()), hostAddr
 CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedData, HttpStatus::Code &statusCode)
 {
 	// Prepare request specific options
-	curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
-	curl_easy_setopt(curl, CURLOPT_URL, (hostAddr + index).c_str());
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&receivedData); // Register user-supplied memory
-
-	// Perform request
-	long status = static_cast<long>(HttpStatus::Code::xxx_max);
-	const CURLcode retval = curl_easy_perform(curl);
-	if (retval == CURLE_OK)
-	{
-		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
-	}
-	statusCode = static_cast<HttpStatus::Code>(status);
-
-	return retval;
+	setCommonFields(hostAddr + index, receivedData, CURLOPT_HTTPGET);
+	return performRequest(statusCode);
 }
 
 CURLcode HTTP::sendHEADRequest(const std::string &index, std::string &receivedData, HttpStatus::Code &statusCode)
 {
 	// Prepare request specific options
-	curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
-	curl_easy_setopt(curl, CURLOPT_URL, (hostAddr + index).c_str());
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&receivedData); // Register user-supplied memory
-
-	// Perform request
-	long status = static_cast<long>(HttpStatus::Code::xxx_max);
-	const CURLcode retval = curl_easy_perform(curl);
-	if (retval == CURLE_OK)
-	{
-		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
-	}
-	statusCode = static_cast<HttpStatus::Code>(status);
-
-	return retval;
+	setCommonFields(hostAddr + index, receivedData, CURLOPT_NOBODY);
+	return performRequest(statusCode);
 }
 
 CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payload, std::string &receivedData,
 							   HttpStatus::Code &statusCode)
 {
 	// Prepare request specific options
-	curl_easy_setopt(curl, CURLOPT_POST, 1L);
-	curl_easy_setopt(curl, CURLOPT_URL, (hostAddr + index).c_str());
 	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload.c_str());
 	curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE_LARGE, payload.size());
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&receivedData);
+	setCommonFields(hostAddr + index, receivedData, CURLOPT_POST);
 
-	// Perform request
-	long status = static_cast<long>(HttpStatus::Code::xxx_max);
-	const CURLcode retval = curl_easy_perform(curl);
-	if (retval == CURLE_OK)
-	{
-		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
-	}
-	statusCode = static_cast<HttpStatus::Code>(status);
-
-	return retval;
+	return performRequest(statusCode);
 }
 
 CURLcode HTTP::sendPUTRequest(const std::string &index, const std::string &payload, std::string &receivedData,
 							  HttpStatus::Code &statusCode)
 {
 	// Prepare request specific options
-	curl_easy_setopt(curl, CURLOPT_URL, (hostAddr + index).c_str());
 	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload.c_str());
 	curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE_LARGE, payload.size());
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&receivedData);
-	curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
+	setCommonFields(hostAddr + index, receivedData, CURLOPT_UPLOAD);
 
-	// Perform request
-	long status = static_cast<long>(HttpStatus::Code::xxx_max);
-	const CURLcode retval = curl_easy_perform(curl);
-	if (retval == CURLE_OK)
-	{
-		curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
-	}
-	statusCode = static_cast<HttpStatus::Code>(status);
-
-	return retval;
+	return performRequest(statusCode);
 }
 
 HTTPStats HTTP::getStats()

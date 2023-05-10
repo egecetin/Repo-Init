@@ -44,22 +44,14 @@ bool ZeroMQServer::initialise(const std::string &hostAddr, const std::shared_ptr
 
 void ZeroMQServer::update()
 {
-	std::vector<zmq::const_buffer> replyMsgs;
 	auto recvMsgs = connectionPtr->recvMessages();
 
 	if (!recvMsgs.empty())
 	{
+		std::vector<zmq::const_buffer> replyMsgs;
+
 		ZeroMQServerStats serverStats;
 		serverStats.processingTimeStart = std::chrono::high_resolution_clock::now();
-		try
-		{
-			// NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.gets)
-			spdlog::info("ZeroMQ control message received from {}", recvMsgs[0].gets("Peer-Address"));
-		}
-		catch (const std::exception &e)
-		{
-		}
-
 		serverStats.isSuccessful = messageCallback() && messageCallback()(recvMsgs, replyMsgs);
 
 		size_t nSentMsg = connectionPtr->sendMessages(replyMsgs);

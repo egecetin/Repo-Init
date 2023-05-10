@@ -64,14 +64,14 @@ namespace spdlog
 			basicInformation += std::string(R"("cpu_corecount":")") + std::to_string(core_count) + "\",";
 			rewind(cpu_info);
 
-			while (fscanf(cpu_info, "model name\t: %8191[^\n]", hostBuffer) == 0)
+			while (fscanf(cpu_info, "model name\t: %512[^\n]", hostBuffer) == 0)
 			{
 				(void)!fscanf(cpu_info, "%*[^m]");
 			}
 			basicInformation += std::string(R"("cpu_model":")") + hostBuffer + "\",";
 			rewind(cpu_info);
 
-			while (fscanf(cpu_info, "vendor_id\t: %8191s", hostBuffer) == 0)
+			while (fscanf(cpu_info, "vendor_id\t: %512s", hostBuffer) == 0)
 			{
 				(void)!fscanf(cpu_info, "%*[^v]");
 			}

@@ -35,6 +35,8 @@ class RawSocket {
 	/// Internal structure for statistics
 	RawSocketStats stats{};
 
+	void init(int domain, int type, int protocol, sockaddr_ll &addr);
+
   public:
 	/**
 	 * @brief Construct a new RawSocket class

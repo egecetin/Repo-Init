@@ -12,6 +12,19 @@
 #include <stdexcept>
 #include <utility>
 
+void RawSocket::init(int domain, int type, int protocol, sockaddr_ll &addr)
+{
+	sockFd = socket(domain, type, protocol); // Init socket
+	if (sockFd < 0)
+	{
+		throw std::runtime_error(getErrnoString(errno));
+	}
+	if (bind(sockFd, (sockaddr *)&addr, sizeof(addr)) < 0)
+	{
+		throw std::runtime_error(std::string("Bind failed: ") + getErrnoString(errno));
+	}
+}
+
 RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFace(std::move(iface))
 {
 	// Prepare socket address
@@ -31,31 +44,15 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFac
 
 	if (isWrite)
 	{
-		sockFd = socket(PF_PACKET, SOCK_RAW, IPPROTO_RAW); // Init socket
-		if (sockFd < 0)
-		{
-			throw std::runtime_error(getErrnoString(errno));
-		}
-		if (bind(sockFd, (sockaddr *)&addr, sizeof(addr)) < 0)
-		{
-			throw std::runtime_error(std::string("Bind failed: ") + getErrnoString(errno));
-		}
+		init(PF_PACKET, SOCK_RAW, IPPROTO_RAW, addr);
 		if (setsockopt(sockFd, SOL_SOCKET, SO_BINDTODEVICE, (void *)&ifr, sizeof(ifr)) < 0)
-		{ // Set socket options
+		{
 			throw std::runtime_error(std::string("Can't set socket options: ") + getErrnoString(errno));
 		}
 	}
 	else
 	{
-		sockFd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL)); // Init socket
-		if (sockFd < 0)
-		{
-			throw std::runtime_error(getErrnoString(errno));
-		}
-		if (bind(sockFd, (sockaddr *)&addr, sizeof(addr)) < 0)
-		{
-			throw std::runtime_error(std::string("Bind failed: ") + getErrnoString(errno));
-		}
+		init(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL), addr);
 	}
 	isReady = true;
 }
