@@ -1,5 +1,6 @@
 <div align="center" width="50">
 <img src=scripts/data/branding/logo.png>
+Just a dummy change
 
 ![GitHub top language](https://img.shields.io/github/languages/top/egecetin/Repo-Init)
 ![GitHub](https://img.shields.io/github/license/egecetin/Repo-Init)
