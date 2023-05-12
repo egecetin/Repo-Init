@@ -151,14 +151,14 @@ std::vector<std::string> findFromFile(const std::string &filePath, const std::st
 
 std::vector<std::string> findFromFile(const std::string &filePath, const std::string &pattern, std::string &lastWord)
 {
-	std::regex regExp(pattern);
+	const std::regex regExp(pattern);
 	std::ifstream inFile(filePath);
 	std::vector<std::string> matchedLines;
 
 	std::string readLine;
 	while (getline(inFile, readLine))
 	{
-		if (std::regex_match(readLine.begin(), readLine.end(), regExp))
+		if (std::regex_search(readLine, regExp))
 		{
 			matchedLines.push_back(readLine);
 		}

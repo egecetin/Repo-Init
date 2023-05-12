@@ -36,4 +36,22 @@ TEST(Utils_Tests, ConfigReaderTests)
 	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_EMPTY_PATH, "dummyoption"));
 }
 
-TEST(Utils_Tests, OtherTests) { ASSERT_EQ(getErrnoString(EACCES), "Permission denied"); }
+TEST(Utils_Tests, OtherTests)
+{
+	ASSERT_EQ(getErrnoString(EACCES), "Permission denied");
+
+	auto readLines = findFromFile(TEST_DATA_READ_PATH, "^(cpu family)");
+	ASSERT_EQ(readLines.size(), 2);
+	ASSERT_EQ(readLines[0], "cpu family      : 6");
+	ASSERT_EQ(readLines[1], "cpu family      : 6");
+
+	std::string word;
+	readLines = findFromFile(TEST_DATA_READ_PATH, "^processor", word);
+	ASSERT_EQ(readLines.size(), 2);
+	ASSERT_EQ(word, "6");
+	ASSERT_EQ(readLines[0], "processor       : 6");
+	ASSERT_EQ(readLines[1], "processor       : 7");
+
+	readLines = findFromFile(TEST_DATA_READ_PATH, "^dummy", word);
+	ASSERT_TRUE(readLines.empty());
+}
