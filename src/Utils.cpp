@@ -4,9 +4,10 @@
 #include <array>
 #include <csignal>
 #include <execinfo.h>
+#include <fstream>
 
 #include <rapidjson/document.h>
-#include <rapidjson/filereadstream.h>
+#include <rapidjson/istreamwrapper.h>
 #include <rapidjson/writer.h>
 #include <spdlog/spdlog.h>
 
@@ -53,19 +54,10 @@ template <typename T> std::string stringify(const T &o)
 
 bool tryOpenAndParseConfig(const std::string &dir, rapidjson::Document &doc)
 {
-	// NOLINTBEGIN
-	FILE *fptr = fopen(dir.c_str(), "r");
-	if (fptr == nullptr)
-	{
-		spdlog::critical("Can't open config file");
-		return false;
-	}
+	std::ifstream fStream(dir);
+	rapidjson::IStreamWrapper fStreamWrapper(fStream);
 
-	char buffer[65536];
-	rapidjson::FileReadStream iFile(fptr, buffer, sizeof(buffer));
-
-	doc.ParseStream(iFile);
-	fclose(fptr);
+	doc.ParseStream(fStreamWrapper);
 
 	// Check is there any data
 	if (doc.IsNull())
@@ -75,7 +67,6 @@ bool tryOpenAndParseConfig(const std::string &dir, rapidjson::Document &doc)
 	}
 
 	return true;
-	// NOLINTEND
 }
 
 bool readConfig(const std::string &dir)
