@@ -54,9 +54,9 @@ namespace spdlog
 
 			findFromFile(cpuInfoPath, "^siblings", word);
 			basicInformation += std::string(R"("cpu_threadcount":")") + word + "\",";
-			findFromFile(cpuInfoPath, "^cpu cores", word);
+			findFromFile(cpuInfoPath, "^(cpu cores)", word);
 			basicInformation += std::string(R"("cpu_corecount":")") + word + "\",";
-			findFromFile(cpuInfoPath, "^model name", word);
+			findFromFile(cpuInfoPath, "^(model name)", word);
 			basicInformation += std::string(R"("cpu_model":")") + word + "\",";
 			findFromFile(cpuInfoPath, "^vendor_id", word);
 			basicInformation += std::string(R"("cpu_vendorid":")") + word + "\",";

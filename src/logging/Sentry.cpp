@@ -67,9 +67,9 @@ namespace spdlog
 
 			findFromFile(cpuInfoPath, "^siblings", word);
 			sentry_value_set_by_key(hostContext, "Thread count", sentry_value_new_string(word.c_str()));
-			findFromFile(cpuInfoPath, "^cpu cores", word);
+			findFromFile(cpuInfoPath, "^(cpu cores)", word);
 			sentry_value_set_by_key(hostContext, "Core count", sentry_value_new_string(word.c_str()));
-			findFromFile(cpuInfoPath, "^model name", word);
+			findFromFile(cpuInfoPath, "^(model name)", word);
 			sentry_value_set_by_key(hostContext, "Model", sentry_value_new_string(word.c_str()));
 			findFromFile(cpuInfoPath, "^vendor_id", word);
 			sentry_value_set_by_key(hostContext, "Vendor ID", sentry_value_new_string(word.c_str()));
