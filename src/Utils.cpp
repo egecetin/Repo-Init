@@ -51,7 +51,7 @@ template <typename T> std::string stringify(const T &o)
 	return sb.GetString();
 }
 
-bool readConfig(const std::string &dir)
+bool tryOpenAndParseConfig(const std::string &dir, rapidjson::Document &doc)
 {
 	// NOLINTBEGIN
 	FILE *fptr = fopen(dir.c_str(), "r");
@@ -64,7 +64,6 @@ bool readConfig(const std::string &dir)
 	char buffer[65536];
 	rapidjson::FileReadStream iFile(fptr, buffer, sizeof(buffer));
 
-	rapidjson::Document doc;
 	doc.ParseStream(iFile);
 	fclose(fptr);
 
@@ -72,6 +71,18 @@ bool readConfig(const std::string &dir)
 	if (doc.IsNull())
 	{
 		spdlog::critical("Read config is empty");
+		return false;
+	}
+
+	return true;
+	// NOLINTEND
+}
+
+bool readConfig(const std::string &dir)
+{
+	rapidjson::Document doc;
+	if (!tryOpenAndParseConfig(dir, doc))
+	{
 		return false;
 	}
 
@@ -111,30 +122,13 @@ bool readConfig(const std::string &dir)
 	doc.RemoveAllMembers();
 
 	return true;
-	// NOLINTEND
 }
 
 std::string readSingleConfig(const std::string &dir, std::string value)
 {
-	// NOLINTBEGIN
-	FILE *fptr = fopen(dir.c_str(), "r");
-	if (fptr == nullptr)
-	{
-		spdlog::critical("Can't open config file");
-		return "";
-	}
-
-	char buffer[65536];
-	rapidjson::FileReadStream iFile(fptr, buffer, sizeof(buffer));
-
 	rapidjson::Document doc;
-	doc.ParseStream(iFile);
-	fclose(fptr);
-
-	// Check is there any data
-	if (doc.IsNull())
+	if (!tryOpenAndParseConfig(dir, doc))
 	{
-		spdlog::critical("Read config is empty");
 		return "";
 	}
 
@@ -149,7 +143,6 @@ std::string readSingleConfig(const std::string &dir, std::string value)
 	}
 	spdlog::error("Can't find requested field at config {}", value);
 	return "";
-	// NOLINTEND
 }
 
 std::string getErrnoString(int errVal)

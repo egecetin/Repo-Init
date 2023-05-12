@@ -41,6 +41,8 @@ class HTTP {
 	std::string hostAddr;
 
 	void setCommonFields(const std::string &fullURL, std::string &receivedData, CURLoption method);
+	void setCommonFields(const std::string &fullURL, std::string &receivedData, CURLoption method,
+						 const std::string &payload);
 	CURLcode performRequest(HttpStatus::Code &statusCode);
 
 	static size_t writeDataCallback(void *contents, size_t size, size_t nmemb, void *userp);

@@ -10,6 +10,16 @@ void HTTP::setCommonFields(const std::string &fullURL, std::string &receivedData
 	curl_easy_setopt(curl, method, 1L);
 }
 
+void HTTP::setCommonFields(const std::string &fullURL, std::string &receivedData, CURLoption method,
+						   const std::string &payload)
+{
+	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload.c_str());
+	curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE_LARGE, payload.size());
+	curl_easy_setopt(curl, CURLOPT_URL, fullURL.c_str());
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&receivedData); // Register user-supplied memory
+	curl_easy_setopt(curl, method, 1L);
+}
+
 CURLcode HTTP::performRequest(HttpStatus::Code &statusCode)
 {
 	// Perform request
@@ -69,10 +79,7 @@ CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payl
 							   HttpStatus::Code &statusCode)
 {
 	// Prepare request specific options
-	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload.c_str());
-	curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE_LARGE, payload.size());
-	setCommonFields(hostAddr + index, receivedData, CURLOPT_POST);
-
+	setCommonFields(hostAddr + index, receivedData, CURLOPT_POST, payload);
 	return performRequest(statusCode);
 }
 
@@ -80,10 +87,7 @@ CURLcode HTTP::sendPUTRequest(const std::string &index, const std::string &paylo
 							  HttpStatus::Code &statusCode)
 {
 	// Prepare request specific options
-	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload.c_str());
-	curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE_LARGE, payload.size());
-	setCommonFields(hostAddr + index, receivedData, CURLOPT_UPLOAD);
-
+	setCommonFields(hostAddr + index, receivedData, CURLOPT_UPLOAD, payload);
 	return performRequest(statusCode);
 }
 
