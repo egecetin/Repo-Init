@@ -86,7 +86,7 @@ bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, st
 
 	std::string replyBody;
 	int reply = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;
-	switch (*((uint64_t *)recvMsgs[0].data()))
+	switch (*(static_cast<const uint64_t *>(recvMsgs[0].data())))
 	{
 	case LOG_LEVEL_ID: {
 		if (recvMsgs.size() != 2)
@@ -96,7 +96,7 @@ bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, st
 		}
 
 		spdlog::warn("Log level change request received");
-		const std::string receivedMsg = std::string((char *)recvMsgs[1].data(), recvMsgs[1].size());
+		const std::string receivedMsg = std::string(static_cast<const char *>(recvMsgs[1].data()), recvMsgs[1].size());
 
 		if (receivedMsg == "v")
 		{
