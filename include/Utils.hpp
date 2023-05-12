@@ -116,6 +116,23 @@ std::string readSingleConfig(const std::string &dir, std::string value);
 std::string getErrnoString(int errVal);
 
 /**
+ * @brief Searches line patterns from a file
+ * @param[in] filePath Path to file
+ * @param[in] pattern Regex search pattern
+ * @return std::vector<std::string> Matched lines
+ */
+std::vector<std::string> findFromFile(const std::string &filePath, const std::string &pattern);
+
+/**
+ * @brief Searches line patterns from a file
+ * @param[in] filePath Path to file
+ * @param[in] pattern Regex search pattern
+ * @param[out] lastWord Last word (space delimiter) of the first found line
+ * @return std::vector<std::string> Matched lines
+ */
+std::vector<std::string> findFromFile(const std::string &filePath, const std::string &pattern, std::string &lastWord);
+
+/**
  * @brief Function invoked by SIGALRM signal
  * @param[in] signum Signal indicator
  */

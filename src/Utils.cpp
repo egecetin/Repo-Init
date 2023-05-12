@@ -4,9 +4,11 @@
 #include <array>
 #include <csignal>
 #include <execinfo.h>
+#include <fstream>
+#include <regex>
 
 #include <rapidjson/document.h>
-#include <rapidjson/filereadstream.h>
+#include <rapidjson/istreamwrapper.h>
 #include <rapidjson/writer.h>
 #include <spdlog/spdlog.h>
 
@@ -53,19 +55,10 @@ template <typename T> std::string stringify(const T &o)
 
 bool tryOpenAndParseConfig(const std::string &dir, rapidjson::Document &doc)
 {
-	// NOLINTBEGIN
-	FILE *fptr = fopen(dir.c_str(), "r");
-	if (fptr == nullptr)
-	{
-		spdlog::critical("Can't open config file");
-		return false;
-	}
+	std::ifstream inFile(dir);
+	rapidjson::IStreamWrapper fStreamWrapper(inFile);
 
-	char buffer[65536];
-	rapidjson::FileReadStream iFile(fptr, buffer, sizeof(buffer));
-
-	doc.ParseStream(iFile);
-	fclose(fptr);
+	doc.ParseStream(fStreamWrapper);
 
 	// Check is there any data
 	if (doc.IsNull())
@@ -75,7 +68,6 @@ bool tryOpenAndParseConfig(const std::string &dir, rapidjson::Document &doc)
 	}
 
 	return true;
-	// NOLINTEND
 }
 
 bool readConfig(const std::string &dir)
@@ -149,6 +141,39 @@ std::string getErrnoString(int errVal)
 {
 	std::array<char, BUFSIZ> buffer{};
 	return strerror_r(errVal, buffer.data(), BUFSIZ);
+}
+
+std::vector<std::string> findFromFile(const std::string &filePath, const std::string &pattern)
+{
+	std::string lastWord;
+	return findFromFile(filePath, pattern, lastWord);
+}
+
+std::vector<std::string> findFromFile(const std::string &filePath, const std::string &pattern, std::string &lastWord)
+{
+	const std::regex regExp(pattern);
+	std::ifstream inFile(filePath);
+	std::vector<std::string> matchedLines;
+
+	std::string readLine;
+	while (getline(inFile, readLine))
+	{
+		if (std::regex_search(readLine, regExp))
+		{
+			matchedLines.push_back(readLine);
+		}
+	}
+
+	if (!matchedLines.empty())
+	{
+		auto pos = matchedLines.front().find_last_of(' ');
+		if (pos != std::string::npos && pos != matchedLines.front().size())
+		{
+			lastWord = matchedLines.front().substr(pos + 1);
+		}
+	}
+
+	return matchedLines;
 }
 
 // GCOVR_EXCL_START
