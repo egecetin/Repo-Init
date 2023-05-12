@@ -5,6 +5,7 @@
 #include <csignal>
 #include <execinfo.h>
 #include <fstream>
+#include <regex>
 
 #include <rapidjson/document.h>
 #include <rapidjson/istreamwrapper.h>
@@ -54,8 +55,8 @@ template <typename T> std::string stringify(const T &o)
 
 bool tryOpenAndParseConfig(const std::string &dir, rapidjson::Document &doc)
 {
-	std::ifstream fStream(dir);
-	rapidjson::IStreamWrapper fStreamWrapper(fStream);
+	std::ifstream inFile(dir);
+	rapidjson::IStreamWrapper fStreamWrapper(inFile);
 
 	doc.ParseStream(fStreamWrapper);
 
@@ -140,6 +141,39 @@ std::string getErrnoString(int errVal)
 {
 	std::array<char, BUFSIZ> buffer{};
 	return strerror_r(errVal, buffer.data(), BUFSIZ);
+}
+
+std::vector<std::string> findFromFile(const std::string &filePath, const std::string &pattern)
+{
+	std::string lastWord;
+	return findFromFile(filePath, pattern, lastWord);
+}
+
+std::vector<std::string> findFromFile(const std::string &filePath, const std::string &pattern, std::string &lastWord)
+{
+	std::regex regExp(pattern);
+	std::ifstream inFile(filePath);
+	std::vector<std::string> matchedLines;
+
+	std::string readLine;
+	while (getline(inFile, readLine))
+	{
+		if (std::regex_match(readLine.begin(), readLine.end(), regExp))
+		{
+			matchedLines.push_back(readLine);
+		}
+	}
+
+	if (!matchedLines.empty())
+	{
+		auto pos = matchedLines.front().find_last_of(' ');
+		if (pos != std::string::npos && pos != matchedLines.front().size())
+		{
+			lastWord = matchedLines.front().substr(pos + 1);
+		}
+	}
+
+	return matchedLines;
 }
 
 // GCOVR_EXCL_START
