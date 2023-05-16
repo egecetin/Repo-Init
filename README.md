@@ -5,7 +5,7 @@
 ![GitHub](https://img.shields.io/github/license/egecetin/Repo-Init)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/egecetin/Repo-Init/build_and_test.yml?label=Actions&branch=master&logo=github)](https://github.com/egecetin/Repo-Init/actions/workflows/build_and_test.yml)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/egecetin/Repo-Init/codeql-analysis.yml?label=CodeQL&branch=master&logo=github&style=flat)](https://github.com/egecetin/Repo-Init/actions/workflows/codeql-analysis.yml)
-[![Codacy Security Scan](https://github.com/egecetin/Repo-Init/actions/workflows/codacy.yml/badge.svg)](https://github.com/egecetin/Repo-Init/actions/workflows/codacy.yml)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/egecetin/Repo-Init/codacy.yml?label=Codacy&logo=github&logoColor=white&style=flat)
 [![codecov](https://codecov.io/gh/egecetin/Repo-Init/branch/master/graph/badge.svg?token=G65MG0J07F)](https://app.codecov.io/gh/egecetin/Repo-Init)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/33df0cae00b84c25b09df2561c10fe3a)](https://app.codacy.com/gh/egecetin/Repo-Init/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 </div>
