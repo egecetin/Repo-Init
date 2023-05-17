@@ -125,9 +125,8 @@ target_link_libraries(
   "${PROJECT_NAME}-static"
   stdc++fs
   spdlog
-  libzmq-static
+  cppzmq-static
   sentry
-  core
   pull)
 
 add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp ${BACKWARD_ENABLE})
