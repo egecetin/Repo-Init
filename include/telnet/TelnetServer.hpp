@@ -66,7 +66,7 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession> {
 	/// Finish the session
 	void closeClient();
 	/// Checks the connection timeout
-	bool checkTimeout();
+	bool checkTimeout() const;
 	/// Marks timeout to close session
 	void markTimeout();
 
@@ -84,7 +84,7 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession> {
 	// Erase all characters on the current line and move prompt back to beginning of line
 	void eraseLine();
 	// Echo back message
-	void echoBack(char *buffer, u_long length);
+	void echoBack(const char *buffer, u_long length);
 	//
 	static void stripNVT(std::string &buffer);
 	// Remove all escape characters from the line

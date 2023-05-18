@@ -170,7 +170,7 @@ void TelnetSession::closeClient()
 	stats.disconnectTime = std::chrono::high_resolution_clock::now();
 }
 
-bool TelnetSession::checkTimeout()
+bool TelnetSession::checkTimeout() const
 {
 	return (std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - lastSeenTime).count() >
 			TELNET_TIMEOUT);
@@ -178,7 +178,7 @@ bool TelnetSession::checkTimeout()
 
 void TelnetSession::markTimeout() { lastSeenTime = std::chrono::system_clock::time_point::min(); }
 
-void TelnetSession::echoBack(char *buffer, u_long length)
+void TelnetSession::echoBack(const char *buffer, u_long length)
 {
 	// If you are an NVT command (i.e. first it of data is 255) then ignore the echo back
 	const uint8_t firstItem = *buffer;
@@ -578,7 +578,7 @@ bool TelnetServer::acceptConnection()
 	if (m_sessions.size() >= MAX_AVAILABLE_SESSION)
 	{
 		// Create for only sending error
-		const SP_TelnetSession s = std::make_shared<TelnetSession>(ClientSocket, shared_from_this());
+		const auto s = std::make_shared<TelnetSession>(ClientSocket, shared_from_this());
 		s->initialise();
 
 		s->sendLine("Too many active connections. Please try again later. \r\nClosing...");
@@ -586,7 +586,7 @@ bool TelnetServer::acceptConnection()
 		return false;
 	}
 
-	const SP_TelnetSession s = std::make_shared<TelnetSession>(ClientSocket, shared_from_this());
+	const auto s = std::make_shared<TelnetSession>(ClientSocket, shared_from_this());
 	m_sessions.push_back(s);
 	s->initialise();
 	return true;

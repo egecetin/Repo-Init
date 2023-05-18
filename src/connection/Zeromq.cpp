@@ -4,7 +4,7 @@
 #include <spdlog/spdlog.h>
 #include <zmq_addon.hpp>
 
-void ZeroMQ::init(std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr,
+void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr,
 				  bool isBind)
 {
 	contextPtr = ctx;

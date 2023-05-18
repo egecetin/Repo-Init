@@ -12,14 +12,14 @@
 #include <stdexcept>
 #include <utility>
 
-void RawSocket::init(int domain, int type, int protocol, sockaddr_ll &addr)
+void RawSocket::init(int domain, int type, int protocol, sockaddr_ll &_addr)
 {
 	sockFd = socket(domain, type, protocol); // Init socket
 	if (sockFd < 0)
 	{
 		throw std::runtime_error(getErrnoString(errno));
 	}
-	if (bind(sockFd, (sockaddr *)&addr, sizeof(addr)) < 0)
+	if (bind(sockFd, (sockaddr *)&_addr, sizeof(_addr)) < 0)
 	{
 		throw std::runtime_error(std::string("Bind failed: ") + getErrnoString(errno));
 	}
@@ -65,7 +65,7 @@ int RawSocket::writeData(const void *data, size_t dataLen)
 	}
 
 	auto startTime = std::chrono::high_resolution_clock::now();
-	const int retval = static_cast<int>(write(sockFd, data, dataLen));
+	const auto retval = static_cast<int>(write(sockFd, data, dataLen));
 
 	// Update stats
 	stats.processingTime += static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
@@ -83,7 +83,7 @@ int RawSocket::readData(void *data, size_t dataLen)
 	socklen_t socketLen = sizeof(addr);
 
 	auto startTime = std::chrono::high_resolution_clock::now();
-	const int retval = static_cast<int>(recvfrom(sockFd, data, dataLen, 0, (sockaddr *)&addr, &socketLen));
+	const auto retval = static_cast<int>(recvfrom(sockFd, data, dataLen, 0, (sockaddr *)&addr, &socketLen));
 
 	// Update stats
 	stats.processingTime += static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
