@@ -22,32 +22,6 @@ jobs:
       - name: Clang-tidy
         run: run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/*.cpp src/**/*.cpp
 
-  sonarcloud:
-    runs-on: ubuntu-latest
-    container: egecetinn/ubuntu2204
-    env:
-      BUILD_WRAPPER_OUT_DIR: build/sonar
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - name: Test Packages
-        run: apt-get install unzip -y
-      - name: Prepare
-        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-      - name: Install sonar-scanner and build-wrapper
-        uses: SonarSource/sonarcloud-github-c-cpp@v1
-      - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B build
-      - name: Run build-wrapper
-        run: build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} cmake --build build/ --config Release
-      - name: Run sonar-scanner
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: sonar-scanner --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
-
   coverage:
     runs-on: ubuntu-latest
     container: egecetinn/ubuntu2204
