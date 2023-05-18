@@ -19,7 +19,7 @@ constexpr uintmax_t alarmInterval = 1;
 /* ################################################################################### */
 
 /// Main flag to control loops. Can be modified by SIGINT
-extern bool loopFlag; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
+extern volatile bool loopFlag; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */

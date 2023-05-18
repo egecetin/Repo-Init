@@ -12,7 +12,7 @@
 #include <rapidjson/writer.h>
 #include <spdlog/spdlog.h>
 
-bool loopFlag; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
+volatile bool loopFlag; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */
