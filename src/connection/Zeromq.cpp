@@ -39,6 +39,7 @@ bool ZeroMQ::start()
 	{
 		return false;
 	}
+
 	if (isBinded)
 	{
 		socketPtr->bind(socketAddr);
@@ -58,6 +59,7 @@ void ZeroMQ::stop()
 	{
 		return;
 	}
+
 	if (isBinded)
 	{
 		socketPtr->unbind(socketAddr);
@@ -94,6 +96,7 @@ size_t ZeroMQ::sendMessages(const std::vector<zmq::const_buffer> &msg)
 	{
 		res = zmq::send_multipart(*socketPtr, msg);
 	}
+
 	if (res.has_value())
 	{
 		return res.value();
@@ -101,4 +104,14 @@ size_t ZeroMQ::sendMessages(const std::vector<zmq::const_buffer> &msg)
 	return 0;
 }
 
-ZeroMQ::~ZeroMQ() { stop(); }
+ZeroMQ::~ZeroMQ()
+{
+	try
+	{
+		stop();
+	}
+	catch (const std::exception &e)
+	{
+		spdlog::error("Can't stop ZeroMQ connection: {}", e.what());
+	}
+}

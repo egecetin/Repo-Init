@@ -12,8 +12,7 @@
 #include <rapidjson/writer.h>
 #include <spdlog/spdlog.h>
 
-volatile uintmax_t alarmCtr; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
-volatile bool loopFlag;		 // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
+bool loopFlag; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */
@@ -179,7 +178,6 @@ std::vector<std::string> findFromFile(const std::string &filePath, const std::st
 // GCOVR_EXCL_START
 void alarmFunc(int /*unused*/)
 {
-	++alarmCtr;
 	if (loopFlag)
 	{
 		alarm(alarmInterval);
