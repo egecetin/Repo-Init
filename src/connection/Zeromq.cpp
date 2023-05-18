@@ -104,4 +104,4 @@ size_t ZeroMQ::sendMessages(const std::vector<zmq::const_buffer> &msg)
 	return 0;
 }
 
-ZeroMQ::~ZeroMQ() noexcept { stop(); }
+ZeroMQ::~ZeroMQ() { stop(); }
