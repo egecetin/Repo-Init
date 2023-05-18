@@ -36,7 +36,8 @@ class ZeroMQ {
 	 * @param[in] addr Full socket address
 	 * @param[in] isBind True if should be binded, false if should be connected
 	 */
-	ZeroMQ(std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr, bool isBind);
+	ZeroMQ(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr,
+		   bool isBind);
 
 	/// @brief Copy constructor
 	ZeroMQ(const ZeroMQ & /*unused*/) = delete;
