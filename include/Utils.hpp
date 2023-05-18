@@ -18,8 +18,6 @@ constexpr uintmax_t alarmInterval = 1;
 /* ################################ END MODIFICATIONS ################################ */
 /* ################################################################################### */
 
-/// Alarm counter to track. Incremented by SIGALRM
-extern volatile uintmax_t alarmCtr; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 /// Main flag to control loops. Can be modified by SIGINT
 extern volatile bool loopFlag; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 /* ################################################################################### */

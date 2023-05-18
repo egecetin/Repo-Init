@@ -34,7 +34,7 @@ class MainLogger {
 	 * @brief Returns pointer to mainlogger instance
 	 * @return std::shared_ptr<spdlog::logger> Main logger
 	 */
-	std::shared_ptr<spdlog::logger> getLogger() { return mainLogger; }
+	std::shared_ptr<spdlog::logger> getLogger() const { return mainLogger; }
 
 	/**
 	 * @brief Deconstructs the main logger

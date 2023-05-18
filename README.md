@@ -8,6 +8,7 @@
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/egecetin/Repo-Init/codacy.yml?label=Codacy&logo=github&logoColor=white&style=flat)
 [![codecov](https://codecov.io/gh/egecetin/Repo-Init/branch/master/graph/badge.svg?token=G65MG0J07F)](https://app.codecov.io/gh/egecetin/Repo-Init)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/33df0cae00b84c25b09df2561c10fe3a)](https://app.codacy.com/gh/egecetin/Repo-Init/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=egecetin_Repo-Init&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=egecetin_Repo-Init)
 </div>
 
 ## Project

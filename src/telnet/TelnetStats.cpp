@@ -105,7 +105,7 @@ TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint1
 	minSessionDuration->Set(std::numeric_limits<double>::max());
 }
 
-void TelnetStats::consumeStats(TelnetSessionStats &stat, bool sessionClosed)
+void TelnetStats::consumeStats(const TelnetSessionStats &stat, bool sessionClosed)
 {
 	succeededCommand->Increment(static_cast<double>(stat.successCmdCtr));
 	failedCommand->Increment(static_cast<double>(stat.failCmdCtr));
@@ -117,7 +117,7 @@ void TelnetStats::consumeStats(TelnetSessionStats &stat, bool sessionClosed)
 	if (sessionClosed)
 	{
 		// Session durations
-		const double sessionTime = static_cast<double>(
+		const auto sessionTime = static_cast<double>(
 			std::chrono::duration_cast<std::chrono::seconds>(stat.disconnectTime - stat.connectTime).count());
 		sessionDuration->Observe(sessionTime);
 		if (sessionTime < minSessionDuration->Value())
@@ -131,7 +131,7 @@ void TelnetStats::consumeStats(TelnetSessionStats &stat, bool sessionClosed)
 	}
 }
 
-void TelnetStats::consumeStats(TelnetServerStats &stat)
+void TelnetStats::consumeStats(const TelnetServerStats &stat)
 {
 	// Connection stats
 	activeConnection->Set(static_cast<double>(stat.activeConnectionCtr));
@@ -141,7 +141,7 @@ void TelnetStats::consumeStats(TelnetServerStats &stat)
 	// Performance stats if there is an active connection
 	if (stat.activeConnectionCtr > 0)
 	{
-		const double processTime = static_cast<double>((stat.processingTimeEnd - stat.processingTimeStart).count());
+		const auto processTime = static_cast<double>((stat.processingTimeEnd - stat.processingTimeStart).count());
 		processingTime->Observe(processTime);
 		if (processTime < minProcessingTime->Value())
 		{

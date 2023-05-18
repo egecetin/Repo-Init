@@ -35,7 +35,7 @@ class RawSocket {
 	/// Internal structure for statistics
 	RawSocketStats stats{};
 
-	void init(int domain, int type, int protocol, sockaddr_ll &addr);
+	void init(int domain, int type, int protocol, sockaddr_ll &_addr);
 
   public:
 	/**
@@ -61,7 +61,7 @@ class RawSocket {
 	 * @brief Returns the binded ethernet interface
 	 * @return std::string Name of the interface
 	 */
-	std::string getInterfaceName() { return iFace; }
+	std::string getInterfaceName() const { return iFace; }
 
 	/**
 	 * @brief Writes data to interface

@@ -23,7 +23,7 @@ void HTTP::setCommonFields(const std::string &fullURL, std::string &receivedData
 CURLcode HTTP::performRequest(HttpStatus::Code &statusCode)
 {
 	// Perform request
-	long status = static_cast<long>(HttpStatus::Code::xxx_max);
+	auto status = static_cast<long>(HttpStatus::Code::xxx_max);
 	const CURLcode retval = curl_easy_perform(curl);
 	if (retval == CURLE_OK)
 	{
@@ -59,6 +59,7 @@ HTTP::HTTP(std::string addr, int timeoutInMs) : curl(curl_easy_init()), hostAddr
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeDataCallback);
 
 	curl_easy_setopt(curl, CURLOPT_SSLENGINE_DEFAULT, 1L);
+	curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2); // At least TLSv1.2
 }
 
 CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedData, HttpStatus::Code &statusCode)

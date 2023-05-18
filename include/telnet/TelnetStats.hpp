@@ -90,11 +90,11 @@ class TelnetStats {
 	 * @param[in] stat Statistics values from session
 	 * @param[in] sessionClosed True if the provided session is closed
 	 */
-	void consumeStats(TelnetSessionStats &stat, bool sessionClosed);
+	void consumeStats(const TelnetSessionStats &stat, bool sessionClosed);
 
 	/**
 	 * @brief Updates statistics with server values
 	 * @param[in] stat Statistics values from server
 	 */
-	void consumeStats(TelnetServerStats &stat);
+	void consumeStats(const TelnetServerStats &stat);
 };

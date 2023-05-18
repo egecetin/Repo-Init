@@ -80,11 +80,10 @@ namespace spdlog
 			const sentry_value_t networkContext = sentry_value_new_object();
 
 			ifaddrs *ifaddr = nullptr;
-			ifaddrs *ifa = nullptr;
 			if (getifaddrs(&ifaddr) != -1)
 			{
 				// Iterate interfaces
-				for (ifa = ifaddr; ifa != nullptr; ifa = ifa->ifa_next)
+				for (ifaddrs *ifa = ifaddr; ifa != nullptr; ifa = ifa->ifa_next)
 				{
 					if (ifa->ifa_addr == nullptr)
 					{
@@ -117,7 +116,7 @@ namespace spdlog
 						if (((ifa->ifa_flags & IFF_PROMISC) != 0) || ((ifa->ifa_flags & IFF_UP) != 0))
 						{
 							std::array<char, 18> host{};
-							auto *s = reinterpret_cast<sockaddr_ll *>(ifa->ifa_addr);
+							const auto *s = reinterpret_cast<sockaddr_ll *>(ifa->ifa_addr);
 							if (snprintf(host.data(), 18, "%02x:%02x:%02x:%02x:%02x:%02x", s->sll_addr[0],
 										 s->sll_addr[1], s->sll_addr[2], s->sll_addr[3], s->sll_addr[4],
 										 s->sll_addr[5]) > 0)

@@ -4,7 +4,7 @@
 #include <spdlog/spdlog.h>
 #include <zmq_addon.hpp>
 
-void ZeroMQ::init(std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr,
+void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr,
 				  bool isBind)
 {
 	contextPtr = ctx;
@@ -28,7 +28,8 @@ ZeroMQ::ZeroMQ(const zmq::socket_type &type, const std::string &addr, bool isBin
 	init(contextPtr, type, addr, isBind);
 }
 
-ZeroMQ::ZeroMQ(std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr, bool isBind)
+ZeroMQ::ZeroMQ(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr,
+			   bool isBind)
 {
 	init(ctx, type, addr, isBind);
 }
@@ -39,6 +40,7 @@ bool ZeroMQ::start()
 	{
 		return false;
 	}
+
 	if (isBinded)
 	{
 		socketPtr->bind(socketAddr);
@@ -58,6 +60,7 @@ void ZeroMQ::stop()
 	{
 		return;
 	}
+
 	if (isBinded)
 	{
 		socketPtr->unbind(socketAddr);
@@ -94,6 +97,7 @@ size_t ZeroMQ::sendMessages(const std::vector<zmq::const_buffer> &msg)
 	{
 		res = zmq::send_multipart(*socketPtr, msg);
 	}
+
 	if (res.has_value())
 	{
 		return res.value();

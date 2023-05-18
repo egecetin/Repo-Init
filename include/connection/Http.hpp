@@ -83,7 +83,7 @@ class HTTP {
 	 * @brief Get the host address of the object
 	 * @return std::string Host address
 	 */
-	std::string getHostAddress() { return hostAddr; }
+	std::string getHostAddress() const { return hostAddr; }
 
 	/**
 	 * @brief Sends a GET request
