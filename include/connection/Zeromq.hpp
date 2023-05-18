@@ -79,5 +79,5 @@ class ZeroMQ {
 	 */
 	const std::unique_ptr<zmq::socket_t> &getSocket() { return socketPtr; }
 
-	~ZeroMQ();
+	~ZeroMQ() noexcept;
 };
