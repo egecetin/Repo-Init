@@ -33,7 +33,7 @@ jobs:
         with:
           submodules: recursive
       - name: Test Packages
-        run: sudo apt-get install unzip -y
+        run: apt-get install unzip -y
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Install sonar-scanner and build-wrapper
