@@ -87,11 +87,6 @@ int main(int argc, char **argv)
 		spdlog::critical("Can't set signal handler (SIGTERM): {}", getErrnoString(errno));
 		return EXIT_FAILURE;
 	}
-	if (signal(SIGKILL, interruptFunc) == SIG_ERR)
-	{
-		spdlog::critical("Can't set signal handler (SIGKILL): {}", getErrnoString(errno));
-		return EXIT_FAILURE;
-	}
 
 	// Move SIGALRM to bottom because of invoking sleep
 
