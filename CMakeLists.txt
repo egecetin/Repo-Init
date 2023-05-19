@@ -130,6 +130,7 @@ target_link_libraries(
   spdlog
   cppzmq-static
   sentry
+  sodium
   pull)
 
 add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp ${BACKWARD_ENABLE})

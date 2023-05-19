@@ -7,6 +7,7 @@
 #include <csignal>
 #include <thread>
 
+#include <sodium.h>
 #include <spdlog/spdlog.h>
 
 int main(int argc, char **argv)
@@ -73,6 +74,13 @@ int main(int argc, char **argv)
 	// Read config
 	if (!readConfig(configPath))
 	{
+		return EXIT_FAILURE;
+	}
+
+	// Init libsodium
+	if (sodium_init() < 0)
+	{
+		spdlog::critical("Can't init cryptographic library");
 		return EXIT_FAILURE;
 	}
 
