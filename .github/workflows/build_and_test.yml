@@ -83,9 +83,4 @@ jobs:
         run: cmake --build build --parallel
       - name: Run Tests
         id: test-step
-        run: ctest --test-dir build
-      - name: Upload artifact
-        if: ${{ failure() && steps.test-step.conclusion == 'failure' }}
-        uses: actions/upload-artifact@v3
-        with:
-          path: ./build/Testing/Temporary/LastTest.log
+        run: ctest --output-on-failure --test-dir build
