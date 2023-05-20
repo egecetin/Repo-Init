@@ -42,13 +42,11 @@ Periodically scanned with [Codacy](https://app.codacy.com/gh/egecetin/Repo-Init/
 - Colorize              : Color commands for message outputs
 - CompilerFlags         : Defines compiler flags for GCC and Intel Compiler for compile types
 - CompilerOptions       : Enables/Disables compiler warnings
-- CStandards            : Defines c standard
 - CppStandards          : Defines cpp standard
 - CustomFindSubversion  : Modified version of FindSubversion.cmake to ignore errors
 - Doxy                  : Find doxygen package and prepare doc environment
 - GitVersion            : Get SHA1 hash of current commit
 - GraphViz              : Find graphviz and dot executable to create dependency graph
-- PostBuild             : Post build action to prepare makeself package after CPack while calculating checksums for all binaries
 - SvnVersion            : Get revision number of current commit
 
 ## Scripts
