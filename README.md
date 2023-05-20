@@ -80,7 +80,7 @@ All scripts should be executed from top level directory
  - [TelnetServLib](https://github.com/lukemalcolm/TelnetServLib.git) (Modified and embedded to source directory)
  - [ZeroMQ](https://github.com/zeromq/libzmq.git)
 
-<img src="doc/XXX-tree.svg">
+Full dependency graph can be seen [here](doc/XXX-tree.svg)
 
 ## Targets
 
