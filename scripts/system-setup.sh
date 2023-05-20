@@ -203,26 +203,6 @@ echo "MACs hmac-sha1,umac-64@openssh.com" >> /etc/ssh/sshd_config
 echo -e "${ANSI_FG_YELLOW}Restarting sshd service ...${ANSI_RESET_ALL}"
 systemctl restart sshd.service
 
-echo -e "${ANSI_FG_YELLOW}Branding ...${ANSI_RESET_ALL}"
-
-mv -f /usr/share/cockpit/branding/rhel/branding.css /usr/share/cockpit/branding/rhel/branding.css.old
-mv -f /usr/share/cockpit/branding/rhel/logo.png /usr/share/cockpit/branding/rhel/logo.png.old
-mv -f /usr/share/cockpit/branding/rhel/apple-touch-icon.png /usr/share/cockpit/branding/rhel/apple-touch-icon.png.old
-mv -f /usr/share/cockpit/branding/rhel/favicon.ico /usr/share/cockpit/branding/rhel/favicon.ico.old
-
-\cp scripts/data/branding/branding.css /usr/share/cockpit/branding/rhel/branding.css
-\cp scripts/data/branding/logo.png /usr/share/cockpit/branding/rhel/logo.png
-\cp scripts/data/branding/apple-touch-icon.png /usr/share/cockpit/branding/rhel/apple-touch-icon.png
-\cp scripts/data/branding/favicon.ico /usr/share/cockpit/branding/rhel/favicon.ico
-
-semanage fcontext -a -t usr_t /usr/share/cockpit/branding/rhel/logo.png || true
-semanage fcontext -a -t usr_t /usr/share/cockpit/branding/rhel/apple-touch-icon.png || true
-semanage fcontext -a -t usr_t /usr/share/cockpit/branding/rhel/favicon.ico || true
-restorecon -v /usr/share/cockpit/branding/rhel/logo.png || true
-restorecon -v /usr/share/cockpit/branding/rhel/apple-touch-icon.png || true
-restorecon -v /usr/share/cockpit/branding/rhel/favicon.ico || true
-restorecon -v /usr/share/cockpit/branding/centos/branding.css || true
-
 echo -e "${ANSI_FG_YELLOW}Configuring firewall ...${ANSI_RESET_ALL}"
 firewall-cmd --reload
 firewall-cmd --permanent --zone=public --add-service=ssh
