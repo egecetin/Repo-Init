@@ -21,7 +21,7 @@ It provides the following features
       - Quantile based performance metrics to determine bottlenecks
   - User interactivity
     - Embedded Telnet Server
-    - [ZeroMQ](https://zeromq.org/) socket
+    - [ZeroMQ](https://zeromq.org/) socket with CURVE encryption and a secret key is protected with a [Libsodium](https://github.com/jedisct1/libsodium) sealed box.
 
 Periodically scanned with [Codacy](https://app.codacy.com/gh/egecetin/Repo-Init/dashboard) and [Sonarcloud](https://sonarcloud.io/project/overview?id=egecetin_Repo-Init)
 
@@ -79,6 +79,8 @@ All scripts should be executed from top level directory
  - [Sentry](https://github.com/getsentry/sentry-native.git)
  - [TelnetServLib](https://github.com/lukemalcolm/TelnetServLib.git) (Modified and embedded to source directory)
  - [ZeroMQ](https://github.com/zeromq/libzmq.git)
+
+<img src="doc/XXX-tree.svg">
 
 ## Targets
 
