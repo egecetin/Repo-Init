@@ -142,6 +142,12 @@ std::string getErrnoString(int errVal)
 	return strerror_r(errVal, buffer.data(), BUFSIZ);
 }
 
+std::string getEnvVar(const std::string &key)
+{
+	char *val = getenv(key.c_str()); // NOLINT(concurrency-mt-unsafe)
+	return val == nullptr ? std::string("") : std::string(val);
+}
+
 std::vector<std::string> findFromFile(const std::string &filePath, const std::string &pattern)
 {
 	std::string lastWord;
