@@ -66,10 +66,12 @@ All scripts should be executed from top level directory
 ## Dependencies
 
  - [Backward-cpp](https://github.com/bombela/backward-cpp)
- - [Date](https://github.com/HowardHinnant/date.git)
  - [CppZMQ](https://github.com/zeromq/cppzmq.git)
+ - [cURL](https://github.com/curl/curl)
+ - [Date](https://github.com/HowardHinnant/date.git)
  - [Http-status-codes](https://github.com/j-ulrich/http-status-codes-cpp.git)
  - [GoogleTest](https://github.com/google/googletest.git) (For tests only)
+ - [Libsodium](https://github.com/jedisct1/libsodium)
  - [MemPlumber](https://github.com/seladb/MemPlumber.git) (For tests only)
  - [Prometheus-cpp](https://github.com/jupp0r/prometheus-cpp.git)
  - [RapidJSON](https://github.com/Tencent/rapidjson.git)
