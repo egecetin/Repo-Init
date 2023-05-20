@@ -201,13 +201,13 @@ elseif(WIN32)
             )
         endif()
     else()
-        message(FATAL_ERROR "this platform is not supported by FindSodium.cmake")
+        message(FATAL_ERROR "this platform is not supported by Findsodium.cmake")
     endif()
 
 # #######################################################################
 # unsupported
 else()
-    message(FATAL_ERROR "this platform is not supported by FindSodium.cmake")
+    message(FATAL_ERROR "this platform is not supported by Findsodium.cmake")
 endif()
 
 # #######################################################################
@@ -228,7 +228,7 @@ endif()
 # communicate results
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(
-    Sodium # The name must be either uppercase or match the filename case.
+    sodium # The name must be either uppercase or match the filename case.
     REQUIRED_VARS
     sodium_LIBRARY_RELEASE
     sodium_LIBRARY_DEBUG
@@ -237,7 +237,7 @@ find_package_handle_standard_args(
     sodium_VERSION
 )
 
-if(Sodium_FOUND)
+if(sodium_FOUND)
     set(sodium_LIBRARIES
         optimized ${sodium_LIBRARY_RELEASE} debug ${sodium_LIBRARY_DEBUG})
 endif()

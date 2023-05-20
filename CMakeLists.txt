@@ -96,7 +96,7 @@ option(ENABLE_COMPRESSION "" OFF) # prometheus-cpp
 option(ENABLE_TESTING "" OFF) # prometheus-cpp
 set(SENTRY_BACKEND none)
 
-find_package(Sodium REQUIRED)
+find_package(sodium REQUIRED)
 
 # Subdirectories
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/backtrace EXCLUDE_FROM_ALL)

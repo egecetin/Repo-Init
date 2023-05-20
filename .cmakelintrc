@@ -1,1 +1,1 @@
-filter=-whitespace/indent,-readability/wonkycase,-convention/filename,-package/stdargs
+filter=-whitespace/indent,-readability/wonkycase
