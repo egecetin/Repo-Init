@@ -28,14 +28,14 @@ class ZeroMQServer {
 	 * @brief Initializes a new ZeroMQ server
 	 * @param[in] hostAddr Host address to connect. Can be anything supported by ZeroMQ reply socket
 	 * @param[in] reg Prometheus registry for stats
-	 * @param[in] encryptMessages Should use CURVE encryption for messaging. If it is true the sealedSecretPath
-	 * should be provided to libsodium sealed box with secret key inside, CURVE_SEALED_BOX_PASSWD environment variable
-	 * to decrypt it.
+	 * @param[in] sealedSecretPath If it is set connection will use CURVE encryption. The sealedSecretPath
+	 * should be provided to libsodium sealed box with secret key inside and CURVE_SEALED_BOX_PASSWD environment
+	 * variable to decrypt it.
 	 * @return true If initialized
 	 * @return false otherwise
 	 */
 	bool initialise(const std::string &hostAddr, const std::shared_ptr<prometheus::Registry> &reg = nullptr,
-					bool encryptMessages = false, const std::string &sealedSecretPath = "");
+					const std::string &sealedSecretPath = "");
 
 	/// Processes new messages
 	void update();

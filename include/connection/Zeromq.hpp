@@ -26,7 +26,7 @@ class ZeroMQ {
 	 * @param[in] type Type of the socket
 	 * @param[in] addr Full socket address
 	 * @param[in] isBind True if should be binded, false if should be connected
-	 * @param[in] sealedSecretPath Libsodium sealed box to use CURVE encryption
+	 * @param[in] sealedSecretPath Libsodium sealed box path to secret key for use in CURVE encryption
 	 */
 	ZeroMQ(const zmq::socket_type &type, const std::string &addr, bool isBind,
 		   const std::string &sealedSecretPath = "");
@@ -37,7 +37,7 @@ class ZeroMQ {
 	 * @param[in] type Type of the socket
 	 * @param[in] addr Full socket address
 	 * @param[in] isBind True if should be binded, false if should be connected
-	 * @param[in] sealedSecretPath Libsodium sealed box to use CURVE encryption
+	 * @param[in] sealedSecretPath Libsodium sealed box path to secret key for use in CURVE encryption
 	 */
 	ZeroMQ(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr,
 		   bool isBind, const std::string &sealedSecretPath = "");

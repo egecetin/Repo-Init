@@ -53,13 +53,19 @@ void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheus
 // GCOVR_EXCL_START
 void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer, const std::string &serverAddr)
 {
+	auto sealedBoxPath = readSingleConfig(configPath, "CURVE_SEALED_BOX_PATH");
+	if (sealedBoxPath.empty())
+	{
+		spdlog::warn("Can't find secret key. ZeroMQ control server will use PLAIN scheme.");
+	}
+
 	// Init ZeroMQ server
 	auto zeroMqServerPtr = std::make_shared<ZeroMQServer>();
 	try
 	{
 		if (!serverAddr.empty() &&
-			zeroMqServerPtr->initialise(serverAddr,
-										mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr))
+			zeroMqServerPtr->initialise(
+				serverAddr, mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr, sealedBoxPath))
 		{
 			zeroMqServerPtr->messageCallback(ZeroMQServerMessageCallback);
 			spdlog::info("ZeroMQ server created at {}", serverAddr);

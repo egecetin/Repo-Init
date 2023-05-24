@@ -13,7 +13,6 @@
 int main(int argc, char **argv)
 {
 	int telnetPort = 0;
-	std::string configPath = "config.json";
 	std::string zeromqServerAddr;
 
 	std::string prometheusAddr;
@@ -57,6 +56,10 @@ int main(int argc, char **argv)
 	if (input.cmdOptionExists("--config"))
 	{
 		configPath = input.getCmdOption("--config");
+	}
+	else
+	{
+		configPath = "config.json";
 	}
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
@@ -131,8 +134,19 @@ int main(int argc, char **argv)
 	/* ################################################################################### */
 	/* ################################ END MODIFICATIONS ################################ */
 	/* ################################################################################### */
-	std::thread zmqControlTh(zmqControlThread, std::ref(mainPrometheusServer), std::ref(zeromqServerAddr));
-	std::thread telnetControlTh(telnetControlThread, std::ref(mainPrometheusServer), telnetPort);
+	std::unique_ptr<std::thread> zmqControlTh(nullptr);
+	std::unique_ptr<std::thread> telnetControlTh(nullptr);
+
+	if (!zeromqServerAddr.empty())
+	{
+		zmqControlTh =
+			std::make_unique<std::thread>(zmqControlThread, std::ref(mainPrometheusServer), std::ref(zeromqServerAddr));
+	}
+	if (telnetPort > 0)
+	{
+		telnetControlTh =
+			std::make_unique<std::thread>(telnetControlThread, std::ref(mainPrometheusServer), telnetPort);
+	}
 	spdlog::debug("Threads started");
 
 	// SIGALRM should be registered after all sleep calls
@@ -144,14 +158,14 @@ int main(int argc, char **argv)
 	alarm(alarmInterval);
 
 	// Join threads
-	if (zmqControlTh.joinable())
+	if (zmqControlTh && zmqControlTh->joinable())
 	{
-		zmqControlTh.join();
+		zmqControlTh->join();
 		spdlog::info("ZMQ Controller joined");
 	}
-	if (telnetControlTh.joinable())
+	if (telnetControlTh && telnetControlTh->joinable())
 	{
-		telnetControlTh.join();
+		telnetControlTh->join();
 		spdlog::info("Telnet Controller joined");
 	}
 	/* ################################################################################### */

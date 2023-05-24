@@ -60,7 +60,6 @@ void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_
 		auto *secretKeyBuffer = static_cast<unsigned char *>(sodium_malloc(secretKeyLength));
 		if (secretKeyBuffer == nullptr || passwdHash == nullptr)
 		{
-			spdlog::error("Memory operations failed for ZeroMQ server: {}", getErrnoString(errno));
 			sodium_free(passwdHash);
 			sodium_free(secretKeyBuffer);
 			throw std::runtime_error("Memory operations failed for ZeroMQ server: " + getErrnoString(errno));

@@ -15,7 +15,7 @@ constexpr uint32_t VERSION_INFO_ID = (('V') | ('E' << 8) | ('R' << 16) | ('I' <<
 /* ################################################################################### */
 
 bool ZeroMQServer::initialise(const std::string &hostAddr, const std::shared_ptr<prometheus::Registry> &reg,
-							  bool encryptMessages, const std::string &sealedSecretPath)
+							  const std::string &sealedSecretPath)
 {
 	if (m_initialised)
 	{
@@ -23,7 +23,15 @@ bool ZeroMQServer::initialise(const std::string &hostAddr, const std::shared_ptr
 	}
 
 	serverAddr = hostAddr;
-	connectionPtr = std::make_unique<ZeroMQ>(zmq::socket_type::rep, serverAddr, true, sealedSecretPath);
+	try
+	{
+		connectionPtr = std::make_unique<ZeroMQ>(zmq::socket_type::rep, serverAddr, true, sealedSecretPath);
+	}
+	catch (const std::exception &e)
+	{
+		spdlog::error("Can't initialize ZeroMQ server: {}", e.what());
+		return false;
+	}
 
 	connectionPtr->getSocket()->set(zmq::sockopt::sndtimeo, 1000);
 	connectionPtr->getSocket()->set(zmq::sockopt::rcvtimeo, 50);
