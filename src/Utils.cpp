@@ -144,7 +144,7 @@ std::string getErrnoString(int errVal)
 
 std::string getEnvVar(const std::string &key)
 {
-	char *val = getenv(key.c_str()); // NOLINT(concurrency-mt-unsafe)
+	const char *val = getenv(key.c_str()); // NOLINT(concurrency-mt-unsafe)
 	return val == nullptr ? std::string("") : std::string(val);
 }
 
