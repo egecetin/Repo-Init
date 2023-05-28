@@ -23,7 +23,11 @@ It provides the following features
     - Embedded Telnet Server
     - [ZeroMQ](https://zeromq.org/) socket with CURVE encryption and a secret key is protected with a [Libsodium](https://github.com/jedisct1/libsodium) sealed box.
 
-Periodically scanned with [Codacy](https://app.codacy.com/gh/egecetin/Repo-Init/dashboard) and [Sonarcloud](https://sonarcloud.io/project/overview?id=egecetin_Repo-Init)
+<div align="center" width="50">
+  Periodically scanned with<br>
+  <a href="https://sonarcloud.io/summary/new_code?id=egecetin_Repo-Init" target="_blank"><img src="https://sonarcloud.io/images/project_badges/sonarcloud-white.svg" height="35px" alt="Sonarcloud"></a>
+  <a href="https://app.codacy.com/gh/egecetin/Repo-Init/dashboard" target="_blank"><img src="https://img.shields.io/badge/Codacy-%23FFFFFF.svg?&style=for-the-badge&logo=codacy&logoColor=222F29" height="35px" alt="Codacy"></a>
+</div>
 
 ## Contents
 
