@@ -53,6 +53,7 @@ int main(int argc, char **argv)
 			spdlog::warn("Enable ZeroMQ option requires a connection address");
 		}
 	}
+
 	if (input.cmdOptionExists("--config"))
 	{
 		configPath = input.getCmdOption("--config");

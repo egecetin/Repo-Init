@@ -7,7 +7,8 @@
 #include <spdlog/spdlog.h>
 #include <zmq_addon.hpp>
 
-constexpr int secretKeyLength = 32; // ZeroMQ secret key length
+constexpr int secretKeyLengthEncoded = 40; // ZeroMQ secret key length
+constexpr int secretKeyLengthDecoded = 32; // ZeroMQ secret key length
 
 void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr,
 				  bool isBind, const std::string &sealedSecretPath)
@@ -57,18 +58,20 @@ void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_
 
 		// Prepare sensitive data buffers
 		auto *passwdHash = static_cast<unsigned char *>(sodium_malloc(crypto_box_SECRETKEYBYTES));
-		auto *secretKeyBuffer = static_cast<unsigned char *>(sodium_malloc(secretKeyLength));
-		if (secretKeyBuffer == nullptr || passwdHash == nullptr)
+		auto *secretKeyBuffer = static_cast<unsigned char *>(sodium_malloc(secretKeyLengthEncoded));
+		auto *secretKeyEncodedBuffer = static_cast<unsigned char *>(sodium_malloc(secretKeyLengthDecoded));
+		if (secretKeyBuffer == nullptr || passwdHash == nullptr || secretKeyEncodedBuffer == nullptr)
 		{
 			sodium_free(passwdHash);
 			sodium_free(secretKeyBuffer);
+			sodium_free(secretKeyEncodedBuffer);
 			throw std::runtime_error("Memory operations failed for ZeroMQ server: " + getErrnoString(errno));
 		}
 
 		std::array<unsigned char, crypto_pwhash_SALTBYTES> salt{};
-		randombytes_buf_deterministic(
-			salt.data(), crypto_pwhash_SALTBYTES,
-			reinterpret_cast<const unsigned char *>(get_version().substr(get_version().size() - 32, 32).data()));
+		// randombytes_buf_deterministic(
+		// 	salt.data(), crypto_pwhash_SALTBYTES,
+		// 	reinterpret_cast<const unsigned char *>(get_version().substr(get_version().size() - 32, 32).data()));
 
 		if (crypto_pwhash(passwdHash, crypto_box_SECRETKEYBYTES, sealedBoxPasswd.data(), sealedBoxPasswd.size(),
 						  salt.data(), crypto_pwhash_OPSLIMIT_SENSITIVE, crypto_pwhash_MEMLIMIT_SENSITIVE,
@@ -78,14 +81,14 @@ void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_
 			throw std::runtime_error("Internal error for ZeroMQ server");
 		}
 
-		std::array<unsigned char, crypto_box_PUBLICKEYBYTES> publicKey{};
-		if (crypto_box_seal_open(secretKeyBuffer, encryptedData.data(), encryptedData.size(), publicKey.data(),
-								 passwdHash) != 0 ||
+		if (crypto_box_seal_open(secretKeyBuffer, &encryptedData[crypto_box_SEALBYTES],
+								 encryptedData.size() - crypto_box_SEALBYTES, encryptedData.data(), passwdHash) != 0 ||
 			sodium_mprotect_readonly(secretKeyBuffer) != 0)
 		{
 			sodium_mprotect_readwrite(passwdHash);
 			sodium_free(passwdHash);
 			sodium_free(secretKeyBuffer);
+			sodium_free(secretKeyEncodedBuffer);
 			throw std::runtime_error("Secret key is corrupted or modified for ZeroMQ server");
 		}
 
@@ -95,7 +98,9 @@ void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_
 		try
 		{
 			socketPtr->set(zmq::sockopt::curve_server, true);
-			socketPtr->set(zmq::sockopt::curve_secretkey, reinterpret_cast<char *>(secretKeyBuffer));
+			socketPtr->set(zmq::sockopt::curve_secretkey,
+						   reinterpret_cast<char *>(
+							   zmq_z85_decode(secretKeyEncodedBuffer, reinterpret_cast<char *>(secretKeyBuffer))));
 		}
 		catch (const std::exception &e)
 		{
@@ -109,6 +114,7 @@ void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_
 
 		sodium_free(passwdHash);
 		sodium_free(secretKeyBuffer);
+		sodium_free(secretKeyEncodedBuffer);
 
 		if (failed)
 		{

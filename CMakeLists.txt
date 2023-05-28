@@ -138,6 +138,11 @@ target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}-static")
 add_backward("${PROJECT_NAME}")
 
+add_executable("${PROJECT_NAME}_keygen" ${PROJECT_SOURCE_DIR}/src/keyGenerator.cpp ${PROJECT_SOURCE_DIR}/src/Utils.cpp)
+target_include_directories("${PROJECT_NAME}_keygen" PRIVATE "${PROJECT_BINARY_DIR}")
+target_link_libraries("${PROJECT_NAME}_keygen" spdlog sodium libzmq-static)
+add_backward("${PROJECT_NAME}_keygen")
+
 # Update build number at every build
 add_custom_command(
   TARGET "${PROJECT_NAME}"

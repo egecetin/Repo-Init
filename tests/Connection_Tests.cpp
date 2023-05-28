@@ -163,7 +163,7 @@ TEST(Connection_Tests, RawSocketTests)
 	ASSERT_EQ(0, pyResult.get());
 }
 
-TEST(Connection_Tests, ZeroMQTests)
+TEST(Connection_Tests, ZeroMQTest_Plain)
 {
 	// Launch echo server
 	std::future<int> pyResult;
@@ -209,4 +209,48 @@ TEST(Connection_Tests, ZeroMQTests)
 
 	handler2.stop();
 	ASSERT_TRUE(handler2.start());
+}
+
+TEST(Connection_Tests, ZeroMQTest_Curve)
+{
+	// Generate test keys
+	ASSERT_FALSE(
+		std::system((TEST_ZEROMQ_GENERATE_CERTIFICATE_EXE_PATH +
+					 std::string(" --password testtest --writePlainSecretKey --output ") + TEST_ZEROMQ_DATA_PATH)
+						.c_str()));
+	std::array<char, 33> envVar{"CURVE_SEALED_BOX_PASSWD=testtest"};
+	ASSERT_FALSE(putenv(envVar.data()));
+
+	// Launch echo server
+	std::future<int> pyResult;
+	pyResult = std::async(std::launch::async, []() {
+		return system(("python3 " + std::string(TEST_ZEROMQ_ECHO_SERVER_WITH_ENC_PY_PATH) + " >/dev/null").c_str());
+	});
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+	std::shared_ptr<zmq::context_t> ctx = std::make_shared<zmq::context_t>(1);
+	ZeroMQ handler(ctx, zmq::socket_type::req, TEST_ZEROMQ_ECHO_SERVER_ADDR3, false, TEST_ZEROMQ_SEALED_SECRET_PATH);
+
+	ASSERT_TRUE(handler.start());
+
+	int testData1 = 15;
+	double testData2 = 3.14;
+	std::string testData3 = "Test Message";
+
+	std::vector<zmq::const_buffer> vSendMsg;
+	vSendMsg.push_back(zmq::const_buffer(&testData1, sizeof(testData1)));
+	vSendMsg.push_back(zmq::const_buffer(&testData2, sizeof(testData2)));
+	vSendMsg.push_back(zmq::const_buffer(testData3.c_str(), testData3.size()));
+	ASSERT_EQ(handler.sendMessages(vSendMsg), vSendMsg.size());
+
+	auto vRecvMsgs = handler.recvMessages();
+	ASSERT_EQ(vSendMsg.size(), vRecvMsgs.size());
+	for (size_t idx = 0; idx < vSendMsg.size(); ++idx)
+	{
+		ASSERT_EQ(vSendMsg[idx].size(), vRecvMsgs[idx].size());
+		ASSERT_FALSE(memcmp(vSendMsg[idx].data(), vRecvMsgs[idx].data(), vSendMsg[idx].size()));
+	}
+
+	pyResult.wait();
+	ASSERT_EQ(0, pyResult.get());
 }
