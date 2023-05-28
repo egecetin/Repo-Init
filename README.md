@@ -25,7 +25,7 @@ It provides the following features
 
 <div align="center" width="50">
   Periodically scanned with<br>
-  <a href="https://sonarcloud.io/summary/new_code?id=egecetin_Repo-Init" target="_blank"><img src="https://img.shields.io/badge/Sonarcloud-%23FFFFFF.svg?&style=for-the-badge&logo=sonarcloud&logoColor=F3702A" height="35px" alt="Sonarcloud"></a>
+  <a href="https://sonarcloud.io/summary/overall?id=egecetin_Repo-Init" target="_blank"><img src="https://img.shields.io/badge/Sonarcloud-%23FFFFFF.svg?&style=for-the-badge&logo=sonarcloud&logoColor=F3702A" height="35px" alt="Sonarcloud"></a>
   <a href="https://app.codacy.com/gh/egecetin/Repo-Init/dashboard" target="_blank"><img src="https://img.shields.io/badge/Codacy-%23FFFFFF.svg?&style=for-the-badge&logo=codacy&logoColor=222F29" height="35px" alt="Codacy"></a>
 </div>
 
