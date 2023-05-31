@@ -22,7 +22,7 @@ msgArray = [
     # Ask ping (success)
     [struct.pack("L", 1196312912)],
     # Ask ping (fail)
-    [struct.pack("L", 1196312912), b"dummy"]
+    [struct.pack("L", 1196312912), b"dummy"],
 ]
 
 for msg in msgArray:
