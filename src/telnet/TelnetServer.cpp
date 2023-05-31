@@ -361,7 +361,7 @@ bool TelnetSession::processCommandHistory(std::string &buffer)
 
 			// Issue a cursor command to counter it
 			ssize_t sendBytes = 0;
-			if ((sendBytes = send(m_socket, ANSI_ARROW_DOWN.c_str(), (u_long)ANSI_ARROW_DOWN.length(), 0)) < 0)
+			if ((sendBytes = send(m_socket, ANSI_ARROW_DOWN.c_str(), ANSI_ARROW_DOWN.length(), 0)) < 0)
 			{
 				return false;
 			}
@@ -378,7 +378,7 @@ bool TelnetSession::processCommandHistory(std::string &buffer)
 
 			// Issue a cursor command to counter it
 			ssize_t sendBytes = 0;
-			if ((sendBytes = send(m_socket, ANSI_ARROW_UP.c_str(), (u_long)ANSI_ARROW_UP.length(), 0)) < 0)
+			if ((sendBytes = send(m_socket, ANSI_ARROW_UP.c_str(), ANSI_ARROW_UP.length(), 0)) < 0)
 			{
 				return false;
 			}

@@ -22,7 +22,15 @@ bool ZeroMQServer::initialise(const std::string &hostAddr, const std::shared_ptr
 	}
 
 	serverAddr = hostAddr;
-	connectionPtr = std::make_unique<ZeroMQ>(zmq::socket_type::rep, serverAddr, true);
+	try
+	{
+		connectionPtr = std::make_unique<ZeroMQ>(zmq::socket_type::rep, serverAddr, true);
+	}
+	catch (const std::exception &e)
+	{
+		spdlog::error("Can't initialize ZeroMQ server: {}", e.what());
+		return false;
+	}
 
 	connectionPtr->getSocket()->set(zmq::sockopt::sndtimeo, 1000);
 	connectionPtr->getSocket()->set(zmq::sockopt::rcvtimeo, 50);

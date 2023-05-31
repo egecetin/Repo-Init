@@ -105,4 +105,14 @@ size_t ZeroMQ::sendMessages(const std::vector<zmq::const_buffer> &msg)
 	return 0;
 }
 
-ZeroMQ::~ZeroMQ() { stop(); }
+ZeroMQ::~ZeroMQ()
+{
+	try
+	{
+		stop();
+	}
+	catch (const std::exception &)
+	{
+		// Just catch the exception to ensure not throwing to main code
+	}
+}
