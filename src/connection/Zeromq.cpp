@@ -105,4 +105,14 @@ size_t ZeroMQ::sendMessages(const std::vector<zmq::const_buffer> &msg)
 	return 0;
 }
 
-ZeroMQ::~ZeroMQ() { stop(); }
+ZeroMQ::~ZeroMQ()
+{
+	try
+	{
+		stop();
+	}
+	catch (const std::exception &e)
+	{
+		spdlog::error("Can't stop ZeroMQ connection: {}", e.what());
+	}
+}
