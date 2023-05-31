@@ -84,6 +84,7 @@ include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/pull/include)
 
 # Disable/Enable options of subprojects
+option(BUILD_GMOCK OFF)
 option(BUILD_SHARED "" OFF) # libzmq
 option(BUILD_TESTS "" OFF) # libzmq
 option(WITH_DOCS "" OFF) # libzmq

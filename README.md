@@ -23,7 +23,11 @@ It provides the following features
     - Embedded Telnet Server
     - [ZeroMQ](https://zeromq.org/) socket
 
-Periodically scanned with [Codacy](https://app.codacy.com/gh/egecetin/Repo-Init/dashboard) and [Sonarcloud](https://sonarcloud.io/project/overview?id=egecetin_Repo-Init)
+<div align="center" width="50">
+  Periodically scanned with<br>
+  <a href="https://sonarcloud.io/summary/overall?id=egecetin_Repo-Init" target="_blank"><img src="https://img.shields.io/badge/Sonarcloud-%23FFFFFF.svg?&style=for-the-badge&logo=sonarcloud&logoColor=F3702A" height="35px" alt="Sonarcloud"></a>
+  <a href="https://app.codacy.com/gh/egecetin/Repo-Init/dashboard" target="_blank"><img src="https://img.shields.io/badge/Codacy-%23FFFFFF.svg?&style=for-the-badge&logo=codacy&logoColor=222F29" height="35px" alt="Codacy"></a>
+</div>
 
 ## Contents
 
@@ -64,17 +68,20 @@ All scripts should be executed from top level directory
 ## Dependencies
 
  - [Backward-cpp](https://github.com/bombela/backward-cpp)
- - [Date](https://github.com/HowardHinnant/date.git)
  - [CppZMQ](https://github.com/zeromq/cppzmq.git)
- - [Http-status-codes](https://github.com/j-ulrich/http-status-codes-cpp.git)
+ - [cURL](https://github.com/curl/curl)
+ - [Date](https://github.com/HowardHinnant/date.git)
  - [GoogleTest](https://github.com/google/googletest.git) (For tests only)
+ - [Http-status-codes](https://github.com/j-ulrich/http-status-codes-cpp.git)
  - [MemPlumber](https://github.com/seladb/MemPlumber.git) (For tests only)
  - [Prometheus-cpp](https://github.com/jupp0r/prometheus-cpp.git)
  - [RapidJSON](https://github.com/Tencent/rapidjson.git)
- - [Spdlog](https://github.com/gabime/spdlog.git)
  - [Sentry](https://github.com/getsentry/sentry-native.git)
+ - [Spdlog](https://github.com/gabime/spdlog.git)
  - [TelnetServLib](https://github.com/lukemalcolm/TelnetServLib.git) (Modified and embedded to source directory)
  - [ZeroMQ](https://github.com/zeromq/libzmq.git)
+
+Full dependency graph can be seen [here](doc/XXX-tree.svg)
 
 ## Targets
 

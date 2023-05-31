@@ -114,6 +114,13 @@ std::string readSingleConfig(const std::string &dir, std::string value);
 std::string getErrnoString(int errVal);
 
 /**
+ * @brief Get the environment variable
+ * @param[in] key Requested variable name
+ * @return std::string Value of the variable
+ */
+std::string getEnvVar(const std::string &key);
+
+/**
  * @brief Searches line patterns from a file
  * @param[in] filePath Path to file
  * @param[in] pattern Regex search pattern

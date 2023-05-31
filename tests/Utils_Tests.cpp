@@ -38,6 +38,10 @@ TEST(Utils_Tests, ConfigReaderTests)
 
 TEST(Utils_Tests, OtherTests)
 {
+	std::array<char, 33> envVar{"TEST_ENV_VAR=testEnvVarValue"};
+	ASSERT_FALSE(putenv(envVar.data()));
+	ASSERT_EQ(getEnvVar("TEST_ENV_VAR"), "testEnvVarValue");
+
 	ASSERT_EQ(getErrnoString(EACCES), "Permission denied");
 
 	auto readLines = findFromFile(TEST_DATA_READ_PATH, "^(cpu family)");

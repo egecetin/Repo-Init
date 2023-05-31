@@ -2,6 +2,7 @@
 build
 dist
 doc
+tests/data
 .git
 .vscode
 .sentry-native
