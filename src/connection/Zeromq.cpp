@@ -113,6 +113,5 @@ ZeroMQ::~ZeroMQ()
 	}
 	catch (const std::exception &e)
 	{
-		spdlog::error("Can't stop ZeroMQ connection: {}", e.what());
 	}
 }
