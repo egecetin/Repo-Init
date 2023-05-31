@@ -111,7 +111,8 @@ ZeroMQ::~ZeroMQ()
 	{
 		stop();
 	}
-	catch (const std::exception &e)
+	catch (const std::exception &)
 	{
+		// Just catch the exception to ensure not throwing to main code
 	}
 }
