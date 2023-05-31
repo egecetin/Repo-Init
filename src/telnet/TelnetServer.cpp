@@ -23,6 +23,7 @@ const std::vector<std::pair<std::string, std::string>> telnetCommands = {
 	{"disable log", "Resets logger level"},
 	{"enable log", R"(Enable specified logger level. Level can be "v" (info), "vv" (debug) and "vvv" (trace))"},
 	{"help", "Prints available commands"},
+	{"ping", "Pings the server"},
 	{"version", "Displays the current version"},
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
@@ -736,6 +737,9 @@ bool TelnetMessageCallback(const SP_TelnetSession &session, std::string line)
 	case constHasher("enable log vvv"):
 		session->sendLine("Trace log mode enabled");
 		spdlog::set_level(spdlog::level::trace);
+		return true;
+	case constHasher("ping"):
+		session->sendLine("pong");
 		return true;
 	case constHasher("version"):
 		session->sendLine(get_version());
