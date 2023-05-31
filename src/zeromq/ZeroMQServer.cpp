@@ -6,6 +6,7 @@
 
 constexpr uint32_t LOG_LEVEL_ID = (('L') | ('O' << 8) | ('G' << 16) | ('L' << 24));
 constexpr uint32_t VERSION_INFO_ID = (('V') | ('E' << 8) | ('R' << 16) | ('I' << 24));
+constexpr uint32_t PING_PONG_ID = (('P') | ('I' << 8) | ('N' << 16) | ('G' << 24));
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */
@@ -130,6 +131,17 @@ bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, st
 
 		reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;
 		replyBody = get_version();
+		break;
+	}
+	case PING_PONG_ID: {
+		if (recvMsgs.size() != 1)
+		{
+			spdlog::error("Receive unknown number of messages for ping");
+			break;
+		}
+
+		reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;
+		replyBody = "PONG";
 		break;
 	}
 	/* ################################################################################### */

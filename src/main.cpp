@@ -11,8 +11,9 @@
 
 int main(int argc, char **argv)
 {
-	int telnetPort = 0;
 	std::string configPath = "config.json";
+
+	int telnetPort = 0;
 	std::string zeromqServerAddr;
 
 	std::string prometheusAddr;
