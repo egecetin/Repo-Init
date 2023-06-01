@@ -2,10 +2,6 @@ name: Sonarcloud Analysis
 on:
   schedule:
     - cron: '21 9 * * 4'
-  push:
-    branches:
-    - 'master'
-  pull_request:
 
 jobs:
   sonarcloud:
