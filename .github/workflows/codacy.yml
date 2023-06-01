@@ -16,6 +16,9 @@ name: Codacy Security Scan
 on:
   schedule:
     - cron: '21 9 * * 4'
+  push:
+    branches:
+    - 'master'
 
 permissions:
   contents: read
