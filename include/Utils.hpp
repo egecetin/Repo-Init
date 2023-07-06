@@ -23,6 +23,7 @@ constexpr uintmax_t alarmInterval = 1;
 /// Main flag to control loops. Can be modified by SIGINT
 extern volatile bool loopFlag; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 /// Flags and definitions for runtime checks
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 extern std::vector<std::pair<std::string, std::unique_ptr<std::atomic_flag>>> vCheckFlag;
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
@@ -87,8 +88,10 @@ class InputParser {
  * @brief Spinlock implementation from https://rigtorp.se/spinlock/
  */
 struct spinlock {
-	std::atomic<bool> lock_ = {0};
+  private:
+	std::atomic<bool> lock_ = {false};
 
+  public:
 	void lock() noexcept
 	{
 		for (;;)

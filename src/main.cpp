@@ -94,8 +94,8 @@ int main(int argc, char **argv)
 	// Init variables
 	loopFlag = true;
 
-	vCheckFlag.push_back(std::make_pair("ZeroMQ Server", std::make_unique<std::atomic_flag>(false)));
-	vCheckFlag.push_back(std::make_pair("Telnet Server", std::make_unique<std::atomic_flag>(false)));
+	vCheckFlag.emplace_back(std::make_pair("ZeroMQ Server", std::make_unique<std::atomic_flag>(false)));
+	vCheckFlag.emplace_back(std::make_pair("Telnet Server", std::make_unique<std::atomic_flag>(false)));
 
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */

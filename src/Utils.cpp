@@ -13,6 +13,7 @@
 #include <spdlog/spdlog.h>
 
 volatile bool loopFlag; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 std::vector<std::pair<std::string, std::unique_ptr<std::atomic_flag>>> vCheckFlag;
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
