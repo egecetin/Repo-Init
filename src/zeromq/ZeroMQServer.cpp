@@ -7,6 +7,7 @@
 constexpr uint32_t LOG_LEVEL_ID = (('L') | ('O' << 8) | ('G' << 16) | ('L' << 24));
 constexpr uint32_t VERSION_INFO_ID = (('V') | ('E' << 8) | ('R' << 16) | ('I' << 24));
 constexpr uint32_t PING_PONG_ID = (('P') | ('I' << 8) | ('N' << 16) | ('G' << 24));
+constexpr uint32_t STATUS_CHECK_ID = (('S') | ('C' << 8) | ('H' << 16) | ('K' << 24));
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */
@@ -57,7 +58,7 @@ void ZeroMQServer::update()
 
 	if (!recvMsgs.empty())
 	{
-		std::vector<zmq::const_buffer> replyMsgs;
+		std::vector<zmq::message_t> replyMsgs;
 
 		ZeroMQServerStats serverStats;
 		serverStats.processingTimeStart = std::chrono::high_resolution_clock::now();
@@ -88,7 +89,7 @@ void ZeroMQServer::shutdown()
 	m_initialised = false;
 }
 
-bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, std::vector<zmq::const_buffer> &replyMsgs)
+bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, std::vector<zmq::message_t> &replyMsgs)
 {
 	spdlog::trace("Received {} messages", recvMsgs.size());
 	replyMsgs.clear();
@@ -100,7 +101,7 @@ bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, st
 	case LOG_LEVEL_ID: {
 		if (recvMsgs.size() != 2)
 		{
-			spdlog::error("Receive unknown number of messages for log level change");
+			spdlog::error("Received unknown number of messages for log level change");
 			break;
 		}
 
@@ -125,7 +126,7 @@ bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, st
 	case VERSION_INFO_ID: {
 		if (recvMsgs.size() != 1)
 		{
-			spdlog::error("Receive unknown number of messages for version information");
+			spdlog::error("Received unknown number of messages for version information");
 			break;
 		}
 
@@ -136,12 +137,31 @@ bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, st
 	case PING_PONG_ID: {
 		if (recvMsgs.size() != 1)
 		{
-			spdlog::error("Receive unknown number of messages for ping");
+			spdlog::error("Received unknown number of messages for ping");
 			break;
 		}
 
 		reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;
 		replyBody = "PONG";
+		break;
+	}
+	case STATUS_CHECK_ID: {
+		if (recvMsgs.size() != 1)
+		{
+			spdlog::error("Received unknown number of messages for status check");
+			break;
+		}
+
+		reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;
+
+		std::ostringstream oss;
+		oss << "{";
+		for (const auto &entry : vCheckFlag)
+		{
+			oss << "\"" << entry.first << "\":" << (entry.second->_M_i ? "1," : "0,");
+		}
+		replyBody = oss.str();
+		replyBody = replyBody.substr(0, replyBody.size() - 1) + "}"; // Remove last comma
 		break;
 	}
 	/* ################################################################################### */

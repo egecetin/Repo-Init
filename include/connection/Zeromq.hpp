@@ -73,7 +73,7 @@ class ZeroMQ {
 	 * @param[in] msg Messages to send
 	 * @return size_t Number of sent messages
 	 */
-	size_t sendMessages(const std::vector<zmq::const_buffer> &msg);
+	size_t sendMessages(std::vector<zmq::message_t> &msg);
 
 	/**
 	 * @brief Get the reference of socket

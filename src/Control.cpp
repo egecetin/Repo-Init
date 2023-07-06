@@ -9,7 +9,8 @@
 #include <spdlog/spdlog.h>
 
 // GCOVR_EXCL_START
-void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer, uint16_t telnetPort)
+void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer, uint16_t telnetPort,
+						 std::unique_ptr<std::atomic_flag> &checkFlag)
 {
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
@@ -36,6 +37,7 @@ void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheus
 		try
 		{
 			telnetServerPtr->update();
+			checkFlag->test_and_set();
 		}
 		catch (const std::exception &e)
 		{
@@ -51,7 +53,8 @@ void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheus
 // GCOVR_EXCL_STOP
 
 // GCOVR_EXCL_START
-void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer, const std::string &serverAddr)
+void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer, const std::string &serverAddr,
+					  std::unique_ptr<std::atomic_flag> &checkFlag)
 {
 	// Init ZeroMQ server
 	auto zeroMqServerPtr = std::make_shared<ZeroMQServer>();
@@ -80,6 +83,7 @@ void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusSer
 		try
 		{
 			zeroMqServerPtr->update();
+			checkFlag->test_and_set();
 		}
 		catch (const std::exception &e)
 		{

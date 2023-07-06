@@ -185,10 +185,10 @@ TEST(Connection_Tests, ZeroMQTests)
 	double testData2 = 3.14;
 	std::string testData3 = "Test Message";
 
-	std::vector<zmq::const_buffer> vSendMsg;
-	vSendMsg.push_back(zmq::const_buffer(&testData1, sizeof(testData1)));
-	vSendMsg.push_back(zmq::const_buffer(&testData2, sizeof(testData2)));
-	vSendMsg.push_back(zmq::const_buffer(testData3.c_str(), testData3.size()));
+	std::vector<zmq::message_t> vSendMsg;
+	vSendMsg.push_back(zmq::message_t(&testData1, sizeof(testData1)));
+	vSendMsg.push_back(zmq::message_t(&testData2, sizeof(testData2)));
+	vSendMsg.push_back(zmq::message_t(testData3.c_str(), testData3.size()));
 	ASSERT_EQ(handler.sendMessages(vSendMsg), vSendMsg.size());
 
 	auto vRecvMsgs = handler.recvMessages();

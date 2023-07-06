@@ -83,7 +83,7 @@ ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg)
 }
 
 void ZeroMQStats::consumeStats(const std::vector<zmq::message_t> &recvMsgs,
-							   const std::vector<zmq::const_buffer> &sendMsgs, const ZeroMQServerStats &serverStats)
+							   const std::vector<zmq::message_t> &sendMsgs, const ZeroMQServerStats &serverStats)
 {
 	succeededCommand->Increment(static_cast<double>(serverStats.isSuccessful));
 	failedCommand->Increment(static_cast<double>(!serverStats.isSuccessful));
