@@ -185,6 +185,11 @@ TEST(Connection_Tests, ZeroMQTests)
 	double testData2 = 3.14;
 	std::string testData3 = "Test Message";
 
+	std::vector<zmq::message_t> vExpectedMsg;
+	vExpectedMsg.push_back(zmq::message_t(&testData1, sizeof(testData1)));
+	vExpectedMsg.push_back(zmq::message_t(&testData2, sizeof(testData2)));
+	vExpectedMsg.push_back(zmq::message_t(testData3.c_str(), testData3.size()));
+
 	std::vector<zmq::message_t> vSendMsg;
 	vSendMsg.push_back(zmq::message_t(&testData1, sizeof(testData1)));
 	vSendMsg.push_back(zmq::message_t(&testData2, sizeof(testData2)));
@@ -195,8 +200,10 @@ TEST(Connection_Tests, ZeroMQTests)
 	ASSERT_EQ(vSendMsg.size(), vRecvMsgs.size());
 	for (size_t idx = 0; idx < vSendMsg.size(); ++idx)
 	{
-		ASSERT_EQ(vSendMsg[idx].size(), vRecvMsgs[idx].size());
-		ASSERT_FALSE(memcmp(vSendMsg[idx].data(), vRecvMsgs[idx].data(), vSendMsg[idx].size()));
+		ASSERT_TRUE(vSendMsg[idx].empty());
+
+		ASSERT_EQ(vExpectedMsg[idx].size(), vRecvMsgs[idx].size());
+		ASSERT_FALSE(memcmp(vExpectedMsg[idx].data(), vRecvMsgs[idx].data(), vExpectedMsg[idx].size()));
 	}
 
 	pyResult.wait();

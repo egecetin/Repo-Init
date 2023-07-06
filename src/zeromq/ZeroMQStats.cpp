@@ -82,8 +82,8 @@ ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg)
 	minProcessingTime->Set(std::numeric_limits<double>::max());
 }
 
-void ZeroMQStats::consumeStats(const std::vector<zmq::message_t> &recvMsgs,
-							   const std::vector<zmq::message_t> &sendMsgs, const ZeroMQServerStats &serverStats)
+void ZeroMQStats::consumeStats(const std::vector<zmq::message_t> &recvMsgs, const std::vector<zmq::message_t> &sendMsgs,
+							   const ZeroMQServerStats &serverStats)
 {
 	succeededCommand->Increment(static_cast<double>(serverStats.isSuccessful));
 	failedCommand->Increment(static_cast<double>(!serverStats.isSuccessful));
