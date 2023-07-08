@@ -161,7 +161,7 @@ bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, st
 			oss << "\"" << entry.first << "\":" << (entry.second->_M_i ? "1," : "0,");
 		}
 		replyBody = oss.str();
-		replyBody = replyBody.substr(0, replyBody.size() - 1) + "}"; // Remove last comma
+		replyBody.replace(replyBody.size() - 1, 1, "}");
 		break;
 	}
 	/* ################################################################################### */
