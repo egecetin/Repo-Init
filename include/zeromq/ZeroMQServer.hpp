@@ -5,7 +5,7 @@
 
 #include <functional>
 
-using FPTR_MessageCallback = std::function<bool(const std::vector<zmq::message_t> &, std::vector<zmq::const_buffer> &)>;
+using FPTR_MessageCallback = std::function<bool(const std::vector<zmq::message_t> &, std::vector<zmq::message_t> &)>;
 
 class ZeroMQServer {
   private:
@@ -48,5 +48,4 @@ class ZeroMQServer {
  * @param[in] recvMsgs Received messages
  * @param[out] replyMsgs Reply messages returned by callback
  */
-bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs,
-								 std::vector<zmq::const_buffer> &replyMsgs);
+bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, std::vector<zmq::message_t> &replyMsgs);

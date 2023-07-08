@@ -1,5 +1,7 @@
 #include "test-static-definitions.h"
 
+#include <Utils.hpp>
+
 #include <gtest/gtest.h>
 #include <spdlog/spdlog.h>
 
@@ -13,6 +15,10 @@ int main(int argc, char **argv)
 	int retval = EXIT_FAILURE;
 
 	spdlog::set_level(spdlog::level::off);
+
+	// Internal variables
+	vCheckFlag.emplace_back("Test Disabled Info", std::make_unique<std::atomic_flag>(false));
+	vCheckFlag.emplace_back("Test Enabled Info", std::make_unique<std::atomic_flag>(true));
 
 #ifdef XXX_ENABLE_MEMLEAK_CHECK
 	MemPlumber::start();

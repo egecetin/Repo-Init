@@ -55,6 +55,6 @@ class ZeroMQStats {
 	 * @param[in] sendMsgs Send messages
 	 * @param[in] serverStats ZeroMQ server stats
 	 */
-	void consumeStats(const std::vector<zmq::message_t> &recvMsgs, const std::vector<zmq::const_buffer> &sendMsgs,
+	void consumeStats(const std::vector<zmq::message_t> &recvMsgs, const std::vector<zmq::message_t> &sendMsgs,
 					  const ZeroMQServerStats &serverStats);
 };

@@ -86,7 +86,7 @@ std::vector<zmq::message_t> ZeroMQ::recvMessages()
 	return recvMsgs;
 }
 
-size_t ZeroMQ::sendMessages(const std::vector<zmq::const_buffer> &msg)
+size_t ZeroMQ::sendMessages(std::vector<zmq::message_t> &msg)
 {
 	zmq::send_result_t res;
 	if (!isActive)

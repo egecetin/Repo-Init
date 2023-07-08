@@ -23,6 +23,10 @@ msgArray = [
     [struct.pack("L", 1196312912)],
     # Ask ping (fail)
     [struct.pack("L", 1196312912), b"dummy"],
+    # Ask status (success)
+    [struct.pack("L", 1263027027)],
+    # Ask status (fail)
+    [struct.pack("L", 1263027027), b"dummy"],
 ]
 
 for msg in msgArray:

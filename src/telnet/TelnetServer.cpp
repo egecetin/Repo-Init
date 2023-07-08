@@ -24,6 +24,7 @@ const std::vector<std::pair<std::string, std::string>> telnetCommands = {
 	{"enable log", R"(Enable specified logger level. Level can be "v" (info), "vv" (debug) and "vvv" (trace))"},
 	{"help", "Prints available commands"},
 	{"ping", "Pings the server"},
+	{"status", "Checks the internal status"},
 	{"version", "Displays the current version"},
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
@@ -173,8 +174,8 @@ void TelnetSession::closeClient()
 
 bool TelnetSession::checkTimeout() const
 {
-	return (std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - lastSeenTime).count() >
-			TELNET_TIMEOUT);
+	return (llabs(std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - lastSeenTime)
+					  .count()) > TELNET_TIMEOUT);
 }
 
 void TelnetSession::markTimeout() { lastSeenTime = std::chrono::system_clock::time_point::min(); }
@@ -746,6 +747,15 @@ bool TelnetMessageCallback(const SP_TelnetSession &session, std::string line)
 		return true;
 	case constHasher("clear"):
 		session->sendLine(TELNET_CLEAR_SCREEN);
+		return true;
+	case constHasher("status"):
+		for (const auto &entry : vCheckFlag)
+		{
+			std::ostringstream oss;
+			oss << std::left << std::setfill('.') << std::setw(30) << entry.first + " " << std::setw(15) << std::right
+				<< (entry.second->_M_i ? " OK" : " Not Active");
+			session->sendLine(oss.str());
+		}
 		return true;
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */

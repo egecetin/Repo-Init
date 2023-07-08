@@ -1,7 +1,9 @@
 #pragma once
 
 #include <algorithm>
+#include <atomic>
 #include <cstdint>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -19,7 +21,11 @@ constexpr uintmax_t alarmInterval = 1;
 /* ################################################################################### */
 
 /// Main flag to control loops. Can be modified by SIGINT
-extern volatile bool loopFlag; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
+extern volatile bool loopFlag;
+/// Flags and definitions for runtime checks
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
+extern std::vector<std::pair<std::string, std::unique_ptr<std::atomic_flag>>> vCheckFlag;
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */
@@ -77,6 +83,43 @@ class InputParser {
 
   private:
 	std::vector<std::string> tokens;
+};
+
+/**
+ * @brief Spinlock implementation from https://rigtorp.se/spinlock/
+ */
+struct spinlock {
+  private:
+	std::atomic<bool> lock_ = {false};
+
+  public:
+	void lock() noexcept
+	{
+		for (;;)
+		{
+			// Optimistically assume the lock is free on the first try
+			if (!lock_.exchange(true, std::memory_order_acquire))
+			{
+				return;
+			}
+			// Wait for lock to be released without generating cache misses
+			while (lock_.load(std::memory_order_relaxed))
+			{
+				// Issue X86 PAUSE or ARM YIELD instruction to reduce contention between
+				// hyper-threads
+				__builtin_ia32_pause();
+			}
+		}
+	}
+
+	bool try_lock() noexcept
+	{
+		// First do a relaxed load to check if lock is free in order to prevent
+		// unnecessary cache misses if someone does while(!try_lock())
+		return !lock_.load(std::memory_order_relaxed) && !lock_.exchange(true, std::memory_order_acquire);
+	}
+
+	void unlock() noexcept { lock_.store(false, std::memory_order_release); }
 };
 
 /**

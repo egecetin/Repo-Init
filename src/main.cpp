@@ -94,6 +94,9 @@ int main(int argc, char **argv)
 	// Init variables
 	loopFlag = true;
 
+	vCheckFlag.emplace_back("ZeroMQ Server", std::make_unique<std::atomic_flag>(false));
+	vCheckFlag.emplace_back("Telnet Server", std::make_unique<std::atomic_flag>(false));
+
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */
@@ -129,13 +132,13 @@ int main(int argc, char **argv)
 
 	if (!zeromqServerAddr.empty())
 	{
-		zmqControlTh =
-			std::make_unique<std::thread>(zmqControlThread, std::ref(mainPrometheusServer), std::ref(zeromqServerAddr));
+		zmqControlTh = std::make_unique<std::thread>(zmqControlThread, std::ref(mainPrometheusServer),
+													 std::ref(zeromqServerAddr), std::ref(vCheckFlag[0].second));
 	}
 	if (telnetPort > 0)
 	{
-		telnetControlTh =
-			std::make_unique<std::thread>(telnetControlThread, std::ref(mainPrometheusServer), telnetPort);
+		telnetControlTh = std::make_unique<std::thread>(telnetControlThread, std::ref(mainPrometheusServer), telnetPort,
+														std::ref(vCheckFlag[1].second));
 	}
 	spdlog::debug("Threads started");
 
