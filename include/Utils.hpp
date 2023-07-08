@@ -21,7 +21,8 @@ constexpr uintmax_t alarmInterval = 1;
 /* ################################################################################### */
 
 /// Main flag to control loops. Can be modified by SIGINT
-extern volatile bool loopFlag; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
+extern volatile bool loopFlag;
 /// Flags and definitions for runtime checks
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 extern std::vector<std::pair<std::string, std::unique_ptr<std::atomic_flag>>> vCheckFlag;

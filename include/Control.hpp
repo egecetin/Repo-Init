@@ -11,7 +11,7 @@
  * @param[in] checkFlag Flag for runtime check
  */
 void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer, uint16_t telnetPort,
-						 std::unique_ptr<std::atomic_flag> &checkFlag);
+						 const std::unique_ptr<std::atomic_flag> &checkFlag);
 
 /**
  * @brief Thread function to receive control messages or config changes from ZMQ connection
@@ -20,4 +20,4 @@ void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheus
  * @param[in] checkFlag Flag for runtime check
  */
 void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer, const std::string &serverAddr,
-					  std::unique_ptr<std::atomic_flag> &checkFlag);
+					  const std::unique_ptr<std::atomic_flag> &checkFlag);
