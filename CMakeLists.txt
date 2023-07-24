@@ -97,6 +97,7 @@ option(CPPZMQ_BUILD_TESTS "" OFF)
 option(RAPIDJSON_BUILD_TESTS "" OFF)
 option(ENABLE_TESTING "" OFF) # prometheus-cpp
 
+set(ENABLE_COMPRESSION OFF) # prometheus-cpp
 set(SENTRY_BACKEND none)
 
 # Subdirectories
