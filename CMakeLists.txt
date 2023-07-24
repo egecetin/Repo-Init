@@ -12,7 +12,7 @@ include(GitVersion)
 include(GraphViz)
 include(SvnVersion)
 
-option(XXX_ENABLE_TESTS "Enables XXX tests" ON)
+option(XXX_BUILD_TESTS "Build XXX tests" ON)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
 
 if(NOT DEFINED REVISION_VERSION)
@@ -84,16 +84,19 @@ include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/pull/include)
 
 # Disable/Enable options of subprojects
-option(BUILD_GMOCK OFF)
-option(BUILD_SHARED "" OFF) # libzmq
-option(BUILD_TESTS "" OFF) # libzmq
+option(BUILD_SHARED_LIBS "" ON)
+option(BUILD_STATIC "" OFF)
+option(BUILD_TESTS "" OFF)
+
+option(WITH_PERF_TOOL "" OFF)
 option(WITH_DOCS "" OFF) # libzmq
-option(CPPZMQ_BUILD_TESTS "" OFF)
 option(RAPIDJSON_BUILD_DOC "" OFF)
 option(RAPIDJSON_BUILD_EXAMPLES "" OFF)
+
+option(CPPZMQ_BUILD_TESTS "" OFF)
 option(RAPIDJSON_BUILD_TESTS "" OFF)
-option(ENABLE_COMPRESSION "" OFF) # prometheus-cpp
 option(ENABLE_TESTING "" OFF) # prometheus-cpp
+
 set(SENTRY_BACKEND none)
 
 # Subdirectories
@@ -106,33 +109,34 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/sentry EXCLUDE_FROM_ALL)
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/spdlog EXCLUDE_FROM_ALL)
 
 # Enable test framework
-if(XXX_ENABLE_TESTS)
+if(XXX_BUILD_TESTS)
   set_property(GLOBAL PROPERTY CTEST_TARGETS_ADDED 1)
   include(CTest)
   enable_testing()
 
+  option(BUILD_GMOCK OFF)
   add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
 endif()
 
 # Set Targets
-add_library("${PROJECT_NAME}-static" STATIC ${ProjectSources})
+add_library("${PROJECT_NAME}-lib" SHARED ${ProjectSources})
 set_target_properties(
-  "${PROJECT_NAME}-static"
+  "${PROJECT_NAME}-lib"
   PROPERTIES OUTPUT_NAME "${PROJECT_NAME}"
              VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
              SOVERSION ${PROJECT_VERSION_MAJOR})
-target_include_directories("${PROJECT_NAME}-static" PRIVATE "${PROJECT_BINARY_DIR}")
+target_include_directories("${PROJECT_NAME}-lib" PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(
-  "${PROJECT_NAME}-static"
+  "${PROJECT_NAME}-lib"
   stdc++fs
   spdlog
-  cppzmq-static
+  cppzmq
   sentry
   pull)
 
 add_executable("${PROJECT_NAME}" ${PROJECT_SOURCE_DIR}/src/main.cpp ${BACKWARD_ENABLE})
 target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}-static")
+target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}-lib")
 add_backward("${PROJECT_NAME}")
 
 # Update build number at every build
@@ -150,7 +154,7 @@ add_custom_target(
     -b ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/"${PROJECT_NAME}"
     -t ${CMAKE_BINARY_DIR}/temp
     # Regex to exclude system library path
-    -r "^/usr/lib64"
+    -r "\"^(/usr/lib64)|^(/usr/lib)|^(/lib64)|^(/lib)\""
   COMMAND /bin/bash ${PROJECT_SOURCE_DIR}/scripts/create_installer.sh
     -f ${CMAKE_BINARY_DIR}/temp
     -e ${PROJECT_SOURCE_DIR}/scripts/makeself/makeself.sh

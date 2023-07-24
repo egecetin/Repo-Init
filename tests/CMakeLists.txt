@@ -63,7 +63,7 @@ endif()
 # Test cases
 add_executable(TestMain ${ProjectTestSources})
 target_include_directories(TestMain PRIVATE "${PROJECT_BINARY_DIR}/tests")
-target_link_libraries(TestMain gtest_main "${PROJECT_NAME}-static")
+target_link_libraries(TestMain gtest_main "${PROJECT_NAME}-lib" curl)
 
 if(XXX_ENABLE_MEMLEAK_CHECK)
   target_link_libraries(TestMain memplumber)
