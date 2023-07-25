@@ -1,79 +1,48 @@
-cmake_minimum_required(VERSION 3.12)
-set(CMAKE_CXX_STANDARD 14)
+configure_file(test-static-definitions.h.in test-static-definitions.h)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
-
-# Enable gcov if Debug
-if(XXX_ENABLE_COVERAGE)
-  include(CodeCoverage)
-  set(GCOVR_ADDITIONAL_ARGS "--exclude-throw-branches")
-  setup_target_for_coverage_gcovr_html(
-    NAME
-    coverage
-    EXECUTABLE
-    TestMain
-    DEPENDENCIES
-    TestMain
-    EXCLUDE
-    "${PROJECT_SOURCE_DIR}/src/main.cpp"
-    "${PROJECT_SOURCE_DIR}/thirdparty/*"
-    "${PROJECT_SOURCE_DIR}/build/*"
-    "${PROJECT_SOURCE_DIR}/tests/*")
-
-  setup_target_for_coverage_gcovr_xml(
-    NAME
-    coverage-xml
-    EXECUTABLE
-    TestMain
-    DEPENDENCIES
-    TestMain
-    EXCLUDE
-    "${PROJECT_SOURCE_DIR}/src/main.cpp"
-    "${PROJECT_SOURCE_DIR}/thirdparty/*"
-    "${PROJECT_SOURCE_DIR}/build/*"
-    "${PROJECT_SOURCE_DIR}/tests/*")
-endif()
+option(XXX_BUILD_UNITTESTS "Build XXX unit tests" ON)
+option(XXX_BUILD_FUZZTESTS "Build XXX fuzz tests" OFF)
 
 # Add sources
-file(GLOB ProjectTestSources
-  ${PROJECT_SOURCE_DIR}/tests/Connection_Tests.cpp
-  ${PROJECT_SOURCE_DIR}/tests/Metrics_Tests.cpp
-  ${PROJECT_SOURCE_DIR}/tests/Telnet_Tests.cpp
-  ${PROJECT_SOURCE_DIR}/tests/Utils_Tests.cpp
-  ${PROJECT_SOURCE_DIR}/tests/ZeroMQ_Tests.cpp
-  ${PROJECT_SOURCE_DIR}/tests/gtest_main.cpp
+file(GLOB ProjectUnitTestSources
+  Connection_Tests.cpp
+  Metrics_Tests.cpp
+  Telnet_Tests.cpp
+  Utils_Tests.cpp
+  ZeroMQ_Tests.cpp
+  gtest_main.cpp
 )
-
-configure_file(test-static-definitions.h.in test-static-definitions.h)
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/tests/gtest)
+add_subdirectory(gtest)
 
 if(XXX_ENABLE_MEMLEAK_CHECK)
-  include_directories(${PROJECT_SOURCE_DIR}/tests/MemPlumber)
-  add_subdirectory(${PROJECT_SOURCE_DIR}/tests/MemPlumber)
+  include_directories(MemPlumber)
+  add_subdirectory(MemPlumber)
 
   # Disable MemPlumber tests from parent
   add_custom_target(ExcludeMemPlumberTests ALL
     COMMAND rm -f "${PROJECT_BINARY_DIR}/tests/MemPlumber/CTestTestfile.cmake")
 endif()
 
-# Test cases
-add_executable(TestMain ${ProjectTestSources})
-target_include_directories(TestMain PRIVATE "${PROJECT_BINARY_DIR}/tests")
-target_link_libraries(TestMain gtest_main "${PROJECT_NAME}-lib" curl)
-
-if(XXX_ENABLE_MEMLEAK_CHECK)
-  target_link_libraries(TestMain memplumber)
-endif()
-
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  target_compile_options(TestMain PUBLIC --coverage)
-  target_link_options(TestMain PUBLIC --coverage)
-endif()
-
-# Enum tests
 include(GoogleTest)
-gtest_discover_tests(TestMain)
+
+if(XXX_BUILD_UNITTESTS)
+  add_executable(UnitTestMain ${ProjectUnitTestSources})
+  target_include_directories(UnitTestMain PRIVATE "${PROJECT_BINARY_DIR}/tests")
+  target_link_libraries(UnitTestMain gtest_main "${PROJECT_NAME}-lib" curl)
+
+  if(XXX_ENABLE_MEMLEAK_CHECK)
+    target_link_libraries(UnitTestMain memplumber)
+  endif()
+  gtest_discover_tests(UnitTestMain)
+
+  list(APPEND TestExecutablesLocal UnitTestMain)
+endif()
+
+if(XXX_BUILD_FUZZTESTS)
+endif()
+
+set(TestExecutables ${TestExecutablesLocal} PARENT_SCOPE)
