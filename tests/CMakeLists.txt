@@ -43,6 +43,25 @@ if(XXX_BUILD_UNITTESTS)
 endif()
 
 if(XXX_BUILD_FUZZTESTS)
+  if(CMAKE_CXX_COMPILER_ID MATCHES "AppleClang")
+    set(COMPILER_CLANG 1) # Safe to treat AppleClang as a regular Clang, in general.
+  elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    set(COMPILER_CLANG 1)
+  else()
+    message (FATAL_ERROR "Compiler ${CMAKE_CXX_COMPILER_ID} is not supported")
+  endif()
+
+  include(ExternalProject)
+
+  ExternalProject_Add(
+    fuzztest
+    GIT_REPOSITORY "https://github.com/google/fuzztest.git"
+    GIT_TAG main
+    INSTALL_COMMAND ""
+    LOG_DOWNLOAD ON
+    LOG_CONFIGURE ON
+    LOG_BUILD ON
+  )
 endif()
 
 set(TestExecutables ${TestExecutablesLocal} PARENT_SCOPE)
