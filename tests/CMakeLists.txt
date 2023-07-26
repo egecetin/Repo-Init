@@ -52,7 +52,6 @@ if(XXX_BUILD_FUZZTESTS)
   endif()
 
   include(ExternalProject)
-
   ExternalProject_Add(
     fuzztest
     GIT_REPOSITORY "https://github.com/google/fuzztest.git"
@@ -61,6 +60,7 @@ if(XXX_BUILD_FUZZTESTS)
     LOG_DOWNLOAD ON
     LOG_CONFIGURE ON
     LOG_BUILD ON
+    CMAKE_ARGS -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
   )
 endif()
 
