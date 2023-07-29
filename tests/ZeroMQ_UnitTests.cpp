@@ -9,7 +9,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(ZeroMQ_Tests, ZeroMQServerTests)
+TEST(ZeroMQ_Tests, ZeroMQServerUnitTests)
 {
 	std::future<int> shResult;
 

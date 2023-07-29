@@ -12,7 +12,7 @@
 
 #define RAWSOCKET_BUFFER_SIZE 65536
 
-TEST(Connection_Tests, HttpTests)
+TEST(Connection_Tests, HttpUnitTests)
 {
 	// Launch echo server
 	std::future<int> pyResult;
@@ -105,7 +105,7 @@ TEST(Connection_Tests, HttpTests)
 	ASSERT_EQ(HttpStatus::Code::xxx_max, statusCode);
 }
 
-TEST(Connection_Tests, RawSocketTests)
+TEST(Connection_Tests, RawSocketUnitTests)
 {
 	// Launch packet sender
 	std::future<int> pyResult;
@@ -163,7 +163,7 @@ TEST(Connection_Tests, RawSocketTests)
 	ASSERT_EQ(0, pyResult.get());
 }
 
-TEST(Connection_Tests, ZeroMQTests)
+TEST(Connection_Tests, ZeroMQUnitTests)
 {
 	// Launch echo server
 	std::future<int> pyResult;

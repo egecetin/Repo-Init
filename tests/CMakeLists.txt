@@ -5,18 +5,15 @@ option(XXX_BUILD_FUZZTESTS "Build XXX fuzz tests" OFF)
 
 # Add sources
 file(GLOB ProjectUnitTestSources
-  Connection_Tests.cpp
-  Metrics_Tests.cpp
-  Telnet_Tests.cpp
-  Utils_Tests.cpp
-  ZeroMQ_Tests.cpp
+  Connection_UnitTests.cpp
+  Metrics_UnitTests.cpp
+  Telnet_UnitTests.cpp
+  Utils_UnitTests.cpp
+  ZeroMQ_UnitTests.cpp
   gtest_main.cpp
 )
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
-include_directories(${GTEST_INCLUDE_DIRS})
-
-add_subdirectory(gtest)
 
 if(XXX_ENABLE_MEMLEAK_CHECK)
   include_directories(MemPlumber)
@@ -30,6 +27,9 @@ endif()
 include(GoogleTest)
 
 if(XXX_BUILD_UNITTESTS)
+  include_directories(${GTEST_INCLUDE_DIRS})
+  add_subdirectory(gtest)
+
   add_executable(UnitTestMain ${ProjectUnitTestSources})
   target_include_directories(UnitTestMain PRIVATE "${PROJECT_BINARY_DIR}/tests")
   target_link_libraries(UnitTestMain gtest_main "${PROJECT_NAME}-lib" curl)
@@ -37,6 +37,7 @@ if(XXX_BUILD_UNITTESTS)
   if(XXX_ENABLE_MEMLEAK_CHECK)
     target_link_libraries(UnitTestMain memplumber)
   endif()
+
   gtest_discover_tests(UnitTestMain)
 
   list(APPEND TestExecutablesLocal UnitTestMain)

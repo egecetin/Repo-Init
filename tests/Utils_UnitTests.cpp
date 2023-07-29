@@ -3,7 +3,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(Utils_Tests, InputParserTests)
+TEST(Utils_Tests, InputParserUnitTests)
 {
 	// Test
 	int nArgc = 4;
@@ -23,7 +23,7 @@ TEST(Utils_Tests, InputParserTests)
 	ASSERT_TRUE(parser.cmdOptionExists("--argument2"));
 }
 
-TEST(Utils_Tests, ConfigReaderTests)
+TEST(Utils_Tests, ConfigReaderUnitTests)
 {
 	ASSERT_TRUE(readConfig(TEST_CONFIG_PATH));
 
@@ -36,7 +36,7 @@ TEST(Utils_Tests, ConfigReaderTests)
 	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_EMPTY_PATH, "dummyoption"));
 }
 
-TEST(Utils_Tests, OtherTests)
+TEST(Utils_Tests, OtherUnitTests)
 {
 	std::array<char, 33> envVar{"TEST_ENV_VAR=testEnvVarValue"};
 	ASSERT_FALSE(putenv(envVar.data()));

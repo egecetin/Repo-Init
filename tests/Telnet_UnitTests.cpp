@@ -9,7 +9,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(Telnet_Tests, TelnetServerTests)
+TEST(Telnet_Tests, TelnetServerUnitTests)
 {
 	std::future<int> shResult;
 
