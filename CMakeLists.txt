@@ -6,7 +6,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(Colorize)
 include(CompilerOptions)
 include(CompilerFlags)
-include(CppStandards)
 include(Doxy)
 include(GitVersion)
 include(GraphViz)
@@ -45,7 +44,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/bin)
 
 # Set Compiler Properties
 set(CMAKE_DEBUG_POSTFIX d)
-cxx_14()
+set(CMAKE_CXX_STANDARD 14)
 
 configure_file(build_number.h.in "Version.h")
 
@@ -118,7 +117,7 @@ set_target_properties(
   SOVERSION ${PROJECT_VERSION_MAJOR})
 target_include_directories("${PROJECT_NAME}-lib" PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(
-  "${PROJECT_NAME}-lib"
+  "${PROJECT_NAME}-lib" PUBLIC
   stdc++fs
   spdlog
   cppzmq
@@ -127,7 +126,7 @@ target_link_libraries(
 
 add_executable("${PROJECT_NAME}" src/main.cpp ${BACKWARD_ENABLE})
 target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries("${PROJECT_NAME}" "${PROJECT_NAME}-lib")
+target_link_libraries("${PROJECT_NAME}" PRIVATE "${PROJECT_NAME}-lib")
 add_backward("${PROJECT_NAME}")
 
 # Update build number at every build
@@ -143,7 +142,6 @@ if(XXX_BUILD_TESTS)
   include(CTest)
   enable_testing()
 
-  option(BUILD_GMOCK OFF)
   add_subdirectory(tests)
 endif()
 
@@ -178,7 +176,7 @@ if(XXX_ENABLE_COVERAGE)
 endif()
 
 add_custom_target(
-  package
+  makeself
   COMMAND rm -rf ${CMAKE_BINARY_DIR}/temp/*
   COMMAND mkdir -p ${CMAKE_BINARY_DIR}/temp
   COMMAND /bin/bash ${CMAKE_CURRENT_SOURCE_DIR}/scripts/ldd-copy-dependencies.sh

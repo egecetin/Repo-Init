@@ -34,3 +34,6 @@
 [submodule "thirdparty/date"]
 	path = thirdparty/date
 	url = https://github.com/HowardHinnant/date.git
+[submodule "tests/fuzztest"]
+	path = tests/fuzztest
+	url = https://github.com/google/fuzztest.git
