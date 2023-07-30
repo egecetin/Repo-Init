@@ -12,6 +12,8 @@ include(GraphViz)
 include(SvnVersion)
 
 option(XXX_BUILD_TESTS "Build XXX tests" ON)
+option(XXX_BUILD_UNITTESTS "Build XXX unit tests" ON)
+option(XXX_BUILD_FUZZTESTS "Build XXX fuzz tests" OFF)
 option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
 
@@ -42,9 +44,39 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/lib/stati
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/lib/shared)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/bin)
 
+# Disable/Enable options of subprojects
+set(BUILD_SHARED_LIBS ON CACHE BOOL "")
+set(BUILD_STATIC OFF CACHE BOOL "")
+set(BUILD_TESTS OFF CACHE BOOL "")
+set(SENTRY_BUILD_SHARED_LIBS ON CACHE BOOL "")
+set(SPDLOG_BUILD_SHARED ON CACHE BOOL "")
+
+set(WITH_PERF_TOOL OFF CACHE BOOL "")
+set(WITH_DOCS OFF CACHE BOOL "")
+set(RAPIDJSON_BUILD_DOC OFF CACHE BOOL "")
+set(RAPIDJSON_BUILD_EXAMPLES OFF CACHE BOOL "")
+
+set(CPPZMQ_BUILD_TESTS OFF CACHE BOOL "")
+set(RAPIDJSON_BUILD_TESTS OFF CACHE BOOL "")
+set(ENABLE_TESTING OFF CACHE BOOL "") # prometheus-cpp
+
+set(ENABLE_COMPRESSION OFF CACHE BOOL "") # prometheus-cpp
+set(SENTRY_BACKEND none)
+
 # Set Compiler Properties
 set(CMAKE_DEBUG_POSTFIX d)
-set(CMAKE_CXX_STANDARD 14)
+
+if(XXX_BUILD_TESTS)
+  set(CMAKE_CXX_STANDARD 17) # fuzztest requires C++17
+
+  if(XXX_BUILD_FUZZTESTS)
+    option(FUZZTEST_FUZZING_MODE "" ON)
+  endif()
+
+  add_subdirectory(tests/google-fuzztest) # include fuzztest before any target
+else()
+  set(CMAKE_CXX_STANDARD 14)
+endif()
 
 configure_file(build_number.h.in "Version.h")
 
@@ -81,23 +113,6 @@ include_directories(thirdparty/sentry/include)
 include_directories(thirdparty/spdlog/include)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/pull/include)
-
-# Disable/Enable options of subprojects
-option(BUILD_SHARED_LIBS "" ON)
-option(BUILD_STATIC "" OFF)
-option(BUILD_TESTS "" OFF)
-
-option(WITH_PERF_TOOL "" OFF)
-option(WITH_DOCS "" OFF) # libzmq
-option(RAPIDJSON_BUILD_DOC "" OFF)
-option(RAPIDJSON_BUILD_EXAMPLES "" OFF)
-
-option(CPPZMQ_BUILD_TESTS "" OFF)
-option(RAPIDJSON_BUILD_TESTS "" OFF)
-option(ENABLE_TESTING "" OFF) # prometheus-cpp
-
-set(ENABLE_COMPRESSION OFF) # prometheus-cpp
-set(SENTRY_BACKEND none)
 
 # Subdirectories
 add_subdirectory(thirdparty/backtrace EXCLUDE_FROM_ALL)
