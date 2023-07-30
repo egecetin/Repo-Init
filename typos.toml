@@ -7,7 +7,6 @@ extend-exclude = [
                     "scripts",
                     "thirdparty",
                     "tests/google-fuzztest",
-                    "tests/gtest",
                     "tests/MemPlumber",
                     "codespell-ignore-list.txt"
                  ]
