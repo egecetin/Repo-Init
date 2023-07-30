@@ -38,3 +38,15 @@ class PerformanceTracker {
 	 */
 	double endTimer();
 };
+
+/**
+ * @brief RAII style wrapper for PerformanceTracker
+ */
+class TrackPerformance {
+  private:
+	PerformanceTracker &_tracker;
+
+  public:
+	explicit TrackPerformance(PerformanceTracker &tracker) : _tracker(tracker) { _tracker.startTimer(); }
+	~TrackPerformance() { _tracker.endTimer(); }
+};

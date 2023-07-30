@@ -64,9 +64,10 @@ TEST(Metrics_Tests, PerformanceTrackerTests)
 	perfTracker.startTimer();
 	std::this_thread::sleep_for(std::chrono::milliseconds(150));
 	perfTracker.endTimer();
-	perfTracker.startTimer();
-	std::this_thread::sleep_for(std::chrono::milliseconds(50));
-	perfTracker.endTimer();
+	{
+		TrackPerformance guard(perfTracker);
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+	}
 
 	// Collect data from socket
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -98,6 +99,9 @@ TEST(Metrics_Tests, StatusTrackerTests)
 	statTracker.incrementActive();
 	statTracker.incrementActive();
 	statTracker.incrementActive();
+	{
+		TrackStatus guard(statTracker);
+	}
 	statTracker.incrementSuccess();
 	statTracker.incrementFail();
 
