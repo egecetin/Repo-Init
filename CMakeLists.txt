@@ -9,7 +9,6 @@ include(CompilerFlags)
 include(Doxy)
 include(GitVersion)
 include(GraphViz)
-include(SvnVersion)
 
 option(XXX_BUILD_TESTS "Build XXX tests" ON)
 option(XXX_BUILD_UNITTESTS "Build XXX unit tests" ON)
@@ -18,7 +17,7 @@ option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
 
 if(NOT DEFINED REVISION_VERSION)
-  message(SEND_ERROR "Can't find SVN or Git. The folder is not under version control.")
+  message(WARNING "Can't find Git. The folder is not under version control.")
 endif()
 
 # Set project properties
