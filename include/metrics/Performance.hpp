@@ -49,4 +49,7 @@ class TrackPerformance {
   public:
 	explicit TrackPerformance(PerformanceTracker &tracker) : _tracker(tracker) { _tracker.startTimer(); }
 	~TrackPerformance() { _tracker.endTimer(); }
+
+	TrackPerformance(const TrackPerformance &) = delete;
+	TrackPerformance &operator=(const TrackPerformance &) = delete;
 };

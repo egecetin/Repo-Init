@@ -56,4 +56,7 @@ class TrackStatus {
   public:
 	explicit TrackStatus(StatusTracker &tracker) : _tracker(tracker) { _tracker.incrementActive(); }
 	~TrackStatus() { _tracker.decrementActive(); }
+	
+	TrackStatus(const TrackStatus &) = delete;
+	TrackStatus &operator=(const TrackStatus &) = delete;
 };
