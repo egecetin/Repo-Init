@@ -31,6 +31,8 @@ StatusTracker::StatusTracker(const std::shared_ptr<prometheus::Registry> &reg, c
 
 void StatusTracker::incrementActive() { activeCtr->Increment(); }
 
+void StatusTracker::decrementActive() { activeCtr->Decrement(); }
+
 void StatusTracker::incrementSuccess()
 {
 	successCtr->Increment();

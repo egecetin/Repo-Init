@@ -59,14 +59,12 @@ TEST(Metrics_Tests, PerformanceTrackerTests)
 	PerformanceTracker perfTracker(reporter.createNewRegistry(), "test_performance", 0);
 
 	perfTracker.startTimer();
-	perfTracker.endTimer();
-
-	perfTracker.startTimer();
 	std::this_thread::sleep_for(std::chrono::milliseconds(150));
 	perfTracker.endTimer();
-	perfTracker.startTimer();
-	std::this_thread::sleep_for(std::chrono::milliseconds(50));
-	perfTracker.endTimer();
+	{
+		TrackPerformance guard(perfTracker);
+		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+	}
 
 	// Collect data from socket
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -85,9 +83,9 @@ TEST(Metrics_Tests, PerformanceTrackerTests)
 	ASSERT_TRUE(isAllValuesExist(promFileStream, testValues, readValues));
 	ASSERT_EQ(testValues.size(), readValues.size());
 
-	ASSERT_TRUE(std::stoi(readValues[0]));	  // test_performance_processing_time_0
-	ASSERT_GT(std::stoi(readValues[1]), 10);  // test_performance_maximum_processing_time_0
-	ASSERT_LE(std::stoi(readValues[2]), 1e6); // test_performance_minimum_processing_time_0
+	ASSERT_TRUE(std::stoi(readValues[0]));			// test_performance_processing_time_0
+	ASSERT_GT(std::stoi(readValues[1]), 145 * 1e6); // test_performance_maximum_processing_time_0
+	ASSERT_LE(std::stoi(readValues[2]), 55 * 1e6);	// test_performance_minimum_processing_time_0
 }
 
 TEST(Metrics_Tests, StatusTrackerTests)
@@ -98,6 +96,9 @@ TEST(Metrics_Tests, StatusTrackerTests)
 	statTracker.incrementActive();
 	statTracker.incrementActive();
 	statTracker.incrementActive();
+	{
+		TrackStatus guard(statTracker);
+	}
 	statTracker.incrementSuccess();
 	statTracker.incrementFail();
 

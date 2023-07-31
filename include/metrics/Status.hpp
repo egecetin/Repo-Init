@@ -31,6 +31,11 @@ class StatusTracker {
 	void incrementActive();
 
 	/**
+	 * @brief Decrement number of current events
+	 */
+	void decrementActive();
+
+	/**
 	 * @brief Increment number of success
 	 */
 	void incrementSuccess();
@@ -39,4 +44,28 @@ class StatusTracker {
 	 * @brief Increment number of fail
 	 */
 	void incrementFail();
+};
+
+/**
+ * @brief RAII style wrapper for StatusTracker
+ */
+class TrackStatus {
+  private:
+	StatusTracker &_tracker;
+
+  public:
+	explicit TrackStatus(StatusTracker &tracker) : _tracker(tracker) { _tracker.incrementActive(); }
+	~TrackStatus() { _tracker.decrementActive(); }
+
+	/// @brief Copy constructor
+	TrackStatus(const TrackStatus & /*unused*/) = delete;
+
+	/// @brief Move constructor
+	TrackStatus(TrackStatus && /*unused*/) = delete;
+
+	/// @brief Copy assignment operator
+	TrackStatus &operator=(TrackStatus /*unused*/) = delete;
+
+	/// @brief Move assignment operator
+	TrackStatus &operator=(TrackStatus && /*unused*/) = delete;
 };
