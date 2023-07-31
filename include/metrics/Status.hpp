@@ -57,6 +57,15 @@ class TrackStatus {
 	explicit TrackStatus(StatusTracker &tracker) : _tracker(tracker) { _tracker.incrementActive(); }
 	~TrackStatus() { _tracker.decrementActive(); }
 
-	TrackStatus(const TrackStatus &) = delete;
-	TrackStatus &operator=(const TrackStatus &) = delete;
+	/// @brief Copy constructor
+	TrackStatus(const TrackStatus & /*unused*/) = delete;
+
+	/// @brief Move constructor
+	TrackStatus(TrackStatus && /*unused*/) = delete;
+
+	/// @brief Copy assignment operator
+	TrackStatus &operator=(TrackStatus /*unused*/) = delete;
+
+	/// @brief Move assignment operator
+	TrackStatus &operator=(TrackStatus && /*unused*/) = delete;
 };

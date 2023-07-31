@@ -50,6 +50,15 @@ class TrackPerformance {
 	explicit TrackPerformance(PerformanceTracker &tracker) : _tracker(tracker) { _tracker.startTimer(); }
 	~TrackPerformance() { _tracker.endTimer(); }
 
-	TrackPerformance(const TrackPerformance &) = delete;
-	TrackPerformance &operator=(const TrackPerformance &) = delete;
+	/// @brief Copy constructor
+	TrackPerformance(const TrackPerformance & /*unused*/) = delete;
+
+	/// @brief Move constructor
+	TrackPerformance(TrackPerformance && /*unused*/) = delete;
+
+	/// @brief Copy assignment operator
+	TrackPerformance &operator=(TrackPerformance /*unused*/) = delete;
+
+	/// @brief Move assignment operator
+	TrackPerformance &operator=(TrackPerformance && /*unused*/) = delete;
 };
