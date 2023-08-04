@@ -1,4 +1,3 @@
-
 # Add sources
 file(GLOB ProjectUnitTestSources
     Connection_UnitTests.cpp

@@ -139,43 +139,45 @@ add_custom_command(
 
 # Enable test framework
 if(XXX_BUILD_TESTS)
+  if(XXX_ENABLE_COVERAGE)
+    include(CodeCoverage)
+    set(GCOVR_ADDITIONAL_ARGS "--exclude-throw-branches")
+    append_coverage_compiler_flags()
+  endif()
+
   set_property(GLOBAL PROPERTY CTEST_TARGETS_ADDED 1)
   include(CTest)
   enable_testing()
 
   add_subdirectory(tests)
-endif()
 
-if(XXX_ENABLE_COVERAGE)
-  include(CodeCoverage)
-  set(GCOVR_ADDITIONAL_ARGS "--exclude-throw-branches")
+  if(XXX_ENABLE_COVERAGE)
+    setup_target_for_coverage_gcovr_html(
+      NAME
+      coverage
+      EXECUTABLE
+      ${TestExecutables}
+      DEPENDENCIES
+      ${TestExecutables}
+      EXCLUDE
+      "${PROJECT_SOURCE_DIR}/src/main.cpp"
+      "${PROJECT_SOURCE_DIR}/thirdparty/*"
+      "${PROJECT_SOURCE_DIR}/build/*"
+      "${PROJECT_SOURCE_DIR}/tests/*")
 
-  append_coverage_compiler_flags()
-  setup_target_for_coverage_gcovr_html(
-    NAME
-    coverage
-    EXECUTABLE
-    ${TestExecutables}
-    DEPENDENCIES
-    ${TestExecutables}
-    EXCLUDE
-    "${PROJECT_SOURCE_DIR}/src/main.cpp"
-    "${PROJECT_SOURCE_DIR}/thirdparty/*"
-    "${PROJECT_SOURCE_DIR}/build/*"
-    "${PROJECT_SOURCE_DIR}/tests/*")
-
-  setup_target_for_coverage_gcovr_xml(
-    NAME
-    coverage-xml
-    EXECUTABLE
-    ${TestExecutables}
-    DEPENDENCIES
-    ${TestExecutables}
-    EXCLUDE
-    "${PROJECT_SOURCE_DIR}/src/main.cpp"
-    "${PROJECT_SOURCE_DIR}/thirdparty/*"
-    "${PROJECT_SOURCE_DIR}/build/*"
-    "${PROJECT_SOURCE_DIR}/tests/*")
+    setup_target_for_coverage_gcovr_xml(
+      NAME
+      coverage-xml
+      EXECUTABLE
+      ${TestExecutables}
+      DEPENDENCIES
+      ${TestExecutables}
+      EXCLUDE
+      "${PROJECT_SOURCE_DIR}/src/main.cpp"
+      "${PROJECT_SOURCE_DIR}/thirdparty/*"
+      "${PROJECT_SOURCE_DIR}/build/*"
+      "${PROJECT_SOURCE_DIR}/tests/*")
+  endif()
 endif()
 
 add_custom_target(
