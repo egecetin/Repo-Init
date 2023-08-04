@@ -31,7 +31,7 @@ endif()
 set(PROJECT_VERSION_PATCH ${BUILD_NUMBER})
 set(PROJECT_VERSION_TWEAK ${REVISION_VERSION})
 set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${BUILD_NUMBER}-${REVISION_VERSION}")
-message("Compiling Version ${PROJECT_VERSION}")
+message(STATUS "Compiling Version ${PROJECT_VERSION}")
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug/lib/static)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug/lib/shared)
@@ -149,6 +149,8 @@ endif()
 if(XXX_ENABLE_COVERAGE)
   include(CodeCoverage)
   set(GCOVR_ADDITIONAL_ARGS "--exclude-throw-branches")
+
+  append_coverage_compiler_flags()
   setup_target_for_coverage_gcovr_html(
     NAME
     coverage
