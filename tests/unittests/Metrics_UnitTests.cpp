@@ -35,7 +35,7 @@ bool isAllValuesExist(std::ifstream &promFile, const std::vector<std::string> &t
 	return true;
 }
 
-TEST(Metrics_Tests, PrometheusServerTests)
+TEST(Metrics_Tests, PrometheusServerUnitTests)
 {
 	PrometheusServer reporter(TEST_PROMETHEUS_SERVER_ADDR);
 
@@ -53,7 +53,7 @@ TEST(Metrics_Tests, PrometheusServerTests)
 	ASSERT_TRUE(reporter.deleteRegistry(regId));
 }
 
-TEST(Metrics_Tests, PerformanceTrackerTests)
+TEST(Metrics_Tests, PerformanceTrackerUnitTests)
 {
 	PrometheusServer reporter(TEST_PROMETHEUS_SERVER_ADDR_2);
 	PerformanceTracker perfTracker(reporter.createNewRegistry(), "test_performance", 0);
@@ -88,7 +88,7 @@ TEST(Metrics_Tests, PerformanceTrackerTests)
 	ASSERT_LE(std::stoi(readValues[2]), 55 * 1e6);	// test_performance_minimum_processing_time_0
 }
 
-TEST(Metrics_Tests, StatusTrackerTests)
+TEST(Metrics_Tests, StatusTrackerUnitTests)
 {
 	PrometheusServer reporter(TEST_PROMETHEUS_SERVER_ADDR_3);
 	StatusTracker statTracker(reporter.createNewRegistry(), "test_status", 2);

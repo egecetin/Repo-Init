@@ -9,7 +9,7 @@
 </div>
 
 ## Project
-CMake template to create new C++ applications with basic codes/interfaces are already defined.
+CMake template to create new C++ applications with basic codes/interfaces are already defined. Requires a C++14 supported compiler.
 
 It provides the following features
   - Logging
@@ -89,7 +89,7 @@ Full dependency graph can be seen [here](doc/XXX-tree.svg)
  - coverage         : Prepares coverage report
  - docs             : Prepares documentation
  - dependency-graph : Prepares graphviz visualization of dependencies
- - package          : Prepares makeself package
+ - makeself         : Prepares makeself package
  - test             : Prepares gtest target
 
 ## Developer comments

@@ -15,7 +15,7 @@ if(GIT_FOUND)
     message(AUTHOR_WARNING " Git failed (not a repo). Build will not contain git revision info.")
   else()
     string(REPLACE "\n" "" GIT_COMMIT_ID ${GIT_COM_ID})
-    message("${BoldBlue}Current revision is (from Git) ${GIT_COMMIT_ID}${ColourReset}")
+    message(STATUS "Current revision is (from Git) ${GIT_COMMIT_ID}")
 
     if(DEFINED ${REVISION_VERSION})
       message(WARNING " Revision version already set overwriting")

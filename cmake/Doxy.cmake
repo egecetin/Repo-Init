@@ -17,5 +17,5 @@ if(DOXYGEN_FOUND)
     COMMENT "Generating API documentation with Doxygen"
     VERBATIM)
 else()
-  message("${BoldYellow}Doxygen need to be installed to generate the doxygen documentation!${ColourReset}")
+  message(WARNING "Doxygen need to be installed to generate the doxygen documentation!")
 endif()

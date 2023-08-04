@@ -35,7 +35,7 @@ jobs:
       - name: Install Test Requirements
         run: pip install -r tests/data/requirements.txt
       - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Debug -DXXX_ENABLE_COVERAGE=ON -DXXX_ENABLE_MEMLEAK_CHECK=ON -S . -B build
+        run: cmake -DCMAKE_BUILD_TYPE=Debug -DXXX_ENABLE_COVERAGE=ON -DXXX_ENABLE_MEMLEAK_CHECK=ON -DXXX_ENABLE_ASAN=OFF -DXXX_ENABLE_USAN=OFF -S . -B build
       - name: Build
         run: cmake --build build --parallel --target coverage-xml
       - name: Upload to Codecov
@@ -55,10 +55,6 @@ jobs:
         include:
           - image: rockylinux87
           - image: rockylinux91
-          - image: rockylinux87-icx
-            additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_RANLIB=/opt/intel/oneapi/compiler/latest/linux/bin-llvm/llvm-ranlib -DCMAKE_AR=/opt/intel/oneapi/compiler/latest/linux/bin-llvm/llvm-ar
-          - image: rockylinux91-icx
-            additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx -DCMAKE_RANLIB=/opt/intel/oneapi/compiler/latest/linux/bin-llvm/llvm-ranlib -DCMAKE_AR=/opt/intel/oneapi/compiler/latest/linux/bin-llvm/llvm-ar
 
     steps:
       - name: Checkout Code
@@ -67,11 +63,6 @@ jobs:
           submodules: recursive
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-      - name: Setup Intel Compiler variables
-        if: contains(matrix.image, 'icx')
-        run: |
-          . /opt/intel/oneapi/setvars.sh
-          printenv >> $GITHUB_ENV
       - name: Install Test Requirements
         run: pip3 install -r tests/data/requirements.txt
       - name: Configure

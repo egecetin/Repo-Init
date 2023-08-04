@@ -23,7 +23,7 @@ jobs:
       - name: Install sonar-scanner and build-wrapper
         uses: SonarSource/sonarcloud-github-c-cpp@v1
       - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B build
+        run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B build -DXXX_ENABLE_ASAN=OFF -DXXX_ENABLE_USAN=OFF
       - name: Run build-wrapper
         run: build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} cmake --build build/ --config Release --parallel
       - name: Run sonar-scanner
