@@ -38,3 +38,27 @@ class PerformanceTracker {
 	 */
 	double endTimer();
 };
+
+/**
+ * @brief RAII style wrapper for PerformanceTracker
+ */
+class TrackPerformance {
+  private:
+	PerformanceTracker &_tracker;
+
+  public:
+	explicit TrackPerformance(PerformanceTracker &tracker) : _tracker(tracker) { _tracker.startTimer(); }
+	~TrackPerformance() { _tracker.endTimer(); }
+
+	/// @brief Copy constructor
+	TrackPerformance(const TrackPerformance & /*unused*/) = delete;
+
+	/// @brief Move constructor
+	TrackPerformance(TrackPerformance && /*unused*/) = delete;
+
+	/// @brief Copy assignment operator
+	TrackPerformance &operator=(TrackPerformance /*unused*/) = delete;
+
+	/// @brief Move assignment operator
+	TrackPerformance &operator=(TrackPerformance && /*unused*/) = delete;
+};
