@@ -22,8 +22,8 @@ endif()
 set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_VERSION_MINOR 0)
 
-if(EXISTS "BuildNumberCache.txt")
-  file(READ "BuildNumberCache.txt" BUILD_NUMBER)
+if(EXISTS "${PROJECT_SOURCE_DIR}/BuildNumberCache.txt")
+  file(READ "${PROJECT_SOURCE_DIR}/BuildNumberCache.txt" BUILD_NUMBER)
 else()
   set(BUILD_NUMBER "1")
 endif()
@@ -68,35 +68,35 @@ configure_file(build_number.h.in "Version.h")
 
 # Define sources
 file(GLOB ProjectSources
-  src/connection/Http.cpp
-  src/connection/RawSocket.cpp
-  src/connection/Zeromq.cpp
-  src/logging/Logger.cpp
-  src/logging/Loki.cpp
-  src/logging/Sentry.cpp
-  src/metrics/Performance.cpp
-  src/metrics/PrometheusServer.cpp
-  src/metrics/Status.cpp
-  src/telnet/TelnetServer.cpp
-  src/telnet/TelnetStats.cpp
-  src/zeromq/ZeroMQServer.cpp
-  src/zeromq/ZeroMQStats.cpp
-  src/Control.cpp
-  src/Utils.cpp
+  ${PROJECT_SOURCE_DIR}/src/connection/Http.cpp
+  ${PROJECT_SOURCE_DIR}/src/connection/RawSocket.cpp
+  ${PROJECT_SOURCE_DIR}/src/connection/Zeromq.cpp
+  ${PROJECT_SOURCE_DIR}/src/logging/Logger.cpp
+  ${PROJECT_SOURCE_DIR}/src/logging/Loki.cpp
+  ${PROJECT_SOURCE_DIR}/src/logging/Sentry.cpp
+  ${PROJECT_SOURCE_DIR}/src/metrics/Performance.cpp
+  ${PROJECT_SOURCE_DIR}/src/metrics/PrometheusServer.cpp
+  ${PROJECT_SOURCE_DIR}/src/metrics/Status.cpp
+  ${PROJECT_SOURCE_DIR}/src/telnet/TelnetServer.cpp
+  ${PROJECT_SOURCE_DIR}/src/telnet/TelnetStats.cpp
+  ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQServer.cpp
+  ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQStats.cpp
+  ${PROJECT_SOURCE_DIR}/src/Control.cpp
+  ${PROJECT_SOURCE_DIR}/src/Utils.cpp
 )
 
 # Include directories
-include_directories(include)
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
-include_directories(thirdparty/cppzmq)
-include_directories(thirdparty/date/include)
-include_directories(thirdparty/http-status-codes)
-include_directories(thirdparty/libzmq/include)
-include_directories(thirdparty/prometheus-cpp/core/include)
-include_directories(thirdparty/prometheus-cpp/pull/include)
-include_directories(thirdparty/rapidjson/include)
-include_directories(thirdparty/sentry/include)
-include_directories(thirdparty/spdlog/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/date/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/http-status-codes)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/libzmq/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/core/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/pull/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/spdlog/include)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/pull/include)
 
@@ -125,7 +125,7 @@ target_link_libraries(
   sentry
   pull)
 
-add_executable(${PROJECT_NAME} src/main.cpp ${BACKWARD_ENABLE})
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp ${BACKWARD_ENABLE})
 target_include_directories(${PROJECT_NAME} PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(${PROJECT_NAME} PRIVATE "${PROJECT_NAME}-lib")
 add_backward(${PROJECT_NAME})
