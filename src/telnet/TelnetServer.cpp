@@ -178,7 +178,7 @@ bool TelnetSession::checkTimeout() const
 					  .count()) > TELNET_TIMEOUT);
 }
 
-void TelnetSession::markTimeout() { lastSeenTime = std::chrono::system_clock::time_point::min(); }
+void TelnetSession::markTimeout() { lastSeenTime = std::chrono::system_clock::time_point(std::chrono::duration<int>(0)); }
 
 void TelnetSession::echoBack(const char *buffer, u_long length)
 {
