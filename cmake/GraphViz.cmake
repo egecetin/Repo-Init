@@ -15,7 +15,7 @@ find_program(DOT_EXE "dot")
 if(DOT_EXE)
   message(STATUS "dot found: ${DOT_EXE}")
 else()
-  message(STATUS "${BoldYellow}dot not found!${ColourReset}")
+  message(STATUS "dot not found!")
 endif()
 
 set(DOT_OUTPUT_TYPE

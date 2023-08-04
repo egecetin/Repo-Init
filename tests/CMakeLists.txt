@@ -1,4 +1,6 @@
 
+add_subdirectory(gtest)
+
 if(XXX_ENABLE_MEMLEAK_CHECK)
   include_directories(MemPlumber)
   add_subdirectory(MemPlumber)
@@ -13,9 +15,6 @@ configure_file(test-static-definitions.h.in test-static-definitions.h)
 if(XXX_BUILD_UNITTESTS)
   add_subdirectory(unittests)
   list(APPEND TestExecutablesLocal UnitTestMain)
-elseif(XXX_BUILD_FUZZTESTS)
-  add_subdirectory(fuzztests)
-  list(APPEND TestExecutablesLocal FuzzTestMain)
 endif()
 
 set(TestExecutables ${TestExecutablesLocal} PARENT_SCOPE)

@@ -3,7 +3,6 @@ project(XXX)
 
 # CMake Modules
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-include(Colorize)
 include(CompilerOptions)
 include(CompilerFlags)
 include(Doxy)
@@ -12,7 +11,6 @@ include(GraphViz)
 
 option(XXX_BUILD_TESTS "Build XXX tests" ON)
 option(XXX_BUILD_UNITTESTS "Build XXX unit tests" ON)
-option(XXX_BUILD_FUZZTESTS "Build XXX fuzz tests" OFF)
 option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
 
@@ -33,7 +31,7 @@ endif()
 set(PROJECT_VERSION_PATCH ${BUILD_NUMBER})
 set(PROJECT_VERSION_TWEAK ${REVISION_VERSION})
 set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${BUILD_NUMBER}-${REVISION_VERSION}")
-message("${BoldBlue}Compiling Version ${PROJECT_VERSION}${ColourReset}")
+message("Compiling Version ${PROJECT_VERSION}")
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug/lib/static)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug/lib/shared)
@@ -64,18 +62,7 @@ set(SENTRY_BACKEND none)
 
 # Set Compiler Properties
 set(CMAKE_DEBUG_POSTFIX d)
-
-if(XXX_BUILD_TESTS)
-  set(CMAKE_CXX_STANDARD 17) # fuzztest requires C++17
-
-  if(XXX_BUILD_FUZZTESTS)
-    option(FUZZTEST_FUZZING_MODE "" ON)
-  endif()
-
-  add_subdirectory(tests/google-fuzztest) # include fuzztest before any target
-else()
-  set(CMAKE_CXX_STANDARD 14)
-endif()
+set(CMAKE_CXX_STANDARD 14)
 
 configure_file(build_number.h.in "Version.h")
 
@@ -126,7 +113,7 @@ add_subdirectory(thirdparty/spdlog EXCLUDE_FROM_ALL)
 add_library("${PROJECT_NAME}-lib" SHARED ${ProjectSources})
 set_target_properties(
   "${PROJECT_NAME}-lib"
-  PROPERTIES OUTPUT_NAME "${PROJECT_NAME}"
+  PROPERTIES OUTPUT_NAME ${PROJECT_NAME}
   VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
   SOVERSION ${PROJECT_VERSION_MAJOR})
 target_include_directories("${PROJECT_NAME}-lib" PRIVATE "${PROJECT_BINARY_DIR}")
@@ -138,17 +125,17 @@ target_link_libraries(
   sentry
   pull)
 
-add_executable("${PROJECT_NAME}" src/main.cpp ${BACKWARD_ENABLE})
-target_include_directories("${PROJECT_NAME}" PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries("${PROJECT_NAME}" PRIVATE "${PROJECT_NAME}-lib")
-add_backward("${PROJECT_NAME}")
+add_executable(${PROJECT_NAME} src/main.cpp ${BACKWARD_ENABLE})
+target_include_directories(${PROJECT_NAME} PRIVATE "${PROJECT_BINARY_DIR}")
+target_link_libraries(${PROJECT_NAME} PRIVATE "${PROJECT_NAME}-lib")
+add_backward(${PROJECT_NAME})
 
 # Update build number at every build
 add_custom_command(
-  TARGET "${PROJECT_NAME}"
+  TARGET ${PROJECT_NAME}
   PRE_BUILD
   COMMAND ${CMAKE_COMMAND} -P "${CMAKE_CURRENT_SOURCE_DIR}/cmake/AutoBuildNumber.cmake"
-  COMMENT "${BoldBlue}Updating build number${ColourReset}")
+  COMMENT "Updating build number")
 
 # Enable test framework
 if(XXX_BUILD_TESTS)
@@ -194,7 +181,7 @@ add_custom_target(
   COMMAND rm -rf ${CMAKE_BINARY_DIR}/temp/*
   COMMAND mkdir -p ${CMAKE_BINARY_DIR}/temp
   COMMAND /bin/bash ${CMAKE_CURRENT_SOURCE_DIR}/scripts/ldd-copy-dependencies.sh
-  -b ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/"${PROJECT_NAME}"
+  -b ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}
   -t ${CMAKE_BINARY_DIR}/temp
 
   # Regex to exclude system library path
@@ -203,6 +190,6 @@ add_custom_target(
   -f ${CMAKE_BINARY_DIR}/temp
   -e ${CMAKE_CURRENT_SOURCE_DIR}/scripts/makeself/makeself.sh
   -v ${PROJECT_VERSION}
-  -n "${PROJECT_NAME}"
-  DEPENDS "${PROJECT_NAME}"
+  -n ${PROJECT_NAME}
+  DEPENDS ${PROJECT_NAME}
 )
