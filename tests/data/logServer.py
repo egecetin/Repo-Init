@@ -3,6 +3,7 @@
 
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
+
 class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         request_path = self.path
