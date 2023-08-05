@@ -1,6 +1,7 @@
 # Add sources
 file(GLOB ProjectUnitTestSources
     Connection_UnitTests.cpp
+    Logger_UnitTests.cpp
     Metrics_UnitTests.cpp
     Telnet_UnitTests.cpp
     Utils_UnitTests.cpp
