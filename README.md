@@ -12,6 +12,8 @@
 CMake template to create new C++ applications with basic codes/interfaces are already defined. Requires a C++14 supported compiler.
 
 It provides the following features
+  - Tracing
+    - Generates minidump files using for error signals [Crashpad](https://chromium.googlesource.com/crashpad/crashpad/)
   - Logging
     - Spdlog with rotating file, syslog and coloured stdout outputs
     - [Sentry](https://sentry.io/) and [Grafana Loki](https://grafana.com/oss/loki/) integration for automatic forwarding of logs to an external HTTP server

@@ -41,6 +41,8 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/lib/stati
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/lib/shared)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/bin)
 
+set(CMAKE_POSITION_INDEPENDENT_CODE ON) # Required for linking of crashpad_client
+
 # Disable/Enable options of subprojects
 set(BUILD_SHARED_LIBS ON CACHE BOOL "")
 set(BUILD_STATIC OFF CACHE BOOL "")
@@ -58,7 +60,7 @@ set(RAPIDJSON_BUILD_TESTS OFF CACHE BOOL "")
 set(ENABLE_TESTING OFF CACHE BOOL "") # prometheus-cpp
 
 set(ENABLE_COMPRESSION OFF CACHE BOOL "") # prometheus-cpp
-set(SENTRY_BACKEND none)
+set(SENTRY_BACKEND none) # Disable backend to manually use crashpad
 
 # Set Compiler Properties
 set(CMAKE_DEBUG_POSTFIX d)
@@ -79,6 +81,7 @@ file(GLOB ProjectSources
   ${PROJECT_SOURCE_DIR}/src/metrics/Status.cpp
   ${PROJECT_SOURCE_DIR}/src/telnet/TelnetServer.cpp
   ${PROJECT_SOURCE_DIR}/src/telnet/TelnetStats.cpp
+  ${PROJECT_SOURCE_DIR}/src/trace/Crashpad.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQServer.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQStats.cpp
   ${PROJECT_SOURCE_DIR}/src/Control.cpp
@@ -109,6 +112,13 @@ add_subdirectory(thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/spdlog EXCLUDE_FROM_ALL)
 
+# Add crashpad seperately from sentry to enable minidump generation without sentry server
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad/third_party/mini_chromium)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad/third_party/mini_chromium/mini_chromium)
+
+add_subdirectory(thirdparty/sentry/external/crashpad EXCLUDE_FROM_ALL)
+
 # Set Targets
 add_library("${PROJECT_NAME}-lib" SHARED ${ProjectSources})
 set_target_properties(
@@ -120,10 +130,11 @@ target_include_directories("${PROJECT_NAME}-lib" PRIVATE "${PROJECT_BINARY_DIR}"
 target_link_libraries(
   "${PROJECT_NAME}-lib" PUBLIC
   stdc++fs
-  spdlog
   cppzmq
+  crashpad_client
+  pull
   sentry
-  pull)
+  spdlog)
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp ${BACKWARD_ENABLE})
 target_include_directories(${PROJECT_NAME} PRIVATE "${PROJECT_BINARY_DIR}")
