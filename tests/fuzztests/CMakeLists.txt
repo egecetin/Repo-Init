@@ -11,11 +11,13 @@ set(ProjectFuzzTestSources "\
 test_fuzzer;")
 
 # Create fuzz targets
-foreach(target ${ProjectFuzzTestSources})
-  add_executable(${target} ${target}.cpp)
-  target_link_libraries(${target} PRIVATE "${PROJECT_NAME}-lib")
-  target_compile_options(${target} PRIVATE "-fsanitize=fuzzer")
-  target_link_options(${target} PRIVATE "-fsanitize=fuzzer")
+foreach(SourceEntry ${ProjectFuzzTestSources})
+  set(TARGET_NAME ${SourceEntry}.Fuzzer)
+
+  add_executable(${TARGET_NAME} ${SourceEntry}.cpp)
+  target_link_libraries(${TARGET_NAME} PRIVATE "${PROJECT_NAME}-lib")
+  target_compile_options(${TARGET_NAME} PRIVATE "-fsanitize=fuzzer")
+  target_link_options(${TARGET_NAME} PRIVATE "-fsanitize=fuzzer")
   
-  add_test(NAME ${target} COMMAND ${target})
-endforeach(target ${ProjectFuzzTestSources})
+  add_test(NAME ${TARGET_NAME} COMMAND ${TARGET_NAME} -run 10000)
+endforeach()
