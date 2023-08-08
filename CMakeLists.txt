@@ -11,6 +11,7 @@ include(GraphViz)
 
 option(XXX_BUILD_TESTS "Build XXX tests" ON)
 option(XXX_BUILD_UNITTESTS "Build XXX unit tests" ON)
+option(XXX_BUILD_FUZZTESTS "Build XXX fuzz tests" OFF)
 option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
 
