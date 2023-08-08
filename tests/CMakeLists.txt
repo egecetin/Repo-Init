@@ -44,7 +44,6 @@ endif()
 
 if(XXX_BUILD_FUZZTESTS)
   add_subdirectory(fuzztests)
-  list(APPEND TestExecutablesLocal FuzzTestMain)
 endif()
 
 set(TestExecutables ${TestExecutablesLocal} PARENT_SCOPE)
