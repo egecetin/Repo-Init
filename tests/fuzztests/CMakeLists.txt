@@ -1,5 +1,5 @@
 # Check compiler
-if (NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   message(SEND_ERROR "Fuzz testing not supported for ${CMAKE_CXX_COMPILER_ID} compiler")
 endif()
 
@@ -18,6 +18,6 @@ foreach(SourceEntry ${ProjectFuzzTestSources})
   target_link_libraries(${TARGET_NAME} PRIVATE "${PROJECT_NAME}-lib")
   target_compile_options(${TARGET_NAME} PRIVATE "-fsanitize=fuzzer")
   target_link_options(${TARGET_NAME} PRIVATE "-fsanitize=fuzzer")
-  
+
   add_test(NAME ${TARGET_NAME} COMMAND ${TARGET_NAME} -run=10000)
 endforeach()

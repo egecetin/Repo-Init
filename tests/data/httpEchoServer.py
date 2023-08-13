@@ -5,6 +5,9 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from optparse import OptionParser
 
+port = 8080
+count = 1
+
 
 class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -45,22 +48,20 @@ class RequestHandler(BaseHTTPRequestHandler):
 
 
 def main():
-    port = 8080
     print("Listening on 0.0.0.0:%s" % port)
     server = HTTPServer(("", port), RequestHandler)
-    server.handle_request()
-    server.handle_request()
-    server.handle_request()
-    server.handle_request()
+
+    for i in range(0, count):
+        server.handle_request()
 
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.usage = (
-        "Creates an http-server that will echo out any GET or POST parameters\n"
-        "Run:\n\n"
-        "   reflect"
-    )
+    parser.usage = "Creates an http-server that will echo out"
+    parser.add_option("-p", "--port", default=8080)
+    parser.add_option("-c", "--count", default=1)
     (options, args) = parser.parse_args()
 
+    port = int(options.port)
+    count = int(options.count)
     main()
