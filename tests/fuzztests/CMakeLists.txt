@@ -8,7 +8,7 @@ include_directories(${PROJECT_BINARY_DIR}/tests)
 
 # Fuzz sources
 set(ProjectFuzzTestSources "\
-test_fuzzer;")
+Http_FuzzTests")
 
 # Create fuzz targets
 foreach(SourceEntry ${ProjectFuzzTestSources})
@@ -16,8 +16,8 @@ foreach(SourceEntry ${ProjectFuzzTestSources})
 
   add_executable(${TARGET_NAME} ${SourceEntry}.cpp)
   target_link_libraries(${TARGET_NAME} PRIVATE "${PROJECT_NAME}-lib")
-  target_compile_options(${TARGET_NAME} PRIVATE "-fsanitize=fuzzer")
-  target_link_options(${TARGET_NAME} PRIVATE "-fsanitize=fuzzer")
+  target_compile_options(${TARGET_NAME} PRIVATE "-fsanitize=fuzzer,address")
+  target_link_options(${TARGET_NAME} PRIVATE "-fsanitize=fuzzer,address")
 
-  add_test(NAME ${TARGET_NAME} COMMAND ${TARGET_NAME} -run=10000)
+  add_test(NAME ${TARGET_NAME} COMMAND ${TARGET_NAME} -runs=10000)
 endforeach()

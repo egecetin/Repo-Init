@@ -10,4 +10,5 @@ Used ports during tests,
 | Telnet_Tests.TelnetServerUnitTests | 8200 | Telnet_UnitTests.cpp |
 | ZeroMQ_Tests.ZeroMQServerUnitTests | 8300 | ZeroMQ_UnitTests.cpp |
 | ZeroMQ_Tests.ZeroMQServerUnitTests | 8301 | ZeroMQ_UnitTests.cpp |
-| Logger_Tests.LoggingUnitTests | 9000 | Logger_UnitTests.cpp |
+| Logger_Tests.LoggingUnitTests | 8400 | Logger_UnitTests.cpp |
+| Http_FuzzTests | 9000 | Http_FuzzTests.cpp |
