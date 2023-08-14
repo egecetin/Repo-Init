@@ -8,7 +8,8 @@ include_directories(${PROJECT_BINARY_DIR}/tests)
 
 # Fuzz sources
 set(ProjectFuzzTestSources "\
-Http_FuzzTests")
+Http_FuzzTests;\
+Hasher_FuzzTests")
 
 # Create fuzz targets
 foreach(SourceEntry ${ProjectFuzzTestSources})
