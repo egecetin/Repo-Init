@@ -14,7 +14,7 @@ class PythonScriptWrapper {
 	FILE *fPtr{nullptr};
 
   public:
-	PythonScriptWrapper(const std::string &command)
+	explicit PythonScriptWrapper(const std::string &command)
 	{
 		fPtr = popen(command.c_str(), "r");
 		if (fPtr == nullptr)

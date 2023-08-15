@@ -64,7 +64,7 @@ class TelnetWrapper {
 	}
 
   public:
-	TelnetWrapper(uint16_t port)
+	explicit TelnetWrapper(uint16_t port)
 	{
 		server = std::make_shared<TelnetServer>();
 		if (!server || !(server->initialise(port)))
