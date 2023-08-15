@@ -11,18 +11,21 @@
 
 TEST(ZeroMQ_Tests, ZeroMQServerUnitTests)
 {
+	std::string zeromqServerAddr = "tcp://127.0.0.1:8300";
+	std::string promServerAddr = "localhost:8301";
+
 	std::future<int> shResult;
 
 	// For internal statistics
-	PrometheusServer reporter(TEST_PROMETHEUS_SERVER_ADDR_5);
+	PrometheusServer reporter(promServerAddr);
 
 	// Init ZeroMQ Server
 	auto zeromqServerPtr = std::make_shared<ZeroMQServer>();
-	ASSERT_TRUE(zeromqServerPtr->initialise(TEST_ZMQ_SERVER_PATH));
-	ASSERT_FALSE(zeromqServerPtr->initialise(TEST_ZMQ_SERVER_PATH));
+	ASSERT_TRUE(zeromqServerPtr->initialise(zeromqServerAddr));
+	ASSERT_FALSE(zeromqServerPtr->initialise(zeromqServerAddr));
 	zeromqServerPtr->shutdown();
 
-	ASSERT_TRUE(zeromqServerPtr->initialise(TEST_ZMQ_SERVER_PATH, reporter.createNewRegistry()));
+	ASSERT_TRUE(zeromqServerPtr->initialise(zeromqServerAddr, reporter.createNewRegistry()));
 	zeromqServerPtr->messageCallback(ZeroMQServerMessageCallback);
 
 	// Launch script

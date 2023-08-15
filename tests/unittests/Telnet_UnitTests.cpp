@@ -11,10 +11,12 @@
 
 TEST(Telnet_Tests, TelnetServerUnitTests)
 {
+	std::string promServerAddr = "localhost:8200";
+
 	std::future<int> shResult;
 
 	// For internal statistics
-	PrometheusServer reporter(TEST_PROMETHEUS_SERVER_ADDR_4);
+	PrometheusServer reporter(promServerAddr);
 
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();

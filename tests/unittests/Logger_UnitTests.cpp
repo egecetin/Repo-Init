@@ -7,7 +7,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(Logger_UnitTests, Logging)
+TEST(Logger_Tests, LoggingUnitTests)
 {
 	std::future<int> shResult;
 
@@ -16,7 +16,7 @@ TEST(Logger_UnitTests, Logging)
 	// Launch script
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	shResult = std::async(std::launch::async, []() {
-		return system(("python3 " + std::string(TEST_LOG_SERVER_PY_PATH) + " >/dev/null").c_str());
+		return system(("python3 " + std::string(TEST_LOG_SERVER_PY_PATH) + " --port=8400 >/dev/null").c_str());
 	});
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
