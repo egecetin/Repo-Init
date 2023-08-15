@@ -1,3 +1,5 @@
+#!/bin/bash
+
 spawn telnet localhost 23000
 sleep 1
 
