@@ -37,7 +37,9 @@ bool isAllValuesExist(std::ifstream &promFile, const std::vector<std::string> &t
 
 TEST(Metrics_Tests, PrometheusServerUnitTests)
 {
-	PrometheusServer reporter(TEST_PROMETHEUS_SERVER_ADDR);
+	std::string promServerAddr = "localhost:8100";
+
+	PrometheusServer reporter(promServerAddr);
 
 	ASSERT_NE(reporter.createNewRegistry(), nullptr);
 
@@ -55,7 +57,9 @@ TEST(Metrics_Tests, PrometheusServerUnitTests)
 
 TEST(Metrics_Tests, PerformanceTrackerUnitTests)
 {
-	PrometheusServer reporter(TEST_PROMETHEUS_SERVER_ADDR_2);
+	std::string promServerAddr = "localhost:8101";
+
+	PrometheusServer reporter(promServerAddr);
 	PerformanceTracker perfTracker(reporter.createNewRegistry(), "test_performance", 0);
 
 	perfTracker.startTimer();
@@ -68,7 +72,7 @@ TEST(Metrics_Tests, PerformanceTrackerUnitTests)
 
 	// Collect data from socket
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	ASSERT_FALSE(system((std::string("curl ") + TEST_PROMETHEUS_SERVER_ADDR_2 + "/metrics --output metrics2").c_str()));
+	ASSERT_FALSE(system((std::string("curl ") + promServerAddr + "/metrics --output metrics2.prom").c_str()));
 
 	// Metrics
 	std::vector<std::string> readValues;
@@ -77,7 +81,7 @@ TEST(Metrics_Tests, PerformanceTrackerUnitTests)
 										   "test_performance_minimum_processing_time_0"};
 
 	// Parse output
-	std::ifstream promFileStream("metrics2");
+	std::ifstream promFileStream("metrics2.prom");
 
 	ASSERT_TRUE(promFileStream.is_open());
 	ASSERT_TRUE(isAllValuesExist(promFileStream, testValues, readValues));
@@ -90,7 +94,9 @@ TEST(Metrics_Tests, PerformanceTrackerUnitTests)
 
 TEST(Metrics_Tests, StatusTrackerUnitTests)
 {
-	PrometheusServer reporter(TEST_PROMETHEUS_SERVER_ADDR_3);
+	std::string promServerAddr = "localhost:8102";
+
+	PrometheusServer reporter(promServerAddr);
 	StatusTracker statTracker(reporter.createNewRegistry(), "test_status", 2);
 
 	statTracker.incrementActive();
@@ -104,7 +110,7 @@ TEST(Metrics_Tests, StatusTrackerUnitTests)
 
 	// Collect data from socket
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	ASSERT_FALSE(system((std::string("curl ") + TEST_PROMETHEUS_SERVER_ADDR_3 + "/metrics --output metrics3").c_str()));
+	ASSERT_FALSE(system((std::string("curl ") + promServerAddr + "/metrics --output metrics3.prom").c_str()));
 
 	// Metrics
 	std::vector<std::string> readValues;
@@ -112,7 +118,7 @@ TEST(Metrics_Tests, StatusTrackerUnitTests)
 										   "test_status_fail_event_ctr_2", "test_status_active_event_ctr_2"};
 
 	// Parse output
-	std::ifstream promFileStream("metrics3");
+	std::ifstream promFileStream("metrics3.prom");
 
 	ASSERT_TRUE(promFileStream.is_open());
 	ASSERT_TRUE(isAllValuesExist(promFileStream, testValues, readValues));

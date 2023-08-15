@@ -4,7 +4,7 @@ import struct
 
 context = zmq.Context()
 socketMng = context.socket(zmq.REQ)
-socketMng.connect("tcp://127.0.0.1:7000")
+socketMng.connect("tcp://127.0.0.1:8300")
 
 msgArray = [
     # Ask version (success)

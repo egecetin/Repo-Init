@@ -253,6 +253,10 @@ void TelnetSession::stripNVT(std::string &buffer)
 		{
 			buffer.erase(found, 3);
 		}
+		else if ((found + 2) >= buffer.length())
+		{
+			break;
+		}
 	} while (found != std::string::npos);
 }
 

@@ -14,19 +14,24 @@
 
 TEST(Connection_Tests, HttpUnitTests)
 {
+	int echoServerPort = 8000;
+
 	// Launch echo server
 	std::future<int> pyResult;
-	pyResult = std::async(std::launch::async, []() {
-		return system(("python3 " + std::string(TEST_REST_ECHO_SERVER_PY_PATH) + " >/dev/null").c_str());
+	pyResult = std::async(std::launch::async, [echoServerPort]() {
+		return system(("python3 " + std::string(TEST_REST_ECHO_SERVER_PY_PATH) +
+					   " --port=" + std::to_string(echoServerPort) + " --count=4 >/dev/null")
+						  .c_str());
 	});
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-	HTTP handler(TEST_HTTP_ECHO_SERVER_ADDR);
+	std::string testHttpServerAddr = "http://localhost:" + std::to_string(echoServerPort);
+	HTTP handler(testHttpServerAddr);
 
 	handler.setOption(CURLOPT_SSL_VERIFYPEER, false);
 	handler.setOption(CURLOPT_SSL_VERIFYHOST, false);
 
-	ASSERT_EQ(TEST_HTTP_ECHO_SERVER_ADDR, handler.getHostAddress());
+	ASSERT_EQ(testHttpServerAddr, handler.getHostAddress());
 
 	HttpStatus::Code statusCode = HttpStatus::Code::xxx_max;
 	std::string recvData;
@@ -165,55 +170,64 @@ TEST(Connection_Tests, RawSocketUnitTests)
 
 TEST(Connection_Tests, ZeroMQUnitTests)
 {
+	std::string echoServerAddr = "tcp://127.0.0.1:8001";
+
 	// Launch echo server
 	std::future<int> pyResult;
-	pyResult = std::async(std::launch::async, []() {
-		return system(("python3 " + std::string(TEST_ZEROMQ_ECHO_SERVER_PY_PATH) + " >/dev/null").c_str());
+	pyResult = std::async(std::launch::async, [echoServerAddr]() {
+		return system(("python3 " + std::string(TEST_ZEROMQ_ECHO_SERVER_PY_PATH) + " --address=" + echoServerAddr +
+					   " --count=1 >/dev/null")
+						  .c_str());
 	});
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-	std::shared_ptr<zmq::context_t> ctx = std::make_shared<zmq::context_t>(1);
-	ZeroMQ handler(ctx, zmq::socket_type::req, TEST_ZEROMQ_ECHO_SERVER_ADDR, false);
-
-	handler.getSocket()->set(zmq::sockopt::linger, 1234);
-	ASSERT_EQ(handler.getSocket()->get(zmq::sockopt::linger), 1234);
-
-	ASSERT_TRUE(handler.start());
-	ASSERT_FALSE(handler.start());
-
-	int testData1 = 15;
-	double testData2 = 3.14;
-	std::string testData3 = "Test Message";
-
-	std::vector<zmq::message_t> vExpectedMsg;
-	vExpectedMsg.push_back(zmq::message_t(&testData1, sizeof(testData1)));
-	vExpectedMsg.push_back(zmq::message_t(&testData2, sizeof(testData2)));
-	vExpectedMsg.push_back(zmq::message_t(testData3.c_str(), testData3.size()));
-
-	std::vector<zmq::message_t> vSendMsg;
-	vSendMsg.push_back(zmq::message_t(&testData1, sizeof(testData1)));
-	vSendMsg.push_back(zmq::message_t(&testData2, sizeof(testData2)));
-	vSendMsg.push_back(zmq::message_t(testData3.c_str(), testData3.size()));
-	ASSERT_EQ(handler.sendMessages(vSendMsg), vSendMsg.size());
-
-	auto vRecvMsgs = handler.recvMessages();
-	ASSERT_EQ(vSendMsg.size(), vRecvMsgs.size());
-	for (size_t idx = 0; idx < vSendMsg.size(); ++idx)
 	{
-		ASSERT_TRUE(vSendMsg[idx].empty());
+		std::shared_ptr<zmq::context_t> ctx = std::make_shared<zmq::context_t>(1);
+		ZeroMQ handler(ctx, zmq::socket_type::req, echoServerAddr, false);
 
-		ASSERT_EQ(vExpectedMsg[idx].size(), vRecvMsgs[idx].size());
-		ASSERT_FALSE(memcmp(vExpectedMsg[idx].data(), vRecvMsgs[idx].data(), vExpectedMsg[idx].size()));
+		handler.getSocket()->set(zmq::sockopt::linger, 1234);
+		ASSERT_EQ(handler.getSocket()->get(zmq::sockopt::linger), 1234);
+
+		ASSERT_TRUE(handler.start());
+		ASSERT_FALSE(handler.start());
+
+		int testData1 = 15;
+		double testData2 = 3.14;
+		std::string testData3 = "Test Message";
+
+		std::vector<zmq::message_t> vExpectedMsg;
+		vExpectedMsg.push_back(zmq::message_t(&testData1, sizeof(testData1)));
+		vExpectedMsg.push_back(zmq::message_t(&testData2, sizeof(testData2)));
+		vExpectedMsg.push_back(zmq::message_t(testData3.c_str(), testData3.size()));
+
+		std::vector<zmq::message_t> vSendMsg;
+		vSendMsg.push_back(zmq::message_t(&testData1, sizeof(testData1)));
+		vSendMsg.push_back(zmq::message_t(&testData2, sizeof(testData2)));
+		vSendMsg.push_back(zmq::message_t(testData3.c_str(), testData3.size()));
+		ASSERT_EQ(handler.sendMessages(vSendMsg), vSendMsg.size());
+
+		auto vRecvMsgs = handler.recvMessages();
+		ASSERT_EQ(vSendMsg.size(), vRecvMsgs.size());
+		for (size_t idx = 0; idx < vSendMsg.size(); ++idx)
+		{
+			ASSERT_TRUE(vSendMsg[idx].empty());
+
+			ASSERT_EQ(vExpectedMsg[idx].size(), vRecvMsgs[idx].size());
+			ASSERT_FALSE(memcmp(vExpectedMsg[idx].data(), vRecvMsgs[idx].data(), vExpectedMsg[idx].size()));
+		}
+
+		pyResult.wait();
+		ASSERT_EQ(0, pyResult.get());
 	}
 
-	pyResult.wait();
-	ASSERT_EQ(0, pyResult.get());
+	{
+		ZeroMQ handler(zmq::socket_type::rep, echoServerAddr, true);
 
-	ZeroMQ handler2(zmq::socket_type::rep, TEST_ZEROMQ_ECHO_SERVER_ADDR2, true);
+		std::vector<zmq::message_t> vSendMsg;
+		ASSERT_EQ(handler.recvMessages().size(), 0);
+		ASSERT_EQ(handler.sendMessages(vSendMsg), 0);
 
-	ASSERT_EQ(handler2.recvMessages().size(), 0);
-	ASSERT_EQ(handler2.sendMessages(vSendMsg), 0);
-
-	handler2.stop();
-	ASSERT_TRUE(handler2.start());
+		handler.stop();
+		ASSERT_TRUE(handler.start());
+	}
 }
