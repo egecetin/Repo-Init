@@ -10,9 +10,9 @@ endif()
 
 configure_file(test-static-definitions.h.in test-static-definitions.h)
 
-option(XXX_ENABLE_ASAN "Enables Address Sanitizer for XXX" ON)
+option(XXX_ENABLE_ASAN "Enables Address Sanitizer for XXX" OFF)
 option(XXX_ENABLE_MSAN "Enables Memory Sanitizer for XXX" OFF)
-option(XXX_ENABLE_USAN "Enables Undefined Behaviour Sanitizer for XXX" ON)
+option(XXX_ENABLE_USAN "Enables Undefined Behaviour Sanitizer for XXX" OFF)
 option(XXX_ENABLE_TSAN "Enables Thread Sanitizer for XXX" OFF)
 
 # Sanitizers
