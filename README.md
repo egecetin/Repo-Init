@@ -43,15 +43,10 @@ It provides the following features
 
 - AutoBuildNumber       : Auto increments the build number
 - CodeCoverage          : Detects and enables gcovr
-- Colorize              : Color commands for message outputs
-- CompilerFlags         : Defines compiler flags for GCC and Intel Compiler for compile types
 - CompilerOptions       : Enables/Disables compiler warnings
-- CppStandards          : Defines cpp standard
-- CustomFindSubversion  : Modified version of FindSubversion.cmake to ignore errors
 - Doxy                  : Find doxygen package and prepare doc environment
 - GitVersion            : Get SHA1 hash of current commit
 - GraphViz              : Find graphviz and dot executable to create dependency graph
-- SvnVersion            : Get revision number of current commit
 
 ## Scripts
 
@@ -59,10 +54,8 @@ All scripts should be executed from top level directory
 
 - create_installer      : Creates installer package using makeself
 - firstName             : Script to change placeholder name
-- generateKey           : Generates public/private key pairs
 - ldd-copy-dependencies : Script to copy dynamic dependencies of a binary
 - makeself              : [Makeself](https://github.com/megastep/makeself) self-extractable archive creator
-- passwordless-ssh      : Script to enable passwordless ssh from Windows hosts
 - system-setup          : Installs desired packages on RedHat based systems. Check scripts/SYSTEMSETUP.md for details
 
 ## Dependencies
