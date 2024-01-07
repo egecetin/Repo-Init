@@ -23,7 +23,7 @@ repos:
     hooks:
       - id: beautysh
   - repo: https://github.com/psf/black
-    rev: 23.9.1
+    rev: 23.12.0
     hooks:
       - id: black
   - repo: https://github.com/pocc/pre-commit-hooks
@@ -43,7 +43,7 @@ repos:
       - id: codespell
         pass_filenames: false
   - repo: https://github.com/crate-ci/typos
-    rev: v1.16.19
+    rev: v1.16.25
     hooks:
       - id: typos
         pass_filenames: false
