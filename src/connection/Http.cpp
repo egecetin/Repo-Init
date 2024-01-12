@@ -98,13 +98,13 @@ HTTPStats HTTP::getStats()
 
 	curl_off_t value = 0;
 	curl_easy_getinfo(curl, CURLINFO_SIZE_UPLOAD_T, &value);
-	stats.uploadBytes = value;
+	stats.uploadBytes = static_cast<size_t>(value);
 	curl_easy_getinfo(curl, CURLINFO_SIZE_UPLOAD_T, &value);
-	stats.downloadBytes = value;
+	stats.downloadBytes = static_cast<size_t>(value);
 	curl_easy_getinfo(curl, CURLINFO_HEADER_SIZE, &value);
-	stats.headerBytes = value;
+	stats.headerBytes = static_cast<size_t>(value);
 	curl_easy_getinfo(curl, CURLINFO_REQUEST_SIZE, &value);
-	stats.requestBytes = value;
+	stats.requestBytes = static_cast<size_t>(value);
 	curl_easy_getinfo(curl, CURLINFO_SPEED_UPLOAD_T, &value);
 	stats.uploadSpeed = value;
 	curl_easy_getinfo(curl, CURLINFO_SPEED_DOWNLOAD_T, &value);

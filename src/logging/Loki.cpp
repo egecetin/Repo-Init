@@ -73,7 +73,7 @@ namespace spdlog
 
 			if (msg.level >= spdlog::level::debug && msg.level <= spdlog::level::critical)
 			{
-				internalLogBuffer[static_cast<int>(msg.level) - 1].logs.push_back(
+				internalLogBuffer[static_cast<size_t>(msg.level) - 1].logs.push_back(
 					{std::to_string(msg.time.time_since_epoch().count()),
 					 std::string(msg.payload.data(), msg.payload.size())});
 			}

@@ -105,7 +105,7 @@ void TelnetSession::sendPromptAndBuffer()
 		send(m_socket, m_telnetServer->promptString().c_str(), m_telnetServer->promptString().length(), 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 
 	// Resend the buffer
@@ -114,7 +114,7 @@ void TelnetSession::sendPromptAndBuffer()
 		sendBytes = send(m_socket, m_buffer.c_str(), m_buffer.length(), 0);
 		if (sendBytes > 0)
 		{
-			stats.uploadBytes += sendBytes;
+			stats.uploadBytes += static_cast<size_t>(sendBytes);
 		}
 	}
 }
@@ -125,7 +125,7 @@ void TelnetSession::eraseLine()
 	ssize_t sendBytes = send(m_socket, ANSI_ERASE_LINE.c_str(), ANSI_ERASE_LINE.length(), 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 
 	// Move the cursor to the beginning of the line
@@ -133,7 +133,7 @@ void TelnetSession::eraseLine()
 	sendBytes = send(m_socket, moveBack.c_str(), moveBack.length(), 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 }
 
@@ -149,7 +149,7 @@ void TelnetSession::sendLine(std::string data)
 	const ssize_t sendBytes = send(m_socket, data.c_str(), data.length(), 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 
 	if (m_telnetServer->interactivePrompt())
@@ -186,7 +186,7 @@ void TelnetSession::markTimeout()
 void TelnetSession::echoBack(const char *buffer, u_long length)
 {
 	// If you are an NVT command (i.e. first it of data is 255) then ignore the echo back
-	const uint8_t firstItem = *buffer;
+	const auto firstItem = static_cast<uint8_t>(*buffer);
 	if (firstItem == 0xff)
 	{
 		return;
@@ -195,7 +195,7 @@ void TelnetSession::echoBack(const char *buffer, u_long length)
 	const ssize_t sendBytes = send(m_socket, buffer, length, 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 }
 
@@ -215,7 +215,7 @@ void TelnetSession::initialise()
 	ssize_t sendBytes = send(m_socket, willEcho.data(), 3, 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 
 	// Set NVT requesting that the remote system not/dont echo back characters
@@ -223,7 +223,7 @@ void TelnetSession::initialise()
 	sendBytes = send(m_socket, dontEcho.data(), 3, 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 
 	// Set NVT mode to say that I will suppress go-ahead. Stops remote clients from doing local linemode.
@@ -231,7 +231,7 @@ void TelnetSession::initialise()
 	sendBytes = send(m_socket, willSGA.data(), 3, 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 
 	if (m_telnetServer->connectedCallback())
@@ -374,7 +374,7 @@ bool TelnetSession::processCommandHistory(std::string &buffer)
 			{
 				return false;
 			}
-			stats.uploadBytes += sendBytes;
+			stats.uploadBytes += static_cast<size_t>(sendBytes);
 			return true;
 		}
 		if (buffer.find(ANSI_ARROW_DOWN) != std::string::npos && !m_history.empty())
@@ -392,7 +392,7 @@ bool TelnetSession::processCommandHistory(std::string &buffer)
 				return false;
 			}
 
-			stats.uploadBytes += sendBytes;
+			stats.uploadBytes += static_cast<size_t>(sendBytes);
 			return true;
 		}
 
@@ -445,17 +445,17 @@ void TelnetSession::update()
 	}
 	else if (readBytes > 0)
 	{
-		stats.downloadBytes += readBytes;
+		stats.downloadBytes += static_cast<size_t>(readBytes);
 
 		// Update last seen
 		lastSeenTime = std::chrono::system_clock::now();
 
 		// Echo it back to the sender
-		echoBack(recvbuf.data(), readBytes);
+		echoBack(recvbuf.data(), static_cast<size_t>(readBytes));
 
 		// we've got to be careful here. Telnet client might send null characters for New Lines mid-data block. We need
 		// to swap these out. recv is not null terminated, so its cool
-		for (int i = 0; i < readBytes; i++)
+		for (size_t i = 0; i < static_cast<size_t>(readBytes); i++)
 		{
 			if (recvbuf[i] == 0x00) // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
 			{
@@ -465,7 +465,7 @@ void TelnetSession::update()
 		}
 
 		// Add it to the received buffer
-		m_buffer.append(recvbuf.data(), readBytes);
+		m_buffer.append(recvbuf.data(), static_cast<unsigned int>(readBytes));
 		// Remove telnet negotiation sequences
 		stripNVT(m_buffer);
 
@@ -553,7 +553,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString,
 	}
 
 	// Setup the TCP listening socket
-	if (bind(m_listenSocket, result->ai_addr, (int)result->ai_addrlen) < 0)
+	if (bind(m_listenSocket, result->ai_addr, result->ai_addrlen) < 0)
 	{
 		freeaddrinfo(result);
 		close(m_listenSocket);
@@ -644,7 +644,7 @@ void TelnetServer::update()
 			{
 				stats->consumeStats(m_sessions[idx]->stats, true);
 			}
-			m_sessions.erase(m_sessions.begin() + idx); // NOLINT(cppcoreguidelines-narrowing-conversions)
+			m_sessions.erase(m_sessions.begin() + static_cast<int>(idx));
 			--idx;
 		}
 		else
