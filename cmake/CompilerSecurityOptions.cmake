@@ -31,6 +31,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     endif() # Version 12.0
   endif() # Version 13.0
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?[Cc]lang")
+  list(APPEND COMPILER_SECURE_FLAGS_DISABLED -Wl,-z,nodlopen -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now)
   if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "16.0")
     list(APPEND COMPILER_SECURE_FLAGS_DISABLED -fstrict-flex-arrays=3)
     if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "12.0")
