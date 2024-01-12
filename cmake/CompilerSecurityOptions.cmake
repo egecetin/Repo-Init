@@ -17,7 +17,7 @@ for information" OFF)
 set(COMPILER_SECURE_FLAGS_ENABLED -Wconversion -Wtrampolines -Wimplicit-fallthrough
   -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3 -D_GLIBCXX_ASSERTIONS -fstrict-flex-arrays=3
   -fstack-clash-protection -fstack-protector-strong -Wl,-z,nodlopen -Wl,-z,noexecstack
-  -Wl,-z,relro -Wl,-z,now)
+  -Wl,-z,relro -Wl,-z,now -fcf-protection=full)
 set(COMPILER_SECURE_FLAGS_DISABLED "")
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
