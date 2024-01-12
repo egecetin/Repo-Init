@@ -14,16 +14,17 @@ option(ENABLE_RECOMMENDED_SECURITY_FLAGS "Compile all targets with recommended s
 https://best.openssf.org/Compiler-Hardening-Guides/Compiler-Options-Hardening-Guide-for-C-and-C++ \
 for information" OFF)
 
-set(COMPILER_SECURE_FLAGS_ENABLED "-Wconversion;-Wtrampolines;-Wimplicit-fallthrough;-U_FORTIFY_SOURCE;"
-  "-D_FORTIFY_SOURCE=3;-D_GLIBCXX_ASSERTIONS;-fstrict-flex-arrays=3;-fstack-clash-protection;"
-  "-fstack-protector-strong;-Wl,-z,nodlopen;-Wl,-z,noexecstack;-Wl,-z,relro;-Wl,-z,now")
+set(COMPILER_SECURE_FLAGS_ENABLED -Wconversion -Wtrampolines -Wimplicit-fallthrough
+  -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3 -D_GLIBCXX_ASSERTIONS -fstrict-flex-arrays=3 
+  -fstack-clash-protection -fstack-protector-strong -Wl,-z,nodlopen -Wl,-z,noexecstack 
+  -Wl,-z,relro -Wl,-z,now)
 set(COMPILER_SECURE_FLAGS_DISABLED "")
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
   if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "13.0")
-    list(APPEND COMPILER_SECURE_FLAGS_DISABLED "-fstrict-flex-arrays=3")
+    list(APPEND COMPILER_SECURE_FLAGS_DISABLED -fstrict-flex-arrays=3)
     if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "12.0")
-      list(APPEND COMPILER_SECURE_FLAGS_DISABLED "-U_FORTIFY_SOURCE;-D_FORTIFY_SOURCE=3")
+      list(APPEND COMPILER_SECURE_FLAGS_DISABLED -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3)
       if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "8.0")
         message(ERROR "GNU compiler version less than 8.0. Security flags are not supported")
       endif() # Version 8.0
@@ -31,9 +32,9 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
   endif() # Version 13.0
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?[Cc]lang")
   if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "16.0")
-    list(APPEND COMPILER_SECURE_FLAGS_DISABLED "-fstrict-flex-arrays=3")
+    list(APPEND COMPILER_SECURE_FLAGS_DISABLED -fstrict-flex-arrays=3)
     if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "12.0")
-      list(APPEND COMPILER_SECURE_FLAGS_DISABLED "-U_FORTIFY_SOURCE;-D_FORTIFY_SOURCE=3")
+      list(APPEND COMPILER_SECURE_FLAGS_DISABLED -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3)
       if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "11.0")
         message(ERROR "Clang compiler version less than 11.0. Security flags are not supported")
       endif() # Version 11.0
