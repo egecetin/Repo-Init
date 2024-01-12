@@ -50,6 +50,10 @@ list(REMOVE_ITEM COMPILER_SECURE_FLAGS_ENABLED ${COMPILER_SECURE_FLAGS_DISABLED}
 message(STATUS "Supported hardening flags ${COMPILER_SECURE_FLAGS_ENABLED}")
 message(WARNING "Not supported hardening flags ${COMPILER_SECURE_FLAGS_DISABLED}")
 
+if(ENABLE_RECOMMENDED_SECURITY_FLAGS)
+  add_compile_options(${COMPILER_SECURE_FLAGS_ENABLED})
+endif()
+
 macro(enable_security_flags_for_target name)
   message(STATUS "Enable hardening flags for target ${name}")
   target_compile_options(${name} PRIVATE ${COMPILER_SECURE_FLAGS_ENABLED})
