@@ -6,7 +6,11 @@
 #include <prometheus/info.h>
 #include <prometheus/summary.h>
 
-#define QUANTILE_DEFAULTS prometheus::Summary::Quantiles{{0.5, 0.1}, {0.9, 0.1}, {0.99, 0.1}}
+#define QUANTILE_DEFAULTS                                                                                              \
+	prometheus::Summary::Quantiles                                                                                     \
+	{                                                                                                                  \
+		{0.5, 0.1}, {0.9, 0.1}, { 0.99, 0.1 }                                                                          \
+	}
 
 ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg)
 {

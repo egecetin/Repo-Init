@@ -770,8 +770,8 @@ bool TelnetMessageCallback(const SP_TelnetSession &session, std::string line)
 		for (const auto &entry : vCheckFlag)
 		{
 			std::ostringstream oss;
-			oss << std::left << std::setfill('.') << std::setw(KEY_WIDTH) << entry.first + " " << std::setw(VAL_WIDTH) << std::right
-				<< (entry.second->_M_i ? " OK" : " Not Active");
+			oss << std::left << std::setfill('.') << std::setw(KEY_WIDTH) << entry.first + " " << std::setw(VAL_WIDTH)
+				<< std::right << (entry.second->_M_i ? " OK" : " Not Active");
 			session->sendLine(oss.str());
 		}
 		return true;

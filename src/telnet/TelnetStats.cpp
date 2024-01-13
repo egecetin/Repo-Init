@@ -8,7 +8,11 @@
 
 #include <limits>
 
-#define QUANTILE_DEFAULTS prometheus::Summary::Quantiles{{0.5, 0.1}, {0.9, 0.1}, {0.99, 0.1}}
+#define QUANTILE_DEFAULTS                                                                                              \
+	prometheus::Summary::Quantiles                                                                                     \
+	{                                                                                                                  \
+		{0.5, 0.1}, {0.9, 0.1}, { 0.99, 0.1 }                                                                          \
+	}
 
 TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint16_t portNumber)
 {

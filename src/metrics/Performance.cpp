@@ -3,7 +3,11 @@
 #include <prometheus/gauge.h>
 #include <prometheus/summary.h>
 
-#define QUANTILE_DEFAULTS prometheus::Summary::Quantiles{{0.5, 0.1}, {0.9, 0.1}, {0.99, 0.1}}
+#define QUANTILE_DEFAULTS                                                                                              \
+	prometheus::Summary::Quantiles                                                                                     \
+	{                                                                                                                  \
+		{0.5, 0.1}, {0.9, 0.1}, { 0.99, 0.1 }                                                                          \
+	}
 
 PerformanceTracker::PerformanceTracker(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name,
 									   uint64_t metricID)
