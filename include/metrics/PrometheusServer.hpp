@@ -27,10 +27,10 @@ class PrometheusServer {
 
 	/**
 	 * @brief Get the registry with id
-	 * @param[in] id Registry id
+	 * @param[in] regId Registry id
 	 * @return std::shared_ptr<prometheus::Registry> Registry pointer if found, nullptr otherwise
 	 */
-	std::shared_ptr<prometheus::Registry> getRegistry(uint64_t id);
+	std::shared_ptr<prometheus::Registry> getRegistry(uint64_t regId);
 
 	/**
 	 * @brief Create a registry for prometheus
@@ -40,16 +40,16 @@ class PrometheusServer {
 
 	/**
 	 * @brief Create a registry for prometheus and returns id of the registry
-	 * @param[out] id Registry id
+	 * @param[out] regId Registry id
 	 * @return std::shared_ptr<prometheus::Registry> Registry pointer
 	 */
-	std::shared_ptr<prometheus::Registry> createNewRegistry(uint64_t &id);
+	std::shared_ptr<prometheus::Registry> createNewRegistry(uint64_t &regId);
 
 	/**
 	 * @brief Deletes the registry with id
-	 * @param[in] id Registry id
+	 * @param[in] regId Registry id
 	 * @return true If successfully removed
 	 * @return false otherwise
 	 */
-	bool deleteRegistry(uint64_t id);
+	bool deleteRegistry(uint64_t regId);
 };
