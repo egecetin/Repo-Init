@@ -13,6 +13,7 @@ readability-*,
 -cppcoreguidelines-pro-type-reinterpret-cast,
 -cppcoreguidelines-pro-type-vararg,
 -modernize-use-trailing-return-type,
--readability-function-cognitive-complexity'
+-readability-function-cognitive-complexity,
+-readability-magic-numbers'
 
 WarningsAsErrors: '*'
