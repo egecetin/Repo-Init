@@ -19,7 +19,7 @@ void RawSocket::init(int domain, int type, int protocol, sockaddr_ll &_addr)
 	{
 		throw std::runtime_error(getErrnoString(errno));
 	}
-	if (bind(sockFd, (sockaddr *)&_addr, sizeof(_addr)) < 0)
+	if (bind(sockFd, reinterpret_cast<sockaddr *>(&_addr), sizeof(_addr)) < 0)
 	{
 		throw std::runtime_error(std::string("Bind failed: ") + getErrnoString(errno));
 	}
@@ -40,7 +40,7 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFac
 	// Interface request
 	ifreq ifr{};
 	memset((void *)&ifr, 0, sizeof(ifreq));
-	memcpy(ifr.ifr_name, iFace.c_str(), iFace.size()); // Size should be sufficient because if_nametoindex not failed
+	memcpy(std::addressof(ifr.ifr_name), iFace.c_str(), iFace.size()); // Size should be sufficient because if_nametoindex not failed
 
 	if (isWrite)
 	{
@@ -83,7 +83,7 @@ int RawSocket::readData(void *data, size_t dataLen)
 	socklen_t socketLen = sizeof(addr);
 
 	auto startTime = std::chrono::high_resolution_clock::now();
-	const auto retval = static_cast<int>(recvfrom(sockFd, data, dataLen, 0, (sockaddr *)&addr, &socketLen));
+	const auto retval = static_cast<int>(recvfrom(sockFd, data, dataLen, 0, reinterpret_cast<sockaddr *>(&addr), &socketLen));
 
 	// Update stats
 	stats.processingTime += static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());

@@ -8,6 +8,8 @@
 
 #include <spdlog/spdlog.h>
 
+constexpr int SLEEP_INTERVAL_MS = 50;
+
 // GCOVR_EXCL_START
 void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer, uint16_t telnetPort,
 						 const std::unique_ptr<std::atomic_flag> &checkFlag)
@@ -43,7 +45,7 @@ void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheus
 		{
 			spdlog::error("Telnet failed: {}", e.what());
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_INTERVAL_MS));
 	}
 
 	// Closing server
@@ -89,7 +91,7 @@ void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusSer
 		{
 			spdlog::error("ZeroMQ server failed: {}", e.what());
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_INTERVAL_MS));
 	}
 
 	// Closing server

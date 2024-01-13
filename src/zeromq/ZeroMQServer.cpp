@@ -4,6 +4,8 @@
 
 #include <spdlog/spdlog.h>
 
+constexpr int SLEEP_INTERVAL_MS = 50;
+
 constexpr uint32_t LOG_LEVEL_ID = (('L') | ('O' << 8) | ('G' << 16) | ('L' << 24));
 constexpr uint32_t VERSION_INFO_ID = (('V') | ('E' << 8) | ('R' << 16) | ('I' << 24));
 constexpr uint32_t PING_PONG_ID = (('P') | ('I' << 8) | ('N' << 16) | ('G' << 24));
@@ -34,8 +36,7 @@ bool ZeroMQServer::initialise(const std::string &hostAddr, const std::shared_ptr
 		return false;
 	}
 
-	connectionPtr->getSocket()->set(zmq::sockopt::sndtimeo, 1000);
-	connectionPtr->getSocket()->set(zmq::sockopt::rcvtimeo, 50);
+	connectionPtr->getSocket()->set(zmq::sockopt::rcvtimeo, SLEEP_INTERVAL_MS);
 
 	if (connectionPtr->start())
 	{

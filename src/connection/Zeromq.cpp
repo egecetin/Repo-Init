@@ -4,6 +4,11 @@
 #include <spdlog/spdlog.h>
 #include <zmq_addon.hpp>
 
+// ZeroMQ send/receive timeouts in milliseconds
+constexpr int ZEROMQ_MSG_TIMEOUT_MS = 1000;
+// ZeroMQ heartbeat timeout in milliseconds
+constexpr int ZEROMQ_HEARTBEAT_TIMEOUT_MS = 1000;
+
 void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr,
 				  bool isBind)
 {
@@ -15,11 +20,11 @@ void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_
 	// Init ZMQ connection
 	socketPtr = std::make_unique<zmq::socket_t>(*contextPtr, type);
 	socketPtr->set(zmq::sockopt::linger, 0);
-	socketPtr->set(zmq::sockopt::sndtimeo, 1000);
-	socketPtr->set(zmq::sockopt::rcvtimeo, 1000);
-	socketPtr->set(zmq::sockopt::heartbeat_ivl, 1000);
-	socketPtr->set(zmq::sockopt::heartbeat_ttl, 3000);
-	socketPtr->set(zmq::sockopt::heartbeat_timeout, 3000);
+	socketPtr->set(zmq::sockopt::sndtimeo, ZEROMQ_MSG_TIMEOUT_MS);
+	socketPtr->set(zmq::sockopt::rcvtimeo, ZEROMQ_MSG_TIMEOUT_MS);
+	socketPtr->set(zmq::sockopt::heartbeat_ivl, ZEROMQ_HEARTBEAT_TIMEOUT_MS);
+	socketPtr->set(zmq::sockopt::heartbeat_ttl, ZEROMQ_HEARTBEAT_TIMEOUT_MS * 3);
+	socketPtr->set(zmq::sockopt::heartbeat_timeout, ZEROMQ_HEARTBEAT_TIMEOUT_MS);
 }
 
 ZeroMQ::ZeroMQ(const zmq::socket_type &type, const std::string &addr, bool isBind)

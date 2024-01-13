@@ -6,6 +6,8 @@
 #include <prometheus/info.h>
 #include <prometheus/summary.h>
 
+#define QUANTILE_DEFAULTS prometheus::Summary::Quantiles{{0.5, 0.1}, {0.9, 0.1}, {0.99, 0.1}}
+
 ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg)
 {
 	if (!reg)
@@ -25,7 +27,7 @@ ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg)
 						  .Name("zeromq_processing_time")
 						  .Help("Command processing performance")
 						  .Register(*reg)
-						  .Add({}, prometheus::Summary::Quantiles{{0.5, 0.1}, {0.9, 0.1}, {0.99, 0.1}});
+						  .Add({}, QUANTILE_DEFAULTS);
 	maxProcessingTime = &prometheus::BuildGauge()
 							 .Name("zeromq_maximum_processing_time")
 							 .Help("Maximum value of the command processing performance")

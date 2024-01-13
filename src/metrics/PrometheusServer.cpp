@@ -26,28 +26,28 @@ PrometheusServer::PrometheusServer(const std::string &serverAddr)
 	mainExposer->RegisterCollectable(reg);
 }
 
-std::shared_ptr<prometheus::Registry> PrometheusServer::getRegistry(uint64_t id)
+std::shared_ptr<prometheus::Registry> PrometheusServer::getRegistry(uint64_t regId)
 {
 	const std::lock_guard<std::mutex> guard(guardLock);
 
-	auto it = std::find_if(
+	auto iter = std::find_if(
 		vRegister.begin(), vRegister.end(),
-		[id](const std::pair<uint64_t, std::shared_ptr<prometheus::Registry>> &val) { return id == val.first; });
+		[regId](const std::pair<uint64_t, std::shared_ptr<prometheus::Registry>> &val) { return regId == val.first; });
 
-	if (it != vRegister.end())
+	if (iter != vRegister.end())
 	{
-		return it->second;
+		return iter->second;
 	}
 	return nullptr;
 }
 
 std::shared_ptr<prometheus::Registry> PrometheusServer::createNewRegistry()
 {
-	uint64_t id = 0;
-	return createNewRegistry(id);
+	uint64_t regId = 0;
+	return createNewRegistry(regId);
 }
 
-std::shared_ptr<prometheus::Registry> PrometheusServer::createNewRegistry(uint64_t &id)
+std::shared_ptr<prometheus::Registry> PrometheusServer::createNewRegistry(uint64_t &regId)
 {
 	const std::lock_guard<std::mutex> guard(guardLock);
 
@@ -56,14 +56,14 @@ std::shared_ptr<prometheus::Registry> PrometheusServer::createNewRegistry(uint64
 	mainExposer->RegisterCollectable(reg);
 
 	// Push to vector (At least information registry always exist so back is valid)
-	id = vRegister.back().first + 1;
+	regId = vRegister.back().first + 1;
 	vRegister.emplace_back(vRegister.back().first + 1, reg);
 	return reg;
 }
 
-bool PrometheusServer::deleteRegistry(uint64_t id)
+bool PrometheusServer::deleteRegistry(uint64_t regId)
 {
-	if (id == std::numeric_limits<uint64_t>::max())
+	if (regId == std::numeric_limits<uint64_t>::max())
 	{
 		return false;
 	}
@@ -72,7 +72,7 @@ bool PrometheusServer::deleteRegistry(uint64_t id)
 
 	vRegister.erase(std::remove_if(
 		vRegister.begin(), vRegister.end(),
-		[id](const std::pair<uint64_t, std::shared_ptr<prometheus::Registry>> &val) { return id == val.first; }));
+		[regId](const std::pair<uint64_t, std::shared_ptr<prometheus::Registry>> &val) { return regId == val.first; }));
 
 	return true;
 }

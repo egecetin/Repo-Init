@@ -47,12 +47,12 @@ std::string get_version()
 }
 // GCOVR_EXCL_STOP
 
-template <typename T> std::string stringify(const T &o)
+template <typename T> std::string stringify(const T &obj)
 {
-	rapidjson::StringBuffer sb;
-	rapidjson::Writer<rapidjson::StringBuffer> writer(sb);
-	o.Accept(writer);
-	return sb.GetString();
+	rapidjson::StringBuffer sbuffer;
+	rapidjson::Writer<rapidjson::StringBuffer> writer(sbuffer);
+	obj.Accept(writer);
+	return sbuffer.GetString();
 }
 
 bool tryOpenAndParseConfig(const std::string &dir, rapidjson::Document &doc)
@@ -209,7 +209,8 @@ void interruptFunc(int /*unused*/)
 	}
 	else
 	{
-		(void)!write(STDERR_FILENO, "Interrupt in progress...\n", 26); // NOLINT(readability-implicit-bool-conversion)
+		// NOLINTNEXTLINE(readability-implicit-bool-conversion)
+		(void)!write(STDERR_FILENO, "Interrupt in progress...\n", sizeof("Interrupt in progress...\n"));
 	}
 }
 // GCOVR_EXCL_STOP

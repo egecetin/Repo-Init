@@ -39,7 +39,7 @@ class ZeroMQServer {
 	/// Closes the ZeroMQ Server
 	void shutdown();
 
-	void messageCallback(FPTR_MessageCallback f) { m_messageCallback = std::move(f); }
+	void messageCallback(FPTR_MessageCallback func) { m_messageCallback = std::move(func); }
 	FPTR_MessageCallback messageCallback() const { return m_messageCallback; }
 };
 
