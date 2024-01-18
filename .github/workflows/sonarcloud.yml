@@ -20,7 +20,7 @@ jobs:
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Install sonar-scanner and build-wrapper
-        uses: SonarSource/sonarcloud-github-c-cpp@v1
+        uses: sonarsource/sonarcloud-github-c-cpp@v2
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B build -DXXX_ENABLE_ASAN=OFF -DXXX_ENABLE_USAN=OFF
       - name: Run build-wrapper
