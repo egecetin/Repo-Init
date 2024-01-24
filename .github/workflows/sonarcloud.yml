@@ -19,6 +19,8 @@ jobs:
           submodules: recursive
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Install Test Requirements
+        run: pip install -r tests/data/requirements.txt
       - name: Install sonar-scanner and build-wrapper
         uses: sonarsource/sonarcloud-github-c-cpp@v2
       - name: Configure
