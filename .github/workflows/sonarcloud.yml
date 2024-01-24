@@ -22,11 +22,11 @@ jobs:
       - name: Install sonar-scanner and build-wrapper
         uses: sonarsource/sonarcloud-github-c-cpp@v2
       - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B build -DXXX_ENABLE_ASAN=OFF -DXXX_ENABLE_USAN=OFF
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DXXX_ENABLE_COVERAGE=ON -DXXX_ENABLE_ASAN=OFF -DXXX_ENABLE_USAN=OFF
       - name: Run build-wrapper
-        run: build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} cmake --build build/ --config Release --parallel
+        run: build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} cmake --build build/ --config Debug --parallel --target coverage-xml
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: sonar-scanner --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
+        run: sonar-scanner --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}" --define sonar.coverageReportPaths=./build/coverage-xml-sonar.xml

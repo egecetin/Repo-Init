@@ -444,6 +444,8 @@ function(setup_target_for_coverage_gcovr_xml)
   # Running gcovr
   set(GCOVR_XML_CMD
       ${GCOVR_PATH}
+      --sonarqube
+      ${Coverage_NAME}-sonar.xml
       --xml
       ${Coverage_NAME}.xml
       -r
