@@ -44,6 +44,7 @@ It provides the following features
 - AutoBuildNumber       : Auto increments the build number
 - CodeCoverage          : Detects and enables gcovr
 - CompilerOptions       : Enables/Disables compiler warnings
+- CompilerSecurityOption: Enables/Disables secure compiler flags
 - Doxy                  : Find doxygen package and prepare doc environment
 - GitVersion            : Get SHA1 hash of current commit
 - GraphViz              : Find graphviz and dot executable to create dependency graph
