@@ -5,7 +5,6 @@
 ![GitHub](https://img.shields.io/github/license/egecetin/Repo-Init?style=for-the-badge)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/egecetin/Repo-Init/build_and_test.yml?label=Actions&branch=master&logo=github&style=for-the-badge)](https://github.com/egecetin/Repo-Init/actions/workflows/build_and_test.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/egecetin/Repo-Init?logo=codecov&logoColor=white&style=for-the-badge)](https://app.codecov.io/gh/egecetin/Repo-Init)
-[![Codacy grade](https://img.shields.io/codacy/grade/33df0cae00b84c25b09df2561c10fe3a?logo=codacy&style=for-the-badge)](https://app.codacy.com/gh/egecetin/Repo-Init/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 </div>
 
 ## Project
@@ -23,10 +22,11 @@ It provides the following features
     - Embedded Telnet Server
     - [ZeroMQ](https://zeromq.org/) socket
 
+
+
 <div align="center" width="50">
-  Periodically scanned with<br>
-  <a href="https://sonarcloud.io/summary/overall?id=egecetin_Repo-Init" target="_blank"><img src="https://img.shields.io/badge/Sonarcloud-%23FFFFFF.svg?&style=for-the-badge&logo=sonarcloud&logoColor=F3702A" height="35px" alt="Sonarcloud"></a>
-  <a href="https://app.codacy.com/gh/egecetin/Repo-Init/dashboard" target="_blank"><img src="https://img.shields.io/badge/Codacy-%23FFFFFF.svg?&style=for-the-badge&logo=codacy&logoColor=222F29" height="35px" alt="Codacy"></a>
+
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg)](https://sonarcloud.io/summary/new_code?id=egecetin_Repo-Init)
 </div>
 
 ## Contents
