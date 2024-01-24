@@ -444,6 +444,8 @@ function(setup_target_for_coverage_gcovr_xml)
   # Running gcovr
   set(GCOVR_XML_CMD
       ${GCOVR_PATH}
+      --sonarqube
+      ${Coverage_NAME}-sonar.xml
       --xml
       ${Coverage_NAME}.xml
       -r
@@ -472,14 +474,14 @@ function(setup_target_for_coverage_gcovr_xml)
     WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
     DEPENDS ${Coverage_DEPENDENCIES}
     VERBATIM # Protect arguments to commands
-    COMMENT "Running gcovr to produce Cobertura code coverage report.")
+    COMMENT "Running gcovr to produce code coverage report.")
 
   # Show info where to find the report
   add_custom_command(
     TARGET ${Coverage_NAME}
     POST_BUILD
     COMMAND ;
-    COMMENT "Cobertura code coverage report saved in ${Coverage_NAME}.xml.")
+    COMMENT "Code coverage report saved in ${Coverage_NAME}.xml.")
 endfunction() # setup_target_for_coverage_gcovr_xml
 
 # Defines a target for running and collection code coverage information
