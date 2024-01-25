@@ -15,8 +15,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: "true"
-      - name: Install Doxygen
-        run: sudo apt-get install doxygen graphviz -y
       - name: Configure
         run: cmake -S . -B build
       - name: Generate Doxygen Documentation
