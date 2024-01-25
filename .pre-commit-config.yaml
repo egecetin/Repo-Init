@@ -8,7 +8,9 @@ repos:
       - id: check-executables-have-shebangs
       - id: check-json
         exclude: config_empty.json
+      - id: check-shebang-scripts-are-executable
       - id: check-merge-conflict
+      - id: check-symlinks
       - id: check-toml
       - id: check-xml
       - id: check-yaml
@@ -18,6 +20,11 @@ repos:
         args: ['--fix=lf']
       - id: requirements-txt-fixer
       - id: trailing-whitespace
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        exclude: tests/data/config.json
   - repo: https://github.com/lovesegfault/beautysh
     rev: v6.2.1
     hooks:
