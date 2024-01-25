@@ -15,6 +15,8 @@ option(XXX_BUILD_FUZZTESTS "Build XXX fuzz tests" OFF)
 option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
 
+find_package(CURL REQUIRED)
+
 if(NOT DEFINED REVISION_VERSION)
   message(WARNING "Can't find Git. The folder is not under version control.")
 endif()
@@ -127,8 +129,9 @@ target_include_directories("${PROJECT_NAME}-lib" PRIVATE "${PROJECT_BINARY_DIR}"
 target_link_libraries(
   "${PROJECT_NAME}-lib" PUBLIC
   cppzmq
-  curl
+  CURL::libcurl
   pull
+  RapidJSON
   sentry
   spdlog)
 enable_security_flags_for_target("${PROJECT_NAME}-lib")
