@@ -130,10 +130,10 @@ target_link_libraries(
   "${PROJECT_NAME}-lib" PUBLIC
   cppzmq
   CURL::libcurl
-  pull
+  prometheus-cpp::pull
   RapidJSON
-  sentry
-  spdlog)
+  sentry::sentry
+  spdlog::spdlog)
 enable_security_flags_for_target("${PROJECT_NAME}-lib")
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp ${BACKWARD_ENABLE})
