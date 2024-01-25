@@ -45,11 +45,11 @@ size_t HTTP::writeDataCallback(void *contents, size_t size, size_t nmemb, void *
 	return recvSize;
 }
 
-HTTP::HTTP(std::string addr, int timeoutInMs) : curl(curl_easy_init()), hostAddr(std::move(addr))
+HTTP::HTTP(std::string addr, int timeoutInMs) : hostAddr(std::move(addr))
 {
 	if (curl == nullptr)
 	{
-		throw std::runtime_error("Can't init curl context");
+		throw std::invalid_argument("Can't init curl context");
 	}
 
 	curl_easy_setopt(curl, CURLOPT_VERBOSE, 0L);

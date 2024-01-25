@@ -39,7 +39,7 @@ struct HTTPStats {
 class HTTP {
   private:
 	/// CURL handler
-	CURL *curl;
+	CURL *curl = curl_easy_init();
 	/// Full path of server
 	std::string hostAddr;
 
