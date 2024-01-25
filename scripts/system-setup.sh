@@ -70,7 +70,6 @@ exclude=*beta*
 EOF
 dnf install grafana -y
 \cp scripts/data/grafana-firewalld.xml /etc/firewalld/services/grafana.xml
-\cp scripts/data/grafana.ini /etc/grafana/grafana.ini
 
 echo -e "${ANSI_FG_YELLOW}Installing Loki v${VER_LOKI}...${ANSI_RESET_ALL}"
 wget https://github.com/grafana/loki/releases/download/v$VER_LOKI/loki-$VER_LOKI.x86_64.rpm
