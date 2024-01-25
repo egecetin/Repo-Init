@@ -22,7 +22,7 @@ It provides the following features
     - Embedded Telnet Server
     - [ZeroMQ](https://zeromq.org/) socket
 
-
+Feel free to ask, use and report any bugs you encountered!
 
 <div align="center" width="50">
 
