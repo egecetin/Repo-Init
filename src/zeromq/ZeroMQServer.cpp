@@ -6,10 +6,10 @@
 
 constexpr int SLEEP_INTERVAL_MS = 50;
 
-constexpr uint32_t LOG_LEVEL_ID = (('L') | ('O' << 8) | ('G' << 16) | ('L' << 24));
-constexpr uint32_t VERSION_INFO_ID = (('V') | ('E' << 8) | ('R' << 16) | ('I' << 24));
-constexpr uint32_t PING_PONG_ID = (('P') | ('I' << 8) | ('N' << 16) | ('G' << 24));
-constexpr uint32_t STATUS_CHECK_ID = (('S') | ('C' << 8) | ('H' << 16) | ('K' << 24));
+constexpr uint32_t LOG_LEVEL_ID = ('L' | ('O' << 8) | ('G' << 16) | ('L' << 24));
+constexpr uint32_t VERSION_INFO_ID = ('V' | ('E' << 8) | ('R' << 16) | ('I' << 24));
+constexpr uint32_t PING_PONG_ID = ('P' | ('I' << 8) | ('N' << 16) | ('G' << 24));
+constexpr uint32_t STATUS_CHECK_ID = ('S' | ('C' << 8) | ('H' << 16) | ('K' << 24));
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */
