@@ -16,7 +16,7 @@ jobs:
         with:
           submodules: recursive
       - name: Rename templates
-        run: ./scripts/firstName.sh Repo-Init
+        run: ./scripts/firstName.sh -n RepoInit
       - name: Configure
         run: cmake -S . -B build
       - name: Generate Doxygen Documentation
