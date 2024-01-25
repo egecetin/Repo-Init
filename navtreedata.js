@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "RepoInit", "index.html", [
+  [ "Repo-Init", "index.html", [
     [ "Namespaces", "namespaces.html", [
       [ "Project", "index.html#autotoc_md0", null ],
       [ "Contents", "index.html#autotoc_md1", null ],
