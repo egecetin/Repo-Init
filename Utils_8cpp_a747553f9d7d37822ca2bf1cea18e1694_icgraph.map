@@ -1,0 +1,7 @@
+<map id="tryOpenAndParseConfig" name="tryOpenAndParseConfig">
+<area shape="rect" id="node1" title=" " alt="" coords="416,31,591,57"/>
+<area shape="rect" id="node2" href="$Utils_8cpp.html#a6dc18ab17b6e565d1929ccf3fab281af" title="Read initial config from JSON." alt="" coords="256,5,348,32"/>
+<area shape="rect" id="node4" href="$Utils_8cpp.html#ad5f669002bc9a53f4d4f62cf24e6e564" title="Reads a single entry from config." alt="" coords="236,56,368,83"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="69,5,124,32"/>
+<area shape="rect" id="node5" href="$classMainLogger.html#abe306c5e99f49fc6b5d877b4f976fa3d" title="Constructs and prepares main logger." alt="" coords="5,56,188,83"/>
+</map>

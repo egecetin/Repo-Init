@@ -1,0 +1,4 @@
+<map id="TrackStatus" name="TrackStatus">
+<area shape="rect" id="node1" title="RAII style wrapper for StatusTracker." alt="" coords="11,95,109,121"/>
+<area shape="rect" id="node2" href="$classStatusTracker.html" title="Measures status counters for prometheus." alt="" coords="5,5,115,32"/>
+</map>
