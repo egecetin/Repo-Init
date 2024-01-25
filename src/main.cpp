@@ -7,6 +7,7 @@
 #include <csignal>
 #include <thread>
 
+#include <curl/curl.h>
 #include <spdlog/spdlog.h>
 
 int main(int argc, char **argv)
@@ -57,6 +58,12 @@ int main(int argc, char **argv)
 	if (input.cmdOptionExists("--config"))
 	{
 		configPath = input.getCmdOption("--config");
+	}
+
+	if (curl_global_init(CURL_GLOBAL_DEFAULT) < 0)
+	{
+		spdlog::critical("Can't init curl");
+		return EXIT_FAILURE;
 	}
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
@@ -168,6 +175,8 @@ int main(int argc, char **argv)
 	/* ################################################################################### */
 	/* ################################ END MODIFICATIONS ################################ */
 	/* ################################################################################### */
+
+	curl_global_cleanup();
 
 	spdlog::info("{} Exited", PROJECT_NAME);
 	return EXIT_SUCCESS;
