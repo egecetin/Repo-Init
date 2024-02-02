@@ -226,7 +226,7 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                                  : <a class="code" href="classRawSocket.html#a9a7162db9a22144cae19670b775319e4">writeMode</a>(isWrite), <a class="code" href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">iFace</a>(std::move(iface))</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">// Prepare socket address</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    memset((<span class="keywordtype">void</span> *)&amp;<a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>, 0, <span class="keyword">sizeof</span>(sockaddr_ll));</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    memset(<span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;<a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>), 0, <span class="keyword">sizeof</span>(sockaddr_ll));</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>.sll_family = AF_PACKET;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>.sll_protocol = htons(ETH_P_ALL);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>.sll_ifindex = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(if_nametoindex(<a class="code" href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">iFace</a>.c_str()));</div>
@@ -237,14 +237,14 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">// Interface request</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    ifreq ifr{};</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    memset((<span class="keywordtype">void</span> *)&amp;ifr, 0, <span class="keyword">sizeof</span>(ifreq));</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    memset(<span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;ifr), 0, <span class="keyword">sizeof</span>(ifreq));</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    memcpy(std::addressof(ifr.ifr_name), <a class="code" href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">iFace</a>.c_str(),</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;           <a class="code" href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">iFace</a>.size()); <span class="comment">// Size should be sufficient because if_nametoindex not failed</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">if</span> (isWrite)</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d">init</a>(PF_PACKET, SOCK_RAW, IPPROTO_RAW, <a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">if</span> (setsockopt(<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a>, SOL_SOCKET, SO_BINDTODEVICE, (<span class="keywordtype">void</span> *)&amp;ifr, <span class="keyword">sizeof</span>(ifr)) &lt; 0)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">if</span> (setsockopt(<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a>, SOL_SOCKET, SO_BINDTODEVICE, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;ifr), <span class="keyword">sizeof</span>(ifr)) &lt; 0)</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        {</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">throw</span> std::runtime_error(std::string(<span class="stringliteral">&quot;Can&#39;t set socket options: &quot;</span>) + <a class="code" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        }</div>
@@ -842,7 +842,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classRawSocket.html">RawSocket</a></li>
-    <li class="footer">Generated on Fri Feb 2 2024 01:57:43 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Fri Feb 2 2024 08:52:49 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

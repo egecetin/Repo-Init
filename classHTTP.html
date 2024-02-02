@@ -828,7 +828,7 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00006">6</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, CURLOPT_URL, fullURL.c_str());</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, CURLOPT_WRITEDATA, (<span class="keywordtype">void</span> *)&amp;receivedData); <span class="comment">// Register user-supplied memory</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, CURLOPT_WRITEDATA, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;receivedData)); <span class="comment">// Register user-supplied memory</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, method, 1L);</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
@@ -897,7 +897,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, CURLOPT_POSTFIELDS, payload.c_str());</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, CURLOPT_POSTFIELDSIZE_LARGE, payload.size());</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, CURLOPT_URL, fullURL.c_str());</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, CURLOPT_WRITEDATA, (<span class="keywordtype">void</span> *)&amp;receivedData); <span class="comment">// Register user-supplied memory</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, CURLOPT_WRITEDATA, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;receivedData)); <span class="comment">// Register user-supplied memory</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, method, 1L);</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
 </div><!-- fragment -->
@@ -1089,7 +1089,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classHTTP.html">HTTP</a></li>
-    <li class="footer">Generated on Fri Feb 2 2024 01:57:43 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Fri Feb 2 2024 08:52:49 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
