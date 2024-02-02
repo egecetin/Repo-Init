@@ -6,7 +6,7 @@
 void HTTP::setCommonFields(const std::string &fullURL, std::string &receivedData, CURLoption method)
 {
 	curl_easy_setopt(curl, CURLOPT_URL, fullURL.c_str());
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&receivedData); // Register user-supplied memory
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, static_cast<void *>(&receivedData)); // Register user-supplied memory
 	curl_easy_setopt(curl, method, 1L);
 }
 
@@ -16,7 +16,7 @@ void HTTP::setCommonFields(const std::string &fullURL, std::string &receivedData
 	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload.c_str());
 	curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE_LARGE, payload.size());
 	curl_easy_setopt(curl, CURLOPT_URL, fullURL.c_str());
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&receivedData); // Register user-supplied memory
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, static_cast<void *>(&receivedData)); // Register user-supplied memory
 	curl_easy_setopt(curl, method, 1L);
 }
 
