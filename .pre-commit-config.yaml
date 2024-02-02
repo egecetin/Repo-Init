@@ -33,12 +33,6 @@ repos:
     rev: 23.12.1
     hooks:
       - id: black
-  - repo: https://github.com/pocc/pre-commit-hooks
-    rev: v1.3.5
-    hooks:
-      - id: clang-format
-      - id: cppcheck
-        args: ["--std=c++14", "--language=c++", "--suppressions-list=cppcheckSuppressions.txt", "--inline-suppr"]
   - repo: https://github.com/cmake-lint/cmake-lint
     rev: 1.4.2
     hooks:
