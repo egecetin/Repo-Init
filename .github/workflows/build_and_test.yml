@@ -28,7 +28,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Run clang-format
-        run: clang-format -i include/*.hpp include/**/*.hpp --verbose
+        run: clang-format include/*.hpp include/**/*.hpp src/*.cpp src/**/*.cpp --verbose --dry-run --Werror
       - name: Run cppcheck
         run: cppcheck -Iinclude/ src --verbose --enable=all --error-exitcode=1 --std=c++14 --language=c++ --suppressions-list=cppcheckSuppressions.txt --inline-suppr
 

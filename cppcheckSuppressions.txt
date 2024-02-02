@@ -1,3 +1,4 @@
 missingInclude:*
 missingIncludeSystem:*
+unmatchedSuppression:*
 unusedFunction:*
