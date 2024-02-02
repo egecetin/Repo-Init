@@ -375,7 +375,7 @@ bool TelnetSession::processCommandHistory(std::string &buffer)
 		{
 			if (m_historyCursor != m_history.begin())
 			{
-				m_historyCursor--;
+				--m_historyCursor;
 			}
 			buffer = *m_historyCursor;
 
@@ -392,7 +392,7 @@ bool TelnetSession::processCommandHistory(std::string &buffer)
 		{
 			if (next(m_historyCursor) != m_history.end())
 			{
-				m_historyCursor++;
+				++m_historyCursor;
 			}
 			buffer = *m_historyCursor;
 

@@ -8,10 +8,8 @@
 #include <limits>
 
 PrometheusServer::PrometheusServer(const std::string &serverAddr)
+	: mainExposer(std::make_unique<prometheus::Exposer>(serverAddr, 1))
 {
-	// Init service
-	mainExposer = std::make_unique<prometheus::Exposer>(serverAddr, 1);
-
 	auto reg = std::make_shared<prometheus::Registry>();
 
 	// Basic information
