@@ -64,7 +64,9 @@ jobs:
       matrix:
         include:
           - image: rockylinux87
+          - image: rockylinux87-icx
           - image: rockylinux91
+          - image: rockylinux91-icx
 
     steps:
       - name: Checkout Code
