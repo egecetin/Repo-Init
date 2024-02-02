@@ -5,7 +5,7 @@
 class ZeroMQ {
   private:
 	// Internal context
-	std::shared_ptr<zmq::context_t> contextPtr;
+	std::shared_ptr<zmq::context_t> contextPtr{std::make_shared<zmq::context_t>(1)};
 	// Internal socket
 	std::unique_ptr<zmq::socket_t> socketPtr;
 
