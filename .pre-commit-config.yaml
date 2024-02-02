@@ -36,7 +36,17 @@ repos:
   - repo: local
     hooks:
       - id: clang-format-docker
+        name: clang-format
+        description: Run `clang-format`
+        language: docker_image
+        types_or: [c, c++]
+        entry: egecetinn/precommit:latest clang-format -i
       - id: cppcheck-docker
+        name: cppcheck
+        description: Run `cppcheck`
+        language: docker_image
+        types_or: [c, c++]
+        entry: egecetinn/precommit:latest cppcheck --error-exitcode=1
         args: ["--std=c++14", "--language=c++", "--suppressions-list=cppcheckSuppressions.txt", "--inline-suppr"]
   - repo: https://github.com/cmake-lint/cmake-lint
     rev: 1.4.2
