@@ -15,7 +15,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "12.0")
       list(APPEND COMPILER_SECURE_FLAGS_DISABLED -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3)
       if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "8.0")
-        message(ERROR "GNU compiler version less than 8.0. Security flags are not supported")
+        message(WARNING "GNU compiler version less than 8.0. Security flags are not supported")
       endif() # Version 8.0
     endif() # Version 12.0
   endif() # Version 13.0
@@ -26,19 +26,20 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?[Cc]lang")
     if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "12.0")
       list(APPEND COMPILER_SECURE_FLAGS_DISABLED -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3)
       if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "11.0")
-        message(ERROR "Clang compiler version less than 11.0. Security flags are not supported")
+        message(WARNING "Clang compiler version less than 11.0. Security flags are not supported")
       endif() # Version 11.0
     endif() # Version 12.0
   endif() # Version 16.0
 else()
-  message(ERROR "Compiler ${CMAKE_CXX_COMPILER_ID} not supported for hardening flags")
+  message(WARNING "Compiler ${CMAKE_CXX_COMPILER_ID} not supported for hardening flags")
+  set(COMPILER_SECURE_FLAGS_ENABLED "")
 endif()
 
 list(REMOVE_ITEM COMPILER_SECURE_FLAGS_ENABLED ${COMPILER_SECURE_FLAGS_DISABLED})
 
 # Enable flags
-message(STATUS "Supported hardening flags ${COMPILER_SECURE_FLAGS_ENABLED}")
-message(WARNING "Not supported hardening flags ${COMPILER_SECURE_FLAGS_DISABLED}")
+message(STATUS "Supported hardening flags: ${COMPILER_SECURE_FLAGS_ENABLED}")
+message(WARNING "Not supported hardening flags: ${COMPILER_SECURE_FLAGS_DISABLED}")
 
 if(ENABLE_RECOMMENDED_SECURITY_FLAGS)
   add_compile_options(${COMPILER_SECURE_FLAGS_ENABLED})
