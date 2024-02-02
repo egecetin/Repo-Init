@@ -1,4 +1,2 @@
-*:thirdparty/*
-*:tests/*
 missingInclude:*
-unusedStructMember:*
+unusedFunction:*

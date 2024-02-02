@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  pre-commit:
+  clang-tidy:
     runs-on: ubuntu-latest
     container: egecetinn/ubuntu2204
     steps:
@@ -16,11 +16,21 @@ jobs:
           submodules: recursive
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-      - uses: pre-commit/action@v3.0.0
       - name: Configure
         run: cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build
       - name: Clang-tidy
         run: run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/*.cpp src/**/*.cpp
+
+  format:
+    runs-on: ubuntu-latest
+    container: egecetinn/alpine
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Run clang-format
+        run: clang-format -i include/*.hpp include/**/*.hpp --verbose
+      - name: Run cppcheck
+        run: cppcheck -Iinclude/ src --verbose --enable=all --error-exitcode=1 --std=c++14 --language=c++ --suppressions-list=cppcheckSuppressions.txt --inline-suppr
 
   coverage:
     runs-on: ubuntu-latest
