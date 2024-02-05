@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ETH_P_ALL = 0x0003
 
 import socket

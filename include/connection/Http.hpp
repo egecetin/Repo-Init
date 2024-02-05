@@ -3,6 +3,9 @@
 #include <HttpStatusCodes_C++11.h>
 #include <curl/curl.h>
 
+/// HTTP connection timeout in milliseconds
+constexpr int HTTP_TIMEOUT_MS = 1000;
+
 /**
  * @brief Stats produced by HTTP
  */
@@ -36,7 +39,7 @@ struct HTTPStats {
 class HTTP {
   private:
 	/// CURL handler
-	CURL *curl;
+	CURL *curl = curl_easy_init();
 	/// Full path of server
 	std::string hostAddr;
 
@@ -53,7 +56,7 @@ class HTTP {
 	 * @param[in] addr Full path to server
 	 * @param[in] timeoutInMs Connection timeout in milliseconds
 	 */
-	explicit HTTP(std::string addr, int timeoutInMs = 1000);
+	explicit HTTP(std::string addr, int timeoutInMs = HTTP_TIMEOUT_MS);
 
 	/// @brief Copy constructor
 	HTTP(const HTTP & /*unused*/) = delete;

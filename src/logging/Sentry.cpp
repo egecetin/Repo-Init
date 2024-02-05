@@ -11,6 +11,9 @@
 #include <sentry.h>
 #include <spdlog/spdlog.h>
 
+// MAC address length for character string
+constexpr int MAC_LEN = 18;
+
 namespace spdlog
 {
 	namespace sinks
@@ -113,11 +116,11 @@ namespace spdlog
 					case AF_PACKET:
 						if (((ifa->ifa_flags & IFF_PROMISC) != 0) || ((ifa->ifa_flags & IFF_UP) != 0))
 						{
-							std::array<char, 18> host{};
-							const auto *s = reinterpret_cast<sockaddr_ll *>(ifa->ifa_addr);
-							if (snprintf(host.data(), 18, "%02x:%02x:%02x:%02x:%02x:%02x", s->sll_addr[0],
-										 s->sll_addr[1], s->sll_addr[2], s->sll_addr[3], s->sll_addr[4],
-										 s->sll_addr[5]) > 0)
+							std::array<char, MAC_LEN> host{};
+							const auto *sock = reinterpret_cast<sockaddr_ll *>(ifa->ifa_addr);
+							if (snprintf(host.data(), MAC_LEN, "%02x:%02x:%02x:%02x:%02x:%02x", sock->sll_addr[0],
+										 sock->sll_addr[1], sock->sll_addr[2], sock->sll_addr[3], sock->sll_addr[4],
+										 sock->sll_addr[5]) > 0)
 							{
 								sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".mac").c_str(),
 														sentry_value_new_string(host.data()));

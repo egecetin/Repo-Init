@@ -3,6 +3,12 @@
 #include <prometheus/gauge.h>
 #include <prometheus/summary.h>
 
+#define QUANTILE_DEFAULTS                                                                                              \
+	prometheus::Summary::Quantiles                                                                                     \
+	{                                                                                                                  \
+		{0.5, 0.1}, {0.9, 0.1}, { 0.99, 0.1 }                                                                          \
+	}
+
 PerformanceTracker::PerformanceTracker(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name,
 									   uint64_t metricID)
 {
@@ -10,7 +16,7 @@ PerformanceTracker::PerformanceTracker(const std::shared_ptr<prometheus::Registr
 					  .Name(name + "_processing_time_" + std::to_string(metricID))
 					  .Help(name + " processing performance")
 					  .Register(*reg)
-					  .Add({}, prometheus::Summary::Quantiles{{0.5, 0.1}, {0.9, 0.1}, {0.99, 0.1}});
+					  .Add({}, QUANTILE_DEFAULTS);
 	maxTiming = &prometheus::BuildGauge()
 					 .Name(name + "_maximum_processing_time_" + std::to_string(metricID))
 					 .Help("Maximum value of the " + name + " processing performance")

@@ -4,6 +4,7 @@ project(XXX)
 # CMake Modules
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
 include(CompilerOptions)
+include(CompilerSecurityOptions)
 include(Doxy)
 include(GitVersion)
 include(GraphViz)
@@ -13,6 +14,8 @@ option(XXX_BUILD_UNITTESTS "Build XXX unit tests" ON)
 option(XXX_BUILD_FUZZTESTS "Build XXX fuzz tests" OFF)
 option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
+
+find_package(CURL REQUIRED)
 
 if(NOT DEFINED REVISION_VERSION)
   message(WARNING "Can't find Git. The folder is not under version control.")
@@ -86,10 +89,10 @@ file(GLOB ProjectSources
   ${PROJECT_SOURCE_DIR}/src/metrics/Status.cpp
   ${PROJECT_SOURCE_DIR}/src/telnet/TelnetServer.cpp
   ${PROJECT_SOURCE_DIR}/src/telnet/TelnetStats.cpp
-  ${PROJECT_SOURCE_DIR}/src/trace/Crashpad.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQServer.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQStats.cpp
   ${PROJECT_SOURCE_DIR}/src/Control.cpp
+  ${PROJECT_SOURCE_DIR}/src/Tracer.cpp
   ${PROJECT_SOURCE_DIR}/src/Utils.cpp
 )
 
@@ -117,7 +120,7 @@ add_subdirectory(thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/spdlog EXCLUDE_FROM_ALL)
 
-# Add crashpad seperately from sentry to enable minidump generation without sentry server
+# Add crashpad separately from sentry to enable minidump generation without sentry server
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad/third_party/mini_chromium)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad/third_party/mini_chromium/mini_chromium)
@@ -136,15 +139,18 @@ target_link_libraries(
   "${PROJECT_NAME}-lib" PUBLIC
   cppzmq
   crashpad_client
-  curl
-  pull
-  sentry
-  spdlog)
+  CURL::libcurl
+  prometheus-cpp::pull
+  RapidJSON
+  sentry::sentry
+  spdlog::spdlog)
+enable_security_flags_for_target("${PROJECT_NAME}-lib")
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp ${BACKWARD_ENABLE})
 target_include_directories(${PROJECT_NAME} PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries(${PROJECT_NAME} PRIVATE "${PROJECT_NAME}-lib")
-add_backward(${PROJECT_NAME})
+target_link_libraries(${PROJECT_NAME} PRIVATE "${PROJECT_NAME}-lib" Backward::Backward)
+enable_security_flags_for_target(${PROJECT_NAME})
+add_dependencies(${PROJECT_NAME} crashpad_handler)
 
 # Update build number at every build
 add_custom_command(

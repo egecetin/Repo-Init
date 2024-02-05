@@ -73,7 +73,7 @@ namespace spdlog
 
 			if (msg.level >= spdlog::level::debug && msg.level <= spdlog::level::critical)
 			{
-				internalLogBuffer[static_cast<int>(msg.level) - 1].logs.push_back(
+				internalLogBuffer[static_cast<size_t>(msg.level) - 1].logs.push_back(
 					{std::to_string(msg.time.time_since_epoch().count()),
 					 std::string(msg.payload.data(), msg.payload.size())});
 			}
@@ -84,9 +84,9 @@ namespace spdlog
 			bool flag = false;
 
 			// Prepare JSON
-			std::ostringstream ss;
+			std::ostringstream sStream;
 
-			ss << "{\"streams\":[";
+			sStream << "{\"streams\":[";
 			for (auto &entry : internalLogBuffer)
 			{
 				if (entry.logs.empty())
@@ -96,33 +96,33 @@ namespace spdlog
 
 				if (flag)
 				{
-					ss << ",";
+					sStream << ",";
 				}
 				flag = true;
-				ss << "{\"stream\":{" << basicInformation + R"("level":")" << entry.level << R"("},"values":[)";
+				sStream << "{\"stream\":{" << basicInformation + R"("level":")" << entry.level << R"("},"values":[)";
 
 				bool subflag = false;
 				for (const auto &subentry : entry.logs)
 				{
 					if (subflag)
 					{
-						ss << ",";
+						sStream << ",";
 					}
 					subflag = true;
-					ss << "[\"" << subentry.first << "\",\"" << subentry.second << "\"]";
+					sStream << "[\"" << subentry.first << "\",\"" << subentry.second << "\"]";
 				}
-				ss << "]}";
+				sStream << "]}";
 
 				entry.logs.clear();
 			}
-			ss << "]}";
+			sStream << "]}";
 
 			if (flag)
 			{
 				// Send request
 				std::string recvData;
 				HttpStatus::Code replyCode = HttpStatus::Code::xxx_max;
-				connHandler->sendPOSTRequest("/loki/api/v1/push", ss.str(), recvData, replyCode);
+				connHandler->sendPOSTRequest("/loki/api/v1/push", sStream.str(), recvData, replyCode);
 			}
 		}
 
