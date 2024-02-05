@@ -563,14 +563,6 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString,
 		return false;
 	}
 
-	int optionVal = 1;
-	if (setsockopt(m_listenSocket, SOL_SOCKET, SO_REUSEADDR, &optionVal, sizeof(optionVal)) < 0)
-	{
-		freeaddrinfo(result);
-		close(m_listenSocket);
-		return false;
-	}
-
 	// Setup the TCP listening socket
 	if (bind(m_listenSocket, result->ai_addr, result->ai_addrlen) < 0)
 	{
