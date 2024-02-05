@@ -10,7 +10,7 @@ std::string Tracer::getSelfExecutableDir()
 	std::array<char, FILENAME_MAX> pathBuffer;
 	int bytes = std::min(readlink("/proc/self/exe", pathBuffer.data(), sizeof(pathBuffer)),
 						 static_cast<ssize_t>(sizeof(pathBuffer) - 1));
-    
+
     auto path = std::string(pathBuffer.data(), bytes);
     auto lastDelimPos = path.find_last_of('/');
     return (lastDelimPos == std::string::npos) ? "" : path.substr(0, lastDelimPos);
