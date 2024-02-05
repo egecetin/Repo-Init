@@ -120,7 +120,7 @@ add_subdirectory(thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/spdlog EXCLUDE_FROM_ALL)
 
-# Add crashpad seperately from sentry to enable minidump generation without sentry server
+# Add crashpad separately from sentry to enable minidump generation without sentry server
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad/third_party/mini_chromium)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad/third_party/mini_chromium/mini_chromium)
