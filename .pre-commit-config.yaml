@@ -1,14 +1,16 @@
 fail_fast: false
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: check-added-large-files
       - id: check-case-conflict
       - id: check-executables-have-shebangs
       - id: check-json
         exclude: config_empty.json
+      - id: check-shebang-scripts-are-executable
       - id: check-merge-conflict
+      - id: check-symlinks
       - id: check-toml
       - id: check-xml
       - id: check-yaml
@@ -18,32 +20,31 @@ repos:
         args: ['--fix=lf']
       - id: requirements-txt-fixer
       - id: trailing-whitespace
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        exclude: tests/data/config.json
   - repo: https://github.com/lovesegfault/beautysh
     rev: v6.2.1
     hooks:
       - id: beautysh
   - repo: https://github.com/psf/black
-    rev: 23.7.0
+    rev: 23.12.1
     hooks:
       - id: black
-  - repo: https://github.com/pocc/pre-commit-hooks
-    rev: v1.3.5
-    hooks:
-      - id: clang-format
-      - id: cppcheck
-        args: ["--std=c++14", "--language=c++", "--suppressions-list=cppcheckSuppressions.txt", "--inline-suppr"]
   - repo: https://github.com/cmake-lint/cmake-lint
     rev: 1.4.2
     hooks:
       - id: cmakelint
         args: ['--linelength=120']
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.5
+    rev: v2.2.6
     hooks:
       - id: codespell
         pass_filenames: false
   - repo: https://github.com/crate-ci/typos
-    rev: v1.16.5
+    rev: v1.17.1
     hooks:
       - id: typos
         pass_filenames: false

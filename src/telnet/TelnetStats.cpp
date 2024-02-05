@@ -8,6 +8,12 @@
 
 #include <limits>
 
+#define QUANTILE_DEFAULTS                                                                                              \
+	prometheus::Summary::Quantiles                                                                                     \
+	{                                                                                                                  \
+		{0.5, 0.1}, {0.9, 0.1}, { 0.99, 0.1 }                                                                          \
+	}
+
 TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint16_t portNumber)
 {
 	if (!reg)
@@ -45,7 +51,7 @@ TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint1
 						  .Name("telnet_processing_time")
 						  .Help("Command processing performance")
 						  .Register(*reg)
-						  .Add({}, prometheus::Summary::Quantiles{{0.5, 0.1}, {0.9, 0.1}, {0.99, 0.1}});
+						  .Add({}, QUANTILE_DEFAULTS);
 	maxProcessingTime = &prometheus::BuildGauge()
 							 .Name("telnet_maximum_processing_time")
 							 .Help("Maximum value of the command processing performance")
@@ -88,7 +94,7 @@ TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint1
 						   .Name("telnet_session_duration")
 						   .Help("Duration of sessions")
 						   .Register(*reg)
-						   .Add({}, prometheus::Summary::Quantiles{{0.5, 0.1}, {0.9, 0.1}, {0.99, 0.1}});
+						   .Add({}, QUANTILE_DEFAULTS);
 	maxSessionDuration = &prometheus::BuildGauge()
 							  .Name("telnet_maximum_session_duration")
 							  .Help("Maximum duration of sessions")

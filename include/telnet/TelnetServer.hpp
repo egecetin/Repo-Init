@@ -55,8 +55,8 @@ using Socket = int;
 class TelnetSession : public std::enable_shared_from_this<TelnetSession> {
   public:
 	/// Constructor for session
-	TelnetSession(Socket ClientSocket, std::shared_ptr<TelnetServer> ts)
-		: m_socket(ClientSocket), m_telnetServer(std::move(ts))
+	TelnetSession(Socket ClientSocket, std::shared_ptr<TelnetServer> tServer)
+		: m_socket(ClientSocket), m_telnetServer(std::move(tServer))
 	{
 		m_historyCursor = m_history.end();
 	};
@@ -148,13 +148,13 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	/// Closes the Telnet Server
 	void shutdown();
 
-	void connectedCallback(FPTR_ConnectedCallback f) { m_connectedCallback = std::move(f); }
+	void connectedCallback(FPTR_ConnectedCallback func) { m_connectedCallback = std::move(func); }
 	FPTR_ConnectedCallback connectedCallback() const { return m_connectedCallback; }
 
-	void newLineCallback(FPTR_NewLineCallback f) { m_newlineCallback = std::move(f); }
+	void newLineCallback(FPTR_NewLineCallback func) { m_newlineCallback = std::move(func); }
 	FPTR_NewLineCallback newLineCallBack() const { return m_newlineCallback; }
 
-	void tabCallback(FPTR_TabCallback f) { m_tabCallback = std::move(f); }
+	void tabCallback(FPTR_TabCallback func) { m_tabCallback = std::move(func); }
 	FPTR_TabCallback tabCallback() const { return m_tabCallback; }
 
 	VEC_SP_TelnetSession sessions() const { return m_sessions; }

@@ -6,7 +6,7 @@
 void HTTP::setCommonFields(const std::string &fullURL, std::string &receivedData, CURLoption method)
 {
 	curl_easy_setopt(curl, CURLOPT_URL, fullURL.c_str());
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&receivedData); // Register user-supplied memory
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, static_cast<void *>(&receivedData)); // Register user-supplied memory
 	curl_easy_setopt(curl, method, 1L);
 }
 
@@ -16,7 +16,7 @@ void HTTP::setCommonFields(const std::string &fullURL, std::string &receivedData
 	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload.c_str());
 	curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE_LARGE, payload.size());
 	curl_easy_setopt(curl, CURLOPT_URL, fullURL.c_str());
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&receivedData); // Register user-supplied memory
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, static_cast<void *>(&receivedData)); // Register user-supplied memory
 	curl_easy_setopt(curl, method, 1L);
 }
 
@@ -45,11 +45,11 @@ size_t HTTP::writeDataCallback(void *contents, size_t size, size_t nmemb, void *
 	return recvSize;
 }
 
-HTTP::HTTP(std::string addr, int timeoutInMs) : curl(curl_easy_init()), hostAddr(std::move(addr))
+HTTP::HTTP(std::string addr, int timeoutInMs) : hostAddr(std::move(addr))
 {
 	if (curl == nullptr)
 	{
-		throw std::runtime_error("Can't init curl context");
+		throw std::invalid_argument("Can't init curl context");
 	}
 
 	curl_easy_setopt(curl, CURLOPT_VERBOSE, 0L);
@@ -98,13 +98,13 @@ HTTPStats HTTP::getStats()
 
 	curl_off_t value = 0;
 	curl_easy_getinfo(curl, CURLINFO_SIZE_UPLOAD_T, &value);
-	stats.uploadBytes = value;
+	stats.uploadBytes = static_cast<size_t>(value);
 	curl_easy_getinfo(curl, CURLINFO_SIZE_UPLOAD_T, &value);
-	stats.downloadBytes = value;
+	stats.downloadBytes = static_cast<size_t>(value);
 	curl_easy_getinfo(curl, CURLINFO_HEADER_SIZE, &value);
-	stats.headerBytes = value;
+	stats.headerBytes = static_cast<size_t>(value);
 	curl_easy_getinfo(curl, CURLINFO_REQUEST_SIZE, &value);
-	stats.requestBytes = value;
+	stats.requestBytes = static_cast<size_t>(value);
 	curl_easy_getinfo(curl, CURLINFO_SPEED_UPLOAD_T, &value);
 	stats.uploadSpeed = value;
 	curl_easy_getinfo(curl, CURLINFO_SPEED_DOWNLOAD_T, &value);

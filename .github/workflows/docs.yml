@@ -1,0 +1,30 @@
+name: Doxygen GitHub Pages Deploy Action
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    container: egecetinn/ubuntu2204
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Rename templates
+        run: ./scripts/firstName.sh -n Repo-Init
+      - name: Configure
+        run: cmake -S . -B build
+      - name: Generate Doxygen Documentation
+        run: cmake --build build --target docs
+      - name: Create .nojekyll (ensures pages with underscores work on gh pages)
+        run: touch doc/html/.nojekyll
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: doc/html

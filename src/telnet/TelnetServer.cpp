@@ -16,6 +16,17 @@ constexpr int DEFAULT_BUFLEN = 512;
 constexpr int TELNET_TIMEOUT = 120;
 // Maximum number of concurrent sessions
 constexpr int MAX_AVAILABLE_SESSION = 5;
+// History limit for Telnet session
+constexpr int TELNET_HISTORY_LIMIT = 50;
+
+// Status table widths
+constexpr int KEY_WIDTH = 30;
+constexpr int VAL_WIDTH = 15;
+
+// Telnet ASCII constants
+constexpr int ASCII_LF = 0x0A;
+constexpr int ASCII_NULL = 0x00;
+constexpr int ASCII_NBSP = 0xFF;
 
 // NOLINTBEGIN
 const std::vector<std::pair<std::string, std::string>> telnetCommands = {
@@ -90,12 +101,12 @@ std::string TelnetSession::getPeerIP() const
 	sockaddr_in client_info{};
 	memset(&client_info, 0, sizeof(client_info));
 	socklen_t addrsize = sizeof(client_info);
-	getpeername(m_socket, (sockaddr *)(&client_info), &addrsize);
+	getpeername(m_socket, reinterpret_cast<sockaddr *>(&client_info), &addrsize);
 
-	std::array<char, INET_ADDRSTRLEN> ip{};
-	inet_ntop(AF_INET, &client_info.sin_addr, ip.data(), INET_ADDRSTRLEN);
+	std::array<char, INET_ADDRSTRLEN> ipAddr{};
+	inet_ntop(AF_INET, &client_info.sin_addr, ipAddr.data(), INET_ADDRSTRLEN);
 
-	return ip.data();
+	return ipAddr.data();
 }
 
 void TelnetSession::sendPromptAndBuffer()
@@ -105,7 +116,7 @@ void TelnetSession::sendPromptAndBuffer()
 		send(m_socket, m_telnetServer->promptString().c_str(), m_telnetServer->promptString().length(), 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 
 	// Resend the buffer
@@ -114,7 +125,7 @@ void TelnetSession::sendPromptAndBuffer()
 		sendBytes = send(m_socket, m_buffer.c_str(), m_buffer.length(), 0);
 		if (sendBytes > 0)
 		{
-			stats.uploadBytes += sendBytes;
+			stats.uploadBytes += static_cast<size_t>(sendBytes);
 		}
 	}
 }
@@ -125,7 +136,7 @@ void TelnetSession::eraseLine()
 	ssize_t sendBytes = send(m_socket, ANSI_ERASE_LINE.c_str(), ANSI_ERASE_LINE.length(), 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 
 	// Move the cursor to the beginning of the line
@@ -133,7 +144,7 @@ void TelnetSession::eraseLine()
 	sendBytes = send(m_socket, moveBack.c_str(), moveBack.length(), 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 }
 
@@ -149,7 +160,7 @@ void TelnetSession::sendLine(std::string data)
 	const ssize_t sendBytes = send(m_socket, data.c_str(), data.length(), 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 
 	if (m_telnetServer->interactivePrompt())
@@ -186,8 +197,8 @@ void TelnetSession::markTimeout()
 void TelnetSession::echoBack(const char *buffer, u_long length)
 {
 	// If you are an NVT command (i.e. first it of data is 255) then ignore the echo back
-	const uint8_t firstItem = *buffer;
-	if (firstItem == 0xff)
+	const auto firstItem = static_cast<uint8_t>(*buffer);
+	if (firstItem == ASCII_NBSP)
 	{
 		return;
 	}
@@ -195,7 +206,7 @@ void TelnetSession::echoBack(const char *buffer, u_long length)
 	const ssize_t sendBytes = send(m_socket, buffer, length, 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 }
 
@@ -215,7 +226,7 @@ void TelnetSession::initialise()
 	ssize_t sendBytes = send(m_socket, willEcho.data(), 3, 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 
 	// Set NVT requesting that the remote system not/dont echo back characters
@@ -223,7 +234,7 @@ void TelnetSession::initialise()
 	sendBytes = send(m_socket, dontEcho.data(), 3, 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 
 	// Set NVT mode to say that I will suppress go-ahead. Stops remote clients from doing local linemode.
@@ -231,7 +242,7 @@ void TelnetSession::initialise()
 	sendBytes = send(m_socket, willSGA.data(), 3, 0);
 	if (sendBytes > 0)
 	{
-		stats.uploadBytes += sendBytes;
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
 
 	if (m_telnetServer->connectedCallback())
@@ -248,7 +259,7 @@ void TelnetSession::stripNVT(std::string &buffer)
 	size_t found = 0;
 	do
 	{
-		found = buffer.find_first_of(static_cast<char>(0xFF));
+		found = buffer.find_first_of(static_cast<char>(ASCII_NBSP));
 		if (found != std::string::npos && (found + 2) <= buffer.length() - 1)
 		{
 			buffer.erase(found, 3);
@@ -265,14 +276,14 @@ void TelnetSession::stripEscapeCharacters(std::string &buffer)
 	size_t found = 0;
 	const std::array<std::string, 4> cursors = {ANSI_ARROW_UP, ANSI_ARROW_DOWN, ANSI_ARROW_RIGHT, ANSI_ARROW_LEFT};
 
-	for (const auto &c : cursors)
+	for (const auto &cursor : cursors)
 	{
 		do
 		{
-			found = buffer.find(c);
+			found = buffer.find(cursor);
 			if (found != std::string::npos)
 			{
-				buffer.erase(found, c.length());
+				buffer.erase(found, cursor.length());
 			}
 		} while (found != std::string::npos);
 	}
@@ -347,7 +358,7 @@ void TelnetSession::addToHistory(const std::string &line)
 	if (line != (!m_history.empty() ? m_history.back() : "") && !line.empty())
 	{
 		m_history.push_back(line);
-		if (m_history.size() > 50)
+		if (m_history.size() > TELNET_HISTORY_LIMIT)
 		{
 			m_history.pop_front();
 		}
@@ -364,7 +375,7 @@ bool TelnetSession::processCommandHistory(std::string &buffer)
 		{
 			if (m_historyCursor != m_history.begin())
 			{
-				m_historyCursor--;
+				--m_historyCursor;
 			}
 			buffer = *m_historyCursor;
 
@@ -374,14 +385,14 @@ bool TelnetSession::processCommandHistory(std::string &buffer)
 			{
 				return false;
 			}
-			stats.uploadBytes += sendBytes;
+			stats.uploadBytes += static_cast<size_t>(sendBytes);
 			return true;
 		}
 		if (buffer.find(ANSI_ARROW_DOWN) != std::string::npos && !m_history.empty())
 		{
 			if (next(m_historyCursor) != m_history.end())
 			{
-				m_historyCursor++;
+				++m_historyCursor;
 			}
 			buffer = *m_historyCursor;
 
@@ -392,7 +403,7 @@ bool TelnetSession::processCommandHistory(std::string &buffer)
 				return false;
 			}
 
-			stats.uploadBytes += sendBytes;
+			stats.uploadBytes += static_cast<size_t>(sendBytes);
 			return true;
 		}
 
@@ -445,27 +456,27 @@ void TelnetSession::update()
 	}
 	else if (readBytes > 0)
 	{
-		stats.downloadBytes += readBytes;
+		stats.downloadBytes += static_cast<size_t>(readBytes);
 
 		// Update last seen
 		lastSeenTime = std::chrono::system_clock::now();
 
 		// Echo it back to the sender
-		echoBack(recvbuf.data(), readBytes);
+		echoBack(recvbuf.data(), static_cast<size_t>(readBytes));
 
 		// we've got to be careful here. Telnet client might send null characters for New Lines mid-data block. We need
 		// to swap these out. recv is not null terminated, so its cool
-		for (int i = 0; i < readBytes; i++)
+		for (size_t i = 0; i < static_cast<size_t>(readBytes); i++)
 		{
-			if (recvbuf[i] == 0x00) // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
+			if (recvbuf[i] == ASCII_NULL) // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
 			{
 				// New Line constant
-				recvbuf[i] = 0x0A; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
+				recvbuf[i] = ASCII_LF; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
 			}
 		}
 
 		// Add it to the received buffer
-		m_buffer.append(recvbuf.data(), readBytes);
+		m_buffer.append(recvbuf.data(), static_cast<unsigned int>(readBytes));
 		// Remove telnet negotiation sequences
 		stripNVT(m_buffer);
 
@@ -553,7 +564,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString,
 	}
 
 	// Setup the TCP listening socket
-	if (bind(m_listenSocket, result->ai_addr, (int)result->ai_addrlen) < 0)
+	if (bind(m_listenSocket, result->ai_addr, result->ai_addrlen) < 0)
 	{
 		freeaddrinfo(result);
 		close(m_listenSocket);
@@ -587,17 +598,17 @@ bool TelnetServer::acceptConnection()
 	if (m_sessions.size() >= MAX_AVAILABLE_SESSION)
 	{
 		// Create for only sending error
-		const auto s = std::make_shared<TelnetSession>(ClientSocket, shared_from_this());
-		s->initialise();
+		const auto session = std::make_shared<TelnetSession>(ClientSocket, shared_from_this());
+		session->initialise();
 
-		s->sendLine("Too many active connections. Please try again later. \r\nClosing...");
-		s->closeClient();
+		session->sendLine("Too many active connections. Please try again later. \r\nClosing...");
+		session->closeClient();
 		return false;
 	}
 
-	const auto s = std::make_shared<TelnetSession>(ClientSocket, shared_from_this());
-	m_sessions.push_back(s);
-	s->initialise();
+	const auto session = std::make_shared<TelnetSession>(ClientSocket, shared_from_this());
+	m_sessions.push_back(session);
+	session->initialise();
 	return true;
 }
 
@@ -644,7 +655,7 @@ void TelnetServer::update()
 			{
 				stats->consumeStats(m_sessions[idx]->stats, true);
 			}
-			m_sessions.erase(m_sessions.begin() + idx); // NOLINT(cppcoreguidelines-narrowing-conversions)
+			m_sessions.erase(m_sessions.begin() + static_cast<int>(idx));
 			--idx;
 		}
 		else
@@ -669,9 +680,9 @@ void TelnetServer::update()
 void TelnetServer::shutdown()
 {
 	// Attempt to cleanly close every telnet session in flight.
-	for (const SP_TelnetSession &ts : m_sessions)
+	for (const SP_TelnetSession &tSession : m_sessions)
 	{
-		ts->closeClient();
+		tSession->closeClient();
 	}
 	m_sessions.clear();
 
@@ -759,8 +770,8 @@ bool TelnetMessageCallback(const SP_TelnetSession &session, std::string line)
 		for (const auto &entry : vCheckFlag)
 		{
 			std::ostringstream oss;
-			oss << std::left << std::setfill('.') << std::setw(30) << entry.first + " " << std::setw(15) << std::right
-				<< (entry.second->_M_i ? " OK" : " Not Active");
+			oss << std::left << std::setfill('.') << std::setw(KEY_WIDTH) << entry.first + " " << std::setw(VAL_WIDTH)
+				<< std::right << (entry.second->_M_i ? " OK" : " Not Active");
 			session->sendLine(oss.str());
 		}
 		return true;
@@ -787,20 +798,20 @@ std::string TelnetTabCallback(const SP_TelnetSession &session, const std::string
 	std::string retval;
 
 	size_t ctr = 0;
-	std::ostringstream ss;
+	std::ostringstream sStream;
 	for (const auto &entry : telnetCommands)
 	{
 		if (entry.first.rfind(line, 0) == 0)
 		{
 			++ctr;
 			retval = entry.first;
-			ss << entry.first << std::setw(25);
+			sStream << entry.first << std::setw(KEY_WIDTH);
 		}
 	}
 	// Send suggestions if found any. If there is only one command retval will invoke completion
-	if (ctr != 1 && (!ss.str().empty()))
+	if (ctr != 1 && (!sStream.str().empty()))
 	{
-		session->sendLine(ss.str());
+		session->sendLine(sStream.str());
 		retval = "";
 	}
 
