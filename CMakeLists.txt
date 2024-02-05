@@ -89,10 +89,10 @@ file(GLOB ProjectSources
   ${PROJECT_SOURCE_DIR}/src/metrics/Status.cpp
   ${PROJECT_SOURCE_DIR}/src/telnet/TelnetServer.cpp
   ${PROJECT_SOURCE_DIR}/src/telnet/TelnetStats.cpp
-  ${PROJECT_SOURCE_DIR}/src/trace/Crashpad.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQServer.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQStats.cpp
   ${PROJECT_SOURCE_DIR}/src/Control.cpp
+  ${PROJECT_SOURCE_DIR}/src/Tracer.cpp
   ${PROJECT_SOURCE_DIR}/src/Utils.cpp
 )
 

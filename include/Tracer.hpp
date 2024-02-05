@@ -2,15 +2,15 @@
 
 #include "client/crashpad_client.h"
 
-class Crashpad {
+class Tracer {
   private:
 	std::map<std::string, std::string> _annotations;
 	std::unique_ptr<crashpad::CrashpadClient> clientHandler;
 
-	std::string getExecutableDir();
+	std::string getSelfExecutableDir();
 
   public:
-	Crashpad(const std::string &serverPath = "", const std::string &serverProxy = "",
+	Tracer(const std::string &serverPath = "", const std::string &serverProxy = "",
 			 const std::string &crashpadHandlerPath = "", const std::map<std::string, std::string> &annotations = {},
 			 const std::vector<base::FilePath> &attachments = {});
 };

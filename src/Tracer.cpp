@@ -1,34 +1,26 @@
-#include "trace/Crashpad.hpp"
+#include "Tracer.hpp"
 
 #include "client/crash_report_database.h"
 #include "client/settings.h"
 
 #include <algorithm>
-#include <cstring>
 
-std::string Crashpad::getExecutableDir()
+std::string Tracer::getSelfExecutableDir()
 {
-	char pathBuffer[FILENAME_MAX];
-	int bytes = std::min(readlink("/proc/self/exe", pathBuffer, sizeof(pathBuffer)),
+	std::array<char, FILENAME_MAX> pathBuffer;
+	int bytes = std::min(readlink("/proc/self/exe", pathBuffer.data(), sizeof(pathBuffer)),
 						 static_cast<ssize_t>(sizeof(pathBuffer) - 1));
-	if (bytes >= 0)
-	{
-		pathBuffer[bytes] = '\0';
-	}
-
-	char *lastForwardSlash = strrchr(&pathBuffer[0], '/');
-	if (lastForwardSlash == NULL)
-		return NULL;
-	*lastForwardSlash = '\0';
-
-	return pathBuffer;
+    
+    auto path = std::string(pathBuffer.data(), bytes);
+    auto lastDelimPos = path.find_last_of('/');
+    return (lastDelimPos == std::string::npos) ? "" : path.substr(0, lastDelimPos);
 }
 
-Crashpad::Crashpad(const std::string &serverPath, const std::string &serverProxy, const std::string &crashpadHandlerPath,
+Tracer::Tracer(const std::string &serverPath, const std::string &serverProxy, const std::string &crashpadHandlerPath,
 				   const std::map<std::string, std::string> &annotations, const std::vector<base::FilePath> &attachments)
 	: _annotations(annotations)
 {
-	std::string exeDir = getExecutableDir();
+	auto exeDir = getSelfExecutableDir();
 
 	// Path to crashpad executable
 	base::FilePath handler(crashpadHandlerPath.empty() ? exeDir + "/crashpad_handler" : crashpadHandlerPath);
@@ -38,12 +30,12 @@ Crashpad::Crashpad(const std::string &serverPath, const std::string &serverProxy
 	base::FilePath metricsDir(exeDir);
 
 	// Initialize Crashpad database
-	std::unique_ptr<crashpad::CrashReportDatabase> database = crashpad::CrashReportDatabase::Initialize(reportsDir);
+	auto database = crashpad::CrashReportDatabase::Initialize(reportsDir);
 	if (database == nullptr)
 		throw std::runtime_error("Can't initialize crash report database");
 
 	// Enable automated crash uploads
-	crashpad::Settings *settings = database->GetSettings();
+	auto settings = database->GetSettings();
 	if (settings == nullptr)
 		throw std::runtime_error("Can't get crash report database settings");
 	settings->SetUploadsEnabled(true);
@@ -51,6 +43,6 @@ Crashpad::Crashpad(const std::string &serverPath, const std::string &serverProxy
 	// Start crash handler
 	clientHandler = std::make_unique<crashpad::CrashpadClient>();
 	if (!clientHandler->StartHandler(handler, reportsDir, metricsDir, serverPath, serverProxy, annotations,
-									 {"--no-rate-limit"}, true, true, attachments))
+									 {"--no-rate-limit"}, true, false, attachments))
 		throw std::runtime_error("Can't start crash handler");
 }
