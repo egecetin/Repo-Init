@@ -63,7 +63,6 @@ All scripts should be executed from top level directory
 
 ## Dependencies
 
- - [Backward-cpp](https://github.com/bombela/backward-cpp)
  - [CppZMQ](https://github.com/zeromq/cppzmq.git)
  - [cURL](https://github.com/curl/curl)
  - [Date](https://github.com/HowardHinnant/date.git)

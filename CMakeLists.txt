@@ -146,9 +146,9 @@ target_link_libraries(
   spdlog::spdlog)
 enable_security_flags_for_target("${PROJECT_NAME}-lib")
 
-add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp ${BACKWARD_ENABLE})
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_include_directories(${PROJECT_NAME} PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries(${PROJECT_NAME} PRIVATE "${PROJECT_NAME}-lib" Backward::Backward)
+target_link_libraries(${PROJECT_NAME} PRIVATE "${PROJECT_NAME}-lib")
 enable_security_flags_for_target(${PROJECT_NAME})
 add_dependencies(${PROJECT_NAME} crashpad_handler)
 
