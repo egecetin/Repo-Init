@@ -141,13 +141,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(${PROJECT_NAME} PRIVATE "${PROJECT_NAME}-lib" Backward::Backward)
 enable_security_flags_for_target(${PROJECT_NAME})
 
-# Update build number at every build
-add_custom_command(
-  TARGET ${PROJECT_NAME}
-  PRE_BUILD
-  COMMAND ${CMAKE_COMMAND} -P "${CMAKE_CURRENT_SOURCE_DIR}/cmake/AutoBuildNumber.cmake"
-  COMMENT "Updating build number")
-
 # Enable test framework
 if(XXX_BUILD_TESTS)
   if(XXX_ENABLE_COVERAGE)
