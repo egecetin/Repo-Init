@@ -1030,15 +1030,15 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TelnetServer_8cpp_source.html#l00710">710</a> of file <a class="el" href="TelnetServer_8cpp_source.html">TelnetServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;{</div>
-<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;    session-&gt;sendLine(<span class="stringliteral">&quot;\r\n&quot;</span></div>
-<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;                      <span class="stringliteral">&quot;𝑲𝒆𝒆𝒑 𝒚𝒐𝒖𝒓 𝒆𝒚𝒆𝒔 𝒐𝒏 𝒕𝒉𝒆 𝒔𝒕𝒂𝒓𝒔 &quot;</span></div>
-<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;                      <span class="stringliteral">&quot;𝒂𝒏𝒅 𝒚𝒐𝒖𝒓 𝒇𝒆𝒆𝒕 𝒐𝒏 𝒕𝒉𝒆 𝒈𝒓𝒐𝒖𝒏𝒅 &quot;</span></div>
-<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;                      <span class="stringliteral">&quot;\r\n&quot;</span>);</div>
-<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;    <a class="code" href="TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f">TelnetPrintAvailableCommands</a>(session);</div>
-<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;}</div>
-<div class="ttc" id="aTelnetServer_8cpp_html_a3efc6fe43e5a496a75d5d51b308ba19f"><div class="ttname"><a href="TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f">TelnetPrintAvailableCommands</a></div><div class="ttdeci">void TelnetPrintAvailableCommands(const SP_TelnetSession &amp;session)</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00694">TelnetServer.cpp:694</a></div></div>
+<p class="definition">Definition at line <a class="el" href="TelnetServer_8cpp_source.html#l00718">718</a> of file <a class="el" href="TelnetServer_8cpp_source.html">TelnetServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;{</div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;    session-&gt;sendLine(<span class="stringliteral">&quot;\r\n&quot;</span></div>
+<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;                      <span class="stringliteral">&quot;𝑲𝒆𝒆𝒑 𝒚𝒐𝒖𝒓 𝒆𝒚𝒆𝒔 𝒐𝒏 𝒕𝒉𝒆 𝒔𝒕𝒂𝒓𝒔 &quot;</span></div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;                      <span class="stringliteral">&quot;𝒂𝒏𝒅 𝒚𝒐𝒖𝒓 𝒇𝒆𝒆𝒕 𝒐𝒏 𝒕𝒉𝒆 𝒈𝒓𝒐𝒖𝒏𝒅 &quot;</span></div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;                      <span class="stringliteral">&quot;\r\n&quot;</span>);</div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;    <a class="code" href="TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f">TelnetPrintAvailableCommands</a>(session);</div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;}</div>
+<div class="ttc" id="aTelnetServer_8cpp_html_a3efc6fe43e5a496a75d5d51b308ba19f"><div class="ttname"><a href="TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f">TelnetPrintAvailableCommands</a></div><div class="ttdeci">void TelnetPrintAvailableCommands(const SP_TelnetSession &amp;session)</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00702">TelnetServer.cpp:702</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1096,82 +1096,82 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TelnetServer_8cpp_source.html#l00719">719</a> of file <a class="el" href="TelnetServer_8cpp_source.html">TelnetServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;{</div>
-<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;    spdlog::trace(<span class="stringliteral">&quot;Received message {}&quot;</span>, line);</div>
-<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160; </div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;    <span class="comment">// Send received message for user terminal</span></div>
-<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;    session-&gt;sendLine(line);</div>
-<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160; </div>
-<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;    <span class="keywordflow">if</span> (line.empty())</div>
-<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;    {</div>
-<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="TelnetServer_8cpp_source.html#l00727">727</a> of file <a class="el" href="TelnetServer_8cpp_source.html">TelnetServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;{</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;    spdlog::trace(<span class="stringliteral">&quot;Received message {}&quot;</span>, line);</div>
 <div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160; </div>
-<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;    <span class="comment">// Process received message</span></div>
-<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;    <span class="keywordflow">switch</span> (<a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(line.c_str()))</div>
-<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;    {</div>
-<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;Test Message&quot;</span>):</div>
-<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;OK&quot;</span>);</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;    <span class="comment">// Send received message for user terminal</span></div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;    session-&gt;sendLine(line);</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160; </div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;    <span class="keywordflow">if</span> (line.empty())</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;    {</div>
 <div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;help&quot;</span>):</div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;        <a class="code" href="TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f">TelnetPrintAvailableCommands</a>(session);</div>
-<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;disable log&quot;</span>):</div>
-<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Default log mode enabled&quot;</span>);</div>
-<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;        spdlog::set_level(spdlog::level::info);</div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;disable log all&quot;</span>): <span class="comment">// Internal use only</span></div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Disabling all logs&quot;</span>);</div>
-<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;        spdlog::set_level(spdlog::level::off);</div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;    }</div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160; </div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;    <span class="comment">// Process received message</span></div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;    <span class="keywordflow">switch</span> (<a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(line.c_str()))</div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;    {</div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;Test Message&quot;</span>):</div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;OK&quot;</span>);</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;help&quot;</span>):</div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;        <a class="code" href="TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f">TelnetPrintAvailableCommands</a>(session);</div>
 <div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;enable log v&quot;</span>):</div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Info log mode enabled&quot;</span>);</div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;disable log&quot;</span>):</div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Default log mode enabled&quot;</span>);</div>
 <div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;        spdlog::set_level(spdlog::level::info);</div>
 <div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;enable log vv&quot;</span>):</div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Debug log mode enabled&quot;</span>);</div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;        spdlog::set_level(spdlog::level::debug);</div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;disable log all&quot;</span>): <span class="comment">// Internal use only</span></div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Disabling all logs&quot;</span>);</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;        spdlog::set_level(spdlog::level::off);</div>
 <div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;enable log vvv&quot;</span>):</div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Trace log mode enabled&quot;</span>);</div>
-<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;        spdlog::set_level(spdlog::level::trace);</div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;enable log v&quot;</span>):</div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Info log mode enabled&quot;</span>);</div>
+<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;        spdlog::set_level(spdlog::level::info);</div>
 <div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;ping&quot;</span>):</div>
-<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;pong&quot;</span>);</div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;version&quot;</span>):</div>
-<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;        session-&gt;sendLine(<a class="code" href="Utils_8cpp.html#a97c49d303bbf54bed2e1e6709deeb67c">get_version</a>());</div>
-<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;clear&quot;</span>):</div>
-<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;        session-&gt;sendLine(<a class="code" href="TelnetServer_8cpp.html#aaad0fd13b75d5ebde386438b336d77c7">TELNET_CLEAR_SCREEN</a>);</div>
-<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;status&quot;</span>):</div>
-<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;        for (const auto &amp;entry : <a class="code" href="Utils_8cpp.html#af79a31f6c3bfbd37429c920666931e90">vCheckFlag</a>)</div>
-<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;        {</div>
-<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;            std::ostringstream oss;</div>
-<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;            oss &lt;&lt; std::left &lt;&lt; std::setfill(<span class="charliteral">&#39;.&#39;</span>) &lt;&lt; std::setw(<a class="code" href="TelnetServer_8cpp.html#a5ba785f30cf1b83e34a0613a0e9633a1">KEY_WIDTH</a>) &lt;&lt; entry.first + <span class="stringliteral">&quot; &quot;</span> &lt;&lt; std::setw(<a class="code" href="TelnetServer_8cpp.html#a212d3f65beba384c5460e3b0d5c0345c">VAL_WIDTH</a>)</div>
-<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;                &lt;&lt; std::right &lt;&lt; (entry.second-&gt;_M_i ? <span class="stringliteral">&quot; OK&quot;</span> : <span class="stringliteral">&quot; Not Active&quot;</span>);</div>
-<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;            session-&gt;sendLine(oss.str());</div>
-<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;        }</div>
-<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;    <span class="comment">/* ############################# MAKE MODIFICATIONS HERE ############################# */</span></div>
-<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160; </div>
-<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;    <span class="comment">/* ################################ END MODIFICATIONS ################################ */</span></div>
-<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;quit&quot;</span>):</div>
-<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Closing connection&quot;</span>);</div>
-<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Goodbye!&quot;</span>);</div>
-<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;        session-&gt;markTimeout();</div>
-<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;    <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Unknown command received&quot;</span>);</div>
-<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;    }</div>
-<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;}</div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;enable log vv&quot;</span>):</div>
+<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Debug log mode enabled&quot;</span>);</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;        spdlog::set_level(spdlog::level::debug);</div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;enable log vvv&quot;</span>):</div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Trace log mode enabled&quot;</span>);</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;        spdlog::set_level(spdlog::level::trace);</div>
+<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;ping&quot;</span>):</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;pong&quot;</span>);</div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;version&quot;</span>):</div>
+<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;        session-&gt;sendLine(<a class="code" href="Utils_8cpp.html#a97c49d303bbf54bed2e1e6709deeb67c">get_version</a>());</div>
+<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;clear&quot;</span>):</div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;        session-&gt;sendLine(<a class="code" href="TelnetServer_8cpp.html#aaad0fd13b75d5ebde386438b336d77c7">TELNET_CLEAR_SCREEN</a>);</div>
+<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;status&quot;</span>):</div>
+<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;        for (const auto &amp;entry : <a class="code" href="Utils_8cpp.html#af79a31f6c3bfbd37429c920666931e90">vCheckFlag</a>)</div>
+<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;        {</div>
+<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;            std::ostringstream oss;</div>
+<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;            oss &lt;&lt; std::left &lt;&lt; std::setfill(<span class="charliteral">&#39;.&#39;</span>) &lt;&lt; std::setw(<a class="code" href="TelnetServer_8cpp.html#a5ba785f30cf1b83e34a0613a0e9633a1">KEY_WIDTH</a>) &lt;&lt; entry.first + <span class="stringliteral">&quot; &quot;</span> &lt;&lt; std::setw(<a class="code" href="TelnetServer_8cpp.html#a212d3f65beba384c5460e3b0d5c0345c">VAL_WIDTH</a>)</div>
+<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;                &lt;&lt; std::right &lt;&lt; (entry.second-&gt;_M_i ? <span class="stringliteral">&quot; OK&quot;</span> : <span class="stringliteral">&quot; Not Active&quot;</span>);</div>
+<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;            session-&gt;sendLine(oss.str());</div>
+<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;        }</div>
+<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;    <span class="comment">/* ############################# MAKE MODIFICATIONS HERE ############################# */</span></div>
+<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160; </div>
+<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;    <span class="comment">/* ################################ END MODIFICATIONS ################################ */</span></div>
+<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="stringliteral">&quot;quit&quot;</span>):</div>
+<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Closing connection&quot;</span>);</div>
+<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Goodbye!&quot;</span>);</div>
+<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;        session-&gt;markTimeout();</div>
+<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;    <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;        session-&gt;sendLine(<span class="stringliteral">&quot;Unknown command received&quot;</span>);</div>
+<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;    }</div>
+<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;}</div>
 <div class="ttc" id="aHasher_8hpp_html_a69c2bf176d386d2413b9ae6d8346588b"><div class="ttname"><a href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a></div><div class="ttdeci">constexpr size_t constHasher(const char *s)</div><div class="ttdef"><b>Definition:</b> <a href="Hasher_8hpp_source.html#l00007">Hasher.hpp:7</a></div></div>
 <div class="ttc" id="aTelnetServer_8cpp_html_a212d3f65beba384c5460e3b0d5c0345c"><div class="ttname"><a href="TelnetServer_8cpp.html#a212d3f65beba384c5460e3b0d5c0345c">VAL_WIDTH</a></div><div class="ttdeci">constexpr int VAL_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00024">TelnetServer.cpp:24</a></div></div>
 <div class="ttc" id="aTelnetServer_8cpp_html_a5ba785f30cf1b83e34a0613a0e9633a1"><div class="ttname"><a href="TelnetServer_8cpp.html#a5ba785f30cf1b83e34a0613a0e9633a1">KEY_WIDTH</a></div><div class="ttdeci">constexpr int KEY_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00023">TelnetServer.cpp:23</a></div></div>
@@ -1219,21 +1219,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TelnetServer_8cpp_source.html#l00694">694</a> of file <a class="el" href="TelnetServer_8cpp_source.html">TelnetServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;{</div>
-<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;    <span class="comment">// Print available commands</span></div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;    session-&gt;sendLine(<span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;    session-&gt;sendLine(<span class="stringliteral">&quot;Available commands:&quot;</span>);</div>
-<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;    session-&gt;sendLine(<span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;entry : <a class="code" href="TelnetServer_8cpp.html#ad7eb609da36d3938b944feb1c42acbf9">telnetCommands</a>)</div>
-<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;    {</div>
-<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;        std::array&lt;char, BUFSIZ&gt; buffer{<span class="charliteral">&#39;\0&#39;</span>};</div>
-<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;        <span class="keywordflow">if</span> (snprintf(buffer.data(), BUFSIZ, <span class="stringliteral">&quot;%-25s : %s&quot;</span>, entry.first.c_str(), entry.second.c_str()) &gt; 0)</div>
-<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;        {</div>
-<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;            session-&gt;sendLine(buffer.data());</div>
-<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;        }</div>
-<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;    }</div>
-<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="TelnetServer_8cpp_source.html#l00702">702</a> of file <a class="el" href="TelnetServer_8cpp_source.html">TelnetServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;{</div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;    <span class="comment">// Print available commands</span></div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;    session-&gt;sendLine(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;    session-&gt;sendLine(<span class="stringliteral">&quot;Available commands:&quot;</span>);</div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;    session-&gt;sendLine(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;entry : <a class="code" href="TelnetServer_8cpp.html#ad7eb609da36d3938b944feb1c42acbf9">telnetCommands</a>)</div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;    {</div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;        std::array&lt;char, BUFSIZ&gt; buffer{<span class="charliteral">&#39;\0&#39;</span>};</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;        <span class="keywordflow">if</span> (snprintf(buffer.data(), BUFSIZ, <span class="stringliteral">&quot;%-25s : %s&quot;</span>, entry.first.c_str(), entry.second.c_str()) &gt; 0)</div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;        {</div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;            session-&gt;sendLine(buffer.data());</div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;        }</div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;    }</div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;}</div>
 <div class="ttc" id="aTelnetServer_8cpp_html_ad7eb609da36d3938b944feb1c42acbf9"><div class="ttname"><a href="TelnetServer_8cpp.html#ad7eb609da36d3938b944feb1c42acbf9">telnetCommands</a></div><div class="ttdeci">const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; telnetCommands</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00032">TelnetServer.cpp:32</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1286,30 +1286,30 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::string Command to complete </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TelnetServer_8cpp_source.html#l00796">796</a> of file <a class="el" href="TelnetServer_8cpp_source.html">TelnetServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;{</div>
-<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;    std::string retval;</div>
-<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160; </div>
-<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;    <span class="keywordtype">size_t</span> ctr = 0;</div>
-<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;    std::ostringstream sStream;</div>
-<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;entry : <a class="code" href="TelnetServer_8cpp.html#ad7eb609da36d3938b944feb1c42acbf9">telnetCommands</a>)</div>
-<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;    {</div>
-<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;        <span class="keywordflow">if</span> (entry.first.rfind(line, 0) == 0)</div>
-<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;        {</div>
-<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;            ++ctr;</div>
-<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;            retval = entry.first;</div>
-<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;            sStream &lt;&lt; entry.first &lt;&lt; std::setw(<a class="code" href="TelnetServer_8cpp.html#a5ba785f30cf1b83e34a0613a0e9633a1">KEY_WIDTH</a>);</div>
-<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;        }</div>
-<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;    }</div>
-<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;    <span class="comment">// Send suggestions if found any. If there is only one command retval will invoke completion</span></div>
-<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;    <span class="keywordflow">if</span> (ctr != 1 &amp;&amp; (!sStream.str().empty()))</div>
-<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;    {</div>
-<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;        session-&gt;sendLine(sStream.str());</div>
-<div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;        retval = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;    }</div>
-<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160; </div>
-<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;    <span class="keywordflow">return</span> retval;</div>
-<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="TelnetServer_8cpp_source.html#l00804">804</a> of file <a class="el" href="TelnetServer_8cpp_source.html">TelnetServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;{</div>
+<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;    std::string retval;</div>
+<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160; </div>
+<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;    <span class="keywordtype">size_t</span> ctr = 0;</div>
+<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;    std::ostringstream sStream;</div>
+<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;entry : <a class="code" href="TelnetServer_8cpp.html#ad7eb609da36d3938b944feb1c42acbf9">telnetCommands</a>)</div>
+<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;    {</div>
+<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;        <span class="keywordflow">if</span> (entry.first.rfind(line, 0) == 0)</div>
+<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;        {</div>
+<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;            ++ctr;</div>
+<div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;            retval = entry.first;</div>
+<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;            sStream &lt;&lt; entry.first &lt;&lt; std::setw(<a class="code" href="TelnetServer_8cpp.html#a5ba785f30cf1b83e34a0613a0e9633a1">KEY_WIDTH</a>);</div>
+<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;        }</div>
+<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;    }</div>
+<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;    <span class="comment">// Send suggestions if found any. If there is only one command retval will invoke completion</span></div>
+<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;    <span class="keywordflow">if</span> (ctr != 1 &amp;&amp; (!sStream.str().empty()))</div>
+<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;    {</div>
+<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;        session-&gt;sendLine(sStream.str());</div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;        retval = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;    }</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160; </div>
+<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;    <span class="keywordflow">return</span> retval;</div>
+<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1602,7 +1602,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_638f1a289fa697f4a26358f6059ac853.html">telnet</a></li><li class="navelem"><a class="el" href="TelnetServer_8cpp.html">TelnetServer.cpp</a></li>
-    <li class="footer">Generated on Fri Feb 2 2024 09:02:16 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Feb 5 2024 05:28:15 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
