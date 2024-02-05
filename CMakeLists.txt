@@ -150,6 +150,7 @@ add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp ${BACKWARD_ENA
 target_include_directories(${PROJECT_NAME} PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(${PROJECT_NAME} PRIVATE "${PROJECT_NAME}-lib" Backward::Backward)
 enable_security_flags_for_target(${PROJECT_NAME})
+add_dependencies(${PROJECT_NAME} crashpad_handler)
 
 # Update build number at every build
 add_custom_command(
