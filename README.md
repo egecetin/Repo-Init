@@ -64,6 +64,7 @@ All scripts should be executed from top level directory
 ## Dependencies
 
  - [CppZMQ](https://github.com/zeromq/cppzmq.git)
+ - [breakpad](https://chromium.googlesource.com/breakpad/breakpad/) (Only for developing side. It is required for automatically dumping symbols)
  - [crashpad](https://chromium.googlesource.com/crashpad/crashpad/)
  - [cURL](https://github.com/curl/curl)
  - [Date](https://github.com/HowardHinnant/date.git)
@@ -76,6 +77,7 @@ All scripts should be executed from top level directory
  - [Spdlog](https://github.com/gabime/spdlog.git)
  - [TelnetServLib](https://github.com/lukemalcolm/TelnetServLib.git) (Modified and embedded to source directory)
  - [ZeroMQ](https://github.com/zeromq/libzmq.git)
+ - [ZLIB]() (Only for developing side. It is required by breakpad)
 
 Full dependency graph can be seen [here](doc/XXX-tree.svg)
 
