@@ -6,6 +6,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
 include(CompilerOptions)
 include(CompilerSecurityOptions)
 include(Doxy)
+include(ExternalProject)
 include(GitVersion)
 include(GraphViz)
 
@@ -16,6 +17,7 @@ option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
 
 find_package(CURL REQUIRED)
+find_package(ZLIB REQUIRED)
 
 if(NOT DEFINED REVISION_VERSION)
   message(WARNING "Can't find Git. The folder is not under version control.")
@@ -119,6 +121,13 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad/th
 
 add_subdirectory(thirdparty/sentry/external/crashpad EXCLUDE_FROM_ALL)
 
+ExternalProject_Add(breakpad
+  SOURCE_DIR ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/breakpad
+  BINARY_DIR ${CMAKE_BINARY_DIR}/breakpad_bin
+  CONFIGURE_COMMAND "<SOURCE_DIR>/configure"
+  BUILD_COMMAND make
+  INSTALL_COMMAND "")
+
 # Set Targets
 add_library("${PROJECT_NAME}-lib" SHARED ${ProjectSources})
 set_target_properties(
@@ -143,13 +152,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(${PROJECT_NAME} PRIVATE "${PROJECT_NAME}-lib")
 enable_security_flags_for_target(${PROJECT_NAME})
 add_dependencies(${PROJECT_NAME} crashpad::handler)
-
-# Update build number at every build
-add_custom_command(
-  TARGET ${PROJECT_NAME}
-  PRE_BUILD
-  COMMAND ${CMAKE_COMMAND} -P "${CMAKE_CURRENT_SOURCE_DIR}/cmake/AutoBuildNumber.cmake"
-  COMMENT "Updating build number")
 
 # Enable test framework
 if(XXX_BUILD_TESTS)
@@ -196,8 +198,7 @@ endif()
 
 add_custom_target(
   makeself
-  COMMAND rm -rf ${CMAKE_BINARY_DIR}/temp/*
-  COMMAND mkdir -p ${CMAKE_BINARY_DIR}/temp
+  COMMAND rm -rf ${CMAKE_BINARY_DIR}/temp/* && mkdir -p ${CMAKE_BINARY_DIR}/temp
   COMMAND /bin/bash ${CMAKE_CURRENT_SOURCE_DIR}/scripts/ldd-copy-dependencies.sh
   -b ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}
   -t ${CMAKE_BINARY_DIR}/temp
