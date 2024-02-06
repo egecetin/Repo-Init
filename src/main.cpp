@@ -124,9 +124,15 @@ int main(int argc, char **argv)
 	// Start crashpad handler
 	try
 	{
-		crashdump = std::make_unique<Tracer>(dumpServer, dumpServerProxy, dumpHandlerExecutable,
-											 std::map<std::string, std::string>(),
-											 std::vector<base::FilePath>({base::FilePath(configPath)}));
+		crashdump =
+			std::make_unique<Tracer>(dumpServer, dumpServerProxy, dumpHandlerExecutable,
+									 std::map<std::string, std::string>(
+										 {{"name", PROJECT_NAME},
+										  {"version", PROJECT_FULL_REVISION},
+										  {"build_info", PROJECT_BUILD_DATE + std::string(" ") + PROJECT_BUILD_TIME +
+															 std::string(" ") + BUILD_TYPE},
+										  {"compiler_info", COMPILER_NAME + std::string(" ") + COMPILER_VERSION}}),
+									 std::vector<base::FilePath>());
 	}
 	catch(const std::exception& e)
 	{
