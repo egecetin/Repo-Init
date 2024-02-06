@@ -64,6 +64,7 @@ All scripts should be executed from top level directory
 ## Dependencies
 
  - [CppZMQ](https://github.com/zeromq/cppzmq.git)
+ - [crashpad](https://chromium.googlesource.com/crashpad/crashpad/)
  - [cURL](https://github.com/curl/curl)
  - [Date](https://github.com/HowardHinnant/date.git)
  - [GoogleTest](https://github.com/google/googletest.git) (For tests only)

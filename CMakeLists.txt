@@ -24,25 +24,18 @@ endif()
 # Set project properties
 set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_VERSION_MINOR 0)
-
-if(EXISTS "${PROJECT_SOURCE_DIR}/BuildNumberCache.txt")
-  file(READ "${PROJECT_SOURCE_DIR}/BuildNumberCache.txt" BUILD_NUMBER)
-else()
-  set(BUILD_NUMBER "1")
-endif()
-
-set(PROJECT_VERSION_PATCH ${BUILD_NUMBER})
+set(PROJECT_VERSION_PATCH 0)
 set(PROJECT_VERSION_TWEAK ${REVISION_VERSION})
-set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${BUILD_NUMBER}-${REVISION_VERSION}")
+set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}-${REVISION_VERSION}")
 message(STATUS "Compiling Version ${PROJECT_VERSION}")
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug/lib/static)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug/lib/shared)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Debug/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/bin)
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/lib/static)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/lib/shared)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Release/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON) # Required for linking of crashpad_client
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0 -g")
@@ -112,7 +105,6 @@ include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/pull/include)
 
 # Subdirectories
-add_subdirectory(thirdparty/backtrace EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/libzmq EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/cppzmq EXCLUDE_FROM_ALL) # Should be after libzmq
 add_subdirectory(thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
@@ -138,7 +130,7 @@ target_include_directories("${PROJECT_NAME}-lib" PRIVATE "${PROJECT_BINARY_DIR}"
 target_link_libraries(
   "${PROJECT_NAME}-lib" PUBLIC
   cppzmq
-  crashpad_client
+  crashpad::client
   CURL::libcurl
   prometheus-cpp::pull
   RapidJSON
@@ -150,7 +142,7 @@ add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_include_directories(${PROJECT_NAME} PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(${PROJECT_NAME} PRIVATE "${PROJECT_NAME}-lib")
 enable_security_flags_for_target(${PROJECT_NAME})
-add_dependencies(${PROJECT_NAME} crashpad_handler)
+add_dependencies(${PROJECT_NAME} crashpad::handler)
 
 # Update build number at every build
 add_custom_command(
@@ -209,9 +201,9 @@ add_custom_target(
   COMMAND /bin/bash ${CMAKE_CURRENT_SOURCE_DIR}/scripts/ldd-copy-dependencies.sh
   -b ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}
   -t ${CMAKE_BINARY_DIR}/temp
-
   # Regex to exclude system library path
   -r "\"^(/usr/lib64)|^(/usr/lib)|^(/lib64)|^(/lib)\""
+  COMMAND cp ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/crashpad_handler ${CMAKE_BINARY_DIR}/temp/
   COMMAND /bin/bash ${CMAKE_CURRENT_SOURCE_DIR}/scripts/create_installer.sh
   -f ${CMAKE_BINARY_DIR}/temp
   -e ${CMAKE_CURRENT_SOURCE_DIR}/scripts/makeself/makeself.sh
