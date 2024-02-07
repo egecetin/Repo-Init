@@ -17,12 +17,12 @@ done
 # Checking if all required command-line arguments are provided
 #===============================================================================
 [ -z "${ARGUMENT_FILES}" ] && echo "$0: Missing argument: [-f files]" >&2
-[ ! -e "${ARGUMENT_MAKESELF}" ] && echo "$0: Missing argument: [-e Makeself dir]" >&2
+[ -z "${ARGUMENT_MAKESELF}" ] && echo "$0: Missing argument: [-e Makeself dir]" >&2
 
 #===============================================================================
 # Abort execution if required command-line argument is missing
 #===============================================================================
-[ -z "${ARGUMENT_FILES}" ] || [ ! -e "${ARGUMENT_MAKESELF}" ] && exit 1
+[ -z "${ARGUMENT_FILES}" ] || [ -z "${ARGUMENT_MAKESELF}" ] && exit 1
 
 #===============================================================================
 # Checking if files or target path does not exists and abort
