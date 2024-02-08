@@ -194,20 +194,3 @@ if(XXX_BUILD_TESTS)
       "${PROJECT_SOURCE_DIR}/tests/*")
   endif()
 endif()
-
-add_custom_target(
-  makeself
-  COMMAND rm -rf ${CMAKE_BINARY_DIR}/temp/* && mkdir -p ${CMAKE_BINARY_DIR}/temp
-  COMMAND /bin/bash ${CMAKE_CURRENT_SOURCE_DIR}/scripts/ldd-copy-dependencies.sh
-  -b ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/${PROJECT_NAME}
-  -t ${CMAKE_BINARY_DIR}/temp
-  # Regex to exclude system library path
-  -r "\"^(/usr/lib64)|^(/usr/lib)|^(/lib64)|^(/lib)\""
-  COMMAND cp ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE}/crashpad_handler ${CMAKE_BINARY_DIR}/temp/
-  COMMAND /bin/bash ${CMAKE_CURRENT_SOURCE_DIR}/scripts/create_installer.sh
-  -f ${CMAKE_BINARY_DIR}/temp
-  -e ${CMAKE_CURRENT_SOURCE_DIR}/scripts/makeself/makeself.sh
-  -v ${PROJECT_VERSION}
-  -n ${PROJECT_NAME}
-  DEPENDS ${PROJECT_NAME}
-)
