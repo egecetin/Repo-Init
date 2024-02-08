@@ -4,6 +4,7 @@ while getopts :n: option
 do
     case $option in
         n) ARGUMENT_NAME="$OPTARG" ;;
+        *) echo "Usage: $0 [-n] Name" && exit 1 ;;
     esac
 done
 
