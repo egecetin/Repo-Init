@@ -126,8 +126,7 @@ file(COPY ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/third_party
 ExternalProject_Add(breakpad
   SOURCE_DIR ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/breakpad
   BINARY_DIR ${CMAKE_BINARY_DIR}/breakpad_bin
-  CONFIGURE_COMMAND
-  COMMAND "<SOURCE_DIR>/configure"
+  CONFIGURE_COMMAND "<SOURCE_DIR>/configure"
   BUILD_COMMAND make
   INSTALL_COMMAND "")
 
