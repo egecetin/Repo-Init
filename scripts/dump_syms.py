@@ -45,3 +45,4 @@ if __name__ == "__main__":
         if exception.errno != errno.EEXIST:
             raise
     os.rename(outFilePath, symbolsDir + os.path.basename(binaryPath) + ".sym")
+    os.system(f"strip {binaryPath}")
