@@ -120,6 +120,7 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad/third_party/mini_chromium)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad/third_party/mini_chromium/mini_chromium)
 
+# Add breakpad to compile dump_syms and minidump_stackwalk
 file(COPY ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/third_party
   DESTINATION ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/breakpad/src/)
 
