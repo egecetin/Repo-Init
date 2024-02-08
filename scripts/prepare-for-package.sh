@@ -23,7 +23,7 @@ done
 [ -z "${ARGUMENT_DUMP_SYMS}" ] && echo "$0: Missing argument: [-s dump_syms]" >&2
 [ -z "${ARGUMENT_FILES}" ] && echo "$0: Missing argument: [-f files]" >&2
 
-[ -z "${ARGUMENT_DUMP_SYMS}" ]  && exit 1
+[ -z "${ARGUMENT_DUMP_SYMS}" ] && exit 1
 
 for val in "${ARGUMENT_FILES[@]}"; do
     [ ! -d "${val}" ] && echo "$0: File ${val} does not exists." >&2 && exit 1

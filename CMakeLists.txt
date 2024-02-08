@@ -113,13 +113,12 @@ add_subdirectory(thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/spdlog EXCLUDE_FROM_ALL)
+add_subdirectory(thirdparty/sentry/external/crashpad EXCLUDE_FROM_ALL)
 
 # Add crashpad separately from sentry to enable minidump generation without sentry server
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad/third_party/mini_chromium)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad/third_party/mini_chromium/mini_chromium)
-
-add_subdirectory(thirdparty/sentry/external/crashpad EXCLUDE_FROM_ALL)
 
 ExternalProject_Add(breakpad
   SOURCE_DIR ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/breakpad
@@ -165,7 +164,7 @@ if(XXX_BUILD_TESTS)
   include(CTest)
   enable_testing()
 
-  add_subdirectory(tests)
+  add_subdirectory(tests EXCLUDE_FROM_ALL)
 
   if(XXX_ENABLE_COVERAGE)
     setup_target_for_coverage_gcovr_html(
