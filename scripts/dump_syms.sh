@@ -4,7 +4,7 @@ set -e
 #===============================================================================
 # Parsing command-line arguments with the getopts shell builtin
 #===============================================================================
-while getopts :d:s:f: option
+while getopts :s:f: option
 do
     case $option in
         s) ARGUMENT_DUMP_SYMS="$OPTARG" ;;
@@ -14,6 +14,7 @@ do
                 OPTIND=$((OPTIND + 1))
             done
             ;;
+        *) echo "Usage: $0 [-s] [-f]" && exit 1 ;;
     esac
 done
 
