@@ -22,6 +22,7 @@ find_package(ZLIB REQUIRED)
 
 if(NOT DEFINED REVISION_VERSION)
   message(WARNING "Can't find Git. The folder is not under version control.")
+  set(REVISION_VERSION 0)
 endif()
 
 # Set project properties
@@ -48,16 +49,15 @@ set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -O3 -g -Wl,--build-id -DNDEB
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -g -Wl,--build-id -DNDEBUG")
 
 # Disable/Enable options of subprojects
-set(WITH_PERF_TOOL OFF CACHE BOOL "")
-set(WITH_DOCS OFF CACHE BOOL "")
+set(CPPZMQ_BUILD_TESTS OFF CACHE BOOL "")
+
 set(RAPIDJSON_BUILD_DOC OFF CACHE BOOL "")
 set(RAPIDJSON_BUILD_EXAMPLES OFF CACHE BOOL "")
-
-set(CPPZMQ_BUILD_TESTS OFF CACHE BOOL "")
 set(RAPIDJSON_BUILD_TESTS OFF CACHE BOOL "")
-set(ENABLE_TESTING OFF CACHE BOOL "") # prometheus-cpp
 
+set(ENABLE_TESTING OFF CACHE BOOL "") # prometheus-cpp
 set(ENABLE_COMPRESSION OFF CACHE BOOL "") # prometheus-cpp
+
 set(SENTRY_BACKEND none) # Disable backend to manually use crashpad
 
 # Set Compiler Properties
