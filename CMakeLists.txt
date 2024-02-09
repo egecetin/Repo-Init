@@ -7,23 +7,19 @@ include(CompilerOptions)
 include(CompilerSecurityOptions)
 include(Doxy)
 include(ExternalProject)
+include(GenerateSymbols)
 include(GitVersion)
 include(GraphViz)
+
+find_package(CURL REQUIRED)
+find_package(spdlog REQUIRED)
+find_package(ZLIB REQUIRED)
 
 option(XXX_BUILD_TESTS "Build XXX tests" ON)
 option(XXX_BUILD_UNITTESTS "Build XXX unit tests" ON)
 option(XXX_BUILD_FUZZTESTS "Build XXX fuzz tests" OFF)
 option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
-
-find_package(CURL REQUIRED)
-find_package(spdlog REQUIRED)
-find_package(ZLIB REQUIRED)
-
-if(NOT DEFINED REVISION_VERSION)
-  message(WARNING "Can't find Git. The folder is not under version control.")
-  set(REVISION_VERSION 0)
-endif()
 
 # Set project properties
 set(PROJECT_VERSION_MAJOR 0)
@@ -33,15 +29,6 @@ set(PROJECT_VERSION_TWEAK ${REVISION_VERSION})
 set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}-${REVISION_VERSION}")
 message(STATUS "Compiling Version ${PROJECT_VERSION}")
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/bin)
-
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin)
-
-set(CMAKE_DEBUG_POSTFIX d)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -106,6 +93,7 @@ add_subdirectory(thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry/external/crashpad EXCLUDE_FROM_ALL)
+add_compile_options($<$<NOT:$<STREQUAL:$<TARGET_PROPERTY:SOURCE_DIR>,thirdparty/sentry/external/crashpad>>:-Wno-unused-parameter>)
 
 # Add crashpad separately from sentry to enable minidump generation without sentry server
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad)
@@ -120,19 +108,19 @@ ExternalProject_Add(breakpad
   SOURCE_DIR ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/breakpad
   BINARY_DIR ${CMAKE_BINARY_DIR}/breakpad_bin
   CONFIGURE_COMMAND "<SOURCE_DIR>/configure"
-  BUILD_COMMAND make
+  BUILD_COMMAND make -j2
   INSTALL_COMMAND "")
 
 # Set Targets
-add_library("${PROJECT_NAME}-lib" SHARED ${ProjectSources})
+add_library(${PROJECT_NAME}-lib SHARED ${ProjectSources})
 set_target_properties(
-  "${PROJECT_NAME}-lib"
+  ${PROJECT_NAME}-lib
   PROPERTIES OUTPUT_NAME ${PROJECT_NAME}
   VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
   SOVERSION ${PROJECT_VERSION_MAJOR})
-target_include_directories("${PROJECT_NAME}-lib" PRIVATE "${PROJECT_BINARY_DIR}")
+target_include_directories(${PROJECT_NAME}-lib PRIVATE ${PROJECT_BINARY_DIR})
 target_link_libraries(
-  "${PROJECT_NAME}-lib" PUBLIC
+  ${PROJECT_NAME}-lib PUBLIC
   cppzmq
   crashpad::client
   CURL::libcurl
@@ -140,21 +128,21 @@ target_link_libraries(
   RapidJSON
   sentry::sentry
   spdlog::spdlog)
-enable_security_flags_for_target("${PROJECT_NAME}-lib")
+enable_security_flags_for_target(${PROJECT_NAME}-lib)
+generate_symbols_for_target(${PROJECT_NAME}-lib)
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp)
-target_include_directories(${PROJECT_NAME} PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries(${PROJECT_NAME} PRIVATE "${PROJECT_NAME}-lib")
+target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_BINARY_DIR})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}-lib)
 enable_security_flags_for_target(${PROJECT_NAME})
+generate_symbols_for_target(${PROJECT_NAME})
 add_dependencies(${PROJECT_NAME} crashpad::handler)
 
 install(TARGETS
-  "${PROJECT_NAME}"
-  "${PROJECT_NAME}-lib"
+  ${PROJECT_NAME}
+  ${PROJECT_NAME}-lib
   RUNTIME_DEPENDENCIES
   POST_EXCLUDE_REGEXES "^(/usr/lib64)|^(/usr/lib)|^(/lib64)|^(/lib)")
-
-include(CPack)
 
 # Enable test framework
 if(XXX_BUILD_TESTS)

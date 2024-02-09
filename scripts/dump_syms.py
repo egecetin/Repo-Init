@@ -24,14 +24,16 @@ if __name__ == "__main__":
         print("Provide all arguments")
         sys.exit(1)
 
-    binaryPaths = [os.path.join(binaryDir, filePath) for filePath in os.listdir(binaryDir) if os.path.isfile(os.path.join(binaryDir, filePath)) and not os.path.islink(os.path.join(binaryDir, filePath))]
+    if os.path.isfile(binaryDir):
+        binaryPaths = [binaryDir]
+    else:
+        binaryPaths = [os.path.join(binaryDir, filePath) for filePath in os.listdir(binaryDir) if os.path.isfile(os.path.join(binaryDir, filePath)) and not os.path.islink(os.path.join(binaryDir, filePath))]
 
     for binaryPath in binaryPaths:
         # Prepare command to dump symbols
         outFilePath = outputDir + os.path.basename(binaryPath) + ".sym"
         command = f"{dumpSymsExe} {binaryPath} > {outFilePath}"
 
-        print(command)
         os.system(command)
 
         # Prepare desired folder structure
