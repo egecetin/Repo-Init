@@ -17,6 +17,7 @@ option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
 
 find_package(CURL REQUIRED)
+find_package(spdlog REQUIRED)
 find_package(ZLIB REQUIRED)
 
 if(NOT DEFINED REVISION_VERSION)
@@ -47,12 +48,6 @@ set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -O3 -g -Wl,--build-id -DNDEB
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -g -Wl,--build-id -DNDEBUG")
 
 # Disable/Enable options of subprojects
-set(BUILD_SHARED_LIBS ON CACHE BOOL "")
-set(BUILD_STATIC OFF CACHE BOOL "")
-set(BUILD_TESTS OFF CACHE BOOL "")
-set(SENTRY_BUILD_SHARED_LIBS ON CACHE BOOL "")
-set(SPDLOG_BUILD_SHARED ON CACHE BOOL "")
-
 set(WITH_PERF_TOOL OFF CACHE BOOL "")
 set(WITH_DOCS OFF CACHE BOOL "")
 set(RAPIDJSON_BUILD_DOC OFF CACHE BOOL "")
@@ -107,12 +102,10 @@ include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/pull/include)
 
 # Subdirectories
-add_subdirectory(thirdparty/libzmq EXCLUDE_FROM_ALL)
-add_subdirectory(thirdparty/cppzmq EXCLUDE_FROM_ALL) # Should be after libzmq
+add_subdirectory(thirdparty/cppzmq EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry EXCLUDE_FROM_ALL)
-add_subdirectory(thirdparty/spdlog EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry/external/crashpad EXCLUDE_FROM_ALL)
 
 # Add crashpad separately from sentry to enable minidump generation without sentry server
