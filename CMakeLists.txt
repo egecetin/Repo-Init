@@ -41,7 +41,10 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin)
 
-set(CMAKE_POSITION_INDEPENDENT_CODE ON) # Required for linking of crashpad_client
+set(CMAKE_DEBUG_POSTFIX d)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0 -g -Wl,--build-id")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g -Wl,--build-id")
 
@@ -59,10 +62,6 @@ set(ENABLE_TESTING OFF CACHE BOOL "") # prometheus-cpp
 set(ENABLE_COMPRESSION OFF CACHE BOOL "") # prometheus-cpp
 
 set(SENTRY_BACKEND none) # Disable backend to manually use crashpad
-
-# Set Compiler Properties
-set(CMAKE_DEBUG_POSTFIX d)
-set(CMAKE_CXX_STANDARD 14)
 
 configure_file(build_number.h.in "Version.h")
 
@@ -148,6 +147,14 @@ target_include_directories(${PROJECT_NAME} PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(${PROJECT_NAME} PRIVATE "${PROJECT_NAME}-lib")
 enable_security_flags_for_target(${PROJECT_NAME})
 add_dependencies(${PROJECT_NAME} crashpad::handler)
+
+install(TARGETS
+  "${PROJECT_NAME}"
+  "${PROJECT_NAME}-lib"
+  RUNTIME_DEPENDENCIES
+  POST_EXCLUDE_REGEXES "^(/usr/lib64)|^(/usr/lib)|^(/lib64)|^(/lib)")
+
+include(CPack)
 
 # Enable test framework
 if(XXX_BUILD_TESTS)
