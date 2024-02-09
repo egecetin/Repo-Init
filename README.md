@@ -43,7 +43,6 @@ Feel free to ask, use and report any bugs you encountered!
 
 ## CMake
 
-- AutoBuildNumber       : Auto increments the build number
 - CodeCoverage          : Detects and enables gcovr
 - CompilerOptions       : Enables/Disables compiler warnings
 - CompilerSecurityOption: Enables/Disables secure compiler flags
