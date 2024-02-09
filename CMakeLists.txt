@@ -3,7 +3,6 @@ project(XXX)
 
 # CMake Modules
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
-include(CompilerOptions)
 include(CompilerSecurityOptions)
 include(Doxy)
 include(ExternalProject)
@@ -93,7 +92,6 @@ add_subdirectory(thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry/external/crashpad EXCLUDE_FROM_ALL)
-add_compile_options($<$<NOT:$<STREQUAL:$<TARGET_PROPERTY:SOURCE_DIR>,thirdparty/sentry/external/crashpad>>:-Wno-unused-parameter>)
 
 # Add crashpad separately from sentry to enable minidump generation without sentry server
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad)
@@ -118,6 +116,7 @@ set_target_properties(
   PROPERTIES OUTPUT_NAME ${PROJECT_NAME}
   VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
   SOVERSION ${PROJECT_VERSION_MAJOR})
+target_compile_options(${PROJECT_NAME}-lib PRIVATE -Wall -Wextra)
 target_include_directories(${PROJECT_NAME}-lib PRIVATE ${PROJECT_BINARY_DIR})
 target_link_libraries(
   ${PROJECT_NAME}-lib PUBLIC
@@ -132,6 +131,7 @@ enable_security_flags_for_target(${PROJECT_NAME}-lib)
 generate_symbols_for_target(${PROJECT_NAME}-lib)
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp)
+target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra)
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_BINARY_DIR})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}-lib)
 enable_security_flags_for_target(${PROJECT_NAME})
