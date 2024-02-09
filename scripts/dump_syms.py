@@ -27,7 +27,12 @@ if __name__ == "__main__":
     if os.path.isfile(binaryDir):
         binaryPaths = [binaryDir]
     else:
-        binaryPaths = [os.path.join(binaryDir, filePath) for filePath in os.listdir(binaryDir) if os.path.isfile(os.path.join(binaryDir, filePath)) and not os.path.islink(os.path.join(binaryDir, filePath))]
+        binaryPaths = [
+            os.path.join(binaryDir, filePath)
+            for filePath in os.listdir(binaryDir)
+            if os.path.isfile(os.path.join(binaryDir, filePath))
+            and not os.path.islink(os.path.join(binaryDir, filePath))
+        ]
 
     for binaryPath in binaryPaths:
         # Prepare command to dump symbols
