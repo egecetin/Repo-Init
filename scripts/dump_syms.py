@@ -11,38 +11,41 @@ if __name__ == "__main__":
     parser = OptionParser()
     parser.usage = "Dump symbol files using Google breakpad dump_syms"
     parser.add_option("", "--dump-syms")
-    parser.add_option("", "--binary")
+    parser.add_option("", "--binary-dir")
     parser.add_option("", "--output-dir")
     (options, args) = parser.parse_args()
 
     dumpSymsExe = options.dump_syms
-    binaryPath = options.binary
+    binaryDir = options.binary_dir
     outputDir = options.output_dir
 
     # Check all inputs
-    if dumpSymsExe is None or binaryPath is None or outputDir is None:
+    if dumpSymsExe is None or binaryDir is None or outputDir is None:
         print("Provide all arguments")
         sys.exit(1)
 
-    # Prepare command to dump symbols
-    outFilePath = outputDir + os.path.basename(binaryPath) + ".sym"
-    command = f"{dumpSymsExe} {binaryPath} > {outFilePath}"
+    binaryPaths = [os.path.join(binaryDir, filePath) for filePath in os.listdir(binaryDir) if os.path.isfile(os.path.join(binaryDir, filePath)) and not os.path.islink(os.path.join(binaryDir, filePath))]
 
-    print(command)
-    os.system(command)
+    for binaryPath in binaryPaths:
+        # Prepare command to dump symbols
+        outFilePath = outputDir + os.path.basename(binaryPath) + ".sym"
+        command = f"{dumpSymsExe} {binaryPath} > {outFilePath}"
 
-    # Prepare desired folder structure
-    symFile = open(outFilePath, "r")
-    firstLine = symFile.readline().split(" ")
+        print(command)
+        os.system(command)
 
-    symbolsDir = (
-        outputDir + "/" + os.path.basename(binaryPath) + "/" + firstLine[-2] + "/"
-    )
+        # Prepare desired folder structure
+        symFile = open(outFilePath, "r")
+        firstLine = symFile.readline().split(" ")
 
-    try:
-        os.makedirs(symbolsDir)
-    except OSError as exception:
-        if exception.errno != errno.EEXIST:
-            raise
-    os.rename(outFilePath, symbolsDir + os.path.basename(binaryPath) + ".sym")
-    os.system(f"strip {binaryPath}")
+        symbolsDir = (
+            outputDir + "/" + os.path.basename(binaryPath) + "/" + firstLine[-2] + "/"
+        )
+
+        try:
+            os.makedirs(symbolsDir)
+        except OSError as exception:
+            if exception.errno != errno.EEXIST:
+                raise
+        os.rename(outFilePath, symbolsDir + os.path.basename(binaryPath) + ".sym")
+        os.system(f"strip {binaryPath}")
