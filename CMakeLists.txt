@@ -137,11 +137,7 @@ enable_security_flags_for_target(${PROJECT_NAME})
 generate_symbols_for_target(${PROJECT_NAME})
 add_dependencies(${PROJECT_NAME} crashpad::handler)
 
-install(TARGETS
-  ${PROJECT_NAME}
-  ${PROJECT_NAME}-lib
-  RUNTIME_DEPENDENCIES
-  POST_EXCLUDE_REGEXES "^(/usr/lib64)|^(/usr/lib)|^(/lib64)|^(/lib)")
+install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}-lib)
 
 # Enable test framework
 if(XXX_BUILD_TESTS)
