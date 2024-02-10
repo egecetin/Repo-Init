@@ -21,6 +21,7 @@ var annotated_dup =
     [ "TelnetSession", "classTelnetSession.html", "classTelnetSession" ],
     [ "TelnetSessionStats", "structTelnetSessionStats.html", "structTelnetSessionStats" ],
     [ "TelnetStats", "classTelnetStats.html", "classTelnetStats" ],
+    [ "Tracer", "classTracer.html", "classTracer" ],
     [ "TrackPerformance", "classTrackPerformance.html", "classTrackPerformance" ],
     [ "TrackStatus", "classTrackStatus.html", "classTrackStatus" ],
     [ "ZeroMQ", "classZeroMQ.html", "classZeroMQ" ],

@@ -9,6 +9,6 @@ var TelnetServer_8hpp =
     [ "SP_TelnetSession", "TelnetServer_8hpp.html#a5afb033ce594835dde5ce71c742bf216", null ],
     [ "VEC_SP_TelnetSession", "TelnetServer_8hpp.html#a0bbcbd046b03e259f88f694296e4a37f", null ],
     [ "TelnetConnectedCallback", "TelnetServer_8hpp.html#a39681d1af6065fb54f66a55c01e28e3d", null ],
-    [ "TelnetMessageCallback", "TelnetServer_8hpp.html#a9211e9f215dc8ddc1bb3314dae7b34f1", null ],
+    [ "TelnetMessageCallback", "TelnetServer_8hpp.html#afc54e2836d524b6deafaf20fd1ccdc75", null ],
     [ "TelnetTabCallback", "TelnetServer_8hpp.html#a07c3fdafe30bb1042ceaf01572b7ce1d", null ]
 ];

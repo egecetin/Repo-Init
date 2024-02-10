@@ -32,7 +32,6 @@ var NAVTREE =
       [ "Scripts", "index.html#autotoc_md3", null ],
       [ "Dependencies", "index.html#autotoc_md4", null ],
       [ "Targets", "index.html#autotoc_md5", null ],
-      [ "Developer comments", "index.html#autotoc_md6", null ],
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
@@ -65,8 +64,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Control_8cpp.html",
-"classRawSocket.html#aedb0c47dc4c6f83606b8960698d26b0a",
-"structTelnetServerStats.html#aea51daed077635aebb58e9ea6f18c653"
+"classRawSocket.html#a9a7162db9a22144cae19670b775319e4",
+"structRawSocketStats.html#a37839e418b67b9c5a5aab1d0d4517bb2"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

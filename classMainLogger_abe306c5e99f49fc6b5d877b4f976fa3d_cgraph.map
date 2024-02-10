@@ -1,7 +1,7 @@
 <map id="MainLogger::MainLogger" name="MainLogger::MainLogger">
 <area shape="rect" id="node1" title="Constructs and prepares main logger." alt="" coords="5,31,188,57"/>
 <area shape="rect" id="node2" href="$classInputParser.html#aea813a8d6ee9ea6d250ab99333316bdf" title="Checks whether provided command line option is exists." alt="" coords="236,5,449,32"/>
-<area shape="rect" id="node3" href="$Utils_8cpp.html#ad5f669002bc9a53f4d4f62cf24e6e564" title="Reads a single entry from config." alt="" coords="277,56,409,83"/>
+<area shape="rect" id="node3" href="$Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2" title="Reads a single entry from config." alt="" coords="277,56,409,83"/>
 <area shape="rect" id="node4" href="$Utils_8cpp.html#a933a859107e64dc6d003e53cd1b06261" title=" " alt="" coords="547,31,622,57"/>
 <area shape="rect" id="node5" href="$Utils_8cpp.html#a747553f9d7d37822ca2bf1cea18e1694" title=" " alt="" coords="497,81,672,108"/>
 </map>

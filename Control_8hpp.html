@@ -185,7 +185,7 @@ Functions</h2></td></tr>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                                    mainPrometheusServer ? mainPrometheusServer-&gt;createNewRegistry() : <span class="keyword">nullptr</span>))</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        telnetServerPtr-&gt;connectedCallback(<a class="code" href="TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d">TelnetConnectedCallback</a>);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        telnetServerPtr-&gt;newLineCallback(<a class="code" href="TelnetServer_8cpp.html#a9211e9f215dc8ddc1bb3314dae7b34f1">TelnetMessageCallback</a>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        telnetServerPtr-&gt;newLineCallback(<a class="code" href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75">TelnetMessageCallback</a>);</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        telnetServerPtr-&gt;tabCallback(<a class="code" href="TelnetServer_8cpp.html#a07c3fdafe30bb1042ceaf01572b7ce1d">TelnetTabCallback</a>);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        spdlog::info(<span class="stringliteral">&quot;Telnet server created at {}&quot;</span>, telnetPort);</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
@@ -219,7 +219,7 @@ Functions</h2></td></tr>
 <div class="ttc" id="aControl_8cpp_html_a7aff6e199c410c193f673d13f5f0b31d"><div class="ttname"><a href="Control_8cpp.html#a7aff6e199c410c193f673d13f5f0b31d">SLEEP_INTERVAL_MS</a></div><div class="ttdeci">constexpr int SLEEP_INTERVAL_MS</div><div class="ttdef"><b>Definition:</b> <a href="Control_8cpp_source.html#l00011">Control.cpp:11</a></div></div>
 <div class="ttc" id="aTelnetServer_8cpp_html_a07c3fdafe30bb1042ceaf01572b7ce1d"><div class="ttname"><a href="TelnetServer_8cpp.html#a07c3fdafe30bb1042ceaf01572b7ce1d">TelnetTabCallback</a></div><div class="ttdeci">std::string TelnetTabCallback(const SP_TelnetSession &amp;session, const std::string &amp;line)</div><div class="ttdoc">Telnet session TAB received callback.</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00804">TelnetServer.cpp:804</a></div></div>
 <div class="ttc" id="aTelnetServer_8cpp_html_a39681d1af6065fb54f66a55c01e28e3d"><div class="ttname"><a href="TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d">TelnetConnectedCallback</a></div><div class="ttdeci">void TelnetConnectedCallback(const SP_TelnetSession &amp;session)</div><div class="ttdoc">Telnet session connection start callback.</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00718">TelnetServer.cpp:718</a></div></div>
-<div class="ttc" id="aTelnetServer_8cpp_html_a9211e9f215dc8ddc1bb3314dae7b34f1"><div class="ttname"><a href="TelnetServer_8cpp.html#a9211e9f215dc8ddc1bb3314dae7b34f1">TelnetMessageCallback</a></div><div class="ttdeci">bool TelnetMessageCallback(const SP_TelnetSession &amp;session, std::string line)</div><div class="ttdoc">Telnet session message received callback.</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00727">TelnetServer.cpp:727</a></div></div>
+<div class="ttc" id="aTelnetServer_8cpp_html_afc54e2836d524b6deafaf20fd1ccdc75"><div class="ttname"><a href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75">TelnetMessageCallback</a></div><div class="ttdeci">bool TelnetMessageCallback(const SP_TelnetSession &amp;session, const std::string &amp;line)</div><div class="ttdoc">Telnet session message received callback.</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00727">TelnetServer.cpp:727</a></div></div>
 <div class="ttc" id="aUtils_8cpp_html_a00b8791b9b0a0f9a9b14c6e1d7251e09"><div class="ttname"><a href="Utils_8cpp.html#a00b8791b9b0a0f9a9b14c6e1d7251e09">loopFlag</a></div><div class="ttdeci">volatile bool loopFlag</div><div class="ttdoc">Main flag to control loops. Can be modified by SIGINT.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00016">Utils.cpp:16</a></div></div>
 <div class="ttc" id="aUtils_8cpp_html_a77c5602aee813ef2fde1a81c1db17e0c"><div class="ttname"><a href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a></div><div class="ttdeci">std::string getErrnoString(int errVal)</div><div class="ttdoc">Converts errno to readable string.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00142">Utils.cpp:142</a></div></div>
 </div><!-- fragment --><div class="dynheader">
@@ -230,7 +230,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="Thread function to receive control messages or config changes from Telnet connections." alt="" coords="5,81,157,108"/>
 <area shape="rect" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title="Converts errno to readable string." alt="" coords="241,5,356,32"/>
 <area shape="rect" href="TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d" title="Telnet session connection start callback." alt="" coords="205,56,392,83"/>
-<area shape="rect" href="TelnetServer_8cpp.html#a9211e9f215dc8ddc1bb3314dae7b34f1" title="Telnet session message received callback." alt="" coords="211,107,386,133"/>
+<area shape="rect" href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title="Telnet session message received callback." alt="" coords="211,107,386,133"/>
 <area shape="rect" href="TelnetServer_8cpp.html#a07c3fdafe30bb1042ceaf01572b7ce1d" title="Telnet session TAB received callback." alt="" coords="229,157,368,184"/>
 <area shape="rect" href="TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f" title=" " alt="" coords="440,56,665,83"/>
 <area shape="rect" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b" title=" " alt="" coords="501,107,604,133"/>
@@ -363,7 +363,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="Control_8hpp.html">Control.hpp</a></li>
-    <li class="footer">Generated on Sat Feb 10 2024 05:18:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sat Feb 10 2024 06:43:22 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

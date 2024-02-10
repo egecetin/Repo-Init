@@ -163,9 +163,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a6dc18ab17b6e565d1929ccf3fab281af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utils_8hpp.html#a6dc18ab17b6e565d1929ccf3fab281af">readConfig</a> (const std::string &amp;dir)</td></tr>
 <tr class="memdesc:a6dc18ab17b6e565d1929ccf3fab281af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read initial config from JSON.  <a href="Utils_8hpp.html#a6dc18ab17b6e565d1929ccf3fab281af">More...</a><br /></td></tr>
 <tr class="separator:a6dc18ab17b6e565d1929ccf3fab281af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5f669002bc9a53f4d4f62cf24e6e564"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utils_8hpp.html#ad5f669002bc9a53f4d4f62cf24e6e564">readSingleConfig</a> (const std::string &amp;dir, std::string value)</td></tr>
-<tr class="memdesc:ad5f669002bc9a53f4d4f62cf24e6e564"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a single entry from config.  <a href="Utils_8hpp.html#ad5f669002bc9a53f4d4f62cf24e6e564">More...</a><br /></td></tr>
-<tr class="separator:ad5f669002bc9a53f4d4f62cf24e6e564"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bb86d9ed53417d9d3ac724cc4de59e2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utils_8hpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">readSingleConfig</a> (const std::string &amp;dir, const std::string &amp;value)</td></tr>
+<tr class="memdesc:a1bb86d9ed53417d9d3ac724cc4de59e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a single entry from config.  <a href="Utils_8hpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">More...</a><br /></td></tr>
+<tr class="separator:a1bb86d9ed53417d9d3ac724cc4de59e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77c5602aee813ef2fde1a81c1db17e0c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utils_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a> (int errVal)</td></tr>
 <tr class="memdesc:a77c5602aee813ef2fde1a81c1db17e0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts errno to readable string.  <a href="Utils_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">More...</a><br /></td></tr>
 <tr class="separator:a77c5602aee813ef2fde1a81c1db17e0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -407,7 +407,7 @@ Here is the caller graph for this function:</div>
 <map name="aUtils_8hpp_a97c49d303bbf54bed2e1e6709deeb67c_icgraph" id="aUtils_8hpp_a97c49d303bbf54bed2e1e6709deeb67c_icgraph">
 <area shape="rect" title="Returns the version." alt="" coords="587,71,685,98"/>
 <area shape="rect" href="classPrometheusServer.html#a94923c3ec5e1ffc4153f717e1ef781f7" title="Construct a new Prometheus Server." alt="" coords="309,5,537,47"/>
-<area shape="rect" href="TelnetServer_8cpp.html#a9211e9f215dc8ddc1bb3314dae7b34f1" title="Telnet session message received callback." alt="" coords="336,71,511,98"/>
+<area shape="rect" href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title="Telnet session message received callback." alt="" coords="336,71,511,98"/>
 <area shape="rect" href="ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26" title="ZeroMQ message received callback." alt="" coords="308,122,539,149"/>
 <area shape="rect" href="Control_8cpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e" title="Thread function to receive control messages or config changes from Telnet connections." alt="" coords="108,71,260,98"/>
 <area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,97,60,123"/>
@@ -680,8 +680,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ad5f669002bc9a53f4d4f62cf24e6e564"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5f669002bc9a53f4d4f62cf24e6e564">&#9670;&nbsp;</a></span>readSingleConfig()</h2>
+<a id="a1bb86d9ed53417d9d3ac724cc4de59e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bb86d9ed53417d9d3ac724cc4de59e2">&#9670;&nbsp;</a></span>readSingleConfig()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -695,7 +695,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
@@ -739,8 +739,8 @@ Here is the caller graph for this function:</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="Utils_8hpp_ad5f669002bc9a53f4d4f62cf24e6e564_cgraph.png" border="0" usemap="#aUtils_8hpp_ad5f669002bc9a53f4d4f62cf24e6e564_cgraph" alt=""/></div>
-<map name="aUtils_8hpp_ad5f669002bc9a53f4d4f62cf24e6e564_cgraph" id="aUtils_8hpp_ad5f669002bc9a53f4d4f62cf24e6e564_cgraph">
+<div class="center"><img src="Utils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_cgraph.png" border="0" usemap="#aUtils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_cgraph" alt=""/></div>
+<map name="aUtils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_cgraph" id="aUtils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_cgraph">
 <area shape="rect" title="Reads a single entry from config." alt="" coords="5,31,137,57"/>
 <area shape="rect" href="Utils_8cpp.html#a933a859107e64dc6d003e53cd1b06261" title=" " alt="" coords="235,5,310,32"/>
 <area shape="rect" href="Utils_8cpp.html#a747553f9d7d37822ca2bf1cea18e1694" title=" " alt="" coords="185,56,360,83"/>
@@ -749,8 +749,8 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="Utils_8hpp_ad5f669002bc9a53f4d4f62cf24e6e564_icgraph.png" border="0" usemap="#aUtils_8hpp_ad5f669002bc9a53f4d4f62cf24e6e564_icgraph" alt=""/></div>
-<map name="aUtils_8hpp_ad5f669002bc9a53f4d4f62cf24e6e564_icgraph" id="aUtils_8hpp_ad5f669002bc9a53f4d4f62cf24e6e564_icgraph">
+<div class="center"><img src="Utils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_icgraph.png" border="0" usemap="#aUtils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_icgraph" alt=""/></div>
+<map name="aUtils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_icgraph" id="aUtils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_icgraph">
 <area shape="rect" title="Reads a single entry from config." alt="" coords="236,5,368,32"/>
 <area shape="rect" href="classMainLogger.html#abe306c5e99f49fc6b5d877b4f976fa3d" title="Constructs and prepares main logger." alt="" coords="5,5,188,32"/>
 </map>
@@ -843,7 +843,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="Utils_8hpp.html">Utils.hpp</a></li>
-    <li class="footer">Generated on Sat Feb 10 2024 05:18:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sat Feb 10 2024 06:43:22 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

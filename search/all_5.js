@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['echoback_72',['echoBack',['../classTelnetSession.html#a130d022c8ffba007ba4335cf71db8a08',1,'TelnetSession']]],
-  ['endtimer_73',['endTimer',['../classPerformanceTracker.html#a865d4ab2a2e84f56d8d7f5fa0d4dd441',1,'PerformanceTracker']]],
-  ['eraseline_74',['eraseLine',['../classTelnetSession.html#a4ee1bafa66c2ef419ed0af4dda27d044',1,'TelnetSession']]]
+  ['echoback_74',['echoBack',['../classTelnetSession.html#a130d022c8ffba007ba4335cf71db8a08',1,'TelnetSession']]],
+  ['endtimer_75',['endTimer',['../classPerformanceTracker.html#a865d4ab2a2e84f56d8d7f5fa0d4dd441',1,'PerformanceTracker']]],
+  ['eraseline_76',['eraseLine',['../classTelnetSession.html#a4ee1bafa66c2ef419ed0af4dda27d044',1,'TelnetSession']]]
 ];

@@ -95,10 +95,14 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="title">Repo-Init Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md____w_Repo_Init_Repo_Init_README"></a> </p><div align="center" width="50"> <img src="scripts/data/logo.png" alt="" class="inline"/></div><div align="center" width="50"><img src="https://img.shields.io/github/languages/top/egecetin/Repo-Init?style=for-the-badge" alt="GitHub top language" class="inline"/> <img src="https://img.shields.io/github/license/egecetin/Repo-Init?style=for-the-badge" alt="GitHub" class="inline"/> <a href="https://github.com/egecetin/Repo-Init/actions/workflows/build_and_test.yml"><img src="https://img.shields.io/github/actions/workflow/status/egecetin/Repo-Init/build_and_test.yml?label=Actions&amp;branch=master&amp;logo=github&amp;style=for-the-badge" alt="GitHub Workflow Status" class="inline"/></a> <a href="https://app.codecov.io/gh/egecetin/Repo-Init"><img src="https://img.shields.io/codecov/c/github/egecetin/Repo-Init?logo=codecov&amp;logoColor=white&amp;style=for-the-badge" alt="Codecov" class="inline"/></a> </div><h2><a class="anchor" id="autotoc_md0"></a>
+<div class="textblock"><p><a class="anchor" id="md____w_Repo_Init_Repo_Init_README"></a> </p><div align="center" width="50"> <img src="doc/logo.png" alt="" class="inline"/></div><div align="center" width="50"><img src="https://img.shields.io/github/languages/top/egecetin/Repo-Init?style=for-the-badge" alt="GitHub top language" class="inline"/> <img src="https://img.shields.io/github/license/egecetin/Repo-Init?style=for-the-badge" alt="GitHub" class="inline"/> <a href="https://github.com/egecetin/Repo-Init/actions/workflows/build_and_test.yml"><img src="https://img.shields.io/github/actions/workflow/status/egecetin/Repo-Init/build_and_test.yml?label=Actions&amp;branch=master&amp;logo=github&amp;style=for-the-badge" alt="GitHub Workflow Status" class="inline"/></a> <a href="https://app.codecov.io/gh/egecetin/Repo-Init"><img src="https://img.shields.io/codecov/c/github/egecetin/Repo-Init?logo=codecov&amp;logoColor=white&amp;style=for-the-badge" alt="Codecov" class="inline"/></a> </div><h2><a class="anchor" id="autotoc_md0"></a>
 Project</h2>
 <p>CMake template to create new C++ applications with basic codes/interfaces are already defined. Requires a C++14 supported compiler.</p>
 <p>It provides the following features</p><ul>
+<li>Tracing<ul>
+<li>Generates minidump files using for error signals <a href="https://chromium.googlesource.com/crashpad/crashpad/">Crashpad</a></li>
+</ul>
+</li>
 <li>Logging<ul>
 <li>Spdlog with rotating file, syslog and coloured stdout outputs</li>
 <li><a href="https://sentry.io/">Sentry</a> and <a href="https://grafana.com/oss/loki/">Grafana Loki</a> integration for automatic forwarding of logs to an external <a class="el" href="classHTTP.html">HTTP</a> server</li>
@@ -142,17 +146,15 @@ CMake</h2>
 Scripts</h2>
 <p>All scripts should be executed from top level directory</p>
 <ul>
-<li>create_installer : Creates installer package using makeself</li>
 <li>firstName : Script to change placeholder name</li>
-<li>ldd-copy-dependencies : Script to copy dynamic dependencies of a binary</li>
-<li>makeself : <a href="https://github.com/megastep/makeself">Makeself</a> self-extractable archive creator</li>
 <li>system-setup : Installs desired packages on RedHat based systems. Check scripts/SYSTEMSETUP.md for details</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md4"></a>
 Dependencies</h2>
 <ul>
-<li><a href="https://github.com/bombela/backward-cpp">Backward-cpp</a></li>
 <li><a href="https://github.com/zeromq/cppzmq.git">CppZMQ</a></li>
+<li><a href="https://chromium.googlesource.com/breakpad/breakpad/">breakpad</a> (Only for developing side. It is required for automatically dumping symbols)</li>
+<li><a href="https://chromium.googlesource.com/crashpad/crashpad/">crashpad</a></li>
 <li><a href="https://github.com/curl/curl">cURL</a></li>
 <li><a href="https://github.com/HowardHinnant/date.git">Date</a></li>
 <li><a href="https://github.com/google/googletest.git">GoogleTest</a> (For tests only)</li>
@@ -164,6 +166,7 @@ Dependencies</h2>
 <li><a href="https://github.com/gabime/spdlog.git">Spdlog</a></li>
 <li><a href="https://github.com/lukemalcolm/TelnetServLib.git">TelnetServLib</a> (Modified and embedded to source directory)</li>
 <li><a href="https://github.com/zeromq/libzmq.git">ZeroMQ</a></li>
+<li>[ZLIB]() (Only for developing side. It is required by breakpad)</li>
 </ul>
 <p>Full dependency graph can be seen <a href="doc/XXX-tree.svg">here</a></p>
 <h2><a class="anchor" id="autotoc_md5"></a>
@@ -173,19 +176,8 @@ Targets</h2>
 <li>coverage : Prepares coverage report</li>
 <li>docs : Prepares documentation</li>
 <li>dependency-graph : Prepares graphviz visualization of dependencies</li>
-<li>makeself : Prepares makeself package</li>
-<li>test : Prepares gtest target</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md6"></a>
-Developer comments</h2>
-<ul>
-<li>Update branding information after cloning. The folder should include three icons/logos and a css file. Look the branding.css or RHEL branding folder for recommended image sizes<ul>
-<li>logo.png</li>
-<li>favicon.ico</li>
-<li>apple-touch-icon.png</li>
-<li>branding.css </li>
-</ul>
-</li>
+<li>package : Prepares default packages</li>
+<li>test : Prepares gtest target </li>
 </ul>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
@@ -193,7 +185,7 @@ Developer comments</h2>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Feb 10 2024 05:18:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sat Feb 10 2024 06:43:22 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

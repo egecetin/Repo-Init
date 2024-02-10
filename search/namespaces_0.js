@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['sinks_348',['sinks',['../namespacespdlog_1_1sinks.html',1,'spdlog']]],
-  ['spdlog_349',['spdlog',['../namespacespdlog.html',1,'']]]
+  ['sinks_356',['sinks',['../namespacespdlog_1_1sinks.html',1,'spdlog']]],
+  ['spdlog_357',['spdlog',['../namespacespdlog.html',1,'']]]
 ];

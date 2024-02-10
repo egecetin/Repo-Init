@@ -39,7 +39,7 @@ var TelnetServer_8cpp =
     [ "TELNET_CLEAR_SCREEN", "TelnetServer_8cpp.html#aaad0fd13b75d5ebde386438b336d77c7", null ],
     [ "TELNET_ERASE_LINE", "TelnetServer_8cpp.html#a2e7b5c52eb8468e70fb7c78a7dcf5fd0", null ],
     [ "TelnetConnectedCallback", "TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d", null ],
-    [ "TelnetMessageCallback", "TelnetServer_8cpp.html#a9211e9f215dc8ddc1bb3314dae7b34f1", null ],
+    [ "TelnetMessageCallback", "TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75", null ],
     [ "TelnetPrintAvailableCommands", "TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f", null ],
     [ "TelnetTabCallback", "TelnetServer_8cpp.html#a07c3fdafe30bb1042ceaf01572b7ce1d", null ],
     [ "ASCII_LF", "TelnetServer_8cpp.html#ac90f88961d4c101d6e0bde4569b3fc33", null ],

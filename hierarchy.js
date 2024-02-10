@@ -22,6 +22,7 @@ var hierarchy =
     [ "TelnetServerStats", "structTelnetServerStats.html", null ],
     [ "TelnetSessionStats", "structTelnetSessionStats.html", null ],
     [ "TelnetStats", "classTelnetStats.html", null ],
+    [ "Tracer", "classTracer.html", null ],
     [ "TrackPerformance", "classTrackPerformance.html", null ],
     [ "TrackStatus", "classTrackStatus.html", null ],
     [ "ZeroMQ", "classZeroMQ.html", null ],

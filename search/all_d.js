@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['namelookuptime_172',['nameLookupTime',['../structHTTPStats.html#a8856fe05b0ad801f656bff33192675a2',1,'HTTPStats']]],
-  ['newlinecallback_173',['newLineCallback',['../classTelnetServer.html#a2cb12ee59caacd5e6cd879aa6ca7b7ef',1,'TelnetServer']]],
-  ['newlinecallback_174',['newLineCallBack',['../classTelnetServer.html#a33bfcd2496a2531640cd1e6b1a6f18fb',1,'TelnetServer']]]
+  ['namelookuptime_176',['nameLookupTime',['../structHTTPStats.html#a8856fe05b0ad801f656bff33192675a2',1,'HTTPStats']]],
+  ['newlinecallback_177',['newLineCallBack',['../classTelnetServer.html#a33bfcd2496a2531640cd1e6b1a6f18fb',1,'TelnetServer']]],
+  ['newlinecallback_178',['newLineCallback',['../classTelnetServer.html#a2cb12ee59caacd5e6cd879aa6ca7b7ef',1,'TelnetServer']]]
 ];

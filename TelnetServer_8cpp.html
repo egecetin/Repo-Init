@@ -223,9 +223,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a39681d1af6065fb54f66a55c01e28e3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d">TelnetConnectedCallback</a> (const <a class="el" href="TelnetServer_8hpp.html#a5afb033ce594835dde5ce71c742bf216">SP_TelnetSession</a> &amp;session)</td></tr>
 <tr class="memdesc:a39681d1af6065fb54f66a55c01e28e3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Telnet session connection start callback.  <a href="TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d">More...</a><br /></td></tr>
 <tr class="separator:a39681d1af6065fb54f66a55c01e28e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9211e9f215dc8ddc1bb3314dae7b34f1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TelnetServer_8cpp.html#a9211e9f215dc8ddc1bb3314dae7b34f1">TelnetMessageCallback</a> (const <a class="el" href="TelnetServer_8hpp.html#a5afb033ce594835dde5ce71c742bf216">SP_TelnetSession</a> &amp;session, std::string line)</td></tr>
-<tr class="memdesc:a9211e9f215dc8ddc1bb3314dae7b34f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Telnet session message received callback.  <a href="TelnetServer_8cpp.html#a9211e9f215dc8ddc1bb3314dae7b34f1">More...</a><br /></td></tr>
-<tr class="separator:a9211e9f215dc8ddc1bb3314dae7b34f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc54e2836d524b6deafaf20fd1ccdc75"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75">TelnetMessageCallback</a> (const <a class="el" href="TelnetServer_8hpp.html#a5afb033ce594835dde5ce71c742bf216">SP_TelnetSession</a> &amp;session, const std::string &amp;line)</td></tr>
+<tr class="memdesc:afc54e2836d524b6deafaf20fd1ccdc75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Telnet session message received callback.  <a href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75">More...</a><br /></td></tr>
+<tr class="separator:afc54e2836d524b6deafaf20fd1ccdc75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07c3fdafe30bb1042ceaf01572b7ce1d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="TelnetServer_8cpp.html#a07c3fdafe30bb1042ceaf01572b7ce1d">TelnetTabCallback</a> (const <a class="el" href="TelnetServer_8hpp.html#a5afb033ce594835dde5ce71c742bf216">SP_TelnetSession</a> &amp;session, const std::string &amp;line)</td></tr>
 <tr class="memdesc:a07c3fdafe30bb1042ceaf01572b7ce1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Telnet session TAB received callback.  <a href="TelnetServer_8cpp.html#a07c3fdafe30bb1042ceaf01572b7ce1d">More...</a><br /></td></tr>
 <tr class="separator:a07c3fdafe30bb1042ceaf01572b7ce1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -980,7 +980,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="TelnetServer_8cpp_aaad0fd13b75d5ebde386438b336d77c7_icgraph.png" border="0" usemap="#aTelnetServer_8cpp_aaad0fd13b75d5ebde386438b336d77c7_icgraph" alt=""/></div>
 <map name="aTelnetServer_8cpp_aaad0fd13b75d5ebde386438b336d77c7_icgraph" id="aTelnetServer_8cpp_aaad0fd13b75d5ebde386438b336d77c7_icgraph">
 <area shape="rect" title=" " alt="" coords="531,5,709,32"/>
-<area shape="rect" href="TelnetServer_8cpp.html#a9211e9f215dc8ddc1bb3314dae7b34f1" title="Telnet session message received callback." alt="" coords="308,5,483,32"/>
+<area shape="rect" href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title="Telnet session message received callback." alt="" coords="308,5,483,32"/>
 <area shape="rect" href="Control_8cpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e" title="Thread function to receive control messages or config changes from Telnet connections." alt="" coords="108,5,260,32"/>
 <area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
 </map>
@@ -1061,8 +1061,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a9211e9f215dc8ddc1bb3314dae7b34f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9211e9f215dc8ddc1bb3314dae7b34f1">&#9670;&nbsp;</a></span>TelnetMessageCallback()</h2>
+<a id="afc54e2836d524b6deafaf20fd1ccdc75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc54e2836d524b6deafaf20fd1ccdc75">&#9670;&nbsp;</a></span>TelnetMessageCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1076,7 +1076,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>line</em>&#160;</td>
         </tr>
         <tr>
@@ -1181,8 +1181,8 @@ Here is the caller graph for this function:</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="TelnetServer_8cpp_a9211e9f215dc8ddc1bb3314dae7b34f1_cgraph.png" border="0" usemap="#aTelnetServer_8cpp_a9211e9f215dc8ddc1bb3314dae7b34f1_cgraph" alt=""/></div>
-<map name="aTelnetServer_8cpp_a9211e9f215dc8ddc1bb3314dae7b34f1_cgraph" id="aTelnetServer_8cpp_a9211e9f215dc8ddc1bb3314dae7b34f1_cgraph">
+<div class="center"><img src="TelnetServer_8cpp_afc54e2836d524b6deafaf20fd1ccdc75_cgraph.png" border="0" usemap="#aTelnetServer_8cpp_afc54e2836d524b6deafaf20fd1ccdc75_cgraph" alt=""/></div>
+<map name="aTelnetServer_8cpp_afc54e2836d524b6deafaf20fd1ccdc75_cgraph" id="aTelnetServer_8cpp_afc54e2836d524b6deafaf20fd1ccdc75_cgraph">
 <area shape="rect" title="Telnet session message received callback." alt="" coords="5,81,180,108"/>
 <area shape="rect" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b" title=" " alt="" coords="289,5,392,32"/>
 <area shape="rect" href="Utils_8cpp.html#a97c49d303bbf54bed2e1e6709deeb67c" title="Returns the version." alt="" coords="291,56,390,83"/>
@@ -1193,8 +1193,8 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="TelnetServer_8cpp_a9211e9f215dc8ddc1bb3314dae7b34f1_icgraph.png" border="0" usemap="#aTelnetServer_8cpp_a9211e9f215dc8ddc1bb3314dae7b34f1_icgraph" alt=""/></div>
-<map name="aTelnetServer_8cpp_a9211e9f215dc8ddc1bb3314dae7b34f1_icgraph" id="aTelnetServer_8cpp_a9211e9f215dc8ddc1bb3314dae7b34f1_icgraph">
+<div class="center"><img src="TelnetServer_8cpp_afc54e2836d524b6deafaf20fd1ccdc75_icgraph.png" border="0" usemap="#aTelnetServer_8cpp_afc54e2836d524b6deafaf20fd1ccdc75_icgraph" alt=""/></div>
+<map name="aTelnetServer_8cpp_afc54e2836d524b6deafaf20fd1ccdc75_icgraph" id="aTelnetServer_8cpp_afc54e2836d524b6deafaf20fd1ccdc75_icgraph">
 <area shape="rect" title="Telnet session message received callback." alt="" coords="308,5,483,32"/>
 <area shape="rect" href="Control_8cpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e" title="Thread function to receive control messages or config changes from Telnet connections." alt="" coords="108,5,260,32"/>
 <area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
@@ -1242,7 +1242,7 @@ Here is the caller graph for this function:</div>
 <map name="aTelnetServer_8cpp_a3efc6fe43e5a496a75d5d51b308ba19f_icgraph" id="aTelnetServer_8cpp_a3efc6fe43e5a496a75d5d51b308ba19f_icgraph">
 <area shape="rect" title=" " alt="" coords="543,31,768,57"/>
 <area shape="rect" href="TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d" title="Telnet session connection start callback." alt="" coords="308,5,495,32"/>
-<area shape="rect" href="TelnetServer_8cpp.html#a9211e9f215dc8ddc1bb3314dae7b34f1" title="Telnet session message received callback." alt="" coords="314,56,489,83"/>
+<area shape="rect" href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title="Telnet session message received callback." alt="" coords="314,56,489,83"/>
 <area shape="rect" href="Control_8cpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e" title="Thread function to receive control messages or config changes from Telnet connections." alt="" coords="108,31,260,57"/>
 <area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,31,60,57"/>
 </map>
@@ -1602,7 +1602,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_638f1a289fa697f4a26358f6059ac853.html">telnet</a></li><li class="navelem"><a class="el" href="TelnetServer_8cpp.html">TelnetServer.cpp</a></li>
-    <li class="footer">Generated on Sat Feb 10 2024 05:18:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sat Feb 10 2024 06:43:22 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -1,7 +1,7 @@
 <map id="get_version" name="get_version">
 <area shape="rect" id="node1" title="Returns the version." alt="" coords="587,71,685,98"/>
 <area shape="rect" id="node2" href="$classPrometheusServer.html#a94923c3ec5e1ffc4153f717e1ef781f7" title="Construct a new Prometheus Server." alt="" coords="309,5,537,47"/>
-<area shape="rect" id="node3" href="$TelnetServer_8cpp.html#a9211e9f215dc8ddc1bb3314dae7b34f1" title="Telnet session message received callback." alt="" coords="336,71,511,98"/>
+<area shape="rect" id="node3" href="$TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title="Telnet session message received callback." alt="" coords="336,71,511,98"/>
 <area shape="rect" id="node6" href="$ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26" title="ZeroMQ message received callback." alt="" coords="308,122,539,149"/>
 <area shape="rect" id="node4" href="$Control_8cpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e" title="Thread function to receive control messages or config changes from Telnet connections." alt="" coords="108,71,260,98"/>
 <area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,97,60,123"/>

@@ -7,5 +7,6 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "zeromq", "dir_d88ff245824df7df97e108605ade0712.html", "dir_d88ff245824df7df97e108605ade0712" ],
     [ "Control.cpp", "Control_8cpp.html", "Control_8cpp" ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
+    [ "Tracer.cpp", "Tracer_8cpp.html", null ],
     [ "Utils.cpp", "Utils_8cpp.html", "Utils_8cpp" ]
 ];

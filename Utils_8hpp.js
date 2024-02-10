@@ -11,7 +11,7 @@ var Utils_8hpp =
     [ "interruptFunc", "Utils_8hpp.html#aa673459b3ce93169e31c26d223183375", null ],
     [ "print_version", "Utils_8hpp.html#a6302aaae12249e8ea16bfdc7de892f21", null ],
     [ "readConfig", "Utils_8hpp.html#a6dc18ab17b6e565d1929ccf3fab281af", null ],
-    [ "readSingleConfig", "Utils_8hpp.html#ad5f669002bc9a53f4d4f62cf24e6e564", null ],
+    [ "readSingleConfig", "Utils_8hpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2", null ],
     [ "alarmInterval", "Utils_8hpp.html#a2b19e9b08a344702039cb07dbab604d8", null ],
     [ "loopFlag", "Utils_8hpp.html#a00b8791b9b0a0f9a9b14c6e1d7251e09", null ],
     [ "vCheckFlag", "Utils_8hpp.html#af79a31f6c3bfbd37429c920666931e90", null ]
