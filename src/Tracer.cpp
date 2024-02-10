@@ -4,6 +4,7 @@
 #include "client/settings.h"
 
 #include <algorithm>
+#include <unistd.h>
 
 std::string Tracer::getSelfExecutableDir()
 {
