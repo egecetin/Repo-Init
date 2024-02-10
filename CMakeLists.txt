@@ -46,6 +46,9 @@ set(RAPIDJSON_BUILD_TESTS OFF CACHE BOOL "")
 set(ENABLE_TESTING OFF CACHE BOOL "") # prometheus-cpp
 set(ENABLE_COMPRESSION OFF CACHE BOOL "") # prometheus-cpp
 
+set(INSTALL_GMOCK OFF CACHE BOOL "")
+set(INSTALL_GTEST OFF CACHE BOOL "")
+
 set(SENTRY_BACKEND none) # Disable backend to manually use crashpad
 
 configure_file(build_number.h.in "Version.h")
@@ -105,7 +108,7 @@ ExternalProject_Add(breakpad
   SOURCE_DIR ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/breakpad
   BINARY_DIR ${CMAKE_BINARY_DIR}/breakpad_bin
   CONFIGURE_COMMAND "<SOURCE_DIR>/configure"
-  BUILD_COMMAND make -j2
+  BUILD_COMMAND make -j2 # Prevent OOM for the virtual machines when parallel compilation invoked
   INSTALL_COMMAND "")
 
 # Set Targets
@@ -137,7 +140,11 @@ enable_security_flags_for_target(${PROJECT_NAME})
 generate_symbols_for_target(${PROJECT_NAME})
 add_dependencies(${PROJECT_NAME} crashpad::handler)
 
-install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}-lib)
+install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}-lib crashpad_handler)
+
+set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
+set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
+include(CPack)
 
 # Enable test framework
 if(XXX_BUILD_TESTS)
