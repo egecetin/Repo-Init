@@ -22,7 +22,8 @@ int main(int argc, char **argv)
 	std::unique_ptr<PrometheusServer> mainPrometheusServer;
 
 	std::string dumpHandlerExecutable;
-	std::string dumpServer, dumpServerProxy;
+	std::string dumpServer;
+	std::string dumpServerProxy;
 	std::unique_ptr<Tracer> crashdump;
 
 	// Parse inputs
@@ -134,7 +135,7 @@ int main(int argc, char **argv)
 										  {"compiler_info", COMPILER_NAME + std::string(" ") + COMPILER_VERSION}}),
 									 std::vector<base::FilePath>());
 	}
-	catch(const std::exception& e)
+	catch (const std::exception &e)
 	{
 		spdlog::error("Can't start crashpad: {}", e.what());
 		return EXIT_FAILURE;

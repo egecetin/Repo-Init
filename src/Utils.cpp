@@ -118,7 +118,7 @@ bool readConfig(const std::string &dir)
 	return true;
 }
 
-std::string readSingleConfig(const std::string &dir, std::string value)
+std::string readSingleConfig(const std::string &dir, const std::string &value)
 {
 	rapidjson::Document doc;
 	if (!tryOpenAndParseConfig(dir, doc))

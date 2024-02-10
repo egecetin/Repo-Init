@@ -724,7 +724,7 @@ void TelnetConnectedCallback(const SP_TelnetSession &session)
 	TelnetPrintAvailableCommands(session);
 }
 
-bool TelnetMessageCallback(const SP_TelnetSession &session, std::string line)
+bool TelnetMessageCallback(const SP_TelnetSession &session, const std::string &line)
 {
 	spdlog::trace("Received message {}", line);
 
