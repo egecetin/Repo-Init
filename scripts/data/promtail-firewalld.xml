@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<service>
-  <short>Promtail</short>
-  <description>An agent which ships the contents of local logs to a private Grafana Loki instance or Grafana Cloud.</description>
-  <port protocol="tcp" port="9080"/>
-</service>

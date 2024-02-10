@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<service>
-  <short>Loki</short>
-  <description>Grafana Loki is a log aggregation tool, and it is the core of a fully-featured logging stack.</description>
-  <port protocol="tcp" port="3100"/>
-</service>

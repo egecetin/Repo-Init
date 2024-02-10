@@ -12,7 +12,7 @@ CMake template to create new C++ applications with basic codes/interfaces are al
 
 It provides the following features
   - Tracing
-    - Generates minidump files using for error signals [Crashpad](https://chromium.googlesource.com/crashpad/crashpad/)
+    - Generates automatically minidump files using [Crashpad](https://chromium.googlesource.com/crashpad/crashpad/) for error signals.
   - Logging
     - Spdlog with rotating file, syslog and coloured stdout outputs
     - [Sentry](https://sentry.io/) and [Grafana Loki](https://grafana.com/oss/loki/) integration for automatic forwarding of logs to an external HTTP server
@@ -39,14 +39,13 @@ Feel free to ask, use and report any bugs you encountered!
 - [Scripts](#scripts)
 - [Dependencies](#dependencies)
 - [Targets](#targets)
-- [Developer comments](#developer-comments)
 
 ## CMake
 
 - CodeCoverage          : Detects and enables gcovr
-- CompilerOptions       : Enables/Disables compiler warnings
 - CompilerSecurityOption: Enables/Disables secure compiler flags
 - Doxy                  : Find doxygen package and prepare doc environment
+- GenerateSymbols       : Adds a target for generation of symbol files for minidump
 - GitVersion            : Get SHA1 hash of current commit
 - GraphViz              : Find graphviz and dot executable to create dependency graph
 
@@ -60,20 +59,26 @@ All scripts should be executed from top level directory
 ## Dependencies
 
  - [CppZMQ](https://github.com/zeromq/cppzmq.git)
- - [breakpad](https://chromium.googlesource.com/breakpad/breakpad/) (Only for developing side. It is required for automatically dumping symbols)
  - [crashpad](https://chromium.googlesource.com/crashpad/crashpad/)
- - [cURL](https://github.com/curl/curl)
  - [Date](https://github.com/HowardHinnant/date.git)
- - [GoogleTest](https://github.com/google/googletest.git) (For tests only)
  - [Http-status-codes](https://github.com/j-ulrich/http-status-codes-cpp.git)
- - [MemPlumber](https://github.com/seladb/MemPlumber.git) (For tests only)
  - [Prometheus-cpp](https://github.com/jupp0r/prometheus-cpp.git)
  - [RapidJSON](https://github.com/Tencent/rapidjson.git)
  - [Sentry](https://github.com/getsentry/sentry-native.git)
- - [Spdlog](https://github.com/gabime/spdlog.git)
  - [TelnetServLib](https://github.com/lukemalcolm/TelnetServLib.git) (Modified and embedded to source directory)
+
+Developing dependencies not required for runtime,
+
+ - [breakpad](https://chromium.googlesource.com/breakpad/breakpad/) (It is required for automatically dumping symbols)
+ - [GoogleTest](https://github.com/google/googletest.git) (For testing)
+ - [MemPlumber](https://github.com/seladb/MemPlumber.git) (For testing)
+ - [ZLIB]() (It is required by breakpad)
+
+These runtime dependencies should be installed to the system (for example via package managers like apt or dnf),
+
+ - [cURL](https://github.com/curl/curl)
+ - [Spdlog](https://github.com/gabime/spdlog.git)
  - [ZeroMQ](https://github.com/zeromq/libzmq.git)
- - [ZLIB]() (Only for developing side. It is required by breakpad)
 
 Full dependency graph can be seen [here](doc/XXX-tree.svg)
 
