@@ -54,7 +54,7 @@ Feel free to ask, use and report any bugs you encountered!
 All scripts should be executed from top level directory
 
 - firstName             : Script to change placeholder name
-- system-setup          : Installs desired packages on RedHat based systems. Check scripts/SYSTEMSETUP.md for details
+- dump_syms             : Dumps symbol files
 
 ## Dependencies
 
