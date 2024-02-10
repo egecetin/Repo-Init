@@ -151,7 +151,7 @@ if(XXX_BUILD_TESTS)
   include(CTest)
   enable_testing()
 
-  add_subdirectory(tests EXCLUDE_FROM_ALL)
+  add_subdirectory(tests)
 
   if(XXX_ENABLE_COVERAGE)
     setup_target_for_coverage_gcovr_html(
