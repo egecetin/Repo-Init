@@ -147,7 +147,7 @@ bool readConfig(const std::string &dir);
  * @param[in] value 	Value to read
  * @return std::string 	Read value
  */
-std::string readSingleConfig(const std::string &dir, std::string value);
+std::string readSingleConfig(const std::string &dir, const std::string &value);
 
 /**
  * @brief Converts errno to readable string

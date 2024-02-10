@@ -126,7 +126,7 @@ namespace spdlog
 			}
 		}
 
-		template class SPDLOG_API loki_api_sink<std::mutex>;
-		template class SPDLOG_API loki_api_sink<details::null_mutex>;
+		template class loki_api_sink<std::mutex>;
+		template class loki_api_sink<details::null_mutex>;
 	} // namespace sinks
 } // namespace spdlog

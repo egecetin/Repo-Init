@@ -1,5 +1,5 @@
 <div align="center" width="50">
-<img src=scripts/data/logo.png>
+<img src=doc/logo.png>
 
 ![GitHub top language](https://img.shields.io/github/languages/top/egecetin/Repo-Init?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/egecetin/Repo-Init?style=for-the-badge)
@@ -11,6 +11,8 @@
 CMake template to create new C++ applications with basic codes/interfaces are already defined. Requires a C++14 supported compiler.
 
 It provides the following features
+  - Tracing
+    - Generates minidump files using for error signals [Crashpad](https://chromium.googlesource.com/crashpad/crashpad/)
   - Logging
     - Spdlog with rotating file, syslog and coloured stdout outputs
     - [Sentry](https://sentry.io/) and [Grafana Loki](https://grafana.com/oss/loki/) integration for automatic forwarding of logs to an external HTTP server
@@ -52,16 +54,14 @@ Feel free to ask, use and report any bugs you encountered!
 
 All scripts should be executed from top level directory
 
-- create_installer      : Creates installer package using makeself
 - firstName             : Script to change placeholder name
-- ldd-copy-dependencies : Script to copy dynamic dependencies of a binary
-- makeself              : [Makeself](https://github.com/megastep/makeself) self-extractable archive creator
 - system-setup          : Installs desired packages on RedHat based systems. Check scripts/SYSTEMSETUP.md for details
 
 ## Dependencies
 
- - [Backward-cpp](https://github.com/bombela/backward-cpp)
  - [CppZMQ](https://github.com/zeromq/cppzmq.git)
+ - [breakpad](https://chromium.googlesource.com/breakpad/breakpad/) (Only for developing side. It is required for automatically dumping symbols)
+ - [crashpad](https://chromium.googlesource.com/crashpad/crashpad/)
  - [cURL](https://github.com/curl/curl)
  - [Date](https://github.com/HowardHinnant/date.git)
  - [GoogleTest](https://github.com/google/googletest.git) (For tests only)
@@ -73,6 +73,7 @@ All scripts should be executed from top level directory
  - [Spdlog](https://github.com/gabime/spdlog.git)
  - [TelnetServLib](https://github.com/lukemalcolm/TelnetServLib.git) (Modified and embedded to source directory)
  - [ZeroMQ](https://github.com/zeromq/libzmq.git)
+ - [ZLIB]() (Only for developing side. It is required by breakpad)
 
 Full dependency graph can be seen [here](doc/XXX-tree.svg)
 
@@ -82,13 +83,5 @@ Full dependency graph can be seen [here](doc/XXX-tree.svg)
  - coverage         : Prepares coverage report
  - docs             : Prepares documentation
  - dependency-graph : Prepares graphviz visualization of dependencies
- - makeself         : Prepares makeself package
+ - package          : Prepares default packages
  - test             : Prepares gtest target
-
-## Developer comments
-
- - Update branding information after cloning. The folder should include three icons/logos and a css file. Look the branding.css or RHEL branding folder for recommended image sizes
-   - logo.png
-   - favicon.ico
-   - apple-touch-icon.png
-   - branding.css

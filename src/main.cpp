@@ -1,4 +1,5 @@
 #include "Control.hpp"
+#include "Tracer.hpp"
 #include "Utils.hpp"
 #include "Version.h"
 #include "logging/Logger.hpp"
@@ -19,6 +20,11 @@ int main(int argc, char **argv)
 
 	std::string prometheusAddr;
 	std::unique_ptr<PrometheusServer> mainPrometheusServer;
+
+	std::string dumpHandlerExecutable;
+	std::string dumpServer;
+	std::string dumpServerProxy;
+	std::unique_ptr<Tracer> crashdump;
 
 	// Parse inputs
 	const InputParser input(argc, argv);
@@ -54,6 +60,18 @@ int main(int argc, char **argv)
 		{
 			spdlog::warn("Enable ZeroMQ option requires a connection address");
 		}
+	}
+	if (input.cmdOptionExists("--crashpad-exe"))
+	{
+		dumpHandlerExecutable = input.getCmdOption("--crahpad-exe");
+	}
+	if (input.cmdOptionExists("--crashpad-remote"))
+	{
+		dumpServer = input.getCmdOption("--crashpad-remote");
+	}
+	if (input.cmdOptionExists("--crashpad-remote-proxy"))
+	{
+		dumpServerProxy = input.getCmdOption("--crashpad-remote-proxy");
 	}
 	if (input.cmdOptionExists("--config"))
 	{
@@ -103,6 +121,25 @@ int main(int argc, char **argv)
 
 	vCheckFlag.emplace_back("ZeroMQ Server", std::make_unique<std::atomic_flag>(false));
 	vCheckFlag.emplace_back("Telnet Server", std::make_unique<std::atomic_flag>(false));
+
+	// Start crashpad handler
+	try
+	{
+		crashdump =
+			std::make_unique<Tracer>(dumpServer, dumpServerProxy, dumpHandlerExecutable,
+									 std::map<std::string, std::string>(
+										 {{"name", PROJECT_NAME},
+										  {"version", PROJECT_FULL_REVISION},
+										  {"build_info", PROJECT_BUILD_DATE + std::string(" ") + PROJECT_BUILD_TIME +
+															 std::string(" ") + BUILD_TYPE},
+										  {"compiler_info", COMPILER_NAME + std::string(" ") + COMPILER_VERSION}}),
+									 std::vector<base::FilePath>());
+	}
+	catch (const std::exception &e)
+	{
+		spdlog::error("Can't start crashpad: {}", e.what());
+		return EXIT_FAILURE;
+	}
 
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */

@@ -169,7 +169,7 @@ namespace spdlog
 
 		template <typename Mutex> void sentry_api_sink<Mutex>::flush_() {}
 
-		template class SPDLOG_API sentry_api_sink<std::mutex>;
-		template class SPDLOG_API sentry_api_sink<details::null_mutex>;
+		template class sentry_api_sink<std::mutex>;
+		template class sentry_api_sink<details::null_mutex>;
 	} // namespace sinks
 } // namespace spdlog

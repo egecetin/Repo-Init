@@ -195,7 +195,7 @@ void TelnetConnectedCallback(const SP_TelnetSession &session);
  * @param[in] session Handle to session
  * @param[in] line Received message
  */
-bool TelnetMessageCallback(const SP_TelnetSession &session, std::string line);
+bool TelnetMessageCallback(const SP_TelnetSession &session, const std::string &line);
 
 /**
  * @brief Telnet session TAB received callback
