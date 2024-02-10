@@ -24,7 +24,7 @@ Tracer::Tracer(const std::string &serverPath, const std::string &serverProxy, co
 	// Path to crashpad executable
 	base::FilePath handler(crashpadHandlerPath.empty() ? exeDir + "/crashpad_handler" : crashpadHandlerPath);
 
-	// Must be writable or crashpad_handler will crash.
+	// Must be writable or crashpad_handler will crash
 	base::FilePath reportsDir(exeDir);
 	base::FilePath metricsDir(exeDir);
 
