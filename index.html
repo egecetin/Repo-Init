@@ -100,7 +100,7 @@ Project</h2>
 <p>CMake template to create new C++ applications with basic codes/interfaces are already defined. Requires a C++14 supported compiler.</p>
 <p>It provides the following features</p><ul>
 <li>Tracing<ul>
-<li>Generates minidump files using for error signals <a href="https://chromium.googlesource.com/crashpad/crashpad/">Crashpad</a></li>
+<li>Generates automatically minidump files using <a href="https://chromium.googlesource.com/crashpad/crashpad/">Crashpad</a> for error signals.</li>
 </ul>
 </li>
 <li>Logging<ul>
@@ -130,15 +130,14 @@ Contents</h2>
 <li><a href="#scripts">Scripts</a></li>
 <li><a href="#dependencies">Dependencies</a></li>
 <li><a href="#targets">Targets</a></li>
-<li><a href="#developer-comments">Developer comments</a></li>
 </ul>
 <h2><a class="anchor" id="autotoc_md2"></a>
 CMake</h2>
 <ul>
 <li>CodeCoverage : Detects and enables gcovr</li>
-<li>CompilerOptions : Enables/Disables compiler warnings</li>
 <li>CompilerSecurityOption: Enables/Disables secure compiler flags</li>
 <li>Doxy : Find doxygen package and prepare doc environment</li>
+<li>GenerateSymbols : Adds a target for generation of symbol files for minidump</li>
 <li>GitVersion : Get SHA1 hash of current commit</li>
 <li>GraphViz : Find graphviz and dot executable to create dependency graph</li>
 </ul>
@@ -153,20 +152,26 @@ Scripts</h2>
 Dependencies</h2>
 <ul>
 <li><a href="https://github.com/zeromq/cppzmq.git">CppZMQ</a></li>
-<li><a href="https://chromium.googlesource.com/breakpad/breakpad/">breakpad</a> (Only for developing side. It is required for automatically dumping symbols)</li>
 <li><a href="https://chromium.googlesource.com/crashpad/crashpad/">crashpad</a></li>
-<li><a href="https://github.com/curl/curl">cURL</a></li>
 <li><a href="https://github.com/HowardHinnant/date.git">Date</a></li>
-<li><a href="https://github.com/google/googletest.git">GoogleTest</a> (For tests only)</li>
 <li><a href="https://github.com/j-ulrich/http-status-codes-cpp.git">Http-status-codes</a></li>
-<li><a href="https://github.com/seladb/MemPlumber.git">MemPlumber</a> (For tests only)</li>
 <li><a href="https://github.com/jupp0r/prometheus-cpp.git">Prometheus-cpp</a></li>
 <li><a href="https://github.com/Tencent/rapidjson.git">RapidJSON</a></li>
 <li><a href="https://github.com/getsentry/sentry-native.git">Sentry</a></li>
-<li><a href="https://github.com/gabime/spdlog.git">Spdlog</a></li>
 <li><a href="https://github.com/lukemalcolm/TelnetServLib.git">TelnetServLib</a> (Modified and embedded to source directory)</li>
+</ul>
+<p>Developing dependencies not required for runtime,</p>
+<ul>
+<li><a href="https://chromium.googlesource.com/breakpad/breakpad/">breakpad</a> (It is required for automatically dumping symbols)</li>
+<li><a href="https://github.com/google/googletest.git">GoogleTest</a> (For testing)</li>
+<li><a href="https://github.com/seladb/MemPlumber.git">MemPlumber</a> (For testing)</li>
+<li>[ZLIB]() (It is required by breakpad)</li>
+</ul>
+<p>These runtime dependencies should be installed to the system (for example via package managers like apt or dnf),</p>
+<ul>
+<li><a href="https://github.com/curl/curl">cURL</a></li>
+<li><a href="https://github.com/gabime/spdlog.git">Spdlog</a></li>
 <li><a href="https://github.com/zeromq/libzmq.git">ZeroMQ</a></li>
-<li>[ZLIB]() (Only for developing side. It is required by breakpad)</li>
 </ul>
 <p>Full dependency graph can be seen <a href="doc/XXX-tree.svg">here</a></p>
 <h2><a class="anchor" id="autotoc_md5"></a>
@@ -185,7 +190,7 @@ Targets</h2>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Feb 10 2024 07:19:21 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sat Feb 10 2024 07:35:20 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
