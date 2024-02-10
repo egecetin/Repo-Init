@@ -10,7 +10,7 @@ class Tracer {
 	static inline std::string getSelfExecutableDir();
 
   public:
-	Tracer(const std::string &serverPath = "", const std::string &serverProxy = "",
+	explicit Tracer(const std::string &serverPath = "", const std::string &serverProxy = "",
 		   const std::string &crashpadHandlerPath = "", const std::map<std::string, std::string> &annotations = {},
 		   const std::vector<base::FilePath> &attachments = {});
 };
