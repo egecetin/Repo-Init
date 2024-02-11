@@ -48,3 +48,6 @@ repos:
     hooks:
       - id: typos
         pass_filenames: false
+
+ci:
+  autofix_prs: false
