@@ -48,11 +48,7 @@ bool Tracer::checkSocketIsRunning(int sockId)
 	socklen_t len = sizeof(error);
 
 	int result = getsockopt(sockId, SOL_SOCKET, SO_ERROR, &error, &len);
-	if (result == 0 && error == 0 && recv(sockId, NULL, 1, MSG_PEEK | MSG_DONTWAIT) != 0)
-	{
-		return true;
-	}
-	return false;
+	return result == 0 && error == 0 && recv(sockId, nullptr, 1, MSG_PEEK | MSG_DONTWAIT) != 0;
 }
 
 std::string Tracer::getSelfExecutableDir()
@@ -65,10 +61,11 @@ std::string Tracer::getSelfExecutableDir()
 	return (lastDelimPos == std::string::npos) ? "" : path.substr(0, lastDelimPos);
 }
 
-Tracer::Tracer(const std::string &serverPath, const std::string &serverProxy, const std::string &crashpadHandlerPath,
-			   const std::map<std::string, std::string> &annotations, const std::vector<base::FilePath> &attachments,
+Tracer::Tracer(std::string serverPath, std::string serverProxy, const std::string &crashpadHandlerPath,
+			   std::map<std::string, std::string> annotations, std::vector<base::FilePath> attachments,
 			   const std::string &reportPath)
-	: _serverPath(serverPath), _serverProxy(serverProxy), _annotations(annotations), _attachments(attachments)
+	: _serverPath(std::move(serverPath)), _serverProxy(std::move(serverProxy)), _annotations(std::move(annotations)),
+	  _attachments(std::move(attachments))
 {
 	auto selfDir = getSelfExecutableDir();
 
@@ -103,5 +100,7 @@ bool Tracer::isRunning()
 void Tracer::restart()
 {
 	if (!isRunning())
+	{
 		startHandler();
+	}
 }
