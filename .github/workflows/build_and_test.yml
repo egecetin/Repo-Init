@@ -32,31 +32,6 @@ jobs:
       - name: Run cppcheck
         run: cppcheck -Iinclude/ src --verbose --enable=all --error-exitcode=1 --std=c++14 --language=c++ --suppressions-list=cppcheckSuppressions.txt --inline-suppr
 
-  coverage:
-    runs-on: ubuntu-latest
-    container: egecetinn/ubuntu2204
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-      - name: Prepare
-        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-      - name: Install Test Requirements
-        run: pip install -r tests/data/requirements.txt
-      - name: Configure
-        run: cmake -DCMAKE_BUILD_TYPE=Debug -DXXX_ENABLE_COVERAGE=ON -DXXX_ENABLE_MEMLEAK_CHECK=ON -S . -B build
-      - name: Build
-        run: cmake --build build --parallel --target coverage-xml
-      - name: Upload to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./build/coverage-xml.xml
-          name: codecov-umbrella
-          fail_ci_if_error: true
-          verbose: true
-
   rockylinux:
     runs-on: ubuntu-latest
     container: egecetinn/${{ matrix.image }}
