@@ -46,7 +46,7 @@ class Tracer {
 	 * @return true Running
 	 * @return false Otherwise
 	 */
-	bool isRunning();	
+	bool isRunning();
 
 	/**
 	 * @brief Checks and restarts if the crashpad_handler is not running
