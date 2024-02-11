@@ -5,8 +5,8 @@
 #include "client/settings.h"
 
 #include <algorithm>
-#include <unistd.h>
 #include <sys/socket.h>
+#include <unistd.h>
 
 void Tracer::startHandler()
 {
@@ -89,7 +89,7 @@ bool Tracer::isRunning()
 		return false;
 	}
 
-	if(sockId > 0 && !checkSocketIsRunning(sockId))
+	if (sockId >= 0 && !checkSocketIsRunning(sockId))
 	{
 		return false;
 	}
