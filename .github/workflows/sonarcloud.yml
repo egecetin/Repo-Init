@@ -26,7 +26,7 @@ jobs:
       - name: Install sonar-scanner and build-wrapper
         uses: sonarsource/sonarcloud-github-c-cpp@v2
       - name: Configure
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DXXX_ENABLE_COVERAGE=ON -DXXX_ENABLE_ASAN=OFF -DXXX_ENABLE_USAN=OFF
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DXXX_ENABLE_COVERAGE=ON -DXXX_ENABLE_MEMLEAK_CHECK=ON
       - name: Run build-wrapper
         run: build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} cmake --build build/ --config Debug --parallel --target coverage-xml
       - name: Run sonar-scanner
