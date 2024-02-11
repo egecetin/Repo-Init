@@ -99,23 +99,31 @@ $(document).ready(function(){initNavTree('Control_8hpp_source.html',''); initRes
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;atomic&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="PrometheusServer_8hpp.html">metrics/PrometheusServer.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">void</span> <a class="code" href="Control_8hpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e">telnetControlThread</a>(<span class="keyword">const</span> std::unique_ptr&lt;PrometheusServer&gt; &amp;mainPrometheusServer, uint16_t telnetPort,</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                         <span class="keyword">const</span> std::unique_ptr&lt;std::atomic_flag&gt; &amp;checkFlag);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span> <a class="code" href="Control_8hpp.html#a02dcd91ad682a590eb32b76c23114c40">zmqControlThread</a>(<span class="keyword">const</span> std::unique_ptr&lt;PrometheusServer&gt; &amp;mainPrometheusServer, <span class="keyword">const</span> std::string &amp;serverAddr,</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                      <span class="keyword">const</span> std::unique_ptr&lt;std::atomic_flag&gt; &amp;checkFlag);</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Tracer_8hpp.html">Tracer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="PrometheusServer_8hpp.html">metrics/PrometheusServer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">void</span> <a class="code" href="Control_8hpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e">telnetControlThread</a>(<span class="keyword">const</span> std::unique_ptr&lt;PrometheusServer&gt; &amp;mainPrometheusServer, uint16_t telnetPort,</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                         <span class="keyword">const</span> std::unique_ptr&lt;std::atomic_flag&gt; &amp;checkFlag);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">void</span> <a class="code" href="Control_8hpp.html#a02dcd91ad682a590eb32b76c23114c40">zmqControlThread</a>(<span class="keyword">const</span> std::unique_ptr&lt;PrometheusServer&gt; &amp;mainPrometheusServer, <span class="keyword">const</span> std::string &amp;serverAddr,</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                      <span class="keyword">const</span> std::unique_ptr&lt;std::atomic_flag&gt; &amp;checkFlag);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">void</span> <a class="code" href="Control_8hpp.html#aa266581771429799d932333577c9cb9f">crashpadControlThread</a>(<span class="keyword">const</span> std::string &amp;remoteAddr, <span class="keyword">const</span> std::string &amp;proxyAddr, <span class="keyword">const</span> std::string &amp;exeDir,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                           <span class="keyword">const</span> std::map&lt;std::string, std::string&gt; &amp;annotations,</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                           <span class="keyword">const</span> std::vector&lt;base::FilePath&gt; &amp;attachments, <span class="keyword">const</span> std::string &amp;reportPath,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                           <span class="keyword">const</span> std::unique_ptr&lt;std::atomic_flag&gt; &amp;checkFlag);</div>
 <div class="ttc" id="aControl_8hpp_html_a02dcd91ad682a590eb32b76c23114c40"><div class="ttname"><a href="Control_8hpp.html#a02dcd91ad682a590eb32b76c23114c40">zmqControlThread</a></div><div class="ttdeci">void zmqControlThread(const std::unique_ptr&lt; PrometheusServer &gt; &amp;mainPrometheusServer, const std::string &amp;serverAddr, const std::unique_ptr&lt; std::atomic_flag &gt; &amp;checkFlag)</div><div class="ttdoc">Thread function to receive control messages or config changes from ZMQ connection.</div><div class="ttdef"><b>Definition:</b> <a href="Control_8cpp_source.html#l00058">Control.cpp:58</a></div></div>
+<div class="ttc" id="aControl_8hpp_html_aa266581771429799d932333577c9cb9f"><div class="ttname"><a href="Control_8hpp.html#aa266581771429799d932333577c9cb9f">crashpadControlThread</a></div><div class="ttdeci">void crashpadControlThread(const std::string &amp;remoteAddr, const std::string &amp;proxyAddr, const std::string &amp;exeDir, const std::map&lt; std::string, std::string &gt; &amp;annotations, const std::vector&lt; base::FilePath &gt; &amp;attachments, const std::string &amp;reportPath, const std::unique_ptr&lt; std::atomic_flag &gt; &amp;checkFlag)</div><div class="ttdoc">Thread function to handle crashpad.</div><div class="ttdef"><b>Definition:</b> <a href="Control_8cpp_source.html#l00104">Control.cpp:104</a></div></div>
 <div class="ttc" id="aControl_8hpp_html_afc73cc2450f5d541f8dacbdc38b9bd4e"><div class="ttname"><a href="Control_8hpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e">telnetControlThread</a></div><div class="ttdeci">void telnetControlThread(const std::unique_ptr&lt; PrometheusServer &gt; &amp;mainPrometheusServer, uint16_t telnetPort, const std::unique_ptr&lt; std::atomic_flag &gt; &amp;checkFlag)</div><div class="ttdoc">Thread function to receive control messages or config changes from Telnet connections.</div><div class="ttdef"><b>Definition:</b> <a href="Control_8cpp_source.html#l00014">Control.cpp:14</a></div></div>
 <div class="ttc" id="aPrometheusServer_8hpp_html"><div class="ttname"><a href="PrometheusServer_8hpp.html">PrometheusServer.hpp</a></div></div>
+<div class="ttc" id="aTracer_8hpp_html"><div class="ttname"><a href="Tracer_8hpp.html">Tracer.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="Control_8hpp.html">Control.hpp</a></li>
-    <li class="footer">Generated on Sun Feb 11 2024 08:07:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 11 2024 09:29:59 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

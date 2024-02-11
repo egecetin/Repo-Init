@@ -8,7 +8,7 @@ var Utils_8cpp =
     [ "getErrnoString", "Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c", null ],
     [ "interruptFunc", "Utils_8cpp.html#a29b457922b435d58d7a8d75d238cb5fc", null ],
     [ "print_version", "Utils_8cpp.html#a6302aaae12249e8ea16bfdc7de892f21", null ],
-    [ "readConfig", "Utils_8cpp.html#a6dc18ab17b6e565d1929ccf3fab281af", null ],
+    [ "readAndVerifyConfig", "Utils_8cpp.html#a35794d145a636bb13f1a9e69c77b586b", null ],
     [ "readSingleConfig", "Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2", null ],
     [ "stringify", "Utils_8cpp.html#a933a859107e64dc6d003e53cd1b06261", null ],
     [ "tryOpenAndParseConfig", "Utils_8cpp.html#a747553f9d7d37822ca2bf1cea18e1694", null ],

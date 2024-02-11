@@ -151,9 +151,9 @@ Functions</h2></td></tr>
 <tr class="separator:a933a859107e64dc6d003e53cd1b06261"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a747553f9d7d37822ca2bf1cea18e1694"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utils_8cpp.html#a747553f9d7d37822ca2bf1cea18e1694">tryOpenAndParseConfig</a> (const std::string &amp;dir, rapidjson::Document &amp;doc)</td></tr>
 <tr class="separator:a747553f9d7d37822ca2bf1cea18e1694"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dc18ab17b6e565d1929ccf3fab281af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utils_8cpp.html#a6dc18ab17b6e565d1929ccf3fab281af">readConfig</a> (const std::string &amp;dir)</td></tr>
-<tr class="memdesc:a6dc18ab17b6e565d1929ccf3fab281af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read initial config from JSON.  <a href="Utils_8cpp.html#a6dc18ab17b6e565d1929ccf3fab281af">More...</a><br /></td></tr>
-<tr class="separator:a6dc18ab17b6e565d1929ccf3fab281af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35794d145a636bb13f1a9e69c77b586b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utils_8cpp.html#a35794d145a636bb13f1a9e69c77b586b">readAndVerifyConfig</a> (const std::string &amp;dir)</td></tr>
+<tr class="memdesc:a35794d145a636bb13f1a9e69c77b586b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read initial config from JSON and verify all required entries exists.  <a href="Utils_8cpp.html#a35794d145a636bb13f1a9e69c77b586b">More...</a><br /></td></tr>
+<tr class="separator:a35794d145a636bb13f1a9e69c77b586b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bb86d9ed53417d9d3ac724cc4de59e2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">readSingleConfig</a> (const std::string &amp;dir, const std::string &amp;value)</td></tr>
 <tr class="memdesc:a1bb86d9ed53417d9d3ac724cc4de59e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a single entry from config.  <a href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">More...</a><br /></td></tr>
 <tr class="separator:a1bb86d9ed53417d9d3ac724cc4de59e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -572,14 +572,14 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a6dc18ab17b6e565d1929ccf3fab281af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6dc18ab17b6e565d1929ccf3fab281af">&#9670;&nbsp;</a></span>readConfig()</h2>
+<a id="a35794d145a636bb13f1a9e69c77b586b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35794d145a636bb13f1a9e69c77b586b">&#9670;&nbsp;</a></span>readAndVerifyConfig()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool readConfig </td>
+          <td class="memname">bool readAndVerifyConfig </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>dir</em></td><td>)</td>
@@ -588,7 +588,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Read initial config from JSON. </p>
+<p>Read initial config from JSON and verify all required entries exists. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">dir</td><td>Path to JSON </td></tr>
@@ -649,19 +649,19 @@ false Can't find some variables </dd></dl>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="Utils_8cpp_a6dc18ab17b6e565d1929ccf3fab281af_cgraph.png" border="0" usemap="#aUtils_8cpp_a6dc18ab17b6e565d1929ccf3fab281af_cgraph" alt=""/></div>
-<map name="aUtils_8cpp_a6dc18ab17b6e565d1929ccf3fab281af_cgraph" id="aUtils_8cpp_a6dc18ab17b6e565d1929ccf3fab281af_cgraph">
-<area shape="rect" title="Read initial config from JSON." alt="" coords="5,31,97,57"/>
-<area shape="rect" href="Utils_8cpp.html#a933a859107e64dc6d003e53cd1b06261" title=" " alt="" coords="195,5,270,32"/>
-<area shape="rect" href="Utils_8cpp.html#a747553f9d7d37822ca2bf1cea18e1694" title=" " alt="" coords="145,56,320,83"/>
+<div class="center"><img src="Utils_8cpp_a35794d145a636bb13f1a9e69c77b586b_cgraph.png" border="0" usemap="#aUtils_8cpp_a35794d145a636bb13f1a9e69c77b586b_cgraph" alt=""/></div>
+<map name="aUtils_8cpp_a35794d145a636bb13f1a9e69c77b586b_cgraph" id="aUtils_8cpp_a35794d145a636bb13f1a9e69c77b586b_cgraph">
+<area shape="rect" title="Read initial config from JSON and verify all required entries exists." alt="" coords="5,31,160,57"/>
+<area shape="rect" href="Utils_8cpp.html#a933a859107e64dc6d003e53cd1b06261" title=" " alt="" coords="258,5,333,32"/>
+<area shape="rect" href="Utils_8cpp.html#a747553f9d7d37822ca2bf1cea18e1694" title=" " alt="" coords="208,56,383,83"/>
 </map>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="Utils_8cpp_a6dc18ab17b6e565d1929ccf3fab281af_icgraph.png" border="0" usemap="#aUtils_8cpp_a6dc18ab17b6e565d1929ccf3fab281af_icgraph" alt=""/></div>
-<map name="aUtils_8cpp_a6dc18ab17b6e565d1929ccf3fab281af_icgraph" id="aUtils_8cpp_a6dc18ab17b6e565d1929ccf3fab281af_icgraph">
-<area shape="rect" title="Read initial config from JSON." alt="" coords="108,5,200,32"/>
+<div class="center"><img src="Utils_8cpp_a35794d145a636bb13f1a9e69c77b586b_icgraph.png" border="0" usemap="#aUtils_8cpp_a35794d145a636bb13f1a9e69c77b586b_icgraph" alt=""/></div>
+<map name="aUtils_8cpp_a35794d145a636bb13f1a9e69c77b586b_icgraph" id="aUtils_8cpp_a35794d145a636bb13f1a9e69c77b586b_icgraph">
+<area shape="rect" title="Read initial config from JSON and verify all required entries exists." alt="" coords="108,5,263,32"/>
 <area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
 </map>
 </div>
@@ -739,8 +739,9 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="Utils_8cpp_a1bb86d9ed53417d9d3ac724cc4de59e2_icgraph.png" border="0" usemap="#aUtils_8cpp_a1bb86d9ed53417d9d3ac724cc4de59e2_icgraph" alt=""/></div>
 <map name="aUtils_8cpp_a1bb86d9ed53417d9d3ac724cc4de59e2_icgraph" id="aUtils_8cpp_a1bb86d9ed53417d9d3ac724cc4de59e2_icgraph">
-<area shape="rect" title="Reads a single entry from config." alt="" coords="236,5,368,32"/>
-<area shape="rect" href="classMainLogger.html#abe306c5e99f49fc6b5d877b4f976fa3d" title="Constructs and prepares main logger." alt="" coords="5,5,188,32"/>
+<area shape="rect" title="Reads a single entry from config." alt="" coords="236,31,368,57"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="69,5,124,32"/>
+<area shape="rect" href="classMainLogger.html#abe306c5e99f49fc6b5d877b4f976fa3d" title="Constructs and prepares main logger." alt="" coords="5,56,188,83"/>
 </map>
 </div>
 
@@ -776,9 +777,9 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="Utils_8cpp_a933a859107e64dc6d003e53cd1b06261_icgraph.png" border="0" usemap="#aUtils_8cpp_a933a859107e64dc6d003e53cd1b06261_icgraph" alt=""/></div>
 <map name="aUtils_8cpp_a933a859107e64dc6d003e53cd1b06261_icgraph" id="aUtils_8cpp_a933a859107e64dc6d003e53cd1b06261_icgraph">
-<area shape="rect" title=" " alt="" coords="416,31,491,57"/>
-<area shape="rect" href="Utils_8cpp.html#a6dc18ab17b6e565d1929ccf3fab281af" title="Read initial config from JSON." alt="" coords="256,5,348,32"/>
-<area shape="rect" href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2" title="Reads a single entry from config." alt="" coords="236,56,368,83"/>
+<area shape="rect" title=" " alt="" coords="439,31,513,57"/>
+<area shape="rect" href="Utils_8cpp.html#a35794d145a636bb13f1a9e69c77b586b" title="Read initial config from JSON and verify all required entries exists." alt="" coords="236,5,391,32"/>
+<area shape="rect" href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2" title="Reads a single entry from config." alt="" coords="247,56,379,83"/>
 <area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="69,5,124,32"/>
 <area shape="rect" href="classMainLogger.html#abe306c5e99f49fc6b5d877b4f976fa3d" title="Constructs and prepares main logger." alt="" coords="5,56,188,83"/>
 </map>
@@ -833,9 +834,9 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="Utils_8cpp_a747553f9d7d37822ca2bf1cea18e1694_icgraph.png" border="0" usemap="#aUtils_8cpp_a747553f9d7d37822ca2bf1cea18e1694_icgraph" alt=""/></div>
 <map name="aUtils_8cpp_a747553f9d7d37822ca2bf1cea18e1694_icgraph" id="aUtils_8cpp_a747553f9d7d37822ca2bf1cea18e1694_icgraph">
-<area shape="rect" title=" " alt="" coords="416,31,591,57"/>
-<area shape="rect" href="Utils_8cpp.html#a6dc18ab17b6e565d1929ccf3fab281af" title="Read initial config from JSON." alt="" coords="256,5,348,32"/>
-<area shape="rect" href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2" title="Reads a single entry from config." alt="" coords="236,56,368,83"/>
+<area shape="rect" title=" " alt="" coords="439,31,613,57"/>
+<area shape="rect" href="Utils_8cpp.html#a35794d145a636bb13f1a9e69c77b586b" title="Read initial config from JSON and verify all required entries exists." alt="" coords="236,5,391,32"/>
+<area shape="rect" href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2" title="Reads a single entry from config." alt="" coords="247,56,379,83"/>
 <area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="69,5,124,32"/>
 <area shape="rect" href="classMainLogger.html#abe306c5e99f49fc6b5d877b4f976fa3d" title="Constructs and prepares main logger." alt="" coords="5,56,188,83"/>
 </map>
@@ -886,7 +887,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="Utils_8cpp.html">Utils.cpp</a></li>
-    <li class="footer">Generated on Sun Feb 11 2024 08:07:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 11 2024 09:29:59 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -1,5 +1,17 @@
 var NAVTREEINDEX2 =
 {
+"structHTTPStats.html#a28e77c97dbcb01973f51feac53743535":[1,0,2,7],
+"structHTTPStats.html#a34a3b403c56a12b698ff9c83974168b2":[1,0,2,11],
+"structHTTPStats.html#a44793f93ec7d6dbd2cb7ab3262f9cce9":[1,0,2,5],
+"structHTTPStats.html#a47df34eaa6d601d28addda7be27b4254":[1,0,2,3],
+"structHTTPStats.html#a871efcee2704af506360d41b2cec658c":[1,0,2,10],
+"structHTTPStats.html#a8856fe05b0ad801f656bff33192675a2":[1,0,2,4],
+"structHTTPStats.html#a91226082d95c2b9e826a12de38e952d6":[1,0,2,9],
+"structHTTPStats.html#a99bcce4e603afe6c2a53e9ff501d90b1":[1,0,2,6],
+"structHTTPStats.html#ac2e196f65a56cff893c5ee55709be2a7":[1,0,2,1],
+"structHTTPStats.html#ac39f15167c3edd05dc611939fbb2bf7c":[1,0,2,0],
+"structHTTPStats.html#afa1cc613c384c58d5860098245c5ce5e":[1,0,2,2],
+"structRawSocketStats.html":[1,0,8],
 "structRawSocketStats.html#a37839e418b67b9c5a5aab1d0d4517bb2":[1,0,8,1],
 "structRawSocketStats.html#af2852bea8bb425fd287c55432bcff6ca":[1,0,8,2],
 "structRawSocketStats.html#af5ed2ad5db843e39dfc8317db7fefd2a":[1,0,8,0],

@@ -98,17 +98,20 @@ $(document).ready(function(){initNavTree('Control_8hpp.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;atomic&gt;</code><br />
+<code>#include &quot;<a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="PrometheusServer_8hpp_source.html">metrics/PrometheusServer.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Control.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="Control_8hpp__incl.png" border="0" usemap="#a_2____w_2Repo-Init_2Repo-Init_2include_2Control_8hpp" alt=""/></div>
 <map name="a_2____w_2Repo-Init_2Repo-Init_2include_2Control_8hpp" id="a_2____w_2Repo-Init_2Repo-Init_2include_2Control_8hpp">
-<area shape="rect" title=" " alt="" coords="33,5,212,47"/>
+<area shape="rect" title=" " alt="" coords="51,5,229,47"/>
 <area shape="rect" title=" " alt="" coords="5,95,72,121"/>
-<area shape="rect" href="PrometheusServer_8hpp.html" title=" " alt="" coords="95,95,318,121"/>
-<area shape="rect" title=" " alt="" coords="29,169,195,196"/>
-<area shape="rect" title=" " alt="" coords="219,169,383,196"/>
+<area shape="rect" href="Tracer_8hpp.html" title=" " alt="" coords="96,95,184,121"/>
+<area shape="rect" href="PrometheusServer_8hpp.html" title=" " alt="" coords="217,95,439,121"/>
+<area shape="rect" title=" " alt="" coords="44,169,220,196"/>
+<area shape="rect" title=" " alt="" coords="245,169,411,196"/>
+<area shape="rect" title=" " alt="" coords="435,169,599,196"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -132,8 +135,127 @@ Functions</h2></td></tr>
 <tr class="memitem:a02dcd91ad682a590eb32b76c23114c40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Control_8hpp.html#a02dcd91ad682a590eb32b76c23114c40">zmqControlThread</a> (const std::unique_ptr&lt; <a class="el" href="classPrometheusServer.html">PrometheusServer</a> &gt; &amp;mainPrometheusServer, const std::string &amp;serverAddr, const std::unique_ptr&lt; std::atomic_flag &gt; &amp;checkFlag)</td></tr>
 <tr class="memdesc:a02dcd91ad682a590eb32b76c23114c40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread function to receive control messages or config changes from ZMQ connection.  <a href="Control_8hpp.html#a02dcd91ad682a590eb32b76c23114c40">More...</a><br /></td></tr>
 <tr class="separator:a02dcd91ad682a590eb32b76c23114c40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa266581771429799d932333577c9cb9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Control_8hpp.html#aa266581771429799d932333577c9cb9f">crashpadControlThread</a> (const std::string &amp;remoteAddr, const std::string &amp;proxyAddr, const std::string &amp;exeDir, const std::map&lt; std::string, std::string &gt; &amp;annotations, const std::vector&lt; base::FilePath &gt; &amp;attachments, const std::string &amp;reportPath, const std::unique_ptr&lt; std::atomic_flag &gt; &amp;checkFlag)</td></tr>
+<tr class="memdesc:aa266581771429799d932333577c9cb9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread function to handle crashpad.  <a href="Control_8hpp.html#aa266581771429799d932333577c9cb9f">More...</a><br /></td></tr>
+<tr class="separator:aa266581771429799d932333577c9cb9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="aa266581771429799d932333577c9cb9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa266581771429799d932333577c9cb9f">&#9670;&nbsp;</a></span>crashpadControlThread()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void crashpadControlThread </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>remoteAddr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>proxyAddr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>exeDir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::map&lt; std::string, std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>annotations</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; base::FilePath &gt; &amp;&#160;</td>
+          <td class="paramname"><em>attachments</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>reportPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::unique_ptr&lt; std::atomic_flag &gt; &amp;&#160;</td>
+          <td class="paramname"><em>checkFlag</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Thread function to handle crashpad. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">remoteAddr</td><td>Remote server address </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">proxyAddr</td><td>Remote proxy address </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">exeDir</td><td>Crashdump executable path </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">annotations</td><td>Annotations </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">attachments</td><td>Attacment file paths </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reportPath</td><td>Minidump file location </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">checkFlag</td><td>Flag for runtime check </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="Control_8cpp_source.html#l00104">104</a> of file <a class="el" href="Control_8cpp_source.html">Control.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;{</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    std::unique_ptr&lt;Tracer&gt; crashdump;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        crashdump = std::make_unique&lt;Tracer&gt;(remoteAddr, proxyAddr, exeDir, annotations, attachments, reportPath);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e)</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        spdlog::error(<span class="stringliteral">&quot;Can&#39;t start crashpad: {}&quot;</span>, e.what());</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordflow">while</span> (<a class="code" href="Utils_8cpp.html#a00b8791b9b0a0f9a9b14c6e1d7251e09">loopFlag</a>)</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            <span class="keywordflow">if</span> (!crashdump-&gt;isRunning())</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                crashdump-&gt;restart();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                spdlog::warn(<span class="stringliteral">&quot;Crashpad handler restarted&quot;</span>);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            }</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            checkFlag-&gt;test_and_set();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e)</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            spdlog::error(<span class="stringliteral">&quot;Crashpad failed: {}&quot;</span>, e.what());</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        }</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        std::this_thread::sleep_for(std::chrono::milliseconds(<a class="code" href="Control_8cpp.html#a7aff6e199c410c193f673d13f5f0b31d">SLEEP_INTERVAL_MS</a>));</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
+<div class="ttc" id="aControl_8cpp_html_a7aff6e199c410c193f673d13f5f0b31d"><div class="ttname"><a href="Control_8cpp.html#a7aff6e199c410c193f673d13f5f0b31d">SLEEP_INTERVAL_MS</a></div><div class="ttdeci">constexpr int SLEEP_INTERVAL_MS</div><div class="ttdef"><b>Definition:</b> <a href="Control_8cpp_source.html#l00011">Control.cpp:11</a></div></div>
+<div class="ttc" id="aUtils_8cpp_html_a00b8791b9b0a0f9a9b14c6e1d7251e09"><div class="ttname"><a href="Utils_8cpp.html#a00b8791b9b0a0f9a9b14c6e1d7251e09">loopFlag</a></div><div class="ttdeci">volatile bool loopFlag</div><div class="ttdoc">Main flag to control loops. Can be modified by SIGINT.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00016">Utils.cpp:16</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="Control_8hpp_aa266581771429799d932333577c9cb9f_icgraph.png" border="0" usemap="#aControl_8hpp_aa266581771429799d932333577c9cb9f_icgraph" alt=""/></div>
+<map name="aControl_8hpp_aa266581771429799d932333577c9cb9f_icgraph" id="aControl_8hpp_aa266581771429799d932333577c9cb9f_icgraph">
+<area shape="rect" title="Thread function to handle crashpad." alt="" coords="108,5,281,32"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="afc73cc2450f5d541f8dacbdc38b9bd4e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afc73cc2450f5d541f8dacbdc38b9bd4e">&#9670;&nbsp;</a></span>telnetControlThread()</h2>
 
@@ -216,11 +338,9 @@ Functions</h2></td></tr>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    telnetServerPtr-&gt;shutdown();</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    spdlog::debug(<span class="stringliteral">&quot;Telnet Control thread done&quot;</span>);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="ttc" id="aControl_8cpp_html_a7aff6e199c410c193f673d13f5f0b31d"><div class="ttname"><a href="Control_8cpp.html#a7aff6e199c410c193f673d13f5f0b31d">SLEEP_INTERVAL_MS</a></div><div class="ttdeci">constexpr int SLEEP_INTERVAL_MS</div><div class="ttdef"><b>Definition:</b> <a href="Control_8cpp_source.html#l00011">Control.cpp:11</a></div></div>
 <div class="ttc" id="aTelnetServer_8cpp_html_a07c3fdafe30bb1042ceaf01572b7ce1d"><div class="ttname"><a href="TelnetServer_8cpp.html#a07c3fdafe30bb1042ceaf01572b7ce1d">TelnetTabCallback</a></div><div class="ttdeci">std::string TelnetTabCallback(const SP_TelnetSession &amp;session, const std::string &amp;line)</div><div class="ttdoc">Telnet session TAB received callback.</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00804">TelnetServer.cpp:804</a></div></div>
 <div class="ttc" id="aTelnetServer_8cpp_html_a39681d1af6065fb54f66a55c01e28e3d"><div class="ttname"><a href="TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d">TelnetConnectedCallback</a></div><div class="ttdeci">void TelnetConnectedCallback(const SP_TelnetSession &amp;session)</div><div class="ttdoc">Telnet session connection start callback.</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00718">TelnetServer.cpp:718</a></div></div>
 <div class="ttc" id="aTelnetServer_8cpp_html_afc54e2836d524b6deafaf20fd1ccdc75"><div class="ttname"><a href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75">TelnetMessageCallback</a></div><div class="ttdeci">bool TelnetMessageCallback(const SP_TelnetSession &amp;session, const std::string &amp;line)</div><div class="ttdoc">Telnet session message received callback.</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00727">TelnetServer.cpp:727</a></div></div>
-<div class="ttc" id="aUtils_8cpp_html_a00b8791b9b0a0f9a9b14c6e1d7251e09"><div class="ttname"><a href="Utils_8cpp.html#a00b8791b9b0a0f9a9b14c6e1d7251e09">loopFlag</a></div><div class="ttdeci">volatile bool loopFlag</div><div class="ttdoc">Main flag to control loops. Can be modified by SIGINT.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00016">Utils.cpp:16</a></div></div>
 <div class="ttc" id="aUtils_8cpp_html_a77c5602aee813ef2fde1a81c1db17e0c"><div class="ttname"><a href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a></div><div class="ttdeci">std::string getErrnoString(int errVal)</div><div class="ttdoc">Converts errno to readable string.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00142">Utils.cpp:142</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -363,7 +483,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="Control_8hpp.html">Control.hpp</a></li>
-    <li class="footer">Generated on Sun Feb 11 2024 08:07:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 11 2024 09:29:59 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

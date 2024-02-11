@@ -196,8 +196,47 @@ $(document).ready(function(){initNavTree('Control_8cpp_source.html',''); initRes
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    spdlog::debug(<span class="stringliteral">&quot;ZeroMQ Control thread done&quot;</span>);</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">// GCOVR_EXCL_STOP</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">// GCOVR_EXCL_START</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="Control_8cpp.html#aa266581771429799d932333577c9cb9f">  104</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="Control_8cpp.html#aa266581771429799d932333577c9cb9f">crashpadControlThread</a>(<span class="keyword">const</span> std::string &amp;remoteAddr, <span class="keyword">const</span> std::string &amp;proxyAddr, <span class="keyword">const</span> std::string &amp;exeDir,</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                           <span class="keyword">const</span> std::map&lt;std::string, std::string&gt; &amp;annotations,</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                           <span class="keyword">const</span> std::vector&lt;base::FilePath&gt; &amp;attachments, <span class="keyword">const</span> std::string &amp;reportPath,</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                           <span class="keyword">const</span> std::unique_ptr&lt;std::atomic_flag&gt; &amp;checkFlag)</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;{</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    std::unique_ptr&lt;Tracer&gt; crashdump;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        crashdump = std::make_unique&lt;Tracer&gt;(remoteAddr, proxyAddr, exeDir, annotations, attachments, reportPath);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e)</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        spdlog::error(<span class="stringliteral">&quot;Can&#39;t start crashpad: {}&quot;</span>, e.what());</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordflow">while</span> (<a class="code" href="Utils_8cpp.html#a00b8791b9b0a0f9a9b14c6e1d7251e09">loopFlag</a>)</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            <span class="keywordflow">if</span> (!crashdump-&gt;isRunning())</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                crashdump-&gt;restart();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                spdlog::warn(<span class="stringliteral">&quot;Crashpad handler restarted&quot;</span>);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            }</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            checkFlag-&gt;test_and_set();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e)</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            spdlog::error(<span class="stringliteral">&quot;Crashpad failed: {}&quot;</span>, e.what());</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        }</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        std::this_thread::sleep_for(std::chrono::milliseconds(<a class="code" href="Control_8cpp.html#a7aff6e199c410c193f673d13f5f0b31d">SLEEP_INTERVAL_MS</a>));</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment">// GCOVR_EXCL_STOP</span></div>
 <div class="ttc" id="aControl_8cpp_html_a02dcd91ad682a590eb32b76c23114c40"><div class="ttname"><a href="Control_8cpp.html#a02dcd91ad682a590eb32b76c23114c40">zmqControlThread</a></div><div class="ttdeci">void zmqControlThread(const std::unique_ptr&lt; PrometheusServer &gt; &amp;mainPrometheusServer, const std::string &amp;serverAddr, const std::unique_ptr&lt; std::atomic_flag &gt; &amp;checkFlag)</div><div class="ttdoc">Thread function to receive control messages or config changes from ZMQ connection.</div><div class="ttdef"><b>Definition:</b> <a href="Control_8cpp_source.html#l00058">Control.cpp:58</a></div></div>
 <div class="ttc" id="aControl_8cpp_html_a7aff6e199c410c193f673d13f5f0b31d"><div class="ttname"><a href="Control_8cpp.html#a7aff6e199c410c193f673d13f5f0b31d">SLEEP_INTERVAL_MS</a></div><div class="ttdeci">constexpr int SLEEP_INTERVAL_MS</div><div class="ttdef"><b>Definition:</b> <a href="Control_8cpp_source.html#l00011">Control.cpp:11</a></div></div>
+<div class="ttc" id="aControl_8cpp_html_aa266581771429799d932333577c9cb9f"><div class="ttname"><a href="Control_8cpp.html#aa266581771429799d932333577c9cb9f">crashpadControlThread</a></div><div class="ttdeci">void crashpadControlThread(const std::string &amp;remoteAddr, const std::string &amp;proxyAddr, const std::string &amp;exeDir, const std::map&lt; std::string, std::string &gt; &amp;annotations, const std::vector&lt; base::FilePath &gt; &amp;attachments, const std::string &amp;reportPath, const std::unique_ptr&lt; std::atomic_flag &gt; &amp;checkFlag)</div><div class="ttdoc">Thread function to handle crashpad.</div><div class="ttdef"><b>Definition:</b> <a href="Control_8cpp_source.html#l00104">Control.cpp:104</a></div></div>
 <div class="ttc" id="aControl_8cpp_html_afc73cc2450f5d541f8dacbdc38b9bd4e"><div class="ttname"><a href="Control_8cpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e">telnetControlThread</a></div><div class="ttdeci">void telnetControlThread(const std::unique_ptr&lt; PrometheusServer &gt; &amp;mainPrometheusServer, uint16_t telnetPort, const std::unique_ptr&lt; std::atomic_flag &gt; &amp;checkFlag)</div><div class="ttdoc">Thread function to receive control messages or config changes from Telnet connections.</div><div class="ttdef"><b>Definition:</b> <a href="Control_8cpp_source.html#l00014">Control.cpp:14</a></div></div>
 <div class="ttc" id="aControl_8hpp_html"><div class="ttname"><a href="Control_8hpp.html">Control.hpp</a></div></div>
 <div class="ttc" id="aTelnetServer_8cpp_html_a07c3fdafe30bb1042ceaf01572b7ce1d"><div class="ttname"><a href="TelnetServer_8cpp.html#a07c3fdafe30bb1042ceaf01572b7ce1d">TelnetTabCallback</a></div><div class="ttdeci">std::string TelnetTabCallback(const SP_TelnetSession &amp;session, const std::string &amp;line)</div><div class="ttdoc">Telnet session TAB received callback.</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00804">TelnetServer.cpp:804</a></div></div>
@@ -215,7 +254,7 @@ $(document).ready(function(){initNavTree('Control_8cpp_source.html',''); initRes
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="Control_8cpp.html">Control.cpp</a></li>
-    <li class="footer">Generated on Sun Feb 11 2024 08:07:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 11 2024 09:29:59 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
