@@ -2,6 +2,7 @@
 
 #include <atomic>
 
+#include "Tracer.hpp"
 #include "metrics/PrometheusServer.hpp"
 
 /**
@@ -28,9 +29,11 @@ void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusSer
  * @param[in] proxyAddr Remote proxy address
  * @param[in] exeDir Crashdump executable path
  * @param[in] annotations Annotations
+ * @param[in] attachments Attacment file paths
  * @param[in] reportPath Minidump file location
  * @param[in] checkFlag Flag for runtime check
  */
 void crashpadControlThread(const std::string &remoteAddr, const std::string &proxyAddr, const std::string &exeDir,
-						   const std::map<std::string, std::string> &annotations, const std::string &reportPath,
+						   const std::map<std::string, std::string> &annotations,
+						   const std::vector<base::FilePath> &attachments, const std::string &reportPath,
 						   const std::unique_ptr<std::atomic_flag> &checkFlag);

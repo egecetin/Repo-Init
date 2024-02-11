@@ -1,5 +1,4 @@
 #include "Control.hpp"
-#include "Tracer.hpp"
 #include "Utils.hpp"
 #include "telnet/TelnetServer.hpp"
 #include "zeromq/ZeroMQServer.hpp"
@@ -103,14 +102,15 @@ void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusSer
 
 // GCOVR_EXCL_START
 void crashpadControlThread(const std::string &remoteAddr, const std::string &proxyAddr, const std::string &exeDir,
-						   const std::map<std::string, std::string> &annotations, const std::string &reportPath,
+						   const std::map<std::string, std::string> &annotations,
+						   const std::vector<base::FilePath> &attachments, const std::string &reportPath,
 						   const std::unique_ptr<std::atomic_flag> &checkFlag)
 {
 	std::unique_ptr<Tracer> crashdump;
 
 	try
 	{
-		crashdump = std::make_unique<Tracer>(remoteAddr, proxyAddr, exeDir, annotations, std::vector<base::FilePath>(), reportPath);
+		crashdump = std::make_unique<Tracer>(remoteAddr, proxyAddr, exeDir, annotations, attachments, reportPath);
 	}
 	catch (const std::exception &e)
 	{
