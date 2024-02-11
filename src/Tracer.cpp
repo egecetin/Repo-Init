@@ -1,33 +1,21 @@
 #include "Tracer.hpp"
 
 #include "client/crash_report_database.h"
+#include "client/crashpad_client.h"
 #include "client/settings.h"
 
 #include <algorithm>
+#include <sys/socket.h>
 #include <unistd.h>
 
-std::string Tracer::getSelfExecutableDir()
+void Tracer::startHandler()
 {
-	std::array<char, FILENAME_MAX> pathBuffer{'\0'};
-	auto bytes = readlink("/proc/self/exe", pathBuffer.data(), sizeof(pathBuffer));
-
-	auto path = std::string(pathBuffer.data(), bytes == -1 ? 0 : static_cast<size_t>(bytes));
-	auto lastDelimPos = path.find_last_of('/');
-	return (lastDelimPos == std::string::npos) ? "" : path.substr(0, lastDelimPos);
-}
-
-Tracer::Tracer(const std::string &serverPath, const std::string &serverProxy, const std::string &crashpadHandlerPath,
-			   const std::map<std::string, std::string> &annotations, const std::vector<base::FilePath> &attachments)
-	: _annotations(annotations)
-{
-	auto exeDir = getSelfExecutableDir();
-
 	// Path to crashpad executable
-	base::FilePath handler(crashpadHandlerPath.empty() ? exeDir + "/crashpad_handler" : crashpadHandlerPath);
+	base::FilePath handler(_handlerPath);
 
 	// Must be writable or crashpad_handler will crash
-	base::FilePath reportsDir(exeDir);
-	base::FilePath metricsDir(exeDir);
+	base::FilePath reportsDir(_reportPath);
+	base::FilePath metricsDir(_reportPath);
 
 	// Initialize Crashpad database
 	auto database = crashpad::CrashReportDatabase::Initialize(reportsDir);
@@ -45,10 +33,75 @@ Tracer::Tracer(const std::string &serverPath, const std::string &serverProxy, co
 	settings->SetUploadsEnabled(true);
 
 	// Start crash handler
-	clientHandler = std::make_unique<crashpad::CrashpadClient>();
-	if (!clientHandler->StartHandler(handler, reportsDir, metricsDir, serverPath, serverProxy, annotations,
-									 {"--no-rate-limit"}, true, false, attachments))
+	if (!_clientHandler->StartHandler(handler, reportsDir, metricsDir, _serverPath, _serverProxy, _annotations,
+									  {"--no-rate-limit"}, true, false, _attachments))
 	{
 		throw std::runtime_error("Can't start crash handler");
+	}
+}
+
+bool Tracer::checkPidIsRunning(pid_t processId) { return kill(processId, 0) == 0; }
+
+bool Tracer::checkSocketIsRunning(int sockId)
+{
+	int error = 0;
+	socklen_t len = sizeof(error);
+
+	char buff = 0;
+	int result = getsockopt(sockId, SOL_SOCKET, SO_ERROR, &error, &len);
+	return result == 0 && error == 0 && recv(sockId, &buff, 1, MSG_PEEK | MSG_DONTWAIT) != 0;
+}
+
+std::string Tracer::getSelfExecutableDir()
+{
+	std::array<char, FILENAME_MAX> pathBuffer{'\0'};
+	auto bytes = readlink("/proc/self/exe", pathBuffer.data(), sizeof(pathBuffer));
+
+	auto path = std::string(pathBuffer.data(), bytes == -1 ? 0 : static_cast<size_t>(bytes));
+	auto lastDelimPos = path.find_last_of('/');
+	return (lastDelimPos == std::string::npos) ? "" : path.substr(0, lastDelimPos);
+}
+
+Tracer::Tracer(std::string serverPath, std::string serverProxy, const std::string &crashpadHandlerPath,
+			   std::map<std::string, std::string> annotations, std::vector<base::FilePath> attachments,
+			   const std::string &reportPath)
+	: _serverPath(std::move(serverPath)), _serverProxy(std::move(serverProxy)), _annotations(std::move(annotations)),
+	  _attachments(std::move(attachments))
+{
+	auto selfDir = getSelfExecutableDir();
+
+	_handlerPath = crashpadHandlerPath.empty() ? selfDir + "/crashpad_handler" : crashpadHandlerPath;
+	_reportPath = reportPath.empty() ? selfDir : reportPath;
+	_clientHandler = std::make_unique<crashpad::CrashpadClient>();
+
+	startHandler();
+}
+
+bool Tracer::isRunning()
+{
+	int sockId{-1};
+	pid_t processId{-1};
+
+	if (!_clientHandler->GetHandlerSocket(&sockId, &processId))
+	{
+		return false;
+	}
+
+	if (sockId >= 0 && !checkSocketIsRunning(sockId))
+	{
+		return false;
+	}
+	if (processId > 0 && !checkPidIsRunning(processId))
+	{
+		return false;
+	}
+	return true;
+}
+
+void Tracer::restart()
+{
+	if (!isRunning())
+	{
+		startHandler();
 	}
 }

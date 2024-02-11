@@ -72,7 +72,7 @@ bool tryOpenAndParseConfig(const std::string &dir, rapidjson::Document &doc)
 	return true;
 }
 
-bool readConfig(const std::string &dir)
+bool readAndVerifyConfig(const std::string &dir)
 {
 	rapidjson::Document doc;
 	if (!tryOpenAndParseConfig(dir, doc))

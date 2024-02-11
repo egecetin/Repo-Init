@@ -99,3 +99,41 @@ void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusSer
 	spdlog::debug("ZeroMQ Control thread done");
 }
 // GCOVR_EXCL_STOP
+
+// GCOVR_EXCL_START
+void crashpadControlThread(const std::string &remoteAddr, const std::string &proxyAddr, const std::string &exeDir,
+						   const std::map<std::string, std::string> &annotations,
+						   const std::vector<base::FilePath> &attachments, const std::string &reportPath,
+						   const std::unique_ptr<std::atomic_flag> &checkFlag)
+{
+	std::unique_ptr<Tracer> crashdump;
+
+	try
+	{
+		crashdump = std::make_unique<Tracer>(remoteAddr, proxyAddr, exeDir, annotations, attachments, reportPath);
+	}
+	catch (const std::exception &e)
+	{
+		spdlog::error("Can't start crashpad: {}", e.what());
+		return;
+	}
+
+	while (loopFlag)
+	{
+		try
+		{
+			if (!crashdump->isRunning())
+			{
+				crashdump->restart();
+				spdlog::warn("Crashpad handler restarted");
+			}
+			checkFlag->test_and_set();
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Crashpad failed: {}", e.what());
+		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_INTERVAL_MS));
+	}
+}
+// GCOVR_EXCL_STOP
