@@ -47,7 +47,7 @@ bool Tracer::checkSocketIsRunning(int sockId)
 	int error = 0;
 	socklen_t len = sizeof(error);
 
-	char buff;
+	char buff = 0;
 	int result = getsockopt(sockId, SOL_SOCKET, SO_ERROR, &error, &len);
 	return result == 0 && error == 0 && recv(sockId, &buff, 1, MSG_PEEK | MSG_DONTWAIT) != 0;
 }
