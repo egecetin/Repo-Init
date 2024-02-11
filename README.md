@@ -1,10 +1,10 @@
 <div align="center" width="50">
 <img src=doc/logo.png>
 
-![GitHub top language](https://img.shields.io/github/languages/top/egecetin/Repo-Init?style=for-the-badge)
-![GitHub](https://img.shields.io/github/license/egecetin/Repo-Init?style=for-the-badge)
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/egecetin/Repo-Init/build_and_test.yml?label=Actions&branch=master&logo=github&style=for-the-badge)](https://github.com/egecetin/Repo-Init/actions/workflows/build_and_test.yml)
-[![Codecov](https://img.shields.io/codecov/c/github/egecetin/Repo-Init?logo=codecov&logoColor=white&style=for-the-badge)](https://app.codecov.io/gh/egecetin/Repo-Init)
+![GitHub top language](https://img.shields.io/github/languages/top/egecetin/Repo-Init)
+![GitHub](https://img.shields.io/github/license/egecetin/Repo-Init)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/egecetin/Repo-Init/build_and_test.yml?label=Actions&branch=master&logo=github)](https://github.com/egecetin/Repo-Init/actions/workflows/build_and_test.yml)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=egecetin_Repo-Init&metric=coverage)](https://sonarcloud.io/summary/new_code?id=egecetin_Repo-Init)
 </div>
 
 ## Project
