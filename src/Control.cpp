@@ -1,4 +1,5 @@
 #include "Control.hpp"
+#include "Tracer.hpp"
 #include "Utils.hpp"
 #include "telnet/TelnetServer.hpp"
 #include "zeromq/ZeroMQServer.hpp"
@@ -97,5 +98,38 @@ void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusSer
 	// Closing server
 	zeroMqServerPtr->shutdown();
 	spdlog::debug("ZeroMQ Control thread done");
+}
+// GCOVR_EXCL_STOP
+
+// GCOVR_EXCL_START
+void crashpadControlThread(const std::string &remoteAddr, const std::string &proxyAddr, const std::string &exeDir,
+						   const std::map<std::string, std::string> &annotations,
+						   const std::unique_ptr<std::atomic_flag> &checkFlag)
+{
+	std::unique_ptr<Tracer> crashdump;
+
+	try
+	{
+		crashdump = std::make_unique<Tracer>(remoteAddr, proxyAddr, exeDir, annotations, std::vector<base::FilePath>());
+	}
+	catch (const std::exception &e)
+	{
+		spdlog::error("Can't start crashpad: {}", e.what());
+		return;
+	}
+
+	while (loopFlag)
+	{
+		try
+		{
+			crashdump->restart();
+			checkFlag->test_and_set();
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Crashpad failed: {}", e.what());
+		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_INTERVAL_MS));
+	}
 }
 // GCOVR_EXCL_STOP

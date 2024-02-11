@@ -1,5 +1,4 @@
 #include "Control.hpp"
-#include "Tracer.hpp"
 #include "Utils.hpp"
 #include "Version.h"
 #include "logging/Logger.hpp"
@@ -20,11 +19,6 @@ int main(int argc, char **argv)
 
 	std::string prometheusAddr;
 	std::unique_ptr<PrometheusServer> mainPrometheusServer;
-
-	std::string dumpHandlerExecutable;
-	std::string dumpServer;
-	std::string dumpServerProxy;
-	std::unique_ptr<Tracer> crashdump;
 
 	// Parse inputs
 	const InputParser input(argc, argv);
@@ -61,18 +55,6 @@ int main(int argc, char **argv)
 			spdlog::warn("Enable ZeroMQ option requires a connection address");
 		}
 	}
-	if (input.cmdOptionExists("--crashpad-exe"))
-	{
-		dumpHandlerExecutable = input.getCmdOption("--crahpad-exe");
-	}
-	if (input.cmdOptionExists("--crashpad-remote"))
-	{
-		dumpServer = input.getCmdOption("--crashpad-remote");
-	}
-	if (input.cmdOptionExists("--crashpad-remote-proxy"))
-	{
-		dumpServerProxy = input.getCmdOption("--crashpad-remote-proxy");
-	}
 	if (input.cmdOptionExists("--config"))
 	{
 		configPath = input.getCmdOption("--config");
@@ -97,7 +79,7 @@ int main(int argc, char **argv)
 	print_version();
 
 	// Read config
-	if (!readConfig(configPath))
+	if (!readAndVerifyConfig(configPath))
 	{
 		return EXIT_FAILURE;
 	}
@@ -121,25 +103,7 @@ int main(int argc, char **argv)
 
 	vCheckFlag.emplace_back("ZeroMQ Server", std::make_unique<std::atomic_flag>(false));
 	vCheckFlag.emplace_back("Telnet Server", std::make_unique<std::atomic_flag>(false));
-
-	// Start crashpad handler
-	try
-	{
-		crashdump =
-			std::make_unique<Tracer>(dumpServer, dumpServerProxy, dumpHandlerExecutable,
-									 std::map<std::string, std::string>(
-										 {{"name", PROJECT_NAME},
-										  {"version", PROJECT_FULL_REVISION},
-										  {"build_info", PROJECT_BUILD_DATE + std::string(" ") + PROJECT_BUILD_TIME +
-															 std::string(" ") + BUILD_TYPE},
-										  {"compiler_info", COMPILER_NAME + std::string(" ") + COMPILER_VERSION}}),
-									 std::vector<base::FilePath>());
-	}
-	catch (const std::exception &e)
-	{
-		spdlog::error("Can't start crashpad: {}", e.what());
-		return EXIT_FAILURE;
-	}
+	vCheckFlag.emplace_back("Crashpad Handler", std::make_unique<std::atomic_flag>(false));
 
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
@@ -173,6 +137,7 @@ int main(int argc, char **argv)
 	/* ################################################################################### */
 	std::unique_ptr<std::thread> zmqControlTh(nullptr);
 	std::unique_ptr<std::thread> telnetControlTh(nullptr);
+	std::unique_ptr<std::thread> crashpadControlTh(nullptr);
 
 	if (!zeromqServerAddr.empty())
 	{
@@ -184,6 +149,18 @@ int main(int argc, char **argv)
 		telnetControlTh = std::make_unique<std::thread>(telnetControlThread, std::ref(mainPrometheusServer), telnetPort,
 														std::ref(vCheckFlag[1].second));
 	}
+
+	auto crashpadRemote = readSingleConfig(configPath, "CRASHPAD_REMOTE");
+	auto crashpadProxy = readSingleConfig(configPath, "CRASHPAD_PROXY");
+	auto crashpadExe = readSingleConfig(configPath, "CRASHPAD_EXECUTABLE_DIR");
+	auto annotations = std::map<std::string, std::string>(
+		{{"name", PROJECT_NAME},
+		 {"version", PROJECT_FULL_REVISION},
+		 {"build_info", PROJECT_BUILD_DATE + std::string(" ") + PROJECT_BUILD_TIME + std::string(" ") + BUILD_TYPE},
+		 {"compiler_info", COMPILER_NAME + std::string(" ") + COMPILER_VERSION}});
+	crashpadControlTh =
+		std::make_unique<std::thread>(crashpadControlThread, std::ref(crashpadRemote), std::ref(crashpadProxy),
+									  std::ref(crashpadExe), std::ref(annotations), std::ref(vCheckFlag[2].second));
 	spdlog::debug("Threads started");
 
 	// SIGALRM should be registered after all sleep calls
@@ -204,6 +181,11 @@ int main(int argc, char **argv)
 	{
 		telnetControlTh->join();
 		spdlog::info("Telnet Controller joined");
+	}
+	if (crashpadControlTh && crashpadControlTh->joinable())
+	{
+		crashpadControlTh->join();
+		spdlog::info("Crashpad Controller joined");
 	}
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */

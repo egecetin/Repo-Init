@@ -25,13 +25,13 @@ TEST(Utils_Tests, InputParserUnitTests)
 
 TEST(Utils_Tests, ConfigReaderUnitTests)
 {
-	ASSERT_TRUE(readConfig(TEST_CONFIG_PATH));
+	ASSERT_TRUE(readAndVerifyConfig(TEST_CONFIG_PATH));
 
-	ASSERT_FALSE(readConfig("dummypath"));
+	ASSERT_FALSE(readAndVerifyConfig("dummypath"));
 	ASSERT_EQ("", readSingleConfig("dummypath", "SENTRY_ADDRESS"));
 	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_PATH, "dummyoption"));
 
-	ASSERT_FALSE(readConfig(TEST_CONFIG_EMPTY_PATH));
+	ASSERT_FALSE(readAndVerifyConfig(TEST_CONFIG_EMPTY_PATH));
 	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_EMPTY_PATH, "SENTRY_ADDRESS"));
 	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_EMPTY_PATH, "dummyoption"));
 }

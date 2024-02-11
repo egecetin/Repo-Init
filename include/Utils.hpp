@@ -134,12 +134,12 @@ void print_version();
 std::string get_version();
 
 /**
- * @brief Read initial config from JSON
+ * @brief Read initial config from JSON and verify all required entries exists
  * @param[in] dir	Path to JSON
  * @return true    	Read all variables
  * @return false    Can't find some variables
  */
-bool readConfig(const std::string &dir);
+bool readAndVerifyConfig(const std::string &dir);
 
 /**
  * @brief Reads a single entry from config
