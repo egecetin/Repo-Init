@@ -24,13 +24,13 @@ void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusSer
 
 /**
  * @brief Thread function to handle crashpad
- *
- * @param[in] remoteAddr
- * @param[in] proxyAddr
- * @param[in] exeDir
+ * @param[in] remoteAddr Remote server address
+ * @param[in] proxyAddr Remote proxy address
+ * @param[in] exeDir Crashdump executable path
  * @param[in] annotations Annotations
+ * @param[in] reportPath Minidump file location
  * @param[in] checkFlag Flag for runtime check
  */
 void crashpadControlThread(const std::string &remoteAddr, const std::string &proxyAddr, const std::string &exeDir,
-						   const std::map<std::string, std::string> &annotations,
+						   const std::map<std::string, std::string> &annotations, const std::string &reportPath,
 						   const std::unique_ptr<std::atomic_flag> &checkFlag);

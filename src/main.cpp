@@ -153,6 +153,7 @@ int main(int argc, char **argv)
 	auto crashpadRemote = readSingleConfig(configPath, "CRASHPAD_REMOTE");
 	auto crashpadProxy = readSingleConfig(configPath, "CRASHPAD_PROXY");
 	auto crashpadExe = readSingleConfig(configPath, "CRASHPAD_EXECUTABLE_DIR");
+	auto crashpadReportPath = readSingleConfig(configPath, "CRASHPAD_REPORT_DIR");
 	auto annotations = std::map<std::string, std::string>(
 		{{"name", PROJECT_NAME},
 		 {"version", PROJECT_FULL_REVISION},
@@ -160,7 +161,7 @@ int main(int argc, char **argv)
 		 {"compiler_info", COMPILER_NAME + std::string(" ") + COMPILER_VERSION}});
 	crashpadControlTh =
 		std::make_unique<std::thread>(crashpadControlThread, std::ref(crashpadRemote), std::ref(crashpadProxy),
-									  std::ref(crashpadExe), std::ref(annotations), std::ref(vCheckFlag[2].second));
+									  std::ref(crashpadExe), std::ref(annotations), std::ref(crashpadReportPath), std::ref(vCheckFlag[2].second));
 	spdlog::debug("Threads started");
 
 	// SIGALRM should be registered after all sleep calls
