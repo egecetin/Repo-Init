@@ -172,7 +172,8 @@ if(XXX_BUILD_TESTS)
       "${PROJECT_SOURCE_DIR}/src/main.cpp"
       "${PROJECT_SOURCE_DIR}/thirdparty/*"
       "${PROJECT_SOURCE_DIR}/build/*"
-      "${PROJECT_SOURCE_DIR}/tests/**")
+      "${PROJECT_SOURCE_DIR}/tests/unittests/*"
+      "${PROJECT_SOURCE_DIR}/tests/fuzztests/*")
 
     setup_target_for_coverage_gcovr_xml(
       NAME
@@ -185,6 +186,7 @@ if(XXX_BUILD_TESTS)
       "${PROJECT_SOURCE_DIR}/src/main.cpp"
       "${PROJECT_SOURCE_DIR}/thirdparty/*"
       "${PROJECT_SOURCE_DIR}/build/*"
-      "${PROJECT_SOURCE_DIR}/tests/**")
+      "${PROJECT_SOURCE_DIR}/tests/unittests/*"
+      "${PROJECT_SOURCE_DIR}/tests/fuzztests/*")
   endif()
 endif()
