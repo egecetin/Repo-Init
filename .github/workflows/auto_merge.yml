@@ -11,6 +11,7 @@ jobs:
     if: github.actor == 'dependabot[bot]' || github.event.pull_request.user.login == 'pre-commit-ci[bot]'
     steps:
       - name: Dependabot metadata
+        if: github.actor == 'dependabot[bot]'
         id: metadata
         uses: dependabot/fetch-metadata@v1
         with:
