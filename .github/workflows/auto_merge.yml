@@ -8,9 +8,10 @@ permissions:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]' || github.actor == 'pre-commit-ci'
+    if: github.actor == 'dependabot[bot]' || github.event.pull_request.user.login == 'pre-commit-ci[bot]'
     steps:
       - name: Dependabot metadata
+        if: github.actor == 'dependabot[bot]'
         id: metadata
         uses: dependabot/fetch-metadata@v1
         with:
