@@ -7,8 +7,13 @@
 
 /**
  * @brief Thread function to receive control messages or config changes from Telnet connections
- * @param[in] mainPrometheusServer Pointer to prometheus server
- * @param[in] telnetPort Port number to serve Telnet server
+ *
+ * This function runs as a separate thread and is responsible for receiving control messages or config changes
+ * from Telnet connections. It takes a pointer to the main Prometheus server, the Telnet port number, and a flag
+ * for runtime check as input parameters.
+ *
+ * @param[in] mainPrometheusServer Pointer to the main Prometheus server
+ * @param[in] telnetPort Port number to serve the Telnet server
  * @param[in] checkFlag Flag for runtime check
  */
 void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer, uint16_t telnetPort,
@@ -16,8 +21,13 @@ void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheus
 
 /**
  * @brief Thread function to receive control messages or config changes from ZMQ connection
- * @param[in] mainPrometheusServer Pointer to prometheus server
- * @param[in] serverAddr Address to serve ZeroMQ server
+ *
+ * This function runs as a separate thread and is responsible for receiving control messages or config changes
+ * from a ZeroMQ connection. It takes a pointer to the main Prometheus server, the server address, and a flag
+ * for runtime check as input parameters.
+ *
+ * @param[in] mainPrometheusServer Pointer to the main Prometheus server
+ * @param[in] serverAddr Address to serve the ZeroMQ server
  * @param[in] checkFlag Flag for runtime check
  */
 void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer, const std::string &serverAddr,
@@ -25,11 +35,16 @@ void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusSer
 
 /**
  * @brief Thread function to handle crashpad
+ *
+ * This function runs as a separate thread and is responsible for handling crashpad. It takes the remote server address,
+ * remote proxy address, crashdump executable path, annotations, attachment file paths, report file location, and a flag
+ * for runtime check as input parameters.
+ *
  * @param[in] remoteAddr Remote server address
  * @param[in] proxyAddr Remote proxy address
  * @param[in] exeDir Crashdump executable path
  * @param[in] annotations Annotations
- * @param[in] attachments Attacment file paths
+ * @param[in] attachments Attachment file paths
  * @param[in] reportPath Minidump file location
  * @param[in] checkFlag Flag for runtime check
  */

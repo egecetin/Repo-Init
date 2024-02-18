@@ -39,7 +39,16 @@ class ZeroMQServer {
 	/// Closes the ZeroMQ Server
 	void shutdown();
 
+	/**
+	 * @brief Sets the message callback function
+	 * @param[in] func The message callback function to be set
+	 */
 	void messageCallback(FPTR_MessageCallback func) { m_messageCallback = std::move(func); }
+
+	/**
+	 * @brief Gets the message callback function
+	 * @return The message callback function
+	 */
 	FPTR_MessageCallback messageCallback() const { return m_messageCallback; }
 };
 
@@ -47,5 +56,7 @@ class ZeroMQServer {
  * @brief ZeroMQ message received callback
  * @param[in] recvMsgs Received messages
  * @param[out] replyMsgs Reply messages returned by callback
+ * @return true If the callback successfully processes the received messages
+ * @return false otherwise
  */
 bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, std::vector<zmq::message_t> &replyMsgs);

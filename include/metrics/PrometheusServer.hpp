@@ -4,7 +4,8 @@
 #include <prometheus/registry.h>
 
 /**
- * @brief Wrapper class for Prometheus
+ * @class PrometheusServer
+ * @brief Class representing a Prometheus server for collecting and exposing metrics.
  */
 class PrometheusServer {
   private:

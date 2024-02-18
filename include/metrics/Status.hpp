@@ -3,18 +3,15 @@
 #include <prometheus/registry.h>
 
 /**
- * @brief Measures status counters for prometheus
+ * @class StatusTracker
+ * @brief Class for tracking the status of events and counting successes and failures.
  */
 class StatusTracker {
   private:
-	/// Active number of events
-	prometheus::Gauge *activeCtr;
-	/// Total number of counters
-	prometheus::Counter *totalCtr;
-	/// Number of success
-	prometheus::Counter *successCtr;
-	/// Number of fail
-	prometheus::Counter *failedCtr;
+	prometheus::Gauge *activeCtr;	 ///< Active number of events
+	prometheus::Counter *totalCtr;	 ///< Total number of counters
+	prometheus::Counter *successCtr; ///< Number of success
+	prometheus::Counter *failedCtr;	 ///< Number of fail
 
   public:
 	/**

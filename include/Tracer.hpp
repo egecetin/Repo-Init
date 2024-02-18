@@ -15,14 +15,29 @@ class Tracer {
 	std::string _reportPath;
 	std::unique_ptr<crashpad::CrashpadClient> _clientHandler;
 
-	// Start crashpad handler
+	/**
+	 * @brief Start the crashpad handler process
+	 */
 	void startHandler();
-	// Checks the given process is running
+
+	/**
+	 * @brief Check if the given process ID is running
+	 * @param[in] processId The process ID to check
+	 * @return true if the process is running, false otherwise
+	 */
 	static bool checkPidIsRunning(pid_t processId);
-	// Checks the given socket is alive
+
+	/**
+	 * @brief Check if the given socket ID is running
+	 * @param[in] sockId The socket ID to check
+	 * @return true if the socket is running, false otherwise
+	 */
 	static bool checkSocketIsRunning(int sockId);
 
-	// Gets the executable path of application
+	/**
+	 * @brief Get the executable directory of the current application
+	 * @return The executable directory path
+	 */
 	static inline std::string getSelfExecutableDir();
 
   public:
@@ -32,7 +47,7 @@ class Tracer {
 	 * @param[in] serverProxy Remote server proxy
 	 * @param[in] crashpadHandlerPath Path to crashpad_handler executable
 	 * @param[in] annotations Annotation list
-	 * @param[in] attachments Attachments to upload remote server
+	 * @param[in] attachments Attachments to upload to remote server
 	 * @param[in] reportPath Path to where dump minidump files
 	 */
 	explicit Tracer(std::string serverPath = "", std::string serverProxy = "",
@@ -40,14 +55,13 @@ class Tracer {
 					std::vector<base::FilePath> attachments = {}, const std::string &reportPath = "");
 
 	/**
-	 * @brief Checks the crashpad_handler still running
-	 * @return true Running
-	 * @return false Otherwise
+	 * @brief Check if the crashpad_handler process is running
+	 * @return true if the crashpad_handler is running, false otherwise
 	 */
 	bool isRunning();
 
 	/**
-	 * @brief Checks and restarts if the crashpad_handler is not running
+	 * @brief Check and restart the crashpad_handler process if it is not running
 	 */
 	void restart();
 };
