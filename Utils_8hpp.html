@@ -161,16 +161,16 @@ Functions</h2></td></tr>
 <tr class="memdesc:a97c49d303bbf54bed2e1e6709deeb67c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the version.  <a href="Utils_8hpp.html#a97c49d303bbf54bed2e1e6709deeb67c">More...</a><br /></td></tr>
 <tr class="separator:a97c49d303bbf54bed2e1e6709deeb67c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35794d145a636bb13f1a9e69c77b586b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utils_8hpp.html#a35794d145a636bb13f1a9e69c77b586b">readAndVerifyConfig</a> (const std::string &amp;dir)</td></tr>
-<tr class="memdesc:a35794d145a636bb13f1a9e69c77b586b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read initial config from JSON and verify all required entries exists.  <a href="Utils_8hpp.html#a35794d145a636bb13f1a9e69c77b586b">More...</a><br /></td></tr>
+<tr class="memdesc:a35794d145a636bb13f1a9e69c77b586b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read initial config from JSON and verify all required entries exist.  <a href="Utils_8hpp.html#a35794d145a636bb13f1a9e69c77b586b">More...</a><br /></td></tr>
 <tr class="separator:a35794d145a636bb13f1a9e69c77b586b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bb86d9ed53417d9d3ac724cc4de59e2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utils_8hpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">readSingleConfig</a> (const std::string &amp;dir, const std::string &amp;value)</td></tr>
-<tr class="memdesc:a1bb86d9ed53417d9d3ac724cc4de59e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a single entry from config.  <a href="Utils_8hpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">More...</a><br /></td></tr>
+<tr class="memdesc:a1bb86d9ed53417d9d3ac724cc4de59e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a single entry from the config.  <a href="Utils_8hpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">More...</a><br /></td></tr>
 <tr class="separator:a1bb86d9ed53417d9d3ac724cc4de59e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77c5602aee813ef2fde1a81c1db17e0c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utils_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a> (int errVal)</td></tr>
-<tr class="memdesc:a77c5602aee813ef2fde1a81c1db17e0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts errno to readable string.  <a href="Utils_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">More...</a><br /></td></tr>
+<tr class="memdesc:a77c5602aee813ef2fde1a81c1db17e0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts errno to a readable string.  <a href="Utils_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">More...</a><br /></td></tr>
 <tr class="separator:a77c5602aee813ef2fde1a81c1db17e0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfddb0a668eda01a9a837cc1c1aae217"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utils_8hpp.html#abfddb0a668eda01a9a837cc1c1aae217">getEnvVar</a> (const std::string &amp;key)</td></tr>
-<tr class="memdesc:abfddb0a668eda01a9a837cc1c1aae217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the environment variable.  <a href="Utils_8hpp.html#abfddb0a668eda01a9a837cc1c1aae217">More...</a><br /></td></tr>
+<tr class="memdesc:abfddb0a668eda01a9a837cc1c1aae217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the value of an environment variable.  <a href="Utils_8hpp.html#abfddb0a668eda01a9a837cc1c1aae217">More...</a><br /></td></tr>
 <tr class="separator:abfddb0a668eda01a9a837cc1c1aae217"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a039c59323fd6d1eb296efd78500cca21"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Utils_8hpp.html#a039c59323fd6d1eb296efd78500cca21">findFromFile</a> (const std::string &amp;filePath, const std::string &amp;pattern)</td></tr>
 <tr class="memdesc:a039c59323fd6d1eb296efd78500cca21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches line patterns from a file.  <a href="Utils_8hpp.html#a039c59323fd6d1eb296efd78500cca21">More...</a><br /></td></tr>
@@ -279,7 +279,7 @@ Here is the caller graph for this function:</div>
 <p>Searches line patterns from a file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">filePath</td><td>Path to file </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filePath</td><td>Path to the file </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pattern</td><td>Regex search pattern </td></tr>
   </table>
   </dd>
@@ -298,8 +298,8 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="Utils_8hpp_a039c59323fd6d1eb296efd78500cca21_icgraph.png" border="0" usemap="#aUtils_8hpp_a039c59323fd6d1eb296efd78500cca21_icgraph" alt=""/></div>
 <map name="aUtils_8hpp_a039c59323fd6d1eb296efd78500cca21_icgraph" id="aUtils_8hpp_a039c59323fd6d1eb296efd78500cca21_icgraph">
 <area shape="rect" title="Searches line patterns from a file." alt="" coords="247,46,349,73"/>
-<area shape="rect" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ad41002727c3101c6069dbbe333456b11" title=" " alt="" coords="14,5,190,47"/>
-<area shape="rect" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a005dd6dd72151bf12eceed15c5ec8db3" title=" " alt="" coords="5,71,199,112"/>
+<area shape="rect" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ad41002727c3101c6069dbbe333456b11" title="Constructs a loki_api_sink object with the specified Loki server address." alt="" coords="14,5,190,47"/>
+<area shape="rect" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a005dd6dd72151bf12eceed15c5ec8db3" title="Constructs a Sentry API sink with the specified Sentry server address." alt="" coords="5,71,199,112"/>
 </map>
 </div>
 
@@ -340,7 +340,7 @@ Here is the caller graph for this function:</div>
 <p>Searches line patterns from a file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">filePath</td><td>Path to file </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filePath</td><td>Path to the file </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pattern</td><td>Regex search pattern </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">lastWord</td><td>Last word (space delimiter) of the first found line </td></tr>
   </table>
@@ -433,7 +433,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Get the environment variable. </p>
+<p>Gets the value of an environment variable. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Requested variable name </td></tr>
@@ -466,7 +466,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Converts errno to readable string. </p>
+<p>Converts errno to a readable string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">errVal</td><td>errno value </td></tr>
@@ -485,9 +485,9 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="Utils_8hpp_a77c5602aee813ef2fde1a81c1db17e0c_icgraph.png" border="0" usemap="#aUtils_8hpp_a77c5602aee813ef2fde1a81c1db17e0c_icgraph" alt=""/></div>
 <map name="aUtils_8hpp_a77c5602aee813ef2fde1a81c1db17e0c_icgraph" id="aUtils_8hpp_a77c5602aee813ef2fde1a81c1db17e0c_icgraph">
-<area shape="rect" title="Converts errno to readable string." alt="" coords="425,81,540,108"/>
+<area shape="rect" title="Converts errno to a readable string." alt="" coords="425,81,540,108"/>
 <area shape="rect" href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d" title=" " alt="" coords="240,5,363,32"/>
-<area shape="rect" href="classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d" title="Construct a new RawSocket class." alt="" coords="5,44,177,71"/>
+<area shape="rect" href="classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d" title="Construct a new RawSocket object." alt="" coords="5,44,177,71"/>
 <area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="64,120,119,147"/>
 <area shape="rect" href="Control_8cpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e" title="Thread function to receive control messages or config changes from Telnet connections." alt="" coords="225,157,377,184"/>
 </map>
@@ -600,16 +600,16 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Read initial config from JSON and verify all required entries exists. </p>
+<p>Read initial config from JSON and verify all required entries exist. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">dir</td><td>Path to JSON </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true Read all variables </dd>
+<dl class="section return"><dt>Returns</dt><dd>true If all variables are read successfully </dd>
 <dd>
-false Can't find some variables </dd></dl>
+false If some variables cannot be found </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Utils_8cpp_source.html#l00075">75</a> of file <a class="el" href="Utils_8cpp_source.html">Utils.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
@@ -663,7 +663,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="Utils_8hpp_a35794d145a636bb13f1a9e69c77b586b_cgraph.png" border="0" usemap="#aUtils_8hpp_a35794d145a636bb13f1a9e69c77b586b_cgraph" alt=""/></div>
 <map name="aUtils_8hpp_a35794d145a636bb13f1a9e69c77b586b_cgraph" id="aUtils_8hpp_a35794d145a636bb13f1a9e69c77b586b_cgraph">
-<area shape="rect" title="Read initial config from JSON and verify all required entries exists." alt="" coords="5,31,160,57"/>
+<area shape="rect" title="Read initial config from JSON and verify all required entries exist." alt="" coords="5,31,160,57"/>
 <area shape="rect" href="Utils_8cpp.html#a933a859107e64dc6d003e53cd1b06261" title=" " alt="" coords="258,5,333,32"/>
 <area shape="rect" href="Utils_8cpp.html#a747553f9d7d37822ca2bf1cea18e1694" title=" " alt="" coords="208,56,383,83"/>
 </map>
@@ -673,7 +673,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="Utils_8hpp_a35794d145a636bb13f1a9e69c77b586b_icgraph.png" border="0" usemap="#aUtils_8hpp_a35794d145a636bb13f1a9e69c77b586b_icgraph" alt=""/></div>
 <map name="aUtils_8hpp_a35794d145a636bb13f1a9e69c77b586b_icgraph" id="aUtils_8hpp_a35794d145a636bb13f1a9e69c77b586b_icgraph">
-<area shape="rect" title="Read initial config from JSON and verify all required entries exists." alt="" coords="108,5,263,32"/>
+<area shape="rect" title="Read initial config from JSON and verify all required entries exist." alt="" coords="108,5,263,32"/>
 <area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
 </map>
 </div>
@@ -706,7 +706,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Reads a single entry from config. </p>
+<p>Reads a single entry from the config. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">dir</td><td>Path to JSON </td></tr>
@@ -741,7 +741,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="Utils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_cgraph.png" border="0" usemap="#aUtils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_cgraph" alt=""/></div>
 <map name="aUtils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_cgraph" id="aUtils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_cgraph">
-<area shape="rect" title="Reads a single entry from config." alt="" coords="5,31,137,57"/>
+<area shape="rect" title="Reads a single entry from the config." alt="" coords="5,31,137,57"/>
 <area shape="rect" href="Utils_8cpp.html#a933a859107e64dc6d003e53cd1b06261" title=" " alt="" coords="235,5,310,32"/>
 <area shape="rect" href="Utils_8cpp.html#a747553f9d7d37822ca2bf1cea18e1694" title=" " alt="" coords="185,56,360,83"/>
 </map>
@@ -751,7 +751,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="Utils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_icgraph.png" border="0" usemap="#aUtils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_icgraph" alt=""/></div>
 <map name="aUtils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_icgraph" id="aUtils_8hpp_a1bb86d9ed53417d9d3ac724cc4de59e2_icgraph">
-<area shape="rect" title="Reads a single entry from config." alt="" coords="236,31,368,57"/>
+<area shape="rect" title="Reads a single entry from the config." alt="" coords="236,31,368,57"/>
 <area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="69,5,124,32"/>
 <area shape="rect" href="classMainLogger.html#abe306c5e99f49fc6b5d877b4f976fa3d" title="Constructs and prepares main logger." alt="" coords="5,56,188,83"/>
 </map>
@@ -844,7 +844,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="Utils_8hpp.html">Utils.hpp</a></li>
-    <li class="footer">Generated on Thu Feb 15 2024 08:28:29 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 18 2024 11:11:07 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

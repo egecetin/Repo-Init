@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('classPrometheusServer.html',''); initR
 </div><!--header-->
 <div class="contents">
 
-<p>Wrapper class for Prometheus.  
+<p>Class representing a Prometheus server for collecting and exposing metrics.  
  <a href="classPrometheusServer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="PrometheusServer_8hpp_source.html">PrometheusServer.hpp</a>&gt;</code></p>
@@ -129,7 +129,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a269c848b032e28db4347c90fc0945826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutex for concurrent add tracker calls.  <a href="classPrometheusServer.html#a269c848b032e28db4347c90fc0945826">More...</a><br /></td></tr>
 <tr class="separator:a269c848b032e28db4347c90fc0945826"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79d7b62540fa4c9f6c172a9a2025098a"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; prometheus::Exposer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPrometheusServer.html#a79d7b62540fa4c9f6c172a9a2025098a">mainExposer</a></td></tr>
-<tr class="memdesc:a79d7b62540fa4c9f6c172a9a2025098a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main <a class="el" href="classHTTP.html">HTTP</a> Server.  <a href="classPrometheusServer.html#a79d7b62540fa4c9f6c172a9a2025098a">More...</a><br /></td></tr>
+<tr class="memdesc:a79d7b62540fa4c9f6c172a9a2025098a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> Server.  <a href="classPrometheusServer.html#a79d7b62540fa4c9f6c172a9a2025098a">More...</a><br /></td></tr>
 <tr class="separator:a79d7b62540fa4c9f6c172a9a2025098a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af761d539e94a3f425a09baf197f18683"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; uint64_t, std::shared_ptr&lt; prometheus::Registry &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">vRegister</a></td></tr>
 <tr class="memdesc:af761d539e94a3f425a09baf197f18683"><td class="mdescLeft">&#160;</td><td class="mdescRight">All tracker registries.  <a href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">More...</a><br /></td></tr>
@@ -139,9 +139,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a78b95e3290f3b374211025b3c759cff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Wrapper class for Prometheus. </p>
+<div class="textblock"><p>Class representing a Prometheus server for collecting and exposing metrics. </p>
 
-<p class="definition">Definition at line <a class="el" href="PrometheusServer_8hpp_source.html#l00009">9</a> of file <a class="el" href="PrometheusServer_8hpp_source.html">PrometheusServer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PrometheusServer_8hpp_source.html#l00010">10</a> of file <a class="el" href="PrometheusServer_8hpp_source.html">PrometheusServer.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a94923c3ec5e1ffc4153f717e1ef781f7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a94923c3ec5e1ffc4153f717e1ef781f7">&#9670;&nbsp;</a></span>PrometheusServer()</h2>
@@ -192,9 +192,9 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classPrometheusServer.html#a79d7b62540fa4c9f6c172a9a2025098a">mainExposer</a>-&gt;RegisterCollectable(reg);</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
 <div class="ttc" id="aUtils_8cpp_html_a97c49d303bbf54bed2e1e6709deeb67c"><div class="ttname"><a href="Utils_8cpp.html#a97c49d303bbf54bed2e1e6709deeb67c">get_version</a></div><div class="ttdeci">std::string get_version()</div><div class="ttdoc">Returns the version.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00043">Utils.cpp:43</a></div></div>
-<div class="ttc" id="aclassPrometheusServer_html_a78b95e3290f3b374211025b3c759cff3"><div class="ttname"><a href="classPrometheusServer.html#a78b95e3290f3b374211025b3c759cff3">PrometheusServer::infoFamily</a></div><div class="ttdeci">prometheus::Family&lt; prometheus::Info &gt; * infoFamily</div><div class="ttdoc">General application information.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00019">PrometheusServer.hpp:19</a></div></div>
-<div class="ttc" id="aclassPrometheusServer_html_a79d7b62540fa4c9f6c172a9a2025098a"><div class="ttname"><a href="classPrometheusServer.html#a79d7b62540fa4c9f6c172a9a2025098a">PrometheusServer::mainExposer</a></div><div class="ttdeci">std::unique_ptr&lt; prometheus::Exposer &gt; mainExposer</div><div class="ttdoc">Main HTTP Server.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00014">PrometheusServer.hpp:14</a></div></div>
-<div class="ttc" id="aclassPrometheusServer_html_af761d539e94a3f425a09baf197f18683"><div class="ttname"><a href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">PrometheusServer::vRegister</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; uint64_t, std::shared_ptr&lt; prometheus::Registry &gt; &gt; &gt; vRegister</div><div class="ttdoc">All tracker registries.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00016">PrometheusServer.hpp:16</a></div></div>
+<div class="ttc" id="aclassPrometheusServer_html_a78b95e3290f3b374211025b3c759cff3"><div class="ttname"><a href="classPrometheusServer.html#a78b95e3290f3b374211025b3c759cff3">PrometheusServer::infoFamily</a></div><div class="ttdeci">prometheus::Family&lt; prometheus::Info &gt; * infoFamily</div><div class="ttdoc">General application information.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00020">PrometheusServer.hpp:20</a></div></div>
+<div class="ttc" id="aclassPrometheusServer_html_a79d7b62540fa4c9f6c172a9a2025098a"><div class="ttname"><a href="classPrometheusServer.html#a79d7b62540fa4c9f6c172a9a2025098a">PrometheusServer::mainExposer</a></div><div class="ttdeci">std::unique_ptr&lt; prometheus::Exposer &gt; mainExposer</div><div class="ttdoc">Main HTTP Server.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00015">PrometheusServer.hpp:15</a></div></div>
+<div class="ttc" id="aclassPrometheusServer_html_af761d539e94a3f425a09baf197f18683"><div class="ttname"><a href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">PrometheusServer::vRegister</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; uint64_t, std::shared_ptr&lt; prometheus::Registry &gt; &gt; &gt; vRegister</div><div class="ttdoc">All tracker registries.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00017">PrometheusServer.hpp:17</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -273,7 +273,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">vRegister</a>.emplace_back(<a class="code" href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">vRegister</a>.back().first + 1, reg);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> reg;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
-<div class="ttc" id="aclassPrometheusServer_html_a269c848b032e28db4347c90fc0945826"><div class="ttname"><a href="classPrometheusServer.html#a269c848b032e28db4347c90fc0945826">PrometheusServer::guardLock</a></div><div class="ttdeci">std::mutex guardLock</div><div class="ttdoc">Mutex for concurrent add tracker calls.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00012">PrometheusServer.hpp:12</a></div></div>
+<div class="ttc" id="aclassPrometheusServer_html_a269c848b032e28db4347c90fc0945826"><div class="ttname"><a href="classPrometheusServer.html#a269c848b032e28db4347c90fc0945826">PrometheusServer::guardLock</a></div><div class="ttdeci">std::mutex guardLock</div><div class="ttdoc">Mutex for concurrent add tracker calls.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00013">PrometheusServer.hpp:13</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -387,7 +387,7 @@ false otherwise </dd></dl>
 
 <p>Mutex for concurrent add tracker calls. </p>
 
-<p class="definition">Definition at line <a class="el" href="PrometheusServer_8hpp_source.html#l00012">12</a> of file <a class="el" href="PrometheusServer_8hpp_source.html">PrometheusServer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PrometheusServer_8hpp_source.html#l00013">13</a> of file <a class="el" href="PrometheusServer_8hpp_source.html">PrometheusServer.hpp</a>.</p>
 
 </div>
 </div>
@@ -413,7 +413,7 @@ false otherwise </dd></dl>
 
 <p>General application information. </p>
 
-<p class="definition">Definition at line <a class="el" href="PrometheusServer_8hpp_source.html#l00019">19</a> of file <a class="el" href="PrometheusServer_8hpp_source.html">PrometheusServer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PrometheusServer_8hpp_source.html#l00020">20</a> of file <a class="el" href="PrometheusServer_8hpp_source.html">PrometheusServer.hpp</a>.</p>
 
 </div>
 </div>
@@ -437,9 +437,9 @@ false otherwise </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p>Main <a class="el" href="classHTTP.html">HTTP</a> Server. </p>
+<p>Main <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> Server. </p>
 
-<p class="definition">Definition at line <a class="el" href="PrometheusServer_8hpp_source.html#l00014">14</a> of file <a class="el" href="PrometheusServer_8hpp_source.html">PrometheusServer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PrometheusServer_8hpp_source.html#l00015">15</a> of file <a class="el" href="PrometheusServer_8hpp_source.html">PrometheusServer.hpp</a>.</p>
 
 </div>
 </div>
@@ -465,7 +465,7 @@ false otherwise </dd></dl>
 
 <p>All tracker registries. </p>
 
-<p class="definition">Definition at line <a class="el" href="PrometheusServer_8hpp_source.html#l00016">16</a> of file <a class="el" href="PrometheusServer_8hpp_source.html">PrometheusServer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PrometheusServer_8hpp_source.html#l00017">17</a> of file <a class="el" href="PrometheusServer_8hpp_source.html">PrometheusServer.hpp</a>.</p>
 
 </div>
 </div>
@@ -479,7 +479,7 @@ false otherwise </dd></dl>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classPrometheusServer.html">PrometheusServer</a></li>
-    <li class="footer">Generated on Thu Feb 15 2024 08:28:29 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 18 2024 11:11:07 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

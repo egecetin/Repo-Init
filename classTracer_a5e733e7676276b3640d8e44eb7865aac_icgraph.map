@@ -1,5 +1,5 @@
 <map id="Tracer::startHandler" name="Tracer::startHandler">
-<area shape="rect" id="node1" title=" " alt="" coords="165,31,316,57"/>
-<area shape="rect" id="node2" href="$classTracer.html#a4755dbacab3e82bed9e7eaedd8a025ab" title="Checks and restarts if the crashpad_handler is not running." alt="" coords="5,5,117,32"/>
+<area shape="rect" id="node1" title="Start the crashpad handler process." alt="" coords="165,31,316,57"/>
+<area shape="rect" id="node2" href="$classTracer.html#a4755dbacab3e82bed9e7eaedd8a025ab" title="Check and restart the crashpad_handler process if it is not running." alt="" coords="5,5,117,32"/>
 <area shape="rect" id="node3" href="$classTracer.html#a2d2f8455e292cc50beb9e8c5da50a8bb" title="Construct a new Tracer object." alt="" coords="7,56,115,83"/>
 </map>

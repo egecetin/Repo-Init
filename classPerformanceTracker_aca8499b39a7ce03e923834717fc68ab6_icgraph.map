@@ -1,4 +1,4 @@
 <map id="PerformanceTracker::startTimer" name="PerformanceTracker::startTimer">
-<area shape="rect" id="node1" title="Starts the chronometer." alt="" coords="317,5,468,47"/>
-<area shape="rect" id="node2" href="$classTrackPerformance.html#a6698f5ad202e247f2c41074b60de0246" title=" " alt="" coords="5,13,269,39"/>
+<area shape="rect" id="node1" title="Starts the timer." alt="" coords="317,5,468,47"/>
+<area shape="rect" id="node2" href="$classTrackPerformance.html#a6698f5ad202e247f2c41074b60de0246" title="Constructs a new TrackPerformance object." alt="" coords="5,13,269,39"/>
 </map>

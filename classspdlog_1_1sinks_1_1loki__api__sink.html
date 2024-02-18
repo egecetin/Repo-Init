@@ -102,13 +102,16 @@ $(document).ready(function(){initNavTree('classspdlog_1_1sinks_1_1loki__api__sin
 </div><!--header-->
 <div class="contents">
 
+<p>A custom sink for spdlog that sends log messages to a Loki server.  
+ <a href="classspdlog_1_1sinks_1_1loki__api__sink.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="Loki_8hpp_source.html">Loki.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for spdlog::sinks::loki_api_sink&lt; Mutex &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classspdlog_1_1sinks_1_1loki__api__sink__inherit__graph.png" border="0" usemap="#aspdlog_1_1sinks_1_1loki__api__sink_3_01Mutex_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="aspdlog_1_1sinks_1_1loki__api__sink_3_01Mutex_01_4_inherit__map" id="aspdlog_1_1sinks_1_1loki__api__sink_3_01Mutex_01_4_inherit__map">
-<area shape="rect" title=" " alt="" coords="7,80,162,121"/>
+<area shape="rect" title="A custom sink for spdlog that sends log messages to a Loki server." alt="" coords="7,80,162,121"/>
 <area shape="rect" title=" " alt="" coords="5,5,164,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -117,7 +120,7 @@ Collaboration diagram for spdlog::sinks::loki_api_sink&lt; Mutex &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classspdlog_1_1sinks_1_1loki__api__sink__coll__graph.png" border="0" usemap="#aspdlog_1_1sinks_1_1loki__api__sink_3_01Mutex_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aspdlog_1_1sinks_1_1loki__api__sink_3_01Mutex_01_4_coll__map" id="aspdlog_1_1sinks_1_1loki__api__sink_3_01Mutex_01_4_coll__map">
-<area shape="rect" title=" " alt="" coords="7,80,162,121"/>
+<area shape="rect" title="A custom sink for spdlog that sends log messages to a Loki server." alt="" coords="7,80,162,121"/>
 <area shape="rect" title=" " alt="" coords="5,5,164,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -130,15 +133,19 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad41002727c3101c6069dbbe333456b11"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ad41002727c3101c6069dbbe333456b11">loki_api_sink</a> (const std::string &amp;lokiAddress)</td></tr>
+<tr class="memdesc:ad41002727c3101c6069dbbe333456b11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html" title="A custom sink for spdlog that sends log messages to a Loki server.">loki_api_sink</a> object with the specified Loki server address.  <a href="classspdlog_1_1sinks_1_1loki__api__sink.html#ad41002727c3101c6069dbbe333456b11">More...</a><br /></td></tr>
 <tr class="separator:ad41002727c3101c6069dbbe333456b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adba6354aa13467bf2a51a2d186e7ecc3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html#adba6354aa13467bf2a51a2d186e7ecc3">~loki_api_sink</a> ()</td></tr>
+<tr class="memdesc:adba6354aa13467bf2a51a2d186e7ecc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the <a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html" title="A custom sink for spdlog that sends log messages to a Loki server.">loki_api_sink</a> object.  <a href="classspdlog_1_1sinks_1_1loki__api__sink.html#adba6354aa13467bf2a51a2d186e7ecc3">More...</a><br /></td></tr>
 <tr class="separator:adba6354aa13467bf2a51a2d186e7ecc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a76afe17cd0e88f26ca49a3cd4cae37bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a76afe17cd0e88f26ca49a3cd4cae37bf">sink_it_</a> (const details::log_msg &amp;msg) override</td></tr>
+<tr class="memdesc:a76afe17cd0e88f26ca49a3cd4cae37bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the log message to the Loki server.  <a href="classspdlog_1_1sinks_1_1loki__api__sink.html#a76afe17cd0e88f26ca49a3cd4cae37bf">More...</a><br /></td></tr>
 <tr class="separator:a76afe17cd0e88f26ca49a3cd4cae37bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f6dda58fb7b304d4559d6366e751690"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a1f6dda58fb7b304d4559d6366e751690">flush_</a> () override</td></tr>
+<tr class="memdesc:a1f6dda58fb7b304d4559d6366e751690"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flushes any buffered log messages.  <a href="classspdlog_1_1sinks_1_1loki__api__sink.html#a1f6dda58fb7b304d4559d6366e751690">More...</a><br /></td></tr>
 <tr class="separator:a1f6dda58fb7b304d4559d6366e751690"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -156,8 +163,16 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><h3>template&lt;typename Mutex&gt;<br />
 class spdlog::sinks::loki_api_sink&lt; Mutex &gt;</h3>
 
+<p>A custom sink for spdlog that sends log messages to a Loki server. </p>
+<p>The <a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html" title="A custom sink for spdlog that sends log messages to a Loki server.">loki_api_sink</a> class is a custom sink for spdlog that sends log messages to a Loki server. It provides functionality to send log messages to a specified Loki server address. The log messages are sent using <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> requests.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Mutex</td><td>The type of mutex to use for thread-safety. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="Loki_8hpp_source.html#l00017">17</a> of file <a class="el" href="Loki_8hpp_source.html">Loki.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Loki_8hpp_source.html#l00026">26</a> of file <a class="el" href="Loki_8hpp_source.html">Loki.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad41002727c3101c6069dbbe333456b11"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad41002727c3101c6069dbbe333456b11">&#9670;&nbsp;</a></span>loki_api_sink()</h2>
@@ -184,6 +199,14 @@ template&lt;typename Mutex &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html" title="A custom sink for spdlog that sends log messages to a Loki server.">loki_api_sink</a> object with the specified Loki server address. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lokiAddress</td><td>The address of the Loki server to send log messages to. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p class="definition">Definition at line <a class="el" href="Loki_8cpp_source.html#l00019">19</a> of file <a class="el" href="Loki_8cpp_source.html">Loki.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        {</div>
@@ -231,16 +254,16 @@ template&lt;typename Mutex &gt; </div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab11b6601fc345d48240c0c5ed73fb297">lokiAvailable</a> = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
 <div class="ttc" id="aUtils_8cpp_html_a039c59323fd6d1eb296efd78500cca21"><div class="ttname"><a href="Utils_8cpp.html#a039c59323fd6d1eb296efd78500cca21">findFromFile</a></div><div class="ttdeci">std::vector&lt; std::string &gt; findFromFile(const std::string &amp;filePath, const std::string &amp;pattern)</div><div class="ttdoc">Searches line patterns from a file.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00154">Utils.cpp:154</a></div></div>
-<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a0c2c070f78339f81bc36d728e811d463"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#a0c2c070f78339f81bc36d728e811d463">spdlog::sinks::loki_api_sink::connHandler</a></div><div class="ttdeci">std::unique_ptr&lt; HTTP &gt; connHandler</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00028">Loki.hpp:28</a></div></div>
-<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a4fea2e13821a1eafd399884bb6b519b0"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#a4fea2e13821a1eafd399884bb6b519b0">spdlog::sinks::loki_api_sink::internalLogBuffer</a></div><div class="ttdeci">std::vector&lt; struct logInfo_t &gt; internalLogBuffer</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00035">Loki.hpp:35</a></div></div>
-<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a67f78fe371955918812c958031ec7c61"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">spdlog::sinks::loki_api_sink::basicInformation</a></div><div class="ttdeci">std::string basicInformation</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00029">Loki.hpp:29</a></div></div>
-<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_ab11b6601fc345d48240c0c5ed73fb297"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab11b6601fc345d48240c0c5ed73fb297">spdlog::sinks::loki_api_sink::lokiAvailable</a></div><div class="ttdeci">bool lokiAvailable</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00027">Loki.hpp:27</a></div></div>
+<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a0c2c070f78339f81bc36d728e811d463"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#a0c2c070f78339f81bc36d728e811d463">spdlog::sinks::loki_api_sink::connHandler</a></div><div class="ttdeci">std::unique_ptr&lt; HTTP &gt; connHandler</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00061">Loki.hpp:61</a></div></div>
+<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a4fea2e13821a1eafd399884bb6b519b0"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#a4fea2e13821a1eafd399884bb6b519b0">spdlog::sinks::loki_api_sink::internalLogBuffer</a></div><div class="ttdeci">std::vector&lt; struct logInfo_t &gt; internalLogBuffer</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00068">Loki.hpp:68</a></div></div>
+<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a67f78fe371955918812c958031ec7c61"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">spdlog::sinks::loki_api_sink::basicInformation</a></div><div class="ttdeci">std::string basicInformation</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00062">Loki.hpp:62</a></div></div>
+<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_ab11b6601fc345d48240c0c5ed73fb297"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab11b6601fc345d48240c0c5ed73fb297">spdlog::sinks::loki_api_sink::lokiAvailable</a></div><div class="ttdeci">bool lokiAvailable</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00060">Loki.hpp:60</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classspdlog_1_1sinks_1_1loki__api__sink_ad41002727c3101c6069dbbe333456b11_cgraph.png" border="0" usemap="#aclassspdlog_1_1sinks_1_1loki__api__sink_ad41002727c3101c6069dbbe333456b11_cgraph" alt=""/></div>
 <map name="aclassspdlog_1_1sinks_1_1loki__api__sink_ad41002727c3101c6069dbbe333456b11_cgraph" id="aclassspdlog_1_1sinks_1_1loki__api__sink_ad41002727c3101c6069dbbe333456b11_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,181,47"/>
+<area shape="rect" title="Constructs a loki_api_sink object with the specified Loki server address." alt="" coords="5,5,181,47"/>
 <area shape="rect" href="Utils_8cpp.html#a039c59323fd6d1eb296efd78500cca21" title="Searches line patterns from a file." alt="" coords="229,13,332,39"/>
 </map>
 </div>
@@ -272,6 +295,8 @@ template&lt;typename Mutex &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Destroys the <a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html" title="A custom sink for spdlog that sends log messages to a Loki server.">loki_api_sink</a> object. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -296,6 +321,9 @@ template&lt;typename Mutex &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Flushes any buffered log messages. </p>
+<p>This function is called by spdlog to flush any buffered log messages. It is overridden from the base_sink class. </p>
 
 <p class="definition">Definition at line <a class="el" href="Loki_8cpp_source.html#l00082">82</a> of file <a class="el" href="Loki_8cpp_source.html">Loki.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        {</div>
@@ -372,6 +400,15 @@ template&lt;typename Mutex &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Sends the log message to the Loki server. </p>
+<p>This function is called by spdlog to send the log message to the Loki server. It is overridden from the base_sink class.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The log message to be sent. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="Loki_8cpp_source.html#l00067">67</a> of file <a class="el" href="Loki_8cpp_source.html">Loki.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        {</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">if</span> (!<a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab11b6601fc345d48240c0c5ed73fb297">lokiAvailable</a>)</div>
@@ -412,7 +449,7 @@ template&lt;typename Mutex &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Loki_8hpp_source.html#l00029">29</a> of file <a class="el" href="Loki_8hpp_source.html">Loki.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Loki_8hpp_source.html#l00062">62</a> of file <a class="el" href="Loki_8hpp_source.html">Loki.hpp</a>.</p>
 
 </div>
 </div>
@@ -438,7 +475,7 @@ template&lt;typename Mutex &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Loki_8hpp_source.html#l00028">28</a> of file <a class="el" href="Loki_8hpp_source.html">Loki.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Loki_8hpp_source.html#l00061">61</a> of file <a class="el" href="Loki_8hpp_source.html">Loki.hpp</a>.</p>
 
 </div>
 </div>
@@ -464,7 +501,7 @@ template&lt;typename Mutex &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Loki_8hpp_source.html#l00035">35</a> of file <a class="el" href="Loki_8hpp_source.html">Loki.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Loki_8hpp_source.html#l00068">68</a> of file <a class="el" href="Loki_8hpp_source.html">Loki.hpp</a>.</p>
 
 </div>
 </div>
@@ -490,7 +527,7 @@ template&lt;typename Mutex &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Loki_8hpp_source.html#l00027">27</a> of file <a class="el" href="Loki_8hpp_source.html">Loki.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Loki_8hpp_source.html#l00060">60</a> of file <a class="el" href="Loki_8hpp_source.html">Loki.hpp</a>.</p>
 
 </div>
 </div>
@@ -504,7 +541,7 @@ template&lt;typename Mutex &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacespdlog.html">spdlog</a></li><li class="navelem"><a class="el" href="namespacespdlog_1_1sinks.html">sinks</a></li><li class="navelem"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html">loki_api_sink</a></li>
-    <li class="footer">Generated on Thu Feb 15 2024 08:28:29 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 18 2024 11:11:07 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

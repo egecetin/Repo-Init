@@ -1,5 +1,5 @@
 <map id="HTTP::sendPOSTRequest" name="HTTP::sendPOSTRequest">
 <area shape="rect" id="node1" title="Sends a POST request." alt="" coords="5,31,188,57"/>
-<area shape="rect" id="node2" href="$classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title=" " alt="" coords="242,5,411,32"/>
-<area shape="rect" id="node3" href="$classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title=" " alt="" coords="236,56,417,83"/>
+<area shape="rect" id="node2" href="$classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title="Performs the request." alt="" coords="242,5,411,32"/>
+<area shape="rect" id="node3" href="$classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title="Sets common fields for HTTP requests." alt="" coords="236,56,417,83"/>
 </map>

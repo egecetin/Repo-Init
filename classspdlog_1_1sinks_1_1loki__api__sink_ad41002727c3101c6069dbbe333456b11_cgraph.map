@@ -1,4 +1,4 @@
 <map id="spdlog::sinks::loki_api_sink::loki_api_sink" name="spdlog::sinks::loki_api_sink::loki_api_sink">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,181,47"/>
+<area shape="rect" id="node1" title="Constructs a loki_api_sink object with the specified Loki server address." alt="" coords="5,5,181,47"/>
 <area shape="rect" id="node2" href="$Utils_8cpp.html#a039c59323fd6d1eb296efd78500cca21" title="Searches line patterns from a file." alt="" coords="229,13,332,39"/>
 </map>

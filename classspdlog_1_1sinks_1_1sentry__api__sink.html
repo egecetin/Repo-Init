@@ -101,13 +101,16 @@ $(document).ready(function(){initNavTree('classspdlog_1_1sinks_1_1sentry__api__s
 </div><!--header-->
 <div class="contents">
 
+<p>A sink for sending log messages to a Sentry server.  
+ <a href="classspdlog_1_1sinks_1_1sentry__api__sink.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="Sentry_8hpp_source.html">Sentry.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for spdlog::sinks::sentry_api_sink&lt; Mutex &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classspdlog_1_1sinks_1_1sentry__api__sink__inherit__graph.png" border="0" usemap="#aspdlog_1_1sinks_1_1sentry__api__sink_3_01Mutex_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="aspdlog_1_1sinks_1_1sentry__api__sink_3_01Mutex_01_4_inherit__map" id="aspdlog_1_1sinks_1_1sentry__api__sink_3_01Mutex_01_4_inherit__map">
-<area shape="rect" title=" " alt="" coords="7,80,163,121"/>
+<area shape="rect" title="A sink for sending log messages to a Sentry server." alt="" coords="7,80,163,121"/>
 <area shape="rect" title=" " alt="" coords="5,5,164,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -116,7 +119,7 @@ Collaboration diagram for spdlog::sinks::sentry_api_sink&lt; Mutex &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classspdlog_1_1sinks_1_1sentry__api__sink__coll__graph.png" border="0" usemap="#aspdlog_1_1sinks_1_1sentry__api__sink_3_01Mutex_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="aspdlog_1_1sinks_1_1sentry__api__sink_3_01Mutex_01_4_coll__map" id="aspdlog_1_1sinks_1_1sentry__api__sink_3_01Mutex_01_4_coll__map">
-<area shape="rect" title=" " alt="" coords="7,80,163,121"/>
+<area shape="rect" title="A sink for sending log messages to a Sentry server." alt="" coords="7,80,163,121"/>
 <area shape="rect" title=" " alt="" coords="5,5,164,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -124,15 +127,19 @@ Collaboration diagram for spdlog::sinks::sentry_api_sink&lt; Mutex &gt;:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a005dd6dd72151bf12eceed15c5ec8db3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a005dd6dd72151bf12eceed15c5ec8db3">sentry_api_sink</a> (const std::string &amp;sentryAddress)</td></tr>
+<tr class="memdesc:a005dd6dd72151bf12eceed15c5ec8db3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a Sentry API sink with the specified Sentry server address.  <a href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a005dd6dd72151bf12eceed15c5ec8db3">More...</a><br /></td></tr>
 <tr class="separator:a005dd6dd72151bf12eceed15c5ec8db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ec14e94520acc8164b9faa08ce53842"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a6ec14e94520acc8164b9faa08ce53842">~sentry_api_sink</a> ()</td></tr>
+<tr class="memdesc:a6ec14e94520acc8164b9faa08ce53842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the Sentry API sink.  <a href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a6ec14e94520acc8164b9faa08ce53842">More...</a><br /></td></tr>
 <tr class="separator:a6ec14e94520acc8164b9faa08ce53842"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:af79e71e949f84ccbf99f68059dc8b5bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#af79e71e949f84ccbf99f68059dc8b5bc">sink_it_</a> (const details::log_msg &amp;msg) override</td></tr>
+<tr class="memdesc:af79e71e949f84ccbf99f68059dc8b5bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the log message to the Sentry server.  <a href="classspdlog_1_1sinks_1_1sentry__api__sink.html#af79e71e949f84ccbf99f68059dc8b5bc">More...</a><br /></td></tr>
 <tr class="separator:af79e71e949f84ccbf99f68059dc8b5bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c0a6173191a8110bf4e54e3c1379267"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a3c0a6173191a8110bf4e54e3c1379267">flush_</a> () override</td></tr>
+<tr class="memdesc:a3c0a6173191a8110bf4e54e3c1379267"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flushes the sink.  <a href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a3c0a6173191a8110bf4e54e3c1379267">More...</a><br /></td></tr>
 <tr class="separator:a3c0a6173191a8110bf4e54e3c1379267"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -144,8 +151,16 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><h3>template&lt;typename Mutex&gt;<br />
 class spdlog::sinks::sentry_api_sink&lt; Mutex &gt;</h3>
 
+<p>A sink for sending log messages to a Sentry server. </p>
+<p>This sink is used to send log messages to a Sentry server for error tracking and monitoring. It provides an interface for sending log messages and flushing the sink.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Mutex</td><td>The type of mutex to use for thread safety. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="Sentry_8hpp_source.html#l00014">14</a> of file <a class="el" href="Sentry_8hpp_source.html">Sentry.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Sentry_8hpp_source.html#l00022">22</a> of file <a class="el" href="Sentry_8hpp_source.html">Sentry.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a005dd6dd72151bf12eceed15c5ec8db3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a005dd6dd72151bf12eceed15c5ec8db3">&#9670;&nbsp;</a></span>sentry_api_sink()</h2>
@@ -172,6 +187,14 @@ template&lt;typename Mutex &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Constructs a Sentry API sink with the specified Sentry server address. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sentryAddress</td><td>The address of the Sentry server. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p class="definition">Definition at line <a class="el" href="Sentry_8cpp_source.html#l00021">21</a> of file <a class="el" href="Sentry_8cpp_source.html">Sentry.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        {</div>
@@ -292,13 +315,13 @@ template&lt;typename Mutex &gt; </div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        }</div>
 <div class="ttc" id="aSentry_8cpp_html_ad7a90ea7fa751e405090d5fdab582d05"><div class="ttname"><a href="Sentry_8cpp.html#ad7a90ea7fa751e405090d5fdab582d05">MAC_LEN</a></div><div class="ttdeci">constexpr int MAC_LEN</div><div class="ttdef"><b>Definition:</b> <a href="Sentry_8cpp_source.html#l00015">Sentry.cpp:15</a></div></div>
 <div class="ttc" id="aUtils_8cpp_html_a039c59323fd6d1eb296efd78500cca21"><div class="ttname"><a href="Utils_8cpp.html#a039c59323fd6d1eb296efd78500cca21">findFromFile</a></div><div class="ttdeci">std::vector&lt; std::string &gt; findFromFile(const std::string &amp;filePath, const std::string &amp;pattern)</div><div class="ttdoc">Searches line patterns from a file.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00154">Utils.cpp:154</a></div></div>
-<div class="ttc" id="aclassspdlog_1_1sinks_1_1sentry__api__sink_html_a62c831f25cbce6b5481aaeb26418080f"><div class="ttname"><a href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a62c831f25cbce6b5481aaeb26418080f">spdlog::sinks::sentry_api_sink::sentryAvailable</a></div><div class="ttdeci">bool sentryAvailable</div><div class="ttdef"><b>Definition:</b> <a href="Sentry_8hpp_source.html#l00024">Sentry.hpp:24</a></div></div>
+<div class="ttc" id="aclassspdlog_1_1sinks_1_1sentry__api__sink_html_a62c831f25cbce6b5481aaeb26418080f"><div class="ttname"><a href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a62c831f25cbce6b5481aaeb26418080f">spdlog::sinks::sentry_api_sink::sentryAvailable</a></div><div class="ttdeci">bool sentryAvailable</div><div class="ttdef"><b>Definition:</b> <a href="Sentry_8hpp_source.html#l00054">Sentry.hpp:54</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classspdlog_1_1sinks_1_1sentry__api__sink_a005dd6dd72151bf12eceed15c5ec8db3_cgraph.png" border="0" usemap="#aclassspdlog_1_1sinks_1_1sentry__api__sink_a005dd6dd72151bf12eceed15c5ec8db3_cgraph" alt=""/></div>
 <map name="aclassspdlog_1_1sinks_1_1sentry__api__sink_a005dd6dd72151bf12eceed15c5ec8db3_cgraph" id="aclassspdlog_1_1sinks_1_1sentry__api__sink_a005dd6dd72151bf12eceed15c5ec8db3_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,199,47"/>
+<area shape="rect" title="Constructs a Sentry API sink with the specified Sentry server address." alt="" coords="5,5,199,47"/>
 <area shape="rect" href="Utils_8cpp.html#a039c59323fd6d1eb296efd78500cca21" title="Searches line patterns from a file." alt="" coords="247,13,349,39"/>
 </map>
 </div>
@@ -318,6 +341,8 @@ template&lt;typename Mutex &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Destroys the Sentry API sink. </p>
 
 <p class="definition">Definition at line <a class="el" href="Sentry_8cpp_source.html#l00139">139</a> of file <a class="el" href="Sentry_8cpp_source.html">Sentry.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;{ sentry_close(); }</div>
@@ -346,6 +371,9 @@ template&lt;typename Mutex &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Flushes the sink. </p>
+<p>This function is called to flush any buffered log messages to the Sentry server. </p>
 
 <p class="definition">Definition at line <a class="el" href="Sentry_8cpp_source.html#l00170">170</a> of file <a class="el" href="Sentry_8cpp_source.html">Sentry.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;{}</div>
@@ -377,6 +405,15 @@ template&lt;typename Mutex &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Sends the log message to the Sentry server. </p>
+<p>This function is called for each log message that needs to be sent to the Sentry server.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The log message to be sent. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p class="definition">Definition at line <a class="el" href="Sentry_8cpp_source.html#l00141">141</a> of file <a class="el" href="Sentry_8cpp_source.html">Sentry.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        {</div>
@@ -431,8 +468,9 @@ template&lt;typename Mutex &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Flag indicating if the Sentry server is available. </p>
 
-<p class="definition">Definition at line <a class="el" href="Sentry_8hpp_source.html#l00024">24</a> of file <a class="el" href="Sentry_8hpp_source.html">Sentry.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Sentry_8hpp_source.html#l00054">54</a> of file <a class="el" href="Sentry_8hpp_source.html">Sentry.hpp</a>.</p>
 
 </div>
 </div>
@@ -446,7 +484,7 @@ template&lt;typename Mutex &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacespdlog.html">spdlog</a></li><li class="navelem"><a class="el" href="namespacespdlog_1_1sinks.html">sinks</a></li><li class="navelem"><a class="el" href="classspdlog_1_1sinks_1_1sentry__api__sink.html">sentry_api_sink</a></li>
-    <li class="footer">Generated on Thu Feb 15 2024 08:28:29 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 18 2024 11:11:07 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

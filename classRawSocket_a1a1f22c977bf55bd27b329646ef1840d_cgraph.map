@@ -1,5 +1,5 @@
 <map id="RawSocket::RawSocket" name="RawSocket::RawSocket">
-<area shape="rect" id="node1" title="Construct a new RawSocket class." alt="" coords="5,5,177,32"/>
-<area shape="rect" id="node2" href="$Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title="Converts errno to readable string." alt="" coords="396,5,511,32"/>
+<area shape="rect" id="node1" title="Construct a new RawSocket object." alt="" coords="5,5,177,32"/>
+<area shape="rect" id="node2" href="$Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title="Converts errno to a readable string." alt="" coords="396,5,511,32"/>
 <area shape="rect" id="node3" href="$classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d" title=" " alt="" coords="225,31,348,57"/>
 </map>

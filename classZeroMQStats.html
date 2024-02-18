@@ -100,47 +100,63 @@ $(document).ready(function(){initNavTree('classZeroMQStats.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 
+<p>Represents the statistics of a <a class="el" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality.">ZeroMQ</a> server.  
+ <a href="classZeroMQStats.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aafbee903dff769a5f498c5ba1b101067"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#aafbee903dff769a5f498c5ba1b101067">ZeroMQStats</a> (const std::shared_ptr&lt; prometheus::Registry &gt; &amp;reg)</td></tr>
-<tr class="memdesc:aafbee903dff769a5f498c5ba1b101067"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classZeroMQ.html">ZeroMQ</a> server statistics.  <a href="classZeroMQStats.html#aafbee903dff769a5f498c5ba1b101067">More...</a><br /></td></tr>
+<tr class="memdesc:aafbee903dff769a5f498c5ba1b101067"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classZeroMQStats.html" title="Represents the statistics of a ZeroMQ server.">ZeroMQStats</a> object.  <a href="classZeroMQStats.html#aafbee903dff769a5f498c5ba1b101067">More...</a><br /></td></tr>
 <tr class="separator:aafbee903dff769a5f498c5ba1b101067"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c3eeaf1011a5dcaa05c50ece9abaf07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07">consumeStats</a> (const std::vector&lt; zmq::message_t &gt; &amp;recvMsgs, const std::vector&lt; zmq::message_t &gt; &amp;sendMsgs, const <a class="el" href="structZeroMQServerStats.html">ZeroMQServerStats</a> &amp;serverStats)</td></tr>
-<tr class="memdesc:a4c3eeaf1011a5dcaa05c50ece9abaf07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates statistics with messages.  <a href="classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07">More...</a><br /></td></tr>
+<tr class="memdesc:a4c3eeaf1011a5dcaa05c50ece9abaf07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the statistics with messages.  <a href="classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07">More...</a><br /></td></tr>
 <tr class="separator:a4c3eeaf1011a5dcaa05c50ece9abaf07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a24933c1083732d7ff7962e4303aff730"><td class="memItemLeft" align="right" valign="top">prometheus::Family&lt; prometheus::Info &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#a24933c1083732d7ff7962e4303aff730">infoFamily</a></td></tr>
+<tr class="memdesc:a24933c1083732d7ff7962e4303aff730"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information metric family.  <a href="classZeroMQStats.html#a24933c1083732d7ff7962e4303aff730">More...</a><br /></td></tr>
 <tr class="separator:a24933c1083732d7ff7962e4303aff730"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32cf4236758f4c9d34b45933878db492"><td class="memItemLeft" align="right" valign="top">prometheus::Summary *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#a32cf4236758f4c9d34b45933878db492">processingTime</a></td></tr>
+<tr class="memdesc:a32cf4236758f4c9d34b45933878db492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the command processing performance.  <a href="classZeroMQStats.html#a32cf4236758f4c9d34b45933878db492">More...</a><br /></td></tr>
 <tr class="separator:a32cf4236758f4c9d34b45933878db492"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31278a1bbf55177b90677f54f8456d8d"><td class="memItemLeft" align="right" valign="top">prometheus::Gauge *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#a31278a1bbf55177b90677f54f8456d8d">maxProcessingTime</a></td></tr>
+<tr class="memdesc:a31278a1bbf55177b90677f54f8456d8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum value of the command processing performance.  <a href="classZeroMQStats.html#a31278a1bbf55177b90677f54f8456d8d">More...</a><br /></td></tr>
 <tr class="separator:a31278a1bbf55177b90677f54f8456d8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6d8a93da474db283fd9b0ea6ddd33ec"><td class="memItemLeft" align="right" valign="top">prometheus::Gauge *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#ac6d8a93da474db283fd9b0ea6ddd33ec">minProcessingTime</a></td></tr>
+<tr class="memdesc:ac6d8a93da474db283fd9b0ea6ddd33ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum value of the command processing performance.  <a href="classZeroMQStats.html#ac6d8a93da474db283fd9b0ea6ddd33ec">More...</a><br /></td></tr>
 <tr class="separator:ac6d8a93da474db283fd9b0ea6ddd33ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0163112278ac3b3c4a97dd35f6dfa0b"><td class="memItemLeft" align="right" valign="top">prometheus::Counter *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#ad0163112278ac3b3c4a97dd35f6dfa0b">succeededCommand</a></td></tr>
+<tr class="memdesc:ad0163112278ac3b3c4a97dd35f6dfa0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of succeeded commands.  <a href="classZeroMQStats.html#ad0163112278ac3b3c4a97dd35f6dfa0b">More...</a><br /></td></tr>
 <tr class="separator:ad0163112278ac3b3c4a97dd35f6dfa0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba820d2f918486b00e1d3a6a88d5401b"><td class="memItemLeft" align="right" valign="top">prometheus::Counter *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#aba820d2f918486b00e1d3a6a88d5401b">failedCommand</a></td></tr>
+<tr class="memdesc:aba820d2f918486b00e1d3a6a88d5401b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of failed commands.  <a href="classZeroMQStats.html#aba820d2f918486b00e1d3a6a88d5401b">More...</a><br /></td></tr>
 <tr class="separator:aba820d2f918486b00e1d3a6a88d5401b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b0f5a8eea84dc31f24e584609225232"><td class="memItemLeft" align="right" valign="top">prometheus::Counter *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#a7b0f5a8eea84dc31f24e584609225232">totalCommand</a></td></tr>
+<tr class="memdesc:a7b0f5a8eea84dc31f24e584609225232"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of total received commands.  <a href="classZeroMQStats.html#a7b0f5a8eea84dc31f24e584609225232">More...</a><br /></td></tr>
 <tr class="separator:a7b0f5a8eea84dc31f24e584609225232"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b477308d6083dc2a287ace9bc34834a"><td class="memItemLeft" align="right" valign="top">prometheus::Counter *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#a1b477308d6083dc2a287ace9bc34834a">succeededCommandParts</a></td></tr>
+<tr class="memdesc:a1b477308d6083dc2a287ace9bc34834a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of received succeeded message parts.  <a href="classZeroMQStats.html#a1b477308d6083dc2a287ace9bc34834a">More...</a><br /></td></tr>
 <tr class="separator:a1b477308d6083dc2a287ace9bc34834a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1763800ba1f23ad97f5f06aa549efda"><td class="memItemLeft" align="right" valign="top">prometheus::Counter *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#aa1763800ba1f23ad97f5f06aa549efda">failedCommandParts</a></td></tr>
+<tr class="memdesc:aa1763800ba1f23ad97f5f06aa549efda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of received failed message parts.  <a href="classZeroMQStats.html#aa1763800ba1f23ad97f5f06aa549efda">More...</a><br /></td></tr>
 <tr class="separator:aa1763800ba1f23ad97f5f06aa549efda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3be413bfe8be16af66af6659b2231ff3"><td class="memItemLeft" align="right" valign="top">prometheus::Counter *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#a3be413bfe8be16af66af6659b2231ff3">totalCommandParts</a></td></tr>
+<tr class="memdesc:a3be413bfe8be16af66af6659b2231ff3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of received total message parts.  <a href="classZeroMQStats.html#a3be413bfe8be16af66af6659b2231ff3">More...</a><br /></td></tr>
 <tr class="separator:a3be413bfe8be16af66af6659b2231ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a617b1d3e54825165c467467d79b85b5e"><td class="memItemLeft" align="right" valign="top">prometheus::Counter *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#a617b1d3e54825165c467467d79b85b5e">totalUploadBytes</a></td></tr>
+<tr class="memdesc:a617b1d3e54825165c467467d79b85b5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total uploaded bytes.  <a href="classZeroMQStats.html#a617b1d3e54825165c467467d79b85b5e">More...</a><br /></td></tr>
 <tr class="separator:a617b1d3e54825165c467467d79b85b5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a744222adbbc6eb9094471692b00d00c4"><td class="memItemLeft" align="right" valign="top">prometheus::Counter *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#a744222adbbc6eb9094471692b00d00c4">totalDownloadBytes</a></td></tr>
+<tr class="memdesc:a744222adbbc6eb9094471692b00d00c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total downloaded bytes.  <a href="classZeroMQStats.html#a744222adbbc6eb9094471692b00d00c4">More...</a><br /></td></tr>
 <tr class="separator:a744222adbbc6eb9094471692b00d00c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00015">15</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
+<div class="textblock"><p>Represents the statistics of a <a class="el" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality.">ZeroMQ</a> server. </p>
+
+<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00020">20</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aafbee903dff769a5f498c5ba1b101067"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aafbee903dff769a5f498c5ba1b101067">&#9670;&nbsp;</a></span>ZeroMQStats()</h2>
@@ -166,10 +182,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Construct a new <a class="el" href="classZeroMQ.html">ZeroMQ</a> server statistics. </p>
+<p>Construct a new <a class="el" href="classZeroMQStats.html" title="Represents the statistics of a ZeroMQ server.">ZeroMQStats</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>Prometheus registry </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>Prometheus registry. </td></tr>
   </table>
   </dd>
 </dl>
@@ -250,18 +266,18 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="classZeroMQStats.html#ac6d8a93da474db283fd9b0ea6ddd33ec">minProcessingTime</a>-&gt;Set(std::numeric_limits&lt;double&gt;::max());</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
 <div class="ttc" id="aZeroMQStats_8cpp_html_a6c1e8e86b55ecaf45cc433f96a2ac8df"><div class="ttname"><a href="ZeroMQStats_8cpp.html#a6c1e8e86b55ecaf45cc433f96a2ac8df">QUANTILE_DEFAULTS</a></div><div class="ttdeci">#define QUANTILE_DEFAULTS</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8cpp_source.html#l00009">ZeroMQStats.cpp:9</a></div></div>
-<div class="ttc" id="aclassZeroMQStats_html_a1b477308d6083dc2a287ace9bc34834a"><div class="ttname"><a href="classZeroMQStats.html#a1b477308d6083dc2a287ace9bc34834a">ZeroMQStats::succeededCommandParts</a></div><div class="ttdeci">prometheus::Counter * succeededCommandParts</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00034">ZeroMQStats.hpp:34</a></div></div>
-<div class="ttc" id="aclassZeroMQStats_html_a24933c1083732d7ff7962e4303aff730"><div class="ttname"><a href="classZeroMQStats.html#a24933c1083732d7ff7962e4303aff730">ZeroMQStats::infoFamily</a></div><div class="ttdeci">prometheus::Family&lt; prometheus::Info &gt; * infoFamily</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00018">ZeroMQStats.hpp:18</a></div></div>
-<div class="ttc" id="aclassZeroMQStats_html_a31278a1bbf55177b90677f54f8456d8d"><div class="ttname"><a href="classZeroMQStats.html#a31278a1bbf55177b90677f54f8456d8d">ZeroMQStats::maxProcessingTime</a></div><div class="ttdeci">prometheus::Gauge * maxProcessingTime</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00023">ZeroMQStats.hpp:23</a></div></div>
-<div class="ttc" id="aclassZeroMQStats_html_a32cf4236758f4c9d34b45933878db492"><div class="ttname"><a href="classZeroMQStats.html#a32cf4236758f4c9d34b45933878db492">ZeroMQStats::processingTime</a></div><div class="ttdeci">prometheus::Summary * processingTime</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00021">ZeroMQStats.hpp:21</a></div></div>
-<div class="ttc" id="aclassZeroMQStats_html_a3be413bfe8be16af66af6659b2231ff3"><div class="ttname"><a href="classZeroMQStats.html#a3be413bfe8be16af66af6659b2231ff3">ZeroMQStats::totalCommandParts</a></div><div class="ttdeci">prometheus::Counter * totalCommandParts</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00038">ZeroMQStats.hpp:38</a></div></div>
-<div class="ttc" id="aclassZeroMQStats_html_a617b1d3e54825165c467467d79b85b5e"><div class="ttname"><a href="classZeroMQStats.html#a617b1d3e54825165c467467d79b85b5e">ZeroMQStats::totalUploadBytes</a></div><div class="ttdeci">prometheus::Counter * totalUploadBytes</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00041">ZeroMQStats.hpp:41</a></div></div>
-<div class="ttc" id="aclassZeroMQStats_html_a744222adbbc6eb9094471692b00d00c4"><div class="ttname"><a href="classZeroMQStats.html#a744222adbbc6eb9094471692b00d00c4">ZeroMQStats::totalDownloadBytes</a></div><div class="ttdeci">prometheus::Counter * totalDownloadBytes</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00043">ZeroMQStats.hpp:43</a></div></div>
-<div class="ttc" id="aclassZeroMQStats_html_a7b0f5a8eea84dc31f24e584609225232"><div class="ttname"><a href="classZeroMQStats.html#a7b0f5a8eea84dc31f24e584609225232">ZeroMQStats::totalCommand</a></div><div class="ttdeci">prometheus::Counter * totalCommand</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00032">ZeroMQStats.hpp:32</a></div></div>
-<div class="ttc" id="aclassZeroMQStats_html_aa1763800ba1f23ad97f5f06aa549efda"><div class="ttname"><a href="classZeroMQStats.html#aa1763800ba1f23ad97f5f06aa549efda">ZeroMQStats::failedCommandParts</a></div><div class="ttdeci">prometheus::Counter * failedCommandParts</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00036">ZeroMQStats.hpp:36</a></div></div>
-<div class="ttc" id="aclassZeroMQStats_html_aba820d2f918486b00e1d3a6a88d5401b"><div class="ttname"><a href="classZeroMQStats.html#aba820d2f918486b00e1d3a6a88d5401b">ZeroMQStats::failedCommand</a></div><div class="ttdeci">prometheus::Counter * failedCommand</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00030">ZeroMQStats.hpp:30</a></div></div>
-<div class="ttc" id="aclassZeroMQStats_html_ac6d8a93da474db283fd9b0ea6ddd33ec"><div class="ttname"><a href="classZeroMQStats.html#ac6d8a93da474db283fd9b0ea6ddd33ec">ZeroMQStats::minProcessingTime</a></div><div class="ttdeci">prometheus::Gauge * minProcessingTime</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00025">ZeroMQStats.hpp:25</a></div></div>
-<div class="ttc" id="aclassZeroMQStats_html_ad0163112278ac3b3c4a97dd35f6dfa0b"><div class="ttname"><a href="classZeroMQStats.html#ad0163112278ac3b3c4a97dd35f6dfa0b">ZeroMQStats::succeededCommand</a></div><div class="ttdeci">prometheus::Counter * succeededCommand</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00028">ZeroMQStats.hpp:28</a></div></div>
+<div class="ttc" id="aclassZeroMQStats_html_a1b477308d6083dc2a287ace9bc34834a"><div class="ttname"><a href="classZeroMQStats.html#a1b477308d6083dc2a287ace9bc34834a">ZeroMQStats::succeededCommandParts</a></div><div class="ttdeci">prometheus::Counter * succeededCommandParts</div><div class="ttdoc">Number of received succeeded message parts.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00029">ZeroMQStats.hpp:29</a></div></div>
+<div class="ttc" id="aclassZeroMQStats_html_a24933c1083732d7ff7962e4303aff730"><div class="ttname"><a href="classZeroMQStats.html#a24933c1083732d7ff7962e4303aff730">ZeroMQStats::infoFamily</a></div><div class="ttdeci">prometheus::Family&lt; prometheus::Info &gt; * infoFamily</div><div class="ttdoc">Information metric family.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00022">ZeroMQStats.hpp:22</a></div></div>
+<div class="ttc" id="aclassZeroMQStats_html_a31278a1bbf55177b90677f54f8456d8d"><div class="ttname"><a href="classZeroMQStats.html#a31278a1bbf55177b90677f54f8456d8d">ZeroMQStats::maxProcessingTime</a></div><div class="ttdeci">prometheus::Gauge * maxProcessingTime</div><div class="ttdoc">Maximum value of the command processing performance.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00024">ZeroMQStats.hpp:24</a></div></div>
+<div class="ttc" id="aclassZeroMQStats_html_a32cf4236758f4c9d34b45933878db492"><div class="ttname"><a href="classZeroMQStats.html#a32cf4236758f4c9d34b45933878db492">ZeroMQStats::processingTime</a></div><div class="ttdeci">prometheus::Summary * processingTime</div><div class="ttdoc">Value of the command processing performance.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00023">ZeroMQStats.hpp:23</a></div></div>
+<div class="ttc" id="aclassZeroMQStats_html_a3be413bfe8be16af66af6659b2231ff3"><div class="ttname"><a href="classZeroMQStats.html#a3be413bfe8be16af66af6659b2231ff3">ZeroMQStats::totalCommandParts</a></div><div class="ttdeci">prometheus::Counter * totalCommandParts</div><div class="ttdoc">Number of received total message parts.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00031">ZeroMQStats.hpp:31</a></div></div>
+<div class="ttc" id="aclassZeroMQStats_html_a617b1d3e54825165c467467d79b85b5e"><div class="ttname"><a href="classZeroMQStats.html#a617b1d3e54825165c467467d79b85b5e">ZeroMQStats::totalUploadBytes</a></div><div class="ttdeci">prometheus::Counter * totalUploadBytes</div><div class="ttdoc">Total uploaded bytes.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00032">ZeroMQStats.hpp:32</a></div></div>
+<div class="ttc" id="aclassZeroMQStats_html_a744222adbbc6eb9094471692b00d00c4"><div class="ttname"><a href="classZeroMQStats.html#a744222adbbc6eb9094471692b00d00c4">ZeroMQStats::totalDownloadBytes</a></div><div class="ttdeci">prometheus::Counter * totalDownloadBytes</div><div class="ttdoc">Total downloaded bytes.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00033">ZeroMQStats.hpp:33</a></div></div>
+<div class="ttc" id="aclassZeroMQStats_html_a7b0f5a8eea84dc31f24e584609225232"><div class="ttname"><a href="classZeroMQStats.html#a7b0f5a8eea84dc31f24e584609225232">ZeroMQStats::totalCommand</a></div><div class="ttdeci">prometheus::Counter * totalCommand</div><div class="ttdoc">Number of total received commands.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00028">ZeroMQStats.hpp:28</a></div></div>
+<div class="ttc" id="aclassZeroMQStats_html_aa1763800ba1f23ad97f5f06aa549efda"><div class="ttname"><a href="classZeroMQStats.html#aa1763800ba1f23ad97f5f06aa549efda">ZeroMQStats::failedCommandParts</a></div><div class="ttdeci">prometheus::Counter * failedCommandParts</div><div class="ttdoc">Number of received failed message parts.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00030">ZeroMQStats.hpp:30</a></div></div>
+<div class="ttc" id="aclassZeroMQStats_html_aba820d2f918486b00e1d3a6a88d5401b"><div class="ttname"><a href="classZeroMQStats.html#aba820d2f918486b00e1d3a6a88d5401b">ZeroMQStats::failedCommand</a></div><div class="ttdeci">prometheus::Counter * failedCommand</div><div class="ttdoc">Number of failed commands.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00027">ZeroMQStats.hpp:27</a></div></div>
+<div class="ttc" id="aclassZeroMQStats_html_ac6d8a93da474db283fd9b0ea6ddd33ec"><div class="ttname"><a href="classZeroMQStats.html#ac6d8a93da474db283fd9b0ea6ddd33ec">ZeroMQStats::minProcessingTime</a></div><div class="ttdeci">prometheus::Gauge * minProcessingTime</div><div class="ttdoc">Minimum value of the command processing performance.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00025">ZeroMQStats.hpp:25</a></div></div>
+<div class="ttc" id="aclassZeroMQStats_html_ad0163112278ac3b3c4a97dd35f6dfa0b"><div class="ttname"><a href="classZeroMQStats.html#ad0163112278ac3b3c4a97dd35f6dfa0b">ZeroMQStats::succeededCommand</a></div><div class="ttdeci">prometheus::Counter * succeededCommand</div><div class="ttdoc">Number of succeeded commands.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00026">ZeroMQStats.hpp:26</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -298,12 +314,12 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Updates statistics with messages. </p>
+<p>Updates the statistics with messages. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">recvMsgs</td><td>Received messages </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">sendMsgs</td><td>Send messages </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">serverStats</td><td><a class="el" href="classZeroMQ.html">ZeroMQ</a> server stats </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">recvMsgs</td><td>Received messages. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sendMsgs</td><td>Send messages. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">serverStats</td><td><a class="el" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality.">ZeroMQ</a> server stats. </td></tr>
   </table>
   </dd>
 </dl>
@@ -346,9 +362,9 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <a class="code" href="classZeroMQStats.html#a31278a1bbf55177b90677f54f8456d8d">maxProcessingTime</a>-&gt;Set(processTime);</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    }</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;}</div>
-<div class="ttc" id="astructZeroMQServerStats_html_a0f72b56ee407f90b03badaa34e1727fe"><div class="ttname"><a href="structZeroMQServerStats.html#a0f72b56ee407f90b03badaa34e1727fe">ZeroMQServerStats::isSuccessful</a></div><div class="ttdeci">bool isSuccessful</div><div class="ttdoc">Is processing successful for this connection.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00012">ZeroMQStats.hpp:12</a></div></div>
-<div class="ttc" id="astructZeroMQServerStats_html_a65e6b457a8538169f5afbdb14b2299f0"><div class="ttname"><a href="structZeroMQServerStats.html#a65e6b457a8538169f5afbdb14b2299f0">ZeroMQServerStats::processingTimeEnd</a></div><div class="ttdeci">std::chrono::high_resolution_clock::time_point processingTimeEnd</div><div class="ttdoc">Processing time end.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00010">ZeroMQStats.hpp:10</a></div></div>
-<div class="ttc" id="astructZeroMQServerStats_html_a7916aac3b34d3b9d1a2c85292d3b2e7a"><div class="ttname"><a href="structZeroMQServerStats.html#a7916aac3b34d3b9d1a2c85292d3b2e7a">ZeroMQServerStats::processingTimeStart</a></div><div class="ttdeci">std::chrono::high_resolution_clock::time_point processingTimeStart</div><div class="ttdoc">Processing time start.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00008">ZeroMQStats.hpp:8</a></div></div>
+<div class="ttc" id="astructZeroMQServerStats_html_a0f72b56ee407f90b03badaa34e1727fe"><div class="ttname"><a href="structZeroMQServerStats.html#a0f72b56ee407f90b03badaa34e1727fe">ZeroMQServerStats::isSuccessful</a></div><div class="ttdeci">bool isSuccessful</div><div class="ttdoc">Indicates if processing was successful for this connection.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00013">ZeroMQStats.hpp:13</a></div></div>
+<div class="ttc" id="astructZeroMQServerStats_html_a65e6b457a8538169f5afbdb14b2299f0"><div class="ttname"><a href="structZeroMQServerStats.html#a65e6b457a8538169f5afbdb14b2299f0">ZeroMQServerStats::processingTimeEnd</a></div><div class="ttdeci">std::chrono::high_resolution_clock::time_point processingTimeEnd</div><div class="ttdoc">Processing time end.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00012">ZeroMQStats.hpp:12</a></div></div>
+<div class="ttc" id="astructZeroMQServerStats_html_a7916aac3b34d3b9d1a2c85292d3b2e7a"><div class="ttname"><a href="structZeroMQServerStats.html#a7916aac3b34d3b9d1a2c85292d3b2e7a">ZeroMQServerStats::processingTimeStart</a></div><div class="ttdeci">std::chrono::high_resolution_clock::time_point processingTimeStart</div><div class="ttdoc">Processing time start.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00011">ZeroMQStats.hpp:11</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -373,7 +389,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00030">30</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
+<p>Number of failed commands. </p>
+
+<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00027">27</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
 
 </div>
 </div>
@@ -397,7 +415,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00036">36</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
+<p>Number of received failed message parts. </p>
+
+<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00030">30</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
 
 </div>
 </div>
@@ -421,7 +441,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00018">18</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
+<p>Information metric family. </p>
+
+<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00022">22</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
 
 </div>
 </div>
@@ -445,7 +467,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00023">23</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
+<p>Maximum value of the command processing performance. </p>
+
+<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00024">24</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
 
 </div>
 </div>
@@ -468,6 +492,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Minimum value of the command processing performance. </p>
 
 <p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00025">25</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
 
@@ -493,7 +519,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00021">21</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
+<p>Value of the command processing performance. </p>
+
+<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00023">23</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
 
 </div>
 </div>
@@ -517,7 +545,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00028">28</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
+<p>Number of succeeded commands. </p>
+
+<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00026">26</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
 
 </div>
 </div>
@@ -541,7 +571,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00034">34</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
+<p>Number of received succeeded message parts. </p>
+
+<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00029">29</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
 
 </div>
 </div>
@@ -565,7 +597,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00032">32</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
+<p>Number of total received commands. </p>
+
+<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00028">28</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
 
 </div>
 </div>
@@ -589,7 +623,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00038">38</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
+<p>Number of received total message parts. </p>
+
+<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00031">31</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
 
 </div>
 </div>
@@ -613,7 +649,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00043">43</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
+<p>Total downloaded bytes. </p>
+
+<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00033">33</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
 
 </div>
 </div>
@@ -637,7 +675,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00041">41</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
+<p>Total uploaded bytes. </p>
+
+<p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00032">32</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
 
 </div>
 </div>
@@ -651,7 +691,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classZeroMQStats.html">ZeroMQStats</a></li>
-    <li class="footer">Generated on Thu Feb 15 2024 08:28:29 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 18 2024 11:11:07 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

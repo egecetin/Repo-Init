@@ -1,4 +1,4 @@
 <map id="RawSocket" name="RawSocket">
-<area shape="rect" id="node1" title="Raw socket reads and writes binary data to provided interface. Write operations does not modify any f..." alt="" coords="22,95,115,121"/>
+<area shape="rect" id="node1" title="Raw socket reads and writes binary data to the provided interface. Write operations do not modify any..." alt="" coords="22,95,115,121"/>
 <area shape="rect" id="node2" href="$structRawSocketStats.html" title="Stats produced by RawSocket." alt="" coords="5,5,132,32"/>
 </map>

@@ -1,7 +1,7 @@
 <map id="Tracer::restart" name="Tracer::restart">
-<area shape="rect" id="node1" title="Checks and restarts if the crashpad_handler is not running." alt="" coords="5,56,117,83"/>
-<area shape="rect" id="node2" href="$classTracer.html#a4e3975043a2fc94d307d511012706770" title="Checks the crashpad_handler still running." alt="" coords="174,31,307,57"/>
-<area shape="rect" id="node5" href="$classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="165,81,316,108"/>
-<area shape="rect" id="node3" href="$classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="376,5,567,32"/>
-<area shape="rect" id="node4" href="$classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="364,56,579,83"/>
+<area shape="rect" id="node1" title="Check and restart the crashpad_handler process if it is not running." alt="" coords="5,56,117,83"/>
+<area shape="rect" id="node2" href="$classTracer.html#a4e3975043a2fc94d307d511012706770" title="Check if the crashpad_handler process is running." alt="" coords="174,31,307,57"/>
+<area shape="rect" id="node5" href="$classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title="Start the crashpad handler process." alt="" coords="165,81,316,108"/>
+<area shape="rect" id="node3" href="$classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title="Check if the given process ID is running." alt="" coords="376,5,567,32"/>
+<area shape="rect" id="node4" href="$classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title="Check if the given socket ID is running." alt="" coords="364,56,579,83"/>
 </map>

@@ -1,4 +1,4 @@
 <map id="ZeroMQServer::update" name="ZeroMQServer::update">
 <area shape="rect" id="node1" title="Processes new messages." alt="" coords="5,5,175,32"/>
-<area shape="rect" id="node2" href="$classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7" title=" " alt="" coords="223,5,461,32"/>
+<area shape="rect" id="node2" href="$classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7" title="Gets the message callback function." alt="" coords="223,5,461,32"/>
 </map>

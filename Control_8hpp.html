@@ -197,13 +197,14 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Thread function to handle crashpad. </p>
+<p>This function runs as a separate thread and is responsible for handling crashpad. It takes the remote server address, remote proxy address, crashdump executable path, annotations, attachment file paths, report file location, and a flag for runtime check as input parameters.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">remoteAddr</td><td>Remote server address </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">proxyAddr</td><td>Remote proxy address </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">exeDir</td><td>Crashdump executable path </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">annotations</td><td>Annotations </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">attachments</td><td>Attacment file paths </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">attachments</td><td>Attachment file paths </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">reportPath</td><td>Minidump file location </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">checkFlag</td><td>Flag for runtime check </td></tr>
   </table>
@@ -289,10 +290,11 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Thread function to receive control messages or config changes from Telnet connections. </p>
+<p>This function runs as a separate thread and is responsible for receiving control messages or config changes from Telnet connections. It takes a pointer to the main Prometheus server, the Telnet port number, and a flag for runtime check as input parameters.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">mainPrometheusServer</td><td>Pointer to prometheus server </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">telnetPort</td><td>Port number to serve Telnet server </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mainPrometheusServer</td><td>Pointer to the main Prometheus server </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">telnetPort</td><td>Port number to serve the Telnet server </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">checkFlag</td><td>Flag for runtime check </td></tr>
   </table>
   </dd>
@@ -341,19 +343,19 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="aTelnetServer_8cpp_html_a07c3fdafe30bb1042ceaf01572b7ce1d"><div class="ttname"><a href="TelnetServer_8cpp.html#a07c3fdafe30bb1042ceaf01572b7ce1d">TelnetTabCallback</a></div><div class="ttdeci">std::string TelnetTabCallback(const SP_TelnetSession &amp;session, const std::string &amp;line)</div><div class="ttdoc">Telnet session TAB received callback.</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00804">TelnetServer.cpp:804</a></div></div>
 <div class="ttc" id="aTelnetServer_8cpp_html_a39681d1af6065fb54f66a55c01e28e3d"><div class="ttname"><a href="TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d">TelnetConnectedCallback</a></div><div class="ttdeci">void TelnetConnectedCallback(const SP_TelnetSession &amp;session)</div><div class="ttdoc">Telnet session connection start callback.</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00718">TelnetServer.cpp:718</a></div></div>
 <div class="ttc" id="aTelnetServer_8cpp_html_afc54e2836d524b6deafaf20fd1ccdc75"><div class="ttname"><a href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75">TelnetMessageCallback</a></div><div class="ttdeci">bool TelnetMessageCallback(const SP_TelnetSession &amp;session, const std::string &amp;line)</div><div class="ttdoc">Telnet session message received callback.</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00727">TelnetServer.cpp:727</a></div></div>
-<div class="ttc" id="aUtils_8cpp_html_a77c5602aee813ef2fde1a81c1db17e0c"><div class="ttname"><a href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a></div><div class="ttdeci">std::string getErrnoString(int errVal)</div><div class="ttdoc">Converts errno to readable string.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00142">Utils.cpp:142</a></div></div>
+<div class="ttc" id="aUtils_8cpp_html_a77c5602aee813ef2fde1a81c1db17e0c"><div class="ttname"><a href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a></div><div class="ttdeci">std::string getErrnoString(int errVal)</div><div class="ttdoc">Converts errno to a readable string.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00142">Utils.cpp:142</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="Control_8hpp_afc73cc2450f5d541f8dacbdc38b9bd4e_cgraph.png" border="0" usemap="#aControl_8hpp_afc73cc2450f5d541f8dacbdc38b9bd4e_cgraph" alt=""/></div>
 <map name="aControl_8hpp_afc73cc2450f5d541f8dacbdc38b9bd4e_cgraph" id="aControl_8hpp_afc73cc2450f5d541f8dacbdc38b9bd4e_cgraph">
 <area shape="rect" title="Thread function to receive control messages or config changes from Telnet connections." alt="" coords="5,81,157,108"/>
-<area shape="rect" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title="Converts errno to readable string." alt="" coords="241,5,356,32"/>
+<area shape="rect" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title="Converts errno to a readable string." alt="" coords="241,5,356,32"/>
 <area shape="rect" href="TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d" title="Telnet session connection start callback." alt="" coords="205,56,392,83"/>
 <area shape="rect" href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title="Telnet session message received callback." alt="" coords="211,107,386,133"/>
 <area shape="rect" href="TelnetServer_8cpp.html#a07c3fdafe30bb1042ceaf01572b7ce1d" title="Telnet session TAB received callback." alt="" coords="229,157,368,184"/>
 <area shape="rect" href="TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f" title=" " alt="" coords="440,56,665,83"/>
-<area shape="rect" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b" title=" " alt="" coords="501,107,604,133"/>
+<area shape="rect" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b" title="Calculates the compile&#45;time hash value of a string." alt="" coords="501,107,604,133"/>
 <area shape="rect" href="Utils_8cpp.html#a97c49d303bbf54bed2e1e6709deeb67c" title="Returns the version." alt="" coords="503,157,602,184"/>
 <area shape="rect" href="TelnetServer_8cpp.html#aaad0fd13b75d5ebde386438b336d77c7" title=" " alt="" coords="463,208,642,235"/>
 </map>
@@ -403,10 +405,11 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Thread function to receive control messages or config changes from ZMQ connection. </p>
+<p>This function runs as a separate thread and is responsible for receiving control messages or config changes from a <a class="el" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality.">ZeroMQ</a> connection. It takes a pointer to the main Prometheus server, the server address, and a flag for runtime check as input parameters.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">mainPrometheusServer</td><td>Pointer to prometheus server </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">serverAddr</td><td>Address to serve <a class="el" href="classZeroMQ.html">ZeroMQ</a> server </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mainPrometheusServer</td><td>Pointer to the main Prometheus server </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">serverAddr</td><td>Address to serve the <a class="el" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality.">ZeroMQ</a> server </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">checkFlag</td><td>Flag for runtime check </td></tr>
   </table>
   </dd>
@@ -483,7 +486,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="Control_8hpp.html">Control.hpp</a></li>
-    <li class="footer">Generated on Thu Feb 15 2024 08:28:29 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 18 2024 11:11:07 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

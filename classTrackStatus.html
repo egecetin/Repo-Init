@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('classTrackStatus.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 
-<p>RAII style wrapper for <a class="el" href="classStatusTracker.html" title="Measures status counters for prometheus.">StatusTracker</a>.  
+<p>RAII style wrapper for <a class="el" href="classStatusTracker.html" title="Class for tracking the status of events and counting successes and failures.">StatusTracker</a>.  
  <a href="classTrackStatus.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Status_8hpp_source.html">Status.hpp</a>&gt;</code></p>
@@ -110,7 +110,7 @@ Collaboration diagram for TrackStatus:</div>
 <div class="center"><img src="classTrackStatus__coll__graph.png" border="0" usemap="#aTrackStatus_coll__map" alt="Collaboration graph"/></div>
 <map name="aTrackStatus_coll__map" id="aTrackStatus_coll__map">
 <area shape="rect" title="RAII style wrapper for StatusTracker." alt="" coords="11,95,109,121"/>
-<area shape="rect" href="classStatusTracker.html" title="Measures status counters for prometheus." alt="" coords="5,5,115,32"/>
+<area shape="rect" href="classStatusTracker.html" title="Class for tracking the status of events and counting successes and failures." alt="" coords="5,5,115,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -139,9 +139,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a1ec4677e1491caa4506d9f429db3bb4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>RAII style wrapper for <a class="el" href="classStatusTracker.html" title="Measures status counters for prometheus.">StatusTracker</a>. </p>
+<div class="textblock"><p>RAII style wrapper for <a class="el" href="classStatusTracker.html" title="Class for tracking the status of events and counting successes and failures.">StatusTracker</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00052">52</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00049">49</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abb13150926104547ead7f939cf1d7ff3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abb13150926104547ead7f939cf1d7ff3">&#9670;&nbsp;</a></span>TrackStatus() <span class="overload">[1/3]</span></h2>
@@ -167,10 +167,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00057">57</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;: <a class="code" href="classTrackStatus.html#a1ec4677e1491caa4506d9f429db3bb4d">_tracker</a>(tracker) { <a class="code" href="classTrackStatus.html#a1ec4677e1491caa4506d9f429db3bb4d">_tracker</a>.<a class="code" href="classStatusTracker.html#a18c54361442fb7a150c2bae3f6cedb1b">incrementActive</a>(); }</div>
+<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00054">54</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;: <a class="code" href="classTrackStatus.html#a1ec4677e1491caa4506d9f429db3bb4d">_tracker</a>(tracker) { <a class="code" href="classTrackStatus.html#a1ec4677e1491caa4506d9f429db3bb4d">_tracker</a>.<a class="code" href="classStatusTracker.html#a18c54361442fb7a150c2bae3f6cedb1b">incrementActive</a>(); }</div>
 <div class="ttc" id="aclassStatusTracker_html_a18c54361442fb7a150c2bae3f6cedb1b"><div class="ttname"><a href="classStatusTracker.html#a18c54361442fb7a150c2bae3f6cedb1b">StatusTracker::incrementActive</a></div><div class="ttdeci">void incrementActive()</div><div class="ttdoc">Increment number of current events.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8cpp_source.html#l00032">Status.cpp:32</a></div></div>
-<div class="ttc" id="aclassTrackStatus_html_a1ec4677e1491caa4506d9f429db3bb4d"><div class="ttname"><a href="classTrackStatus.html#a1ec4677e1491caa4506d9f429db3bb4d">TrackStatus::_tracker</a></div><div class="ttdeci">StatusTracker &amp; _tracker</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00054">Status.hpp:54</a></div></div>
+<div class="ttc" id="aclassTrackStatus_html_a1ec4677e1491caa4506d9f429db3bb4d"><div class="ttname"><a href="classTrackStatus.html#a1ec4677e1491caa4506d9f429db3bb4d">TrackStatus::_tracker</a></div><div class="ttdeci">StatusTracker &amp; _tracker</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00051">Status.hpp:51</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -206,8 +206,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00058">58</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{ <a class="code" href="classTrackStatus.html#a1ec4677e1491caa4506d9f429db3bb4d">_tracker</a>.<a class="code" href="classStatusTracker.html#adfaee3272ae558771c6d25ec2ee88241">decrementActive</a>(); }</div>
+<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00055">55</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{ <a class="code" href="classTrackStatus.html#a1ec4677e1491caa4506d9f429db3bb4d">_tracker</a>.<a class="code" href="classStatusTracker.html#adfaee3272ae558771c6d25ec2ee88241">decrementActive</a>(); }</div>
 <div class="ttc" id="aclassStatusTracker_html_adfaee3272ae558771c6d25ec2ee88241"><div class="ttname"><a href="classStatusTracker.html#adfaee3272ae558771c6d25ec2ee88241">StatusTracker::decrementActive</a></div><div class="ttdeci">void decrementActive()</div><div class="ttdoc">Decrement number of current events.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8cpp_source.html#l00034">Status.cpp:34</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -355,7 +355,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00054">54</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00051">51</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
 
 </div>
 </div>
@@ -368,7 +368,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classTrackStatus.html">TrackStatus</a></li>
-    <li class="footer">Generated on Thu Feb 15 2024 08:28:29 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 18 2024 11:11:07 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

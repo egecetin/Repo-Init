@@ -1,4 +1,4 @@
 <map id="PerformanceTracker::endTimer" name="PerformanceTracker::endTimer">
-<area shape="rect" id="node1" title="Ends the chronometer and updates internal statistics." alt="" coords="204,5,355,47"/>
-<area shape="rect" id="node2" href="$classTrackPerformance.html#aeb3fe7de8fee569a8943b5a8056bc748" title=" " alt="" coords="5,5,156,47"/>
+<area shape="rect" id="node1" title="Ends the timer and updates internal statistics." alt="" coords="204,5,355,47"/>
+<area shape="rect" id="node2" href="$classTrackPerformance.html#aeb3fe7de8fee569a8943b5a8056bc748" title="Destructs the TrackPerformance object and stops the timer." alt="" coords="5,5,156,47"/>
 </map>

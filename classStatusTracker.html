@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('classStatusTracker.html',''); initResi
 </div><!--header-->
 <div class="contents">
 
-<p>Measures status counters for prometheus.  
+<p>Class for tracking the status of events and counting successes and failures.  
  <a href="classStatusTracker.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Status_8hpp_source.html">Status.hpp</a>&gt;</code></p>
@@ -139,9 +139,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:ae71a9787ea9dcc6036c9f3f34b859456"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Measures status counters for prometheus. </p>
+<div class="textblock"><p>Class for tracking the status of events and counting successes and failures. </p>
 
-<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00008">8</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00009">9</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a87f9712c92f2338c890113aaeaf7f5f1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a87f9712c92f2338c890113aaeaf7f5f1">&#9670;&nbsp;</a></span>StatusTracker()</h2>
@@ -210,9 +210,9 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                     .Add({});</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
 <div class="ttc" id="aclassStatusTracker_html_abdbf119c2c3228df9f52272dd9aae68e"><div class="ttname"><a href="classStatusTracker.html#abdbf119c2c3228df9f52272dd9aae68e">StatusTracker::activeCtr</a></div><div class="ttdeci">prometheus::Gauge * activeCtr</div><div class="ttdoc">Active number of events.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00011">Status.hpp:11</a></div></div>
-<div class="ttc" id="aclassStatusTracker_html_ae53bf29e45aff4ca662f404011f1fa46"><div class="ttname"><a href="classStatusTracker.html#ae53bf29e45aff4ca662f404011f1fa46">StatusTracker::successCtr</a></div><div class="ttdeci">prometheus::Counter * successCtr</div><div class="ttdoc">Number of success.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00015">Status.hpp:15</a></div></div>
-<div class="ttc" id="aclassStatusTracker_html_ae71a9787ea9dcc6036c9f3f34b859456"><div class="ttname"><a href="classStatusTracker.html#ae71a9787ea9dcc6036c9f3f34b859456">StatusTracker::failedCtr</a></div><div class="ttdeci">prometheus::Counter * failedCtr</div><div class="ttdoc">Number of fail.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00017">Status.hpp:17</a></div></div>
-<div class="ttc" id="aclassStatusTracker_html_afdc353812ae26abfe504d4b311c573e8"><div class="ttname"><a href="classStatusTracker.html#afdc353812ae26abfe504d4b311c573e8">StatusTracker::totalCtr</a></div><div class="ttdeci">prometheus::Counter * totalCtr</div><div class="ttdoc">Total number of counters.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00013">Status.hpp:13</a></div></div>
+<div class="ttc" id="aclassStatusTracker_html_ae53bf29e45aff4ca662f404011f1fa46"><div class="ttname"><a href="classStatusTracker.html#ae53bf29e45aff4ca662f404011f1fa46">StatusTracker::successCtr</a></div><div class="ttdeci">prometheus::Counter * successCtr</div><div class="ttdoc">Number of success.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00013">Status.hpp:13</a></div></div>
+<div class="ttc" id="aclassStatusTracker_html_ae71a9787ea9dcc6036c9f3f34b859456"><div class="ttname"><a href="classStatusTracker.html#ae71a9787ea9dcc6036c9f3f34b859456">StatusTracker::failedCtr</a></div><div class="ttdeci">prometheus::Counter * failedCtr</div><div class="ttdoc">Number of fail.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00014">Status.hpp:14</a></div></div>
+<div class="ttc" id="aclassStatusTracker_html_afdc353812ae26abfe504d4b311c573e8"><div class="ttname"><a href="classStatusTracker.html#afdc353812ae26abfe504d4b311c573e8">StatusTracker::totalCtr</a></div><div class="ttdeci">prometheus::Counter * totalCtr</div><div class="ttdoc">Total number of counters.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00012">Status.hpp:12</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -386,7 +386,7 @@ Here is the caller graph for this function:</div>
 
 <p>Number of fail. </p>
 
-<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00017">17</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00014">14</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
 
 </div>
 </div>
@@ -412,7 +412,7 @@ Here is the caller graph for this function:</div>
 
 <p>Number of success. </p>
 
-<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00015">15</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00013">13</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
 
 </div>
 </div>
@@ -438,7 +438,7 @@ Here is the caller graph for this function:</div>
 
 <p>Total number of counters. </p>
 
-<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00013">13</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Status_8hpp_source.html#l00012">12</a> of file <a class="el" href="Status_8hpp_source.html">Status.hpp</a>.</p>
 
 </div>
 </div>
@@ -452,7 +452,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classStatusTracker.html">StatusTracker</a></li>
-    <li class="footer">Generated on Thu Feb 15 2024 08:28:29 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 18 2024 11:11:07 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

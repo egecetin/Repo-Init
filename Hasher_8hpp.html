@@ -124,9 +124,11 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a69c2bf176d386d2413b9ae6d8346588b"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a> (const char *s)</td></tr>
+<tr class="memdesc:a69c2bf176d386d2413b9ae6d8346588b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the compile-time hash value of a string.  <a href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">More...</a><br /></td></tr>
 <tr class="separator:a69c2bf176d386d2413b9ae6d8346588b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19de363e44f82446f890dc47a27d101c"><td class="memTemplParams" colspan="2">template&lt;size_t N&gt; </td></tr>
 <tr class="memitem:a19de363e44f82446f890dc47a27d101c"><td class="memTemplItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Hasher_8hpp.html#a19de363e44f82446f890dc47a27d101c">constSeeder</a> (const char(&amp;entropy)[N], const uint64_t iv=0)</td></tr>
+<tr class="memdesc:a19de363e44f82446f890dc47a27d101c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates entropy using the input string and an initial value.  <a href="Hasher_8hpp.html#a19de363e44f82446f890dc47a27d101c">More...</a><br /></td></tr>
 <tr class="separator:a19de363e44f82446f890dc47a27d101c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -154,15 +156,24 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Hasher_8hpp_source.html#l00007">7</a> of file <a class="el" href="Hasher_8hpp_source.html">Hasher.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{ <span class="keywordflow">return</span> *s ? *s + 33 * <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(s + 1) : 5381; }</div>
-<div class="ttc" id="aHasher_8hpp_html_a69c2bf176d386d2413b9ae6d8346588b"><div class="ttname"><a href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a></div><div class="ttdeci">constexpr size_t constHasher(const char *s)</div><div class="ttdef"><b>Definition:</b> <a href="Hasher_8hpp_source.html#l00007">Hasher.hpp:7</a></div></div>
+<p>Calculates the compile-time hash value of a string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>The input string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The hash value of the input string. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Hasher_8hpp_source.html#l00013">13</a> of file <a class="el" href="Hasher_8hpp_source.html">Hasher.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{ <span class="keywordflow">return</span> *s ? *s + 33 * <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(s + 1) : 5381; }</div>
+<div class="ttc" id="aHasher_8hpp_html_a69c2bf176d386d2413b9ae6d8346588b"><div class="ttname"><a href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a></div><div class="ttdeci">constexpr size_t constHasher(const char *s)</div><div class="ttdoc">Calculates the compile-time hash value of a string.</div><div class="ttdef"><b>Definition:</b> <a href="Hasher_8hpp_source.html#l00013">Hasher.hpp:13</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="Hasher_8hpp_a69c2bf176d386d2413b9ae6d8346588b_icgraph.png" border="0" usemap="#aHasher_8hpp_a69c2bf176d386d2413b9ae6d8346588b_icgraph" alt=""/></div>
 <map name="aHasher_8hpp_a69c2bf176d386d2413b9ae6d8346588b_icgraph" id="aHasher_8hpp_a69c2bf176d386d2413b9ae6d8346588b_icgraph">
-<area shape="rect" title=" " alt="" coords="531,5,633,32"/>
+<area shape="rect" title="Calculates the compile&#45;time hash value of a string." alt="" coords="531,5,633,32"/>
 <area shape="rect" href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title="Telnet session message received callback." alt="" coords="308,5,483,32"/>
 <area shape="rect" href="Control_8cpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e" title="Thread function to receive control messages or config changes from Telnet connections." alt="" coords="108,5,260,32"/>
 <area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
@@ -207,18 +218,28 @@ template&lt;size_t N&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Hasher_8hpp_source.html#l00011">11</a> of file <a class="el" href="Hasher_8hpp_source.html">Hasher.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">auto</span> value{iv};</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i{0}; i &lt; N; i++)</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="comment">// Xor 1st byte of seed with input byte</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        value = (value &amp; (unsigned(~0) &lt;&lt; 8)) | ((value &amp; 0xFF) ^ entropy[i]);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="comment">// Rotl 1 byte</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        value = value &lt;&lt; 8 | value &gt;&gt; ((<span class="keyword">sizeof</span>(value) * 8) - 8);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">return</span> value ^ iv;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
+<p>Generates entropy using the input string and an initial value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entropy</td><td>The input string used for generating entropy. </td></tr>
+    <tr><td class="paramname">iv</td><td>The initial value for the entropy generation. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The generated entropy value. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Hasher_8hpp_source.html#l00021">21</a> of file <a class="el" href="Hasher_8hpp_source.html">Hasher.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">auto</span> value{iv};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i{0}; i &lt; N; i++)</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="comment">// Xor 1st byte of seed with input byte</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        value = (value &amp; (unsigned(~0) &lt;&lt; 8)) | ((value &amp; 0xFF) ^ entropy[i]);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="comment">// Rotl 1 byte</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        value = value &lt;&lt; 8 | value &gt;&gt; ((<span class="keyword">sizeof</span>(value) * 8) - 8);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">return</span> value ^ iv;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -228,7 +249,7 @@ template&lt;size_t N&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_7b9d17e6bc5fd6e991fb9e832f07c291.html">rng</a></li><li class="navelem"><a class="el" href="Hasher_8hpp.html">Hasher.hpp</a></li>
-    <li class="footer">Generated on Thu Feb 15 2024 08:28:29 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 18 2024 11:11:07 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

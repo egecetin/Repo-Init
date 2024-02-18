@@ -1,4 +1,4 @@
 <map id="TrackPerformance::~TrackPerformance" name="TrackPerformance::~TrackPerformance">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,156,47"/>
-<area shape="rect" id="node2" href="$classPerformanceTracker.html#a865d4ab2a2e84f56d8d7f5fa0d4dd441" title="Ends the chronometer and updates internal statistics." alt="" coords="204,5,355,47"/>
+<area shape="rect" id="node1" title="Destructs the TrackPerformance object and stops the timer." alt="" coords="5,5,156,47"/>
+<area shape="rect" id="node2" href="$classPerformanceTracker.html#a865d4ab2a2e84f56d8d7f5fa0d4dd441" title="Ends the timer and updates internal statistics." alt="" coords="204,5,355,47"/>
 </map>

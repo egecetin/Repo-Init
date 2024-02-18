@@ -102,12 +102,15 @@ $(document).ready(function(){initNavTree('classHTTP.html',''); initResizable(); 
 </div><!--header-->
 <div class="contents">
 
+<p>Represents an <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> client connection.  
+ <a href="classHTTP.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="Http_8hpp_source.html">Http.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3e1bb11afeeb54bc5e9221a270172a14"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHTTP.html#a3e1bb11afeeb54bc5e9221a270172a14">HTTP</a> (std::string addr, int timeoutInMs=<a class="el" href="Http_8hpp.html#acc66b330b058210d8f5cad8a60a77463">HTTP_TIMEOUT_MS</a>)</td></tr>
-<tr class="memdesc:a3e1bb11afeeb54bc5e9221a270172a14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classHTTP.html">HTTP</a> class.  <a href="classHTTP.html#a3e1bb11afeeb54bc5e9221a270172a14">More...</a><br /></td></tr>
+<tr class="memdesc:a3e1bb11afeeb54bc5e9221a270172a14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> object.  <a href="classHTTP.html#a3e1bb11afeeb54bc5e9221a270172a14">More...</a><br /></td></tr>
 <tr class="separator:a3e1bb11afeeb54bc5e9221a270172a14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a516781f109229d6652dbdda339ef45fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHTTP.html#a516781f109229d6652dbdda339ef45fe">HTTP</a> (const <a class="el" href="classHTTP.html">HTTP</a> &amp;)=delete</td></tr>
 <tr class="memdesc:a516781f109229d6652dbdda339ef45fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="classHTTP.html#a516781f109229d6652dbdda339ef45fe">More...</a><br /></td></tr>
@@ -123,10 +126,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a090a91086d47418987af3a548a1184f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:accbda406014dffb5e3b144acd5e0f3d5"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:accbda406014dffb5e3b144acd5e0f3d5"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classHTTP.html#accbda406014dffb5e3b144acd5e0f3d5">setOption</a> (CURLoption option, T value)</td></tr>
-<tr class="memdesc:accbda406014dffb5e3b144acd5e0f3d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the option of <a class="el" href="classHTTP.html">HTTP</a> class.  <a href="classHTTP.html#accbda406014dffb5e3b144acd5e0f3d5">More...</a><br /></td></tr>
+<tr class="memdesc:accbda406014dffb5e3b144acd5e0f3d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an option for the <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> object.  <a href="classHTTP.html#accbda406014dffb5e3b144acd5e0f3d5">More...</a><br /></td></tr>
 <tr class="separator:accbda406014dffb5e3b144acd5e0f3d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a65072c45377fd8e991bc790f71fdf5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHTTP.html#a0a65072c45377fd8e991bc790f71fdf5">getHostAddress</a> () const</td></tr>
-<tr class="memdesc:a0a65072c45377fd8e991bc790f71fdf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the host address of the object.  <a href="classHTTP.html#a0a65072c45377fd8e991bc790f71fdf5">More...</a><br /></td></tr>
+<tr class="memdesc:a0a65072c45377fd8e991bc790f71fdf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the host address of the object.  <a href="classHTTP.html#a0a65072c45377fd8e991bc790f71fdf5">More...</a><br /></td></tr>
 <tr class="separator:a0a65072c45377fd8e991bc790f71fdf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1a0e164e3f910ad94ae83ed3dabbb48"><td class="memItemLeft" align="right" valign="top">CURLcode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHTTP.html#af1a0e164e3f910ad94ae83ed3dabbb48">sendGETRequest</a> (const std::string &amp;index, std::string &amp;receivedData, HttpStatus::Code &amp;statusCode)</td></tr>
 <tr class="memdesc:af1a0e164e3f910ad94ae83ed3dabbb48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a GET request.  <a href="classHTTP.html#af1a0e164e3f910ad94ae83ed3dabbb48">More...</a><br /></td></tr>
@@ -141,24 +144,28 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a305ae916fcf07e8dcd25b4defbae80d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a PUT request.  <a href="classHTTP.html#a305ae916fcf07e8dcd25b4defbae80d9">More...</a><br /></td></tr>
 <tr class="separator:a305ae916fcf07e8dcd25b4defbae80d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af36f36f547e48a89361cf150aeb177d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structHTTPStats.html">HTTPStats</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHTTP.html#af36f36f547e48a89361cf150aeb177d8">getStats</a> ()</td></tr>
-<tr class="memdesc:af36f36f547e48a89361cf150aeb177d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the statistics of class.  <a href="classHTTP.html#af36f36f547e48a89361cf150aeb177d8">More...</a><br /></td></tr>
+<tr class="memdesc:af36f36f547e48a89361cf150aeb177d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the statistics of the <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> object.  <a href="classHTTP.html#af36f36f547e48a89361cf150aeb177d8">More...</a><br /></td></tr>
 <tr class="separator:af36f36f547e48a89361cf150aeb177d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae252d5f9c5114a0976bd3993bfcd8563"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHTTP.html#ae252d5f9c5114a0976bd3993bfcd8563">~HTTP</a> ()</td></tr>
-<tr class="memdesc:ae252d5f9c5114a0976bd3993bfcd8563"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the <a class="el" href="classHTTP.html">HTTP</a> object.  <a href="classHTTP.html#ae252d5f9c5114a0976bd3993bfcd8563">More...</a><br /></td></tr>
+<tr class="memdesc:ae252d5f9c5114a0976bd3993bfcd8563"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> object.  <a href="classHTTP.html#ae252d5f9c5114a0976bd3993bfcd8563">More...</a><br /></td></tr>
 <tr class="separator:ae252d5f9c5114a0976bd3993bfcd8563"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:ae85e4d4d18e5fdfea708fe5bbd0f80b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4">setCommonFields</a> (const std::string &amp;fullURL, std::string &amp;receivedData, CURLoption method)</td></tr>
+<tr class="memdesc:ae85e4d4d18e5fdfea708fe5bbd0f80b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets common fields for <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> requests.  <a href="classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4">More...</a><br /></td></tr>
 <tr class="separator:ae85e4d4d18e5fdfea708fe5bbd0f80b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52873c0f6ed977ff287fbe38ad8f7c03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHTTP.html#a52873c0f6ed977ff287fbe38ad8f7c03">setCommonFields</a> (const std::string &amp;fullURL, std::string &amp;receivedData, CURLoption method, const std::string &amp;payload)</td></tr>
+<tr class="memdesc:a52873c0f6ed977ff287fbe38ad8f7c03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets common fields for <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> requests with payload.  <a href="classHTTP.html#a52873c0f6ed977ff287fbe38ad8f7c03">More...</a><br /></td></tr>
 <tr class="separator:a52873c0f6ed977ff287fbe38ad8f7c03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64327e6367eabafdcc15b7548cf87f03"><td class="memItemLeft" align="right" valign="top">CURLcode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHTTP.html#a64327e6367eabafdcc15b7548cf87f03">performRequest</a> (HttpStatus::Code &amp;statusCode)</td></tr>
+<tr class="memdesc:a64327e6367eabafdcc15b7548cf87f03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the request.  <a href="classHTTP.html#a64327e6367eabafdcc15b7548cf87f03">More...</a><br /></td></tr>
 <tr class="separator:a64327e6367eabafdcc15b7548cf87f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
 <tr class="memitem:af1464027a7d2268d3e34aa12a17bb814"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHTTP.html#af1464027a7d2268d3e34aa12a17bb814">writeDataCallback</a> (void *contents, size_t size, size_t nmemb, void *userp)</td></tr>
+<tr class="memdesc:af1464027a7d2268d3e34aa12a17bb814"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback function for writing received data.  <a href="classHTTP.html#af1464027a7d2268d3e34aa12a17bb814">More...</a><br /></td></tr>
 <tr class="separator:af1464027a7d2268d3e34aa12a17bb814"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -171,8 +178,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:abc92993224cd21403f36e31aa9510159"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Http_8hpp_source.html#l00039">39</a> of file <a class="el" href="Http_8hpp_source.html">Http.hpp</a>.</p>
+<div class="textblock"><p>Represents an <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> client connection. </p>
+
+<p class="definition">Definition at line <a class="el" href="Http_8hpp_source.html#l00043">43</a> of file <a class="el" href="Http_8hpp_source.html">Http.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3e1bb11afeeb54bc5e9221a270172a14"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3e1bb11afeeb54bc5e9221a270172a14">&#9670;&nbsp;</a></span>HTTP() <span class="overload">[1/3]</span></h2>
@@ -208,11 +216,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructs a new <a class="el" href="classHTTP.html">HTTP</a> class. </p>
+<p>Constructs a new <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Full path to server </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">timeoutInMs</td><td>Connection timeout in milliseconds </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>The full path to the server </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeoutInMs</td><td>The connection timeout in milliseconds </td></tr>
   </table>
   </dd>
 </dl>
@@ -234,16 +242,16 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, CURLOPT_SSLENGINE_DEFAULT, 1L);</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2); <span class="comment">// At least TLSv1.2</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
-<div class="ttc" id="aclassHTTP_html_a33c4ec8c15d5920c96f26ea53f93194a"><div class="ttname"><a href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">HTTP::curl</a></div><div class="ttdeci">CURL * curl</div><div class="ttdoc">CURL handler.</div><div class="ttdef"><b>Definition:</b> <a href="Http_8hpp_source.html#l00042">Http.hpp:42</a></div></div>
-<div class="ttc" id="aclassHTTP_html_abc92993224cd21403f36e31aa9510159"><div class="ttname"><a href="classHTTP.html#abc92993224cd21403f36e31aa9510159">HTTP::hostAddr</a></div><div class="ttdeci">std::string hostAddr</div><div class="ttdoc">Full path of server.</div><div class="ttdef"><b>Definition:</b> <a href="Http_8hpp_source.html#l00044">Http.hpp:44</a></div></div>
-<div class="ttc" id="aclassHTTP_html_af1464027a7d2268d3e34aa12a17bb814"><div class="ttname"><a href="classHTTP.html#af1464027a7d2268d3e34aa12a17bb814">HTTP::writeDataCallback</a></div><div class="ttdeci">static size_t writeDataCallback(void *contents, size_t size, size_t nmemb, void *userp)</div><div class="ttdef"><b>Definition:</b> <a href="Http_8cpp_source.html#l00037">Http.cpp:37</a></div></div>
+<div class="ttc" id="aclassHTTP_html_a33c4ec8c15d5920c96f26ea53f93194a"><div class="ttname"><a href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">HTTP::curl</a></div><div class="ttdeci">CURL * curl</div><div class="ttdoc">CURL handler.</div><div class="ttdef"><b>Definition:</b> <a href="Http_8hpp_source.html#l00046">Http.hpp:46</a></div></div>
+<div class="ttc" id="aclassHTTP_html_abc92993224cd21403f36e31aa9510159"><div class="ttname"><a href="classHTTP.html#abc92993224cd21403f36e31aa9510159">HTTP::hostAddr</a></div><div class="ttdeci">std::string hostAddr</div><div class="ttdoc">Full path of server.</div><div class="ttdef"><b>Definition:</b> <a href="Http_8hpp_source.html#l00048">Http.hpp:48</a></div></div>
+<div class="ttc" id="aclassHTTP_html_af1464027a7d2268d3e34aa12a17bb814"><div class="ttname"><a href="classHTTP.html#af1464027a7d2268d3e34aa12a17bb814">HTTP::writeDataCallback</a></div><div class="ttdeci">static size_t writeDataCallback(void *contents, size_t size, size_t nmemb, void *userp)</div><div class="ttdoc">Callback function for writing received data.</div><div class="ttdef"><b>Definition:</b> <a href="Http_8cpp_source.html#l00037">Http.cpp:37</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classHTTP_a3e1bb11afeeb54bc5e9221a270172a14_cgraph.png" border="0" usemap="#aclassHTTP_a3e1bb11afeeb54bc5e9221a270172a14_cgraph" alt=""/></div>
 <map name="aclassHTTP_a3e1bb11afeeb54bc5e9221a270172a14_cgraph" id="aclassHTTP_a3e1bb11afeeb54bc5e9221a270172a14_cgraph">
-<area shape="rect" title="Constructs a new HTTP class." alt="" coords="5,5,104,32"/>
-<area shape="rect" href="classHTTP.html#af1464027a7d2268d3e34aa12a17bb814" title=" " alt="" coords="152,5,336,32"/>
+<area shape="rect" title="Constructs a new HTTP object." alt="" coords="5,5,104,32"/>
+<area shape="rect" href="classHTTP.html#af1464027a7d2268d3e34aa12a17bb814" title="Callback function for writing received data." alt="" coords="152,5,336,32"/>
 </map>
 </div>
 
@@ -320,7 +328,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Destroys the <a class="el" href="classHTTP.html">HTTP</a> object. </p>
+<p>Destroys the <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> object. </p>
 
 <p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00128">128</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;{ curl_easy_cleanup(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>); }</div>
@@ -351,11 +359,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Get the host address of the object. </p>
-<dl class="section return"><dt>Returns</dt><dd>std::string Host address </dd></dl>
+<p>Gets the host address of the object. </p>
+<dl class="section return"><dt>Returns</dt><dd>The host address </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Http_8hpp_source.html#l00089">89</a> of file <a class="el" href="Http_8hpp_source.html">Http.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classHTTP.html#abc92993224cd21403f36e31aa9510159">hostAddr</a>; }</div>
+<p class="definition">Definition at line <a class="el" href="Http_8hpp_source.html#l00120">120</a> of file <a class="el" href="Http_8hpp_source.html">Http.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classHTTP.html#abc92993224cd21403f36e31aa9510159">hostAddr</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -374,8 +382,8 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Get the statistics of class. </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structHTTPStats.html" title="Stats produced by HTTP.">HTTPStats</a> Produced statistics </dd></dl>
+<p>Gets the statistics of the <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> object. </p>
+<dl class="section return"><dt>Returns</dt><dd>The produced statistics </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00095">95</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
@@ -493,6 +501,15 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Performs the request. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">statusCode</td><td>The <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> status code (set if CURLE_OK, otherwise unchanged) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The status of the operation. CURLE_OK if successful. </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00023">23</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">// Perform request</span></div>
@@ -511,7 +528,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classHTTP_a64327e6367eabafdcc15b7548cf87f03_icgraph.png" border="0" usemap="#aclassHTTP_a64327e6367eabafdcc15b7548cf87f03_icgraph" alt=""/></div>
 <map name="aclassHTTP_a64327e6367eabafdcc15b7548cf87f03_icgraph" id="aclassHTTP_a64327e6367eabafdcc15b7548cf87f03_icgraph">
-<area shape="rect" title=" " alt="" coords="239,81,408,108"/>
+<area shape="rect" title="Performs the request." alt="" coords="239,81,408,108"/>
 <area shape="rect" href="classHTTP.html#af1a0e164e3f910ad94ae83ed3dabbb48" title="Sends a GET request." alt="" coords="11,5,185,32"/>
 <area shape="rect" href="classHTTP.html#a40ccf88b3f6cb0124e481c19a6a21f1c" title="Sends a HEAD request." alt="" coords="5,56,191,83"/>
 <area shape="rect" href="classHTTP.html#a7e3abdbadb16b86b107d17f0b5578dfb" title="Sends a POST request." alt="" coords="7,107,189,133"/>
@@ -556,13 +573,13 @@ Here is the caller graph for this function:</div>
 <p>Sends a GET request. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Value to append to server address </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">receivedData</td><td>Received reply from server </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">statusCode</td><td><a class="el" href="classHTTP.html">HTTP</a> status code, Set if CURLE_OK, otherwise unchanged </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>The value to append to the server address </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">receivedData</td><td>The received reply from the server </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">statusCode</td><td>The <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> status code (set if CURLE_OK, otherwise unchanged) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>CURLcode Status of operation. CURLE_OK if successful. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The status of the operation. CURLE_OK if successful. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00065">65</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{</div>
@@ -570,16 +587,16 @@ Here is the caller graph for this function:</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4">setCommonFields</a>(<a class="code" href="classHTTP.html#abc92993224cd21403f36e31aa9510159">hostAddr</a> + index, receivedData, CURLOPT_HTTPGET);</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classHTTP.html#a64327e6367eabafdcc15b7548cf87f03">performRequest</a>(statusCode);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
-<div class="ttc" id="aclassHTTP_html_a64327e6367eabafdcc15b7548cf87f03"><div class="ttname"><a href="classHTTP.html#a64327e6367eabafdcc15b7548cf87f03">HTTP::performRequest</a></div><div class="ttdeci">CURLcode performRequest(HttpStatus::Code &amp;statusCode)</div><div class="ttdef"><b>Definition:</b> <a href="Http_8cpp_source.html#l00023">Http.cpp:23</a></div></div>
-<div class="ttc" id="aclassHTTP_html_ae85e4d4d18e5fdfea708fe5bbd0f80b4"><div class="ttname"><a href="classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4">HTTP::setCommonFields</a></div><div class="ttdeci">void setCommonFields(const std::string &amp;fullURL, std::string &amp;receivedData, CURLoption method)</div><div class="ttdef"><b>Definition:</b> <a href="Http_8cpp_source.html#l00006">Http.cpp:6</a></div></div>
+<div class="ttc" id="aclassHTTP_html_a64327e6367eabafdcc15b7548cf87f03"><div class="ttname"><a href="classHTTP.html#a64327e6367eabafdcc15b7548cf87f03">HTTP::performRequest</a></div><div class="ttdeci">CURLcode performRequest(HttpStatus::Code &amp;statusCode)</div><div class="ttdoc">Performs the request.</div><div class="ttdef"><b>Definition:</b> <a href="Http_8cpp_source.html#l00023">Http.cpp:23</a></div></div>
+<div class="ttc" id="aclassHTTP_html_ae85e4d4d18e5fdfea708fe5bbd0f80b4"><div class="ttname"><a href="classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4">HTTP::setCommonFields</a></div><div class="ttdeci">void setCommonFields(const std::string &amp;fullURL, std::string &amp;receivedData, CURLoption method)</div><div class="ttdoc">Sets common fields for HTTP requests.</div><div class="ttdef"><b>Definition:</b> <a href="Http_8cpp_source.html#l00006">Http.cpp:6</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classHTTP_af1a0e164e3f910ad94ae83ed3dabbb48_cgraph.png" border="0" usemap="#aclassHTTP_af1a0e164e3f910ad94ae83ed3dabbb48_cgraph" alt=""/></div>
 <map name="aclassHTTP_af1a0e164e3f910ad94ae83ed3dabbb48_cgraph" id="aclassHTTP_af1a0e164e3f910ad94ae83ed3dabbb48_cgraph">
 <area shape="rect" title="Sends a GET request." alt="" coords="5,31,180,57"/>
-<area shape="rect" href="classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title=" " alt="" coords="234,5,403,32"/>
-<area shape="rect" href="classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title=" " alt="" coords="228,56,409,83"/>
+<area shape="rect" href="classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title="Performs the request." alt="" coords="234,5,403,32"/>
+<area shape="rect" href="classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title="Sets common fields for HTTP requests." alt="" coords="228,56,409,83"/>
 </map>
 </div>
 
@@ -620,13 +637,13 @@ Here is the call graph for this function:</div>
 <p>Sends a HEAD request. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Value to append to server address </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">receivedData</td><td>Received reply from server </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">statusCode</td><td><a class="el" href="classHTTP.html">HTTP</a> status code. Set if CURLE_OK, otherwise unchanged </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>The value to append to the server address </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">receivedData</td><td>The received reply from the server </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">statusCode</td><td>The <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> status code (set if CURLE_OK, otherwise unchanged) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>CURLcode Status of operation. CURLE_OK if successful. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The status of the operation. CURLE_OK if successful. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00072">72</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
@@ -640,8 +657,8 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="classHTTP_a40ccf88b3f6cb0124e481c19a6a21f1c_cgraph.png" border="0" usemap="#aclassHTTP_a40ccf88b3f6cb0124e481c19a6a21f1c_cgraph" alt=""/></div>
 <map name="aclassHTTP_a40ccf88b3f6cb0124e481c19a6a21f1c_cgraph" id="aclassHTTP_a40ccf88b3f6cb0124e481c19a6a21f1c_cgraph">
 <area shape="rect" title="Sends a HEAD request." alt="" coords="5,31,191,57"/>
-<area shape="rect" href="classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title=" " alt="" coords="245,5,414,32"/>
-<area shape="rect" href="classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title=" " alt="" coords="239,56,420,83"/>
+<area shape="rect" href="classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title="Performs the request." alt="" coords="245,5,414,32"/>
+<area shape="rect" href="classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title="Sets common fields for HTTP requests." alt="" coords="239,56,420,83"/>
 </map>
 </div>
 
@@ -688,14 +705,14 @@ Here is the call graph for this function:</div>
 <p>Sends a POST request. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Value to append to server address </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">payload</td><td>Payload to send to server </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">receivedData</td><td>Received reply from server </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">statusCode</td><td><a class="el" href="classHTTP.html">HTTP</a> status code. Set if CURLE_OK, otherwise unchanged </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>The value to append to the server address </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">payload</td><td>The payload to send to the server </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">receivedData</td><td>The received reply from the server </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">statusCode</td><td>The <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> status code (set if CURLE_OK, otherwise unchanged) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>CURLcode Status of operation. CURLE_OK if successful. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The status of the operation. CURLE_OK if successful. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00079">79</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;{</div>
@@ -709,8 +726,8 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="classHTTP_a7e3abdbadb16b86b107d17f0b5578dfb_cgraph.png" border="0" usemap="#aclassHTTP_a7e3abdbadb16b86b107d17f0b5578dfb_cgraph" alt=""/></div>
 <map name="aclassHTTP_a7e3abdbadb16b86b107d17f0b5578dfb_cgraph" id="aclassHTTP_a7e3abdbadb16b86b107d17f0b5578dfb_cgraph">
 <area shape="rect" title="Sends a POST request." alt="" coords="5,31,188,57"/>
-<area shape="rect" href="classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title=" " alt="" coords="242,5,411,32"/>
-<area shape="rect" href="classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title=" " alt="" coords="236,56,417,83"/>
+<area shape="rect" href="classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title="Performs the request." alt="" coords="242,5,411,32"/>
+<area shape="rect" href="classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title="Sets common fields for HTTP requests." alt="" coords="236,56,417,83"/>
 </map>
 </div>
 
@@ -757,14 +774,14 @@ Here is the call graph for this function:</div>
 <p>Sends a PUT request. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Value to append to server address </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">payload</td><td>Payload to send to server </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">receivedData</td><td>Received reply from server </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">statusCode</td><td><a class="el" href="classHTTP.html">HTTP</a> status code. Set if CURLE_OK, otherwise unchanged </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>The value to append to the server address </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">payload</td><td>The payload to send to the server </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">receivedData</td><td>The received reply from the server </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">statusCode</td><td>The <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> status code (set if CURLE_OK, otherwise unchanged) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>CURLcode Status of operation. CURLE_OK if successful. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The status of the operation. CURLE_OK if successful. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00087">87</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;{</div>
@@ -778,8 +795,8 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="classHTTP_a305ae916fcf07e8dcd25b4defbae80d9_cgraph.png" border="0" usemap="#aclassHTTP_a305ae916fcf07e8dcd25b4defbae80d9_cgraph" alt=""/></div>
 <map name="aclassHTTP_a305ae916fcf07e8dcd25b4defbae80d9_cgraph" id="aclassHTTP_a305ae916fcf07e8dcd25b4defbae80d9_cgraph">
 <area shape="rect" title="Sends a PUT request." alt="" coords="5,31,180,57"/>
-<area shape="rect" href="classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title=" " alt="" coords="234,5,403,32"/>
-<area shape="rect" href="classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title=" " alt="" coords="228,56,409,83"/>
+<area shape="rect" href="classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title="Performs the request." alt="" coords="234,5,403,32"/>
+<area shape="rect" href="classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title="Sets common fields for HTTP requests." alt="" coords="228,56,409,83"/>
 </map>
 </div>
 
@@ -825,6 +842,16 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Sets common fields for <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> requests. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fullURL</td><td>The full URL of the request </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">receivedData</td><td>The received data from the server </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">method</td><td>The <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> method to use </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00006">6</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, CURLOPT_URL, fullURL.c_str());</div>
@@ -836,7 +863,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classHTTP_ae85e4d4d18e5fdfea708fe5bbd0f80b4_icgraph.png" border="0" usemap="#aclassHTTP_ae85e4d4d18e5fdfea708fe5bbd0f80b4_icgraph" alt=""/></div>
 <map name="aclassHTTP_ae85e4d4d18e5fdfea708fe5bbd0f80b4_icgraph" id="aclassHTTP_ae85e4d4d18e5fdfea708fe5bbd0f80b4_icgraph">
-<area shape="rect" title=" " alt="" coords="239,81,420,108"/>
+<area shape="rect" title="Sets common fields for HTTP requests." alt="" coords="239,81,420,108"/>
 <area shape="rect" href="classHTTP.html#af1a0e164e3f910ad94ae83ed3dabbb48" title="Sends a GET request." alt="" coords="11,5,185,32"/>
 <area shape="rect" href="classHTTP.html#a40ccf88b3f6cb0124e481c19a6a21f1c" title="Sends a HEAD request." alt="" coords="5,56,191,83"/>
 <area shape="rect" href="classHTTP.html#a7e3abdbadb16b86b107d17f0b5578dfb" title="Sends a POST request." alt="" coords="7,107,189,133"/>
@@ -892,6 +919,17 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Sets common fields for <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> requests with payload. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fullURL</td><td>The full URL of the request </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">receivedData</td><td>The received data from the server </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">method</td><td>The <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> method to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">payload</td><td>The payload to send to the server </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00013">13</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, CURLOPT_POSTFIELDS, payload.c_str());</div>
@@ -939,22 +977,20 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Set the option of <a class="el" href="classHTTP.html">HTTP</a> class. </p>
+<p>Sets an option for the <a class="el" href="classHTTP.html" title="Represents an HTTP client connection.">HTTP</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">option</td><td>CURL option </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Corresponding value </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">option</td><td>The CURL option to set </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>The corresponding value </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true If successful </dd>
-<dd>
-false Otherwise </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the option was set successfully, false otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Http_8hpp_source.html#l00080">80</a> of file <a class="el" href="Http_8hpp_source.html">Http.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">return</span> curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, option, value) == CURLE_OK;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="Http_8hpp_source.html#l00111">111</a> of file <a class="el" href="Http_8hpp_source.html">Http.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">return</span> curl_easy_setopt(<a class="code" href="classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a">curl</a>, option, value) == CURLE_OK;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1004,6 +1040,18 @@ false Otherwise </dd></dl>
 </table>
 </div><div class="memdoc">
 
+<p>Callback function for writing received data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">contents</td><td>The received data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>The size of each element </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nmemb</td><td>The number of elements </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">userp</td><td>User pointer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The total size of the received data </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00037">37</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">size_t</span> recvSize = size * nmemb;</div>
@@ -1019,8 +1067,8 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classHTTP_af1464027a7d2268d3e34aa12a17bb814_icgraph.png" border="0" usemap="#aclassHTTP_af1464027a7d2268d3e34aa12a17bb814_icgraph" alt=""/></div>
 <map name="aclassHTTP_af1464027a7d2268d3e34aa12a17bb814_icgraph" id="aclassHTTP_af1464027a7d2268d3e34aa12a17bb814_icgraph">
-<area shape="rect" title=" " alt="" coords="152,5,336,32"/>
-<area shape="rect" href="classHTTP.html#a3e1bb11afeeb54bc5e9221a270172a14" title="Constructs a new HTTP class." alt="" coords="5,5,104,32"/>
+<area shape="rect" title="Callback function for writing received data." alt="" coords="152,5,336,32"/>
+<area shape="rect" href="classHTTP.html#a3e1bb11afeeb54bc5e9221a270172a14" title="Constructs a new HTTP object." alt="" coords="5,5,104,32"/>
 </map>
 </div>
 
@@ -1049,7 +1097,7 @@ Here is the caller graph for this function:</div>
 
 <p>CURL handler. </p>
 
-<p class="definition">Definition at line <a class="el" href="Http_8hpp_source.html#l00042">42</a> of file <a class="el" href="Http_8hpp_source.html">Http.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Http_8hpp_source.html#l00046">46</a> of file <a class="el" href="Http_8hpp_source.html">Http.hpp</a>.</p>
 
 </div>
 </div>
@@ -1075,7 +1123,7 @@ Here is the caller graph for this function:</div>
 
 <p>Full path of server. </p>
 
-<p class="definition">Definition at line <a class="el" href="Http_8hpp_source.html#l00044">44</a> of file <a class="el" href="Http_8hpp_source.html">Http.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Http_8hpp_source.html#l00048">48</a> of file <a class="el" href="Http_8hpp_source.html">Http.hpp</a>.</p>
 
 </div>
 </div>
@@ -1089,7 +1137,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classHTTP.html">HTTP</a></li>
-    <li class="footer">Generated on Thu Feb 15 2024 08:28:29 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 18 2024 11:11:07 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

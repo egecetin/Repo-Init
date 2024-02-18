@@ -1,6 +1,6 @@
 <map id="TelnetMessageCallback" name="TelnetMessageCallback">
 <area shape="rect" id="node1" title="Telnet session message received callback." alt="" coords="5,81,180,108"/>
-<area shape="rect" id="node2" href="$Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b" title=" " alt="" coords="289,5,392,32"/>
+<area shape="rect" id="node2" href="$Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b" title="Calculates the compile&#45;time hash value of a string." alt="" coords="289,5,392,32"/>
 <area shape="rect" id="node3" href="$Utils_8cpp.html#a97c49d303bbf54bed2e1e6709deeb67c" title="Returns the version." alt="" coords="291,56,390,83"/>
 <area shape="rect" id="node4" href="$TelnetServer_8cpp.html#aaad0fd13b75d5ebde386438b336d77c7" title=" " alt="" coords="251,107,430,133"/>
 <area shape="rect" id="node5" href="$TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f" title=" " alt="" coords="228,157,453,184"/>

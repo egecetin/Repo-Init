@@ -101,7 +101,7 @@ $(document).ready(function(){initNavTree('classRawSocket.html',''); initResizabl
 </div><!--header-->
 <div class="contents">
 
-<p>Raw socket reads and writes binary data to provided interface. Write operations does not modify any field (MAC, IP etc). Only writes the full data directly like file write operations.  
+<p>Raw socket reads and writes binary data to the provided interface. Write operations do not modify any field (MAC, IP, etc.). They only write the full data directly, similar to file write operations.  
  <a href="classRawSocket.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="RawSocket_8hpp_source.html">RawSocket.hpp</a>&gt;</code></p>
@@ -110,7 +110,7 @@ Collaboration diagram for RawSocket:</div>
 <div class="dyncontent">
 <div class="center"><img src="classRawSocket__coll__graph.png" border="0" usemap="#aRawSocket_coll__map" alt="Collaboration graph"/></div>
 <map name="aRawSocket_coll__map" id="aRawSocket_coll__map">
-<area shape="rect" title="Raw socket reads and writes binary data to provided interface. Write operations does not modify any f..." alt="" coords="22,95,115,121"/>
+<area shape="rect" title="Raw socket reads and writes binary data to the provided interface. Write operations do not modify any..." alt="" coords="22,95,115,121"/>
 <area shape="rect" href="structRawSocketStats.html" title="Stats produced by RawSocket." alt="" coords="5,5,132,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -118,7 +118,7 @@ Collaboration diagram for RawSocket:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1a1f22c977bf55bd27b329646ef1840d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d">RawSocket</a> (std::string iface, bool isWrite=false)</td></tr>
-<tr class="memdesc:a1a1f22c977bf55bd27b329646ef1840d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classRawSocket.html" title="Raw socket reads and writes binary data to provided interface. Write operations does not modify any f...">RawSocket</a> class.  <a href="classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d">More...</a><br /></td></tr>
+<tr class="memdesc:a1a1f22c977bf55bd27b329646ef1840d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classRawSocket.html" title="Raw socket reads and writes binary data to the provided interface. Write operations do not modify any...">RawSocket</a> object.  <a href="classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d">More...</a><br /></td></tr>
 <tr class="separator:a1a1f22c977bf55bd27b329646ef1840d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedb0c47dc4c6f83606b8960698d26b0a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#aedb0c47dc4c6f83606b8960698d26b0a">RawSocket</a> (const <a class="el" href="classRawSocket.html">RawSocket</a> &amp;)=delete</td></tr>
 <tr class="memdesc:aedb0c47dc4c6f83606b8960698d26b0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="classRawSocket.html#aedb0c47dc4c6f83606b8960698d26b0a">More...</a><br /></td></tr>
@@ -136,16 +136,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:acad7d2566a1fd692d8b6a0abce722d13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the binded ethernet interface.  <a href="classRawSocket.html#acad7d2566a1fd692d8b6a0abce722d13">More...</a><br /></td></tr>
 <tr class="separator:acad7d2566a1fd692d8b6a0abce722d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79903d0e0acc19a14ab7b01c5e7ac709"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#a79903d0e0acc19a14ab7b01c5e7ac709">writeData</a> (const void *data, size_t dataLen)</td></tr>
-<tr class="memdesc:a79903d0e0acc19a14ab7b01c5e7ac709"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to interface.  <a href="classRawSocket.html#a79903d0e0acc19a14ab7b01c5e7ac709">More...</a><br /></td></tr>
+<tr class="memdesc:a79903d0e0acc19a14ab7b01c5e7ac709"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to the interface.  <a href="classRawSocket.html#a79903d0e0acc19a14ab7b01c5e7ac709">More...</a><br /></td></tr>
 <tr class="separator:a79903d0e0acc19a14ab7b01c5e7ac709"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7723c8ee0fe930d8a62de93e1cbc019d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#a7723c8ee0fe930d8a62de93e1cbc019d">readData</a> (void *data, size_t dataLen)</td></tr>
-<tr class="memdesc:a7723c8ee0fe930d8a62de93e1cbc019d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data from interface.  <a href="classRawSocket.html#a7723c8ee0fe930d8a62de93e1cbc019d">More...</a><br /></td></tr>
+<tr class="memdesc:a7723c8ee0fe930d8a62de93e1cbc019d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data from the interface.  <a href="classRawSocket.html#a7723c8ee0fe930d8a62de93e1cbc019d">More...</a><br /></td></tr>
 <tr class="separator:a7723c8ee0fe930d8a62de93e1cbc019d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f203ecb915c624a0dadb5e3de38188e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structRawSocketStats.html">RawSocketStats</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#a1f203ecb915c624a0dadb5e3de38188e">getStats</a> (bool resetInternalStats=false)</td></tr>
-<tr class="memdesc:a1f203ecb915c624a0dadb5e3de38188e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the statistics of class.  <a href="classRawSocket.html#a1f203ecb915c624a0dadb5e3de38188e">More...</a><br /></td></tr>
+<tr class="memdesc:a1f203ecb915c624a0dadb5e3de38188e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the statistics of the class.  <a href="classRawSocket.html#a1f203ecb915c624a0dadb5e3de38188e">More...</a><br /></td></tr>
 <tr class="separator:a1f203ecb915c624a0dadb5e3de38188e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a2386aad78626913a844f5ac4cbaadc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#a8a2386aad78626913a844f5ac4cbaadc">~RawSocket</a> ()</td></tr>
-<tr class="memdesc:a8a2386aad78626913a844f5ac4cbaadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classRawSocket.html" title="Raw socket reads and writes binary data to provided interface. Write operations does not modify any f...">RawSocket</a> object.  <a href="classRawSocket.html#a8a2386aad78626913a844f5ac4cbaadc">More...</a><br /></td></tr>
+<tr class="memdesc:a8a2386aad78626913a844f5ac4cbaadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classRawSocket.html" title="Raw socket reads and writes binary data to the provided interface. Write operations do not modify any...">RawSocket</a> object.  <a href="classRawSocket.html#a8a2386aad78626913a844f5ac4cbaadc">More...</a><br /></td></tr>
 <tr class="separator:a8a2386aad78626913a844f5ac4cbaadc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
@@ -175,7 +175,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a76f8185cc289212573bb184892e32fed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Raw socket reads and writes binary data to provided interface. Write operations does not modify any field (MAC, IP etc). Only writes the full data directly like file write operations. </p>
+<div class="textblock"><p>Raw socket reads and writes binary data to the provided interface. Write operations do not modify any field (MAC, IP, etc.). They only write the full data directly, similar to file write operations. </p>
 
 <p class="definition">Definition at line <a class="el" href="RawSocket_8hpp_source.html#l00023">23</a> of file <a class="el" href="RawSocket_8hpp_source.html">RawSocket.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -213,11 +213,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Construct a new <a class="el" href="classRawSocket.html" title="Raw socket reads and writes binary data to provided interface. Write operations does not modify any f...">RawSocket</a> class. </p>
+<p>Construct a new <a class="el" href="classRawSocket.html" title="Raw socket reads and writes binary data to the provided interface. Write operations do not modify any...">RawSocket</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">iface</td><td>Ethernet interface </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">isWrite</td><td>True if write mode, false if read mode requested </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">isWrite</td><td>True if write mode, false if read mode is requested </td></tr>
   </table>
   </dd>
 </dl>
@@ -255,7 +255,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="classRawSocket.html#a85c2dd10b144711eed2e80b720824b2b">isReady</a> = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
-<div class="ttc" id="aUtils_8cpp_html_a77c5602aee813ef2fde1a81c1db17e0c"><div class="ttname"><a href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a></div><div class="ttdeci">std::string getErrnoString(int errVal)</div><div class="ttdoc">Converts errno to readable string.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00142">Utils.cpp:142</a></div></div>
+<div class="ttc" id="aUtils_8cpp_html_a77c5602aee813ef2fde1a81c1db17e0c"><div class="ttname"><a href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a></div><div class="ttdeci">std::string getErrnoString(int errVal)</div><div class="ttdoc">Converts errno to a readable string.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00142">Utils.cpp:142</a></div></div>
 <div class="ttc" id="aclassRawSocket_html_a05ce445b1acec4ce317247a16e40f19a"><div class="ttname"><a href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">RawSocket::sockFd</a></div><div class="ttdeci">int sockFd</div><div class="ttdoc">Socket descriptor.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00030">RawSocket.hpp:30</a></div></div>
 <div class="ttc" id="aclassRawSocket_html_a706d8fa5d4e8597026f4ac7f898570ef"><div class="ttname"><a href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">RawSocket::iFace</a></div><div class="ttdeci">std::string iFace</div><div class="ttdoc">Currently used ethernet interface.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00032">RawSocket.hpp:32</a></div></div>
 <div class="ttc" id="aclassRawSocket_html_a85c2dd10b144711eed2e80b720824b2b"><div class="ttname"><a href="classRawSocket.html#a85c2dd10b144711eed2e80b720824b2b">RawSocket::isReady</a></div><div class="ttdeci">bool isReady</div><div class="ttdoc">Ready flag.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00026">RawSocket.hpp:26</a></div></div>
@@ -267,8 +267,8 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classRawSocket_a1a1f22c977bf55bd27b329646ef1840d_cgraph.png" border="0" usemap="#aclassRawSocket_a1a1f22c977bf55bd27b329646ef1840d_cgraph" alt=""/></div>
 <map name="aclassRawSocket_a1a1f22c977bf55bd27b329646ef1840d_cgraph" id="aclassRawSocket_a1a1f22c977bf55bd27b329646ef1840d_cgraph">
-<area shape="rect" title="Construct a new RawSocket class." alt="" coords="5,5,177,32"/>
-<area shape="rect" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title="Converts errno to readable string." alt="" coords="396,5,511,32"/>
+<area shape="rect" title="Construct a new RawSocket object." alt="" coords="5,5,177,32"/>
+<area shape="rect" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title="Converts errno to a readable string." alt="" coords="396,5,511,32"/>
 <area shape="rect" href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d" title=" " alt="" coords="225,31,348,57"/>
 </map>
 </div>
@@ -346,7 +346,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Destroy the <a class="el" href="classRawSocket.html" title="Raw socket reads and writes binary data to provided interface. Write operations does not modify any f...">RawSocket</a> object. </p>
+<p>Destroy the <a class="el" href="classRawSocket.html" title="Raw socket reads and writes binary data to the provided interface. Write operations do not modify any...">RawSocket</a> object. </p>
 
 <p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00108">108</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;{ close(<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a>); }</div>
@@ -401,10 +401,10 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Get the statistics of class. </p>
+<p>Get the statistics of the class. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">resetInternalStats</td><td>Whether internal statistics structure should be reset after returned </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">resetInternalStats</td><td>Whether the internal statistics structure should be reset after being returned </td></tr>
   </table>
   </dd>
 </dl>
@@ -489,7 +489,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="classRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_cgraph.png" border="0" usemap="#aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_cgraph" alt=""/></div>
 <map name="aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_cgraph" id="aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,128,32"/>
-<area shape="rect" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title="Converts errno to readable string." alt="" coords="176,5,291,32"/>
+<area shape="rect" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title="Converts errno to a readable string." alt="" coords="176,5,291,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -498,7 +498,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_icgraph.png" border="0" usemap="#aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_icgraph" alt=""/></div>
 <map name="aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_icgraph" id="aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_icgraph">
 <area shape="rect" title=" " alt="" coords="225,5,348,32"/>
-<area shape="rect" href="classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d" title="Construct a new RawSocket class." alt="" coords="5,5,177,32"/>
+<area shape="rect" href="classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d" title="Construct a new RawSocket object." alt="" coords="5,5,177,32"/>
 </map>
 </div>
 
@@ -586,15 +586,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Reads data from interface. </p>
+<p>Reads data from the interface. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>User allocated data </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>User-allocated data </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dataLen</td><td>Length of the data </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int Status of operation. Return the number of read bytes, negative on errors. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int Status of the operation. Returns the number of read bytes, negative on errors. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00078">78</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
@@ -645,7 +645,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Writes data to interface. </p>
+<p>Writes data to the interface. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Full payload data to write </td></tr>
@@ -653,7 +653,7 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int Status of operation. Return the number of written bytes, negative on errors. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int Status of the operation. Returns the number of written bytes, negative on errors. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00061">61</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
@@ -842,7 +842,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classRawSocket.html">RawSocket</a></li>
-    <li class="footer">Generated on Thu Feb 15 2024 08:28:29 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Feb 18 2024 11:11:07 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
