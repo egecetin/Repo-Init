@@ -13,6 +13,7 @@ namespace spdlog
 {
 	namespace sinks
 	{
+		// NOLINTBEGIN
 		/**
 		 * @brief A custom sink for spdlog that sends log messages to a Loki server.
 		 *
@@ -69,5 +70,6 @@ namespace spdlog
 
 		using loki_api_sink_mt = loki_api_sink<std::mutex>;
 		using loki_api_sink_st = loki_api_sink<details::null_mutex>;
+		// NOLINTEND
 	} // namespace sinks
 } // namespace spdlog

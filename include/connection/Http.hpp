@@ -75,6 +75,13 @@ class HTTP {
 	 */
 	static size_t writeDataCallback(void *contents, size_t size, size_t nmemb, void *userp);
 
+	/**
+	 * @brief Performs the request
+	 * @param[out] statusCode The HTTP status code (set if CURLE_OK, otherwise unchanged)
+	 * @return The status of the operation. CURLE_OK if successful.
+	 */
+	CURLcode performRequest(HttpStatus::Code &statusCode);
+
   public:
 	/**
 	 * @brief Constructs a new HTTP object

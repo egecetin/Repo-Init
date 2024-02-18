@@ -10,6 +10,7 @@ namespace spdlog
 {
 	namespace sinks
 	{
+		// NOLINTBEGIN
 		/**
 		 * @brief A sink for sending log messages to a Sentry server.
 		 *
@@ -56,5 +57,7 @@ namespace spdlog
 		using sentry_api_sink_mt = sentry_api_sink<std::mutex>; /**< Type alias for Sentry API sink with mutex. */
 		using sentry_api_sink_st =
 			sentry_api_sink<details::null_mutex>; /**< Type alias for Sentry API sink without mutex. */
-	}											  // namespace sinks
+
+		// NOLINTEND
+	} // namespace sinks
 } // namespace spdlog
