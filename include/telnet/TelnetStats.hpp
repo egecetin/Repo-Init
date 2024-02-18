@@ -6,34 +6,23 @@
  * @brief Telnet session statistics
  */
 struct TelnetSessionStats {
-	/// Connection start time
-	std::chrono::high_resolution_clock::time_point connectTime;
-	/// Connection end time
-	std::chrono::high_resolution_clock::time_point disconnectTime;
-	/// Uploaded bytes
-	size_t uploadBytes{};
-	/// Downloaded bytes
-	size_t downloadBytes{};
-	/// Successful commands
-	uint64_t successCmdCtr{};
-	/// Failed commands
-	uint64_t failCmdCtr{};
+	std::chrono::high_resolution_clock::time_point connectTime;	   ///< Connection start time
+	std::chrono::high_resolution_clock::time_point disconnectTime; ///< Connection end time
+	size_t uploadBytes{};										   ///< Uploaded bytes
+	size_t downloadBytes{};										   ///< Downloaded bytes
+	uint64_t successCmdCtr{};									   ///< Successful commands
+	uint64_t failCmdCtr{};										   ///< Failed commands
 };
 
 /**
  * @brief Telnet server statistics
  */
 struct TelnetServerStats {
-	/// Processing time start
-	std::chrono::high_resolution_clock::time_point processingTimeStart;
-	/// Processing time end
-	std::chrono::high_resolution_clock::time_point processingTimeEnd;
-	/// Number of active connections
-	uint64_t activeConnectionCtr{};
-	/// Number of accepted connections
-	uint64_t acceptedConnectionCtr{};
-	/// Number of refused connections
-	uint64_t refusedConnectionCtr{};
+	std::chrono::high_resolution_clock::time_point processingTimeStart; ///< Processing time start
+	std::chrono::high_resolution_clock::time_point processingTimeEnd;	///< Processing time end
+	uint64_t activeConnectionCtr{};										///< Number of active connections
+	uint64_t acceptedConnectionCtr{};									///< Number of accepted connections
+	uint64_t refusedConnectionCtr{};									///< Number of refused connections
 };
 
 /**
@@ -41,41 +30,21 @@ struct TelnetServerStats {
  */
 class TelnetStats {
   private:
-	// Information metric family
-	prometheus::Family<prometheus::Info> *infoFamily;
-
-	// Number of active connections
-	prometheus::Gauge *activeConnection;
-	// Number of refused connections
-	prometheus::Counter *refusedConnection;
-	// Number of total received connections
-	prometheus::Counter *totalConnection;
-
-	// Value of the command processing performance
-	prometheus::Summary *processingTime;
-	// Maximum value of the command processing performance
-	prometheus::Gauge *maxProcessingTime;
-	// Minimum value of the command processing performance
-	prometheus::Gauge *minProcessingTime;
-
-	// Number of succeeded commands
-	prometheus::Counter *succeededCommand;
-	// Number of failed commands
-	prometheus::Counter *failedCommand;
-	// Number of total received commands
-	prometheus::Counter *totalCommand;
-
-	// Total uploaded bytes
-	prometheus::Counter *totalUploadBytes;
-	// Total downloaded bytes
-	prometheus::Counter *totalDownloadBytes;
-
-	// Value of the duration of sessions
-	prometheus::Summary *sessionDuration;
-	// Maximum duration of sessions
-	prometheus::Gauge *maxSessionDuration;
-	// Minimum duration of sessions
-	prometheus::Gauge *minSessionDuration;
+	prometheus::Family<prometheus::Info> *infoFamily; ///< Information metric family
+	prometheus::Gauge *activeConnection;			  ///< Number of active connections
+	prometheus::Counter *refusedConnection;			  ///< Number of refused connections
+	prometheus::Counter *totalConnection;			  ///< Number of total received connections
+	prometheus::Summary *processingTime;			  ///< Value of the command processing performance
+	prometheus::Gauge *maxProcessingTime;			  ///< Maximum value of the command processing performance
+	prometheus::Gauge *minProcessingTime;			  ///< Minimum value of the command processing performance
+	prometheus::Counter *succeededCommand;			  ///< Number of succeeded commands
+	prometheus::Counter *failedCommand;				  ///< Number of failed commands
+	prometheus::Counter *totalCommand;				  ///< Number of total received commands
+	prometheus::Counter *totalUploadBytes;			  ///< Total uploaded bytes
+	prometheus::Counter *totalDownloadBytes;		  ///< Total downloaded bytes
+	prometheus::Summary *sessionDuration;			  ///< Value of the duration of sessions
+	prometheus::Gauge *maxSessionDuration;			  ///< Maximum duration of sessions
+	prometheus::Gauge *minSessionDuration;			  ///< Minimum duration of sessions
 
   public:
 	/**

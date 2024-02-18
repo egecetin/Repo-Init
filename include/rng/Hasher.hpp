@@ -3,11 +3,19 @@
 #include <cstdint>
 #include <cstdio>
 
-// NOLINTBEGIN
+/**
+ * @brief Calculates the compile-time hash value of a string.
+ * @param s The input string.
+ * @return The hash value of the input string.
+ */
 constexpr size_t constHasher(const char *s) { return *s ? *s + 33 * constHasher(s + 1) : 5381; }
 
-// Create entropy using __FILE__ and __LINE__. Derived from Evan McBroom's
-// https://gist.github.com/EvanMcBroom/ad683e394f84b623da63c2b95f6fb547
+/**
+ * @brief Generates entropy using the input string and an initial value.
+ * @param entropy The input string used for generating entropy.
+ * @param iv The initial value for the entropy generation.
+ * @return The generated entropy value.
+ */
 template <size_t N> constexpr uint64_t constSeeder(const char (&entropy)[N], const uint64_t iv = 0)
 {
 	auto value{iv};
@@ -20,4 +28,3 @@ template <size_t N> constexpr uint64_t constSeeder(const char (&entropy)[N], con
 	}
 	return value ^ iv;
 }
-// NOLINTEND

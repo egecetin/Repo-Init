@@ -3,62 +3,70 @@
 #include <prometheus/registry.h>
 
 /**
- * @brief Measures and calculates performance metrics
+ * @class PerformanceTracker
+ * @brief Measures and calculates performance metrics.
+ *
+ * The PerformanceTracker class is responsible for measuring and calculating performance metrics.
+ * It provides functionality to start and stop a timer, and calculates the elapsed time between the start and stop
+ * events. The class uses the prometheus library to store and manage the performance metrics.
  */
 class PerformanceTracker {
   private:
-	/// Set after startTimer to measure counter difference
-	std::chrono::high_resolution_clock::time_point startTime;
-
-	/// Overall performance
-	prometheus::Summary *perfTiming;
-	/// Maximum observed value
-	prometheus::Gauge *maxTiming;
-	/// Minimum observed value
-	prometheus::Gauge *minTiming;
+	std::chrono::high_resolution_clock::time_point startTime; ///< Set after startTimer to measure counter difference
+	prometheus::Summary *perfTiming;						  ///< Overall performance
+	prometheus::Gauge *maxTiming;							  ///< Maximum observed value
+	prometheus::Gauge *minTiming;							  ///< Minimum observed value
 
   public:
 	/**
-	 * @brief Construct a new Performance Tracker
-	 * @param[in] reg Registry to prometheus
-	 * @param[in] name Name of the metric
-	 * @param[in] metricID ID to append to metric names
+	 * @brief Construct a new PerformanceTracker object.
+	 * @param[in] reg The registry to register the performance metrics.
+	 * @param[in] name The name of the metric.
+	 * @param[in] metricID The ID to append to metric names.
 	 */
 	PerformanceTracker(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name,
 					   uint64_t metricID = 0);
 
 	/**
-	 * @brief Starts the chronometer
+	 * @brief Starts the timer.
 	 */
 	void startTimer();
 
 	/**
-	 * @brief Ends the chronometer and updates internal statistics
-	 * @return Result of the chronometer in nanoseconds
+	 * @brief Ends the timer and updates internal statistics.
+	 * @return The result of the timer in nanoseconds.
 	 */
 	double endTimer();
 };
 
 /**
- * @brief RAII style wrapper for PerformanceTracker
+ * @class TrackPerformance
+ * @brief RAII style wrapper for PerformanceTracker.
+ *
+ * The TrackPerformance class is a RAII (Resource Acquisition Is Initialization) style wrapper for the
+ * PerformanceTracker class. It automatically starts the timer when constructed and stops the timer when destructed.
+ * This ensures that the timer is always stopped, even in case of exceptions or early returns.
+ * The class is non-copyable and non-movable to prevent unintended behavior.
  */
 class TrackPerformance {
   private:
-	PerformanceTracker &_tracker;
+	PerformanceTracker &_tracker; ///< Reference to the PerformanceTracker object.
 
   public:
+	/**
+	 * @brief Constructs a new TrackPerformance object.
+	 * @param[in] tracker The PerformanceTracker object to track.
+	 */
 	explicit TrackPerformance(PerformanceTracker &tracker) : _tracker(tracker) { _tracker.startTimer(); }
+
+	/**
+	 * @brief Destructs the TrackPerformance object and stops the timer.
+	 */
 	~TrackPerformance() { _tracker.endTimer(); }
 
-	/// @brief Copy constructor
+	// Non-copyable and non-movable
 	TrackPerformance(const TrackPerformance & /*unused*/) = delete;
-
-	/// @brief Move constructor
 	TrackPerformance(TrackPerformance && /*unused*/) = delete;
-
-	/// @brief Copy assignment operator
-	TrackPerformance &operator=(TrackPerformance /*unused*/) = delete;
-
-	/// @brief Move assignment operator
+	TrackPerformance &operator=(const TrackPerformance & /*unused*/) = delete;
 	TrackPerformance &operator=(TrackPerformance && /*unused*/) = delete;
 };

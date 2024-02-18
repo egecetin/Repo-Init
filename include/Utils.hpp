@@ -12,19 +12,10 @@
 /// Interval of SIGALRM in seconds
 constexpr uintmax_t alarmInterval = 1;
 
-/* ################################################################################### */
-/* ############################# MAKE MODIFICATIONS HERE ############################# */
-/* ################################################################################### */
-
-/* ################################################################################### */
-/* ################################ END MODIFICATIONS ################################ */
-/* ################################################################################### */
-
 /// Main flag to control loops. Can be modified by SIGINT
-// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 extern volatile bool loopFlag;
+
 /// Flags and definitions for runtime checks
-// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 extern std::vector<std::pair<std::string, std::unique_ptr<std::atomic_flag>>> vCheckFlag;
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
@@ -35,9 +26,13 @@ extern std::vector<std::pair<std::string, std::unique_ptr<std::atomic_flag>>> vC
 /* ################################################################################### */
 
 /**
+ * @class InputParser
  * @brief Parses command line inputs
  */
 class InputParser {
+  private:
+	std::vector<std::string> tokens;
+
   public:
 	/**
 	 * @brief Constructs a new InputParser object
@@ -48,7 +43,7 @@ class InputParser {
 	{
 		for (int i = 1; i < argc; ++i)
 		{
-			this->tokens.emplace_back(argv[i]); // NOLINT(cppcoreguidelines-pro-bounds-pointer-arithmetic)
+			this->tokens.emplace_back(argv[i]);
 		}
 		this->tokens.emplace_back("");
 	}
@@ -71,7 +66,7 @@ class InputParser {
 	}
 
 	/**
-	 * @brief Checks whether provided command line option is exists.
+	 * @brief Checks whether provided command line option exists.
 	 * @param[in] option Option to check
 	 * @return true If the provided option is found
 	 * @return false If the provided option is not found
@@ -80,12 +75,10 @@ class InputParser {
 	{
 		return std::find(this->tokens.begin(), this->tokens.end(), option) != this->tokens.end();
 	}
-
-  private:
-	std::vector<std::string> tokens;
 };
 
 /**
+ * @struct spinlock
  * @brief Spinlock implementation from https://rigtorp.se/spinlock/
  */
 struct spinlock {
@@ -93,6 +86,9 @@ struct spinlock {
 	std::atomic<bool> lock_ = {false};
 
   public:
+	/**
+	 * @brief Locks the spinlock
+	 */
 	void lock() noexcept
 	{
 		for (;;)
@@ -112,6 +108,11 @@ struct spinlock {
 		}
 	}
 
+	/**
+	 * @brief Tries to lock the spinlock
+	 * @return true If the lock is acquired successfully
+	 * @return false If the lock is already acquired by another thread
+	 */
 	bool try_lock() noexcept
 	{
 		// First do a relaxed load to check if lock is free in order to prevent
@@ -119,6 +120,9 @@ struct spinlock {
 		return !lock_.load(std::memory_order_relaxed) && !lock_.exchange(true, std::memory_order_acquire);
 	}
 
+	/**
+	 * @brief Unlocks the spinlock
+	 */
 	void unlock() noexcept { lock_.store(false, std::memory_order_release); }
 };
 
@@ -134,30 +138,30 @@ void print_version();
 std::string get_version();
 
 /**
- * @brief Read initial config from JSON and verify all required entries exists
- * @param[in] dir	Path to JSON
- * @return true    	Read all variables
- * @return false    Can't find some variables
+ * @brief Read initial config from JSON and verify all required entries exist
+ * @param[in] dir Path to JSON
+ * @return true If all variables are read successfully
+ * @return false If some variables cannot be found
  */
 bool readAndVerifyConfig(const std::string &dir);
 
 /**
- * @brief Reads a single entry from config
- * @param[in] dir 		Path to JSON
- * @param[in] value 	Value to read
- * @return std::string 	Read value
+ * @brief Reads a single entry from the config
+ * @param[in] dir Path to JSON
+ * @param[in] value Value to read
+ * @return std::string Read value
  */
 std::string readSingleConfig(const std::string &dir, const std::string &value);
 
 /**
- * @brief Converts errno to readable string
+ * @brief Converts errno to a readable string
  * @param[in] errVal errno value
  * @return std::string Error message
  */
 std::string getErrnoString(int errVal);
 
 /**
- * @brief Get the environment variable
+ * @brief Gets the value of an environment variable
  * @param[in] key Requested variable name
  * @return std::string Value of the variable
  */
@@ -165,7 +169,7 @@ std::string getEnvVar(const std::string &key);
 
 /**
  * @brief Searches line patterns from a file
- * @param[in] filePath Path to file
+ * @param[in] filePath Path to the file
  * @param[in] pattern Regex search pattern
  * @return std::vector<std::string> Matched lines
  */
@@ -173,7 +177,7 @@ std::vector<std::string> findFromFile(const std::string &filePath, const std::st
 
 /**
  * @brief Searches line patterns from a file
- * @param[in] filePath Path to file
+ * @param[in] filePath Path to the file
  * @param[in] pattern Regex search pattern
  * @param[out] lastWord Last word (space delimiter) of the first found line
  * @return std::vector<std::string> Matched lines
