@@ -11,6 +11,7 @@ include(GitVersion)
 include(GraphViz)
 
 find_package(CURL REQUIRED)
+find_package(RapidJSON REQUIRED)
 find_package(spdlog REQUIRED)
 find_package(ZLIB REQUIRED)
 
@@ -38,14 +39,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -DNDEBUG")
 
 # Disable/Enable options of subprojects
 set(CPPZMQ_BUILD_TESTS OFF CACHE BOOL "")
-
-set(RAPIDJSON_BUILD_DOC OFF CACHE BOOL "")
-set(RAPIDJSON_BUILD_EXAMPLES OFF CACHE BOOL "")
-set(RAPIDJSON_BUILD_TESTS OFF CACHE BOOL "")
-
 set(ENABLE_TESTING OFF CACHE BOOL "") # prometheus-cpp
-set(ENABLE_COMPRESSION OFF CACHE BOOL "") # prometheus-cpp
-
 set(INSTALL_GMOCK OFF CACHE BOOL "")
 set(INSTALL_GTEST OFF CACHE BOOL "")
 
@@ -79,19 +73,15 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/date/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/http-status-codes)
-include_directories(${PROJECT_SOURCE_DIR}/thirdparty/libzmq/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/pull/include)
-include_directories(${PROJECT_SOURCE_DIR}/thirdparty/rapidjson/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/include)
-include_directories(${PROJECT_SOURCE_DIR}/thirdparty/spdlog/include)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/pull/include)
 
 # Subdirectories
 add_subdirectory(thirdparty/cppzmq EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
-add_subdirectory(thirdparty/rapidjson EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry/external/crashpad EXCLUDE_FROM_ALL)
 
@@ -126,7 +116,6 @@ target_link_libraries(
   crashpad::client
   CURL::libcurl
   prometheus-cpp::pull
-  RapidJSON
   sentry::sentry
   spdlog::spdlog)
 enable_security_flags_for_target(${PROJECT_NAME}-lib)
