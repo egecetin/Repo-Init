@@ -20,7 +20,7 @@ class ZeroMQServer : private ZeroMQ {
 	 * @param[in] hostAddr Host address to connect. Can be anything supported by ZeroMQ reply socket
 	 * @param[in] reg Prometheus registry for stats
 	 */
-	ZeroMQServer(const std::string &hostAddr, const std::shared_ptr<prometheus::Registry> &reg = nullptr);
+	explicit ZeroMQServer(const std::string &hostAddr, const std::shared_ptr<prometheus::Registry> &reg = nullptr);
 
 	/**
 	 * @brief Initializes a new ZeroMQ server
