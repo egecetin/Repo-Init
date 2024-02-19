@@ -25,10 +25,7 @@ ZeroMQServer::ZeroMQServer(const std::string &hostAddr, const std::shared_ptr<pr
 	}
 }
 
-bool ZeroMQServer::initialise()
-{
-	return start();
-}
+bool ZeroMQServer::initialise() { return start(); }
 
 void ZeroMQServer::update()
 {
@@ -56,10 +53,7 @@ void ZeroMQServer::update()
 	}
 }
 
-void ZeroMQServer::shutdown()
-{
-	stop();
-}
+void ZeroMQServer::shutdown() { stop(); }
 
 bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, std::vector<zmq::message_t> &replyMsgs)
 {
