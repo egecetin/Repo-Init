@@ -1,8 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"structHTTPStats.html#a28e77c97dbcb01973f51feac53743535":[1,0,2,7],
-"structHTTPStats.html#a34a3b403c56a12b698ff9c83974168b2":[1,0,2,11],
-"structHTTPStats.html#a44793f93ec7d6dbd2cb7ab3262f9cce9":[1,0,2,5],
 "structHTTPStats.html#a47df34eaa6d601d28addda7be27b4254":[1,0,2,3],
 "structHTTPStats.html#a871efcee2704af506360d41b2cec658c":[1,0,2,10],
 "structHTTPStats.html#a8856fe05b0ad801f656bff33192675a2":[1,0,2,4],

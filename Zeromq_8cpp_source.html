@@ -126,7 +126,7 @@ $(document).ready(function(){initNavTree('Zeromq_8cpp_source.html',''); initResi
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classZeroMQ.html#afa401b962662f92b156a5707c7cf84ad">   30</a></span>&#160;<a class="code" href="classZeroMQ.html#afa401b962662f92b156a5707c7cf84ad">ZeroMQ::ZeroMQ</a>(<span class="keyword">const</span> zmq::socket_type &amp;type, <span class="keyword">const</span> std::string &amp;addr, <span class="keywordtype">bool</span> isBind)</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classZeroMQ.html#a763bac0903b21d20cb20798582eca5db">init</a>(<a class="code" href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">contextPtr</a>, type, addr, isBind);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classZeroMQ.html#a763bac0903b21d20cb20798582eca5db">init</a>(std::make_shared&lt;zmq::context_t&gt;(1), type, addr, isBind);</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classZeroMQ.html#a193417717ccecb48c40fc692cb0fb0c8">   35</a></span>&#160;<a class="code" href="classZeroMQ.html#afa401b962662f92b156a5707c7cf84ad">ZeroMQ::ZeroMQ</a>(<span class="keyword">const</span> std::shared_ptr&lt;zmq::context_t&gt; &amp;ctx, <span class="keyword">const</span> zmq::socket_type &amp;type, <span class="keyword">const</span> std::string &amp;addr,</div>
@@ -239,7 +239,7 @@ $(document).ready(function(){initNavTree('Zeromq_8cpp_source.html',''); initResi
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_7809a5fd4a748505dcdbefeb977685f2.html">connection</a></li><li class="navelem"><a class="el" href="Zeromq_8cpp.html">Zeromq.cpp</a></li>
-    <li class="footer">Generated on Mon Feb 19 2024 00:14:55 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Feb 19 2024 02:42:09 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

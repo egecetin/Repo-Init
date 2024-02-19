@@ -166,10 +166,9 @@ var NAVTREEINDEX0 =
 "Utils_8hpp_source.html":[2,0,0,8],
 "ZeroMQServer_8cpp.html":[2,0,1,4,0],
 "ZeroMQServer_8cpp.html#a25e238546b54dd48df2b8bec16804394":[2,0,1,4,0,2],
-"ZeroMQServer_8cpp.html#a6cb2f6ea8405b0176aacfd74e2e57914":[2,0,1,4,0,5],
+"ZeroMQServer_8cpp.html#a6cb2f6ea8405b0176aacfd74e2e57914":[2,0,1,4,0,4],
 "ZeroMQServer_8cpp.html#a741f5f05509b2793073f13cc748d362d":[2,0,1,4,0,1],
-"ZeroMQServer_8cpp.html#a7aff6e199c410c193f673d13f5f0b31d":[2,0,1,4,0,3],
-"ZeroMQServer_8cpp.html#ab462330ee745cd8941b21e96de5f5e17":[2,0,1,4,0,4],
+"ZeroMQServer_8cpp.html#ab462330ee745cd8941b21e96de5f5e17":[2,0,1,4,0,3],
 "ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26":[2,0,1,4,0,0],
 "ZeroMQServer_8cpp_source.html":[2,0,1,4,0],
 "ZeroMQServer_8hpp.html":[2,0,0,5,0],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef":[1,0,7,12],
 "classRawSocket.html#a76f8185cc289212573bb184892e32fed":[1,0,7,15],
 "classRawSocket.html#a7723c8ee0fe930d8a62de93e1cbc019d":[1,0,7,9],
-"classRawSocket.html#a79903d0e0acc19a14ab7b01c5e7ac709":[1,0,7,10]
+"classRawSocket.html#a79903d0e0acc19a14ab7b01c5e7ac709":[1,0,7,10],
+"classRawSocket.html#a85c2dd10b144711eed2e80b720824b2b":[1,0,7,13]
 };

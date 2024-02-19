@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('Zeromq_8hpp_source.html',''); initResi
 <div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classZeroMQ.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="classZeroMQ.html">ZeroMQ</a> {</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;  <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment">// Internal context</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">   16</a></span>&#160;    std::shared_ptr&lt;zmq::context_t&gt; <a class="code" href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">contextPtr</a>{std::make_shared&lt;zmq::context_t&gt;(1)};</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">   16</a></span>&#160;    std::shared_ptr&lt;zmq::context_t&gt; <a class="code" href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">contextPtr</a>;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="comment">// Internal socket</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">   18</a></span>&#160;    std::unique_ptr&lt;zmq::socket_t&gt; <a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a>;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
@@ -141,11 +141,14 @@ $(document).ready(function(){initNavTree('Zeromq_8hpp_source.html',''); initResi
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
 <div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="classZeroMQ.html#a734a0251d7bc6135ce41a0f9f0e13264">   90</a></span>&#160;    <span class="keyword">const</span> std::unique_ptr&lt;zmq::socket_t&gt; &amp;<a class="code" href="classZeroMQ.html#a734a0251d7bc6135ce41a0f9f0e13264">getSocket</a>() { <span class="keywordflow">return</span> <a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a>; }</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="classZeroMQ.html#ad274cd6a69ba9308acbe17fa49978467">~ZeroMQ</a>();</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;};</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classZeroMQ.html#a1f775303ef42aa9a847a72ad5435b8e2">   96</a></span>&#160;    <span class="keyword">const</span> std::shared_ptr&lt;zmq::context_t&gt; &amp;<a class="code" href="classZeroMQ.html#a1f775303ef42aa9a847a72ad5435b8e2">getContext</a>() { <span class="keywordflow">return</span> <a class="code" href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">contextPtr</a>; }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <a class="code" href="classZeroMQ.html#ad274cd6a69ba9308acbe17fa49978467">~ZeroMQ</a>();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;};</div>
 <div class="ttc" id="aclassZeroMQ_html"><div class="ttname"><a href="classZeroMQ.html">ZeroMQ</a></div><div class="ttdoc">A class that provides a wrapper for ZeroMQ functionality.</div><div class="ttdef"><b>Definition:</b> <a href="Zeromq_8hpp_source.html#l00013">Zeromq.hpp:13</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_a03886245e5bd9bff77a35bc5fa1254f7"><div class="ttname"><a href="classZeroMQ.html#a03886245e5bd9bff77a35bc5fa1254f7">ZeroMQ::ZeroMQ</a></div><div class="ttdeci">ZeroMQ(const ZeroMQ &amp;)=delete</div><div class="ttdoc">Copy constructor.</div></div>
 <div class="ttc" id="aclassZeroMQ_html_a1db454a94cec6d462e3f686fe156e5a9"><div class="ttname"><a href="classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9">ZeroMQ::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">Stops the connection.</div><div class="ttdef"><b>Definition:</b> <a href="Zeromq_8cpp_source.html#l00061">Zeromq.cpp:61</a></div></div>
+<div class="ttc" id="aclassZeroMQ_html_a1f775303ef42aa9a847a72ad5435b8e2"><div class="ttname"><a href="classZeroMQ.html#a1f775303ef42aa9a847a72ad5435b8e2">ZeroMQ::getContext</a></div><div class="ttdeci">const std::shared_ptr&lt; zmq::context_t &gt; &amp; getContext()</div><div class="ttdoc">Get the reference of context.</div><div class="ttdef"><b>Definition:</b> <a href="Zeromq_8hpp_source.html#l00096">Zeromq.hpp:96</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_a21fde4ed3d2e92375dfbf50b18962ff3"><div class="ttname"><a href="classZeroMQ.html#a21fde4ed3d2e92375dfbf50b18962ff3">ZeroMQ::socketAddr</a></div><div class="ttdeci">std::string socketAddr</div><div class="ttdef"><b>Definition:</b> <a href="Zeromq_8hpp_source.html#l00025">Zeromq.hpp:25</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_a325eaa87b401739d540d4fd2ecd01ca3"><div class="ttname"><a href="classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3">ZeroMQ::recvMessages</a></div><div class="ttdeci">std::vector&lt; zmq::message_t &gt; recvMessages()</div><div class="ttdoc">Receives multipart message.</div><div class="ttdef"><b>Definition:</b> <a href="Zeromq_8cpp_source.html#l00079">Zeromq.cpp:79</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_a4661098388016ba497e658a9a78b41d0"><div class="ttname"><a href="classZeroMQ.html#a4661098388016ba497e658a9a78b41d0">ZeroMQ::operator=</a></div><div class="ttdeci">ZeroMQ &amp; operator=(ZeroMQ)=delete</div><div class="ttdoc">Copy assignment operator.</div></div>
@@ -167,7 +170,7 @@ $(document).ready(function(){initNavTree('Zeromq_8hpp_source.html',''); initResi
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_b935dc3a175af072918a18b3cc6c6c2c.html">connection</a></li><li class="navelem"><a class="el" href="Zeromq_8hpp.html">Zeromq.hpp</a></li>
-    <li class="footer">Generated on Mon Feb 19 2024 00:14:55 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Feb 19 2024 02:42:09 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

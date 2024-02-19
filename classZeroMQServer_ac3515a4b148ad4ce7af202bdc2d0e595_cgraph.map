@@ -1,0 +1,4 @@
+<map id="ZeroMQServer::shutdown" name="ZeroMQServer::shutdown">
+<area shape="rect" id="node1" title="Closes the ZeroMQ Server." alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node2" href="$classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9" title="Stops the connection." alt="" coords="240,5,351,32"/>
+</map>

@@ -105,6 +105,15 @@ $(document).ready(function(){initNavTree('classZeroMQ.html',''); initResizable()
  <a href="classZeroMQ.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Zeromq_8hpp_source.html">Zeromq.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for ZeroMQ:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQ__inherit__graph.png" border="0" usemap="#aZeroMQ_inherit__map" alt="Inheritance graph"/></div>
+<map name="aZeroMQ_inherit__map" id="aZeroMQ_inherit__map">
+<area shape="rect" title="A class that provides a wrapper for ZeroMQ functionality." alt="" coords="26,5,101,32"/>
+<area shape="rect" href="classZeroMQServer.html" title=" " alt="" coords="5,80,121,107"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -141,6 +150,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a734a0251d7bc6135ce41a0f9f0e13264"><td class="memItemLeft" align="right" valign="top">const std::unique_ptr&lt; zmq::socket_t &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQ.html#a734a0251d7bc6135ce41a0f9f0e13264">getSocket</a> ()</td></tr>
 <tr class="memdesc:a734a0251d7bc6135ce41a0f9f0e13264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the reference of socket.  <a href="classZeroMQ.html#a734a0251d7bc6135ce41a0f9f0e13264">More...</a><br /></td></tr>
 <tr class="separator:a734a0251d7bc6135ce41a0f9f0e13264"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f775303ef42aa9a847a72ad5435b8e2"><td class="memItemLeft" align="right" valign="top">const std::shared_ptr&lt; zmq::context_t &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQ.html#a1f775303ef42aa9a847a72ad5435b8e2">getContext</a> ()</td></tr>
+<tr class="memdesc:a1f775303ef42aa9a847a72ad5435b8e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the reference of context.  <a href="classZeroMQ.html#a1f775303ef42aa9a847a72ad5435b8e2">More...</a><br /></td></tr>
+<tr class="separator:a1f775303ef42aa9a847a72ad5435b8e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad274cd6a69ba9308acbe17fa49978467"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQ.html#ad274cd6a69ba9308acbe17fa49978467">~ZeroMQ</a> ()</td></tr>
 <tr class="memdesc:ad274cd6a69ba9308acbe17fa49978467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality.">ZeroMQ</a> class.  <a href="classZeroMQ.html#ad274cd6a69ba9308acbe17fa49978467">More...</a><br /></td></tr>
 <tr class="separator:ad274cd6a69ba9308acbe17fa49978467"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,7 +164,7 @@ Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:ad50781ca1d02b059f6e8a52acd88a7c1"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; zmq::context_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">contextPtr</a> {std::make_shared&lt;zmq::context_t&gt;(1)}</td></tr>
+<tr class="memitem:ad50781ca1d02b059f6e8a52acd88a7c1"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; zmq::context_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">contextPtr</a></td></tr>
 <tr class="separator:ad50781ca1d02b059f6e8a52acd88a7c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a688270ff3384706aab30aca941eb22d4"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; zmq::socket_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a></td></tr>
 <tr class="separator:a688270ff3384706aab30aca941eb22d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,10 +225,9 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="Zeromq_8cpp_source.html#l00030">30</a> of file <a class="el" href="Zeromq_8cpp_source.html">Zeromq.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classZeroMQ.html#a763bac0903b21d20cb20798582eca5db">init</a>(<a class="code" href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">contextPtr</a>, type, addr, isBind);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classZeroMQ.html#a763bac0903b21d20cb20798582eca5db">init</a>(std::make_shared&lt;zmq::context_t&gt;(1), type, addr, isBind);</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
 <div class="ttc" id="aclassZeroMQ_html_a763bac0903b21d20cb20798582eca5db"><div class="ttname"><a href="classZeroMQ.html#a763bac0903b21d20cb20798582eca5db">ZeroMQ::init</a></div><div class="ttdeci">void init(const std::shared_ptr&lt; zmq::context_t &gt; &amp;ctx, const zmq::socket_type &amp;type, const std::string &amp;addr, bool isBind)</div><div class="ttdef"><b>Definition:</b> <a href="Zeromq_8cpp_source.html#l00012">Zeromq.cpp:12</a></div></div>
-<div class="ttc" id="aclassZeroMQ_html_ad50781ca1d02b059f6e8a52acd88a7c1"><div class="ttname"><a href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">ZeroMQ::contextPtr</a></div><div class="ttdeci">std::shared_ptr&lt; zmq::context_t &gt; contextPtr</div><div class="ttdef"><b>Definition:</b> <a href="Zeromq_8hpp_source.html#l00016">Zeromq.hpp:16</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -392,6 +403,38 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1f775303ef42aa9a847a72ad5435b8e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f775303ef42aa9a847a72ad5435b8e2">&#9670;&nbsp;</a></span>getContext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::shared_ptr&lt;zmq::context_t&gt;&amp; ZeroMQ::getContext </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the reference of context. </p>
+<dl class="section return"><dt>Returns</dt><dd>const std::shared_ptr&lt;zmq::context_t&gt;&amp; </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Zeromq_8hpp_source.html#l00096">96</a> of file <a class="el" href="Zeromq_8hpp_source.html">Zeromq.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">contextPtr</a>; }</div>
+<div class="ttc" id="aclassZeroMQ_html_ad50781ca1d02b059f6e8a52acd88a7c1"><div class="ttname"><a href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">ZeroMQ::contextPtr</a></div><div class="ttdeci">std::shared_ptr&lt; zmq::context_t &gt; contextPtr</div><div class="ttdef"><b>Definition:</b> <a href="Zeromq_8hpp_source.html#l00016">Zeromq.hpp:16</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a734a0251d7bc6135ce41a0f9f0e13264"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a734a0251d7bc6135ce41a0f9f0e13264">&#9670;&nbsp;</a></span>getSocket()</h2>
 
@@ -590,7 +633,16 @@ Here is the caller graph for this function:</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">return</span> recvMsgs;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQ_a325eaa87b401739d540d4fd2ecd01ca3_icgraph.png" border="0" usemap="#aclassZeroMQ_a325eaa87b401739d540d4fd2ecd01ca3_icgraph" alt=""/></div>
+<map name="aclassZeroMQ_a325eaa87b401739d540d4fd2ecd01ca3_icgraph" id="aclassZeroMQ_a325eaa87b401739d540d4fd2ecd01ca3_icgraph">
+<area shape="rect" title="Receives multipart message." alt="" coords="223,5,397,32"/>
+<area shape="rect" href="classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811" title="Processes new messages." alt="" coords="5,5,175,32"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a67e9a20d56ac8197b16844b5e9955c0c"></a>
@@ -636,7 +688,16 @@ Here is the caller graph for this function:</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQ_a67e9a20d56ac8197b16844b5e9955c0c_icgraph.png" border="0" usemap="#aclassZeroMQ_a67e9a20d56ac8197b16844b5e9955c0c_icgraph" alt=""/></div>
+<map name="aclassZeroMQ_a67e9a20d56ac8197b16844b5e9955c0c_icgraph" id="aclassZeroMQ_a67e9a20d56ac8197b16844b5e9955c0c_icgraph">
+<area shape="rect" title="Sends multipart message." alt="" coords="223,5,401,32"/>
+<area shape="rect" href="classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811" title="Processes new messages." alt="" coords="5,5,175,32"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aed565a56046d2966f9312a58aaab0c2a"></a>
@@ -676,7 +737,16 @@ Here is the caller graph for this function:</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQ_aed565a56046d2966f9312a58aaab0c2a_icgraph.png" border="0" usemap="#aclassZeroMQ_aed565a56046d2966f9312a58aaab0c2a_icgraph" alt=""/></div>
+<map name="aclassZeroMQ_aed565a56046d2966f9312a58aaab0c2a_icgraph" id="aclassZeroMQ_aed565a56046d2966f9312a58aaab0c2a_icgraph">
+<area shape="rect" title="Starts the connection." alt="" coords="233,5,345,32"/>
+<area shape="rect" href="classZeroMQServer.html#ad1c5ff929aee9963e4752e238a658b5c" title="Initializes a new ZeroMQ server." alt="" coords="5,5,185,32"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a1db454a94cec6d462e3f686fe156e5a9"></a>
@@ -718,8 +788,9 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classZeroMQ_a1db454a94cec6d462e3f686fe156e5a9_icgraph.png" border="0" usemap="#aclassZeroMQ_a1db454a94cec6d462e3f686fe156e5a9_icgraph" alt=""/></div>
 <map name="aclassZeroMQ_a1db454a94cec6d462e3f686fe156e5a9_icgraph" id="aclassZeroMQ_a1db454a94cec6d462e3f686fe156e5a9_icgraph">
-<area shape="rect" title="Stops the connection." alt="" coords="199,5,309,32"/>
-<area shape="rect" href="classZeroMQ.html#ad274cd6a69ba9308acbe17fa49978467" title="Destroy the ZeroMQ class." alt="" coords="5,5,151,32"/>
+<area shape="rect" title="Stops the connection." alt="" coords="240,31,351,57"/>
+<area shape="rect" href="classZeroMQServer.html#ac3515a4b148ad4ce7af202bdc2d0e595" title="Closes the ZeroMQ Server." alt="" coords="5,5,192,32"/>
+<area shape="rect" href="classZeroMQ.html#ad274cd6a69ba9308acbe17fa49978467" title="Destroy the ZeroMQ class." alt="" coords="26,56,171,83"/>
 </map>
 </div>
 
@@ -736,7 +807,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt;zmq::context_t&gt; ZeroMQ::contextPtr {std::make_shared&lt;zmq::context_t&gt;(1)}</td>
+          <td class="memname">std::shared_ptr&lt;zmq::context_t&gt; ZeroMQ::contextPtr</td>
         </tr>
       </table>
   </td>
@@ -856,7 +927,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classZeroMQ.html">ZeroMQ</a></li>
-    <li class="footer">Generated on Mon Feb 19 2024 00:14:55 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Feb 19 2024 02:42:10 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['rawsocket_350',['RawSocket',['../classRawSocket.html',1,'']]],
-  ['rawsocketstats_351',['RawSocketStats',['../structRawSocketStats.html',1,'']]]
+  ['rawsocket_348',['RawSocket',['../classRawSocket.html',1,'']]],
+  ['rawsocketstats_349',['RawSocketStats',['../structRawSocketStats.html',1,'']]]
 ];

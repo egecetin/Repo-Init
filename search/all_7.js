@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['get_5fversion_95',['get_version',['../Utils_8hpp.html#a97c49d303bbf54bed2e1e6709deeb67c',1,'get_version():&#160;Utils.cpp'],['../Utils_8cpp.html#a97c49d303bbf54bed2e1e6709deeb67c',1,'get_version():&#160;Utils.cpp']]],
-  ['getcmdoption_96',['getCmdOption',['../classInputParser.html#a0068fadbf71420dfb99d115a7a340fc6',1,'InputParser']]],
-  ['getcompletelines_97',['getCompleteLines',['../classTelnetSession.html#ac7629c5f06196cb044f0a61d22661839',1,'TelnetSession']]],
+  ['get_5fversion_94',['get_version',['../Utils_8hpp.html#a97c49d303bbf54bed2e1e6709deeb67c',1,'get_version():&#160;Utils.cpp'],['../Utils_8cpp.html#a97c49d303bbf54bed2e1e6709deeb67c',1,'get_version():&#160;Utils.cpp']]],
+  ['getcmdoption_95',['getCmdOption',['../classInputParser.html#a0068fadbf71420dfb99d115a7a340fc6',1,'InputParser']]],
+  ['getcompletelines_96',['getCompleteLines',['../classTelnetSession.html#ac7629c5f06196cb044f0a61d22661839',1,'TelnetSession']]],
+  ['getcontext_97',['getContext',['../classZeroMQ.html#a1f775303ef42aa9a847a72ad5435b8e2',1,'ZeroMQ']]],
   ['getenvvar_98',['getEnvVar',['../Utils_8hpp.html#abfddb0a668eda01a9a837cc1c1aae217',1,'getEnvVar(const std::string &amp;key):&#160;Utils.cpp'],['../Utils_8cpp.html#abfddb0a668eda01a9a837cc1c1aae217',1,'getEnvVar(const std::string &amp;key):&#160;Utils.cpp']]],
   ['geterrnostring_99',['getErrnoString',['../Utils_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c',1,'getErrnoString(int errVal):&#160;Utils.cpp'],['../Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c',1,'getErrnoString(int errVal):&#160;Utils.cpp']]],
   ['gethostaddress_100',['getHostAddress',['../classHTTP.html#a0a65072c45377fd8e991bc790f71fdf5',1,'HTTP']]],

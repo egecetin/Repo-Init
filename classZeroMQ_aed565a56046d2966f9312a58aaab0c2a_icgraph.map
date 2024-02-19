@@ -1,0 +1,4 @@
+<map id="ZeroMQ::start" name="ZeroMQ::start">
+<area shape="rect" id="node1" title="Starts the connection." alt="" coords="233,5,345,32"/>
+<area shape="rect" id="node2" href="$classZeroMQServer.html#ad1c5ff929aee9963e4752e238a658b5c" title="Initializes a new ZeroMQ server." alt="" coords="5,5,185,32"/>
+</map>

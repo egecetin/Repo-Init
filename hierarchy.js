@@ -25,8 +25,9 @@ var hierarchy =
     [ "Tracer", "classTracer.html", null ],
     [ "TrackPerformance", "classTrackPerformance.html", null ],
     [ "TrackStatus", "classTrackStatus.html", null ],
-    [ "ZeroMQ", "classZeroMQ.html", null ],
-    [ "ZeroMQServer", "classZeroMQServer.html", null ],
+    [ "ZeroMQ", "classZeroMQ.html", [
+      [ "ZeroMQServer", "classZeroMQServer.html", null ]
+    ] ],
     [ "ZeroMQServerStats", "structZeroMQServerStats.html", null ],
     [ "ZeroMQStats", "classZeroMQStats.html", null ]
 ];

@@ -1,0 +1,4 @@
+<map id="ZeroMQ::sendMessages" name="ZeroMQ::sendMessages">
+<area shape="rect" id="node1" title="Sends multipart message." alt="" coords="223,5,401,32"/>
+<area shape="rect" id="node2" href="$classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811" title="Processes new messages." alt="" coords="5,5,175,32"/>
+</map>
