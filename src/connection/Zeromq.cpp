@@ -29,7 +29,7 @@ void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_
 
 ZeroMQ::ZeroMQ(const zmq::socket_type &type, const std::string &addr, bool isBind)
 {
-	init(contextPtr, type, addr, isBind);
+	init(std::make_shared<zmq::context_t>(1), type, addr, isBind);
 }
 
 ZeroMQ::ZeroMQ(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr,

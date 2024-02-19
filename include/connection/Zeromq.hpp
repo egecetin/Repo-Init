@@ -13,7 +13,7 @@
 class ZeroMQ {
   private:
 	// Internal context
-	std::shared_ptr<zmq::context_t> contextPtr{std::make_shared<zmq::context_t>(1)};
+	std::shared_ptr<zmq::context_t> contextPtr;
 	// Internal socket
 	std::unique_ptr<zmq::socket_t> socketPtr;
 
@@ -88,6 +88,12 @@ class ZeroMQ {
 	 * @return const std::unique_ptr<zmq::socket_t>&
 	 */
 	const std::unique_ptr<zmq::socket_t> &getSocket() { return socketPtr; }
+
+	/**
+	 * @brief Get the reference of context
+	 * @return const std::shared_ptr<zmq::context_t>&
+	 */
+	const std::shared_ptr<zmq::context_t> &getContext() { return contextPtr; }
 
 	/**
 	 * @brief Destroy the ZeroMQ class
