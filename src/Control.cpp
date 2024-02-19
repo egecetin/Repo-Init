@@ -59,12 +59,11 @@ void zmqControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusSer
 					  const std::unique_ptr<std::atomic_flag> &checkFlag)
 {
 	// Init ZeroMQ server
-	auto zeroMqServerPtr = std::make_shared<ZeroMQServer>();
+	auto zeroMqServerPtr = std::make_shared<ZeroMQServer>(
+		serverAddr, mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
 	try
 	{
-		if (!serverAddr.empty() &&
-			zeroMqServerPtr->initialise(serverAddr,
-										mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr))
+		if (!serverAddr.empty() && zeroMqServerPtr->initialise())
 		{
 			zeroMqServerPtr->messageCallback(ZeroMQServerMessageCallback);
 			spdlog::info("ZeroMQ server created at {}", serverAddr);

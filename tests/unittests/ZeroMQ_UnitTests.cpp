@@ -20,12 +20,13 @@ TEST(ZeroMQ_Tests, ZeroMQServerUnitTests)
 	PrometheusServer reporter(promServerAddr);
 
 	// Init ZeroMQ Server
-	auto zeromqServerPtr = std::make_shared<ZeroMQServer>();
-	ASSERT_TRUE(zeromqServerPtr->initialise(zeromqServerAddr));
-	ASSERT_FALSE(zeromqServerPtr->initialise(zeromqServerAddr));
+	auto zeromqServerPtr = std::make_shared<ZeroMQServer>(zeromqServerAddr);
+	ASSERT_TRUE(zeromqServerPtr->initialise());
+	ASSERT_FALSE(zeromqServerPtr->initialise());
 	zeromqServerPtr->shutdown();
 
-	ASSERT_TRUE(zeromqServerPtr->initialise(zeromqServerAddr, reporter.createNewRegistry()));
+	zeromqServerPtr = std::make_shared<ZeroMQServer>(zeromqServerAddr, reporter.createNewRegistry());
+	ASSERT_TRUE(zeromqServerPtr->initialise());
 	zeromqServerPtr->messageCallback(ZeroMQServerMessageCallback);
 
 	// Launch script

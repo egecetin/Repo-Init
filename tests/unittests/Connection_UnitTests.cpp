@@ -185,6 +185,8 @@ TEST(Connection_Tests, ZeroMQUnitTests)
 		std::shared_ptr<zmq::context_t> ctx = std::make_shared<zmq::context_t>(1);
 		ZeroMQ handler(ctx, zmq::socket_type::req, echoServerAddr, false);
 
+		ASSERT_EQ(ctx, handler.getContext());
+
 		handler.getSocket()->set(zmq::sockopt::linger, 1234);
 		ASSERT_EQ(handler.getSocket()->get(zmq::sockopt::linger), 1234);
 

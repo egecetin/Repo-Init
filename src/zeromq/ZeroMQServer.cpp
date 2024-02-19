@@ -4,8 +4,6 @@
 
 #include <spdlog/spdlog.h>
 
-constexpr int SLEEP_INTERVAL_MS = 50;
-
 constexpr uint32_t LOG_LEVEL_ID = ('L' | ('O' << 8) | ('G' << 16) | ('L' << 24));
 constexpr uint32_t VERSION_INFO_ID = ('V' | ('E' << 8) | ('R' << 16) | ('I' << 24));
 constexpr uint32_t PING_PONG_ID = ('P' | ('I' << 8) | ('N' << 16) | ('G' << 24));
@@ -18,44 +16,20 @@ constexpr uint32_t STATUS_CHECK_ID = ('S' | ('C' << 8) | ('H' << 16) | ('K' << 2
 /* ################################ END MODIFICATIONS ################################ */
 /* ################################################################################### */
 
-bool ZeroMQServer::initialise(const std::string &hostAddr, const std::shared_ptr<prometheus::Registry> &reg)
+ZeroMQServer::ZeroMQServer(const std::string &hostAddr, const std::shared_ptr<prometheus::Registry> &reg)
+	: ZeroMQ(zmq::socket_type::rep, hostAddr, true)
 {
-	if (m_initialised)
+	if (reg)
 	{
-		return false;
+		stats = std::make_unique<ZeroMQStats>(reg);
 	}
-
-	serverAddr = hostAddr;
-	try
-	{
-		connectionPtr = std::make_unique<ZeroMQ>(zmq::socket_type::rep, serverAddr, true);
-	}
-	catch (const std::exception &e)
-	{
-		spdlog::error("Can't initialize ZeroMQ server: {}", e.what());
-		return false;
-	}
-
-	connectionPtr->getSocket()->set(zmq::sockopt::rcvtimeo, SLEEP_INTERVAL_MS);
-
-	if (connectionPtr->start())
-	{
-		// If prometheus registry is provided prepare statistics
-		if (reg)
-		{
-			stats = std::make_unique<ZeroMQStats>(reg);
-		}
-
-		m_initialised = true;
-		return true;
-	}
-
-	return false;
 }
+
+bool ZeroMQServer::initialise() { return start(); }
 
 void ZeroMQServer::update()
 {
-	auto recvMsgs = connectionPtr->recvMessages();
+	auto recvMsgs = recvMessages();
 
 	if (!recvMsgs.empty())
 	{
@@ -65,7 +39,7 @@ void ZeroMQServer::update()
 		serverStats.processingTimeStart = std::chrono::high_resolution_clock::now();
 		serverStats.isSuccessful = messageCallback() && messageCallback()(recvMsgs, replyMsgs);
 
-		size_t nSentMsg = connectionPtr->sendMessages(replyMsgs);
+		size_t nSentMsg = sendMessages(replyMsgs);
 		if (nSentMsg != replyMsgs.size())
 		{
 			spdlog::warn("Can't send whole reply: Sent messages {} / {}", nSentMsg, replyMsgs.size());
@@ -79,16 +53,7 @@ void ZeroMQServer::update()
 	}
 }
 
-void ZeroMQServer::shutdown()
-{
-	if (!m_initialised)
-	{
-		return;
-	}
-	connectionPtr->stop();
-
-	m_initialised = false;
-}
+void ZeroMQServer::shutdown() { stop(); }
 
 bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, std::vector<zmq::message_t> &replyMsgs)
 {
