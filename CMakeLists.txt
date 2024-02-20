@@ -32,11 +32,6 @@ message(STATUS "Compiling Version ${PROJECT_VERSION}")
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -O3 -DNDEBUG")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -DNDEBUG")
-
 # Disable/Enable options of subprojects
 set(CPPZMQ_BUILD_TESTS OFF CACHE BOOL "")
 set(ENABLE_TESTING OFF CACHE BOOL "") # prometheus-cpp
@@ -76,8 +71,6 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/http-status-codes)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/pull/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/include)
-include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/core/include)
-include_directories(${CMAKE_BINARY_DIR}/thirdparty/prometheus-cpp/pull/include)
 
 # Subdirectories
 add_subdirectory(thirdparty/cppzmq EXCLUDE_FROM_ALL)
