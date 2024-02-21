@@ -96,6 +96,12 @@ class ZeroMQ {
 	const std::shared_ptr<zmq::context_t> &getContext() { return contextPtr; }
 
 	/**
+	 * @brief Get the address of the socket
+	 * @return const std::string& Address of the socket
+	 */
+	const std::string &getAddress() { return socketAddr; }
+
+	/**
 	 * @brief Destroy the ZeroMQ class
 	 */
 	~ZeroMQ();
