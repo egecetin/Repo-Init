@@ -52,3 +52,15 @@ void crashpadControlThread(const std::string &remoteAddr, const std::string &pro
 						   const std::map<std::string, std::string> &annotations,
 						   const std::vector<base::FilePath> &attachments, const std::string &reportPath,
 						   const std::unique_ptr<std::atomic_flag> &checkFlag);
+
+/**
+ * @brief Thread function to handle self metrics
+ *
+ * This function runs as a separate thread and is responsible for handling self metrics. It takes a pointer to the main
+ * Prometheus server and a flag for runtime check as input parameters.
+ *
+ * @param mainPrometheusServer Pointer to the main Prometheus server
+ * @param checkFlag Flag for runtime check
+ */
+void selfMonitorThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer,
+					   const std::unique_ptr<std::atomic_flag> &checkFlag);
