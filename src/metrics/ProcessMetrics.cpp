@@ -62,11 +62,11 @@ double ProcessMetrics::getCpuUsage()
 std::pair<size_t, size_t> ProcessMetrics::getDiskIO()
 {
 	std::string buffer;
-	auto lines = findFromFile("/proc/self/io", "read_bytes", buffer);
+	findFromFile("/proc/self/io", "read_bytes", buffer);
 	size_t readBytes = buffer.empty() ? 0 : std::stoull(buffer);
 
 	buffer.clear();
-	lines = findFromFile("/proc/self/io", "write_bytes", buffer);
+	findFromFile("/proc/self/io", "write_bytes", buffer);
 	size_t writeBytes = buffer.empty() ? 0 : std::stoull(buffer);
 
 	std::pair<size_t, size_t> result = {readBytes - oldReadBytes, writeBytes - oldWriteBytes};
