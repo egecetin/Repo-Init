@@ -1,0 +1,4 @@
+<map id="ProcessMetrics::getPageFaults" name="ProcessMetrics::getPageFaults">
+<area shape="rect" id="node1" title="Gets the number of page faults of the process." alt="" coords="227,5,445,32"/>
+<area shape="rect" id="node2" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title="Updates the metrics values." alt="" coords="5,5,179,32"/>
+</map>

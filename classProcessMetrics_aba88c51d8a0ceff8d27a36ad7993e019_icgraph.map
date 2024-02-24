@@ -1,0 +1,4 @@
+<map id="ProcessMetrics::getMemoryUsage" name="ProcessMetrics::getMemoryUsage">
+<area shape="rect" id="node1" title="Gets the memory usage of the process." alt="" coords="227,5,429,47"/>
+<area shape="rect" id="node2" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title="Updates the metrics values." alt="" coords="5,13,179,39"/>
+</map>

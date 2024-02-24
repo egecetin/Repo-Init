@@ -1,0 +1,4 @@
+<map id="ProcessMetrics::getDiskIO" name="ProcessMetrics::getDiskIO">
+<area shape="rect" id="node1" title="Gets the disk read and write bytes of the process." alt="" coords="5,5,197,32"/>
+<area shape="rect" id="node2" href="$Utils_8cpp.html#a039c59323fd6d1eb296efd78500cca21" title="Searches line patterns from a file." alt="" coords="245,5,348,32"/>
+</map>

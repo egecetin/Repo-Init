@@ -1,0 +1,11 @@
+<map id="ProcessMetrics::update" name="ProcessMetrics::update">
+<area shape="rect" id="node1" title="Updates the metrics values." alt="" coords="5,148,179,175"/>
+<area shape="rect" id="node2" href="$classProcessMetrics.html#a07a73f45b18713c8e9f60a0a406c2d8f" title="Gets the CPU usage of the process." alt="" coords="239,5,453,32"/>
+<area shape="rect" id="node3" href="$classProcessMetrics.html#a595002ef00c4903650405590569de19d" title="Gets the disk read and write bytes of the process." alt="" coords="250,56,442,83"/>
+<area shape="rect" id="node5" href="$classProcessMetrics.html#afc464f41490e92722af1d5e0f0c57d85" title="Gets the number of file descriptors in the process." alt="" coords="227,107,465,149"/>
+<area shape="rect" id="node7" href="$classProcessMetrics.html#aba88c51d8a0ceff8d27a36ad7993e019" title="Gets the memory usage of the process." alt="" coords="245,173,447,214"/>
+<area shape="rect" id="node8" href="$classProcessMetrics.html#aec36472b19556dcd0fbc4c2164c8653c" title="Gets the number of page faults of the process." alt="" coords="237,239,455,265"/>
+<area shape="rect" id="node9" href="$classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636" title="Gets the number of threads in the process." alt="" coords="249,290,443,331"/>
+<area shape="rect" id="node4" href="$Utils_8cpp.html#a039c59323fd6d1eb296efd78500cca21" title="Searches line patterns from a file." alt="" coords="574,56,677,83"/>
+<area shape="rect" id="node6" href="$classProcessMetrics.html#aab60bd68d5a49dae6bd6d5f4364d1f9a" title="Counts the number of entries in a directory." alt="" coords="513,198,737,239"/>
+</map>

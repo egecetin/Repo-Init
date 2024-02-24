@@ -1,5 +1,5 @@
 <map id="main" name="main">
-<area shape="rect" id="node1" title=" " alt="" coords="5,259,60,285"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,284,60,311"/>
 <area shape="rect" id="node2" href="$Utils_8cpp.html#a8881842da1bfa8340392a8ca2b79ee63" title="Function invoked by SIGALRM signal." alt="" coords="169,5,260,32"/>
 <area shape="rect" id="node3" href="$classInputParser.html#aea813a8d6ee9ea6d250ab99333316bdf" title="Checks whether provided command line option exists." alt="" coords="108,56,321,83"/>
 <area shape="rect" id="node4" href="$Control_8cpp.html#aa266581771429799d932333577c9cb9f" title="Thread function to handle crashpad." alt="" coords="128,107,301,133"/>
@@ -7,18 +7,19 @@
 <area shape="rect" id="node6" href="$Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title="Converts errno to a readable string." alt="" coords="427,183,542,209"/>
 <area shape="rect" id="node7" href="$Utils_8cpp.html#a29b457922b435d58d7a8d75d238cb5fc" title="Function invoked by user interruption signals." alt="" coords="161,360,269,387"/>
 <area shape="rect" id="node8" href="$Utils_8cpp.html#a6302aaae12249e8ea16bfdc7de892f21" title="Prints the version." alt="" coords="161,411,268,437"/>
-<area shape="rect" id="node9" href="$Utils_8cpp.html#a35794d145a636bb13f1a9e69c77b586b" title="Read initial config from JSON and verify all required entries exist." alt="" coords="137,512,292,539"/>
-<area shape="rect" id="node12" href="$Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2" title="Reads a single entry from the config." alt="" coords="149,461,281,488"/>
-<area shape="rect" id="node13" href="$Control_8cpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e" title="Thread function to receive control messages or config changes from Telnet connections." alt="" coords="139,259,291,285"/>
-<area shape="rect" id="node21" href="$Control_8cpp.html#a02dcd91ad682a590eb32b76c23114c40" title="Thread function to receive control messages or config changes from ZMQ connection." alt="" coords="143,309,286,336"/>
+<area shape="rect" id="node9" href="$Utils_8cpp.html#a35794d145a636bb13f1a9e69c77b586b" title="Read initial config from JSON and verify all required entries exist." alt="" coords="137,461,292,488"/>
+<area shape="rect" id="node12" href="$Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2" title="Reads a single entry from the config." alt="" coords="149,512,281,539"/>
+<area shape="rect" id="node13" href="$Control_8cpp.html#ad551b6b0983c3efccc376f6fc0d04d64" title="Thread function to handle self metrics." alt="" coords="144,563,285,589"/>
+<area shape="rect" id="node14" href="$Control_8cpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e" title="Thread function to receive control messages or config changes from Telnet connections." alt="" coords="139,259,291,285"/>
+<area shape="rect" id="node22" href="$Control_8cpp.html#a02dcd91ad682a590eb32b76c23114c40" title="Thread function to receive control messages or config changes from ZMQ connection." alt="" coords="143,309,286,336"/>
 <area shape="rect" id="node10" href="$Utils_8cpp.html#a933a859107e64dc6d003e53cd1b06261" title=" " alt="" coords="447,512,522,539"/>
 <area shape="rect" id="node11" href="$Utils_8cpp.html#a747553f9d7d37822ca2bf1cea18e1694" title=" " alt="" coords="397,461,572,488"/>
-<area shape="rect" id="node14" href="$TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d" title="Telnet session connection start callback." alt="" coords="391,233,578,260"/>
-<area shape="rect" id="node16" href="$TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title="Telnet session message received callback." alt="" coords="397,284,572,311"/>
-<area shape="rect" id="node20" href="$TelnetServer_8cpp.html#a07c3fdafe30bb1042ceaf01572b7ce1d" title="Telnet session TAB received callback." alt="" coords="415,335,554,361"/>
-<area shape="rect" id="node15" href="$TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f" title=" " alt="" coords="648,233,873,260"/>
-<area shape="rect" id="node17" href="$Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b" title="Calculates the compile&#45;time hash value of a string." alt="" coords="709,335,812,361"/>
-<area shape="rect" id="node18" href="$Utils_8cpp.html#a97c49d303bbf54bed2e1e6709deeb67c" title="Returns the version." alt="" coords="711,385,810,412"/>
-<area shape="rect" id="node19" href="$TelnetServer_8cpp.html#aaad0fd13b75d5ebde386438b336d77c7" title=" " alt="" coords="671,284,850,311"/>
-<area shape="rect" id="node22" href="$ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26" title="ZeroMQ message received callback." alt="" coords="369,385,600,412"/>
+<area shape="rect" id="node15" href="$TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d" title="Telnet session connection start callback." alt="" coords="391,233,578,260"/>
+<area shape="rect" id="node17" href="$TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title="Telnet session message received callback." alt="" coords="397,284,572,311"/>
+<area shape="rect" id="node21" href="$TelnetServer_8cpp.html#a07c3fdafe30bb1042ceaf01572b7ce1d" title="Telnet session TAB received callback." alt="" coords="415,335,554,361"/>
+<area shape="rect" id="node16" href="$TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f" title=" " alt="" coords="648,233,873,260"/>
+<area shape="rect" id="node18" href="$Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b" title="Calculates the compile&#45;time hash value of a string." alt="" coords="709,335,812,361"/>
+<area shape="rect" id="node19" href="$Utils_8cpp.html#a97c49d303bbf54bed2e1e6709deeb67c" title="Returns the version." alt="" coords="711,385,810,412"/>
+<area shape="rect" id="node20" href="$TelnetServer_8cpp.html#aaad0fd13b75d5ebde386438b336d77c7" title=" " alt="" coords="671,284,850,311"/>
+<area shape="rect" id="node23" href="$ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26" title="ZeroMQ message received callback." alt="" coords="369,385,600,412"/>
 </map>

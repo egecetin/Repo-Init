@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['val_5fwidth_680',['VAL_WIDTH',['../TelnetServer_8cpp.html#a212d3f65beba384c5460e3b0d5c0345c',1,'TelnetServer.cpp']]],
-  ['vcheckflag_681',['vCheckFlag',['../Utils_8cpp.html#af79a31f6c3bfbd37429c920666931e90',1,'vCheckFlag():&#160;Utils.cpp'],['../Utils_8hpp.html#af79a31f6c3bfbd37429c920666931e90',1,'vCheckFlag():&#160;Utils.cpp']]],
-  ['version_5finfo_5fid_682',['VERSION_INFO_ID',['../ZeroMQServer_8cpp.html#a6cb2f6ea8405b0176aacfd74e2e57914',1,'ZeroMQServer.cpp']]],
-  ['vregister_683',['vRegister',['../classPrometheusServer.html#af761d539e94a3f425a09baf197f18683',1,'PrometheusServer']]]
+  ['uploadbytes_726',['uploadBytes',['../structHTTPStats.html#a871efcee2704af506360d41b2cec658c',1,'HTTPStats::uploadBytes()'],['../structTelnetSessionStats.html#ad4dbc1c062235253ee3bc00e642422d9',1,'TelnetSessionStats::uploadBytes()']]],
+  ['uploadspeed_727',['uploadSpeed',['../structHTTPStats.html#a34a3b403c56a12b698ff9c83974168b2',1,'HTTPStats']]]
 ];

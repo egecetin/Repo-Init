@@ -1,0 +1,4 @@
+<map id="ProcessMetrics::getFileDescriptorCount" name="ProcessMetrics::getFileDescriptorCount">
+<area shape="rect" id="node1" title="Gets the number of file descriptors in the process." alt="" coords="5,5,244,47"/>
+<area shape="rect" id="node2" href="$classProcessMetrics.html#aab60bd68d5a49dae6bd6d5f4364d1f9a" title="Counts the number of entries in a directory." alt="" coords="292,5,516,47"/>
+</map>

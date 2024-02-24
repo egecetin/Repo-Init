@@ -4,6 +4,10 @@ var dir_cda63f5ecd2e17b5351c028bf33f2973 =
       [ "PerformanceTracker", "classPerformanceTracker.html", "classPerformanceTracker" ],
       [ "TrackPerformance", "classTrackPerformance.html", "classTrackPerformance" ]
     ] ],
+    [ "ProcessMetrics.hpp", "ProcessMetrics_8hpp.html", [
+      [ "ProcessMetrics", "classProcessMetrics.html", "classProcessMetrics" ],
+      [ "oldCpu", "structProcessMetrics_1_1oldCpu.html", null ]
+    ] ],
     [ "PrometheusServer.hpp", "PrometheusServer_8hpp.html", [
       [ "PrometheusServer", "classPrometheusServer.html", "classPrometheusServer" ]
     ] ],

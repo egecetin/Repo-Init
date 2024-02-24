@@ -1,0 +1,4 @@
+<map id="ProcessMetrics::getCpuUsage" name="ProcessMetrics::getCpuUsage">
+<area shape="rect" id="node1" title="Gets the CPU usage of the process." alt="" coords="227,5,441,32"/>
+<area shape="rect" id="node2" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title="Updates the metrics values." alt="" coords="5,5,179,32"/>
+</map>

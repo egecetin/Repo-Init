@@ -11,6 +11,7 @@ var annotated_dup =
     [ "InputParser", "classInputParser.html", "classInputParser" ],
     [ "MainLogger", "classMainLogger.html", "classMainLogger" ],
     [ "PerformanceTracker", "classPerformanceTracker.html", "classPerformanceTracker" ],
+    [ "ProcessMetrics", "classProcessMetrics.html", "classProcessMetrics" ],
     [ "PrometheusServer", "classPrometheusServer.html", "classPrometheusServer" ],
     [ "RawSocket", "classRawSocket.html", "classRawSocket" ],
     [ "RawSocketStats", "structRawSocketStats.html", "structRawSocketStats" ],

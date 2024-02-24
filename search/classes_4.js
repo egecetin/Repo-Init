@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['performancetracker_346',['PerformanceTracker',['../classPerformanceTracker.html',1,'']]],
-  ['prometheusserver_347',['PrometheusServer',['../classPrometheusServer.html',1,'']]]
+  ['oldcpu_370',['oldCpu',['../structProcessMetrics_1_1oldCpu.html',1,'ProcessMetrics']]]
 ];
