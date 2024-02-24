@@ -20,6 +20,7 @@ option(XXX_BUILD_UNITTESTS "Build XXX unit tests" ON)
 option(XXX_BUILD_FUZZTESTS "Build XXX fuzz tests" OFF)
 option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
+option(XXX_ENABLE_SYMBOL_GENERATION "Enables symbol generation for binaries (Requires breakpad)" OFF)
 
 # Set project properties
 set(PROJECT_VERSION_MAJOR 0)
@@ -85,15 +86,17 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad/th
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad/third_party/mini_chromium/mini_chromium)
 
 # Add breakpad to compile dump_syms and minidump_stackwalk
-file(COPY ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/third_party
-  DESTINATION ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/breakpad/src/)
+if(XXX_ENABLE_SYMBOL_GENERATION)
+  file(COPY ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/third_party
+    DESTINATION ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/breakpad/src/)
 
-ExternalProject_Add(breakpad
-  SOURCE_DIR ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/breakpad
-  BINARY_DIR ${CMAKE_BINARY_DIR}/breakpad_bin
-  CONFIGURE_COMMAND "<SOURCE_DIR>/configure"
-  BUILD_COMMAND make -j2 # Prevent OOM for the virtual machines when parallel compilation invoked
-  INSTALL_COMMAND "")
+  ExternalProject_Add(breakpad
+    SOURCE_DIR ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/breakpad
+    BINARY_DIR ${CMAKE_BINARY_DIR}/breakpad_bin
+    CONFIGURE_COMMAND "<SOURCE_DIR>/configure"
+    BUILD_COMMAND make -j2 # Prevent OOM for the virtual machines when parallel compilation invoked
+    INSTALL_COMMAND "")
+endif()
 
 # Set Targets
 add_library(${PROJECT_NAME}-lib SHARED ${ProjectSources})
@@ -113,14 +116,21 @@ target_link_libraries(
   sentry::sentry
   spdlog::spdlog)
 enable_security_flags_for_target(${PROJECT_NAME}-lib)
-generate_symbols_for_target(${PROJECT_NAME}-lib)
+
+if(XXX_ENABLE_SYMBOL_GENERATION)
+  generate_symbols_for_target(${PROJECT_NAME}-lib)
+endif()
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -g -Wl,--build-id)
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_BINARY_DIR})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}-lib)
 enable_security_flags_for_target(${PROJECT_NAME})
-generate_symbols_for_target(${PROJECT_NAME})
+
+if(XXX_ENABLE_SYMBOL_GENERATION)
+  generate_symbols_for_target(${PROJECT_NAME})
+endif()
+
 add_dependencies(${PROJECT_NAME} crashpad::handler)
 
 install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}-lib crashpad_handler)
