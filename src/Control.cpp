@@ -1,5 +1,6 @@
 #include "Control.hpp"
 #include "Utils.hpp"
+#include "metrics/ProcessMetrics.hpp"
 #include "telnet/TelnetServer.hpp"
 #include "zeromq/ZeroMQServer.hpp"
 
@@ -9,6 +10,7 @@
 #include <spdlog/spdlog.h>
 
 constexpr int SLEEP_INTERVAL_MS = 50;
+constexpr int SLEEP_INTERVAL_SEC = 1;
 
 // GCOVR_EXCL_START
 void telnetControlThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer, uint16_t telnetPort,
@@ -133,6 +135,32 @@ void crashpadControlThread(const std::string &remoteAddr, const std::string &pro
 			spdlog::error("Crashpad failed: {}", e.what());
 		}
 		std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_INTERVAL_MS));
+	}
+}
+// GCOVR_EXCL_STOP
+
+// GCOVR_EXCL_START
+void selfMonitorThread(const std::unique_ptr<PrometheusServer> &mainPrometheusServer,
+					   const std::unique_ptr<std::atomic_flag> &checkFlag)
+{
+	if (!mainPrometheusServer)
+	{
+		return;
+	}
+
+	auto selfMetrics = std::make_shared<ProcessMetrics>(mainPrometheusServer->createNewRegistry());
+	while (loopFlag)
+	{
+		try
+		{
+			selfMetrics->update();
+			checkFlag->test_and_set();
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Self monitoring failed: {}", e.what());
+		}
+		std::this_thread::sleep_for(std::chrono::seconds(SLEEP_INTERVAL_SEC));
 	}
 }
 // GCOVR_EXCL_STOP
