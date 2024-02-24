@@ -23,14 +23,14 @@ size_t ProcessMetrics::countDirectoryEntries(const std::string &path)
 
 long int ProcessMetrics::getMemoryUsage()
 {
-	struct rusage r_usage{};
+	struct rusage r_usage {};
 	getrusage(RUSAGE_SELF, &r_usage);
 	return r_usage.ru_maxrss; // NOLINT(cppcoreguidelines-pro-type-union-access)
 }
 
 long int ProcessMetrics::getPageFaults()
 {
-	struct rusage r_usage{};
+	struct rusage r_usage {};
 	getrusage(RUSAGE_SELF, &r_usage);
 	return r_usage.ru_majflt; // NOLINT(cppcoreguidelines-pro-type-union-access)
 }
@@ -47,7 +47,7 @@ double ProcessMetrics::getCpuUsage()
 		return 0.0;
 	}
 
-	struct tms nowCpu{};
+	struct tms nowCpu {};
 	auto nowCpuTime = times(&nowCpu);
 
 	double usage =

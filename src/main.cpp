@@ -167,8 +167,8 @@ int main(int argc, char **argv)
 													  std::ref(crashpadAnnotations), std::ref(crashpadAttachments),
 													  std::ref(crashpadReportPath), std::ref(vCheckFlag[2].second));
 
-	selfMonitorTh =
-		std::make_unique<std::thread>(selfMonitorThread, std::ref(mainPrometheusServer), std::ref(vCheckFlag[3].second));
+	selfMonitorTh = std::make_unique<std::thread>(selfMonitorThread, std::ref(mainPrometheusServer),
+												  std::ref(vCheckFlag[3].second));
 	spdlog::debug("Threads started");
 
 	// SIGALRM should be registered after all sleep calls
