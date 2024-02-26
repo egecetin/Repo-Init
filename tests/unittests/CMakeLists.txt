@@ -4,6 +4,7 @@ file(GLOB ProjectUnitTestSources
     Logger_UnitTests.cpp
     Metrics_UnitTests.cpp
     Telnet_UnitTests.cpp
+    Tracer_UnitTests.cpp
     Utils_UnitTests.cpp
     ZeroMQ_UnitTests.cpp
     gtest_main.cpp
