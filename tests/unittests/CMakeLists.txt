@@ -15,7 +15,6 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 add_executable(UnitTestMain ${ProjectUnitTestSources})
 target_include_directories(UnitTestMain PRIVATE "${PROJECT_BINARY_DIR}/tests")
 target_link_libraries(UnitTestMain PRIVATE GTest::gtest_main "${PROJECT_NAME}-lib")
-add_dependencies(UnitTestMain crashpad::handler)
 
 if(XXX_ENABLE_MEMLEAK_CHECK)
     target_link_libraries(UnitTestMain PRIVATE memplumber)
