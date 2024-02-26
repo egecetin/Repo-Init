@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['lock_518',['lock',['../structspinlock.html#a2208dc223f3956544c3670b59c712caa',1,'spinlock']]],
-  ['loki_5fapi_5fsink_519',['loki_api_sink',['../classspdlog_1_1sinks_1_1loki__api__sink.html#ad41002727c3101c6069dbbe333456b11',1,'spdlog::sinks::loki_api_sink']]]
+  ['lock_519',['lock',['../structspinlock.html#a2208dc223f3956544c3670b59c712caa',1,'spinlock']]],
+  ['loki_5fapi_5fsink_520',['loki_api_sink',['../classspdlog_1_1sinks_1_1loki__api__sink.html#ad41002727c3101c6069dbbe333456b11',1,'spdlog::sinks::loki_api_sink']]]
 ];

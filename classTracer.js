@@ -3,6 +3,7 @@ var classTracer =
     [ "Tracer", "classTracer.html#a2d2f8455e292cc50beb9e8c5da50a8bb", null ],
     [ "checkPidIsRunning", "classTracer.html#afb3ac495395576ba791fd471bc7d4bda", null ],
     [ "checkSocketIsRunning", "classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14", null ],
+    [ "dumpSharedLibraryInfo", "classTracer.html#aa6b8e139b9d1b60e91d3b9b30934b64a", null ],
     [ "getSelfExecutableDir", "classTracer.html#ab220e3d1019cb07d311a35b40e1a6163", null ],
     [ "isRunning", "classTracer.html#a4e3975043a2fc94d307d511012706770", null ],
     [ "restart", "classTracer.html#a4755dbacab3e82bed9e7eaedd8a025ab", null ],
