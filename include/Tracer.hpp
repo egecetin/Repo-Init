@@ -67,7 +67,7 @@ class Tracer {
 
 	/**
 	 * @brief Dump shared library information to a file
-	 * 
+	 *
 	 * @param[in] filePath File path to dump the information
 	 * @return true If the operation is successful
 	 * @return false Otherwise

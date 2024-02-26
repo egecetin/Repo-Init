@@ -118,7 +118,6 @@ bool Tracer::dumpSharedLibraryInfo(const std::string &filePath)
 	}
 
 	// Get the shared library information
-	std::vector<std::pair<std::string, int>> libraries;
 	std::ifstream maps("/proc/self/maps");
 
 	std::string line;
@@ -127,14 +126,19 @@ bool Tracer::dumpSharedLibraryInfo(const std::string &filePath)
 		// The format of each line is: address perms offset dev inode pathname
 		// We only care about the address and the pathname, which are the first and last fields
 		std::istringstream iss(line);
-		std::string address, perms, offset, dev, inode, pathname;
+		std::string address;
+		std::string perms;
+		std::string offset;
+		std::string dev;
+		std::string inode;
+		std::string pathname;
 		iss >> address >> perms >> offset >> dev >> inode >> pathname;
 
 		// We only want the shared libraries, which have the .so extension and the read and execute permissions
 		if (pathname.find(".so") != std::string::npos && perms.find("r-x") != std::string::npos)
 		{
 			// The address field is in the form of start-end, we only need the start address
-			std::string start = address.substr(0, address.find("-"));
+			std::string start = address.substr(0, address.find('-'));
 
 			// Convert the start address from hexadecimal string to unsigned long
 			unsigned long addr = std::stoul(start, nullptr, 16);

@@ -159,7 +159,8 @@ int main(int argc, char **argv)
 	auto crashpadProxy = readSingleConfig(configPath, "CRASHPAD_PROXY");
 	auto crashpadExe = readSingleConfig(configPath, "CRASHPAD_EXECUTABLE_DIR");
 	auto crashpadReportPath = readSingleConfig(configPath, "CRASHPAD_REPORT_DIR");
-	auto crashpadAttachments = std::vector<base::FilePath>({base::FilePath(configPath), base::FilePath("shared_libs.txt")});
+	auto crashpadAttachments =
+		std::vector<base::FilePath>({base::FilePath(configPath), base::FilePath("shared_libs.txt")});
 	auto crashpadAnnotations = std::map<std::string, std::string>(
 		{{"name", PROJECT_NAME},
 		 {"version", PROJECT_FULL_REVISION},
