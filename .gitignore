@@ -13,3 +13,4 @@ BuildNumberCache.txt
 Doxyfile
 error.log
 config-private.json
+shared_libs.txt
