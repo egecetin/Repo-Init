@@ -1,6 +1,7 @@
 #include "test-static-definitions.h"
 
 #include "metrics/Performance.hpp"
+#include "metrics/ProcessMetrics.hpp"
 #include "metrics/PrometheusServer.hpp"
 #include "metrics/Status.hpp"
 
@@ -128,4 +129,40 @@ TEST(Metrics_Tests, StatusTrackerUnitTests)
 	ASSERT_EQ(1, std::stoi(readValues[1])); // test_status_success_event_ctr_2
 	ASSERT_EQ(1, std::stoi(readValues[2])); // test_status_fail_event_ctr_2
 	ASSERT_EQ(1, std::stoi(readValues[3])); // test_status_active_event_ctr_2
+}
+
+TEST(Metrics_Tests, ProcessMetricsUnitTests)
+{
+	std::string promServerAddr = "localhost:8103";
+
+	PrometheusServer reporter(promServerAddr);
+	ProcessMetrics procMetrics(reporter.createNewRegistry());
+
+	procMetrics.update();
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	procMetrics.update();
+
+	// Collect data from socket
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	ASSERT_FALSE(system((std::string("curl ") + promServerAddr + "/metrics --output metrics4.prom").c_str()));
+
+	// Metrics
+	std::vector<std::string> readValues;
+	std::vector<std::string> testValues = {
+		"memory_usage", "page_faults", "cpu_usage", "disk_read", "disk_write", "thread_count", "file_descriptor_count"};
+
+	// Parse output
+	std::ifstream promFileStream("metrics4.prom");
+
+	ASSERT_TRUE(promFileStream.is_open());
+	ASSERT_TRUE(isAllValuesExist(promFileStream, testValues, readValues));
+	ASSERT_EQ(testValues.size(), readValues.size());
+
+	ASSERT_GT(std::stod(readValues[0]), 0); // memory_usage
+	ASSERT_GE(std::stod(readValues[1]), 0); // page_faults
+	ASSERT_GE(std::stod(readValues[2]), 0); // cpu_usage
+	ASSERT_GE(std::stod(readValues[3]), 0); // disk_read
+	ASSERT_GE(std::stod(readValues[4]), 0); // disk_write
+	ASSERT_GT(std::stod(readValues[5]), 0); // thread_count
+	ASSERT_GT(std::stod(readValues[6]), 0); // file_descriptor_count
 }

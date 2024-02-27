@@ -104,6 +104,7 @@ int main(int argc, char **argv)
 	vCheckFlag.emplace_back("ZeroMQ Server", std::make_unique<std::atomic_flag>(false));
 	vCheckFlag.emplace_back("Telnet Server", std::make_unique<std::atomic_flag>(false));
 	vCheckFlag.emplace_back("Crashpad Handler", std::make_unique<std::atomic_flag>(false));
+	vCheckFlag.emplace_back("Self Monitor", std::make_unique<std::atomic_flag>(false));
 
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
@@ -138,6 +139,7 @@ int main(int argc, char **argv)
 	std::unique_ptr<std::thread> zmqControlTh(nullptr);
 	std::unique_ptr<std::thread> telnetControlTh(nullptr);
 	std::unique_ptr<std::thread> crashpadControlTh(nullptr);
+	std::unique_ptr<std::thread> selfMonitorTh(nullptr);
 
 	if (!zeromqServerAddr.empty())
 	{
@@ -150,11 +152,15 @@ int main(int argc, char **argv)
 														std::ref(vCheckFlag[1].second));
 	}
 
+	// Dump shared library info to text file
+	Tracer::dumpSharedLibraryInfo("shared_libs.txt");
+
 	auto crashpadRemote = readSingleConfig(configPath, "CRASHPAD_REMOTE");
 	auto crashpadProxy = readSingleConfig(configPath, "CRASHPAD_PROXY");
 	auto crashpadExe = readSingleConfig(configPath, "CRASHPAD_EXECUTABLE_DIR");
 	auto crashpadReportPath = readSingleConfig(configPath, "CRASHPAD_REPORT_DIR");
-	auto crashpadAttachments = std::vector<base::FilePath>({base::FilePath(configPath)});
+	auto crashpadAttachments =
+		std::vector<base::FilePath>({base::FilePath(configPath), base::FilePath("shared_libs.txt")});
 	auto crashpadAnnotations = std::map<std::string, std::string>(
 		{{"name", PROJECT_NAME},
 		 {"version", PROJECT_FULL_REVISION},
@@ -164,6 +170,9 @@ int main(int argc, char **argv)
 													  std::ref(crashpadProxy), std::ref(crashpadExe),
 													  std::ref(crashpadAnnotations), std::ref(crashpadAttachments),
 													  std::ref(crashpadReportPath), std::ref(vCheckFlag[2].second));
+
+	selfMonitorTh = std::make_unique<std::thread>(selfMonitorThread, std::ref(mainPrometheusServer),
+												  std::ref(vCheckFlag[3].second));
 	spdlog::debug("Threads started");
 
 	// SIGALRM should be registered after all sleep calls
@@ -189,6 +198,11 @@ int main(int argc, char **argv)
 	{
 		crashpadControlTh->join();
 		spdlog::info("Crashpad Controller joined");
+	}
+	if (selfMonitorTh && selfMonitorTh->joinable())
+	{
+		selfMonitorTh->join();
+		spdlog::info("Self Monitor joined");
 	}
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */

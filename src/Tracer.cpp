@@ -5,6 +5,8 @@
 #include "client/settings.h"
 
 #include <algorithm>
+#include <fstream>
+#include <sstream>
 #include <sys/socket.h>
 #include <unistd.h>
 
@@ -104,4 +106,46 @@ void Tracer::restart()
 	{
 		startHandler();
 	}
+}
+
+bool Tracer::dumpSharedLibraryInfo(const std::string &filePath)
+{
+	// Open the output file
+	std::ofstream ofile(filePath);
+	if (!ofile.is_open())
+	{
+		return false;
+	}
+
+	// Get the shared library information
+	std::ifstream maps("/proc/self/maps");
+
+	std::string line;
+	while (std::getline(maps, line))
+	{
+		// The format of each line is: address perms offset dev inode pathname
+		// We only care about the address and the pathname, which are the first and last fields
+		std::istringstream iss(line);
+		std::string address;
+		std::string perms;
+		std::string offset;
+		std::string dev;
+		std::string inode;
+		std::string pathname;
+		iss >> address >> perms >> offset >> dev >> inode >> pathname;
+
+		// We only want the shared libraries, which have the .so extension and the read and execute permissions
+		if (pathname.find(".so") != std::string::npos && perms.find("r-x") != std::string::npos)
+		{
+			// The address field is in the form of start-end, we only need the start address
+			std::string start = address.substr(0, address.find('-'));
+
+			// Convert the start address from hexadecimal string to unsigned long
+			unsigned long addr = std::stoul(start, nullptr, 16);
+
+			ofile << pathname << " " << addr << std::endl;
+		}
+	}
+
+	return true;
 }
