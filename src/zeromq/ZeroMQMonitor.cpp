@@ -35,94 +35,98 @@ void ZeroMQMonitor::on_event(const std::string &messageStr, int level, const cha
 		spdlog::critical("{} {}", messageStr, addr == nullptr ? "" : addr);
 		break;
 	default:
-		spdlog::warn("Unknwon log level {} {} {}", messageStr, addr == nullptr ? "" : addr, level);
+		spdlog::warn("Unknown log level {} {} {}", messageStr, addr == nullptr ? "" : addr, level);
 		break;
 	}
 }
 
 void ZeroMQMonitor::on_monitor_started() { on_event("Monitor started", spdlog::level::info); }
 
-void ZeroMQMonitor::on_event_connected(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_connected(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Connected", spdlog::level::info, addr_);
 }
 
-void ZeroMQMonitor::on_event_connect_delayed(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_connect_delayed(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Connect delayed", spdlog::level::debug, addr_);
 }
 
-void ZeroMQMonitor::on_event_connect_retried(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_connect_retried(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Connect retried", spdlog::level::debug, addr_);
 }
 
-void ZeroMQMonitor::on_event_listening(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_listening(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Listening", spdlog::level::debug, addr_);
 }
 
-void ZeroMQMonitor::on_event_bind_failed(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_bind_failed(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Bind failed", spdlog::level::warn, addr_);
 }
 
-void ZeroMQMonitor::on_event_accepted(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_accepted(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Accepted", spdlog::level::info, addr_);
 }
 
-void ZeroMQMonitor::on_event_accept_failed(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_accept_failed(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Accept failed", spdlog::level::warn, addr_);
 }
 
-void ZeroMQMonitor::on_event_closed(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_closed(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Closed", spdlog::level::debug, addr_);
 }
 
-void ZeroMQMonitor::on_event_close_failed(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_close_failed(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Close failed", spdlog::level::warn, addr_);
 }
 
-void ZeroMQMonitor::on_event_disconnected(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_disconnected(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Disconnected", spdlog::level::info, addr_);
 }
 
-void ZeroMQMonitor::on_event_handshake_failed_no_detail(const zmq_event_t &, const char *addr_)
+#if ZMQ_VERSION >= ZMQ_MAKE_VERSION(4, 3, 0) ||                                                                        \
+	(defined(ZMQ_BUILD_DRAFT_API) && ZMQ_VERSION >= ZMQ_MAKE_VERSION(4, 2, 3))
+void ZeroMQMonitor::on_event_handshake_failed_no_detail(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Handshake failed (no detail)", spdlog::level::warn, addr_);
 }
 
-void ZeroMQMonitor::on_event_handshake_failed_protocol(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_handshake_failed_protocol(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Handshake failed (protocol)", spdlog::level::warn, addr_);
 }
 
-void ZeroMQMonitor::on_event_handshake_failed_auth(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_handshake_failed_auth(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Handshake failed (auth)", spdlog::level::warn, addr_);
 }
 
-void ZeroMQMonitor::on_event_handshake_succeeded(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_handshake_succeeded(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Handshake succeeded", spdlog::level::info, addr_);
 }
 
-void ZeroMQMonitor::on_event_handshake_failed(const zmq_event_t &, const char *addr_)
+#elif defined(ZMQ_BUILD_DRAFT_API) && ZMQ_VERSION >= ZMQ_MAKE_VERSION(4, 2, 1)
+void ZeroMQMonitor::on_event_handshake_failed(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Handshake failed", spdlog::level::warn, addr_);
 }
 
-void ZeroMQMonitor::on_event_handshake_succeed(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_handshake_succeed(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Handshake succeed", spdlog::level::info, addr_);
 }
+#endif
 
-void ZeroMQMonitor::on_event_unknown(const zmq_event_t &, const char *addr_)
+void ZeroMQMonitor::on_event_unknown(const zmq_event_t & /*unused*/, const char *addr_)
 {
 	on_event("Unknown event", spdlog::level::warn, addr_);
 }
