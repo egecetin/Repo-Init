@@ -1,13 +1,14 @@
 #pragma once
 
 #include "connection/Zeromq.hpp"
+#include "zeromq/ZeroMQMonitor.hpp"
 #include "zeromq/ZeroMQStats.hpp"
 
 #include <functional>
 
 using FPTR_MessageCallback = std::function<bool(const std::vector<zmq::message_t> &, std::vector<zmq::message_t> &)>;
 
-class ZeroMQServer : private ZeroMQ {
+class ZeroMQServer : private ZeroMQ, ZeroMQMonitor {
   private:
 	// Statistics
 	std::unique_ptr<ZeroMQStats> stats;
