@@ -147,4 +147,6 @@ void ZeroMQMonitor::stopMonitoring()
 	{
 		monitorThread.join();
 	}
+
+	spdlog::info("Monitor stopped");
 }
