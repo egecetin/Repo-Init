@@ -1,6 +1,7 @@
 #include "zeromq/ZeroMQServer.hpp"
 
 #include "Utils.hpp"
+#include "rng/Hasher.hpp"
 
 #include <spdlog/spdlog.h>
 
@@ -17,12 +18,14 @@ constexpr uint32_t STATUS_CHECK_ID = ('S' | ('C' << 8) | ('H' << 16) | ('K' << 2
 /* ################################################################################### */
 
 ZeroMQServer::ZeroMQServer(const std::string &hostAddr, const std::shared_ptr<prometheus::Registry> &reg)
-	: ZeroMQ(zmq::socket_type::rep, hostAddr, true)
+	: ZeroMQ(zmq::socket_type::rep, hostAddr, true), ZeroMQMonitor()
 {
 	if (reg)
 	{
 		stats = std::make_unique<ZeroMQStats>(reg);
 	}
+
+	startMonitoring(getSocket(), "inproc://" + std::to_string(constHasher(hostAddr.c_str())) + ".rep");
 }
 
 bool ZeroMQServer::initialise() { return start(); }
@@ -53,7 +56,11 @@ void ZeroMQServer::update()
 	}
 }
 
-void ZeroMQServer::shutdown() { stop(); }
+void ZeroMQServer::shutdown()
+{
+	stopMonitoring();
+	stop();
+}
 
 bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, std::vector<zmq::message_t> &replyMsgs)
 {
