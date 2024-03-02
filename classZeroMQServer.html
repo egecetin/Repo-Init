@@ -106,8 +106,10 @@ Inheritance diagram for ZeroMQServer:</div>
 <div class="dyncontent">
 <div class="center"><img src="classZeroMQServer__inherit__graph.png" border="0" usemap="#aZeroMQServer_inherit__map" alt="Inheritance graph"/></div>
 <map name="aZeroMQServer_inherit__map" id="aZeroMQServer_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,80,121,107"/>
-<area shape="rect" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality." alt="" coords="26,5,101,32"/>
+<area shape="rect" title=" " alt="" coords="46,155,162,181"/>
+<area shape="rect" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality." alt="" coords="5,80,80,107"/>
+<area shape="rect" href="classZeroMQMonitor.html" title="Class for monitoring ZeroMQ events on a socket." alt="" coords="105,80,229,107"/>
+<area shape="rect" title=" " alt="" coords="106,5,227,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -115,8 +117,10 @@ Collaboration diagram for ZeroMQServer:</div>
 <div class="dyncontent">
 <div class="center"><img src="classZeroMQServer__coll__graph.png" border="0" usemap="#aZeroMQServer_coll__map" alt="Collaboration graph"/></div>
 <map name="aZeroMQServer_coll__map" id="aZeroMQServer_coll__map">
-<area shape="rect" title=" " alt="" coords="5,80,121,107"/>
-<area shape="rect" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality." alt="" coords="26,5,101,32"/>
+<area shape="rect" title=" " alt="" coords="46,155,162,181"/>
+<area shape="rect" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality." alt="" coords="5,80,80,107"/>
+<area shape="rect" href="classZeroMQMonitor.html" title="Class for monitoring ZeroMQ events on a socket." alt="" coords="105,80,229,107"/>
+<area shape="rect" title=" " alt="" coords="106,5,227,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -187,13 +191,23 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a1f775303ef42aa9a847a72ad5435b8e2 inherit pub_methods_classZeroMQ"><td class="memItemLeft" align="right" valign="top">const std::shared_ptr&lt; zmq::context_t &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQ.html#a1f775303ef42aa9a847a72ad5435b8e2">getContext</a> ()</td></tr>
 <tr class="memdesc:a1f775303ef42aa9a847a72ad5435b8e2 inherit pub_methods_classZeroMQ"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the reference of context.  <a href="classZeroMQ.html#a1f775303ef42aa9a847a72ad5435b8e2">More...</a><br /></td></tr>
 <tr class="separator:a1f775303ef42aa9a847a72ad5435b8e2 inherit pub_methods_classZeroMQ"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa118bb4b527a380d50a1be7c24a1d5a3 inherit pub_methods_classZeroMQ"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQ.html#aa118bb4b527a380d50a1be7c24a1d5a3">getAddress</a> ()</td></tr>
+<tr class="memdesc:aa118bb4b527a380d50a1be7c24a1d5a3 inherit pub_methods_classZeroMQ"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the address of the socket.  <a href="classZeroMQ.html#aa118bb4b527a380d50a1be7c24a1d5a3">More...</a><br /></td></tr>
+<tr class="separator:aa118bb4b527a380d50a1be7c24a1d5a3 inherit pub_methods_classZeroMQ"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad274cd6a69ba9308acbe17fa49978467 inherit pub_methods_classZeroMQ"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQ.html#ad274cd6a69ba9308acbe17fa49978467">~ZeroMQ</a> ()</td></tr>
 <tr class="memdesc:ad274cd6a69ba9308acbe17fa49978467 inherit pub_methods_classZeroMQ"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality.">ZeroMQ</a> class.  <a href="classZeroMQ.html#ad274cd6a69ba9308acbe17fa49978467">More...</a><br /></td></tr>
 <tr class="separator:ad274cd6a69ba9308acbe17fa49978467 inherit pub_methods_classZeroMQ"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classZeroMQMonitor"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classZeroMQMonitor')"><img src="closed.png" alt="-"/>&#160;Private Member Functions inherited from <a class="el" href="classZeroMQMonitor.html">ZeroMQMonitor</a></td></tr>
+<tr class="memitem:a8e532d43e45d037b86c274e0d75a9aa5 inherit pub_methods_classZeroMQMonitor"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQMonitor.html#a8e532d43e45d037b86c274e0d75a9aa5">startMonitoring</a> (const std::unique_ptr&lt; zmq::socket_t &gt; &amp;socket, const std::string &amp;monitorAddress)</td></tr>
+<tr class="memdesc:a8e532d43e45d037b86c274e0d75a9aa5 inherit pub_methods_classZeroMQMonitor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start monitoring events on the given socket.  <a href="classZeroMQMonitor.html#a8e532d43e45d037b86c274e0d75a9aa5">More...</a><br /></td></tr>
+<tr class="separator:a8e532d43e45d037b86c274e0d75a9aa5 inherit pub_methods_classZeroMQMonitor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83ffe6f50cab52994f05fa68db78c8df inherit pub_methods_classZeroMQMonitor"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQMonitor.html#a83ffe6f50cab52994f05fa68db78c8df">stopMonitoring</a> ()</td></tr>
+<tr class="memdesc:a83ffe6f50cab52994f05fa68db78c8df inherit pub_methods_classZeroMQMonitor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop monitoring events on the socket.  <a href="classZeroMQMonitor.html#a83ffe6f50cab52994f05fa68db78c8df">More...</a><br /></td></tr>
+<tr class="separator:a83ffe6f50cab52994f05fa68db78c8df inherit pub_methods_classZeroMQMonitor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8hpp_source.html#l00010">10</a> of file <a class="el" href="ZeroMQServer_8hpp_source.html">ZeroMQServer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8hpp_source.html#l00011">11</a> of file <a class="el" href="ZeroMQServer_8hpp_source.html">ZeroMQServer.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac0670a5dd8bc0b86184d1dd51110bf56"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac0670a5dd8bc0b86184d1dd51110bf56">&#9670;&nbsp;</a></span>ZeroMQServer()</h2>
@@ -238,17 +252,35 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8cpp_source.html#l00019">19</a> of file <a class="el" href="ZeroMQServer_8cpp_source.html">ZeroMQServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    : <a class="code" href="classZeroMQ.html#afa401b962662f92b156a5707c7cf84ad">ZeroMQ</a>(zmq::socket_type::rep, hostAddr, <span class="keyword">true</span>)</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">if</span> (reg)</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="classZeroMQServer.html#a776a9aeafdb22a337dbad302a0f0ddd3">stats</a> = std::make_unique&lt;ZeroMQStats&gt;(reg);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
-<div class="ttc" id="aclassZeroMQServer_html_a776a9aeafdb22a337dbad302a0f0ddd3"><div class="ttname"><a href="classZeroMQServer.html#a776a9aeafdb22a337dbad302a0f0ddd3">ZeroMQServer::stats</a></div><div class="ttdeci">std::unique_ptr&lt; ZeroMQStats &gt; stats</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQServer_8hpp_source.html#l00013">ZeroMQServer.hpp:13</a></div></div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8cpp_source.html#l00020">20</a> of file <a class="el" href="ZeroMQServer_8cpp_source.html">ZeroMQServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    : <a class="code" href="classZeroMQ.html#afa401b962662f92b156a5707c7cf84ad">ZeroMQ</a>(zmq::socket_type::rep, hostAddr, <span class="keyword">true</span>), <a class="code" href="classZeroMQMonitor.html">ZeroMQMonitor</a>()</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">if</span> (reg)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="classZeroMQServer.html#a776a9aeafdb22a337dbad302a0f0ddd3">stats</a> = std::make_unique&lt;ZeroMQStats&gt;(reg);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="classZeroMQMonitor.html#a8e532d43e45d037b86c274e0d75a9aa5">startMonitoring</a>(<a class="code" href="classZeroMQ.html#a734a0251d7bc6135ce41a0f9f0e13264">getSocket</a>(), <span class="stringliteral">&quot;inproc://&quot;</span> + std::to_string(<a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(hostAddr.c_str())) + <span class="stringliteral">&quot;.rep&quot;</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
+<div class="ttc" id="aHasher_8hpp_html_a69c2bf176d386d2413b9ae6d8346588b"><div class="ttname"><a href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a></div><div class="ttdeci">constexpr size_t constHasher(const char *s)</div><div class="ttdoc">Calculates the compile-time hash value of a string.</div><div class="ttdef"><b>Definition:</b> <a href="Hasher_8hpp_source.html#l00013">Hasher.hpp:13</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html"><div class="ttname"><a href="classZeroMQMonitor.html">ZeroMQMonitor</a></div><div class="ttdoc">Class for monitoring ZeroMQ events on a socket.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQMonitor_8hpp_source.html#l00017">ZeroMQMonitor.hpp:17</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a8e532d43e45d037b86c274e0d75a9aa5"><div class="ttname"><a href="classZeroMQMonitor.html#a8e532d43e45d037b86c274e0d75a9aa5">ZeroMQMonitor::startMonitoring</a></div><div class="ttdeci">void startMonitoring(const std::unique_ptr&lt; zmq::socket_t &gt; &amp;socket, const std::string &amp;monitorAddress)</div><div class="ttdoc">Start monitoring events on the given socket.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQMonitor_8cpp_source.html#l00134">ZeroMQMonitor.cpp:134</a></div></div>
+<div class="ttc" id="aclassZeroMQServer_html_a776a9aeafdb22a337dbad302a0f0ddd3"><div class="ttname"><a href="classZeroMQServer.html#a776a9aeafdb22a337dbad302a0f0ddd3">ZeroMQServer::stats</a></div><div class="ttdeci">std::unique_ptr&lt; ZeroMQStats &gt; stats</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQServer_8hpp_source.html#l00014">ZeroMQServer.hpp:14</a></div></div>
+<div class="ttc" id="aclassZeroMQ_html_a734a0251d7bc6135ce41a0f9f0e13264"><div class="ttname"><a href="classZeroMQ.html#a734a0251d7bc6135ce41a0f9f0e13264">ZeroMQ::getSocket</a></div><div class="ttdeci">const std::unique_ptr&lt; zmq::socket_t &gt; &amp; getSocket()</div><div class="ttdoc">Get the reference of socket.</div><div class="ttdef"><b>Definition:</b> <a href="Zeromq_8hpp_source.html#l00090">Zeromq.hpp:90</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_afa401b962662f92b156a5707c7cf84ad"><div class="ttname"><a href="classZeroMQ.html#afa401b962662f92b156a5707c7cf84ad">ZeroMQ::ZeroMQ</a></div><div class="ttdeci">ZeroMQ(const zmq::socket_type &amp;type, const std::string &amp;addr, bool isBind)</div><div class="ttdoc">Construct a new ZeroMQ class.</div><div class="ttdef"><b>Definition:</b> <a href="Zeromq_8cpp_source.html#l00030">Zeromq.cpp:30</a></div></div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQServer_ac0670a5dd8bc0b86184d1dd51110bf56_cgraph.png" border="0" usemap="#aclassZeroMQServer_ac0670a5dd8bc0b86184d1dd51110bf56_cgraph" alt=""/></div>
+<map name="aclassZeroMQServer_ac0670a5dd8bc0b86184d1dd51110bf56_cgraph" id="aclassZeroMQServer_ac0670a5dd8bc0b86184d1dd51110bf56_cgraph">
+<area shape="rect" title="Constructor for server." alt="" coords="5,56,224,83"/>
+<area shape="rect" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b" title="Calculates the compile&#45;time hash value of a string." alt="" coords="337,5,439,32"/>
+<area shape="rect" href="classZeroMQ.html#a734a0251d7bc6135ce41a0f9f0e13264" title="Get the reference of socket." alt="" coords="315,56,461,83"/>
+<area shape="rect" href="classZeroMQMonitor.html#a8e532d43e45d037b86c274e0d75a9aa5" title="Start monitoring events on the given socket." alt="" coords="272,107,504,133"/>
+<area shape="rect" href="classZeroMQMonitor.html#a822fbf3c0f167e77abdcc0cdc4f31545" title=" " alt="" coords="552,107,756,133"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -272,8 +304,8 @@ Additional Inherited Members</h2></td></tr>
 <dd>
 false otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8cpp_source.html#l00028">28</a> of file <a class="el" href="ZeroMQServer_8cpp_source.html">ZeroMQServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classZeroMQ.html#aed565a56046d2966f9312a58aaab0c2a">start</a>(); }</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8cpp_source.html#l00031">31</a> of file <a class="el" href="ZeroMQServer_8cpp_source.html">ZeroMQServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classZeroMQ.html#aed565a56046d2966f9312a58aaab0c2a">start</a>(); }</div>
 <div class="ttc" id="aclassZeroMQ_html_aed565a56046d2966f9312a58aaab0c2a"><div class="ttname"><a href="classZeroMQ.html#aed565a56046d2966f9312a58aaab0c2a">ZeroMQ::start</a></div><div class="ttdeci">bool start()</div><div class="ttdoc">Starts the connection.</div><div class="ttdef"><b>Definition:</b> <a href="Zeromq_8cpp_source.html#l00041">Zeromq.cpp:41</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -313,9 +345,9 @@ Here is the call graph for this function:</div>
 <p>Gets the message callback function. </p>
 <dl class="section return"><dt>Returns</dt><dd>The message callback function </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8hpp_source.html#l00048">48</a> of file <a class="el" href="ZeroMQServer_8hpp_source.html">ZeroMQServer.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classZeroMQServer.html#ad78a2f05982c6332f9d40b9681b6da9d">m_messageCallback</a>; }</div>
-<div class="ttc" id="aclassZeroMQServer_html_ad78a2f05982c6332f9d40b9681b6da9d"><div class="ttname"><a href="classZeroMQServer.html#ad78a2f05982c6332f9d40b9681b6da9d">ZeroMQServer::m_messageCallback</a></div><div class="ttdeci">FPTR_MessageCallback m_messageCallback</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQServer_8hpp_source.html#l00015">ZeroMQServer.hpp:15</a></div></div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8hpp_source.html#l00049">49</a> of file <a class="el" href="ZeroMQServer_8hpp_source.html">ZeroMQServer.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classZeroMQServer.html#ad78a2f05982c6332f9d40b9681b6da9d">m_messageCallback</a>; }</div>
+<div class="ttc" id="aclassZeroMQServer_html_ad78a2f05982c6332f9d40b9681b6da9d"><div class="ttname"><a href="classZeroMQServer.html#ad78a2f05982c6332f9d40b9681b6da9d">ZeroMQServer::m_messageCallback</a></div><div class="ttdeci">FPTR_MessageCallback m_messageCallback</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQServer_8hpp_source.html#l00016">ZeroMQServer.hpp:16</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -360,8 +392,8 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8hpp_source.html#l00042">42</a> of file <a class="el" href="ZeroMQServer_8hpp_source.html">ZeroMQServer.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{ <a class="code" href="classZeroMQServer.html#ad78a2f05982c6332f9d40b9681b6da9d">m_messageCallback</a> = std::move(func); }</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8hpp_source.html#l00043">43</a> of file <a class="el" href="ZeroMQServer_8hpp_source.html">ZeroMQServer.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{ <a class="code" href="classZeroMQServer.html#ad78a2f05982c6332f9d40b9681b6da9d">m_messageCallback</a> = std::move(func); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -382,16 +414,21 @@ Here is the caller graph for this function:</div>
 
 <p>Closes the <a class="el" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality.">ZeroMQ</a> Server. </p>
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8cpp_source.html#l00056">56</a> of file <a class="el" href="ZeroMQServer_8cpp_source.html">ZeroMQServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{ <a class="code" href="classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9">stop</a>(); }</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8cpp_source.html#l00059">59</a> of file <a class="el" href="ZeroMQServer_8cpp_source.html">ZeroMQServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="classZeroMQMonitor.html#a83ffe6f50cab52994f05fa68db78c8df">stopMonitoring</a>();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9">stop</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a83ffe6f50cab52994f05fa68db78c8df"><div class="ttname"><a href="classZeroMQMonitor.html#a83ffe6f50cab52994f05fa68db78c8df">ZeroMQMonitor::stopMonitoring</a></div><div class="ttdeci">void stopMonitoring()</div><div class="ttdoc">Stop monitoring events on the socket.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQMonitor_8cpp_source.html#l00140">ZeroMQMonitor.cpp:140</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_a1db454a94cec6d462e3f686fe156e5a9"><div class="ttname"><a href="classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9">ZeroMQ::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">Stops the connection.</div><div class="ttdef"><b>Definition:</b> <a href="Zeromq_8cpp_source.html#l00061">Zeromq.cpp:61</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classZeroMQServer_ac3515a4b148ad4ce7af202bdc2d0e595_cgraph.png" border="0" usemap="#aclassZeroMQServer_ac3515a4b148ad4ce7af202bdc2d0e595_cgraph" alt=""/></div>
 <map name="aclassZeroMQServer_ac3515a4b148ad4ce7af202bdc2d0e595_cgraph" id="aclassZeroMQServer_ac3515a4b148ad4ce7af202bdc2d0e595_cgraph">
-<area shape="rect" title="Closes the ZeroMQ Server." alt="" coords="5,5,192,32"/>
-<area shape="rect" href="classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9" title="Stops the connection." alt="" coords="240,5,351,32"/>
+<area shape="rect" title="Closes the ZeroMQ Server." alt="" coords="5,31,192,57"/>
+<area shape="rect" href="classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9" title="Stops the connection." alt="" coords="300,5,411,32"/>
+<area shape="rect" href="classZeroMQMonitor.html#a83ffe6f50cab52994f05fa68db78c8df" title="Stop monitoring events on the socket." alt="" coords="240,56,471,83"/>
 </map>
 </div>
 
@@ -414,32 +451,32 @@ Here is the call graph for this function:</div>
 
 <p>Processes new messages. </p>
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8cpp_source.html#l00030">30</a> of file <a class="el" href="ZeroMQServer_8cpp_source.html">ZeroMQServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">auto</span> recvMsgs = <a class="code" href="classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3">recvMessages</a>();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">if</span> (!recvMsgs.empty())</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        std::vector&lt;zmq::message_t&gt; replyMsgs;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="structZeroMQServerStats.html">ZeroMQServerStats</a> serverStats;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        serverStats.<a class="code" href="structZeroMQServerStats.html#a7916aac3b34d3b9d1a2c85292d3b2e7a">processingTimeStart</a> = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        serverStats.<a class="code" href="structZeroMQServerStats.html#a0f72b56ee407f90b03badaa34e1727fe">isSuccessful</a> = <a class="code" href="classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7">messageCallback</a>() &amp;&amp; <a class="code" href="classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7">messageCallback</a>()(recvMsgs, replyMsgs);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">size_t</span> nSentMsg = <a class="code" href="classZeroMQ.html#a67e9a20d56ac8197b16844b5e9955c0c">sendMessages</a>(replyMsgs);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">if</span> (nSentMsg != replyMsgs.size())</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            spdlog::warn(<span class="stringliteral">&quot;Can&#39;t send whole reply: Sent messages {} / {}&quot;</span>, nSentMsg, replyMsgs.size());</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        serverStats.<a class="code" href="structZeroMQServerStats.html#a65e6b457a8538169f5afbdb14b2299f0">processingTimeEnd</a> = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classZeroMQServer.html#a776a9aeafdb22a337dbad302a0f0ddd3">stats</a>)</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="classZeroMQServer.html#a776a9aeafdb22a337dbad302a0f0ddd3">stats</a>-&gt;consumeStats(recvMsgs, replyMsgs, serverStats);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="ttc" id="aclassZeroMQServer_html_a79c7d0ac78cd0d70a91b1c5c4afe58b7"><div class="ttname"><a href="classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7">ZeroMQServer::messageCallback</a></div><div class="ttdeci">FPTR_MessageCallback messageCallback() const</div><div class="ttdoc">Gets the message callback function.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQServer_8hpp_source.html#l00048">ZeroMQServer.hpp:48</a></div></div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8cpp_source.html#l00033">33</a> of file <a class="el" href="ZeroMQServer_8cpp_source.html">ZeroMQServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">auto</span> recvMsgs = <a class="code" href="classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3">recvMessages</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">if</span> (!recvMsgs.empty())</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        std::vector&lt;zmq::message_t&gt; replyMsgs;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="structZeroMQServerStats.html">ZeroMQServerStats</a> serverStats;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        serverStats.<a class="code" href="structZeroMQServerStats.html#a7916aac3b34d3b9d1a2c85292d3b2e7a">processingTimeStart</a> = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        serverStats.<a class="code" href="structZeroMQServerStats.html#a0f72b56ee407f90b03badaa34e1727fe">isSuccessful</a> = <a class="code" href="classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7">messageCallback</a>() &amp;&amp; <a class="code" href="classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7">messageCallback</a>()(recvMsgs, replyMsgs);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">size_t</span> nSentMsg = <a class="code" href="classZeroMQ.html#a67e9a20d56ac8197b16844b5e9955c0c">sendMessages</a>(replyMsgs);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">if</span> (nSentMsg != replyMsgs.size())</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            spdlog::warn(<span class="stringliteral">&quot;Can&#39;t send whole reply: Sent messages {} / {}&quot;</span>, nSentMsg, replyMsgs.size());</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        serverStats.<a class="code" href="structZeroMQServerStats.html#a65e6b457a8538169f5afbdb14b2299f0">processingTimeEnd</a> = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classZeroMQServer.html#a776a9aeafdb22a337dbad302a0f0ddd3">stats</a>)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <a class="code" href="classZeroMQServer.html#a776a9aeafdb22a337dbad302a0f0ddd3">stats</a>-&gt;consumeStats(recvMsgs, replyMsgs, serverStats);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="ttc" id="aclassZeroMQServer_html_a79c7d0ac78cd0d70a91b1c5c4afe58b7"><div class="ttname"><a href="classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7">ZeroMQServer::messageCallback</a></div><div class="ttdeci">FPTR_MessageCallback messageCallback() const</div><div class="ttdoc">Gets the message callback function.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQServer_8hpp_source.html#l00049">ZeroMQServer.hpp:49</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_a325eaa87b401739d540d4fd2ecd01ca3"><div class="ttname"><a href="classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3">ZeroMQ::recvMessages</a></div><div class="ttdeci">std::vector&lt; zmq::message_t &gt; recvMessages()</div><div class="ttdoc">Receives multipart message.</div><div class="ttdef"><b>Definition:</b> <a href="Zeromq_8cpp_source.html#l00079">Zeromq.cpp:79</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_a67e9a20d56ac8197b16844b5e9955c0c"><div class="ttname"><a href="classZeroMQ.html#a67e9a20d56ac8197b16844b5e9955c0c">ZeroMQ::sendMessages</a></div><div class="ttdeci">size_t sendMessages(std::vector&lt; zmq::message_t &gt; &amp;msg)</div><div class="ttdoc">Sends multipart message.</div><div class="ttdef"><b>Definition:</b> <a href="Zeromq_8cpp_source.html#l00093">Zeromq.cpp:93</a></div></div>
 <div class="ttc" id="astructZeroMQServerStats_html"><div class="ttname"><a href="structZeroMQServerStats.html">ZeroMQServerStats</a></div><div class="ttdoc">Represents the statistics of a ZeroMQ server connection.</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQStats_8hpp_source.html#l00010">ZeroMQStats.hpp:10</a></div></div>
@@ -481,7 +518,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8hpp_source.html#l00015">15</a> of file <a class="el" href="ZeroMQServer_8hpp_source.html">ZeroMQServer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8hpp_source.html#l00016">16</a> of file <a class="el" href="ZeroMQServer_8hpp_source.html">ZeroMQServer.hpp</a>.</p>
 
 </div>
 </div>
@@ -505,7 +542,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8hpp_source.html#l00013">13</a> of file <a class="el" href="ZeroMQServer_8hpp_source.html">ZeroMQServer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZeroMQServer_8hpp_source.html#l00014">14</a> of file <a class="el" href="ZeroMQServer_8hpp_source.html">ZeroMQServer.hpp</a>.</p>
 
 </div>
 </div>
@@ -519,7 +556,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classZeroMQServer.html">ZeroMQServer</a></li>
-    <li class="footer">Generated on Mon Feb 26 2024 09:59:17 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sat Mar 2 2024 00:15:27 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

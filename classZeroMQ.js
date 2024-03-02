@@ -5,6 +5,7 @@ var classZeroMQ =
     [ "ZeroMQ", "classZeroMQ.html#a03886245e5bd9bff77a35bc5fa1254f7", null ],
     [ "ZeroMQ", "classZeroMQ.html#a9a0f3a644b2578e9ba0a36bf1923f904", null ],
     [ "~ZeroMQ", "classZeroMQ.html#ad274cd6a69ba9308acbe17fa49978467", null ],
+    [ "getAddress", "classZeroMQ.html#aa118bb4b527a380d50a1be7c24a1d5a3", null ],
     [ "getContext", "classZeroMQ.html#a1f775303ef42aa9a847a72ad5435b8e2", null ],
     [ "getSocket", "classZeroMQ.html#a734a0251d7bc6135ce41a0f9f0e13264", null ],
     [ "init", "classZeroMQ.html#a763bac0903b21d20cb20798582eca5db", null ],

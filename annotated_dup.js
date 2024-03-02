@@ -26,6 +26,7 @@ var annotated_dup =
     [ "TrackPerformance", "classTrackPerformance.html", "classTrackPerformance" ],
     [ "TrackStatus", "classTrackStatus.html", "classTrackStatus" ],
     [ "ZeroMQ", "classZeroMQ.html", "classZeroMQ" ],
+    [ "ZeroMQMonitor", "classZeroMQMonitor.html", "classZeroMQMonitor" ],
     [ "ZeroMQServer", "classZeroMQServer.html", "classZeroMQServer" ],
     [ "ZeroMQServerStats", "structZeroMQServerStats.html", "structZeroMQServerStats" ],
     [ "ZeroMQStats", "classZeroMQStats.html", "classZeroMQStats" ]

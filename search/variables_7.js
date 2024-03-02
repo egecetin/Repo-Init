@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['headerbytes_634',['headerBytes',['../structHTTPStats.html#a47df34eaa6d601d28addda7be27b4254',1,'HTTPStats']]],
-  ['hostaddr_635',['hostAddr',['../classHTTP.html#abc92993224cd21403f36e31aa9510159',1,'HTTP']]],
-  ['http_5ftimeout_5fms_636',['HTTP_TIMEOUT_MS',['../Http_8hpp.html#acc66b330b058210d8f5cad8a60a77463',1,'Http.hpp']]]
+  ['guardlock_686',['guardLock',['../classPrometheusServer.html#a269c848b032e28db4347c90fc0945826',1,'PrometheusServer']]]
 ];
