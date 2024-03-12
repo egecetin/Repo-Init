@@ -161,6 +161,7 @@ set(CPACK_RPM_PRE_UNINSTALL_SCRIPT_FILE ${PRE_UNINSTALL_SCRIPT})
 set(CPACK_RPM_PACKAGE_REQUIRES_POSTUN "systemd")
 set(CPACK_RPM_PACKAGE_REQUIRES_PREUN "systemd")
 set(CPACK_RPM_PACKAGE_REQUIRES_POST "systemd")
+set(CPACK_RPM_PACKAGE_REQUIRES "libcurl, spdlog, zeromq")
 include(CPack)
 
 # Enable test framework
