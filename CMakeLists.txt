@@ -141,6 +141,7 @@ endif()
 add_dependencies(${PROJECT_NAME} crashpad::handler)
 
 install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}-lib crashpad_handler)
+install(FILES ${PROJECT_SOURCE_DIR}/config.json DESTINATION ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME})
 
 if(XXX_ENABLE_PACKAGING)
   set(EXE_PATH ${CMAKE_INSTALL_PREFIX}/bin/${PROJECT_NAME})
@@ -154,7 +155,6 @@ if(XXX_ENABLE_PACKAGING)
   configure_file(${PROJECT_SOURCE_DIR}/scripts/postun.sh.in ${POST_UNINSTALL_SCRIPT})
   configure_file(${PROJECT_SOURCE_DIR}/scripts/preun.sh.in ${PRE_UNINSTALL_SCRIPT})
   install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.service DESTINATION ${CMAKE_INSTALL_PREFIX}/share)
-  install(FILES ${PROJECT_SOURCE_DIR}/config.json DESTINATION ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME})
 
   set(CPACK_GENERATOR "RPM")
   set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
