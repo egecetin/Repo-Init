@@ -48,6 +48,7 @@ set(INSTALL_GTEST OFF CACHE BOOL "")
 set(SENTRY_BACKEND none) # Disable backend to manually use crashpad
 
 configure_file(build_number.h.in "Version.h")
+configure_file(config.json.in "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/config.json")
 
 # Define sources
 file(GLOB ProjectSources
@@ -141,7 +142,7 @@ endif()
 add_dependencies(${PROJECT_NAME} crashpad::handler)
 
 install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}-lib crashpad_handler)
-install(FILES ${PROJECT_SOURCE_DIR}/config.json DESTINATION ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME})
+install(FILES ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/config.json DESTINATION ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME})
 
 if(XXX_ENABLE_PACKAGING)
   set(EXE_PATH ${CMAKE_INSTALL_PREFIX}/bin/${PROJECT_NAME})

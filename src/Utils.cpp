@@ -65,7 +65,7 @@ bool tryOpenAndParseConfig(const std::string &dir, rapidjson::Document &doc)
 	// Check is there any data
 	if (doc.IsNull())
 	{
-		spdlog::critical("Read config is empty");
+		spdlog::critical("Read config is empty or config file does not exist");
 		return false;
 	}
 
