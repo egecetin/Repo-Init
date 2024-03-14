@@ -69,7 +69,7 @@ std::string Tracer::getSelfExecutableDir()
 
 bool Tracer::createDir(const std::string &path)
 {
-	struct stat info{};
+	struct stat info {};
 
 	if (stat(path.c_str(), &info) != 0 && errno == ENOENT)
 	{
