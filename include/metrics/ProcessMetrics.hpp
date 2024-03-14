@@ -2,6 +2,7 @@
 #include <prometheus/registry.h>
 
 #include <sys/times.h>
+#include <thread>
 
 /**
  * @class ProcessMetrics
@@ -9,21 +10,25 @@
  */
 class ProcessMetrics {
   private:
-	prometheus::Gauge *memory;				/**< Pointer to the memory usage gauge */
-	prometheus::Gauge *pageFaults;			/**< Pointer to the page faults gauge */
-	prometheus::Gauge *cpuUsage;			/**< Pointer to the CPU usage gauge */
-	prometheus::Gauge *diskRead;			/**< Pointer to the disk read gauge */
-	prometheus::Gauge *diskWrite;			/**< Pointer to the disk write gauge */
-	prometheus::Gauge *threadCount;			/**< Pointer to the thread count gauge */
-	prometheus::Gauge *fileDescriptorCount; /**< Pointer to the file descriptor count gauge */
+	std::atomic_flag _threadFlag; /**< Atomic flag to control thread loop */
+    std::unique_ptr<std::thread> _thread; /**< Thread handler */
+	std::shared_ptr<std::atomic_flag> _checkFlag; /**< Runtime check flag */
 
-	size_t oldReadBytes{0};	 /**< Variable to store the old read bytes */
-	size_t oldWriteBytes{0}; /**< Variable to store the old write bytes */
+	prometheus::Gauge *_pMemory;				/**< Pointer to the memory usage gauge */
+	prometheus::Gauge *_pPageFaults;			/**< Pointer to the page faults gauge */
+	prometheus::Gauge *_pCpuUsage;			/**< Pointer to the CPU usage gauge */
+	prometheus::Gauge *_pDiskRead;			/**< Pointer to the disk read gauge */
+	prometheus::Gauge *_pDiskWrite;			/**< Pointer to the disk write gauge */
+	prometheus::Gauge *_pThreadCount;			/**< Pointer to the thread count gauge */
+	prometheus::Gauge *_pFileDescriptorCount; /**< Pointer to the file descriptor count gauge */
 
-	struct tms oldCpu {
+	size_t _oldReadBytes{0};	 /**< Variable to store the old read bytes */
+	size_t _oldWriteBytes{0}; /**< Variable to store the old write bytes */
+
+	struct tms _oldCpu {
 		0, 0, 0, 0
 	};					   /**< Structure to store the old CPU times */
-	clock_t oldCpuTime{0}; /**< Variable to store the old CPU time */
+	clock_t _oldCpuTime{0}; /**< Variable to store the old CPU time */
 
 	/**
 	 * @brief Counts the number of entries in a directory.
@@ -68,16 +73,28 @@ class ProcessMetrics {
 	 * @return The number of file descriptors.
 	 */
 	static size_t getFileDescriptorCount();
-
-  public:
-	/**
-	 * @brief Constructs a ProcessMetrics object.
-	 * @param reg The Prometheus registry.
-	 */
-	explicit ProcessMetrics(const std::shared_ptr<prometheus::Registry> &reg);
-
+	
 	/**
 	 * @brief Updates the metrics values.
 	 */
 	void update();
+
+	/**
+	 * @brief Main thread function
+	 */
+	void threadRunner();
+
+  public:
+	/**
+	 * @brief Constructs a ProcessMetrics object.
+	 * @param[in] reg The Prometheus registry.
+	 * @param[in] checkFlag Runtime check flag
+	 */
+	ProcessMetrics(const std::shared_ptr<prometheus::Registry> &reg, const std::shared_ptr<std::atomic_flag> &checkFlag);
+
+	/**
+	 * @brief Deconstructs a ProcessMetrics object.
+	 */
+	~ProcessMetrics();
+
 };
