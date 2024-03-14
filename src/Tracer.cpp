@@ -73,7 +73,7 @@ bool Tracer::createDir(const std::string &path)
 
 	if (stat(path.c_str(), &info) != 0 && errno == ENOENT)
 	{
-		return mkdir(path.c_str(), S_IRWXU | S_IRWXG) == 0;
+		return mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) == 0;
 	}
 	return S_ISDIR(info.st_mode);
 }
