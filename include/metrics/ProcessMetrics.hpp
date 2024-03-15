@@ -10,7 +10,7 @@
  */
 class ProcessMetrics {
   private:
-	std::atomic_flag _threadFlag; /**< Atomic flag to control thread loop */
+	std::atomic_flag _shouldStop{false}; /**< Flag to stop monitoring. */
     std::unique_ptr<std::thread> _thread; /**< Thread handler */
 	std::shared_ptr<std::atomic_flag> _checkFlag; /**< Runtime check flag */
 
@@ -73,7 +73,7 @@ class ProcessMetrics {
 	 * @return The number of file descriptors.
 	 */
 	static size_t getFileDescriptorCount();
-	
+
 	/**
 	 * @brief Updates the metrics values.
 	 */
@@ -90,7 +90,7 @@ class ProcessMetrics {
 	 * @param[in] reg The Prometheus registry.
 	 * @param[in] checkFlag Runtime check flag
 	 */
-	ProcessMetrics(const std::shared_ptr<prometheus::Registry> &reg, const std::shared_ptr<std::atomic_flag> &checkFlag);
+	ProcessMetrics(const std::shared_ptr<std::atomic_flag> &checkFlag, const std::shared_ptr<prometheus::Registry> &reg);
 
 	/**
 	 * @brief Deconstructs a ProcessMetrics object.

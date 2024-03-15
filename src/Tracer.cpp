@@ -10,6 +10,10 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+#include <spdlog/spdlog.h>
+
+constexpr int SLEEP_INTERVAL_MS = 50;
+
 void Tracer::startHandler()
 {
 	// Path to crashpad executable
@@ -40,6 +44,29 @@ void Tracer::startHandler()
 	{
 		throw std::runtime_error("Can't start crash handler");
 	}
+
+	_thread = std::make_unique<std::thread>(&Tracer::threadFunc, this);
+}
+
+void Tracer::threadFunc()
+{
+	while(!_shouldStop._M_i)
+	{
+		try
+		{
+			if (!isRunning())
+			{
+				restart();
+				spdlog::warn("Crashpad handler restarted");
+			}
+			_checkFlag->test_and_set();
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Crashpad failed: {}", e.what());
+		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_INTERVAL_MS));
+	}
 }
 
 bool Tracer::checkPidIsRunning(pid_t processId) { return kill(processId, 0) == 0; }
@@ -64,57 +91,13 @@ std::string Tracer::getSelfExecutableDir()
 	return (lastDelimPos == std::string::npos) ? "" : path.substr(0, lastDelimPos);
 }
 
-Tracer::Tracer(std::string serverPath, std::string serverProxy, const std::string &crashpadHandlerPath,
-			   std::map<std::string, std::string> annotations, std::vector<base::FilePath> attachments,
-			   const std::string &reportPath)
-	: _serverPath(std::move(serverPath)), _serverProxy(std::move(serverProxy)), _annotations(std::move(annotations)),
-	  _attachments(std::move(attachments))
-{
-	auto selfDir = getSelfExecutableDir();
-
-	_handlerPath = crashpadHandlerPath.empty() ? selfDir + "/crashpad_handler" : crashpadHandlerPath;
-	_reportPath = reportPath.empty() ? selfDir : reportPath;
-	_clientHandler = std::make_unique<crashpad::CrashpadClient>();
-
-	startHandler();
-}
-
-bool Tracer::isRunning()
-{
-	int sockId{-1};
-	pid_t processId{-1};
-
-	if (!_clientHandler->GetHandlerSocket(&sockId, &processId))
-	{
-		return false;
-	}
-
-	if (sockId >= 0 && !checkSocketIsRunning(sockId))
-	{
-		return false;
-	}
-	if (processId > 0 && !checkPidIsRunning(processId))
-	{
-		return false;
-	}
-	return true;
-}
-
-void Tracer::restart()
-{
-	if (!isRunning())
-	{
-		startHandler();
-	}
-}
-
-bool Tracer::dumpSharedLibraryInfo(const std::string &filePath)
+void Tracer::dumpSharedLibraryInfo(const std::string &filePath)
 {
 	// Open the output file
 	std::ofstream ofile(filePath);
 	if (!ofile.is_open())
 	{
-		return false;
+		throw std::invalid_argument("Can't open file: " + filePath);
 	}
 
 	// Get the shared library information
@@ -146,6 +129,52 @@ bool Tracer::dumpSharedLibraryInfo(const std::string &filePath)
 			ofile << pathname << " " << addr << std::endl;
 		}
 	}
+}
 
+Tracer::Tracer(std::string serverPath, std::string serverProxy, const std::string &crashpadHandlerPath,
+			   std::map<std::string, std::string> annotations, std::vector<base::FilePath> attachments,
+			   const std::string &reportPath)
+	: _serverPath(std::move(serverPath)), _serverProxy(std::move(serverProxy)), _annotations(std::move(annotations)),
+	  _attachments(std::move(attachments))
+{
+	auto selfDir = getSelfExecutableDir();
+
+	_handlerPath = crashpadHandlerPath.empty() ? selfDir + "/crashpad_handler" : crashpadHandlerPath;
+	_reportPath = reportPath.empty() ? selfDir : reportPath;
+	_clientHandler = std::make_unique<crashpad::CrashpadClient>();
+
+	// Dump shared library information and add as attachment
+	dumpSharedLibraryInfo(_reportPath + "/shared_libs.txt");
+	_attachments.push_back(base::FilePath(_reportPath + "/shared_libs.txt"));
+
+	startHandler();
+}
+
+bool Tracer::isRunning()
+{
+	int sockId{-1};
+	pid_t processId{-1};
+
+	if (!_clientHandler->GetHandlerSocket(&sockId, &processId))
+	{
+		return false;
+	}
+
+	if (sockId >= 0 && !checkSocketIsRunning(sockId))
+	{
+		return false;
+	}
+	if (processId > 0 && !checkPidIsRunning(processId))
+	{
+		return false;
+	}
 	return true;
+}
+
+void Tracer::restart()
+{
+	if (!isRunning())
+	{
+		startHandler();
+	}
 }

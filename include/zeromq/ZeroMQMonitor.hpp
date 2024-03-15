@@ -16,8 +16,8 @@
  */
 class ZeroMQMonitor : private zmq::monitor_t {
   private:
-	std::thread monitorThread;			 /**< Thread for monitoring events. */
-	std::atomic<bool> shouldStop{false}; /**< Flag to stop monitoring. */
+	std::unique_ptr<std::thread> _monitorThread; /**< Thread for monitoring events. */
+	std::atomic_flag _shouldStop{false};		 /**< Flag to stop monitoring. */
 
 	void threadFunc();
 
@@ -79,4 +79,9 @@ class ZeroMQMonitor : private zmq::monitor_t {
 	 * @brief Stop monitoring events on the socket.
 	 */
 	void stopMonitoring();
+
+	/**
+	 * @brief Destructor.
+	 */
+	~ZeroMQMonitor() { stopMonitoring(); }
 };

@@ -5,6 +5,8 @@
 
 #include <spdlog/spdlog.h>
 
+constexpr int SLEEP_INTERVAL_MS = 50;
+
 constexpr uint32_t LOG_LEVEL_ID = ('L' | ('O' << 8) | ('G' << 16) | ('L' << 24));
 constexpr uint32_t VERSION_INFO_ID = ('V' | ('E' << 8) | ('R' << 16) | ('I' << 24));
 constexpr uint32_t PING_PONG_ID = ('P' | ('I' << 8) | ('N' << 16) | ('G' << 24));
@@ -16,19 +18,6 @@ constexpr uint32_t STATUS_CHECK_ID = ('S' | ('C' << 8) | ('H' << 16) | ('K' << 2
 /* ################################################################################### */
 /* ################################ END MODIFICATIONS ################################ */
 /* ################################################################################### */
-
-ZeroMQServer::ZeroMQServer(const std::string &hostAddr, const std::shared_ptr<prometheus::Registry> &reg)
-	: ZeroMQ(zmq::socket_type::rep, hostAddr, true), ZeroMQMonitor()
-{
-	if (reg)
-	{
-		stats = std::make_unique<ZeroMQStats>(reg);
-	}
-
-	startMonitoring(getSocket(), "inproc://" + std::to_string(constHasher(hostAddr.c_str())) + ".rep");
-}
-
-bool ZeroMQServer::initialise() { return start(); }
 
 void ZeroMQServer::update()
 {
@@ -49,12 +38,45 @@ void ZeroMQServer::update()
 		}
 		serverStats.processingTimeEnd = std::chrono::high_resolution_clock::now();
 
-		if (stats)
+		if (_stats)
 		{
-			stats->consumeStats(recvMsgs, replyMsgs, serverStats);
+			_stats->consumeStats(recvMsgs, replyMsgs, serverStats);
 		}
 	}
 }
+
+void ZeroMQServer::threadFunc()
+{
+	spdlog::info("ZeroMQ server started");
+	while (!_shouldStop._M_i)
+	{
+		try
+		{
+			update();
+			_checkFlag->test_and_set();
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("ZeroMQ server failed: {}", e.what());
+		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_INTERVAL_MS));
+	}
+	spdlog::info("ZeroMQ server stopped");
+}
+
+ZeroMQServer::ZeroMQServer(const std::string &hostAddr, const std::shared_ptr<std::atomic_flag> &checkFlag,
+						   const std::shared_ptr<prometheus::Registry> &reg)
+	: ZeroMQ(zmq::socket_type::rep, hostAddr, true), ZeroMQMonitor(), _checkFlag(checkFlag)
+{
+	if (reg)
+	{
+		_stats = std::make_unique<ZeroMQStats>(reg);
+	}
+
+	startMonitoring(getSocket(), "inproc://" + std::to_string(constHasher(hostAddr.c_str())) + ".rep");
+}
+
+bool ZeroMQServer::initialise() { return start(); }
 
 void ZeroMQServer::shutdown()
 {

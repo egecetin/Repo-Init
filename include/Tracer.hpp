@@ -7,6 +7,10 @@
  */
 class Tracer {
   private:
+	std::unique_ptr<std::thread> _thread;
+	std::atomic_flag _shouldStop{false};
+	std::shared_ptr<std::atomic_flag> _checkFlag;	
+
 	std::string _serverPath;
 	std::string _serverProxy;
 	std::string _handlerPath;
@@ -19,6 +23,11 @@ class Tracer {
 	 * @brief Start the crashpad handler process
 	 */
 	void startHandler();
+
+	/**
+	 * @brief Thread function to check and restart the crashpad handler process
+	 */
+	void threadFunc();
 
 	/**
 	 * @brief Check if the given process ID is running
@@ -39,6 +48,12 @@ class Tracer {
 	 * @return The executable directory path
 	 */
 	static inline std::string getSelfExecutableDir();
+	
+	/**
+	 * @brief Dump shared library information to a file
+	 * @param[in] filePath File path to dump the information
+	 */
+	static void dumpSharedLibraryInfo(const std::string &filePath);
 
   public:
 	/**
@@ -64,13 +79,4 @@ class Tracer {
 	 * @brief Check and restart the crashpad_handler process if it is not running
 	 */
 	void restart();
-
-	/**
-	 * @brief Dump shared library information to a file
-	 *
-	 * @param[in] filePath File path to dump the information
-	 * @return true If the operation is successful
-	 * @return false Otherwise
-	 */
-	static bool dumpSharedLibraryInfo(const std::string &filePath);
 };

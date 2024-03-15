@@ -2,7 +2,10 @@
 #include "Utils.hpp"
 #include "Version.h"
 #include "logging/Logger.hpp"
+#include "metrics/ProcessMetrics.hpp"
 #include "metrics/PrometheusServer.hpp"
+#include "telnet/TelnetServer.hpp"
+#include "zeromq/ZeroMQServer.hpp"
 
 #include <csignal>
 #include <thread>
@@ -125,10 +128,66 @@ int main(int argc, char **argv)
 		catch (const std::exception &e)
 		{
 			spdlog::warn("Can't start Prometheus Server: {}", e.what());
+			loopFlag = false;
 		}
 	}
 
-	// Start threads
+	// Start ZeroMQ server if adress is provided
+	std::unique_ptr<ZeroMQServer> zmqController(nullptr);
+	if (!zeromqServerAddr.empty())
+	{
+		try
+		{
+			zmqController = std::make_unique<ZeroMQServer>(
+				zeromqServerAddr, vCheckFlag[0].second,
+				mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
+			zmqController->messageCallback(ZeroMQServerMessageCallback);
+			zmqController->initialise();
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::warn("Can't start ZeroMQ Server: {}", e.what());
+			loopFlag = false;
+		}
+	}
+
+	// Start Telnet server if port is provided
+	std::unique_ptr<TelnetServer> telnetController(nullptr);
+	if (telnetPort > 0)
+	{
+		try
+		{
+			telnetController = std::make_unique<TelnetServer>();
+			telnetController->connectedCallback(TelnetConnectedCallback);
+			telnetController->newLineCallback(TelnetMessageCallback);
+			telnetController->tabCallback(TelnetTabCallback);
+			telnetController->initialise(telnetPort, "> ",
+										 mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::warn("Can't start Telnet Server: {}", e.what());
+			loopFlag = false;
+		}
+	}
+
+	// Start Crashpad handler
+	std::unique_ptr<Tracer> crashpadController(nullptr);
+	crashpadController = std::make_unique<Tracer>(
+		readSingleConfig(configPath, "CRASHPAD_REMOTE"), readSingleConfig(configPath, "CRASHPAD_PROXY"),
+		readSingleConfig(configPath, "CRASHPAD_EXECUTABLE_DIR"),
+		std::map<std::string, std::string>(
+			{{"name", PROJECT_NAME},
+			 {"version", PROJECT_FULL_REVISION},
+			 {"build_info", PROJECT_BUILD_DATE + std::string(" ") + PROJECT_BUILD_TIME + std::string(" ") + BUILD_TYPE},
+			 {"compiler_info", COMPILER_NAME + std::string(" ") + COMPILER_VERSION}}),
+		std::vector<base::FilePath>({base::FilePath(configPath)}), readSingleConfig(configPath, "CRASHPAD_REPORT_DIR"),
+		vCheckFlag[2].second, mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
+
+	// Start self monitor
+	std::unique_ptr<ProcessMetrics> selfMonitor(nullptr);
+	selfMonitor = std::make_unique<ProcessMetrics>(
+		vCheckFlag[3].second, mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */
@@ -136,43 +195,6 @@ int main(int argc, char **argv)
 	/* ################################################################################### */
 	/* ################################ END MODIFICATIONS ################################ */
 	/* ################################################################################### */
-	std::unique_ptr<std::thread> zmqControlTh(nullptr);
-	std::unique_ptr<std::thread> telnetControlTh(nullptr);
-	std::unique_ptr<std::thread> crashpadControlTh(nullptr);
-	std::unique_ptr<std::thread> selfMonitorTh(nullptr);
-
-	if (!zeromqServerAddr.empty())
-	{
-		zmqControlTh = std::make_unique<std::thread>(zmqControlThread, std::ref(mainPrometheusServer),
-													 std::ref(zeromqServerAddr), std::ref(vCheckFlag[0].second));
-	}
-	if (telnetPort > 0)
-	{
-		telnetControlTh = std::make_unique<std::thread>(telnetControlThread, std::ref(mainPrometheusServer), telnetPort,
-														std::ref(vCheckFlag[1].second));
-	}
-
-	// Dump shared library info to text file
-	Tracer::dumpSharedLibraryInfo("shared_libs.txt");
-
-	auto crashpadRemote = readSingleConfig(configPath, "CRASHPAD_REMOTE");
-	auto crashpadProxy = readSingleConfig(configPath, "CRASHPAD_PROXY");
-	auto crashpadExe = readSingleConfig(configPath, "CRASHPAD_EXECUTABLE_DIR");
-	auto crashpadReportPath = readSingleConfig(configPath, "CRASHPAD_REPORT_DIR");
-	auto crashpadAttachments =
-		std::vector<base::FilePath>({base::FilePath(configPath), base::FilePath("shared_libs.txt")});
-	auto crashpadAnnotations = std::map<std::string, std::string>(
-		{{"name", PROJECT_NAME},
-		 {"version", PROJECT_FULL_REVISION},
-		 {"build_info", PROJECT_BUILD_DATE + std::string(" ") + PROJECT_BUILD_TIME + std::string(" ") + BUILD_TYPE},
-		 {"compiler_info", COMPILER_NAME + std::string(" ") + COMPILER_VERSION}});
-	crashpadControlTh = std::make_unique<std::thread>(crashpadControlThread, std::ref(crashpadRemote),
-													  std::ref(crashpadProxy), std::ref(crashpadExe),
-													  std::ref(crashpadAnnotations), std::ref(crashpadAttachments),
-													  std::ref(crashpadReportPath), std::ref(vCheckFlag[2].second));
-
-	selfMonitorTh = std::make_unique<std::thread>(selfMonitorThread, std::ref(mainPrometheusServer),
-												  std::ref(vCheckFlag[3].second));
 	spdlog::debug("Threads started");
 
 	// SIGALRM should be registered after all sleep calls
@@ -183,27 +205,6 @@ int main(int argc, char **argv)
 	}
 	alarm(alarmInterval);
 
-	// Join threads
-	if (zmqControlTh && zmqControlTh->joinable())
-	{
-		zmqControlTh->join();
-		spdlog::info("ZMQ Controller joined");
-	}
-	if (telnetControlTh && telnetControlTh->joinable())
-	{
-		telnetControlTh->join();
-		spdlog::info("Telnet Controller joined");
-	}
-	if (crashpadControlTh && crashpadControlTh->joinable())
-	{
-		crashpadControlTh->join();
-		spdlog::info("Crashpad Controller joined");
-	}
-	if (selfMonitorTh && selfMonitorTh->joinable())
-	{
-		selfMonitorTh->join();
-		spdlog::info("Self Monitor joined");
-	}
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */
@@ -211,6 +212,7 @@ int main(int argc, char **argv)
 	/* ################################################################################### */
 	/* ################################ END MODIFICATIONS ################################ */
 	/* ################################################################################### */
+	spdlog::debug("Threads stopped");
 
 	curl_global_cleanup();
 

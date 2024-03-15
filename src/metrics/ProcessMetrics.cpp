@@ -98,7 +98,7 @@ void ProcessMetrics::update()
 
 void ProcessMetrics::threadRunner()
 {
-	while (_threadFlag._M_i)
+	while (!_shouldStop._M_i)
 	{
 		try
 		{
@@ -114,9 +114,9 @@ void ProcessMetrics::threadRunner()
 	}
 }
 
-ProcessMetrics::ProcessMetrics(const std::shared_ptr<prometheus::Registry> &reg,
-							   const std::shared_ptr<std::atomic_flag> &checkFlag)
-	: _threadFlag(true), _checkFlag(checkFlag)
+ProcessMetrics::ProcessMetrics(const std::shared_ptr<std::atomic_flag> &checkFlag,
+							   const std::shared_ptr<prometheus::Registry> &reg)
+	: _checkFlag(checkFlag)
 {
 	_pMemory =
 		&prometheus::BuildGauge().Name("memory_usage").Help("Memory usage of application").Register(*reg).Add({});
@@ -138,7 +138,7 @@ ProcessMetrics::ProcessMetrics(const std::shared_ptr<prometheus::Registry> &reg,
 
 ProcessMetrics::~ProcessMetrics()
 {
-	_threadFlag.clear();
+	_shouldStop.test_and_set();
 	if (_thread->joinable())
 	{
 		_thread->join();
