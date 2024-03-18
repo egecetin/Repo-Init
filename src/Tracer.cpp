@@ -150,6 +150,15 @@ Tracer::Tracer(std::string serverPath, std::string serverProxy, const std::strin
 	startHandler();
 }
 
+Tracer::~Tracer()
+{
+	_shouldStop._M_i = true;
+	if (_thread && _thread->joinable())
+	{
+		_thread->join();
+	}
+}
+
 bool Tracer::isRunning()
 {
 	int sockId{-1};

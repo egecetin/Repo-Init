@@ -70,6 +70,11 @@ class Tracer {
 					std::vector<base::FilePath> attachments = {}, const std::string &reportPath = "");
 
 	/**
+	 * @brief Destroy the Tracer object
+	 */
+	~Tracer();
+
+	/**
 	 * @brief Check if the crashpad_handler process is running
 	 * @return true if the crashpad_handler is running, false otherwise
 	 */
