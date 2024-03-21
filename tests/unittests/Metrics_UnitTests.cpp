@@ -136,11 +136,8 @@ TEST(Metrics_Tests, ProcessMetricsUnitTests)
 	std::string promServerAddr = "localhost:8103";
 
 	PrometheusServer reporter(promServerAddr);
-	ProcessMetrics procMetrics(reporter.createNewRegistry());
-
-	procMetrics.update();
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	procMetrics.update();
+	std::shared_ptr<std::atomic_flag> checkFlag = std::make_shared<std::atomic_flag>(false);
+	ProcessMetrics procMetrics(checkFlag, reporter.createNewRegistry());
 
 	// Collect data from socket
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));

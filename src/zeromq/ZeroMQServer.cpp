@@ -95,6 +95,7 @@ void ZeroMQServer::shutdown()
 	if (_serverThread && _serverThread->joinable())
 	{
 		_serverThread->join();
+		_serverThread.reset();
 	}
 
 	stopMonitoring();

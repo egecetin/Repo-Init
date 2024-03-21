@@ -595,6 +595,9 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString,
 		m_stats = std::make_unique<TelnetStats>(reg, listenPort);
 	}
 
+	m_shouldStop.clear();
+	m_serverThread = std::make_unique<std::thread>(&TelnetServer::threadFunc, this);
+
 	m_initialised = true;
 	return true;
 }
@@ -718,12 +721,14 @@ void TelnetServer::shutdown()
 
 	// No longer need server socket so close it.
 	close(m_listenSocket);
+	m_listenSocket = INVALID_SOCKET;
 	m_initialised = false;
 
 	m_shouldStop.test_and_set();
 	if (m_serverThread && m_serverThread->joinable())
 	{
 		m_serverThread->join();
+		m_serverThread.reset();
 	}
 }
 

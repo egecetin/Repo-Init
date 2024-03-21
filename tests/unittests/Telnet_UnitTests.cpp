@@ -23,7 +23,7 @@ TEST(Telnet_Tests, TelnetServerUnitTests)
 	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), "",
 											reporter.createNewRegistry()));
 	ASSERT_FALSE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT"))));
-	telnetServerPtr->shutdown();
+	ASSERT_NO_THROW(telnetServerPtr->shutdown());
 
 	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), "> "));
 	telnetServerPtr->connectedCallback(TelnetConnectedCallback);
@@ -36,14 +36,8 @@ TEST(Telnet_Tests, TelnetServerUnitTests)
 		return system(("expect " + std::string(TEST_TELNET_SH_PATH) + " >/dev/null").c_str());
 	});
 
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	for (size_t idx = 0; idx < 250; ++idx)
-	{
-		telnetServerPtr->update();
-		std::this_thread::sleep_for(std::chrono::milliseconds(20));
-	}
-
 	shResult.wait();
-	telnetServerPtr->shutdown();
+	ASSERT_NO_THROW(telnetServerPtr->shutdown());
+	ASSERT_NO_THROW(telnetServerPtr->shutdown());
 	ASSERT_EQ(0, shResult.get());
 }

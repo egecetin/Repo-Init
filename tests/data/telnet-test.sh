@@ -10,12 +10,12 @@ foreach entry [list "Test Message\r" "Unknown Message\r" "help\r" "\b" "\t" "he\
     sleep 0.1
 }
 
+sleep 0.1
+spawn telnet localhost 23000
+spawn telnet localhost 23000
+spawn telnet localhost 23000
+spawn telnet localhost 23000
+spawn telnet localhost 23000
+spawn telnet localhost 23000
+spawn telnet localhost 23000
 sleep 1
-spawn telnet localhost 23000
-spawn telnet localhost 23000
-spawn telnet localhost 23000
-spawn telnet localhost 23000
-spawn telnet localhost 23000
-spawn telnet localhost 23000
-spawn telnet localhost 23000
-sleep 3

@@ -145,9 +145,6 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	bool initialise(u_long listenPort, std::string promptString = "",
 					const std::shared_ptr<prometheus::Registry> &reg = nullptr);
 
-	/// Process new connections and messages
-	void update();
-
 	/// Closes the Telnet Server
 	void shutdown();
 
@@ -176,6 +173,9 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 
 	bool acceptConnection();
 	void threadFunc();
+	
+	/// Process new connections and messages
+	void update();
 
 	u_long m_listenPort{};
 	Socket m_listenSocket{-1};
