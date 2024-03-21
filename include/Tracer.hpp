@@ -2,6 +2,8 @@
 
 #include "client/crashpad_client.h"
 
+#include <thread>
+
 /**
  * @brief Tracer class to handle operations of Crashpad
  */
@@ -9,7 +11,7 @@ class Tracer {
   private:
 	std::unique_ptr<std::thread> _thread;
 	std::atomic_flag _shouldStop{false};
-	std::shared_ptr<std::atomic_flag> _checkFlag;	
+	std::shared_ptr<std::atomic_flag> _checkFlag;
 
 	std::string _serverPath;
 	std::string _serverProxy;
@@ -48,7 +50,7 @@ class Tracer {
 	 * @return The executable directory path
 	 */
 	static inline std::string getSelfExecutableDir();
-	
+
 	/**
 	 * @brief Dump shared library information to a file
 	 * @param[in] filePath File path to dump the information
@@ -58,6 +60,7 @@ class Tracer {
   public:
 	/**
 	 * @brief Construct a new Tracer object
+	 * @param[in] checkFlag Flag to check if the process is running
 	 * @param[in] serverPath Remote server address
 	 * @param[in] serverProxy Remote server proxy
 	 * @param[in] crashpadHandlerPath Path to crashpad_handler executable
@@ -65,9 +68,10 @@ class Tracer {
 	 * @param[in] attachments Attachments to upload to remote server
 	 * @param[in] reportPath Path to where dump minidump files
 	 */
-	explicit Tracer(std::string serverPath = "", std::string serverProxy = "",
-					const std::string &crashpadHandlerPath = "", std::map<std::string, std::string> annotations = {},
-					std::vector<base::FilePath> attachments = {}, const std::string &reportPath = "");
+	explicit Tracer(const std::shared_ptr<std::atomic_flag> &checkFlag, std::string serverPath = "",
+					std::string serverProxy = "", const std::string &crashpadHandlerPath = "",
+					std::map<std::string, std::string> annotations = {}, std::vector<base::FilePath> attachments = {},
+					const std::string &reportPath = "");
 
 	/**
 	 * @brief Destroy the Tracer object

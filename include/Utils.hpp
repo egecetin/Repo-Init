@@ -18,7 +18,7 @@ extern volatile bool loopFlag;
 
 /// Flags and definitions for runtime checks
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-extern std::vector<std::pair<std::string, std::unique_ptr<std::atomic_flag>>> vCheckFlag;
+extern std::vector<std::pair<std::string, std::shared_ptr<std::atomic_flag>>> vCheckFlag;
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */
@@ -127,17 +127,6 @@ struct spinlock {
 	 */
 	void unlock() noexcept { lock_.store(false, std::memory_order_release); }
 };
-
-/**
- * @brief Prints the version
- */
-void print_version();
-
-/**
- * @brief Returns the version
- * @return std::string Version string
- */
-std::string get_version();
 
 /**
  * @brief Read initial config from JSON and verify all required entries exist

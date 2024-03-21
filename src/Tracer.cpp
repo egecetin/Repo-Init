@@ -50,7 +50,7 @@ void Tracer::startHandler()
 
 void Tracer::threadFunc()
 {
-	while(!_shouldStop._M_i)
+	while (!_shouldStop._M_i)
 	{
 		try
 		{
@@ -131,11 +131,11 @@ void Tracer::dumpSharedLibraryInfo(const std::string &filePath)
 	}
 }
 
-Tracer::Tracer(std::string serverPath, std::string serverProxy, const std::string &crashpadHandlerPath,
-			   std::map<std::string, std::string> annotations, std::vector<base::FilePath> attachments,
-			   const std::string &reportPath)
-	: _serverPath(std::move(serverPath)), _serverProxy(std::move(serverProxy)), _annotations(std::move(annotations)),
-	  _attachments(std::move(attachments))
+Tracer::Tracer(const std::shared_ptr<std::atomic_flag> &checkFlag, std::string serverPath, std::string serverProxy,
+			   const std::string &crashpadHandlerPath, std::map<std::string, std::string> annotations,
+			   std::vector<base::FilePath> attachments, const std::string &reportPath)
+	: _checkFlag(checkFlag), _serverPath(std::move(serverPath)), _serverProxy(std::move(serverProxy)),
+	  _annotations(std::move(annotations)), _attachments(std::move(attachments))
 {
 	auto selfDir = getSelfExecutableDir();
 

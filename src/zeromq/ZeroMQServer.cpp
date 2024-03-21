@@ -2,6 +2,7 @@
 
 #include "Utils.hpp"
 #include "rng/Hasher.hpp"
+#include "Version.h"
 
 #include <spdlog/spdlog.h>
 
@@ -76,10 +77,26 @@ ZeroMQServer::ZeroMQServer(const std::string &hostAddr, const std::shared_ptr<st
 	startMonitoring(getSocket(), "inproc://" + std::to_string(constHasher(hostAddr.c_str())) + ".rep");
 }
 
-bool ZeroMQServer::initialise() { return start(); }
+bool ZeroMQServer::initialise()
+{
+	_shouldStop.clear();
+
+	if (start())
+	{
+		_serverThread = std::make_unique<std::thread>(&ZeroMQServer::threadFunc, this);
+		return true;
+	}
+	return false;
+}
 
 void ZeroMQServer::shutdown()
 {
+	_shouldStop.test_and_set();
+	if (_serverThread && _serverThread->joinable())
+	{
+		_serverThread->join();
+	}
+
 	stopMonitoring();
 	stop();
 }
@@ -126,7 +143,7 @@ bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, st
 		}
 
 		reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;
-		replyBody = get_version();
+		replyBody = PROJECT_FULL_VERSION_STRING;
 		break;
 	}
 	case PING_PONG_ID: {

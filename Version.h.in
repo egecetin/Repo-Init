@@ -22,10 +22,5 @@
 #define COMPILER_VERSION "@CMAKE_CXX_COMPILER_VERSION@"
 #define BUILD_TYPE "@CMAKE_BUILD_TYPE@"
 
-std::string getVersion()
-{
-	return std::string("v") + PROJECT_FULL_REVISION + " " + BUILD_TYPE + " " + PROJECT_BUILD_DATE + " " +
-		   PROJECT_BUILD_TIME;
-}
-
-void print_version() { spdlog::info("{:<15}: {}", PROJECT_NAME, getVersion()); }
+#define PROJECT_FULL_VERSION_STRING std::string("v") + PROJECT_FULL_REVISION + " " + BUILD_TYPE + " " + PROJECT_BUILD_DATE + " " + PROJECT_BUILD_TIME
+#define PRINT_VERSION() spdlog::info("{:<15}: {}", PROJECT_NAME, VERSION_STRING)

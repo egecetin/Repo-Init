@@ -1,6 +1,7 @@
 #include "telnet/TelnetServer.hpp"
 #include "Utils.hpp"
 #include "rng/Hasher.hpp"
+#include "Version.h"
 
 #include <iomanip>
 #include <sstream>
@@ -18,6 +19,8 @@ constexpr int TELNET_TIMEOUT = 120;
 constexpr int MAX_AVAILABLE_SESSION = 5;
 // History limit for Telnet session
 constexpr int TELNET_HISTORY_LIMIT = 50;
+// Sleep interval for the server (to control rate limiting)
+constexpr int SLEEP_INTERVAL_MS = 50;
 
 // Status table widths
 constexpr int KEY_WIDTH = 30;
@@ -589,7 +592,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString,
 	// If prometheus registry is provided prepare statistics
 	if (reg)
 	{
-		stats = std::make_unique<TelnetStats>(reg, listenPort);
+		m_stats = std::make_unique<TelnetStats>(reg, listenPort);
 	}
 
 	m_initialised = true;
@@ -618,6 +621,25 @@ bool TelnetServer::acceptConnection()
 	m_sessions.push_back(session);
 	session->initialise();
 	return true;
+}
+
+void TelnetServer::threadFunc()
+{
+	spdlog::info("Telnet server started");
+	while (!m_shouldStop._M_i)
+	{
+		try
+		{
+			update();
+			m_checkFlag->test_and_set();
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Telnet server failed: {}", e.what());
+		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_INTERVAL_MS));
+	}
+	spdlog::info("Telnet server stopped");
 }
 
 void TelnetServer::update()
@@ -659,18 +681,18 @@ void TelnetServer::update()
 		if (m_sessions[idx]->checkTimeout())
 		{
 			m_sessions[idx]->closeClient();
-			if (stats)
+			if (m_stats)
 			{
-				stats->consumeStats(m_sessions[idx]->stats, true);
+				m_stats->consumeStats(m_sessions[idx]->stats, true);
 			}
 			m_sessions.erase(m_sessions.begin() + static_cast<int>(idx));
 			--idx;
 		}
 		else
 		{
-			if (stats)
+			if (m_stats)
 			{
-				stats->consumeStats(m_sessions[idx]->stats, false);
+				m_stats->consumeStats(m_sessions[idx]->stats, false);
 			}
 		}
 	}
@@ -679,9 +701,9 @@ void TelnetServer::update()
 	serverStats.acceptedConnectionCtr = static_cast<uint64_t>(newConnectionAccept);
 	serverStats.refusedConnectionCtr = static_cast<uint64_t>(newConnectionRefused);
 	serverStats.processingTimeEnd = std::chrono::high_resolution_clock::now();
-	if (stats)
+	if (m_stats)
 	{
-		stats->consumeStats(serverStats);
+		m_stats->consumeStats(serverStats);
 	}
 }
 
@@ -697,6 +719,12 @@ void TelnetServer::shutdown()
 	// No longer need server socket so close it.
 	close(m_listenSocket);
 	m_initialised = false;
+
+	m_shouldStop.test_and_set();
+	if (m_serverThread && m_serverThread->joinable())
+	{
+		m_serverThread->join();
+	}
 }
 
 void TelnetPrintAvailableCommands(const SP_TelnetSession &session)
@@ -769,7 +797,7 @@ bool TelnetMessageCallback(const SP_TelnetSession &session, const std::string &l
 		session->sendLine("pong");
 		return true;
 	case constHasher("version"):
-		session->sendLine(get_version());
+		session->sendLine(PROJECT_FULL_VERSION_STRING);
 		return true;
 	case constHasher("clear"):
 		session->sendLine(TELNET_CLEAR_SCREEN);

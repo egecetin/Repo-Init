@@ -1,6 +1,6 @@
 #pragma once
 
-#include "connection/Zeromq.hpp"
+#include "zeromq/ZeroMQ.hpp"
 #include "zeromq/ZeroMQMonitor.hpp"
 #include "zeromq/ZeroMQStats.hpp"
 

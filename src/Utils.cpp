@@ -15,7 +15,7 @@
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 volatile bool loopFlag;
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-std::vector<std::pair<std::string, std::unique_ptr<std::atomic_flag>>> vCheckFlag;
+std::vector<std::pair<std::string, std::shared_ptr<std::atomic_flag>>> vCheckFlag;
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */

@@ -47,7 +47,6 @@ configure_file(Version.h.in "Version.h")
 file(GLOB ProjectSources
   ${PROJECT_SOURCE_DIR}/src/connection/Http.cpp
   ${PROJECT_SOURCE_DIR}/src/connection/RawSocket.cpp
-  ${PROJECT_SOURCE_DIR}/src/connection/Zeromq.cpp
   ${PROJECT_SOURCE_DIR}/src/logging/Logger.cpp
   ${PROJECT_SOURCE_DIR}/src/logging/Loki.cpp
   ${PROJECT_SOURCE_DIR}/src/logging/Sentry.cpp
@@ -60,6 +59,7 @@ file(GLOB ProjectSources
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQMonitor.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQServer.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQStats.cpp
+  ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQ.cpp
   ${PROJECT_SOURCE_DIR}/src/Tracer.cpp
   ${PROJECT_SOURCE_DIR}/src/Utils.cpp
 )

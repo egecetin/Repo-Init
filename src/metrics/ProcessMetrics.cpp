@@ -118,6 +118,11 @@ ProcessMetrics::ProcessMetrics(const std::shared_ptr<std::atomic_flag> &checkFla
 							   const std::shared_ptr<prometheus::Registry> &reg)
 	: _checkFlag(checkFlag)
 {
+	if (reg == nullptr)
+	{
+		throw std::invalid_argument("Registry is nullptr");
+	}
+
 	_pMemory =
 		&prometheus::BuildGauge().Name("memory_usage").Help("Memory usage of application").Register(*reg).Add({});
 	_pPageFaults =
@@ -139,7 +144,7 @@ ProcessMetrics::ProcessMetrics(const std::shared_ptr<std::atomic_flag> &checkFla
 ProcessMetrics::~ProcessMetrics()
 {
 	_shouldStop.test_and_set();
-	if (_thread->joinable())
+	if (_thread && _thread->joinable())
 	{
 		_thread->join();
 	}

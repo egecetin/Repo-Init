@@ -79,7 +79,7 @@ int main(int argc, char **argv)
 	// Init logger
 	const MainLogger logger(argc, argv, configPath);
 	spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [" + std::string(PROJECT_NAME) + "] [%^%l%$] : %v");
-	print_version();
+	PRINT_VERSION();
 
 	// Read config
 	if (!readAndVerifyConfig(configPath))
@@ -104,14 +104,14 @@ int main(int argc, char **argv)
 	// Init variables
 	loopFlag = true;
 
-	std::unique_ptr<ZeroMQServer> zmqController(nullptr);
-	vCheckFlag.emplace_back("ZeroMQ Server", std::make_unique<std::atomic_flag>(false));
-	std::unique_ptr<TelnetServer> telnetController(nullptr);
-	vCheckFlag.emplace_back("Telnet Server", std::make_unique<std::atomic_flag>(false));
-	std::unique_ptr<Tracer> crashpadController(nullptr);
-	vCheckFlag.emplace_back("Crashpad Handler", std::make_unique<std::atomic_flag>(false));
-	std::unique_ptr<ProcessMetrics> selfMonitor(nullptr);
-	vCheckFlag.emplace_back("Self Monitor", std::make_unique<std::atomic_flag>(false));
+	std::shared_ptr<ZeroMQServer> zmqController(nullptr);
+	vCheckFlag.emplace_back("ZeroMQ Server", std::make_shared<std::atomic_flag>(false));
+	std::shared_ptr<TelnetServer> telnetController(nullptr);
+	vCheckFlag.emplace_back("Telnet Server", std::make_shared<std::atomic_flag>(false));
+	std::shared_ptr<Tracer> crashpadController(nullptr);
+	vCheckFlag.emplace_back("Crashpad Handler", std::make_shared<std::atomic_flag>(false));
+	std::shared_ptr<ProcessMetrics> selfMonitor(nullptr);
+	vCheckFlag.emplace_back("Self Monitor", std::make_shared<std::atomic_flag>(false));
 
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
@@ -175,15 +175,14 @@ int main(int argc, char **argv)
 
 	// Start Crashpad handler
 	crashpadController = std::make_unique<Tracer>(
-		readSingleConfig(configPath, "CRASHPAD_REMOTE"), readSingleConfig(configPath, "CRASHPAD_PROXY"),
-		readSingleConfig(configPath, "CRASHPAD_EXECUTABLE_DIR"),
+		vCheckFlag[2].second, readSingleConfig(configPath, "CRASHPAD_REMOTE"),
+		readSingleConfig(configPath, "CRASHPAD_PROXY"), readSingleConfig(configPath, "CRASHPAD_EXECUTABLE_DIR"),
 		std::map<std::string, std::string>(
 			{{"name", PROJECT_NAME},
 			 {"version", PROJECT_FULL_REVISION},
 			 {"build_info", PROJECT_BUILD_DATE + std::string(" ") + PROJECT_BUILD_TIME + std::string(" ") + BUILD_TYPE},
 			 {"compiler_info", COMPILER_NAME + std::string(" ") + COMPILER_VERSION}}),
-		std::vector<base::FilePath>({base::FilePath(configPath)}), readSingleConfig(configPath, "CRASHPAD_REPORT_DIR"),
-		vCheckFlag[2].second, mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
+		std::vector<base::FilePath>({base::FilePath(configPath)}), readSingleConfig(configPath, "CRASHPAD_REPORT_DIR"));
 
 	// Start self monitor
 	if (mainPrometheusServer)

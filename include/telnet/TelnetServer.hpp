@@ -36,6 +36,7 @@ either expressed or implied, of the FreeBSD Project.
 #include <list>
 #include <memory>
 #include <string>
+#include <thread>
 #include <vector>
 
 #include <arpa/inet.h>
@@ -130,6 +131,8 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
   public:
 	/// Constructor for server
 	TelnetServer() = default;
+	/// Destructor for server
+	~TelnetServer() { shutdown(); }
 
 	/**
 	 * @brief Initializes a new Telnet server
@@ -172,6 +175,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	FPTR_TabCallback m_tabCallback;
 
 	bool acceptConnection();
+	void threadFunc();
 
 	u_long m_listenPort{};
 	Socket m_listenSocket{-1};
@@ -181,7 +185,11 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	std::string m_promptString;
 
 	// Statistics
-	std::unique_ptr<TelnetStats> stats;
+	std::unique_ptr<TelnetStats> m_stats;
+	
+	std::atomic_flag m_shouldStop{false}; /**< Flag to stop monitoring. */
+    std::unique_ptr<std::thread> m_serverThread; /**< Thread handler */
+	std::shared_ptr<std::atomic_flag> m_checkFlag; /**< Runtime check flag */
 };
 
 /**
