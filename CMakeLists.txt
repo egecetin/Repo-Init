@@ -41,7 +41,7 @@ set(INSTALL_GTEST OFF CACHE BOOL "")
 
 set(SENTRY_BACKEND none) # Disable backend to manually use crashpad
 
-configure_file(build_number.h.in "Version.h")
+configure_file(Version.h.in "Version.h")
 
 # Define sources
 file(GLOB ProjectSources
@@ -60,7 +60,6 @@ file(GLOB ProjectSources
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQMonitor.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQServer.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQStats.cpp
-  ${PROJECT_SOURCE_DIR}/src/Control.cpp
   ${PROJECT_SOURCE_DIR}/src/Tracer.cpp
   ${PROJECT_SOURCE_DIR}/src/Utils.cpp
 )

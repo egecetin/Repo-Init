@@ -104,9 +104,13 @@ int main(int argc, char **argv)
 	// Init variables
 	loopFlag = true;
 
+	std::unique_ptr<ZeroMQServer> zmqController(nullptr);
 	vCheckFlag.emplace_back("ZeroMQ Server", std::make_unique<std::atomic_flag>(false));
+	std::unique_ptr<TelnetServer> telnetController(nullptr);
 	vCheckFlag.emplace_back("Telnet Server", std::make_unique<std::atomic_flag>(false));
+	std::unique_ptr<Tracer> crashpadController(nullptr);
 	vCheckFlag.emplace_back("Crashpad Handler", std::make_unique<std::atomic_flag>(false));
+	std::unique_ptr<ProcessMetrics> selfMonitor(nullptr);
 	vCheckFlag.emplace_back("Self Monitor", std::make_unique<std::atomic_flag>(false));
 
 	/* ################################################################################### */
@@ -133,7 +137,6 @@ int main(int argc, char **argv)
 	}
 
 	// Start ZeroMQ server if adress is provided
-	std::unique_ptr<ZeroMQServer> zmqController(nullptr);
 	if (!zeromqServerAddr.empty())
 	{
 		try
@@ -152,7 +155,6 @@ int main(int argc, char **argv)
 	}
 
 	// Start Telnet server if port is provided
-	std::unique_ptr<TelnetServer> telnetController(nullptr);
 	if (telnetPort > 0)
 	{
 		try
@@ -172,7 +174,6 @@ int main(int argc, char **argv)
 	}
 
 	// Start Crashpad handler
-	std::unique_ptr<Tracer> crashpadController(nullptr);
 	crashpadController = std::make_unique<Tracer>(
 		readSingleConfig(configPath, "CRASHPAD_REMOTE"), readSingleConfig(configPath, "CRASHPAD_PROXY"),
 		readSingleConfig(configPath, "CRASHPAD_EXECUTABLE_DIR"),
@@ -185,9 +186,10 @@ int main(int argc, char **argv)
 		vCheckFlag[2].second, mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
 
 	// Start self monitor
-	std::unique_ptr<ProcessMetrics> selfMonitor(nullptr);
-	selfMonitor = std::make_unique<ProcessMetrics>(
-		vCheckFlag[3].second, mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
+	if (mainPrometheusServer)
+	{
+		selfMonitor = std::make_unique<ProcessMetrics>(vCheckFlag[3].second, mainPrometheusServer->createNewRegistry());
+	}
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */

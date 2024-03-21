@@ -24,29 +24,6 @@ std::vector<std::pair<std::string, std::unique_ptr<std::atomic_flag>>> vCheckFla
 /* ################################ END MODIFICATIONS ################################ */
 /* ################################################################################### */
 
-// GCOVR_EXCL_START
-void print_version()
-{
-	spdlog::info("{:<15}: v{} {} {} {}", PROJECT_NAME, PROJECT_FULL_REVISION, BUILD_TYPE, PROJECT_BUILD_DATE,
-				 PROJECT_BUILD_TIME);
-	/* ################################################################################### */
-	/* ############################# MAKE MODIFICATIONS HERE ############################# */
-	/* ################################################################################### */
-
-	/* ################################################################################### */
-	/* ################################ END MODIFICATIONS ################################ */
-	/* ################################################################################### */
-}
-// GCOVR_EXCL_STOP
-
-// GCOVR_EXCL_START
-std::string get_version()
-{
-	return std::string("v") + PROJECT_FULL_REVISION + " " + BUILD_TYPE + " " + PROJECT_BUILD_DATE + " " +
-		   PROJECT_BUILD_TIME;
-}
-// GCOVR_EXCL_STOP
-
 template <typename T> std::string stringify(const T &obj)
 {
 	rapidjson::StringBuffer sbuffer;
