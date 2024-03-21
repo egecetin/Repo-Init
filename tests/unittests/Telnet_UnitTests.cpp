@@ -20,12 +20,13 @@ TEST(Telnet_Tests, TelnetServerUnitTests)
 
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
-	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), "",
+	std::shared_ptr<std::atomic_flag> checkFlag;
+	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), checkFlag, "",
 											reporter.createNewRegistry()));
-	ASSERT_FALSE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT"))));
+	ASSERT_FALSE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), checkFlag));
 	ASSERT_NO_THROW(telnetServerPtr->shutdown());
 
-	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), "> "));
+	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), checkFlag, "> "));
 	telnetServerPtr->connectedCallback(TelnetConnectedCallback);
 	telnetServerPtr->newLineCallback(TelnetMessageCallback);
 	telnetServerPtr->tabCallback(TelnetTabCallback);

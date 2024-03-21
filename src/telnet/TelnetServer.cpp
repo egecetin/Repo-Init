@@ -532,7 +532,7 @@ void TelnetSession::update()
 }
 
 /* ------------------ Telnet Server -------------------*/
-bool TelnetServer::initialise(u_long listenPort, std::string promptString,
+bool TelnetServer::initialise(u_long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag, std::string promptString,
 							  const std::shared_ptr<prometheus::Registry> &reg)
 {
 	if (m_initialised)
@@ -540,6 +540,7 @@ bool TelnetServer::initialise(u_long listenPort, std::string promptString,
 		return false;
 	}
 
+	m_checkFlag = checkFlag;
 	m_listenPort = listenPort;
 	m_promptString = std::move(promptString);
 
@@ -634,7 +635,10 @@ void TelnetServer::threadFunc()
 		try
 		{
 			update();
-			m_checkFlag->test_and_set();
+			if (m_checkFlag)
+			{
+				m_checkFlag->test_and_set();
+			}
 		}
 		catch (const std::exception &e)
 		{

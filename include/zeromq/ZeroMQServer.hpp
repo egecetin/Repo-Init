@@ -34,8 +34,8 @@ class ZeroMQServer : private ZeroMQ, ZeroMQMonitor {
 	 * @param[in] checkFlag Flag to check if the server is running
 	 * @param[in] reg Prometheus registry for stats
 	 */
-	explicit ZeroMQServer(const std::string &hostAddr, const std::shared_ptr<std::atomic_flag> &checkFlag,
-						  const std::shared_ptr<prometheus::Registry> &reg = nullptr);
+	ZeroMQServer(const std::string &hostAddr, const std::shared_ptr<std::atomic_flag> &checkFlag,
+				 const std::shared_ptr<prometheus::Registry> &reg = nullptr);
 
 	/**
 	 * @brief Initializes a new ZeroMQ server

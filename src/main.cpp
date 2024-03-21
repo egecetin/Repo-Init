@@ -136,7 +136,7 @@ int main(int argc, char **argv)
 		}
 	}
 
-	// Start ZeroMQ server if adress is provided
+	// Start ZeroMQ server if address is provided
 	if (!zeromqServerAddr.empty())
 	{
 		try
@@ -163,7 +163,7 @@ int main(int argc, char **argv)
 			telnetController->connectedCallback(TelnetConnectedCallback);
 			telnetController->newLineCallback(TelnetMessageCallback);
 			telnetController->tabCallback(TelnetTabCallback);
-			telnetController->initialise(telnetPort, "> ",
+			telnetController->initialise(telnetPort, vCheckFlag[1].second, "> ",
 										 mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
 		}
 		catch (const std::exception &e)

@@ -103,7 +103,10 @@ void ProcessMetrics::threadRunner()
 		try
 		{
 			update();
-			_checkFlag->test_and_set();
+			if (_checkFlag)
+			{
+				_checkFlag->test_and_set();
+			}
 		}
 		catch (const std::exception &e)
 		{
