@@ -9,8 +9,11 @@
  */
 class ConfigParser {
   private:
-	std::string configPath;
-	std::unordered_map<std::string, std::string> configMap;
+	std::string _configPath;
+	std::unordered_map<std::string, std::string> _configMap;
+
+	void readAndParseJson();
+	void writeJson();
 
   public:
 	/**
@@ -45,9 +48,4 @@ class ConfigParser {
 	 * @brief Load the configuration from the file
 	 */
 	void load();
-
-	/**
-	 * @brief Print the configuration to the console
-	 */
-	void print();
 };

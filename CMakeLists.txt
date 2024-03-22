@@ -56,11 +56,12 @@ file(GLOB ProjectSources
   ${PROJECT_SOURCE_DIR}/src/metrics/Status.cpp
   ${PROJECT_SOURCE_DIR}/src/telnet/TelnetServer.cpp
   ${PROJECT_SOURCE_DIR}/src/telnet/TelnetStats.cpp
+  ${PROJECT_SOURCE_DIR}/src/utils/ConfigParser.cpp
+  ${PROJECT_SOURCE_DIR}/src/utils/Tracer.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQMonitor.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQServer.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQStats.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQ.cpp
-  ${PROJECT_SOURCE_DIR}/src/Tracer.cpp
   ${PROJECT_SOURCE_DIR}/src/Utils.cpp
 )
 

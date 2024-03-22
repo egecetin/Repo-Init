@@ -24,14 +24,6 @@ std::vector<std::pair<std::string, std::shared_ptr<std::atomic_flag>>> vCheckFla
 /* ################################ END MODIFICATIONS ################################ */
 /* ################################################################################### */
 
-template <typename T> std::string stringify(const T &obj)
-{
-	rapidjson::StringBuffer sbuffer;
-	rapidjson::Writer<rapidjson::StringBuffer> writer(sbuffer);
-	obj.Accept(writer);
-	return sbuffer.GetString();
-}
-
 bool tryOpenAndParseConfig(const std::string &dir, rapidjson::Document &doc)
 {
 	std::ifstream inFile(dir);
