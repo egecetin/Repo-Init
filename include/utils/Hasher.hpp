@@ -5,30 +5,33 @@
 
 // NOLINTBEGIN
 
-/**
- * @brief Calculates the compile-time hash value of a string.
- * @param s The input string.
- * @return The hash value of the input string.
- */
-constexpr size_t constHasher(const char *s) { return *s ? *s + 33 * constHasher(s + 1) : 5381; }
-
-/**
- * @brief Generates entropy using the input string and an initial value.
- * @param entropy The input string used for generating entropy.
- * @param iv The initial value for the entropy generation.
- * @return The generated entropy value.
- */
-template <size_t N> constexpr uint64_t constSeeder(const char (&entropy)[N], const uint64_t iv = 0)
+namespace utils
 {
-	auto value{iv};
-	for (size_t i{0}; i < N; i++)
+	/**
+	 * @brief Calculates the compile-time hash value of a string.
+	 * @param s The input string.
+	 * @return The hash value of the input string.
+	 */
+	constexpr size_t constHasher(const char *s) { return *s ? *s + 33 * constHasher(s + 1) : 5381; }
+
+	/**
+	 * @brief Generates entropy using the input string and an initial value.
+	 * @param entropy The input string used for generating entropy.
+	 * @param iv The initial value for the entropy generation.
+	 * @return The generated entropy value.
+	 */
+	template <size_t N> constexpr uint64_t constSeeder(const char (&entropy)[N], const uint64_t iv = 0)
 	{
-		// Xor 1st byte of seed with input byte
-		value = (value & (unsigned(~0) << 8)) | ((value & 0xFF) ^ entropy[i]);
-		// Rotl 1 byte
-		value = value << 8 | value >> ((sizeof(value) * 8) - 8);
+		auto value{iv};
+		for (size_t i{0}; i < N; i++)
+		{
+			// Xor 1st byte of seed with input byte
+			value = (value & (unsigned(~0) << 8)) | ((value & 0xFF) ^ entropy[i]);
+			// Rotl 1 byte
+			value = value << 8 | value >> ((sizeof(value) * 8) - 8);
+		}
+		return value ^ iv;
 	}
-	return value ^ iv;
-}
+} // namespace utils
 
 // NOLINTEND

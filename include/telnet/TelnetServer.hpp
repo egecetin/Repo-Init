@@ -142,7 +142,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	 * @return true If initialized
 	 * @return false otherwise
 	 */
-	bool initialise(u_long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag, std::string promptString = "", 
+	bool initialise(u_long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag, std::string promptString = "",
 					const std::shared_ptr<prometheus::Registry> &reg = nullptr);
 
 	/// Closes the Telnet Server
