@@ -10,7 +10,4 @@ service_name=@SERVICE_NAME@
 # version of the package.
 if [ $1 -eq 0 ]; then
     rm %{_unitdir}/$service_name
-    rm %{_datadir}/@PROJECT_NAME@/share/config.json
-    rmdir %{_datadir}/@PROJECT_NAME@/share
-    rmdir %{_datadir}/@PROJECT_NAME@
 fi
