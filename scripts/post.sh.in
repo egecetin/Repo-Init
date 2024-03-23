@@ -1,4 +1,4 @@
-echo "Running post script for v@CMAKE_PROJECT_VERSION@"
+echo "Running post script for @PROJECT_NAME@ v@PROJECT_VERSION@"
 
 # If we're installing the package for the first time, copy
 # the service file to the service unit directory.

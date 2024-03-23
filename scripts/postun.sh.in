@@ -1,5 +1,4 @@
-# Enable verbose logging.
-echo "Running postun script for v@CMAKE_PROJECT_VERSION@"
+echo "Running postun script for @PROJECT_NAME@ v@PROJECT_VERSION@"
 
 # Use the standard systemd scriptlet.
 service_name=@SERVICE_NAME@

@@ -1,4 +1,3 @@
-# Enable verbose logging.
-echo "Running preun script for v@CMAKE_PROJECT_VERSION@"
+echo "Running preun script for @PROJECT_NAME@ v@PROJECT_VERSION@"
 
 %systemd_preun @SERVICE_NAME@
