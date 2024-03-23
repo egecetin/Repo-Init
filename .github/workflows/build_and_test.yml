@@ -38,10 +38,10 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: rockylinux87
-          - image: rockylinux87-icx
-          - image: rockylinux91
-          - image: rockylinux91-icx
+          - image: rockylinux8
+          - image: rockylinux8-icx
+          - image: rockylinux9
+          - image: rockylinux9-icx
 
     steps:
       - name: Checkout Code
