@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['http_392',['HTTP',['../classHTTP.html',1,'']]],
-  ['httpstats_393',['HTTPStats',['../structHTTPStats.html',1,'']]]
+  ['http_393',['HTTP',['../classHTTP.html',1,'']]],
+  ['httpstats_394',['HTTPStats',['../structHTTPStats.html',1,'']]]
 ];

@@ -65,7 +65,7 @@ var NAVTREEINDEX =
 [
 "Control_8cpp.html",
 "classProcessMetrics.html#a905f2ddeab131cb2b0e3fd36846bcd1e",
-"functions.html"
+"files.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

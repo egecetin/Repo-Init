@@ -316,7 +316,7 @@ Functions</h2></td></tr>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keyword">auto</span> crashpadRemote = <a class="code" href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">readSingleConfig</a>(configPath, <span class="stringliteral">&quot;CRASHPAD_REMOTE&quot;</span>);</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keyword">auto</span> crashpadProxy = <a class="code" href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">readSingleConfig</a>(configPath, <span class="stringliteral">&quot;CRASHPAD_PROXY&quot;</span>);</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="keyword">auto</span> crashpadExe = <a class="code" href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">readSingleConfig</a>(configPath, <span class="stringliteral">&quot;CRASHPAD_EXECUTABLE_DIR&quot;</span>);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="keyword">auto</span> crashpadExe = <a class="code" href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">readSingleConfig</a>(configPath, <span class="stringliteral">&quot;CRASHPAD_EXECUTABLE_PATH&quot;</span>);</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keyword">auto</span> crashpadReportPath = <a class="code" href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">readSingleConfig</a>(configPath, <span class="stringliteral">&quot;CRASHPAD_REPORT_DIR&quot;</span>);</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keyword">auto</span> crashpadAttachments =</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        std::vector&lt;base::FilePath&gt;({base::FilePath(configPath), base::FilePath(<span class="stringliteral">&quot;shared_libs.txt&quot;</span>)});</div>
@@ -391,7 +391,7 @@ Functions</h2></td></tr>
 <div class="ttc" id="aUtils_8hpp_html_a2b19e9b08a344702039cb07dbab604d8"><div class="ttname"><a href="Utils_8hpp.html#a2b19e9b08a344702039cb07dbab604d8">alarmInterval</a></div><div class="ttdeci">constexpr uintmax_t alarmInterval</div><div class="ttdoc">Interval of SIGALRM in seconds.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8hpp_source.html#l00013">Utils.hpp:13</a></div></div>
 <div class="ttc" id="aclassInputParser_html"><div class="ttname"><a href="classInputParser.html">InputParser</a></div><div class="ttdoc">Parses command line inputs.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8hpp_source.html#l00034">Utils.hpp:34</a></div></div>
 <div class="ttc" id="aclassMainLogger_html"><div class="ttname"><a href="classMainLogger.html">MainLogger</a></div><div class="ttdoc">Main logger class.</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8hpp_source.html#l00008">Logger.hpp:8</a></div></div>
-<div class="ttc" id="aclassTracer_html_aa6b8e139b9d1b60e91d3b9b30934b64a"><div class="ttname"><a href="classTracer.html#aa6b8e139b9d1b60e91d3b9b30934b64a">Tracer::dumpSharedLibraryInfo</a></div><div class="ttdeci">static bool dumpSharedLibraryInfo(const std::string &amp;filePath)</div><div class="ttdoc">Dump shared library information to a file.</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8cpp_source.html#l00111">Tracer.cpp:111</a></div></div>
+<div class="ttc" id="aclassTracer_html_aa6b8e139b9d1b60e91d3b9b30934b64a"><div class="ttname"><a href="classTracer.html#aa6b8e139b9d1b60e91d3b9b30934b64a">Tracer::dumpSharedLibraryInfo</a></div><div class="ttdeci">static bool dumpSharedLibraryInfo(const std::string &amp;filePath)</div><div class="ttdoc">Dump shared library information to a file.</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8cpp_source.html#l00130">Tracer.cpp:130</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -432,7 +432,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
-    <li class="footer">Generated on Sat Mar 2 2024 00:15:27 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sat Mar 23 2024 07:09:01 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

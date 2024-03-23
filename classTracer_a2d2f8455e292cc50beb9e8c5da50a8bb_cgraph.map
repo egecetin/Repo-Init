@@ -1,5 +1,7 @@
 <map id="Tracer::Tracer" name="Tracer::Tracer">
-<area shape="rect" id="node1" title="Construct a new Tracer object." alt="" coords="5,31,113,57"/>
-<area shape="rect" id="node2" href="$classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title="Get the executable directory of the current application." alt="" coords="161,5,367,32"/>
-<area shape="rect" id="node3" href="$classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title="Start the crashpad handler process." alt="" coords="189,56,339,83"/>
+<area shape="rect" id="node1" title="Construct a new Tracer object." alt="" coords="5,81,113,108"/>
+<area shape="rect" id="node2" href="$classTracer.html#abf0a541b6478384dc5138d7ebe7a873c" title="Create director if not exists." alt="" coords="199,5,329,32"/>
+<area shape="rect" id="node3" href="$Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title="Converts errno to a readable string." alt="" coords="207,56,321,83"/>
+<area shape="rect" id="node4" href="$classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title="Get the executable directory of the current application." alt="" coords="161,107,367,133"/>
+<area shape="rect" id="node5" href="$classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title="Start the crashpad handler process." alt="" coords="189,157,339,184"/>
 </map>

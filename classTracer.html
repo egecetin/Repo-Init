@@ -143,6 +143,9 @@ Static Private Member Functions</h2></td></tr>
 <tr class="memitem:ab220e3d1019cb07d311a35b40e1a6163"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163">getSelfExecutableDir</a> ()</td></tr>
 <tr class="memdesc:ab220e3d1019cb07d311a35b40e1a6163"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the executable directory of the current application.  <a href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163">More...</a><br /></td></tr>
 <tr class="separator:ab220e3d1019cb07d311a35b40e1a6163"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf0a541b6478384dc5138d7ebe7a873c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTracer.html#abf0a541b6478384dc5138d7ebe7a873c">createDir</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:abf0a541b6478384dc5138d7ebe7a873c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create director if not exists.  <a href="classTracer.html#abf0a541b6478384dc5138d7ebe7a873c">More...</a><br /></td></tr>
+<tr class="separator:abf0a541b6478384dc5138d7ebe7a873c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -237,35 +240,44 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00067">67</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    : <a class="code" href="classTracer.html#a630fd0665579e85532205c49261a44b3">_serverPath</a>(std::move(serverPath)), <a class="code" href="classTracer.html#a83b60f1d681607d0ac7ddeb47ae52dac">_serverProxy</a>(std::move(serverProxy)), <a class="code" href="classTracer.html#ab66fe7b82f20fbd67a6122bce49e06b0">_annotations</a>(std::move(annotations)),</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      <a class="code" href="classTracer.html#aa44dba799c31108166f8d33b1ebf516f">_attachments</a>(std::move(attachments))</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">auto</span> selfDir = <a class="code" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163">getSelfExecutableDir</a>();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="classTracer.html#ac8182e8d14799e97e3306d463cf589a9">_handlerPath</a> = crashpadHandlerPath.empty() ? selfDir + <span class="stringliteral">&quot;/crashpad_handler&quot;</span> : crashpadHandlerPath;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="classTracer.html#a20b67711375fe47fc9f881a599077ddc">_reportPath</a> = reportPath.empty() ? selfDir : reportPath;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="classTracer.html#a5f6a4054b44156656a529c3fa1cf6dbb">_clientHandler</a> = std::make_unique&lt;crashpad::CrashpadClient&gt;();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac">startHandler</a>();</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00081">81</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    : <a class="code" href="classTracer.html#a630fd0665579e85532205c49261a44b3">_serverPath</a>(std::move(serverPath)), <a class="code" href="classTracer.html#a83b60f1d681607d0ac7ddeb47ae52dac">_serverProxy</a>(std::move(serverProxy)), <a class="code" href="classTracer.html#ab66fe7b82f20fbd67a6122bce49e06b0">_annotations</a>(std::move(annotations)),</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      <a class="code" href="classTracer.html#aa44dba799c31108166f8d33b1ebf516f">_attachments</a>(std::move(attachments))</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;{</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">auto</span> selfDir = <a class="code" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163">getSelfExecutableDir</a>();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="classTracer.html#ac8182e8d14799e97e3306d463cf589a9">_handlerPath</a> = crashpadHandlerPath.empty() ? selfDir + <span class="stringliteral">&quot;/crashpad_handler&quot;</span> : crashpadHandlerPath;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="classTracer.html#a20b67711375fe47fc9f881a599077ddc">_reportPath</a> = reportPath.empty() ? selfDir : reportPath;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="classTracer.html#a5f6a4054b44156656a529c3fa1cf6dbb">_clientHandler</a> = std::make_unique&lt;crashpad::CrashpadClient&gt;();</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classTracer.html#abf0a541b6478384dc5138d7ebe7a873c">createDir</a>(<a class="code" href="classTracer.html#a20b67711375fe47fc9f881a599077ddc">_reportPath</a>))</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Can&#39;t create report directory &quot;</span> + <a class="code" href="classTracer.html#a20b67711375fe47fc9f881a599077ddc">_reportPath</a> + <span class="stringliteral">&quot;: &quot;</span> + <a class="code" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac">startHandler</a>();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
+<div class="ttc" id="aUtils_8cpp_html_a77c5602aee813ef2fde1a81c1db17e0c"><div class="ttname"><a href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a></div><div class="ttdeci">std::string getErrnoString(int errVal)</div><div class="ttdoc">Converts errno to a readable string.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00142">Utils.cpp:142</a></div></div>
 <div class="ttc" id="aclassTracer_html_a20b67711375fe47fc9f881a599077ddc"><div class="ttname"><a href="classTracer.html#a20b67711375fe47fc9f881a599077ddc">Tracer::_reportPath</a></div><div class="ttdeci">std::string _reportPath</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8hpp_source.html#l00015">Tracer.hpp:15</a></div></div>
-<div class="ttc" id="aclassTracer_html_a5e733e7676276b3640d8e44eb7865aac"><div class="ttname"><a href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac">Tracer::startHandler</a></div><div class="ttdeci">void startHandler()</div><div class="ttdoc">Start the crashpad handler process.</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8cpp_source.html#l00013">Tracer.cpp:13</a></div></div>
+<div class="ttc" id="aclassTracer_html_a5e733e7676276b3640d8e44eb7865aac"><div class="ttname"><a href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac">Tracer::startHandler</a></div><div class="ttdeci">void startHandler()</div><div class="ttdoc">Start the crashpad handler process.</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8cpp_source.html#l00016">Tracer.cpp:16</a></div></div>
 <div class="ttc" id="aclassTracer_html_a5f6a4054b44156656a529c3fa1cf6dbb"><div class="ttname"><a href="classTracer.html#a5f6a4054b44156656a529c3fa1cf6dbb">Tracer::_clientHandler</a></div><div class="ttdeci">std::unique_ptr&lt; crashpad::CrashpadClient &gt; _clientHandler</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8hpp_source.html#l00016">Tracer.hpp:16</a></div></div>
 <div class="ttc" id="aclassTracer_html_a630fd0665579e85532205c49261a44b3"><div class="ttname"><a href="classTracer.html#a630fd0665579e85532205c49261a44b3">Tracer::_serverPath</a></div><div class="ttdeci">std::string _serverPath</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8hpp_source.html#l00010">Tracer.hpp:10</a></div></div>
 <div class="ttc" id="aclassTracer_html_a83b60f1d681607d0ac7ddeb47ae52dac"><div class="ttname"><a href="classTracer.html#a83b60f1d681607d0ac7ddeb47ae52dac">Tracer::_serverProxy</a></div><div class="ttdeci">std::string _serverProxy</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8hpp_source.html#l00011">Tracer.hpp:11</a></div></div>
 <div class="ttc" id="aclassTracer_html_aa44dba799c31108166f8d33b1ebf516f"><div class="ttname"><a href="classTracer.html#aa44dba799c31108166f8d33b1ebf516f">Tracer::_attachments</a></div><div class="ttdeci">std::vector&lt; base::FilePath &gt; _attachments</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8hpp_source.html#l00014">Tracer.hpp:14</a></div></div>
-<div class="ttc" id="aclassTracer_html_ab220e3d1019cb07d311a35b40e1a6163"><div class="ttname"><a href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163">Tracer::getSelfExecutableDir</a></div><div class="ttdeci">static std::string getSelfExecutableDir()</div><div class="ttdoc">Get the executable directory of the current application.</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8cpp_source.html#l00057">Tracer.cpp:57</a></div></div>
+<div class="ttc" id="aclassTracer_html_ab220e3d1019cb07d311a35b40e1a6163"><div class="ttname"><a href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163">Tracer::getSelfExecutableDir</a></div><div class="ttdeci">static std::string getSelfExecutableDir()</div><div class="ttdoc">Get the executable directory of the current application.</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8cpp_source.html#l00060">Tracer.cpp:60</a></div></div>
 <div class="ttc" id="aclassTracer_html_ab66fe7b82f20fbd67a6122bce49e06b0"><div class="ttname"><a href="classTracer.html#ab66fe7b82f20fbd67a6122bce49e06b0">Tracer::_annotations</a></div><div class="ttdeci">std::map&lt; std::string, std::string &gt; _annotations</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8hpp_source.html#l00013">Tracer.hpp:13</a></div></div>
+<div class="ttc" id="aclassTracer_html_abf0a541b6478384dc5138d7ebe7a873c"><div class="ttname"><a href="classTracer.html#abf0a541b6478384dc5138d7ebe7a873c">Tracer::createDir</a></div><div class="ttdeci">static bool createDir(const std::string &amp;path)</div><div class="ttdoc">Create director if not exists.</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8cpp_source.html#l00070">Tracer.cpp:70</a></div></div>
 <div class="ttc" id="aclassTracer_html_ac8182e8d14799e97e3306d463cf589a9"><div class="ttname"><a href="classTracer.html#ac8182e8d14799e97e3306d463cf589a9">Tracer::_handlerPath</a></div><div class="ttdeci">std::string _handlerPath</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8hpp_source.html#l00012">Tracer.hpp:12</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTracer_a2d2f8455e292cc50beb9e8c5da50a8bb_cgraph.png" border="0" usemap="#aclassTracer_a2d2f8455e292cc50beb9e8c5da50a8bb_cgraph" alt=""/></div>
 <map name="aclassTracer_a2d2f8455e292cc50beb9e8c5da50a8bb_cgraph" id="aclassTracer_a2d2f8455e292cc50beb9e8c5da50a8bb_cgraph">
-<area shape="rect" title="Construct a new Tracer object." alt="" coords="5,31,113,57"/>
-<area shape="rect" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title="Get the executable directory of the current application." alt="" coords="161,5,367,32"/>
-<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title="Start the crashpad handler process." alt="" coords="189,56,339,83"/>
+<area shape="rect" title="Construct a new Tracer object." alt="" coords="5,81,113,108"/>
+<area shape="rect" href="classTracer.html#abf0a541b6478384dc5138d7ebe7a873c" title="Create director if not exists." alt="" coords="199,5,329,32"/>
+<area shape="rect" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title="Converts errno to a readable string." alt="" coords="207,56,321,83"/>
+<area shape="rect" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title="Get the executable directory of the current application." alt="" coords="161,107,367,133"/>
+<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title="Start the crashpad handler process." alt="" coords="189,157,339,184"/>
 </map>
 </div>
 
@@ -305,8 +317,8 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the process is running, false otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00045">45</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{ <span class="keywordflow">return</span> kill(processId, 0) == 0; }</div>
+<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00048">48</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{ <span class="keywordflow">return</span> kill(processId, 0) == 0; }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -353,15 +365,15 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the socket is running, false otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00047">47</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">int</span> error = 0;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    socklen_t len = <span class="keyword">sizeof</span>(error);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">char</span> buff = 0;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">int</span> result = getsockopt(sockId, SOL_SOCKET, SO_ERROR, &amp;error, &amp;len);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">return</span> result == 0 &amp;&amp; error == 0 &amp;&amp; recv(sockId, &amp;buff, 1, MSG_PEEK | MSG_DONTWAIT) != 0;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00050">50</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">int</span> error = 0;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    socklen_t len = <span class="keyword">sizeof</span>(error);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">char</span> buff = 0;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">int</span> result = getsockopt(sockId, SOL_SOCKET, SO_ERROR, &amp;error, &amp;len);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">return</span> result == 0 &amp;&amp; error == 0 &amp;&amp; recv(sockId, &amp;buff, 1, MSG_PEEK | MSG_DONTWAIT) != 0;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -370,6 +382,61 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="Check if the given socket ID is running." alt="" coords="347,5,561,32"/>
 <area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title="Check if the crashpad_handler process is running." alt="" coords="165,5,299,32"/>
 <area shape="rect" href="classTracer.html#a4755dbacab3e82bed9e7eaedd8a025ab" title="Check and restart the crashpad_handler process if it is not running." alt="" coords="5,5,117,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abf0a541b6478384dc5138d7ebe7a873c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf0a541b6478384dc5138d7ebe7a873c">&#9670;&nbsp;</a></span>createDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Tracer::createDir </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create director if not exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">path</td><td>The path of the directory to create </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the directory is created successfully or exists, false otherwise </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00070">70</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;{</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">struct </span>stat info {};</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">if</span> (stat(path.c_str(), &amp;info) != 0 &amp;&amp; errno == ENOENT)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> mkdir(path.c_str(), S_IRWXU | S_IRWXG) == 0;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">return</span> S_ISDIR(info.st_mode);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classTracer_abf0a541b6478384dc5138d7ebe7a873c_icgraph.png" border="0" usemap="#aclassTracer_abf0a541b6478384dc5138d7ebe7a873c_icgraph" alt=""/></div>
+<map name="aclassTracer_abf0a541b6478384dc5138d7ebe7a873c_icgraph" id="aclassTracer_abf0a541b6478384dc5138d7ebe7a873c_icgraph">
+<area shape="rect" title="Create director if not exists." alt="" coords="161,5,291,32"/>
+<area shape="rect" href="classTracer.html#a2d2f8455e292cc50beb9e8c5da50a8bb" title="Construct a new Tracer object." alt="" coords="5,5,113,32"/>
 </map>
 </div>
 
@@ -410,47 +477,47 @@ Here is the caller graph for this function:</div>
 <dd>
 false Otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00111">111</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;{</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="comment">// Open the output file</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    std::ofstream ofile(filePath);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">if</span> (!ofile.is_open())</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="comment">// Get the shared library information</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    std::ifstream maps(<span class="stringliteral">&quot;/proc/self/maps&quot;</span>);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    std::string line;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">while</span> (std::getline(maps, line))</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    {</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="comment">// The format of each line is: address perms offset dev inode pathname</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="comment">// We only care about the address and the pathname, which are the first and last fields</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        std::istringstream iss(line);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        std::string address;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        std::string perms;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        std::string offset;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        std::string dev;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        std::string inode;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        std::string pathname;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        iss &gt;&gt; address &gt;&gt; perms &gt;&gt; offset &gt;&gt; dev &gt;&gt; inode &gt;&gt; pathname;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="comment">// We only want the shared libraries, which have the .so extension and the read and execute permissions</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">if</span> (pathname.find(<span class="stringliteral">&quot;.so&quot;</span>) != std::string::npos &amp;&amp; perms.find(<span class="stringliteral">&quot;r-x&quot;</span>) != std::string::npos)</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        {</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <span class="comment">// The address field is in the form of start-end, we only need the start address</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            std::string start = address.substr(0, address.find(<span class="charliteral">&#39;-&#39;</span>));</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            <span class="comment">// Convert the start address from hexadecimal string to unsigned long</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> addr = std::stoul(start, <span class="keyword">nullptr</span>, 16);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            ofile &lt;&lt; pathname &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; addr &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        }</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    }</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00130">130</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;{</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="comment">// Open the output file</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    std::ofstream ofile(filePath);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keywordflow">if</span> (!ofile.is_open())</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    {</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="comment">// Get the shared library information</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    std::ifstream maps(<span class="stringliteral">&quot;/proc/self/maps&quot;</span>);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    std::string line;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordflow">while</span> (std::getline(maps, line))</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="comment">// The format of each line is: address perms offset dev inode pathname</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="comment">// We only care about the address and the pathname, which are the first and last fields</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        std::istringstream iss(line);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        std::string address;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        std::string perms;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        std::string offset;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        std::string dev;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        std::string inode;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        std::string pathname;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        iss &gt;&gt; address &gt;&gt; perms &gt;&gt; offset &gt;&gt; dev &gt;&gt; inode &gt;&gt; pathname;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="comment">// We only want the shared libraries, which have the .so extension and the read and execute permissions</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keywordflow">if</span> (pathname.find(<span class="stringliteral">&quot;.so&quot;</span>) != std::string::npos &amp;&amp; perms.find(<span class="stringliteral">&quot;r-x&quot;</span>) != std::string::npos)</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="comment">// The address field is in the form of start-end, we only need the start address</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            std::string start = address.substr(0, address.find(<span class="charliteral">&#39;-&#39;</span>));</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <span class="comment">// Convert the start address from hexadecimal string to unsigned long</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> addr = std::stoul(start, <span class="keyword">nullptr</span>, 16);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            ofile &lt;&lt; pathname &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; addr &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -489,15 +556,15 @@ Here is the caller graph for this function:</div>
 <p>Get the executable directory of the current application. </p>
 <dl class="section return"><dt>Returns</dt><dd>The executable directory path </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00057">57</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    std::array&lt;char, FILENAME_MAX&gt; pathBuffer{<span class="charliteral">&#39;\0&#39;</span>};</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">auto</span> bytes = readlink(<span class="stringliteral">&quot;/proc/self/exe&quot;</span>, pathBuffer.data(), <span class="keyword">sizeof</span>(pathBuffer));</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">auto</span> path = std::string(pathBuffer.data(), bytes == -1 ? 0 : <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(bytes));</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">auto</span> lastDelimPos = path.find_last_of(<span class="charliteral">&#39;/&#39;</span>);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">return</span> (lastDelimPos == std::string::npos) ? <span class="stringliteral">&quot;&quot;</span> : path.substr(0, lastDelimPos);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00060">60</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    std::array&lt;char, FILENAME_MAX&gt; pathBuffer{<span class="charliteral">&#39;\0&#39;</span>};</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">auto</span> bytes = readlink(<span class="stringliteral">&quot;/proc/self/exe&quot;</span>, pathBuffer.data(), <span class="keyword">sizeof</span>(pathBuffer));</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">auto</span> path = std::string(pathBuffer.data(), bytes == -1 ? 0 : <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(bytes));</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">auto</span> lastDelimPos = path.find_last_of(<span class="charliteral">&#39;/&#39;</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">return</span> (lastDelimPos == std::string::npos) ? <span class="stringliteral">&quot;&quot;</span> : path.substr(0, lastDelimPos);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -528,28 +595,28 @@ Here is the caller graph for this function:</div>
 <p>Check if the crashpad_handler process is running. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if the crashpad_handler is running, false otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00082">82</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">int</span> sockId{-1};</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    pid_t processId{-1};</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classTracer.html#a5f6a4054b44156656a529c3fa1cf6dbb">_clientHandler</a>-&gt;GetHandlerSocket(&amp;sockId, &amp;processId))</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">if</span> (sockId &gt;= 0 &amp;&amp; !<a class="code" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14">checkSocketIsRunning</a>(sockId))</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">if</span> (processId &gt; 0 &amp;&amp; !<a class="code" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda">checkPidIsRunning</a>(processId))</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
-<div class="ttc" id="aclassTracer_html_a006a1ba1dd8fade9e80f1fe96aef0c14"><div class="ttname"><a href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14">Tracer::checkSocketIsRunning</a></div><div class="ttdeci">static bool checkSocketIsRunning(int sockId)</div><div class="ttdoc">Check if the given socket ID is running.</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8cpp_source.html#l00047">Tracer.cpp:47</a></div></div>
-<div class="ttc" id="aclassTracer_html_afb3ac495395576ba791fd471bc7d4bda"><div class="ttname"><a href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda">Tracer::checkPidIsRunning</a></div><div class="ttdeci">static bool checkPidIsRunning(pid_t processId)</div><div class="ttdoc">Check if the given process ID is running.</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8cpp_source.html#l00045">Tracer.cpp:45</a></div></div>
+<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00101">101</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;{</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">int</span> sockId{-1};</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    pid_t processId{-1};</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classTracer.html#a5f6a4054b44156656a529c3fa1cf6dbb">_clientHandler</a>-&gt;GetHandlerSocket(&amp;sockId, &amp;processId))</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">if</span> (sockId &gt;= 0 &amp;&amp; !<a class="code" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14">checkSocketIsRunning</a>(sockId))</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">if</span> (processId &gt; 0 &amp;&amp; !<a class="code" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda">checkPidIsRunning</a>(processId))</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
+<div class="ttc" id="aclassTracer_html_a006a1ba1dd8fade9e80f1fe96aef0c14"><div class="ttname"><a href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14">Tracer::checkSocketIsRunning</a></div><div class="ttdeci">static bool checkSocketIsRunning(int sockId)</div><div class="ttdoc">Check if the given socket ID is running.</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8cpp_source.html#l00050">Tracer.cpp:50</a></div></div>
+<div class="ttc" id="aclassTracer_html_afb3ac495395576ba791fd471bc7d4bda"><div class="ttname"><a href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda">Tracer::checkPidIsRunning</a></div><div class="ttdeci">static bool checkPidIsRunning(pid_t processId)</div><div class="ttdoc">Check if the given process ID is running.</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8cpp_source.html#l00048">Tracer.cpp:48</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -589,14 +656,14 @@ Here is the caller graph for this function:</div>
 
 <p>Check and restart the crashpad_handler process if it is not running. </p>
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00103">103</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;{</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classTracer.html#a4e3975043a2fc94d307d511012706770">isRunning</a>())</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    {</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <a class="code" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac">startHandler</a>();</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;}</div>
-<div class="ttc" id="aclassTracer_html_a4e3975043a2fc94d307d511012706770"><div class="ttname"><a href="classTracer.html#a4e3975043a2fc94d307d511012706770">Tracer::isRunning</a></div><div class="ttdeci">bool isRunning()</div><div class="ttdoc">Check if the crashpad_handler process is running.</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8cpp_source.html#l00082">Tracer.cpp:82</a></div></div>
+<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00122">122</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;{</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classTracer.html#a4e3975043a2fc94d307d511012706770">isRunning</a>())</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <a class="code" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac">startHandler</a>();</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
+<div class="ttc" id="aclassTracer_html_a4e3975043a2fc94d307d511012706770"><div class="ttname"><a href="classTracer.html#a4e3975043a2fc94d307d511012706770">Tracer::isRunning</a></div><div class="ttdeci">bool isRunning()</div><div class="ttdoc">Check if the crashpad_handler process is running.</div><div class="ttdef"><b>Definition:</b> <a href="Tracer_8cpp_source.html#l00101">Tracer.cpp:101</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -637,37 +704,37 @@ Here is the call graph for this function:</div>
 
 <p>Start the crashpad handler process. </p>
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00013">13</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment">// Path to crashpad executable</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    base::FilePath handler(<a class="code" href="classTracer.html#ac8182e8d14799e97e3306d463cf589a9">_handlerPath</a>);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">// Must be writable or crashpad_handler will crash</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    base::FilePath reportsDir(<a class="code" href="classTracer.html#a20b67711375fe47fc9f881a599077ddc">_reportPath</a>);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    base::FilePath metricsDir(<a class="code" href="classTracer.html#a20b67711375fe47fc9f881a599077ddc">_reportPath</a>);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="comment">// Initialize Crashpad database</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">auto</span> database = crashpad::CrashReportDatabase::Initialize(reportsDir);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">if</span> (database == <span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Can&#39;t initialize crash report database&quot;</span>);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">// Enable automated crash uploads</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">auto</span> *settings = database-&gt;GetSettings();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">if</span> (settings == <span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Can&#39;t get crash report database settings&quot;</span>);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    settings-&gt;SetUploadsEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// Start crash handler</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classTracer.html#a5f6a4054b44156656a529c3fa1cf6dbb">_clientHandler</a>-&gt;StartHandler(handler, reportsDir, metricsDir, <a class="code" href="classTracer.html#a630fd0665579e85532205c49261a44b3">_serverPath</a>, <a class="code" href="classTracer.html#a83b60f1d681607d0ac7ddeb47ae52dac">_serverProxy</a>, <a class="code" href="classTracer.html#ab66fe7b82f20fbd67a6122bce49e06b0">_annotations</a>,</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                                      {<span class="stringliteral">&quot;--no-rate-limit&quot;</span>}, <span class="keyword">true</span>, <span class="keyword">false</span>, <a class="code" href="classTracer.html#aa44dba799c31108166f8d33b1ebf516f">_attachments</a>))</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Can&#39;t start crash handler&quot;</span>);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00016">16</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">// Path to crashpad executable</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    base::FilePath handler(<a class="code" href="classTracer.html#ac8182e8d14799e97e3306d463cf589a9">_handlerPath</a>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment">// Must be writable or crashpad_handler will crash</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    base::FilePath reportsDir(<a class="code" href="classTracer.html#a20b67711375fe47fc9f881a599077ddc">_reportPath</a>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    base::FilePath metricsDir(<a class="code" href="classTracer.html#a20b67711375fe47fc9f881a599077ddc">_reportPath</a>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">// Initialize Crashpad database</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">auto</span> database = crashpad::CrashReportDatabase::Initialize(reportsDir);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">if</span> (database == <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Can&#39;t initialize crash report database&quot;</span>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">// Enable automated crash uploads</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">auto</span> *settings = database-&gt;GetSettings();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">if</span> (settings == <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Can&#39;t get crash report database settings&quot;</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    settings-&gt;SetUploadsEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">// Start crash handler</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classTracer.html#a5f6a4054b44156656a529c3fa1cf6dbb">_clientHandler</a>-&gt;StartHandler(handler, reportsDir, metricsDir, <a class="code" href="classTracer.html#a630fd0665579e85532205c49261a44b3">_serverPath</a>, <a class="code" href="classTracer.html#a83b60f1d681607d0ac7ddeb47ae52dac">_serverProxy</a>, <a class="code" href="classTracer.html#ab66fe7b82f20fbd67a6122bce49e06b0">_annotations</a>,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                                      {<span class="stringliteral">&quot;--no-rate-limit&quot;</span>}, <span class="keyword">true</span>, <span class="keyword">false</span>, <a class="code" href="classTracer.html#aa44dba799c31108166f8d33b1ebf516f">_attachments</a>))</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Can&#39;t start crash handler&quot;</span>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -860,7 +927,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classTracer.html">Tracer</a></li>
-    <li class="footer">Generated on Sat Mar 2 2024 00:15:27 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sat Mar 23 2024 07:09:01 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
