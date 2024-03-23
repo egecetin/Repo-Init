@@ -1,4 +1,5 @@
 #include "Tracer.hpp"
+#include "Utils.hpp"
 
 #include "client/crash_report_database.h"
 #include "client/crashpad_client.h"
@@ -8,6 +9,8 @@
 #include <fstream>
 #include <sstream>
 #include <sys/socket.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <unistd.h>
 
 void Tracer::startHandler()
@@ -64,6 +67,17 @@ std::string Tracer::getSelfExecutableDir()
 	return (lastDelimPos == std::string::npos) ? "" : path.substr(0, lastDelimPos);
 }
 
+bool Tracer::createDir(const std::string &path)
+{
+	struct stat info {};
+
+	if (stat(path.c_str(), &info) != 0 && errno == ENOENT)
+	{
+		return mkdir(path.c_str(), S_IRWXU | S_IRWXG) == 0;
+	}
+	return S_ISDIR(info.st_mode);
+}
+
 Tracer::Tracer(std::string serverPath, std::string serverProxy, const std::string &crashpadHandlerPath,
 			   std::map<std::string, std::string> annotations, std::vector<base::FilePath> attachments,
 			   const std::string &reportPath)
@@ -75,6 +89,11 @@ Tracer::Tracer(std::string serverPath, std::string serverProxy, const std::strin
 	_handlerPath = crashpadHandlerPath.empty() ? selfDir + "/crashpad_handler" : crashpadHandlerPath;
 	_reportPath = reportPath.empty() ? selfDir : reportPath;
 	_clientHandler = std::make_unique<crashpad::CrashpadClient>();
+
+	if (!createDir(_reportPath))
+	{
+		throw std::invalid_argument("Can't create report directory " + _reportPath + ": " + getErrnoString(errno));
+	}
 
 	startHandler();
 }
