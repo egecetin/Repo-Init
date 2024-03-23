@@ -3,7 +3,7 @@ Description=@PROJECT_NAME@ service
 
 [Service]
 Type=exec
-ExecStart=@EXE_PATH@ --config @CMAKE_INSTALL_PREFIX@/@PROJECT_NAME@/share/config.json
+ExecStart=@EXE_PATH@ --config @CMAKE_INSTALL_PREFIX@/share/@PROJECT_NAME@/config.json
 
 [Install]
 WantedBy=multi-user.target
