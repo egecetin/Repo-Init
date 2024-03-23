@@ -1,5 +1,4 @@
 # Enable verbose logging.
-set -o xtrace
 echo "Running postun script for v@CMAKE_PROJECT_VERSION@"
 
 # Use the standard systemd scriptlet.

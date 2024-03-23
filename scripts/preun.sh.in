@@ -1,5 +1,4 @@
 # Enable verbose logging.
-set -o xtrace
 echo "Running preun script for v@CMAKE_PROJECT_VERSION@"
 
 %systemd_preun @SERVICE_NAME@
