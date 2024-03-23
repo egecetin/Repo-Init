@@ -8,6 +8,8 @@
 #include <fstream>
 #include <sstream>
 #include <sys/socket.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <unistd.h>
 
 #include <spdlog/spdlog.h>
@@ -94,7 +96,67 @@ std::string Tracer::getSelfExecutableDir()
 	return (lastDelimPos == std::string::npos) ? "" : path.substr(0, lastDelimPos);
 }
 
-void Tracer::dumpSharedLibraryInfo(const std::string &filePath)
+bool Tracer::createDir(const std::string &path)
+{
+	struct stat info {};
+
+	if (stat(path.c_str(), &info) != 0 && errno == ENOENT)
+	{
+		return mkdir(path.c_str(), S_IRWXU | S_IRWXG) == 0;
+	}
+	return S_ISDIR(info.st_mode);
+}
+
+Tracer::Tracer(std::string serverPath, std::string serverProxy, const std::string &crashpadHandlerPath,
+			   std::map<std::string, std::string> annotations, std::vector<base::FilePath> attachments,
+			   const std::string &reportPath)
+	: _serverPath(std::move(serverPath)), _serverProxy(std::move(serverProxy)), _annotations(std::move(annotations)),
+	  _attachments(std::move(attachments))
+{
+	auto selfDir = getSelfExecutableDir();
+
+	_handlerPath = crashpadHandlerPath.empty() ? selfDir + "/crashpad_handler" : crashpadHandlerPath;
+	_reportPath = reportPath.empty() ? selfDir : reportPath;
+	_clientHandler = std::make_unique<crashpad::CrashpadClient>();
+
+	if (!createDir(_reportPath))
+	{
+		throw std::invalid_argument("Can't create report directory " + _reportPath + ": " + getErrnoString(errno));
+	}
+
+	startHandler();
+}
+
+bool Tracer::isRunning()
+{
+	int sockId{-1};
+	pid_t processId{-1};
+
+	if (!_clientHandler->GetHandlerSocket(&sockId, &processId))
+	{
+		return false;
+	}
+
+	if (sockId >= 0 && !checkSocketIsRunning(sockId))
+	{
+		return false;
+	}
+	if (processId > 0 && !checkPidIsRunning(processId))
+	{
+		return false;
+	}
+	return true;
+}
+
+void Tracer::restart()
+{
+	if (!isRunning())
+	{
+		startHandler();
+	}
+}
+
+bool Tracer::dumpSharedLibraryInfo(const std::string &filePath)
 {
 	// Open the output file
 	std::ofstream ofile(filePath);

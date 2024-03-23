@@ -1,8 +1,0 @@
-{
-    "SENTRY_ADDRESS": "",
-    "LOKI_ADDRESS": "",
-    "CRASHPAD_EXECUTABLE_DIR": "build/thirdparty/sentry/external/crashpad/handler/crashpad_handler",
-    "CRASHPAD_REMOTE": "",
-    "CRASHPAD_PROXY": "",
-    "CRASHPAD_REPORT_DIR": ""
-}

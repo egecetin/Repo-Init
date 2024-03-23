@@ -57,6 +57,13 @@ class Tracer {
 	 */
 	static void dumpSharedLibraryInfo(const std::string &filePath);
 
+	/**
+	 * @brief Create director if not exists
+	 * @param[in] path The path of the directory to create
+	 * @return true if the directory is created successfully or exists, false otherwise
+	 */
+	static inline bool createDir(const std::string &path);
+
   public:
 	/**
 	 * @brief Construct a new Tracer object
