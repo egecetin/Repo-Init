@@ -11,7 +11,8 @@ service_name=@SERVICE_NAME@
 if [ $1 -eq 1 ]; then
     %{__install} -m644 $RPM_INSTALL_PREFIX/share/$service_name %{_unitdir}/$service_name
 fi
-%systemd_post $service_name
+systemctl daemon-reload
+%systemd_post_with_restart $service_name
 
 # Suffocate any exit code that this prints
 systemctl status $service_name || true
