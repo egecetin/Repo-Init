@@ -30,7 +30,7 @@ class ConfigParser {
 	 * @param[in] key Key to search for
 	 * @return std::string Value of the key
 	 */
-	const std::string &get(const std::string &key) const;
+	const std::string get(const std::string &key) const;
 
 	/**
 	 * @brief Get the configuration map

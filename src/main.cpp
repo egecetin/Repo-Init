@@ -138,6 +138,5 @@ int main(int argc, char **argv)
 
 	curl_global_cleanup();
 
-	spdlog::info("Goodbye!");
 	return EXIT_SUCCESS;
 }

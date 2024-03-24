@@ -46,4 +46,8 @@ MainLogger::MainLogger(const std::string &lokiAddr, const std::string &sentryAdd
 	PRINT_VERSION();
 }
 
-MainLogger::~MainLogger() { mainLogger->flush(); }
+MainLogger::~MainLogger()
+{
+	spdlog::info("Goodbye!");
+	mainLogger->flush();
+}

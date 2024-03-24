@@ -144,6 +144,7 @@ install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}-lib crashpad_handler)
 set(CONFIG_BASE_DIR "${CMAKE_BINARY_DIR}")
 configure_file(config.json.in "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/config.json")
 file(MAKE_DIRECTORY ${CONFIG_BASE_DIR}/share)
+file(MAKE_DIRECTORY ${CONFIG_BASE_DIR}/share/${PROJECT_NAME})
 
 set(CONFIG_BASE_DIR "${CMAKE_INSTALL_PREFIX}")
 configure_file(config.json.in "${CMAKE_BINARY_DIR}/config.json")
