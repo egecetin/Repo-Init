@@ -1,4 +1,3 @@
-#include "Utils.hpp"
 #include "metrics/PrometheusServer.hpp"
 #include "test-static-definitions.h"
 #include "zeromq/ZeroMQServer.hpp"

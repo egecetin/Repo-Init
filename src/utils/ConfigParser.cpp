@@ -5,6 +5,8 @@
 #include <rapidjson/ostreamwrapper.h>
 #include <rapidjson/writer.h>
 
+#include <fstream>
+
 template <typename T> std::string stringifyRapidjson(const T &obj)
 {
 	rapidjson::StringBuffer sbuffer;
@@ -13,17 +15,23 @@ template <typename T> std::string stringifyRapidjson(const T &obj)
 	return sbuffer.GetString();
 }
 
-void ConfigParser::readAndParseJson()
+void ConfigParser::readJson()
 {
-	std::ifstream inFile(dir);
+	std::ifstream inFile(_configPath);
+	if (inFile.is_open() == false)
+	{
+		throw std::invalid_argument("Can't open config file");
+	}
+
 	rapidjson::IStreamWrapper fStreamWrapper(inFile);
 
+	rapidjson::Document doc;
 	doc.ParseStream(fStreamWrapper);
 
 	// Check is there any data
 	if (doc.IsNull())
 	{
-		throw std::invalid_argument("Read config is empty");
+		throw std::invalid_argument("Read config is empty or invalid JSON format");
 	}
 
 	// Parse the configuration file
@@ -54,7 +62,7 @@ void ConfigParser::writeJson()
 
 ConfigParser::ConfigParser(const std::string &configPath) : _configPath(configPath) { load(); }
 
-std::string ConfigParser::get(const std::string &key)
+const std::string &ConfigParser::get(const std::string &key) const
 {
 	auto it = _configMap.find(key);
 	return it == _configMap.end() ? "" : it->second;
@@ -70,5 +78,5 @@ void ConfigParser::save()
 void ConfigParser::load()
 {
 	_configMap.clear();
-	parseJson();
+	readJson();
 }

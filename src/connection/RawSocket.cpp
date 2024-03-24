@@ -1,16 +1,17 @@
 #include "connection/RawSocket.hpp"
-#include "Utils.hpp"
+
+#include "utils/ErrorHelpers.hpp"
+
+#include <chrono>
+#include <cstring>
+#include <stdexcept>
+#include <utility>
 
 #include <net/ethernet.h>
 #include <net/if.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <unistd.h>
-
-#include <chrono>
-#include <cstring>
-#include <stdexcept>
-#include <utility>
 
 void RawSocket::init(int domain, int type, int protocol, sockaddr_ll &_addr)
 {

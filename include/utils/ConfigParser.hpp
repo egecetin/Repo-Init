@@ -12,7 +12,8 @@ class ConfigParser {
 	std::string _configPath;
 	std::unordered_map<std::string, std::string> _configMap;
 
-	void readAndParseJson();
+	// JSON helpers
+	void readJson();
 	void writeJson();
 
   public:
@@ -29,7 +30,13 @@ class ConfigParser {
 	 * @param[in] key Key to search for
 	 * @return std::string Value of the key
 	 */
-	std::string get(const std::string &key);
+	const std::string &get(const std::string &key) const;
+
+	/**
+	 * @brief Get the configuration map
+	 * @return std::unordered_map<std::string, std::string> Configuration map
+	 */
+	const std::unordered_map<std::string, std::string> &getConfigMap() const { return _configMap; }
 
 	/**
 	 * @brief Set the value of a key in the configuration file. If the key does not exist, it will be created

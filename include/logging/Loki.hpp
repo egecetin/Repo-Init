@@ -2,12 +2,12 @@
 
 #include "connection/Http.hpp"
 
+#include <spdlog/details/null_mutex.h>
+#include <spdlog/sinks/base_sink.h>
+
 #include <mutex>
 #include <string>
 #include <vector>
-
-#include <spdlog/details/null_mutex.h>
-#include <spdlog/sinks/base_sink.h>
 
 namespace spdlog
 {

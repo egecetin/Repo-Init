@@ -1,13 +1,14 @@
 #include "telnet/TelnetServer.hpp"
-#include "Utils.hpp"
-#include "rng/Hasher.hpp"
+
+#include "utils/ErrorHelpers.hpp"
+#include "utils/Hasher.hpp"
 #include "Version.h"
+
+#include <spdlog/spdlog.h>
 
 #include <iomanip>
 #include <sstream>
 #include <utility>
-
-#include <spdlog/spdlog.h>
 
 // Invalid socket identifier for readability
 constexpr int INVALID_SOCKET = -1;

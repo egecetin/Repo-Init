@@ -11,7 +11,7 @@ TEST(Logger_Tests, LoggingUnitTests)
 {
 	std::future<int> shResult;
 
-	const MainLogger logger(0, nullptr, TEST_CONFIG_PATH);
+	const MainLogger logger("http://localhost:8400", "http://username:password@localhost:8400/foo");
 
 	// Launch script
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));

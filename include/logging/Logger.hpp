@@ -12,11 +12,10 @@ class MainLogger {
   public:
 	/**
 	 * @brief Constructs and prepares main logger
-	 * @param[in] argc Number of application arguments (Untouched internally)
-	 * @param[in] argv Application arguments (Untouched internally)
-	 * @param[in] configPath Path to the config json
+	 * @param[in] lokiAddr Loki address
+	 * @param[in] sentryAddr Sentry address
 	 */
-	MainLogger(int argc, char **argv, const std::string &configPath);
+	MainLogger(const std::string &lokiAddr, const std::string &sentryAddr);
 
 	/// @brief Copy constructor
 	MainLogger(const MainLogger & /*unused*/) = delete;

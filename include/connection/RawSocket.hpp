@@ -1,8 +1,8 @@
 #pragma once
 
-#include <linux/if_packet.h>
-
 #include <string>
+
+#include <linux/if_packet.h>
 
 /**
  * @brief Stats produced by RawSocket

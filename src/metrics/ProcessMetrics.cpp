@@ -1,9 +1,10 @@
 #include "metrics/ProcessMetrics.hpp"
 
-#include <Utils.hpp>
+#include "utils/FileHelpers.hpp"
+
+#include <spdlog/spdlog.h>
 
 #include <dirent.h>
-#include <spdlog/spdlog.h>
 #include <sys/resource.h>
 
 constexpr int SLEEP_INTERVAL_SEC = 1;

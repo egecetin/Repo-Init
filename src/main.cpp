@@ -1,127 +1,61 @@
-#include "Version.h"
 #include "logging/Logger.hpp"
 #include "metrics/ProcessMetrics.hpp"
 #include "metrics/PrometheusServer.hpp"
 #include "telnet/TelnetServer.hpp"
+#include "utils/ConfigParser.hpp"
+#include "utils/ErrorHelpers.hpp"
 #include "utils/InputParser.hpp"
 #include "utils/Tracer.hpp"
 #include "zeromq/ZeroMQServer.hpp"
 
-#include <csignal>
-#include <thread>
-
 #include <curl/curl.h>
 #include <spdlog/spdlog.h>
 
+#include <csignal>
+
+// SIGALRM interval in seconds
+constexpr uintmax_t alarmInterval = 1;
+
+// Default SIGALRM function
+void alarmFunc(int /*unused*/)
+{
+	alarm(alarmInterval);
+
+	// Clear all flags
+	std::for_each(vCheckFlag.begin(), vCheckFlag.end(), [](auto &entry) { entry.second->clear(); });
+}
+
 int main(int argc, char **argv)
 {
-	std::string configPath = "config.json";
-
-	int telnetPort = 0;
-	std::string zeromqServerAddr;
-
-	std::string prometheusAddr;
-	std::unique_ptr<PrometheusServer> mainPrometheusServer;
-
-	// Parse inputs
 	const InputParser input(argc, argv);
-	if (input.cmdOptionExists("--enable-telnet"))
-	{
-		const std::string portString = input.getCmdOption("--enable-telnet");
-		if (!portString.empty())
-		{
-			telnetPort = std::stoi(portString);
-			if (telnetPort <= 0 || telnetPort > std::numeric_limits<uint16_t>::max())
-			{
-				spdlog::warn("Telnet port should be between [1-65535]: provided value is {}", telnetPort);
-				telnetPort = 0;
-			}
-		}
-		else
-		{
-			spdlog::warn("Enable Telnet option requires a port number");
-		}
-	}
-	if (input.cmdOptionExists("--enable-prometheus"))
-	{
-		prometheusAddr = input.getCmdOption("--enable-prometheus");
-		if (prometheusAddr.empty())
-		{
-			spdlog::warn("Enable Prometheus option requires a bind address");
-		}
-	}
-	if (input.cmdOptionExists("--enable-zeromq"))
-	{
-		zeromqServerAddr = input.getCmdOption("--enable-zeromq");
-		if (zeromqServerAddr.empty())
-		{
-			spdlog::warn("Enable ZeroMQ option requires a connection address");
-		}
-	}
-	if (input.cmdOptionExists("--config"))
-	{
-		configPath = input.getCmdOption("--config");
-	}
+	const ConfigParser config(input.cmdOptionExists("--config") ? input.getCmdOption("--config") : "config.json");
+	const MainLogger logger(config.get("LOKI_ADDRESS"), config.get("SENTRY_ADDRESS"));
 
+	// Initialize curl as soon as possible
 	if (curl_global_init(CURL_GLOBAL_DEFAULT) < 0)
 	{
 		spdlog::critical("Can't init curl");
 		return EXIT_FAILURE;
 	}
-	/* ################################################################################### */
-	/* ############################# MAKE MODIFICATIONS HERE ############################# */
-	/* ################################################################################### */
 
-	/* ################################################################################### */
-	/* ################################ END MODIFICATIONS ################################ */
-	/* ################################################################################### */
-
-	// Init logger
-	const MainLogger logger(argc, argv, configPath);
-	spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [" + std::string(PROJECT_NAME) + "] [%^%l%$] : %v");
-	PRINT_VERSION();
-
-	// Read config
-	if (!readAndVerifyConfig(configPath))
+	// Register alarm signal handler
+	if (std::signal(SIGALRM, alarmFunc) == SIG_ERR)
 	{
+		spdlog::critical("Can't set signal handler (SIGALRM): {}", getErrnoString(errno));
 		return EXIT_FAILURE;
 	}
+	alarm(alarmInterval);
 
-	// Register signals
-	if (signal(SIGINT, interruptFunc) == SIG_ERR)
-	{
-		spdlog::critical("Can't set signal handler (SIGINT): {}", getErrnoString(errno));
-		return EXIT_FAILURE;
-	}
-	if (signal(SIGTERM, interruptFunc) == SIG_ERR)
-	{
-		spdlog::critical("Can't set signal handler (SIGTERM): {}", getErrnoString(errno));
-		return EXIT_FAILURE;
-	}
-
-	// Move SIGALRM to bottom because of invoking sleep
-
-	// Init variables
-	loopFlag = true;
-
-	std::shared_ptr<ZeroMQServer> zmqController(nullptr);
-	vCheckFlag.emplace_back("ZeroMQ Server", std::make_shared<std::atomic_flag>(false));
-	std::shared_ptr<TelnetServer> telnetController(nullptr);
-	vCheckFlag.emplace_back("Telnet Server", std::make_shared<std::atomic_flag>(false));
+	// Initialize Crashpad handler
 	std::shared_ptr<Tracer> crashpadController(nullptr);
 	vCheckFlag.emplace_back("Crashpad Handler", std::make_shared<std::atomic_flag>(false));
-	std::shared_ptr<ProcessMetrics> selfMonitor(nullptr);
-	vCheckFlag.emplace_back("Self Monitor", std::make_shared<std::atomic_flag>(false));
+	crashpadController = std::make_unique<Tracer>(
+		vCheckFlag[vCheckFlag.size() - 1].second, config.get("CRASHPAD_REMOTE"), config.get("CRASHPAD_PROXY"),
+		config.get("CRASHPAD_EXECUTABLE_DIR"), config.get("CRASHPAD_REPORT_DIR"));
 
-	/* ################################################################################### */
-	/* ############################# MAKE MODIFICATIONS HERE ############################# */
-	/* ################################################################################### */
-
-	/* ################################################################################### */
-	/* ################################ END MODIFICATIONS ################################ */
-	/* ################################################################################### */
-
-	// Init prometheus server
+	// Initialize Prometheus server
+	std::unique_ptr<PrometheusServer> mainPrometheusServer(nullptr);
+	const std::string prometheusAddr = input.getCmdOption("--enable-prometheus");
 	if (!prometheusAddr.empty())
 	{
 		try
@@ -131,31 +65,47 @@ int main(int argc, char **argv)
 		}
 		catch (const std::exception &e)
 		{
-			spdlog::warn("Can't start Prometheus Server: {}", e.what());
-			loopFlag = false;
+			spdlog::error("Can't start Prometheus Server: {}", e.what());
+			return EXIT_FAILURE;
 		}
 	}
 
-	// Start ZeroMQ server if address is provided
+	// Initialize self monitoring
+	std::shared_ptr<ProcessMetrics> selfMonitor(nullptr);
+	vCheckFlag.emplace_back("Self Monitor", std::make_shared<std::atomic_flag>(false));
+	if (mainPrometheusServer)
+	{
+		selfMonitor = std::make_unique<ProcessMetrics>(vCheckFlag[vCheckFlag.size() - 1].second,
+													   mainPrometheusServer->createNewRegistry());
+	}
+
+	// Initialize ZeroMQ server
+	std::shared_ptr<ZeroMQServer> zmqController(nullptr);
+	vCheckFlag.emplace_back("ZeroMQ Server", std::make_shared<std::atomic_flag>(false));
+	const std::string zeromqServerAddr = input.getCmdOption("--enable-zeromq");
 	if (!zeromqServerAddr.empty())
 	{
 		try
 		{
 			zmqController = std::make_unique<ZeroMQServer>(
-				zeromqServerAddr, vCheckFlag[0].second,
+				zeromqServerAddr, vCheckFlag[vCheckFlag.size() - 1].second,
 				mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
 			zmqController->messageCallback(ZeroMQServerMessageCallback);
 			zmqController->initialise();
 		}
 		catch (const std::exception &e)
 		{
-			spdlog::warn("Can't start ZeroMQ Server: {}", e.what());
-			loopFlag = false;
+			spdlog::error("Can't start ZeroMQ Server: {}", e.what());
+			return EXIT_FAILURE;
 		}
 	}
 
-	// Start Telnet server if port is provided
-	if (telnetPort > 0)
+	// Initialize Telnet server
+	std::shared_ptr<TelnetServer> telnetController(nullptr);
+	vCheckFlag.emplace_back("Telnet Server", std::make_shared<std::atomic_flag>(false));
+	const int telnetPort =
+		input.cmdOptionExists("--enable-telnet") ? std::stoi(input.getCmdOption("--enable-telnet")) : 0;
+	if (telnetPort > 0 && telnetPort < 65536)
 	{
 		try
 		{
@@ -163,48 +113,20 @@ int main(int argc, char **argv)
 			telnetController->connectedCallback(TelnetConnectedCallback);
 			telnetController->newLineCallback(TelnetMessageCallback);
 			telnetController->tabCallback(TelnetTabCallback);
-			telnetController->initialise(telnetPort, vCheckFlag[1].second, "> ",
+			telnetController->initialise(telnetPort, vCheckFlag[vCheckFlag.size() - 1].second, "> ",
 										 mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
 		}
 		catch (const std::exception &e)
 		{
-			spdlog::warn("Can't start Telnet Server: {}", e.what());
-			loopFlag = false;
+			spdlog::error("Can't start Telnet Server: {}", e.what());
+			return EXIT_FAILURE;
 		}
 	}
-
-	// Start Crashpad handler
-	crashpadController = std::make_unique<Tracer>(
-		vCheckFlag[2].second, readSingleConfig(configPath, "CRASHPAD_REMOTE"),
-		readSingleConfig(configPath, "CRASHPAD_PROXY"), readSingleConfig(configPath, "CRASHPAD_EXECUTABLE_DIR"),
-		std::map<std::string, std::string>(
-			{{"name", PROJECT_NAME},
-			 {"version", PROJECT_FULL_REVISION},
-			 {"build_info", PROJECT_BUILD_DATE + std::string(" ") + PROJECT_BUILD_TIME + std::string(" ") + BUILD_TYPE},
-			 {"compiler_info", COMPILER_NAME + std::string(" ") + COMPILER_VERSION}}),
-		std::vector<base::FilePath>({base::FilePath(configPath)}), readSingleConfig(configPath, "CRASHPAD_REPORT_DIR"));
-
-	// Start self monitor
-	if (mainPrometheusServer)
+	else if (telnetPort != 0)
 	{
-		selfMonitor = std::make_unique<ProcessMetrics>(vCheckFlag[3].second, mainPrometheusServer->createNewRegistry());
-	}
-	/* ################################################################################### */
-	/* ############################# MAKE MODIFICATIONS HERE ############################# */
-	/* ################################################################################### */
-
-	/* ################################################################################### */
-	/* ################################ END MODIFICATIONS ################################ */
-	/* ################################################################################### */
-	spdlog::debug("Threads started");
-
-	// SIGALRM should be registered after all sleep calls
-	if (signal(SIGALRM, alarmFunc) == SIG_ERR)
-	{
-		spdlog::critical("Can't set signal handler (SIGALRM): {}", getErrnoString(errno));
+		spdlog::error("Invalid Telnet port: {}", telnetPort);
 		return EXIT_FAILURE;
 	}
-	alarm(alarmInterval);
 
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
@@ -213,10 +135,9 @@ int main(int argc, char **argv)
 	/* ################################################################################### */
 	/* ################################ END MODIFICATIONS ################################ */
 	/* ################################################################################### */
-	spdlog::debug("Threads stopped");
 
 	curl_global_cleanup();
 
-	spdlog::info("{} Exited", PROJECT_NAME);
+	spdlog::info("Goodbye!");
 	return EXIT_SUCCESS;
 }

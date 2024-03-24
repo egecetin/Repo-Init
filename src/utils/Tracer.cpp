@@ -1,18 +1,20 @@
 #include "utils/Tracer.hpp"
 
+#include "Version.h"
+
 #include "client/crash_report_database.h"
 #include "client/crashpad_client.h"
 #include "client/settings.h"
+#include <spdlog/spdlog.h>
 
 #include <algorithm>
 #include <fstream>
 #include <sstream>
+
 #include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
-
-#include <spdlog/spdlog.h>
 
 constexpr int SLEEP_INTERVAL_MS = 50;
 
@@ -107,26 +109,6 @@ bool Tracer::createDir(const std::string &path)
 	return S_ISDIR(info.st_mode);
 }
 
-Tracer::Tracer(std::string serverPath, std::string serverProxy, const std::string &crashpadHandlerPath,
-			   std::map<std::string, std::string> annotations, std::vector<base::FilePath> attachments,
-			   const std::string &reportPath)
-	: _serverPath(std::move(serverPath)), _serverProxy(std::move(serverProxy)), _annotations(std::move(annotations)),
-	  _attachments(std::move(attachments))
-{
-	auto selfDir = getSelfExecutableDir();
-
-	_handlerPath = crashpadHandlerPath.empty() ? selfDir + "/crashpad_handler" : crashpadHandlerPath;
-	_reportPath = reportPath.empty() ? selfDir : reportPath;
-	_clientHandler = std::make_unique<crashpad::CrashpadClient>();
-
-	if (!createDir(_reportPath))
-	{
-		throw std::invalid_argument("Can't create report directory " + _reportPath + ": " + getErrnoString(errno));
-	}
-
-	startHandler();
-}
-
 bool Tracer::isRunning()
 {
 	int sockId{-1};
@@ -156,7 +138,7 @@ void Tracer::restart()
 	}
 }
 
-bool Tracer::dumpSharedLibraryInfo(const std::string &filePath)
+void Tracer::dumpSharedLibraryInfo(const std::string &filePath)
 {
 	// Open the output file
 	std::ofstream ofile(filePath);
@@ -197,16 +179,22 @@ bool Tracer::dumpSharedLibraryInfo(const std::string &filePath)
 }
 
 Tracer::Tracer(const std::shared_ptr<std::atomic_flag> &checkFlag, std::string serverPath, std::string serverProxy,
-			   const std::string &crashpadHandlerPath, std::map<std::string, std::string> annotations,
-			   std::vector<base::FilePath> attachments, const std::string &reportPath)
+			   const std::string &crashpadHandlerPath, const std::string &reportPath,
+			   std::vector<base::FilePath> attachments)
 	: _checkFlag(checkFlag), _serverPath(std::move(serverPath)), _serverProxy(std::move(serverProxy)),
-	  _annotations(std::move(annotations)), _attachments(std::move(attachments))
+	  _attachments(std::move(attachments))
 {
 	auto selfDir = getSelfExecutableDir();
 
 	_handlerPath = crashpadHandlerPath.empty() ? selfDir + "/crashpad_handler" : crashpadHandlerPath;
 	_reportPath = reportPath.empty() ? selfDir : reportPath;
 	_clientHandler = std::make_unique<crashpad::CrashpadClient>();
+
+	_annotations = std::map<std::string, std::string>(
+		{{"name", PROJECT_NAME},
+		 {"version", PROJECT_FULL_REVISION},
+		 {"build_info", PROJECT_BUILD_DATE + std::string(" ") + PROJECT_BUILD_TIME + std::string(" ") + BUILD_TYPE},
+		 {"compiler_info", COMPILER_NAME + std::string(" ") + COMPILER_VERSION}});
 
 	// Dump shared library information and add as attachment
 	dumpSharedLibraryInfo(_reportPath + "/shared_libs.txt");
@@ -221,34 +209,5 @@ Tracer::~Tracer()
 	if (_thread && _thread->joinable())
 	{
 		_thread->join();
-	}
-}
-
-bool Tracer::isRunning()
-{
-	int sockId{-1};
-	pid_t processId{-1};
-
-	if (!_clientHandler->GetHandlerSocket(&sockId, &processId))
-	{
-		return false;
-	}
-
-	if (sockId >= 0 && !checkSocketIsRunning(sockId))
-	{
-		return false;
-	}
-	if (processId > 0 && !checkPidIsRunning(processId))
-	{
-		return false;
-	}
-	return true;
-}
-
-void Tracer::restart()
-{
-	if (!isRunning())
-	{
-		startHandler();
 	}
 }

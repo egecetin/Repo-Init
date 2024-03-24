@@ -1,6 +1,6 @@
 #include "test-static-definitions.h"
 
-#include <Utils.hpp>
+#include "utils/ErrorHelpers.hpp"
 
 #include <gtest/gtest.h>
 #include <spdlog/spdlog.h>

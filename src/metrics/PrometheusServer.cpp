@@ -1,5 +1,5 @@
 #include "metrics/PrometheusServer.hpp"
-#include "Utils.hpp"
+
 #include "Version.h"
 
 #include <date/date.h>

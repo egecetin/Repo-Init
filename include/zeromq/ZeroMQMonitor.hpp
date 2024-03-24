@@ -1,10 +1,10 @@
 #pragma once
 
+#include <zmq.hpp>
+
 #include <atomic>
 #include <string>
 #include <thread>
-
-#include <zmq.hpp>
 
 /**
  * @class ZeroMQMonitor

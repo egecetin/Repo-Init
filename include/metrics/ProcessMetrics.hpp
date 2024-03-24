@@ -1,8 +1,9 @@
 #include <prometheus/gauge.h>
 #include <prometheus/registry.h>
 
-#include <sys/times.h>
 #include <thread>
+
+#include <sys/times.h>
 
 /**
  * @class ProcessMetrics

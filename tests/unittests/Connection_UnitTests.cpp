@@ -1,4 +1,3 @@
-#include "Utils.hpp"
 #include "connection/Http.hpp"
 #include "connection/RawSocket.hpp"
 #include "test-static-definitions.h"

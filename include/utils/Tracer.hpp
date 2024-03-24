@@ -70,15 +70,13 @@ class Tracer {
 	 * @param[in] checkFlag Flag to check if the process is running
 	 * @param[in] serverPath Remote server address
 	 * @param[in] serverProxy Remote server proxy
-	 * @param[in] crashpadHandlerPath Path to crashpad_handler executable
-	 * @param[in] annotations Annotation list
-	 * @param[in] attachments Attachments to upload to remote server
 	 * @param[in] reportPath Path to where dump minidump files
+	 * @param[in] crashpadHandlerPath Path to crashpad_handler executable
+	 * @param[in] attachments Attachments to add to the minidump
 	 */
 	explicit Tracer(const std::shared_ptr<std::atomic_flag> &checkFlag, std::string serverPath = "",
-					std::string serverProxy = "", const std::string &crashpadHandlerPath = "",
-					std::map<std::string, std::string> annotations = {}, std::vector<base::FilePath> attachments = {},
-					const std::string &reportPath = "");
+					std::string serverProxy = "", const std::string &reportPath = "",
+					const std::string &crashpadHandlerPath = "", std::vector<base::FilePath> attachments = {});
 
 	/**
 	 * @brief Destroy the Tracer object

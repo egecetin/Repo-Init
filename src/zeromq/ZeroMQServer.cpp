@@ -1,7 +1,7 @@
 #include "zeromq/ZeroMQServer.hpp"
 
-#include "Utils.hpp"
-#include "rng/Hasher.hpp"
+#include "utils/ErrorHelpers.hpp"
+#include "utils/Hasher.hpp"
 #include "Version.h"
 
 #include <spdlog/spdlog.h>

@@ -3,8 +3,6 @@
 #include <cstdint>
 #include <cstdio>
 
-// NOLINTBEGIN
-
 /**
  * @brief Calculates the compile-time hash value of a string.
  * @param s The input string.
@@ -30,5 +28,3 @@ template <size_t N> constexpr uint64_t constSeeder(const char (&entropy)[N], con
 	}
 	return value ^ iv;
 }
-
-// NOLINTEND

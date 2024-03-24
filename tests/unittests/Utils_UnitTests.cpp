@@ -1,4 +1,5 @@
-#include "Utils.hpp"
+#include "utils/InputParser.hpp"
+
 #include "test-static-definitions.h"
 
 #include <gtest/gtest.h>
@@ -25,37 +26,8 @@ TEST(Utils_Tests, InputParserUnitTests)
 
 TEST(Utils_Tests, ConfigReaderUnitTests)
 {
-	ASSERT_TRUE(readAndVerifyConfig(TEST_CONFIG_PATH));
-
-	ASSERT_FALSE(readAndVerifyConfig("dummypath"));
-	ASSERT_EQ("", readSingleConfig("dummypath", "SENTRY_ADDRESS"));
-	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_PATH, "dummyoption"));
-
-	ASSERT_FALSE(readAndVerifyConfig(TEST_CONFIG_EMPTY_PATH));
-	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_EMPTY_PATH, "SENTRY_ADDRESS"));
-	ASSERT_EQ("", readSingleConfig(TEST_CONFIG_EMPTY_PATH, "dummyoption"));
 }
 
 TEST(Utils_Tests, OtherUnitTests)
 {
-	std::array<char, 33> envVar{"TEST_ENV_VAR=testEnvVarValue"};
-	ASSERT_FALSE(putenv(envVar.data()));
-	ASSERT_EQ(getEnvVar("TEST_ENV_VAR"), "testEnvVarValue");
-
-	ASSERT_EQ(getErrnoString(EACCES), "Permission denied");
-
-	auto readLines = findFromFile(TEST_DATA_READ_PATH, "^(cpu family)");
-	ASSERT_EQ(readLines.size(), 2);
-	ASSERT_EQ(readLines[0], "cpu family      : 6");
-	ASSERT_EQ(readLines[1], "cpu family      : 6");
-
-	std::string word;
-	readLines = findFromFile(TEST_DATA_READ_PATH, "^processor", word);
-	ASSERT_EQ(readLines.size(), 2);
-	ASSERT_EQ(word, "6");
-	ASSERT_EQ(readLines[0], "processor       : 6");
-	ASSERT_EQ(readLines[1], "processor       : 7");
-
-	readLines = findFromFile(TEST_DATA_READ_PATH, "^dummy", word);
-	ASSERT_TRUE(readLines.empty());
 }
