@@ -1,7 +1,0 @@
-<map id="findFromFile" name="findFromFile">
-<area shape="rect" id="node1" title="Searches line patterns from a file." alt="" coords="468,64,571,91"/>
-<area shape="rect" id="node2" href="$classProcessMetrics.html#a595002ef00c4903650405590569de19d" title="Gets the disk read and write bytes of the process." alt="" coords="227,5,419,32"/>
-<area shape="rect" id="node4" href="$classspdlog_1_1sinks_1_1loki__api__sink.html#ad41002727c3101c6069dbbe333456b11" title="Constructs a loki_api_sink object with the specified Loki server address." alt="" coords="235,57,411,98"/>
-<area shape="rect" id="node5" href="$classspdlog_1_1sinks_1_1sentry__api__sink.html#a005dd6dd72151bf12eceed15c5ec8db3" title="Constructs a Sentry API sink with the specified Sentry server address." alt="" coords="227,122,420,163"/>
-<area shape="rect" id="node3" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title="Updates the metrics values." alt="" coords="5,5,179,32"/>
-</map>

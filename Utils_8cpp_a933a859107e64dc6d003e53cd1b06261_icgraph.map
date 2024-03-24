@@ -1,7 +1,0 @@
-<map id="stringify" name="stringify">
-<area shape="rect" id="node1" title=" " alt="" coords="439,31,513,57"/>
-<area shape="rect" id="node2" href="$Utils_8cpp.html#a35794d145a636bb13f1a9e69c77b586b" title="Read initial config from JSON and verify all required entries exist." alt="" coords="236,5,391,32"/>
-<area shape="rect" id="node4" href="$Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2" title="Reads a single entry from the config." alt="" coords="247,56,379,83"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="69,5,124,32"/>
-<area shape="rect" id="node5" href="$classMainLogger.html#abe306c5e99f49fc6b5d877b4f976fa3d" title="Constructs and prepares main logger." alt="" coords="5,56,188,83"/>
-</map>

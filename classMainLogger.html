@@ -100,16 +100,12 @@ $(document).ready(function(){initNavTree('classMainLogger.html',''); initResizab
 </div><!--header-->
 <div class="contents">
 
-<p>Main logger class.  
- <a href="classMainLogger.html#details">More...</a></p>
-
 <p><code>#include &lt;<a class="el" href="Logger_8hpp_source.html">Logger.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abe306c5e99f49fc6b5d877b4f976fa3d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainLogger.html#abe306c5e99f49fc6b5d877b4f976fa3d">MainLogger</a> (int argc, char **argv, const std::string &amp;configPath)</td></tr>
-<tr class="memdesc:abe306c5e99f49fc6b5d877b4f976fa3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs and prepares main logger.  <a href="classMainLogger.html#abe306c5e99f49fc6b5d877b4f976fa3d">More...</a><br /></td></tr>
-<tr class="separator:abe306c5e99f49fc6b5d877b4f976fa3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a506bfbe12b372a46871bac31ae56a0c8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainLogger.html#a506bfbe12b372a46871bac31ae56a0c8">MainLogger</a> (const std::string &amp;lokiAddr, const std::string &amp;sentryAddr)</td></tr>
+<tr class="separator:a506bfbe12b372a46871bac31ae56a0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdedc3e6472dc7cc9974ff7b24e31e4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainLogger.html#acdedc3e6472dc7cc9974ff7b24e31e4e">MainLogger</a> (const <a class="el" href="classMainLogger.html">MainLogger</a> &amp;)=delete</td></tr>
 <tr class="memdesc:acdedc3e6472dc7cc9974ff7b24e31e4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="classMainLogger.html#acdedc3e6472dc7cc9974ff7b24e31e4e">More...</a><br /></td></tr>
 <tr class="separator:acdedc3e6472dc7cc9974ff7b24e31e4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,24 +119,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5a0464580e3b8955e8b8dfc7469f0fde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment operator.  <a href="classMainLogger.html#a5a0464580e3b8955e8b8dfc7469f0fde">More...</a><br /></td></tr>
 <tr class="separator:a5a0464580e3b8955e8b8dfc7469f0fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3465c39c88ca9c361be3a7de114ccd7d"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; spdlog::logger &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainLogger.html#a3465c39c88ca9c361be3a7de114ccd7d">getLogger</a> () const</td></tr>
-<tr class="memdesc:a3465c39c88ca9c361be3a7de114ccd7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns pointer to mainlogger instance.  <a href="classMainLogger.html#a3465c39c88ca9c361be3a7de114ccd7d">More...</a><br /></td></tr>
 <tr class="separator:a3465c39c88ca9c361be3a7de114ccd7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a124c6c161f48b08587e72dde8bcb8970"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainLogger.html#a124c6c161f48b08587e72dde8bcb8970">~MainLogger</a> ()</td></tr>
-<tr class="memdesc:a124c6c161f48b08587e72dde8bcb8970"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructs the main logger.  <a href="classMainLogger.html#a124c6c161f48b08587e72dde8bcb8970">More...</a><br /></td></tr>
 <tr class="separator:a124c6c161f48b08587e72dde8bcb8970"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:abbb38b89bf9487d74fb27d6cf6967b40"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; spdlog::logger &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainLogger.html#abbb38b89bf9487d74fb27d6cf6967b40">mainLogger</a></td></tr>
-<tr class="separator:abbb38b89bf9487d74fb27d6cf6967b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73f0b65ba5e4e61e70b5eb82b5353305"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; spdlog::logger &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainLogger.html#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a></td></tr>
+<tr class="separator:a73f0b65ba5e4e61e70b5eb82b5353305"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Main logger class. </p>
+<div class="textblock"><p>Main logger class </p>
 
 <p class="definition">Definition at line <a class="el" href="Logger_8hpp_source.html#l00008">8</a> of file <a class="el" href="Logger_8hpp_source.html">Logger.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="abe306c5e99f49fc6b5d877b4f976fa3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe306c5e99f49fc6b5d877b4f976fa3d">&#9670;&nbsp;</a></span>MainLogger() <span class="overload">[1/3]</span></h2>
+<a id="a506bfbe12b372a46871bac31ae56a0c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a506bfbe12b372a46871bac31ae56a0c8">&#9670;&nbsp;</a></span>MainLogger() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -148,20 +142,14 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">MainLogger::MainLogger </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>argc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>argv</em>, </td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>lokiAddr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>configPath</em>&#160;</td>
+          <td class="paramname"><em>sentryAddr</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -170,82 +158,46 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Constructs and prepares main logger. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Constructs and prepares main logger </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">argc</td><td>Number of application arguments (Untouched internally) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">argv</td><td>Application arguments (Untouched internally) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">configPath</td><td>Path to the config json </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lokiAddr</td><td>Loki address </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sentryAddr</td><td>Sentry address </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Logger_8cpp_source.html#l00023">23</a> of file <a class="el" href="Logger_8cpp_source.html">Logger.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    spdlog::set_level(spdlog::level::off);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">// Prepare spdlog loggers</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">auto</span> dup_filter =</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        std::make_shared&lt;spdlog::sinks::dup_filter_sink_mt&gt;(std::chrono::seconds(<a class="code" href="Logger_8cpp.html#af2a206b966e10ab91ff6f741b769f709">LOG_FILTER_INTERVAL_SECS</a>));</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">if</span> (getppid() != 1) <span class="comment">// Disable stdout output for systemd</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        dup_filter-&gt;add_sink(std::make_shared&lt;spdlog::sinks::stdout_color_sink_mt&gt;());</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    dup_filter-&gt;add_sink(</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        std::make_shared&lt;spdlog::sinks::rotating_file_sink_mt&gt;(<span class="stringliteral">&quot;error.log&quot;</span>, <a class="code" href="Logger_8cpp.html#a657236436fb1f3fb630baca0a6e7288c">LOG_FILE_LIMIT_MB</a>, <a class="code" href="Logger_8cpp.html#ae0134edf99e31b9fde832f95f7ead993">LOG_FILE_COUNT</a>, <span class="keyword">false</span>));</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    dup_filter-&gt;add_sink(std::make_shared&lt;spdlog::sinks::syslog_sink_mt&gt;(PROJECT_NAME, LOG_USER, 0, <span class="keyword">false</span>));</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    dup_filter-&gt;add_sink(</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        std::make_shared&lt;spdlog::sinks::loki_api_sink_mt&gt;(<a class="code" href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">readSingleConfig</a>(configPath, <span class="stringliteral">&quot;LOKI_ADDRESS&quot;</span>)));</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    dup_filter-&gt;add_sink(</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        std::make_shared&lt;spdlog::sinks::sentry_api_sink_mt&gt;(<a class="code" href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">readSingleConfig</a>(configPath, <span class="stringliteral">&quot;SENTRY_ADDRESS&quot;</span>)));</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">// Register main logger</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classMainLogger.html#abbb38b89bf9487d74fb27d6cf6967b40">mainLogger</a> = std::make_shared&lt;spdlog::logger&gt;(PROJECT_NAME, dup_filter);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    spdlog::set_default_logger(<a class="code" href="classMainLogger.html#abbb38b89bf9487d74fb27d6cf6967b40">mainLogger</a>);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    spdlog::flush_every(std::chrono::seconds(<a class="code" href="Logger_8cpp.html#a46e9694da08a6649d06c8255c668071f">LOG_FLUSH_INTERVAL_SECS</a>));</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#ifdef NDEBUG</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classMainLogger.html#abbb38b89bf9487d74fb27d6cf6967b40">mainLogger</a>-&gt;set_level(spdlog::level::warn);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="classMainLogger.html#abbb38b89bf9487d74fb27d6cf6967b40">mainLogger</a>-&gt;set_level(spdlog::level::info);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// Parse input arguments</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">const</span> <a class="code" href="classInputParser.html">InputParser</a> input(argc, argv);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">if</span> (input.cmdOptionExists(<span class="stringliteral">&quot;-v&quot;</span>))</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="classMainLogger.html#abbb38b89bf9487d74fb27d6cf6967b40">mainLogger</a>-&gt;set_level(spdlog::level::info);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">if</span> (input.cmdOptionExists(<span class="stringliteral">&quot;-vv&quot;</span>))</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="classMainLogger.html#abbb38b89bf9487d74fb27d6cf6967b40">mainLogger</a>-&gt;set_level(spdlog::level::debug);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">if</span> (input.cmdOptionExists(<span class="stringliteral">&quot;-vvv&quot;</span>))</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="classMainLogger.html#abbb38b89bf9487d74fb27d6cf6967b40">mainLogger</a>-&gt;set_level(spdlog::level::trace);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
-<div class="ttc" id="aLogger_8cpp_html_a46e9694da08a6649d06c8255c668071f"><div class="ttname"><a href="Logger_8cpp.html#a46e9694da08a6649d06c8255c668071f">LOG_FLUSH_INTERVAL_SECS</a></div><div class="ttdeci">constexpr int LOG_FLUSH_INTERVAL_SECS</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8cpp_source.html#l00017">Logger.cpp:17</a></div></div>
-<div class="ttc" id="aLogger_8cpp_html_a657236436fb1f3fb630baca0a6e7288c"><div class="ttname"><a href="Logger_8cpp.html#a657236436fb1f3fb630baca0a6e7288c">LOG_FILE_LIMIT_MB</a></div><div class="ttdeci">constexpr size_t LOG_FILE_LIMIT_MB</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8cpp_source.html#l00019">Logger.cpp:19</a></div></div>
-<div class="ttc" id="aLogger_8cpp_html_ae0134edf99e31b9fde832f95f7ead993"><div class="ttname"><a href="Logger_8cpp.html#ae0134edf99e31b9fde832f95f7ead993">LOG_FILE_COUNT</a></div><div class="ttdeci">constexpr int LOG_FILE_COUNT</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8cpp_source.html#l00021">Logger.cpp:21</a></div></div>
-<div class="ttc" id="aLogger_8cpp_html_af2a206b966e10ab91ff6f741b769f709"><div class="ttname"><a href="Logger_8cpp.html#af2a206b966e10ab91ff6f741b769f709">LOG_FILTER_INTERVAL_SECS</a></div><div class="ttdeci">constexpr int LOG_FILTER_INTERVAL_SECS</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8cpp_source.html#l00015">Logger.cpp:15</a></div></div>
-<div class="ttc" id="aUtils_8cpp_html_a1bb86d9ed53417d9d3ac724cc4de59e2"><div class="ttname"><a href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2">readSingleConfig</a></div><div class="ttdeci">std::string readSingleConfig(const std::string &amp;dir, const std::string &amp;value)</div><div class="ttdoc">Reads a single entry from the config.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00121">Utils.cpp:121</a></div></div>
-<div class="ttc" id="aclassInputParser_html"><div class="ttname"><a href="classInputParser.html">InputParser</a></div><div class="ttdoc">Parses command line inputs.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8hpp_source.html#l00034">Utils.hpp:34</a></div></div>
-<div class="ttc" id="aclassMainLogger_html_abbb38b89bf9487d74fb27d6cf6967b40"><div class="ttname"><a href="classMainLogger.html#abbb38b89bf9487d74fb27d6cf6967b40">MainLogger::mainLogger</a></div><div class="ttdeci">std::shared_ptr&lt; spdlog::logger &gt; mainLogger</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8hpp_source.html#l00010">Logger.hpp:10</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classMainLogger_abe306c5e99f49fc6b5d877b4f976fa3d_cgraph.png" border="0" usemap="#aclassMainLogger_abe306c5e99f49fc6b5d877b4f976fa3d_cgraph" alt=""/></div>
-<map name="aclassMainLogger_abe306c5e99f49fc6b5d877b4f976fa3d_cgraph" id="aclassMainLogger_abe306c5e99f49fc6b5d877b4f976fa3d_cgraph">
-<area shape="rect" title="Constructs and prepares main logger." alt="" coords="5,31,188,57"/>
-<area shape="rect" href="classInputParser.html#aea813a8d6ee9ea6d250ab99333316bdf" title="Checks whether provided command line option exists." alt="" coords="236,5,449,32"/>
-<area shape="rect" href="Utils_8cpp.html#a1bb86d9ed53417d9d3ac724cc4de59e2" title="Reads a single entry from the config." alt="" coords="277,56,409,83"/>
-<area shape="rect" href="Utils_8cpp.html#a933a859107e64dc6d003e53cd1b06261" title=" " alt="" coords="547,31,622,57"/>
-<area shape="rect" href="Utils_8cpp.html#a747553f9d7d37822ca2bf1cea18e1694" title=" " alt="" coords="497,81,672,108"/>
-</map>
-</div>
-
+<p class="definition">Definition at line <a class="el" href="Logger_8cpp_source.html#l00019">19</a> of file <a class="el" href="Logger_8cpp_source.html">Logger.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    spdlog::set_level(spdlog::level::off);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="comment">// Prepare spdlog loggers</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">auto</span> dupFilter = std::make_shared&lt;spdlog::sinks::dup_filter_sink_mt&gt;(std::chrono::seconds(<a class="code" href="Logger_8cpp.html#a2ef4a7f5319495a657d254a5e5ead3bf">LOG_FILTER_SECS</a>));</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">if</span> (getppid() != 1) <span class="comment">// Disable stdout output for systemd</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        dupFilter-&gt;add_sink(std::make_shared&lt;spdlog::sinks::stdout_color_sink_mt&gt;());</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    dupFilter-&gt;add_sink(std::make_shared&lt;spdlog::sinks::syslog_sink_mt&gt;(PROJECT_NAME, LOG_USER, 0, <span class="keyword">false</span>));</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    dupFilter-&gt;add_sink(std::make_shared&lt;spdlog::sinks::loki_api_sink_mt&gt;(lokiAddr));</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    dupFilter-&gt;add_sink(std::make_shared&lt;spdlog::sinks::sentry_api_sink_mt&gt;(sentryAddr));</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// Register main logger</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classMainLogger.html#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a> = std::make_shared&lt;spdlog::logger&gt;(PROJECT_NAME, dupFilter);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    spdlog::set_default_logger(<a class="code" href="classMainLogger.html#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    spdlog::flush_every(std::chrono::seconds(<a class="code" href="Logger_8cpp.html#ae48a51b4c20e7277e6f72ef20d17426d">LOG_FLUSH_SECS</a>));</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#ifdef NDEBUG</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    spdlog::set_level(spdlog::level::warn);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    spdlog::set_level(spdlog::level::info);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    PRINT_VERSION();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
+<div class="ttc" id="aLogger_8cpp_html_a2ef4a7f5319495a657d254a5e5ead3bf"><div class="ttname"><a href="Logger_8cpp.html#a2ef4a7f5319495a657d254a5e5ead3bf">LOG_FILTER_SECS</a></div><div class="ttdeci">constexpr int LOG_FILTER_SECS</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8cpp_source.html#l00015">Logger.cpp:15</a></div></div>
+<div class="ttc" id="aLogger_8cpp_html_ae48a51b4c20e7277e6f72ef20d17426d"><div class="ttname"><a href="Logger_8cpp.html#ae48a51b4c20e7277e6f72ef20d17426d">LOG_FLUSH_SECS</a></div><div class="ttdeci">constexpr int LOG_FLUSH_SECS</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8cpp_source.html#l00017">Logger.cpp:17</a></div></div>
+<div class="ttc" id="aclassMainLogger_html_a73f0b65ba5e4e61e70b5eb82b5353305"><div class="ttname"><a href="classMainLogger.html#a73f0b65ba5e4e61e70b5eb82b5353305">MainLogger::_mainLogger</a></div><div class="ttdeci">std::shared_ptr&lt; spdlog::logger &gt; _mainLogger</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8hpp_source.html#l00010">Logger.hpp:10</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="acdedc3e6472dc7cc9974ff7b24e31e4e"></a>
@@ -318,11 +270,13 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Deconstructs the main logger </p>
 
-<p>Deconstructs the main logger. </p>
-
-<p class="definition">Definition at line <a class="el" href="Logger_8cpp_source.html#l00069">69</a> of file <a class="el" href="Logger_8cpp_source.html">Logger.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{ <a class="code" href="classMainLogger.html#abbb38b89bf9487d74fb27d6cf6967b40">mainLogger</a>-&gt;flush(); }</div>
+<p class="definition">Definition at line <a class="el" href="Logger_8cpp_source.html#l00048">48</a> of file <a class="el" href="Logger_8cpp_source.html">Logger.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    spdlog::info(<span class="stringliteral">&quot;Goodbye!&quot;</span>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="classMainLogger.html#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a>-&gt;flush();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -349,12 +303,10 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Returns pointer to mainlogger instance </p><dl class="section return"><dt>Returns</dt><dd>std::shared_ptr&lt;spdlog::logger&gt; Main logger </dd></dl>
 
-<p>Returns pointer to mainlogger instance. </p>
-<dl class="section return"><dt>Returns</dt><dd>std::shared_ptr&lt;spdlog::logger&gt; Main logger </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="Logger_8hpp_source.html#l00037">37</a> of file <a class="el" href="Logger_8hpp_source.html">Logger.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classMainLogger.html#abbb38b89bf9487d74fb27d6cf6967b40">mainLogger</a>; }</div>
+<p class="definition">Definition at line <a class="el" href="Logger_8hpp_source.html#l00036">36</a> of file <a class="el" href="Logger_8hpp_source.html">Logger.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classMainLogger.html#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -415,8 +367,8 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="abbb38b89bf9487d74fb27d6cf6967b40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abbb38b89bf9487d74fb27d6cf6967b40">&#9670;&nbsp;</a></span>mainLogger</h2>
+<a id="a73f0b65ba5e4e61e70b5eb82b5353305"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73f0b65ba5e4e61e70b5eb82b5353305">&#9670;&nbsp;</a></span>_mainLogger</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -425,7 +377,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt;spdlog::logger&gt; MainLogger::mainLogger</td>
+          <td class="memname">std::shared_ptr&lt;spdlog::logger&gt; MainLogger::_mainLogger</td>
         </tr>
       </table>
   </td>
@@ -449,7 +401,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classMainLogger.html">MainLogger</a></li>
-    <li class="footer">Generated on Sat Mar 23 2024 07:58:51 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Mar 24 2024 09:21:58 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

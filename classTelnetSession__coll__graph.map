@@ -1,5 +1,5 @@
 <map id="TelnetSession" name="TelnetSession">
-<area shape="rect" id="node1" title="Session class for manage connections." alt="" coords="155,109,266,136"/>
+<area shape="rect" id="node1" title=" " alt="" coords="155,109,266,136"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,5,216,47"/>
-<area shape="rect" id="node3" href="$structTelnetSessionStats.html" title="Telnet session statistics." alt="" coords="240,13,384,39"/>
+<area shape="rect" id="node3" href="$structTelnetSessionStats.html" title=" " alt="" coords="240,13,384,39"/>
 </map>

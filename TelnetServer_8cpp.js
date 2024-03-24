@@ -49,6 +49,7 @@ var TelnetServer_8cpp =
     [ "INVALID_SOCKET", "TelnetServer_8cpp.html#aa929f5b468b322e1661545d1e70866d3", null ],
     [ "KEY_WIDTH", "TelnetServer_8cpp.html#a5ba785f30cf1b83e34a0613a0e9633a1", null ],
     [ "MAX_AVAILABLE_SESSION", "TelnetServer_8cpp.html#aa889c32b6b03dd684f7754eebe2b609c", null ],
+    [ "SLEEP_INTERVAL_MS", "TelnetServer_8cpp.html#a7aff6e199c410c193f673d13f5f0b31d", null ],
     [ "TELNET_HISTORY_LIMIT", "TelnetServer_8cpp.html#ae44f57c74351f5e127f80ef8f8541ff7", null ],
     [ "TELNET_TIMEOUT", "TelnetServer_8cpp.html#ae1f2e0b4a5e52072d11d7498ae9bfbb8", null ],
     [ "telnetCommands", "TelnetServer_8cpp.html#ad7eb609da36d3938b944feb1c42acbf9", null ],

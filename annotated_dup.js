@@ -6,6 +6,7 @@ var annotated_dup =
         [ "sentry_api_sink", "classspdlog_1_1sinks_1_1sentry__api__sink.html", "classspdlog_1_1sinks_1_1sentry__api__sink" ]
       ] ]
     ] ],
+    [ "ConfigParser", "classConfigParser.html", "classConfigParser" ],
     [ "HTTP", "classHTTP.html", "classHTTP" ],
     [ "HTTPStats", "structHTTPStats.html", "structHTTPStats" ],
     [ "InputParser", "classInputParser.html", "classInputParser" ],
@@ -15,7 +16,6 @@ var annotated_dup =
     [ "PrometheusServer", "classPrometheusServer.html", "classPrometheusServer" ],
     [ "RawSocket", "classRawSocket.html", "classRawSocket" ],
     [ "RawSocketStats", "structRawSocketStats.html", "structRawSocketStats" ],
-    [ "spinlock", "structspinlock.html", "structspinlock" ],
     [ "StatusTracker", "classStatusTracker.html", "classStatusTracker" ],
     [ "TelnetServer", "classTelnetServer.html", "classTelnetServer" ],
     [ "TelnetServerStats", "structTelnetServerStats.html", "structTelnetServerStats" ],

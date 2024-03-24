@@ -1,4 +1,9 @@
 <map id="ZeroMQServer::initialise" name="ZeroMQServer::initialise">
-<area shape="rect" id="node1" title="Initializes a new ZeroMQ server." alt="" coords="5,5,185,32"/>
-<area shape="rect" id="node2" href="$classZeroMQ.html#aed565a56046d2966f9312a58aaab0c2a" title="Starts the connection." alt="" coords="233,5,345,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,185,57"/>
+<area shape="rect" id="node2" href="$classZeroMQ.html#aed565a56046d2966f9312a58aaab0c2a" title=" " alt="" coords="275,5,387,32"/>
+<area shape="rect" id="node3" href="$classZeroMQServer.html#ae557b887002f9518120432bf9c909570" title="Main thread function." alt="" coords="233,56,429,83"/>
+<area shape="rect" id="node4" href="$classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811" title="Processes new messages." alt="" coords="477,56,647,83"/>
+<area shape="rect" id="node5" href="$classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7" title=" " alt="" coords="695,5,933,32"/>
+<area shape="rect" id="node6" href="$classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3" title=" " alt="" coords="727,56,901,83"/>
+<area shape="rect" id="node7" href="$classZeroMQ.html#a67e9a20d56ac8197b16844b5e9955c0c" title=" " alt="" coords="725,107,903,133"/>
 </map>

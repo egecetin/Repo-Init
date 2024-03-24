@@ -100,21 +100,15 @@ $(document).ready(function(){initNavTree('classTelnetStats.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 
-<p>Prometheus statistics for Telnet server.  
- <a href="classTelnetStats.html#details">More...</a></p>
-
 <p><code>#include &lt;<a class="el" href="TelnetStats_8hpp_source.html">TelnetStats.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4022c45d8551d8e92b989a5561ed050b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTelnetStats.html#a4022c45d8551d8e92b989a5561ed050b">TelnetStats</a> (const std::shared_ptr&lt; prometheus::Registry &gt; &amp;reg, uint16_t portNumber)</td></tr>
-<tr class="memdesc:a4022c45d8551d8e92b989a5561ed050b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Telnet statistics.  <a href="classTelnetStats.html#a4022c45d8551d8e92b989a5561ed050b">More...</a><br /></td></tr>
 <tr class="separator:a4022c45d8551d8e92b989a5561ed050b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29b90c320dd788ae9045e27a180e7b73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTelnetStats.html#a29b90c320dd788ae9045e27a180e7b73">consumeStats</a> (const <a class="el" href="structTelnetSessionStats.html">TelnetSessionStats</a> &amp;stat, bool sessionClosed)</td></tr>
-<tr class="memdesc:a29b90c320dd788ae9045e27a180e7b73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates statistics with session values.  <a href="classTelnetStats.html#a29b90c320dd788ae9045e27a180e7b73">More...</a><br /></td></tr>
 <tr class="separator:a29b90c320dd788ae9045e27a180e7b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a910010aa6bd7d54a3ceae40b3c3fed14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTelnetStats.html#a910010aa6bd7d54a3ceae40b3c3fed14">consumeStats</a> (const <a class="el" href="structTelnetServerStats.html">TelnetServerStats</a> &amp;stat)</td></tr>
-<tr class="memdesc:a910010aa6bd7d54a3ceae40b3c3fed14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates statistics with server values.  <a href="classTelnetStats.html#a910010aa6bd7d54a3ceae40b3c3fed14">More...</a><br /></td></tr>
 <tr class="separator:a910010aa6bd7d54a3ceae40b3c3fed14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -166,7 +160,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:aa155a7c3388c30ff3ecbe1d55e08d401"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Prometheus statistics for Telnet server. </p>
+<div class="textblock"><p>Prometheus statistics for Telnet server </p>
 
 <p class="definition">Definition at line <a class="el" href="TelnetStats_8hpp_source.html#l00031">31</a> of file <a class="el" href="TelnetStats_8hpp_source.html">TelnetStats.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -195,9 +189,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Construct a new Telnet statistics. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Construct a new Telnet statistics </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>Prometheus registry </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">portNumber</td><td>Telnet server port </td></tr>
@@ -336,9 +328,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Updates statistics with server values. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Updates statistics with server values </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">stat</td><td>Statistics values from server </td></tr>
   </table>
@@ -400,9 +390,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Updates statistics with session values. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Updates statistics with session values </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">stat</td><td>Statistics values from session </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">sessionClosed</td><td>True if the provided session is closed </td></tr>
@@ -845,7 +833,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classTelnetStats.html">TelnetStats</a></li>
-    <li class="footer">Generated on Sat Mar 23 2024 07:58:51 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Mar 24 2024 09:21:58 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

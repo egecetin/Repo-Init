@@ -1,9 +1,11 @@
 var hierarchy =
 [
+    [ "ProcessMetrics::_oldCpu", "structProcessMetrics_1_1__oldCpu.html", null ],
     [ "base_sink", null, [
       [ "spdlog::sinks::loki_api_sink< Mutex >", "classspdlog_1_1sinks_1_1loki__api__sink.html", null ],
       [ "spdlog::sinks::sentry_api_sink< Mutex >", "classspdlog_1_1sinks_1_1sentry__api__sink.html", null ]
     ] ],
+    [ "ConfigParser", "classConfigParser.html", null ],
     [ "std::enable_shared_from_this", null, [
       [ "TelnetServer", "classTelnetServer.html", null ],
       [ "TelnetSession", "classTelnetSession.html", null ]
@@ -18,13 +20,11 @@ var hierarchy =
         [ "ZeroMQServer", "classZeroMQServer.html", null ]
       ] ]
     ] ],
-    [ "ProcessMetrics::oldCpu", "structProcessMetrics_1_1oldCpu.html", null ],
     [ "PerformanceTracker", "classPerformanceTracker.html", null ],
     [ "ProcessMetrics", "classProcessMetrics.html", null ],
     [ "PrometheusServer", "classPrometheusServer.html", null ],
     [ "RawSocket", "classRawSocket.html", null ],
     [ "RawSocketStats", "structRawSocketStats.html", null ],
-    [ "spinlock", "structspinlock.html", null ],
     [ "StatusTracker", "classStatusTracker.html", null ],
     [ "TelnetServerStats", "structTelnetServerStats.html", null ],
     [ "TelnetSessionStats", "structTelnetSessionStats.html", null ],

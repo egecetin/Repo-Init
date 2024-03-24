@@ -101,24 +101,20 @@ $(document).ready(function(){initNavTree('classRawSocket.html',''); initResizabl
 </div><!--header-->
 <div class="contents">
 
-<p>Raw socket reads and writes binary data to the provided interface. Write operations do not modify any field (MAC, IP, etc.). They only write the full data directly, similar to file write operations.  
- <a href="classRawSocket.html#details">More...</a></p>
-
 <p><code>#include &lt;<a class="el" href="RawSocket_8hpp_source.html">RawSocket.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for RawSocket:</div>
 <div class="dyncontent">
 <div class="center"><img src="classRawSocket__coll__graph.png" border="0" usemap="#aRawSocket_coll__map" alt="Collaboration graph"/></div>
 <map name="aRawSocket_coll__map" id="aRawSocket_coll__map">
-<area shape="rect" title="Raw socket reads and writes binary data to the provided interface. Write operations do not modify any..." alt="" coords="22,95,115,121"/>
-<area shape="rect" href="structRawSocketStats.html" title="Stats produced by RawSocket." alt="" coords="5,5,132,32"/>
+<area shape="rect" title=" " alt="" coords="22,95,115,121"/>
+<area shape="rect" href="structRawSocketStats.html" title=" " alt="" coords="5,5,132,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1a1f22c977bf55bd27b329646ef1840d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d">RawSocket</a> (std::string iface, bool isWrite=false)</td></tr>
-<tr class="memdesc:a1a1f22c977bf55bd27b329646ef1840d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classRawSocket.html" title="Raw socket reads and writes binary data to the provided interface. Write operations do not modify any...">RawSocket</a> object.  <a href="classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d">More...</a><br /></td></tr>
 <tr class="separator:a1a1f22c977bf55bd27b329646ef1840d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedb0c47dc4c6f83606b8960698d26b0a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#aedb0c47dc4c6f83606b8960698d26b0a">RawSocket</a> (const <a class="el" href="classRawSocket.html">RawSocket</a> &amp;)=delete</td></tr>
 <tr class="memdesc:aedb0c47dc4c6f83606b8960698d26b0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="classRawSocket.html#aedb0c47dc4c6f83606b8960698d26b0a">More...</a><br /></td></tr>
@@ -133,19 +129,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5035edbafe7fad052622e107f6186a13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment operator.  <a href="classRawSocket.html#a5035edbafe7fad052622e107f6186a13">More...</a><br /></td></tr>
 <tr class="separator:a5035edbafe7fad052622e107f6186a13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acad7d2566a1fd692d8b6a0abce722d13"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#acad7d2566a1fd692d8b6a0abce722d13">getInterfaceName</a> () const</td></tr>
-<tr class="memdesc:acad7d2566a1fd692d8b6a0abce722d13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the binded ethernet interface.  <a href="classRawSocket.html#acad7d2566a1fd692d8b6a0abce722d13">More...</a><br /></td></tr>
 <tr class="separator:acad7d2566a1fd692d8b6a0abce722d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79903d0e0acc19a14ab7b01c5e7ac709"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#a79903d0e0acc19a14ab7b01c5e7ac709">writeData</a> (const void *data, size_t dataLen)</td></tr>
-<tr class="memdesc:a79903d0e0acc19a14ab7b01c5e7ac709"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data to the interface.  <a href="classRawSocket.html#a79903d0e0acc19a14ab7b01c5e7ac709">More...</a><br /></td></tr>
 <tr class="separator:a79903d0e0acc19a14ab7b01c5e7ac709"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7723c8ee0fe930d8a62de93e1cbc019d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#a7723c8ee0fe930d8a62de93e1cbc019d">readData</a> (void *data, size_t dataLen)</td></tr>
-<tr class="memdesc:a7723c8ee0fe930d8a62de93e1cbc019d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads data from the interface.  <a href="classRawSocket.html#a7723c8ee0fe930d8a62de93e1cbc019d">More...</a><br /></td></tr>
 <tr class="separator:a7723c8ee0fe930d8a62de93e1cbc019d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f203ecb915c624a0dadb5e3de38188e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structRawSocketStats.html">RawSocketStats</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#a1f203ecb915c624a0dadb5e3de38188e">getStats</a> (bool resetInternalStats=false)</td></tr>
-<tr class="memdesc:a1f203ecb915c624a0dadb5e3de38188e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the statistics of the class.  <a href="classRawSocket.html#a1f203ecb915c624a0dadb5e3de38188e">More...</a><br /></td></tr>
 <tr class="separator:a1f203ecb915c624a0dadb5e3de38188e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a2386aad78626913a844f5ac4cbaadc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#a8a2386aad78626913a844f5ac4cbaadc">~RawSocket</a> ()</td></tr>
-<tr class="memdesc:a8a2386aad78626913a844f5ac4cbaadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classRawSocket.html" title="Raw socket reads and writes binary data to the provided interface. Write operations do not modify any...">RawSocket</a> object.  <a href="classRawSocket.html#a8a2386aad78626913a844f5ac4cbaadc">More...</a><br /></td></tr>
 <tr class="separator:a8a2386aad78626913a844f5ac4cbaadc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
@@ -212,9 +203,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Construct a new <a class="el" href="classRawSocket.html" title="Raw socket reads and writes binary data to the provided interface. Write operations do not modify any...">RawSocket</a> object. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Construct a new <a class="el" href="classRawSocket.html">RawSocket</a> object </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">iface</td><td>Ethernet interface </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">isWrite</td><td>True if write mode, false if read mode is requested </td></tr>
@@ -222,53 +211,53 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00028">28</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                                  : <a class="code" href="classRawSocket.html#a9a7162db9a22144cae19670b775319e4">writeMode</a>(isWrite), <a class="code" href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">iFace</a>(std::move(iface))</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">// Prepare socket address</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    memset(<span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;<a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>), 0, <span class="keyword">sizeof</span>(sockaddr_ll));</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>.sll_family = AF_PACKET;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>.sll_protocol = htons(ETH_P_ALL);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>.sll_ifindex = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(if_nametoindex(<a class="code" href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">iFace</a>.c_str()));</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>.sll_ifindex == 0)</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(std::string(<span class="stringliteral">&quot;Can&#39;t find interface: &quot;</span>) + <a class="code" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">// Interface request</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    ifreq ifr{};</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    memset(<span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;ifr), 0, <span class="keyword">sizeof</span>(ifreq));</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    memcpy(std::addressof(ifr.ifr_name), <a class="code" href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">iFace</a>.c_str(),</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;           <a class="code" href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">iFace</a>.size()); <span class="comment">// Size should be sufficient because if_nametoindex not failed</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">if</span> (isWrite)</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d">init</a>(PF_PACKET, SOCK_RAW, IPPROTO_RAW, <a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">if</span> (setsockopt(<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a>, SOL_SOCKET, SO_BINDTODEVICE, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;ifr), <span class="keyword">sizeof</span>(ifr)) &lt; 0)</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">throw</span> std::runtime_error(std::string(<span class="stringliteral">&quot;Can&#39;t set socket options: &quot;</span>) + <a class="code" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d">init</a>(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL), <a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="classRawSocket.html#a85c2dd10b144711eed2e80b720824b2b">isReady</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
-<div class="ttc" id="aUtils_8cpp_html_a77c5602aee813ef2fde1a81c1db17e0c"><div class="ttname"><a href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a></div><div class="ttdeci">std::string getErrnoString(int errVal)</div><div class="ttdoc">Converts errno to a readable string.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00142">Utils.cpp:142</a></div></div>
+<p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00029">29</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                                  : <a class="code" href="classRawSocket.html#a9a7162db9a22144cae19670b775319e4">writeMode</a>(isWrite), <a class="code" href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">iFace</a>(std::move(iface))</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// Prepare socket address</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    memset(<span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;<a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>), 0, <span class="keyword">sizeof</span>(sockaddr_ll));</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>.sll_family = AF_PACKET;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>.sll_protocol = htons(ETH_P_ALL);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>.sll_ifindex = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(if_nametoindex(<a class="code" href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">iFace</a>.c_str()));</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>.sll_ifindex == 0)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(std::string(<span class="stringliteral">&quot;Can&#39;t find interface: &quot;</span>) + <a class="code" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// Interface request</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    ifreq ifr{};</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    memset(<span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;ifr), 0, <span class="keyword">sizeof</span>(ifreq));</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    memcpy(std::addressof(ifr.ifr_name), <a class="code" href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">iFace</a>.c_str(),</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;           <a class="code" href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">iFace</a>.size()); <span class="comment">// Size should be sufficient because if_nametoindex not failed</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">if</span> (isWrite)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d">init</a>(PF_PACKET, SOCK_RAW, IPPROTO_RAW, <a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">if</span> (setsockopt(<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a>, SOL_SOCKET, SO_BINDTODEVICE, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;ifr), <span class="keyword">sizeof</span>(ifr)) &lt; 0)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keywordflow">throw</span> std::runtime_error(std::string(<span class="stringliteral">&quot;Can&#39;t set socket options: &quot;</span>) + <a class="code" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d">init</a>(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL), <a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="classRawSocket.html#a85c2dd10b144711eed2e80b720824b2b">isReady</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
+<div class="ttc" id="aErrorHelpers_8hpp_html_a77c5602aee813ef2fde1a81c1db17e0c"><div class="ttname"><a href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a></div><div class="ttdeci">std::string getErrnoString(int errVal)</div><div class="ttdef"><b>Definition:</b> <a href="ErrorHelpers_8hpp_source.html#l00019">ErrorHelpers.hpp:19</a></div></div>
 <div class="ttc" id="aclassRawSocket_html_a05ce445b1acec4ce317247a16e40f19a"><div class="ttname"><a href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">RawSocket::sockFd</a></div><div class="ttdeci">int sockFd</div><div class="ttdoc">Socket descriptor.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00030">RawSocket.hpp:30</a></div></div>
 <div class="ttc" id="aclassRawSocket_html_a706d8fa5d4e8597026f4ac7f898570ef"><div class="ttname"><a href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">RawSocket::iFace</a></div><div class="ttdeci">std::string iFace</div><div class="ttdoc">Currently used ethernet interface.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00032">RawSocket.hpp:32</a></div></div>
 <div class="ttc" id="aclassRawSocket_html_a85c2dd10b144711eed2e80b720824b2b"><div class="ttname"><a href="classRawSocket.html#a85c2dd10b144711eed2e80b720824b2b">RawSocket::isReady</a></div><div class="ttdeci">bool isReady</div><div class="ttdoc">Ready flag.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00026">RawSocket.hpp:26</a></div></div>
 <div class="ttc" id="aclassRawSocket_html_a9a7162db9a22144cae19670b775319e4"><div class="ttname"><a href="classRawSocket.html#a9a7162db9a22144cae19670b775319e4">RawSocket::writeMode</a></div><div class="ttdeci">bool writeMode</div><div class="ttdoc">Mode indicator. True = Write, False = Read.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00028">RawSocket.hpp:28</a></div></div>
 <div class="ttc" id="aclassRawSocket_html_aa7c208e35092f37088061bf3a38334c5"><div class="ttname"><a href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">RawSocket::addr</a></div><div class="ttdeci">sockaddr_ll addr</div><div class="ttdoc">Socket structure.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00034">RawSocket.hpp:34</a></div></div>
-<div class="ttc" id="aclassRawSocket_html_abd125f5b790a3dbee5eb79d45cdb8c3d"><div class="ttname"><a href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d">RawSocket::init</a></div><div class="ttdeci">void init(int domain, int type, int protocol, sockaddr_ll &amp;_addr)</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8cpp_source.html#l00015">RawSocket.cpp:15</a></div></div>
+<div class="ttc" id="aclassRawSocket_html_abd125f5b790a3dbee5eb79d45cdb8c3d"><div class="ttname"><a href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d">RawSocket::init</a></div><div class="ttdeci">void init(int domain, int type, int protocol, sockaddr_ll &amp;_addr)</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8cpp_source.html#l00016">RawSocket.cpp:16</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classRawSocket_a1a1f22c977bf55bd27b329646ef1840d_cgraph.png" border="0" usemap="#aclassRawSocket_a1a1f22c977bf55bd27b329646ef1840d_cgraph" alt=""/></div>
 <map name="aclassRawSocket_a1a1f22c977bf55bd27b329646ef1840d_cgraph" id="aclassRawSocket_a1a1f22c977bf55bd27b329646ef1840d_cgraph">
-<area shape="rect" title="Construct a new RawSocket object." alt="" coords="5,5,177,32"/>
-<area shape="rect" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title="Converts errno to a readable string." alt="" coords="396,5,511,32"/>
+<area shape="rect" title=" " alt="" coords="5,5,177,32"/>
+<area shape="rect" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title=" " alt="" coords="396,5,511,32"/>
 <area shape="rect" href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d" title=" " alt="" coords="225,31,348,57"/>
 </map>
 </div>
@@ -345,11 +334,10 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Destroy the <a class="el" href="classRawSocket.html">RawSocket</a> object </p>
 
-<p>Destroy the <a class="el" href="classRawSocket.html" title="Raw socket reads and writes binary data to the provided interface. Write operations do not modify any...">RawSocket</a> object. </p>
-
-<p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00108">108</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;{ close(<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a>); }</div>
+<p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00109">109</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;{ close(<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a>); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -376,9 +364,7 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Returns the binded ethernet interface. </p>
-<dl class="section return"><dt>Returns</dt><dd>std::string Name of the interface </dd></dl>
+<p>Returns the binded ethernet interface </p><dl class="section return"><dt>Returns</dt><dd>std::string Name of the interface </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="RawSocket_8hpp_source.html#l00064">64</a> of file <a class="el" href="RawSocket_8hpp_source.html">RawSocket.hpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef">iFace</a>; }</div>
@@ -400,28 +386,26 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get the statistics of the class. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Get the statistics of the class </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">resetInternalStats</td><td>Whether the internal statistics structure should be reset after being returned </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structRawSocketStats.html" title="Stats produced by RawSocket.">RawSocketStats</a> Produced statistics </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structRawSocketStats.html">RawSocketStats</a> Produced statistics </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00097">97</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;{</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">if</span> (resetInternalStats)</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <a class="code" href="structRawSocketStats.html">RawSocketStats</a> buffer = <a class="code" href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">stats</a>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <a class="code" href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">stats</a> = {0, 0, 0.0};</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">return</span> buffer;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">stats</a>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00098">98</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;{</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">if</span> (resetInternalStats)</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <a class="code" href="structRawSocketStats.html">RawSocketStats</a> buffer = <a class="code" href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">stats</a>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">stats</a> = {0, 0, 0.0};</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">return</span> buffer;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">stats</a>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
 <div class="ttc" id="aclassRawSocket_html_a76f8185cc289212573bb184892e32fed"><div class="ttname"><a href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">RawSocket::stats</a></div><div class="ttdeci">RawSocketStats stats</div><div class="ttdoc">Internal structure for statistics.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00036">RawSocket.hpp:36</a></div></div>
-<div class="ttc" id="astructRawSocketStats_html"><div class="ttname"><a href="structRawSocketStats.html">RawSocketStats</a></div><div class="ttdoc">Stats produced by RawSocket.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00010">RawSocket.hpp:10</a></div></div>
+<div class="ttc" id="astructRawSocketStats_html"><div class="ttname"><a href="structRawSocketStats.html">RawSocketStats</a></div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00010">RawSocket.hpp:10</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -471,25 +455,25 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00015">15</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a> = socket(domain, type, protocol); <span class="comment">// Init socket</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a> &lt; 0)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<a class="code" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">if</span> (bind(<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a>, <span class="keyword">reinterpret_cast&lt;</span>sockaddr *<span class="keyword">&gt;</span>(&amp;_addr), <span class="keyword">sizeof</span>(_addr)) &lt; 0)</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(std::string(<span class="stringliteral">&quot;Bind failed: &quot;</span>) + <a class="code" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00016">16</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a> = socket(domain, type, protocol); <span class="comment">// Init socket</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a> &lt; 0)</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(<a class="code" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">if</span> (bind(<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a>, <span class="keyword">reinterpret_cast&lt;</span>sockaddr *<span class="keyword">&gt;</span>(&amp;_addr), <span class="keyword">sizeof</span>(_addr)) &lt; 0)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">throw</span> std::runtime_error(std::string(<span class="stringliteral">&quot;Bind failed: &quot;</span>) + <a class="code" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_cgraph.png" border="0" usemap="#aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_cgraph" alt=""/></div>
 <map name="aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_cgraph" id="aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,128,32"/>
-<area shape="rect" href="Utils_8cpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title="Converts errno to a readable string." alt="" coords="176,5,291,32"/>
+<area shape="rect" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title=" " alt="" coords="176,5,291,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -498,7 +482,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_icgraph.png" border="0" usemap="#aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_icgraph" alt=""/></div>
 <map name="aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_icgraph" id="aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_icgraph">
 <area shape="rect" title=" " alt="" coords="225,5,348,32"/>
-<area shape="rect" href="classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d" title="Construct a new RawSocket object." alt="" coords="5,5,177,32"/>
+<area shape="rect" href="classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d" title=" " alt="" coords="5,5,177,32"/>
 </map>
 </div>
 
@@ -585,9 +569,7 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Reads data from the interface. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Reads data from the interface </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>User-allocated data </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dataLen</td><td>Length of the data </td></tr>
@@ -596,24 +578,24 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int Status of the operation. Returns the number of read bytes, negative on errors. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00078">78</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classRawSocket.html#a85c2dd10b144711eed2e80b720824b2b">isReady</a> || <a class="code" href="classRawSocket.html#a9a7162db9a22144cae19670b775319e4">writeMode</a>)</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">return</span> -EPERM;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    socklen_t socketLen = <span class="keyword">sizeof</span>(<a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">auto</span> startTime = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span> retval =</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(recvfrom(<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a>, data, dataLen, 0, <span class="keyword">reinterpret_cast&lt;</span>sockaddr *<span class="keyword">&gt;</span>(&amp;<a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>), &amp;socketLen));</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">// Update stats</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">stats</a>.<a class="code" href="structRawSocketStats.html#af5ed2ad5db843e39dfc8317db7fefd2a">processingTime</a> += <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>((std::chrono::high_resolution_clock::now() - startTime).count());</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">stats</a>.<a class="code" href="structRawSocketStats.html#a37839e418b67b9c5a5aab1d0d4517bb2">receivedBytes</a> += dataLen;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span> retval;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00079">79</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classRawSocket.html#a85c2dd10b144711eed2e80b720824b2b">isReady</a> || <a class="code" href="classRawSocket.html#a9a7162db9a22144cae19670b775319e4">writeMode</a>)</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">return</span> -EPERM;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    socklen_t socketLen = <span class="keyword">sizeof</span>(<a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">auto</span> startTime = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span> retval =</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(recvfrom(<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a>, data, dataLen, 0, <span class="keyword">reinterpret_cast&lt;</span>sockaddr *<span class="keyword">&gt;</span>(&amp;<a class="code" href="classRawSocket.html#aa7c208e35092f37088061bf3a38334c5">addr</a>), &amp;socketLen));</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// Update stats</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">stats</a>.<a class="code" href="structRawSocketStats.html#af5ed2ad5db843e39dfc8317db7fefd2a">processingTime</a> += <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>((std::chrono::high_resolution_clock::now() - startTime).count());</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">stats</a>.<a class="code" href="structRawSocketStats.html#a37839e418b67b9c5a5aab1d0d4517bb2">receivedBytes</a> += dataLen;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">return</span> retval;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
 <div class="ttc" id="astructRawSocketStats_html_a37839e418b67b9c5a5aab1d0d4517bb2"><div class="ttname"><a href="structRawSocketStats.html#a37839e418b67b9c5a5aab1d0d4517bb2">RawSocketStats::receivedBytes</a></div><div class="ttdeci">size_t receivedBytes</div><div class="ttdoc">Number of bytes read from socket.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00014">RawSocket.hpp:14</a></div></div>
 <div class="ttc" id="astructRawSocketStats_html_af5ed2ad5db843e39dfc8317db7fefd2a"><div class="ttname"><a href="structRawSocketStats.html#af5ed2ad5db843e39dfc8317db7fefd2a">RawSocketStats::processingTime</a></div><div class="ttdeci">double processingTime</div><div class="ttdoc">Total execution time in nanoseconds.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00016">RawSocket.hpp:16</a></div></div>
 </div><!-- fragment -->
@@ -644,9 +626,7 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Writes data to the interface. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Writes data to the interface </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Full payload data to write </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dataLen</td><td>Length of the data </td></tr>
@@ -655,22 +635,22 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int Status of the operation. Returns the number of written bytes, negative on errors. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00061">61</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classRawSocket.html#a85c2dd10b144711eed2e80b720824b2b">isReady</a> || !<a class="code" href="classRawSocket.html#a9a7162db9a22144cae19670b775319e4">writeMode</a>)</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">return</span> -EPERM;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">auto</span> startTime = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span> retval = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(write(<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a>, data, dataLen));</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">// Update stats</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">stats</a>.<a class="code" href="structRawSocketStats.html#af5ed2ad5db843e39dfc8317db7fefd2a">processingTime</a> += <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>((std::chrono::high_resolution_clock::now() - startTime).count());</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">stats</a>.<a class="code" href="structRawSocketStats.html#af2852bea8bb425fd287c55432bcff6ca">sentBytes</a> += dataLen;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">return</span> retval;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="RawSocket_8cpp_source.html#l00062">62</a> of file <a class="el" href="RawSocket_8cpp_source.html">RawSocket.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classRawSocket.html#a85c2dd10b144711eed2e80b720824b2b">isReady</a> || !<a class="code" href="classRawSocket.html#a9a7162db9a22144cae19670b775319e4">writeMode</a>)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">return</span> -EPERM;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">auto</span> startTime = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span> retval = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(write(<a class="code" href="classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a">sockFd</a>, data, dataLen));</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">// Update stats</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">stats</a>.<a class="code" href="structRawSocketStats.html#af5ed2ad5db843e39dfc8317db7fefd2a">processingTime</a> += <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>((std::chrono::high_resolution_clock::now() - startTime).count());</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="classRawSocket.html#a76f8185cc289212573bb184892e32fed">stats</a>.<a class="code" href="structRawSocketStats.html#af2852bea8bb425fd287c55432bcff6ca">sentBytes</a> += dataLen;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">return</span> retval;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
 <div class="ttc" id="astructRawSocketStats_html_af2852bea8bb425fd287c55432bcff6ca"><div class="ttname"><a href="structRawSocketStats.html#af2852bea8bb425fd287c55432bcff6ca">RawSocketStats::sentBytes</a></div><div class="ttdeci">size_t sentBytes</div><div class="ttdoc">Number of bytes written to socket.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00012">RawSocket.hpp:12</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -842,7 +822,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classRawSocket.html">RawSocket</a></li>
-    <li class="footer">Generated on Sat Mar 23 2024 07:58:51 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Mar 24 2024 09:21:58 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

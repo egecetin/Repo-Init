@@ -1,4 +1,6 @@
 <map id="TelnetServer::acceptConnection" name="TelnetServer::acceptConnection">
-<area shape="rect" id="node1" title=" " alt="" coords="209,5,436,32"/>
-<area shape="rect" id="node2" href="$classTelnetServer.html#acd6b4cead01d745646ba4538093aa11d" title="Process new connections and messages." alt="" coords="5,5,161,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="655,5,881,32"/>
+<area shape="rect" id="node2" href="$classTelnetServer.html#acd6b4cead01d745646ba4538093aa11d" title="Process new connections and messages." alt="" coords="451,5,607,32"/>
+<area shape="rect" id="node3" href="$classTelnetServer.html#a9dead3b5f5ef55e116940b24827adc44" title=" " alt="" coords="220,5,403,32"/>
+<area shape="rect" id="node4" href="$classTelnetServer.html#ad29ec932294d2bc05797f0580c66b0f1" title=" " alt="" coords="5,5,172,32"/>
 </map>

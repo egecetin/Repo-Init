@@ -1,4 +1,6 @@
 <map id="ProcessMetrics::getThreadCount" name="ProcessMetrics::getThreadCount">
-<area shape="rect" id="node1" title="Gets the number of threads in the process." alt="" coords="227,5,421,47"/>
-<area shape="rect" id="node2" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title="Updates the metrics values." alt="" coords="5,13,179,39"/>
+<area shape="rect" id="node1" title=" " alt="" coords="765,5,960,47"/>
+<area shape="rect" id="node2" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title=" " alt="" coords="544,13,717,39"/>
+<area shape="rect" id="node3" href="$classProcessMetrics.html#ac97c1f542907f214594682384e5f75ee" title=" " alt="" coords="280,13,496,39"/>
+<area shape="rect" id="node4" href="$classProcessMetrics.html#a102e67199855a44a2c6418fadb57ecb2" title=" " alt="" coords="5,13,232,39"/>
 </map>

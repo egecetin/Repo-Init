@@ -1,7 +1,7 @@
 <map id="HTTP::performRequest" name="HTTP::performRequest">
-<area shape="rect" id="node1" title="Performs the request." alt="" coords="239,81,408,108"/>
-<area shape="rect" id="node2" href="$classHTTP.html#af1a0e164e3f910ad94ae83ed3dabbb48" title="Sends a GET request." alt="" coords="11,5,185,32"/>
-<area shape="rect" id="node3" href="$classHTTP.html#a40ccf88b3f6cb0124e481c19a6a21f1c" title="Sends a HEAD request." alt="" coords="5,56,191,83"/>
-<area shape="rect" id="node4" href="$classHTTP.html#a7e3abdbadb16b86b107d17f0b5578dfb" title="Sends a POST request." alt="" coords="7,107,189,133"/>
-<area shape="rect" id="node5" href="$classHTTP.html#a305ae916fcf07e8dcd25b4defbae80d9" title="Sends a PUT request." alt="" coords="11,157,185,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="239,81,408,108"/>
+<area shape="rect" id="node2" href="$classHTTP.html#af1a0e164e3f910ad94ae83ed3dabbb48" title=" " alt="" coords="11,5,185,32"/>
+<area shape="rect" id="node3" href="$classHTTP.html#a40ccf88b3f6cb0124e481c19a6a21f1c" title=" " alt="" coords="5,56,191,83"/>
+<area shape="rect" id="node4" href="$classHTTP.html#a7e3abdbadb16b86b107d17f0b5578dfb" title=" " alt="" coords="7,107,189,133"/>
+<area shape="rect" id="node5" href="$classHTTP.html#a305ae916fcf07e8dcd25b4defbae80d9" title=" " alt="" coords="11,157,185,184"/>
 </map>

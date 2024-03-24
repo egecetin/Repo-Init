@@ -1,6 +1,8 @@
 <map id="ProcessMetrics::countDirectoryEntries" name="ProcessMetrics::countDirectoryEntries">
-<area shape="rect" id="node1" title="Counts the number of entries in a directory." alt="" coords="513,39,737,80"/>
-<area shape="rect" id="node2" href="$classProcessMetrics.html#afc464f41490e92722af1d5e0f0c57d85" title="Gets the number of file descriptors in the process." alt="" coords="227,5,465,47"/>
-<area shape="rect" id="node4" href="$classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636" title="Gets the number of threads in the process." alt="" coords="249,71,443,112"/>
-<area shape="rect" id="node3" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title="Updates the metrics values." alt="" coords="5,46,179,73"/>
+<area shape="rect" id="node1" title=" " alt="" coords="1052,39,1276,80"/>
+<area shape="rect" id="node2" href="$classProcessMetrics.html#afc464f41490e92722af1d5e0f0c57d85" title=" " alt="" coords="765,5,1004,47"/>
+<area shape="rect" id="node6" href="$classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636" title=" " alt="" coords="787,71,982,112"/>
+<area shape="rect" id="node3" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title=" " alt="" coords="544,46,717,73"/>
+<area shape="rect" id="node4" href="$classProcessMetrics.html#ac97c1f542907f214594682384e5f75ee" title=" " alt="" coords="280,46,496,73"/>
+<area shape="rect" id="node5" href="$classProcessMetrics.html#a102e67199855a44a2c6418fadb57ecb2" title=" " alt="" coords="5,46,232,73"/>
 </map>

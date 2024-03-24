@@ -1,8 +1,0 @@
-<map id="getErrnoString" name="getErrnoString">
-<area shape="rect" id="node1" title="Converts errno to a readable string." alt="" coords="425,107,540,133"/>
-<area shape="rect" id="node2" href="$classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d" title=" " alt="" coords="240,5,363,32"/>
-<area shape="rect" id="node3" href="$classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d" title="Construct a new RawSocket object." alt="" coords="5,44,177,71"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="64,120,119,147"/>
-<area shape="rect" id="node5" href="$Control_8cpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e" title="Thread function to receive control messages or config changes from Telnet connections." alt="" coords="225,157,377,184"/>
-<area shape="rect" id="node6" href="$classTracer.html#a2d2f8455e292cc50beb9e8c5da50a8bb" title="Construct a new Tracer object." alt="" coords="247,208,355,235"/>
-</map>

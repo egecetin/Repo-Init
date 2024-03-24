@@ -1,5 +1,9 @@
 var classZeroMQMonitor =
 [
+    [ "ZeroMQMonitor", "classZeroMQMonitor.html#a174aa9f46f041ece410f76d61456400f", null ],
+    [ "ZeroMQMonitor", "classZeroMQMonitor.html#a98f9edb2db672b64d8a8a320657a2fb9", null ],
+    [ "ZeroMQMonitor", "classZeroMQMonitor.html#afb8e523f553fcdf1e4c1cf7b14db68ac", null ],
+    [ "~ZeroMQMonitor", "classZeroMQMonitor.html#ac27d04233bec52ba0d0554c47d1fe921", null ],
     [ "on_event", "classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8", null ],
     [ "on_event_accept_failed", "classZeroMQMonitor.html#a9f519fb64bf98b4caf1041a614693745", null ],
     [ "on_event_accepted", "classZeroMQMonitor.html#a72da5c7cc53b7cdcf0959bbaffeda614", null ],
@@ -17,9 +21,11 @@ var classZeroMQMonitor =
     [ "on_event_listening", "classZeroMQMonitor.html#a5c26ec0e8d3ee17d0f0d83b822e953c6", null ],
     [ "on_event_unknown", "classZeroMQMonitor.html#a03f3615764ad459ee6b8ea95731a0294", null ],
     [ "on_monitor_started", "classZeroMQMonitor.html#ab4212ec2e297f4f934ed7cadebd5e329", null ],
+    [ "operator=", "classZeroMQMonitor.html#a34fd2dfb0c6ba81f5848ed11afc865ed", null ],
+    [ "operator=", "classZeroMQMonitor.html#a65793ecc57f1a03c2fb2d49f5865818b", null ],
     [ "startMonitoring", "classZeroMQMonitor.html#a8e532d43e45d037b86c274e0d75a9aa5", null ],
     [ "stopMonitoring", "classZeroMQMonitor.html#a83ffe6f50cab52994f05fa68db78c8df", null ],
     [ "threadFunc", "classZeroMQMonitor.html#a822fbf3c0f167e77abdcc0cdc4f31545", null ],
-    [ "monitorThread", "classZeroMQMonitor.html#a28e4a18af1b16e03bfb91ff942745847", null ],
-    [ "shouldStop", "classZeroMQMonitor.html#a2f947a45dc9200abe067f86a1db1a40e", null ]
+    [ "_monitorThread", "classZeroMQMonitor.html#a777d8155790bec800f1bce9ac52f3508", null ],
+    [ "_shouldStop", "classZeroMQMonitor.html#ad14ab2dbbc1efa846c429fb7538774f9", null ]
 ];

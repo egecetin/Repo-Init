@@ -1,5 +1,5 @@
 <map id="HTTP::sendPUTRequest" name="HTTP::sendPUTRequest">
-<area shape="rect" id="node1" title="Sends a PUT request." alt="" coords="5,31,180,57"/>
-<area shape="rect" id="node2" href="$classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title="Performs the request." alt="" coords="234,5,403,32"/>
-<area shape="rect" id="node3" href="$classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title="Sets common fields for HTTP requests." alt="" coords="228,56,409,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,180,57"/>
+<area shape="rect" id="node2" href="$classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title=" " alt="" coords="234,5,403,32"/>
+<area shape="rect" id="node3" href="$classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title=" " alt="" coords="228,56,409,83"/>
 </map>

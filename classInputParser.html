@@ -100,21 +100,15 @@ $(document).ready(function(){initNavTree('classInputParser.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 
-<p>Parses command line inputs.  
- <a href="classInputParser.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="Utils_8hpp_source.html">Utils.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="InputParser_8hpp_source.html">InputParser.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1509d5a8dae65d2a5bd867005eeebb5e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputParser.html#a1509d5a8dae65d2a5bd867005eeebb5e">InputParser</a> (const int &amp;argc, char **argv)</td></tr>
-<tr class="memdesc:a1509d5a8dae65d2a5bd867005eeebb5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classInputParser.html" title="Parses command line inputs.">InputParser</a> object.  <a href="classInputParser.html#a1509d5a8dae65d2a5bd867005eeebb5e">More...</a><br /></td></tr>
 <tr class="separator:a1509d5a8dae65d2a5bd867005eeebb5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0068fadbf71420dfb99d115a7a340fc6"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputParser.html#a0068fadbf71420dfb99d115a7a340fc6">getCmdOption</a> (const std::string &amp;option) const</td></tr>
-<tr class="memdesc:a0068fadbf71420dfb99d115a7a340fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets single command line input.  <a href="classInputParser.html#a0068fadbf71420dfb99d115a7a340fc6">More...</a><br /></td></tr>
 <tr class="separator:a0068fadbf71420dfb99d115a7a340fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea813a8d6ee9ea6d250ab99333316bdf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputParser.html#aea813a8d6ee9ea6d250ab99333316bdf">cmdOptionExists</a> (const std::string &amp;option) const</td></tr>
-<tr class="memdesc:aea813a8d6ee9ea6d250ab99333316bdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether provided command line option exists.  <a href="classInputParser.html#aea813a8d6ee9ea6d250ab99333316bdf">More...</a><br /></td></tr>
 <tr class="separator:aea813a8d6ee9ea6d250ab99333316bdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -123,9 +117,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a23ce0e47972606dd65099570ec4385b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Parses command line inputs. </p>
+<div class="textblock"><p>Parses command line inputs </p>
 
-<p class="definition">Definition at line <a class="el" href="Utils_8hpp_source.html#l00034">34</a> of file <a class="el" href="Utils_8hpp_source.html">Utils.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="InputParser_8hpp_source.html#l00011">11</a> of file <a class="el" href="InputParser_8hpp_source.html">InputParser.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1509d5a8dae65d2a5bd867005eeebb5e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1509d5a8dae65d2a5bd867005eeebb5e">&#9670;&nbsp;</a></span>InputParser()</h2>
@@ -160,9 +154,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Constructs a new <a class="el" href="classInputParser.html" title="Parses command line inputs.">InputParser</a> object. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Constructs a new <a class="el" href="classInputParser.html">InputParser</a> object </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">argc</td><td>Number of input arguments </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">argv</td><td>Input arguments </td></tr>
@@ -170,15 +162,15 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Utils_8hpp_source.html#l00044">44</a> of file <a class="el" href="Utils_8hpp_source.html">Utils.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt; argc; ++i)</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            this-&gt;<a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.emplace_back(argv[i]);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        this-&gt;<a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.emplace_back(<span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
-<div class="ttc" id="aclassInputParser_html_a23ce0e47972606dd65099570ec4385b8"><div class="ttname"><a href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">InputParser::tokens</a></div><div class="ttdeci">std::vector&lt; std::string &gt; tokens</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8hpp_source.html#l00036">Utils.hpp:36</a></div></div>
+<p class="definition">Definition at line <a class="el" href="InputParser_8hpp_source.html#l00021">21</a> of file <a class="el" href="InputParser_8hpp_source.html">InputParser.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt; argc; ++i)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            this-&gt;<a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.emplace_back(argv[i]);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        this-&gt;<a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.emplace_back(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
+<div class="ttc" id="aclassInputParser_html_a23ce0e47972606dd65099570ec4385b8"><div class="ttname"><a href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">InputParser::tokens</a></div><div class="ttdeci">std::vector&lt; std::string &gt; tokens</div><div class="ttdef"><b>Definition:</b> <a href="InputParser_8hpp_source.html#l00013">InputParser.hpp:13</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -206,9 +198,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Checks whether provided command line option exists. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Checks whether provided command line option exists. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">option</td><td>Option to check </td></tr>
   </table>
@@ -218,18 +208,17 @@ Private Attributes</h2></td></tr>
 <dd>
 false If the provided option is not found </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Utils_8hpp_source.html#l00076">76</a> of file <a class="el" href="Utils_8hpp_source.html">Utils.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">return</span> std::find(this-&gt;<a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.begin(), this-&gt;tokens.end(), option) != this-&gt;<a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.end();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="InputParser_8hpp_source.html#l00053">53</a> of file <a class="el" href="InputParser_8hpp_source.html">InputParser.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">return</span> std::find(this-&gt;<a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.begin(), this-&gt;tokens.end(), option) != this-&gt;<a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.end();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classInputParser_aea813a8d6ee9ea6d250ab99333316bdf_icgraph.png" border="0" usemap="#aclassInputParser_aea813a8d6ee9ea6d250ab99333316bdf_icgraph" alt=""/></div>
 <map name="aclassInputParser_aea813a8d6ee9ea6d250ab99333316bdf_icgraph" id="aclassInputParser_aea813a8d6ee9ea6d250ab99333316bdf_icgraph">
-<area shape="rect" title="Checks whether provided command line option exists." alt="" coords="236,31,449,57"/>
-<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="69,5,124,32"/>
-<area shape="rect" href="classMainLogger.html#abe306c5e99f49fc6b5d877b4f976fa3d" title="Constructs and prepares main logger." alt="" coords="5,56,188,83"/>
+<area shape="rect" title=" " alt="" coords="108,5,321,32"/>
+<area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -258,9 +247,7 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Gets single command line input. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Gets single command line input </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">option</td><td>Option to check </td></tr>
   </table>
@@ -268,23 +255,23 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>const std::string&amp; Found command line input. Empty string if not found </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Utils_8hpp_source.html#l00058">58</a> of file <a class="el" href="Utils_8hpp_source.html">Utils.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        std::vector&lt;std::string&gt;::const_iterator itr;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        itr = std::find(this-&gt;<a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.begin(), this-&gt;tokens.end(), option);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">if</span> (itr != this-&gt;<a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.end() &amp;&amp; ++itr != this-&gt;tokens.end())</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="keywordflow">return</span> *itr;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> std::string empty_string;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">return</span> empty_string;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="InputParser_8hpp_source.html#l00035">35</a> of file <a class="el" href="InputParser_8hpp_source.html">InputParser.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        std::vector&lt;std::string&gt;::const_iterator itr;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        itr = std::find(this-&gt;<a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.begin(), this-&gt;tokens.end(), option);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">if</span> (itr != this-&gt;<a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.end() &amp;&amp; ++itr != this-&gt;tokens.end())</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">return</span> *itr;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> std::string empty_string;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">return</span> empty_string;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classInputParser_a0068fadbf71420dfb99d115a7a340fc6_icgraph.png" border="0" usemap="#aclassInputParser_a0068fadbf71420dfb99d115a7a340fc6_icgraph" alt=""/></div>
 <map name="aclassInputParser_a0068fadbf71420dfb99d115a7a340fc6_icgraph" id="aclassInputParser_a0068fadbf71420dfb99d115a7a340fc6_icgraph">
-<area shape="rect" title="Gets single command line input." alt="" coords="108,5,305,32"/>
+<area shape="rect" title=" " alt="" coords="108,5,305,32"/>
 <area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
 </map>
 </div>
@@ -312,12 +299,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Utils_8hpp_source.html#l00036">36</a> of file <a class="el" href="Utils_8hpp_source.html">Utils.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="InputParser_8hpp_source.html#l00013">13</a> of file <a class="el" href="InputParser_8hpp_source.html">InputParser.hpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/__w/Repo-Init/Repo-Init/include/<a class="el" href="Utils_8hpp_source.html">Utils.hpp</a></li>
+<li>/__w/Repo-Init/Repo-Init/include/utils/<a class="el" href="InputParser_8hpp_source.html">InputParser.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -325,7 +312,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classInputParser.html">InputParser</a></li>
-    <li class="footer">Generated on Sat Mar 23 2024 07:58:51 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Mar 24 2024 09:21:58 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

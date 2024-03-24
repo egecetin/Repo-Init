@@ -100,21 +100,15 @@ $(document).ready(function(){initNavTree('classPerformanceTracker.html',''); ini
 </div><!--header-->
 <div class="contents">
 
-<p>Measures and calculates performance metrics.  
- <a href="classPerformanceTracker.html#details">More...</a></p>
-
 <p><code>#include &lt;<a class="el" href="Performance_8hpp_source.html">Performance.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:adc5870fcd9ecf66849637eca57a765b6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPerformanceTracker.html#adc5870fcd9ecf66849637eca57a765b6">PerformanceTracker</a> (const std::shared_ptr&lt; prometheus::Registry &gt; &amp;reg, const std::string &amp;name, uint64_t metricID=0)</td></tr>
-<tr class="memdesc:adc5870fcd9ecf66849637eca57a765b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classPerformanceTracker.html" title="Measures and calculates performance metrics.">PerformanceTracker</a> object.  <a href="classPerformanceTracker.html#adc5870fcd9ecf66849637eca57a765b6">More...</a><br /></td></tr>
 <tr class="separator:adc5870fcd9ecf66849637eca57a765b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca8499b39a7ce03e923834717fc68ab6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPerformanceTracker.html#aca8499b39a7ce03e923834717fc68ab6">startTimer</a> ()</td></tr>
-<tr class="memdesc:aca8499b39a7ce03e923834717fc68ab6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the timer.  <a href="classPerformanceTracker.html#aca8499b39a7ce03e923834717fc68ab6">More...</a><br /></td></tr>
 <tr class="separator:aca8499b39a7ce03e923834717fc68ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a865d4ab2a2e84f56d8d7f5fa0d4dd441"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPerformanceTracker.html#a865d4ab2a2e84f56d8d7f5fa0d4dd441">endTimer</a> ()</td></tr>
-<tr class="memdesc:a865d4ab2a2e84f56d8d7f5fa0d4dd441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends the timer and updates internal statistics.  <a href="classPerformanceTracker.html#a865d4ab2a2e84f56d8d7f5fa0d4dd441">More...</a><br /></td></tr>
 <tr class="separator:a865d4ab2a2e84f56d8d7f5fa0d4dd441"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -133,8 +127,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:aabf6e2dd634dea35ec78f7c7c10af22f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Measures and calculates performance metrics. </p>
-<p>The <a class="el" href="classPerformanceTracker.html" title="Measures and calculates performance metrics.">PerformanceTracker</a> class is responsible for measuring and calculating performance metrics. It provides functionality to start and stop a timer, and calculates the elapsed time between the start and stop events. The class uses the prometheus library to store and manage the performance metrics. </p>
+<div class="textblock"><p>Measures and calculates performance metrics.</p>
+<p>The <a class="el" href="classPerformanceTracker.html">PerformanceTracker</a> class is responsible for measuring and calculating performance metrics. It provides functionality to start and stop a timer, and calculates the elapsed time between the start and stop events. The class uses the prometheus library to store and manage the performance metrics. </p>
 
 <p class="definition">Definition at line <a class="el" href="Performance_8hpp_source.html#l00013">13</a> of file <a class="el" href="Performance_8hpp_source.html">Performance.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -169,9 +163,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Construct a new <a class="el" href="classPerformanceTracker.html" title="Measures and calculates performance metrics.">PerformanceTracker</a> object. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Construct a new <a class="el" href="classPerformanceTracker.html">PerformanceTracker</a> object. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>The registry to register the performance metrics. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>The name of the metric. </td></tr>
@@ -222,9 +214,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Ends the timer and updates internal statistics. </p>
-<dl class="section return"><dt>Returns</dt><dd>The result of the timer in nanoseconds. </dd></dl>
+<p>Ends the timer and updates internal statistics. </p><dl class="section return"><dt>Returns</dt><dd>The result of the timer in nanoseconds. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Performance_8cpp_source.html#l00036">36</a> of file <a class="el" href="Performance_8cpp_source.html">Performance.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
@@ -248,8 +238,8 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classPerformanceTracker_a865d4ab2a2e84f56d8d7f5fa0d4dd441_icgraph.png" border="0" usemap="#aclassPerformanceTracker_a865d4ab2a2e84f56d8d7f5fa0d4dd441_icgraph" alt=""/></div>
 <map name="aclassPerformanceTracker_a865d4ab2a2e84f56d8d7f5fa0d4dd441_icgraph" id="aclassPerformanceTracker_a865d4ab2a2e84f56d8d7f5fa0d4dd441_icgraph">
-<area shape="rect" title="Ends the timer and updates internal statistics." alt="" coords="204,5,355,47"/>
-<area shape="rect" href="classTrackPerformance.html#aeb3fe7de8fee569a8943b5a8056bc748" title="Destructs the TrackPerformance object and stops the timer." alt="" coords="5,5,156,47"/>
+<area shape="rect" title=" " alt="" coords="204,5,355,47"/>
+<area shape="rect" href="classTrackPerformance.html#aeb3fe7de8fee569a8943b5a8056bc748" title=" " alt="" coords="5,5,156,47"/>
 </map>
 </div>
 
@@ -269,7 +259,6 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
 <p>Starts the timer. </p>
 
 <p class="definition">Definition at line <a class="el" href="Performance_8cpp_source.html#l00034">34</a> of file <a class="el" href="Performance_8cpp_source.html">Performance.cpp</a>.</p>
@@ -279,8 +268,8 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classPerformanceTracker_aca8499b39a7ce03e923834717fc68ab6_icgraph.png" border="0" usemap="#aclassPerformanceTracker_aca8499b39a7ce03e923834717fc68ab6_icgraph" alt=""/></div>
 <map name="aclassPerformanceTracker_aca8499b39a7ce03e923834717fc68ab6_icgraph" id="aclassPerformanceTracker_aca8499b39a7ce03e923834717fc68ab6_icgraph">
-<area shape="rect" title="Starts the timer." alt="" coords="317,5,468,47"/>
-<area shape="rect" href="classTrackPerformance.html#a6698f5ad202e247f2c41074b60de0246" title="Constructs a new TrackPerformance object." alt="" coords="5,13,269,39"/>
+<area shape="rect" title=" " alt="" coords="317,5,468,47"/>
+<area shape="rect" href="classTrackPerformance.html#a6698f5ad202e247f2c41074b60de0246" title=" " alt="" coords="5,13,269,39"/>
 </map>
 </div>
 
@@ -401,7 +390,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classPerformanceTracker.html">PerformanceTracker</a></li>
-    <li class="footer">Generated on Sat Mar 23 2024 07:58:51 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Mar 24 2024 09:21:58 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

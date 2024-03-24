@@ -100,18 +100,13 @@ $(document).ready(function(){initNavTree('classZeroMQStats.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 
-<p>Represents the statistics of a <a class="el" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality.">ZeroMQ</a> server.  
- <a href="classZeroMQStats.html#details">More...</a></p>
-
 <p><code>#include &lt;<a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aafbee903dff769a5f498c5ba1b101067"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#aafbee903dff769a5f498c5ba1b101067">ZeroMQStats</a> (const std::shared_ptr&lt; prometheus::Registry &gt; &amp;reg)</td></tr>
-<tr class="memdesc:aafbee903dff769a5f498c5ba1b101067"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classZeroMQStats.html" title="Represents the statistics of a ZeroMQ server.">ZeroMQStats</a> object.  <a href="classZeroMQStats.html#aafbee903dff769a5f498c5ba1b101067">More...</a><br /></td></tr>
 <tr class="separator:aafbee903dff769a5f498c5ba1b101067"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c3eeaf1011a5dcaa05c50ece9abaf07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07">consumeStats</a> (const std::vector&lt; zmq::message_t &gt; &amp;recvMsgs, const std::vector&lt; zmq::message_t &gt; &amp;sendMsgs, const <a class="el" href="structZeroMQServerStats.html">ZeroMQServerStats</a> &amp;serverStats)</td></tr>
-<tr class="memdesc:a4c3eeaf1011a5dcaa05c50ece9abaf07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the statistics with messages.  <a href="classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07">More...</a><br /></td></tr>
 <tr class="separator:a4c3eeaf1011a5dcaa05c50ece9abaf07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -154,7 +149,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a744222adbbc6eb9094471692b00d00c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represents the statistics of a <a class="el" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality.">ZeroMQ</a> server. </p>
+<div class="textblock"><p>Represents the statistics of a <a class="el" href="classZeroMQ.html">ZeroMQ</a> server. </p>
 
 <p class="definition">Definition at line <a class="el" href="ZeroMQStats_8hpp_source.html#l00020">20</a> of file <a class="el" href="ZeroMQStats_8hpp_source.html">ZeroMQStats.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -181,9 +176,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Construct a new <a class="el" href="classZeroMQStats.html" title="Represents the statistics of a ZeroMQ server.">ZeroMQStats</a> object. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Construct a new <a class="el" href="classZeroMQStats.html">ZeroMQStats</a> object. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>Prometheus registry. </td></tr>
   </table>
@@ -313,13 +306,11 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Updates the statistics with messages. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Updates the statistics with messages. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">recvMsgs</td><td>Received messages. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">sendMsgs</td><td>Send messages. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">serverStats</td><td><a class="el" href="classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality.">ZeroMQ</a> server stats. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">serverStats</td><td><a class="el" href="classZeroMQ.html">ZeroMQ</a> server stats. </td></tr>
   </table>
   </dd>
 </dl>
@@ -691,7 +682,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classZeroMQStats.html">ZeroMQStats</a></li>
-    <li class="footer">Generated on Sat Mar 23 2024 07:58:52 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Mar 24 2024 09:21:58 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

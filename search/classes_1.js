@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['inputparser_395',['InputParser',['../classInputParser.html',1,'']]]
+  ['configparser_399',['ConfigParser',['../classConfigParser.html',1,'']]]
 ];

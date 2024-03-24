@@ -44,7 +44,7 @@ var NAVTREE =
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", null ],
+        [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
@@ -63,9 +63,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"Control_8cpp.html",
-"classProcessMetrics.html#a905f2ddeab131cb2b0e3fd36846bcd1e",
-"files.html"
+"ConfigParser_8cpp.html",
+"classProcessMetrics.html#acd231e123cf41cd967c8888a033c6586",
+"classspdlog_1_1sinks_1_1loki__api__sink.html#a0c2c070f78339f81bc36d728e811d463"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

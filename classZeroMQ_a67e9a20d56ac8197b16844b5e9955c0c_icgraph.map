@@ -1,4 +1,6 @@
 <map id="ZeroMQ::sendMessages" name="ZeroMQ::sendMessages">
-<area shape="rect" id="node1" title="Sends multipart message." alt="" coords="223,5,401,32"/>
-<area shape="rect" id="node2" href="$classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811" title="Processes new messages." alt="" coords="5,5,175,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="695,5,873,32"/>
+<area shape="rect" id="node2" href="$classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811" title="Processes new messages." alt="" coords="477,5,647,32"/>
+<area shape="rect" id="node3" href="$classZeroMQServer.html#ae557b887002f9518120432bf9c909570" title="Main thread function." alt="" coords="233,5,429,32"/>
+<area shape="rect" id="node4" href="$classZeroMQServer.html#ad1c5ff929aee9963e4752e238a658b5c" title=" " alt="" coords="5,5,185,32"/>
 </map>

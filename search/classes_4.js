@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['oldcpu_399',['oldCpu',['../structProcessMetrics_1_1oldCpu.html',1,'ProcessMetrics']]]
+  ['loginfo_5ft_403',['logInfo_t',['../structspdlog_1_1sinks_1_1loki__api__sink_1_1logInfo__t.html',1,'spdlog::sinks::loki_api_sink']]],
+  ['loki_5fapi_5fsink_404',['loki_api_sink',['../classspdlog_1_1sinks_1_1loki__api__sink.html',1,'spdlog::sinks']]]
 ];

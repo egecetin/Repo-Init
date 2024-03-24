@@ -6,7 +6,7 @@ var dir_cda63f5ecd2e17b5351c028bf33f2973 =
     ] ],
     [ "ProcessMetrics.hpp", "ProcessMetrics_8hpp.html", [
       [ "ProcessMetrics", "classProcessMetrics.html", "classProcessMetrics" ],
-      [ "oldCpu", "structProcessMetrics_1_1oldCpu.html", null ]
+      [ "_oldCpu", "structProcessMetrics_1_1__oldCpu.html", null ]
     ] ],
     [ "PrometheusServer.hpp", "PrometheusServer_8hpp.html", [
       [ "PrometheusServer", "classPrometheusServer.html", "classPrometheusServer" ]

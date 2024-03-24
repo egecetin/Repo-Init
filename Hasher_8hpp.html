@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Repo-Init: /__w/Repo-Init/Repo-Init/include/rng/Hasher.hpp File Reference</title>
+<title>Repo-Init: /__w/Repo-Init/Repo-Init/include/utils/Hasher.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -102,21 +102,21 @@ $(document).ready(function(){initNavTree('Hasher_8hpp.html',''); initResizable()
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Hasher.hpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="Hasher_8hpp__incl.png" border="0" usemap="#a_2____w_2Repo-Init_2Repo-Init_2include_2rng_2Hasher_8hpp" alt=""/></div>
-<map name="a_2____w_2Repo-Init_2Repo-Init_2include_2rng_2Hasher_8hpp" id="a_2____w_2Repo-Init_2Repo-Init_2include_2rng_2Hasher_8hpp">
-<area shape="rect" title=" " alt="" coords="5,5,207,47"/>
-<area shape="rect" title=" " alt="" coords="29,95,95,121"/>
-<area shape="rect" title=" " alt="" coords="119,95,181,121"/>
+<div class="center"><img src="Hasher_8hpp__incl.png" border="0" usemap="#a_2____w_2Repo-Init_2Repo-Init_2include_2utils_2Hasher_8hpp" alt=""/></div>
+<map name="a_2____w_2Repo-Init_2Repo-Init_2include_2utils_2Hasher_8hpp" id="a_2____w_2Repo-Init_2Repo-Init_2include_2utils_2Hasher_8hpp">
+<area shape="rect" title=" " alt="" coords="7,5,158,61"/>
+<area shape="rect" title=" " alt="" coords="5,109,72,136"/>
+<area shape="rect" title=" " alt="" coords="96,109,157,136"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="Hasher_8hpp__dep__incl.png" border="0" usemap="#a_2____w_2Repo-Init_2Repo-Init_2include_2rng_2Hasher_8hppdep" alt=""/></div>
-<map name="a_2____w_2Repo-Init_2Repo-Init_2include_2rng_2Hasher_8hppdep" id="a_2____w_2Repo-Init_2Repo-Init_2include_2rng_2Hasher_8hppdep">
-<area shape="rect" title=" " alt="" coords="146,5,347,47"/>
-<area shape="rect" href="TelnetServer_8cpp.html" title=" " alt="" coords="5,95,229,136"/>
-<area shape="rect" href="ZeroMQServer_8cpp.html" title=" " alt="" coords="253,95,501,136"/>
+<div class="center"><img src="Hasher_8hpp__dep__incl.png" border="0" usemap="#a_2____w_2Repo-Init_2Repo-Init_2include_2utils_2Hasher_8hppdep" alt=""/></div>
+<map name="a_2____w_2Repo-Init_2Repo-Init_2include_2utils_2Hasher_8hppdep" id="a_2____w_2Repo-Init_2Repo-Init_2include_2utils_2Hasher_8hppdep">
+<area shape="rect" title=" " alt="" coords="171,5,322,61"/>
+<area shape="rect" href="TelnetServer_8cpp.html" title=" " alt="" coords="5,109,229,151"/>
+<area shape="rect" href="ZeroMQServer_8cpp.html" title=" " alt="" coords="253,109,501,151"/>
 </map>
 </div>
 </div>
@@ -125,11 +125,9 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a69c2bf176d386d2413b9ae6d8346588b"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a> (const char *s)</td></tr>
-<tr class="memdesc:a69c2bf176d386d2413b9ae6d8346588b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the compile-time hash value of a string.  <a href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">More...</a><br /></td></tr>
 <tr class="separator:a69c2bf176d386d2413b9ae6d8346588b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19de363e44f82446f890dc47a27d101c"><td class="memTemplParams" colspan="2">template&lt;size_t N&gt; </td></tr>
 <tr class="memitem:a19de363e44f82446f890dc47a27d101c"><td class="memTemplItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="Hasher_8hpp.html#a19de363e44f82446f890dc47a27d101c">constSeeder</a> (const char(&amp;entropy)[N], const uint64_t iv=0)</td></tr>
-<tr class="memdesc:a19de363e44f82446f890dc47a27d101c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates entropy using the input string and an initial value.  <a href="Hasher_8hpp.html#a19de363e44f82446f890dc47a27d101c">More...</a><br /></td></tr>
 <tr class="separator:a19de363e44f82446f890dc47a27d101c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -156,9 +154,7 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Calculates the compile-time hash value of a string. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Calculates the compile-time hash value of a string. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>The input string. </td></tr>
   </table>
@@ -168,16 +164,15 @@ Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="Hasher_8hpp_source.html#l00013">13</a> of file <a class="el" href="Hasher_8hpp_source.html">Hasher.hpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{ <span class="keywordflow">return</span> *s ? *s + 33 * <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(s + 1) : 5381; }</div>
-<div class="ttc" id="aHasher_8hpp_html_a69c2bf176d386d2413b9ae6d8346588b"><div class="ttname"><a href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a></div><div class="ttdeci">constexpr size_t constHasher(const char *s)</div><div class="ttdoc">Calculates the compile-time hash value of a string.</div><div class="ttdef"><b>Definition:</b> <a href="Hasher_8hpp_source.html#l00013">Hasher.hpp:13</a></div></div>
+<div class="ttc" id="aHasher_8hpp_html_a69c2bf176d386d2413b9ae6d8346588b"><div class="ttname"><a href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a></div><div class="ttdeci">constexpr size_t constHasher(const char *s)</div><div class="ttdef"><b>Definition:</b> <a href="Hasher_8hpp_source.html#l00013">Hasher.hpp:13</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="Hasher_8hpp_a69c2bf176d386d2413b9ae6d8346588b_icgraph.png" border="0" usemap="#aHasher_8hpp_a69c2bf176d386d2413b9ae6d8346588b_icgraph" alt=""/></div>
 <map name="aHasher_8hpp_a69c2bf176d386d2413b9ae6d8346588b_icgraph" id="aHasher_8hpp_a69c2bf176d386d2413b9ae6d8346588b_icgraph">
-<area shape="rect" title="Calculates the compile&#45;time hash value of a string." alt="" coords="575,31,677,57"/>
-<area shape="rect" href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title="Telnet session message received callback." alt="" coords="330,5,505,32"/>
-<area shape="rect" href="classZeroMQServer.html#ac0670a5dd8bc0b86184d1dd51110bf56" title="Constructor for server." alt="" coords="308,56,527,83"/>
-<area shape="rect" href="Control_8cpp.html#afc73cc2450f5d541f8dacbdc38b9bd4e" title="Thread function to receive control messages or config changes from Telnet connections." alt="" coords="108,5,260,32"/>
+<area shape="rect" title=" " alt="" coords="375,31,477,57"/>
+<area shape="rect" href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title=" " alt="" coords="130,5,305,32"/>
+<area shape="rect" href="classZeroMQServer.html#a5f07f113b76b0d8a8875ffb1cb3f6437" title=" " alt="" coords="108,56,327,83"/>
 <area shape="rect" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
 </map>
 </div>
@@ -219,9 +214,7 @@ template&lt;size_t N&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Generates entropy using the input string and an initial value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Generates entropy using the input string and an initial value. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">entropy</td><td>The input string used for generating entropy. </td></tr>
     <tr><td class="paramname">iv</td><td>The initial value for the entropy generation. </td></tr>
@@ -250,8 +243,8 @@ template&lt;size_t N&gt; </div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_7b9d17e6bc5fd6e991fb9e832f07c291.html">rng</a></li><li class="navelem"><a class="el" href="Hasher_8hpp.html">Hasher.hpp</a></li>
-    <li class="footer">Generated on Sat Mar 23 2024 07:58:51 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_821002d4f10779a80d4fb17bc32f21f1.html">utils</a></li><li class="navelem"><a class="el" href="Hasher_8hpp.html">Hasher.hpp</a></li>
+    <li class="footer">Generated on Sun Mar 24 2024 09:21:58 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

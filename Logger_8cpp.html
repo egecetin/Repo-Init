@@ -98,44 +98,37 @@ $(document).ready(function(){initNavTree('Logger_8cpp.html',''); initResizable()
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="Logger_8hpp_source.html">logging/Logger.hpp</a>&quot;</code><br />
+<code>#include &quot;Version.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="Loki_8hpp_source.html">logging/Loki.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Sentry_8hpp_source.html">logging/Sentry.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Utils_8hpp_source.html">Utils.hpp</a>&quot;</code><br />
-<code>#include &quot;Version.h&quot;</code><br />
 <code>#include &lt;spdlog/sinks/dup_filter_sink.h&gt;</code><br />
-<code>#include &lt;spdlog/sinks/rotating_file_sink.h&gt;</code><br />
 <code>#include &lt;spdlog/sinks/stdout_color_sinks.h&gt;</code><br />
 <code>#include &lt;spdlog/sinks/syslog_sink.h&gt;</code><br />
 <code>#include &lt;spdlog/spdlog.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Logger.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="Logger_8cpp__incl.png" border="0" usemap="#a_2____w_2Repo-Init_2Repo-Init_2src_2logging_2Logger_8cpp" alt=""/></div>
 <map name="a_2____w_2Repo-Init_2Repo-Init_2src_2logging_2Logger_8cpp" id="a_2____w_2Repo-Init_2Repo-Init_2src_2logging_2Logger_8cpp">
-<area shape="rect" title=" " alt="" coords="1033,5,1230,47"/>
-<area shape="rect" href="Logger_8hpp.html" title=" " alt="" coords="273,102,419,129"/>
+<area shape="rect" title=" " alt="" coords="490,5,687,47"/>
+<area shape="rect" href="Logger_8hpp.html" title=" " alt="" coords="19,102,164,129"/>
 <area shape="rect" title=" " alt="" coords="5,191,129,218"/>
-<area shape="rect" href="Loki_8hpp.html" title=" " alt="" coords="839,102,968,129"/>
-<area shape="rect" href="Sentry_8hpp.html" title=" " alt="" coords="992,102,1135,129"/>
-<area shape="rect" href="Utils_8hpp.html" title=" " alt="" coords="510,102,590,129"/>
-<area shape="rect" title=" " alt="" coords="1159,102,1242,129"/>
-<area shape="rect" title=" " alt="" coords="1266,95,1434,136"/>
-<area shape="rect" title=" " alt="" coords="1459,95,1617,136"/>
-<area shape="rect" title=" " alt="" coords="1641,95,1789,136"/>
-<area shape="rect" title=" " alt="" coords="1814,95,1963,136"/>
-<area shape="rect" href="Http_8hpp.html" title=" " alt="" coords="732,191,885,218"/>
-<area shape="rect" title=" " alt="" coords="1366,191,1430,218"/>
-<area shape="rect" title=" " alt="" coords="910,191,969,218"/>
-<area shape="rect" title=" " alt="" coords="645,191,708,218"/>
-<area shape="rect" title=" " alt="" coords="993,184,1134,225"/>
-<area shape="rect" title=" " alt="" coords="1158,191,1342,218"/>
-<area shape="rect" title=" " alt="" coords="626,273,823,300"/>
-<area shape="rect" title=" " alt="" coords="848,273,935,300"/>
-<area shape="rect" title=" " alt="" coords="154,191,239,218"/>
-<area shape="rect" title=" " alt="" coords="263,191,330,218"/>
-<area shape="rect" title=" " alt="" coords="354,191,421,218"/>
-<area shape="rect" title=" " alt="" coords="445,191,522,218"/>
-<area shape="rect" title=" " alt="" coords="546,191,621,218"/>
+<area shape="rect" title=" " alt="" coords="257,102,339,129"/>
+<area shape="rect" href="Loki_8hpp.html" title=" " alt="" coords="364,102,493,129"/>
+<area shape="rect" href="Sentry_8hpp.html" title=" " alt="" coords="517,102,660,129"/>
+<area shape="rect" title=" " alt="" coords="685,95,853,136"/>
+<area shape="rect" title=" " alt="" coords="877,95,1025,136"/>
+<area shape="rect" title=" " alt="" coords="1050,95,1199,136"/>
+<area shape="rect" title=" " alt="" coords="1223,102,1298,129"/>
+<area shape="rect" href="Http_8hpp.html" title=" " alt="" coords="240,191,393,218"/>
+<area shape="rect" title=" " alt="" coords="501,184,642,225"/>
+<area shape="rect" title=" " alt="" coords="666,191,850,218"/>
+<area shape="rect" title=" " alt="" coords="874,191,938,218"/>
+<area shape="rect" title=" " alt="" coords="418,191,477,218"/>
+<area shape="rect" title=" " alt="" coords="153,191,216,218"/>
+<area shape="rect" title=" " alt="" coords="135,273,333,300"/>
+<area shape="rect" title=" " alt="" coords="357,273,444,300"/>
 </map>
 </div>
 </div>
@@ -143,18 +136,14 @@ Include dependency graph for Logger.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:af2a206b966e10ab91ff6f741b769f709"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Logger_8cpp.html#af2a206b966e10ab91ff6f741b769f709">LOG_FILTER_INTERVAL_SECS</a> = 5</td></tr>
-<tr class="separator:af2a206b966e10ab91ff6f741b769f709"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46e9694da08a6649d06c8255c668071f"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Logger_8cpp.html#a46e9694da08a6649d06c8255c668071f">LOG_FLUSH_INTERVAL_SECS</a> = 2</td></tr>
-<tr class="separator:a46e9694da08a6649d06c8255c668071f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a657236436fb1f3fb630baca0a6e7288c"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Logger_8cpp.html#a657236436fb1f3fb630baca0a6e7288c">LOG_FILE_LIMIT_MB</a> = 5 * 1024 * 1024</td></tr>
-<tr class="separator:a657236436fb1f3fb630baca0a6e7288c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0134edf99e31b9fde832f95f7ead993"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Logger_8cpp.html#ae0134edf99e31b9fde832f95f7ead993">LOG_FILE_COUNT</a> = 3</td></tr>
-<tr class="separator:ae0134edf99e31b9fde832f95f7ead993"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ef4a7f5319495a657d254a5e5ead3bf"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Logger_8cpp.html#a2ef4a7f5319495a657d254a5e5ead3bf">LOG_FILTER_SECS</a> = 5</td></tr>
+<tr class="separator:a2ef4a7f5319495a657d254a5e5ead3bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae48a51b4c20e7277e6f72ef20d17426d"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Logger_8cpp.html#ae48a51b4c20e7277e6f72ef20d17426d">LOG_FLUSH_SECS</a> = 2</td></tr>
+<tr class="separator:ae48a51b4c20e7277e6f72ef20d17426d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="ae0134edf99e31b9fde832f95f7ead993"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0134edf99e31b9fde832f95f7ead993">&#9670;&nbsp;</a></span>LOG_FILE_COUNT</h2>
+<a id="a2ef4a7f5319495a657d254a5e5ead3bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ef4a7f5319495a657d254a5e5ead3bf">&#9670;&nbsp;</a></span>LOG_FILTER_SECS</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,55 +152,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr int LOG_FILE_COUNT = 3</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="Logger_8cpp_source.html#l00021">21</a> of file <a class="el" href="Logger_8cpp_source.html">Logger.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a657236436fb1f3fb630baca0a6e7288c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a657236436fb1f3fb630baca0a6e7288c">&#9670;&nbsp;</a></span>LOG_FILE_LIMIT_MB</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr size_t LOG_FILE_LIMIT_MB = 5 * 1024 * 1024</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="Logger_8cpp_source.html#l00019">19</a> of file <a class="el" href="Logger_8cpp_source.html">Logger.cpp</a>.</p>
-
-</div>
-</div>
-<a id="af2a206b966e10ab91ff6f741b769f709"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2a206b966e10ab91ff6f741b769f709">&#9670;&nbsp;</a></span>LOG_FILTER_INTERVAL_SECS</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr int LOG_FILTER_INTERVAL_SECS = 5</td>
+          <td class="memname">constexpr int LOG_FILTER_SECS = 5</td>
         </tr>
       </table>
   </td>
@@ -225,8 +166,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a46e9694da08a6649d06c8255c668071f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46e9694da08a6649d06c8255c668071f">&#9670;&nbsp;</a></span>LOG_FLUSH_INTERVAL_SECS</h2>
+<a id="ae48a51b4c20e7277e6f72ef20d17426d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae48a51b4c20e7277e6f72ef20d17426d">&#9670;&nbsp;</a></span>LOG_FLUSH_SECS</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -235,7 +176,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr int LOG_FLUSH_INTERVAL_SECS = 2</td>
+          <td class="memname">constexpr int LOG_FLUSH_SECS = 2</td>
         </tr>
       </table>
   </td>
@@ -255,7 +196,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b3320b59a4aa4a7431bc8488b87009bf.html">logging</a></li><li class="navelem"><a class="el" href="Logger_8cpp.html">Logger.cpp</a></li>
-    <li class="footer">Generated on Sat Mar 23 2024 07:58:51 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Mar 24 2024 09:21:58 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -1,0 +1,4 @@
+<map id="TelnetServer::~TelnetServer" name="TelnetServer::~TelnetServer">
+<area shape="rect" id="node1" title="Destructor for server." alt="" coords="5,5,208,32"/>
+<area shape="rect" id="node2" href="$classTelnetServer.html#a7291fc5b8d95236951fac1d9a094c39a" title="Closes the Telnet Server." alt="" coords="256,5,431,32"/>
+</map>

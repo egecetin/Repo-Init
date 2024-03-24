@@ -1,5 +1,4 @@
 <map id="InputParser::cmdOptionExists" name="InputParser::cmdOptionExists">
-<area shape="rect" id="node1" title="Checks whether provided command line option exists." alt="" coords="236,31,449,57"/>
-<area shape="rect" id="node2" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="69,5,124,32"/>
-<area shape="rect" id="node3" href="$classMainLogger.html#abe306c5e99f49fc6b5d877b4f976fa3d" title="Constructs and prepares main logger." alt="" coords="5,56,188,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="108,5,321,32"/>
+<area shape="rect" id="node2" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
 </map>

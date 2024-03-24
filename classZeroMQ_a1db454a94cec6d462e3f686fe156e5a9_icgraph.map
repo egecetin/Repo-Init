@@ -1,5 +1,6 @@
 <map id="ZeroMQ::stop" name="ZeroMQ::stop">
-<area shape="rect" id="node1" title="Stops the connection." alt="" coords="240,31,351,57"/>
-<area shape="rect" id="node2" href="$classZeroMQServer.html#ac3515a4b148ad4ce7af202bdc2d0e595" title="Closes the ZeroMQ Server." alt="" coords="5,5,192,32"/>
-<area shape="rect" id="node3" href="$classZeroMQ.html#ad274cd6a69ba9308acbe17fa49978467" title="Destroy the ZeroMQ class." alt="" coords="26,56,171,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="517,31,628,57"/>
+<area shape="rect" id="node2" href="$classZeroMQServer.html#ac3515a4b148ad4ce7af202bdc2d0e595" title="Closes the ZeroMQ Server." alt="" coords="283,5,469,32"/>
+<area shape="rect" id="node4" href="$classZeroMQ.html#ad274cd6a69ba9308acbe17fa49978467" title=" " alt="" coords="303,56,449,83"/>
+<area shape="rect" id="node3" href="$classZeroMQServer.html#af9ce6695416370d8bc1bc8e2123f0dc0" title=" " alt="" coords="5,5,235,32"/>
 </map>

@@ -1,4 +1,4 @@
 <map id="ZeroMQMonitor::stopMonitoring" name="ZeroMQMonitor::stopMonitoring">
-<area shape="rect" id="node1" title="Stop monitoring events on the socket." alt="" coords="240,5,471,32"/>
-<area shape="rect" id="node2" href="$classZeroMQServer.html#ac3515a4b148ad4ce7af202bdc2d0e595" title="Closes the ZeroMQ Server." alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="299,5,529,32"/>
+<area shape="rect" id="node2" href="$classZeroMQMonitor.html#ac27d04233bec52ba0d0554c47d1fe921" title=" " alt="" coords="5,5,251,32"/>
 </map>

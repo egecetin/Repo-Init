@@ -100,27 +100,19 @@ $(document).ready(function(){initNavTree('classStatusTracker.html',''); initResi
 </div><!--header-->
 <div class="contents">
 
-<p>Class for tracking the status of events and counting successes and failures.  
- <a href="classStatusTracker.html#details">More...</a></p>
-
 <p><code>#include &lt;<a class="el" href="Status_8hpp_source.html">Status.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a87f9712c92f2338c890113aaeaf7f5f1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStatusTracker.html#a87f9712c92f2338c890113aaeaf7f5f1">StatusTracker</a> (const std::shared_ptr&lt; prometheus::Registry &gt; &amp;reg, const std::string &amp;name, uint64_t metricID=0)</td></tr>
-<tr class="memdesc:a87f9712c92f2338c890113aaeaf7f5f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Status Tracker.  <a href="classStatusTracker.html#a87f9712c92f2338c890113aaeaf7f5f1">More...</a><br /></td></tr>
 <tr class="separator:a87f9712c92f2338c890113aaeaf7f5f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18c54361442fb7a150c2bae3f6cedb1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStatusTracker.html#a18c54361442fb7a150c2bae3f6cedb1b">incrementActive</a> ()</td></tr>
-<tr class="memdesc:a18c54361442fb7a150c2bae3f6cedb1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment number of current events.  <a href="classStatusTracker.html#a18c54361442fb7a150c2bae3f6cedb1b">More...</a><br /></td></tr>
 <tr class="separator:a18c54361442fb7a150c2bae3f6cedb1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfaee3272ae558771c6d25ec2ee88241"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStatusTracker.html#adfaee3272ae558771c6d25ec2ee88241">decrementActive</a> ()</td></tr>
-<tr class="memdesc:adfaee3272ae558771c6d25ec2ee88241"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrement number of current events.  <a href="classStatusTracker.html#adfaee3272ae558771c6d25ec2ee88241">More...</a><br /></td></tr>
 <tr class="separator:adfaee3272ae558771c6d25ec2ee88241"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55f55d484e92e712e05352fd977c045b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStatusTracker.html#a55f55d484e92e712e05352fd977c045b">incrementSuccess</a> ()</td></tr>
-<tr class="memdesc:a55f55d484e92e712e05352fd977c045b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment number of success.  <a href="classStatusTracker.html#a55f55d484e92e712e05352fd977c045b">More...</a><br /></td></tr>
 <tr class="separator:a55f55d484e92e712e05352fd977c045b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a819a3aa6c27b3597fc6ab25c83ad67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStatusTracker.html#a6a819a3aa6c27b3597fc6ab25c83ad67">incrementFail</a> ()</td></tr>
-<tr class="memdesc:a6a819a3aa6c27b3597fc6ab25c83ad67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment number of fail.  <a href="classStatusTracker.html#a6a819a3aa6c27b3597fc6ab25c83ad67">More...</a><br /></td></tr>
 <tr class="separator:a6a819a3aa6c27b3597fc6ab25c83ad67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -174,9 +166,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Construct a new Status Tracker. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Construct a new Status Tracker </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">reg</td><td>Registry to prometheus </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>Name of the metric </td></tr>
@@ -231,8 +221,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Decrement number of current events. </p>
+<p>Decrement number of current events </p>
 
 <p class="definition">Definition at line <a class="el" href="Status_8cpp_source.html#l00034">34</a> of file <a class="el" href="Status_8cpp_source.html">Status.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{ <a class="code" href="classStatusTracker.html#abdbf119c2c3228df9f52272dd9aae68e">activeCtr</a>-&gt;Decrement(); }</div>
@@ -241,7 +230,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classStatusTracker_adfaee3272ae558771c6d25ec2ee88241_icgraph.png" border="0" usemap="#aclassStatusTracker_adfaee3272ae558771c6d25ec2ee88241_icgraph" alt=""/></div>
 <map name="aclassStatusTracker_adfaee3272ae558771c6d25ec2ee88241_icgraph" id="aclassStatusTracker_adfaee3272ae558771c6d25ec2ee88241_icgraph">
-<area shape="rect" title="Decrement number of current events." alt="" coords="244,5,431,47"/>
+<area shape="rect" title=" " alt="" coords="244,5,431,47"/>
 <area shape="rect" href="classTrackStatus.html#a6ab738e5b17cabf596b70dd59c454ce8" title=" " alt="" coords="5,13,196,39"/>
 </map>
 </div>
@@ -262,8 +251,7 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Increment number of current events. </p>
+<p>Increment number of current events </p>
 
 <p class="definition">Definition at line <a class="el" href="Status_8cpp_source.html#l00032">32</a> of file <a class="el" href="Status_8cpp_source.html">Status.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{ <a class="code" href="classStatusTracker.html#abdbf119c2c3228df9f52272dd9aae68e">activeCtr</a>-&gt;Increment(); }</div>
@@ -272,7 +260,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classStatusTracker_a18c54361442fb7a150c2bae3f6cedb1b_icgraph.png" border="0" usemap="#aclassStatusTracker_a18c54361442fb7a150c2bae3f6cedb1b_icgraph" alt=""/></div>
 <map name="aclassStatusTracker_a18c54361442fb7a150c2bae3f6cedb1b_icgraph" id="aclassStatusTracker_a18c54361442fb7a150c2bae3f6cedb1b_icgraph">
-<area shape="rect" title="Increment number of current events." alt="" coords="233,5,416,47"/>
+<area shape="rect" title=" " alt="" coords="233,5,416,47"/>
 <area shape="rect" href="classTrackStatus.html#abb13150926104547ead7f939cf1d7ff3" title=" " alt="" coords="5,13,185,39"/>
 </map>
 </div>
@@ -293,8 +281,7 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Increment number of fail. </p>
+<p>Increment number of fail </p>
 
 <p class="definition">Definition at line <a class="el" href="Status_8cpp_source.html#l00046">46</a> of file <a class="el" href="Status_8cpp_source.html">Status.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
@@ -322,8 +309,7 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Increment number of success. </p>
+<p>Increment number of success </p>
 
 <p class="definition">Definition at line <a class="el" href="Status_8cpp_source.html#l00036">36</a> of file <a class="el" href="Status_8cpp_source.html">Status.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
@@ -452,7 +438,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classStatusTracker.html">StatusTracker</a></li>
-    <li class="footer">Generated on Sat Mar 23 2024 07:58:51 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Mar 24 2024 09:21:58 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

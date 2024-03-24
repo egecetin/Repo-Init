@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['http_393',['HTTP',['../classHTTP.html',1,'']]],
-  ['httpstats_394',['HTTPStats',['../structHTTPStats.html',1,'']]]
+  ['_5foldcpu_398',['_oldCpu',['../structProcessMetrics_1_1__oldCpu.html',1,'ProcessMetrics']]]
 ];

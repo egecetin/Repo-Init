@@ -1,6 +1,6 @@
 <map id="ZeroMQServer" name="ZeroMQServer">
 <area shape="rect" id="node1" title=" " alt="" coords="46,155,162,181"/>
-<area shape="rect" id="node2" href="$classZeroMQ.html" title="A class that provides a wrapper for ZeroMQ functionality." alt="" coords="5,80,80,107"/>
-<area shape="rect" id="node3" href="$classZeroMQMonitor.html" title="Class for monitoring ZeroMQ events on a socket." alt="" coords="105,80,229,107"/>
+<area shape="rect" id="node2" href="$classZeroMQ.html" title=" " alt="" coords="5,80,80,107"/>
+<area shape="rect" id="node3" href="$classZeroMQMonitor.html" title=" " alt="" coords="105,80,229,107"/>
 <area shape="rect" id="node4" title=" " alt="" coords="106,5,227,32"/>
 </map>

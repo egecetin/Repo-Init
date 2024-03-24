@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['hasher_2ehpp_425',['Hasher.hpp',['../Hasher_8hpp.html',1,'']]],
-  ['http_2ecpp_426',['Http.cpp',['../Http_8cpp.html',1,'']]],
-  ['http_2ehpp_427',['Http.hpp',['../Http_8hpp.html',1,'']]]
+  ['errorhelpers_2ecpp_430',['ErrorHelpers.cpp',['../ErrorHelpers_8cpp.html',1,'']]],
+  ['errorhelpers_2ehpp_431',['ErrorHelpers.hpp',['../ErrorHelpers_8hpp.html',1,'']]]
 ];

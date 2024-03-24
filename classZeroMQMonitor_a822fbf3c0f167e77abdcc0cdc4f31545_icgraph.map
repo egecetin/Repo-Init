@@ -1,5 +1,5 @@
 <map id="ZeroMQMonitor::threadFunc" name="ZeroMQMonitor::threadFunc">
 <area shape="rect" id="node1" title=" " alt="" coords="552,5,756,32"/>
-<area shape="rect" id="node2" href="$classZeroMQMonitor.html#a8e532d43e45d037b86c274e0d75a9aa5" title="Start monitoring events on the given socket." alt="" coords="272,5,504,32"/>
-<area shape="rect" id="node3" href="$classZeroMQServer.html#ac0670a5dd8bc0b86184d1dd51110bf56" title="Constructor for server." alt="" coords="5,5,224,32"/>
+<area shape="rect" id="node2" href="$classZeroMQMonitor.html#a8e532d43e45d037b86c274e0d75a9aa5" title=" " alt="" coords="272,5,504,32"/>
+<area shape="rect" id="node3" href="$classZeroMQServer.html#a5f07f113b76b0d8a8875ffb1cb3f6437" title=" " alt="" coords="5,5,224,32"/>
 </map>

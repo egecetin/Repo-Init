@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['rawsocket_403',['RawSocket',['../classRawSocket.html',1,'']]],
-  ['rawsocketstats_404',['RawSocketStats',['../structRawSocketStats.html',1,'']]]
+  ['performancetracker_406',['PerformanceTracker',['../classPerformanceTracker.html',1,'']]],
+  ['processmetrics_407',['ProcessMetrics',['../classProcessMetrics.html',1,'']]],
+  ['prometheusserver_408',['PrometheusServer',['../classPrometheusServer.html',1,'']]]
 ];
