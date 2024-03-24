@@ -190,7 +190,7 @@ Tracer::Tracer(std::shared_ptr<std::atomic_flag> checkFlag, std::string serverPa
 	_reportPath = reportPath.empty() ? selfDir : reportPath;
 	_clientHandler = std::make_unique<crashpad::CrashpadClient>();
 
-	auto _annotations = std::map<std::string, std::string>(
+	_annotations = std::map<std::string, std::string>(
 		{{"name", PROJECT_NAME},
 		 {"version", PROJECT_FULL_REVISION},
 		 {"build_info", PROJECT_BUILD_DATE + std::string(" ") + PROJECT_BUILD_TIME + std::string(" ") + BUILD_TYPE},

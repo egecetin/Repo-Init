@@ -21,7 +21,7 @@ class ConfigParser {
 	 * Construct a new Config Parser object from config file. Currently only json files are supported
 	 * @param[in] configPath Path to the configuration file
 	 */
-	ConfigParser(std::string configPath);
+	explicit ConfigParser(std::string configPath);
 
 	/**
 	 * Get the value of a key from the configuration file. If the configuration file modified from outside
