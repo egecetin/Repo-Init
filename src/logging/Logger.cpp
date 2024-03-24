@@ -49,5 +49,4 @@ MainLogger::~MainLogger()
 {
 	spdlog::info("Goodbye!");
 	_mainLogger->flush();
-	spdlog::shutdown();
 }
