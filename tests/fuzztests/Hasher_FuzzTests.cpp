@@ -1,4 +1,4 @@
-#include "rng/Hasher.hpp"
+#include "utils/Hasher.hpp"
 
 #include <cstring>
 #include <string>

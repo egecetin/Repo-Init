@@ -70,23 +70,13 @@ class SocketWrapper {
 
 class TelnetWrapper {
   private:
-	bool isActive{false};
 	std::shared_ptr<TelnetServer> server;
-	std::unique_ptr<std::thread> th;
-
-	static void run(bool &isActiveFlag, std::shared_ptr<TelnetServer> serverPtr)
-	{
-		while (isActiveFlag)
-		{
-			serverPtr->update();
-		}
-	}
 
   public:
 	explicit TelnetWrapper(uint16_t port)
 	{
 		server = std::make_shared<TelnetServer>();
-		if (!server || !(server->initialise(port)))
+		if (!server || !(server->initialise(port, nullptr)))
 		{
 			throw std::runtime_error("Can't init telnet");
 		}
@@ -95,17 +85,6 @@ class TelnetWrapper {
 		server->newLineCallback(TelnetMessageCallback);
 		server->tabCallback(TelnetTabCallback);
 
-		isActive = true;
-		th = std::make_unique<std::thread>(run, std::ref(isActive), server);
-	}
-
-	~TelnetWrapper()
-	{
-		isActive = false;
-		if (th && th->joinable())
-		{
-			th->join();
-		}
 	}
 };
 
