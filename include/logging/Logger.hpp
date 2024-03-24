@@ -7,7 +7,7 @@
  */
 class MainLogger {
   private:
-	std::shared_ptr<spdlog::logger> mainLogger;
+	std::shared_ptr<spdlog::logger> _mainLogger;
 
   public:
 	/**
@@ -33,7 +33,7 @@ class MainLogger {
 	 * Returns pointer to mainlogger instance
 	 * @return std::shared_ptr<spdlog::logger> Main logger
 	 */
-	std::shared_ptr<spdlog::logger> getLogger() const { return mainLogger; }
+	std::shared_ptr<spdlog::logger> getLogger() const { return _mainLogger; }
 
 	/**
 	 * Deconstructs the main logger

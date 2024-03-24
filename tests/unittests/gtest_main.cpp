@@ -24,7 +24,6 @@ int main(int argc, char **argv)
 	MemPlumber::start();
 #endif
 	retval = RUN_ALL_TESTS();
-	spdlog::shutdown();
 #ifdef XXX_ENABLE_MEMLEAK_CHECK
 	MemPlumber::stop();
 

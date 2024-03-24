@@ -31,11 +31,10 @@ MainLogger::MainLogger(const std::string &lokiAddr, const std::string &sentryAdd
 	dupFilter->add_sink(std::make_shared<spdlog::sinks::sentry_api_sink_mt>(sentryAddr));
 
 	// Register main logger
-	mainLogger = std::make_shared<spdlog::logger>(PROJECT_NAME, dupFilter);
+	_mainLogger = std::make_shared<spdlog::logger>(PROJECT_NAME, dupFilter);
 
-	spdlog::set_default_logger(mainLogger);
+	spdlog::set_default_logger(_mainLogger);
 	spdlog::flush_every(std::chrono::seconds(LOG_FLUSH_SECS));
-	spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [" + std::string(PROJECT_NAME) + "] [%^%l%$] : %v");
 
 #ifdef NDEBUG
 	spdlog::set_level(spdlog::level::warn);
@@ -49,5 +48,6 @@ MainLogger::MainLogger(const std::string &lokiAddr, const std::string &sentryAdd
 MainLogger::~MainLogger()
 {
 	spdlog::info("Goodbye!");
-	mainLogger->flush();
+	_mainLogger->flush();
+	spdlog::shutdown();
 }
