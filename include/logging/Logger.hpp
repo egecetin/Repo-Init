@@ -3,41 +3,40 @@
 #include <spdlog/spdlog.h>
 
 /**
- * @brief Main logger class
+ * Main logger class
  */
 class MainLogger {
   private:
-	std::shared_ptr<spdlog::logger> mainLogger;
+	std::shared_ptr<spdlog::logger> _mainLogger;
 
   public:
 	/**
-	 * @brief Constructs and prepares main logger
-	 * @param[in] argc Number of application arguments (Untouched internally)
-	 * @param[in] argv Application arguments (Untouched internally)
-	 * @param[in] configPath Path to the config json
+	 * Constructs and prepares main logger
+	 * @param[in] lokiAddr Loki address
+	 * @param[in] sentryAddr Sentry address
 	 */
-	MainLogger(int argc, char **argv, const std::string &configPath);
+	MainLogger(const std::string &lokiAddr, const std::string &sentryAddr);
 
-	/// @brief Copy constructor
+	/// Copy constructor
 	MainLogger(const MainLogger & /*unused*/) = delete;
 
-	/// @brief Move constructor
+	/// Move constructor
 	MainLogger(MainLogger && /*unused*/) = delete;
 
-	/// @brief Copy assignment operator
+	/// Copy assignment operator
 	MainLogger &operator=(MainLogger /*unused*/) = delete;
 
-	/// @brief Move assignment operator
+	/// Move assignment operator
 	MainLogger &operator=(MainLogger && /*unused*/) = delete;
 
 	/**
-	 * @brief Returns pointer to mainlogger instance
+	 * Returns pointer to mainlogger instance
 	 * @return std::shared_ptr<spdlog::logger> Main logger
 	 */
-	std::shared_ptr<spdlog::logger> getLogger() const { return mainLogger; }
+	std::shared_ptr<spdlog::logger> getLogger() const { return _mainLogger; }
 
 	/**
-	 * @brief Deconstructs the main logger
+	 * Deconstructs the main logger
 	 */
 	~MainLogger();
 };

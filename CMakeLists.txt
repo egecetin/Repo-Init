@@ -47,13 +47,12 @@ set(INSTALL_GTEST OFF CACHE BOOL "")
 
 set(SENTRY_BACKEND none) # Disable backend to manually use crashpad
 
-configure_file(build_number.h.in "Version.h")
+configure_file(Version.h.in "Version.h")
 
 # Define sources
 file(GLOB ProjectSources
   ${PROJECT_SOURCE_DIR}/src/connection/Http.cpp
   ${PROJECT_SOURCE_DIR}/src/connection/RawSocket.cpp
-  ${PROJECT_SOURCE_DIR}/src/connection/Zeromq.cpp
   ${PROJECT_SOURCE_DIR}/src/logging/Logger.cpp
   ${PROJECT_SOURCE_DIR}/src/logging/Loki.cpp
   ${PROJECT_SOURCE_DIR}/src/logging/Sentry.cpp
@@ -63,12 +62,13 @@ file(GLOB ProjectSources
   ${PROJECT_SOURCE_DIR}/src/metrics/Status.cpp
   ${PROJECT_SOURCE_DIR}/src/telnet/TelnetServer.cpp
   ${PROJECT_SOURCE_DIR}/src/telnet/TelnetStats.cpp
+  ${PROJECT_SOURCE_DIR}/src/utils/ConfigParser.cpp
+  ${PROJECT_SOURCE_DIR}/src/utils/ErrorHelpers.cpp
+  ${PROJECT_SOURCE_DIR}/src/utils/Tracer.cpp
+  ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQ.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQMonitor.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQServer.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQStats.cpp
-  ${PROJECT_SOURCE_DIR}/src/Control.cpp
-  ${PROJECT_SOURCE_DIR}/src/Tracer.cpp
-  ${PROJECT_SOURCE_DIR}/src/Utils.cpp
 )
 
 # Include directories
@@ -145,6 +145,7 @@ install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}-lib crashpad_handler)
 set(CONFIG_BASE_DIR "${CMAKE_BINARY_DIR}")
 configure_file(config.json.in "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/config.json")
 file(MAKE_DIRECTORY ${CONFIG_BASE_DIR}/share)
+file(MAKE_DIRECTORY ${CONFIG_BASE_DIR}/share/${PROJECT_NAME})
 
 set(CONFIG_BASE_DIR "${CMAKE_INSTALL_PREFIX}")
 configure_file(config.json.in "${CMAKE_BINARY_DIR}/config.json")

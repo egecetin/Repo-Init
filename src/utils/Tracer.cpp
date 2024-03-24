@@ -1,17 +1,22 @@
-#include "Tracer.hpp"
-#include "Utils.hpp"
+#include "utils/Tracer.hpp"
+
+#include "Version.h"
 
 #include "client/crash_report_database.h"
 #include "client/crashpad_client.h"
 #include "client/settings.h"
+#include <spdlog/spdlog.h>
 
 #include <algorithm>
 #include <fstream>
 #include <sstream>
+
 #include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+
+constexpr int SLEEP_INTERVAL_MS = 50;
 
 void Tracer::startHandler()
 {
@@ -43,6 +48,32 @@ void Tracer::startHandler()
 	{
 		throw std::runtime_error("Can't start crash handler");
 	}
+
+	_thread = std::make_unique<std::thread>(&Tracer::threadFunc, this);
+}
+
+void Tracer::threadFunc()
+{
+	while (!_shouldStop._M_i)
+	{
+		try
+		{
+			if (!isRunning())
+			{
+				restart();
+				spdlog::warn("Crashpad handler restarted");
+			}
+			if (_checkFlag)
+			{
+				_checkFlag->test_and_set();
+			}
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Crashpad failed: {}", e.what());
+		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_INTERVAL_MS));
+	}
 }
 
 bool Tracer::checkPidIsRunning(pid_t processId) { return kill(processId, 0) == 0; }
@@ -65,37 +96,6 @@ std::string Tracer::getSelfExecutableDir()
 	auto path = std::string(pathBuffer.data(), bytes == -1 ? 0 : static_cast<size_t>(bytes));
 	auto lastDelimPos = path.find_last_of('/');
 	return (lastDelimPos == std::string::npos) ? "" : path.substr(0, lastDelimPos);
-}
-
-bool Tracer::createDir(const std::string &path)
-{
-	struct stat info {};
-
-	if (stat(path.c_str(), &info) != 0 && errno == ENOENT)
-	{
-		return mkdir(path.c_str(), S_IRWXU | S_IRWXG) == 0;
-	}
-	return S_ISDIR(info.st_mode);
-}
-
-Tracer::Tracer(std::string serverPath, std::string serverProxy, const std::string &crashpadHandlerPath,
-			   std::map<std::string, std::string> annotations, std::vector<base::FilePath> attachments,
-			   const std::string &reportPath)
-	: _serverPath(std::move(serverPath)), _serverProxy(std::move(serverProxy)), _annotations(std::move(annotations)),
-	  _attachments(std::move(attachments))
-{
-	auto selfDir = getSelfExecutableDir();
-
-	_handlerPath = crashpadHandlerPath.empty() ? selfDir + "/crashpad_handler" : crashpadHandlerPath;
-	_reportPath = reportPath.empty() ? selfDir : reportPath;
-	_clientHandler = std::make_unique<crashpad::CrashpadClient>();
-
-	if (!createDir(_reportPath))
-	{
-		throw std::invalid_argument("Can't create report directory " + _reportPath + ": " + getErrnoString(errno));
-	}
-
-	startHandler();
 }
 
 bool Tracer::isRunning()
@@ -127,13 +127,13 @@ void Tracer::restart()
 	}
 }
 
-bool Tracer::dumpSharedLibraryInfo(const std::string &filePath)
+void Tracer::dumpSharedLibraryInfo(const std::string &filePath)
 {
 	// Open the output file
 	std::ofstream ofile(filePath);
 	if (!ofile.is_open())
 	{
-		return false;
+		throw std::invalid_argument("Can't open file: " + filePath);
 	}
 
 	// Get the shared library information
@@ -165,6 +165,38 @@ bool Tracer::dumpSharedLibraryInfo(const std::string &filePath)
 			ofile << pathname << " " << addr << std::endl;
 		}
 	}
+}
 
-	return true;
+Tracer::Tracer(std::shared_ptr<std::atomic_flag> checkFlag, std::string serverPath, std::string serverProxy,
+			   const std::string &crashpadHandlerPath, const std::string &reportPath,
+			   std::vector<base::FilePath> attachments)
+	: _checkFlag(std::move(checkFlag)), _serverPath(std::move(serverPath)), _serverProxy(std::move(serverProxy)),
+	  _attachments(std::move(attachments))
+{
+	auto selfDir = getSelfExecutableDir();
+
+	_handlerPath = crashpadHandlerPath.empty() ? selfDir + "/crashpad_handler" : crashpadHandlerPath;
+	_reportPath = reportPath.empty() ? selfDir : reportPath;
+	_clientHandler = std::make_unique<crashpad::CrashpadClient>();
+
+	_annotations = std::map<std::string, std::string>(
+		{{"name", PROJECT_NAME},
+		 {"version", PROJECT_FULL_REVISION},
+		 {"build_info", PROJECT_BUILD_DATE + std::string(" ") + PROJECT_BUILD_TIME + std::string(" ") + BUILD_TYPE},
+		 {"compiler_info", COMPILER_NAME + std::string(" ") + COMPILER_VERSION}});
+
+	// Dump shared library information and add as attachment
+	dumpSharedLibraryInfo(_reportPath + "/shared_libs.txt");
+	_attachments.emplace_back(_reportPath + "/shared_libs.txt");
+
+	startHandler();
+}
+
+Tracer::~Tracer()
+{
+	_shouldStop._M_i = true;
+	if (_thread && _thread->joinable())
+	{
+		_thread->join();
+	}
 }

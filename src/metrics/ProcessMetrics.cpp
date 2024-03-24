@@ -1,9 +1,13 @@
 #include "metrics/ProcessMetrics.hpp"
 
-#include <Utils.hpp>
+#include "utils/FileHelpers.hpp"
+
+#include <spdlog/spdlog.h>
 
 #include <dirent.h>
 #include <sys/resource.h>
+
+constexpr int SLEEP_INTERVAL_SEC = 1;
 
 size_t ProcessMetrics::countDirectoryEntries(const std::string &path)
 {
@@ -37,12 +41,12 @@ long int ProcessMetrics::getPageFaults()
 
 double ProcessMetrics::getCpuUsage()
 {
-	if (oldCpuTime == 0)
+	if (_oldCpuTime == 0)
 	{
-		oldCpuTime = times(&oldCpu);
-		if (oldCpuTime == static_cast<clock_t>(-1))
+		_oldCpuTime = times(&_oldCpu);
+		if (_oldCpuTime == static_cast<clock_t>(-1))
 		{
-			oldCpuTime = 0;
+			_oldCpuTime = 0;
 		}
 		return 0.0;
 	}
@@ -50,11 +54,11 @@ double ProcessMetrics::getCpuUsage()
 	struct tms nowCpu {};
 	auto nowCpuTime = times(&nowCpu);
 
-	double usage =
-		100.0 * static_cast<double>(nowCpu.tms_utime - oldCpu.tms_utime) / static_cast<double>(nowCpuTime - oldCpuTime);
+	double usage = 100.0 * static_cast<double>(nowCpu.tms_utime - _oldCpu.tms_utime) /
+				   static_cast<double>(nowCpuTime - _oldCpuTime);
 
-	std::swap(oldCpu, nowCpu);
-	std::swap(oldCpuTime, nowCpuTime);
+	std::swap(_oldCpu, nowCpu);
+	std::swap(_oldCpuTime, nowCpuTime);
 
 	return usage;
 }
@@ -69,10 +73,10 @@ std::pair<size_t, size_t> ProcessMetrics::getDiskIO()
 	findFromFile("/proc/self/io", "write_bytes", buffer);
 	size_t writeBytes = buffer.empty() ? 0 : std::stoull(buffer);
 
-	std::pair<size_t, size_t> result = {readBytes - oldReadBytes, writeBytes - oldWriteBytes};
+	std::pair<size_t, size_t> result = {readBytes - _oldReadBytes, writeBytes - _oldWriteBytes};
 
-	std::swap(oldReadBytes, readBytes);
-	std::swap(oldWriteBytes, writeBytes);
+	std::swap(_oldReadBytes, readBytes);
+	std::swap(_oldWriteBytes, writeBytes);
 
 	return result;
 }
@@ -81,31 +85,71 @@ size_t ProcessMetrics::getThreadCount() { return countDirectoryEntries("/proc/se
 
 size_t ProcessMetrics::getFileDescriptorCount() { return countDirectoryEntries("/proc/self/fd"); }
 
-ProcessMetrics::ProcessMetrics(const std::shared_ptr<prometheus::Registry> &reg)
-{
-	memory = &prometheus::BuildGauge().Name("memory_usage").Help("Memory usage of application").Register(*reg).Add({});
-	pageFaults =
-		&prometheus::BuildGauge().Name("page_faults").Help("Page faults of application").Register(*reg).Add({});
-	cpuUsage = &prometheus::BuildGauge().Name("cpu_usage").Help("CPU usage of application").Register(*reg).Add({});
-	diskRead = &prometheus::BuildGauge().Name("disk_read").Help("Disk read of application").Register(*reg).Add({});
-	diskWrite = &prometheus::BuildGauge().Name("disk_write").Help("Disk write of application").Register(*reg).Add({});
-	threadCount =
-		&prometheus::BuildGauge().Name("thread_count").Help("Thread count of application").Register(*reg).Add({});
-	fileDescriptorCount = &prometheus::BuildGauge()
-							   .Name("file_descriptor_count")
-							   .Help("File descriptor count of application")
-							   .Register(*reg)
-							   .Add({});
-}
-
 void ProcessMetrics::update()
 {
-	memory->Set(static_cast<double>(getMemoryUsage()));
-	pageFaults->Set(static_cast<double>(getPageFaults()));
-	cpuUsage->Set(getCpuUsage());
+	_pMemory->Set(static_cast<double>(getMemoryUsage()));
+	_pPageFaults->Set(static_cast<double>(getPageFaults()));
+	_pCpuUsage->Set(getCpuUsage());
 	auto diskIO = getDiskIO();
-	diskRead->Set(static_cast<double>(diskIO.first));
-	diskWrite->Set(static_cast<double>(diskIO.second));
-	threadCount->Set(static_cast<double>(getThreadCount()));
-	fileDescriptorCount->Set(static_cast<double>(getFileDescriptorCount()));
+	_pDiskRead->Set(static_cast<double>(diskIO.first));
+	_pDiskWrite->Set(static_cast<double>(diskIO.second));
+	_pThreadCount->Set(static_cast<double>(getThreadCount()));
+	_pFileDescriptorCount->Set(static_cast<double>(getFileDescriptorCount()));
+}
+
+void ProcessMetrics::threadRunner()
+{
+	while (!_shouldStop._M_i)
+	{
+		try
+		{
+			update();
+			if (_checkFlag)
+			{
+				_checkFlag->test_and_set();
+			}
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Self monitoring failed: {}", e.what());
+		}
+
+		std::this_thread::sleep_for(std::chrono::seconds(SLEEP_INTERVAL_SEC));
+	}
+}
+
+ProcessMetrics::ProcessMetrics(std::shared_ptr<std::atomic_flag> checkFlag,
+							   const std::shared_ptr<prometheus::Registry> &reg)
+	: _checkFlag(std::move(checkFlag))
+{
+	if (reg == nullptr)
+	{
+		throw std::invalid_argument("Registry is nullptr");
+	}
+
+	_pMemory =
+		&prometheus::BuildGauge().Name("memory_usage").Help("Memory usage of application").Register(*reg).Add({});
+	_pPageFaults =
+		&prometheus::BuildGauge().Name("page_faults").Help("Page faults of application").Register(*reg).Add({});
+	_pCpuUsage = &prometheus::BuildGauge().Name("cpu_usage").Help("CPU usage of application").Register(*reg).Add({});
+	_pDiskRead = &prometheus::BuildGauge().Name("disk_read").Help("Disk read of application").Register(*reg).Add({});
+	_pDiskWrite = &prometheus::BuildGauge().Name("disk_write").Help("Disk write of application").Register(*reg).Add({});
+	_pThreadCount =
+		&prometheus::BuildGauge().Name("thread_count").Help("Thread count of application").Register(*reg).Add({});
+	_pFileDescriptorCount = &prometheus::BuildGauge()
+								 .Name("file_descriptor_count")
+								 .Help("File descriptor count of application")
+								 .Register(*reg)
+								 .Add({});
+
+	_thread = std::make_unique<std::thread>(&ProcessMetrics::threadRunner, this);
+}
+
+ProcessMetrics::~ProcessMetrics()
+{
+	_shouldStop.test_and_set();
+	if (_thread && _thread->joinable())
+	{
+		_thread->join();
+	}
 }

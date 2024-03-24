@@ -1,5 +1,5 @@
 #include "metrics/PrometheusServer.hpp"
-#include "Utils.hpp"
+
 #include "Version.h"
 
 #include <date/date.h>
@@ -18,7 +18,7 @@ PrometheusServer::PrometheusServer(const std::string &serverAddr)
 
 	infoFamily->Add({{"init_time", date::format("%FT%TZ", date::floor<std::chrono::nanoseconds>(
 															  std::chrono::high_resolution_clock::now()))}});
-	infoFamily->Add({{"version", get_version()}});
+	infoFamily->Add({{"version", PROJECT_FULL_VERSION_STRING}});
 
 	vRegister.emplace_back(std::numeric_limits<uint64_t>::max(), reg);
 	mainExposer->RegisterCollectable(reg);

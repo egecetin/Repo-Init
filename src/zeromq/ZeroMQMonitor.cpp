@@ -6,7 +6,7 @@ constexpr int EVENT_CHECK_TIMEOUT_MS = 100;
 
 void ZeroMQMonitor::threadFunc()
 {
-	while (!shouldStop)
+	while (!_shouldStop._M_i)
 	{
 		check_event(EVENT_CHECK_TIMEOUT_MS);
 	}
@@ -134,18 +134,21 @@ void ZeroMQMonitor::on_event_unknown(const zmq_event_t & /*unused*/, const char 
 void ZeroMQMonitor::startMonitoring(const std::unique_ptr<zmq::socket_t> &socket, const std::string &monitorAddress)
 {
 	init(*socket, monitorAddress);
-	monitorThread = std::thread(&ZeroMQMonitor::threadFunc, this);
+	_monitorThread = std::make_unique<std::thread>(&ZeroMQMonitor::threadFunc, this);
 }
 
 void ZeroMQMonitor::stopMonitoring()
 {
-	shouldStop = true;
+	_shouldStop.test_and_set();
+#ifdef ZMQ_EVENT_MONITOR_STOPPED
 	abort();
+#endif
 
 	// Join the thread
-	if (monitorThread.joinable())
+	if (_monitorThread && _monitorThread->joinable())
 	{
-		monitorThread.join();
+		_monitorThread->join();
+		_monitorThread.reset();
 	}
 
 	spdlog::info("Monitor stopped");

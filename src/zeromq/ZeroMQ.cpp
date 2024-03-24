@@ -1,5 +1,4 @@
-#include "connection/Zeromq.hpp"
-#include "Utils.hpp"
+#include "zeromq/ZeroMQ.hpp"
 
 #include <spdlog/spdlog.h>
 #include <zmq_addon.hpp>

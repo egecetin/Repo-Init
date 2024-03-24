@@ -3,7 +3,7 @@
 #include <prometheus/registry.h>
 
 /**
- * @brief Telnet session statistics
+ * Telnet session statistics
  */
 struct TelnetSessionStats {
 	std::chrono::high_resolution_clock::time_point connectTime;	   ///< Connection start time
@@ -15,7 +15,7 @@ struct TelnetSessionStats {
 };
 
 /**
- * @brief Telnet server statistics
+ * Telnet server statistics
  */
 struct TelnetServerStats {
 	std::chrono::high_resolution_clock::time_point processingTimeStart; ///< Processing time start
@@ -26,7 +26,7 @@ struct TelnetServerStats {
 };
 
 /**
- * @brief Prometheus statistics for Telnet server
+ * Prometheus statistics for Telnet server
  */
 class TelnetStats {
   private:
@@ -48,21 +48,21 @@ class TelnetStats {
 
   public:
 	/**
-	 * @brief Construct a new Telnet statistics
+	 * Construct a new Telnet statistics
 	 * @param[in] reg Prometheus registry
 	 * @param[in] portNumber Telnet server port
 	 */
 	TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint16_t portNumber);
 
 	/**
-	 * @brief Updates statistics with session values
+	 * Updates statistics with session values
 	 * @param[in] stat Statistics values from session
 	 * @param[in] sessionClosed True if the provided session is closed
 	 */
 	void consumeStats(const TelnetSessionStats &stat, bool sessionClosed);
 
 	/**
-	 * @brief Updates statistics with server values
+	 * Updates statistics with server values
 	 * @param[in] stat Statistics values from server
 	 */
 	void consumeStats(const TelnetServerStats &stat);

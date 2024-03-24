@@ -36,6 +36,7 @@ either expressed or implied, of the FreeBSD Project.
 #include <list>
 #include <memory>
 #include <string>
+#include <thread>
 #include <vector>
 
 #include <arpa/inet.h>
@@ -50,7 +51,7 @@ class TelnetSession;
 using Socket = int;
 
 /**
- * @brief Session class for manage connections
+ * Session class for manage connections
  */
 class TelnetSession : public std::enable_shared_from_this<TelnetSession> {
   public:
@@ -131,19 +132,41 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	/// Constructor for server
 	TelnetServer() = default;
 
+	/// Copy constructor
+	TelnetServer(const TelnetServer & /*unused*/) = delete;
+
+	/// Move constructor
+	TelnetServer(TelnetServer && /*unused*/) = delete;
+
+	/// Copy assignment operator
+	TelnetServer &operator=(TelnetServer /*unused*/) = delete;
+
+	/// Move assignment operator
+	TelnetServer &operator=(TelnetServer && /*unused*/) = delete;
+
+	/// Destructor for server
+	~TelnetServer()
+	{
+		try
+		{
+			shutdown();
+		}
+		catch (const std::exception &e)
+		{
+			// Just catch the exception to ensure not throwing to main code
+		}
+	}
+
 	/**
-	 * @brief Initializes a new Telnet server
+	 * Initializes a new Telnet server
 	 * @param[in] listenPort Port to listen
 	 * @param[in] promptString Prompt string for connected users
 	 * @param[in] reg Prometheus registry for stats
 	 * @return true If initialized
 	 * @return false otherwise
 	 */
-	bool initialise(u_long listenPort, std::string promptString = "",
-					const std::shared_ptr<prometheus::Registry> &reg = nullptr);
-
-	/// Process new connections and messages
-	void update();
+	bool initialise(u_long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag,
+					std::string promptString = "", const std::shared_ptr<prometheus::Registry> &reg = nullptr);
 
 	/// Closes the Telnet Server
 	void shutdown();
@@ -172,6 +195,10 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	FPTR_TabCallback m_tabCallback;
 
 	bool acceptConnection();
+	void threadFunc();
+
+	/// Process new connections and messages
+	void update();
 
 	u_long m_listenPort{};
 	Socket m_listenSocket{-1};
@@ -181,24 +208,28 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	std::string m_promptString;
 
 	// Statistics
-	std::unique_ptr<TelnetStats> stats;
+	std::unique_ptr<TelnetStats> m_stats;
+
+	std::atomic_flag m_shouldStop{false};		   /**< Flag to stop monitoring. */
+	std::unique_ptr<std::thread> m_serverThread;   /**< Thread handler */
+	std::shared_ptr<std::atomic_flag> m_checkFlag; /**< Runtime check flag */
 };
 
 /**
- * @brief Telnet session connection start callback
+ * Telnet session connection start callback
  * @param[in] session Handle to session
  */
 void TelnetConnectedCallback(const SP_TelnetSession &session);
 
 /**
- * @brief Telnet session message received callback
+ * Telnet session message received callback
  * @param[in] session Handle to session
  * @param[in] line Received message
  */
 bool TelnetMessageCallback(const SP_TelnetSession &session, const std::string &line);
 
 /**
- * @brief Telnet session TAB received callback
+ * Telnet session TAB received callback
  * @param[in] session Handle to session
  * @param[in] line Received message
  * @return std::string Command to complete

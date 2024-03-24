@@ -4,7 +4,7 @@
 
 /**
  * @class ZeroMQ
- * @brief A class that provides a wrapper for ZeroMQ functionality.
+ * A class that provides a wrapper for ZeroMQ functionality.
  *
  * This class encapsulates the ZeroMQ library and provides methods to initialize, start, stop, send, and receive
  * messages using ZeroMQ sockets. It supports both binding and connecting to sockets and provides a convenient interface
@@ -30,7 +30,7 @@ class ZeroMQ {
 
   public:
 	/**
-	 * @brief Construct a new ZeroMQ class
+	 * Construct a new ZeroMQ class
 	 * @param[in] type Type of the socket
 	 * @param[in] addr Full socket address
 	 * @param[in] isBind True if should be binded, false if should be connected
@@ -38,7 +38,7 @@ class ZeroMQ {
 	ZeroMQ(const zmq::socket_type &type, const std::string &addr, bool isBind);
 
 	/**
-	 * @brief Construct a new ZeroMQ class
+	 * Construct a new ZeroMQ class
 	 * @param[in] ctx ZeroMQ context
 	 * @param[in] type Type of the socket
 	 * @param[in] addr Full socket address
@@ -47,62 +47,62 @@ class ZeroMQ {
 	ZeroMQ(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr,
 		   bool isBind);
 
-	/// @brief Copy constructor
+	/// Copy constructor
 	ZeroMQ(const ZeroMQ & /*unused*/) = delete;
 
-	/// @brief Move constructor
+	/// Move constructor
 	ZeroMQ(ZeroMQ && /*unused*/) = delete;
 
-	/// @brief Copy assignment operator
+	/// Copy assignment operator
 	ZeroMQ &operator=(ZeroMQ /*unused*/) = delete;
 
-	/// @brief Move assignment operator
+	/// Move assignment operator
 	ZeroMQ &operator=(ZeroMQ && /*unused*/) = delete;
 
 	/**
-	 * @brief Starts the connection
+	 * Starts the connection
 	 * @return True if successfully initialized
 	 */
 	bool start();
 
 	/**
-	 * @brief Stops the connection
+	 * Stops the connection
 	 */
 	void stop();
 
 	/**
-	 * @brief Receives multipart message
+	 * Receives multipart message
 	 * @return std::vector<zmq::message_t> Received messages
 	 */
 	std::vector<zmq::message_t> recvMessages();
 
 	/**
-	 * @brief Sends multipart message
+	 * Sends multipart message
 	 * @param[in] msg Messages to send
 	 * @return size_t Number of sent messages
 	 */
 	size_t sendMessages(std::vector<zmq::message_t> &msg);
 
 	/**
-	 * @brief Get the reference of socket
+	 * Get the reference of socket
 	 * @return const std::unique_ptr<zmq::socket_t>&
 	 */
-	const std::unique_ptr<zmq::socket_t> &getSocket() { return socketPtr; }
+	const std::unique_ptr<zmq::socket_t> &getSocket() const { return socketPtr; }
 
 	/**
-	 * @brief Get the reference of context
+	 * Get the reference of context
 	 * @return const std::shared_ptr<zmq::context_t>&
 	 */
-	const std::shared_ptr<zmq::context_t> &getContext() { return contextPtr; }
+	const std::shared_ptr<zmq::context_t> &getContext() const { return contextPtr; }
 
 	/**
-	 * @brief Get the address of the socket
+	 * Get the address of the socket
 	 * @return const std::string& Address of the socket
 	 */
-	const std::string &getAddress() { return socketAddr; }
+	const std::string &getAddress() const { return socketAddr; }
 
 	/**
-	 * @brief Destroy the ZeroMQ class
+	 * Destroy the ZeroMQ class
 	 */
 	~ZeroMQ();
 };

@@ -1,120 +1,75 @@
-#include "Control.hpp"
-#include "Utils.hpp"
-#include "Version.h"
 #include "logging/Logger.hpp"
+#include "metrics/ProcessMetrics.hpp"
 #include "metrics/PrometheusServer.hpp"
-
-#include <csignal>
-#include <thread>
+#include "telnet/TelnetServer.hpp"
+#include "utils/ConfigParser.hpp"
+#include "utils/ErrorHelpers.hpp"
+#include "utils/InputParser.hpp"
+#include "utils/Tracer.hpp"
+#include "zeromq/ZeroMQServer.hpp"
 
 #include <curl/curl.h>
 #include <spdlog/spdlog.h>
 
+#include <csignal>
+
+// SIGALRM interval in seconds
+constexpr uintmax_t alarmInterval = 1;
+
+// Default SIGALRM function
+void alarmFunc(int /*unused*/)
+{
+	alarm(alarmInterval);
+
+	// Clear all flags
+	std::for_each(vCheckFlag.begin(), vCheckFlag.end(), [](auto &entry) { entry.second->clear(); });
+}
+
 int main(int argc, char **argv)
 {
-	std::string configPath = "config.json";
-
-	int telnetPort = 0;
-	std::string zeromqServerAddr;
-
-	std::string prometheusAddr;
-	std::unique_ptr<PrometheusServer> mainPrometheusServer;
-
-	// Parse inputs
 	const InputParser input(argc, argv);
-	if (input.cmdOptionExists("--enable-telnet"))
-	{
-		const std::string portString = input.getCmdOption("--enable-telnet");
-		if (!portString.empty())
-		{
-			telnetPort = std::stoi(portString);
-			if (telnetPort <= 0 || telnetPort > std::numeric_limits<uint16_t>::max())
-			{
-				spdlog::warn("Telnet port should be between [1-65535]: provided value is {}", telnetPort);
-				telnetPort = 0;
-			}
-		}
-		else
-		{
-			spdlog::warn("Enable Telnet option requires a port number");
-		}
-	}
-	if (input.cmdOptionExists("--enable-prometheus"))
-	{
-		prometheusAddr = input.getCmdOption("--enable-prometheus");
-		if (prometheusAddr.empty())
-		{
-			spdlog::warn("Enable Prometheus option requires a bind address");
-		}
-	}
-	if (input.cmdOptionExists("--enable-zeromq"))
-	{
-		zeromqServerAddr = input.getCmdOption("--enable-zeromq");
-		if (zeromqServerAddr.empty())
-		{
-			spdlog::warn("Enable ZeroMQ option requires a connection address");
-		}
-	}
-	if (input.cmdOptionExists("--config"))
-	{
-		configPath = input.getCmdOption("--config");
-	}
+	const ConfigParser config(input.cmdOptionExists("--config") ? input.getCmdOption("--config") : "config.json");
+	const MainLogger logger(config.get("LOKI_ADDRESS"), config.get("SENTRY_ADDRESS"));
 
+	// Initialize curl as soon as possible
 	if (curl_global_init(CURL_GLOBAL_DEFAULT) < 0)
 	{
 		spdlog::critical("Can't init curl");
 		return EXIT_FAILURE;
 	}
-	/* ################################################################################### */
-	/* ############################# MAKE MODIFICATIONS HERE ############################# */
-	/* ################################################################################### */
 
-	/* ################################################################################### */
-	/* ################################ END MODIFICATIONS ################################ */
-	/* ################################################################################### */
-
-	// Init logger
-	const MainLogger logger(argc, argv, configPath);
-	spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [" + std::string(PROJECT_NAME) + "] [%^%l%$] : %v");
-	print_version();
-
-	// Read config
-	if (!readAndVerifyConfig(configPath))
+	// Adjust log level
+	if (input.cmdOptionExists("-v"))
 	{
-		return EXIT_FAILURE;
+		spdlog::set_level(spdlog::level::info);
+	}
+	if (input.cmdOptionExists("-vv"))
+	{
+		spdlog::set_level(spdlog::level::debug);
+	}
+	if (input.cmdOptionExists("-vvv"))
+	{
+		spdlog::set_level(spdlog::level::trace);
 	}
 
-	// Register signals
-	if (signal(SIGINT, interruptFunc) == SIG_ERR)
+	// Register alarm signal handler
+	if (std::signal(SIGALRM, alarmFunc) == SIG_ERR)
 	{
-		spdlog::critical("Can't set signal handler (SIGINT): {}", getErrnoString(errno));
+		spdlog::critical("Can't set signal handler (SIGALRM): {}", getErrnoString(errno));
 		return EXIT_FAILURE;
 	}
-	if (signal(SIGTERM, interruptFunc) == SIG_ERR)
-	{
-		spdlog::critical("Can't set signal handler (SIGTERM): {}", getErrnoString(errno));
-		return EXIT_FAILURE;
-	}
+	alarm(alarmInterval);
 
-	// Move SIGALRM to bottom because of invoking sleep
+	// Initialize Crashpad handler
+	std::shared_ptr<Tracer> crashpadController(nullptr);
+	vCheckFlag.emplace_back("Crashpad Handler", std::make_shared<std::atomic_flag>(false));
+	crashpadController = std::make_unique<Tracer>(
+		vCheckFlag[vCheckFlag.size() - 1].second, config.get("CRASHPAD_REMOTE"), config.get("CRASHPAD_PROXY"),
+		config.get("CRASHPAD_EXECUTABLE_DIR"), config.get("CRASHPAD_REPORT_DIR"));
 
-	// Init variables
-	loopFlag = true;
-
-	vCheckFlag.emplace_back("ZeroMQ Server", std::make_unique<std::atomic_flag>(false));
-	vCheckFlag.emplace_back("Telnet Server", std::make_unique<std::atomic_flag>(false));
-	vCheckFlag.emplace_back("Crashpad Handler", std::make_unique<std::atomic_flag>(false));
-	vCheckFlag.emplace_back("Self Monitor", std::make_unique<std::atomic_flag>(false));
-
-	/* ################################################################################### */
-	/* ############################# MAKE MODIFICATIONS HERE ############################# */
-	/* ################################################################################### */
-
-	/* ################################################################################### */
-	/* ################################ END MODIFICATIONS ################################ */
-	/* ################################################################################### */
-
-	// Init prometheus server
+	// Initialize Prometheus server
+	std::unique_ptr<PrometheusServer> mainPrometheusServer(nullptr);
+	const std::string prometheusAddr = input.getCmdOption("--enable-prometheus");
 	if (!prometheusAddr.empty())
 	{
 		try
@@ -124,86 +79,69 @@ int main(int argc, char **argv)
 		}
 		catch (const std::exception &e)
 		{
-			spdlog::warn("Can't start Prometheus Server: {}", e.what());
+			spdlog::error("Can't start Prometheus Server: {}", e.what());
+			return EXIT_FAILURE;
 		}
 	}
 
-	// Start threads
-	/* ################################################################################### */
-	/* ############################# MAKE MODIFICATIONS HERE ############################# */
-	/* ################################################################################### */
+	// Initialize self monitoring
+	std::shared_ptr<ProcessMetrics> selfMonitor(nullptr);
+	vCheckFlag.emplace_back("Self Monitor", std::make_shared<std::atomic_flag>(false));
+	if (mainPrometheusServer)
+	{
+		selfMonitor = std::make_unique<ProcessMetrics>(vCheckFlag[vCheckFlag.size() - 1].second,
+													   mainPrometheusServer->createNewRegistry());
+	}
 
-	/* ################################################################################### */
-	/* ################################ END MODIFICATIONS ################################ */
-	/* ################################################################################### */
-	std::unique_ptr<std::thread> zmqControlTh(nullptr);
-	std::unique_ptr<std::thread> telnetControlTh(nullptr);
-	std::unique_ptr<std::thread> crashpadControlTh(nullptr);
-	std::unique_ptr<std::thread> selfMonitorTh(nullptr);
-
+	// Initialize ZeroMQ server
+	std::shared_ptr<ZeroMQServer> zmqController(nullptr);
+	vCheckFlag.emplace_back("ZeroMQ Server", std::make_shared<std::atomic_flag>(false));
+	const std::string zeromqServerAddr = input.getCmdOption("--enable-zeromq");
 	if (!zeromqServerAddr.empty())
 	{
-		zmqControlTh = std::make_unique<std::thread>(zmqControlThread, std::ref(mainPrometheusServer),
-													 std::ref(zeromqServerAddr), std::ref(vCheckFlag[0].second));
+		try
+		{
+			zmqController = std::make_unique<ZeroMQServer>(
+				zeromqServerAddr, vCheckFlag[vCheckFlag.size() - 1].second,
+				mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
+			zmqController->messageCallback(ZeroMQServerMessageCallback);
+			zmqController->initialise();
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Can't start ZeroMQ Server: {}", e.what());
+			return EXIT_FAILURE;
+		}
 	}
-	if (telnetPort > 0)
+
+	// Initialize Telnet server
+	std::shared_ptr<TelnetServer> telnetController(nullptr);
+	vCheckFlag.emplace_back("Telnet Server", std::make_shared<std::atomic_flag>(false));
+	const unsigned long telnetPort =
+		input.cmdOptionExists("--enable-telnet") ? std::stoul(input.getCmdOption("--enable-telnet")) : 0;
+	if (telnetPort > 0 && telnetPort < 65536)
 	{
-		telnetControlTh = std::make_unique<std::thread>(telnetControlThread, std::ref(mainPrometheusServer), telnetPort,
-														std::ref(vCheckFlag[1].second));
+		try
+		{
+			telnetController = std::make_unique<TelnetServer>();
+			telnetController->connectedCallback(TelnetConnectedCallback);
+			telnetController->newLineCallback(TelnetMessageCallback);
+			telnetController->tabCallback(TelnetTabCallback);
+			telnetController->initialise(telnetPort, vCheckFlag[vCheckFlag.size() - 1].second, "> ",
+										 mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Can't start Telnet Server: {}", e.what());
+			return EXIT_FAILURE;
+		}
 	}
-
-	// Dump shared library info to text file
-	Tracer::dumpSharedLibraryInfo("shared_libs.txt");
-
-	auto crashpadRemote = readSingleConfig(configPath, "CRASHPAD_REMOTE");
-	auto crashpadProxy = readSingleConfig(configPath, "CRASHPAD_PROXY");
-	auto crashpadExe = readSingleConfig(configPath, "CRASHPAD_EXECUTABLE_PATH");
-	auto crashpadReportPath = readSingleConfig(configPath, "CRASHPAD_REPORT_DIR");
-	auto crashpadAttachments =
-		std::vector<base::FilePath>({base::FilePath(configPath), base::FilePath("shared_libs.txt")});
-	auto crashpadAnnotations = std::map<std::string, std::string>(
-		{{"name", PROJECT_NAME},
-		 {"version", PROJECT_FULL_REVISION},
-		 {"build_info", PROJECT_BUILD_DATE + std::string(" ") + PROJECT_BUILD_TIME + std::string(" ") + BUILD_TYPE},
-		 {"compiler_info", COMPILER_NAME + std::string(" ") + COMPILER_VERSION}});
-	crashpadControlTh = std::make_unique<std::thread>(crashpadControlThread, std::ref(crashpadRemote),
-													  std::ref(crashpadProxy), std::ref(crashpadExe),
-													  std::ref(crashpadAnnotations), std::ref(crashpadAttachments),
-													  std::ref(crashpadReportPath), std::ref(vCheckFlag[2].second));
-
-	selfMonitorTh = std::make_unique<std::thread>(selfMonitorThread, std::ref(mainPrometheusServer),
-												  std::ref(vCheckFlag[3].second));
-	spdlog::debug("Threads started");
-
-	// SIGALRM should be registered after all sleep calls
-	if (signal(SIGALRM, alarmFunc) == SIG_ERR)
+	else if (telnetPort != 0)
 	{
-		spdlog::critical("Can't set signal handler (SIGALRM): {}", getErrnoString(errno));
+		spdlog::error("Invalid Telnet port: {}", telnetPort);
 		return EXIT_FAILURE;
 	}
-	alarm(alarmInterval);
 
-	// Join threads
-	if (zmqControlTh && zmqControlTh->joinable())
-	{
-		zmqControlTh->join();
-		spdlog::info("ZMQ Controller joined");
-	}
-	if (telnetControlTh && telnetControlTh->joinable())
-	{
-		telnetControlTh->join();
-		spdlog::info("Telnet Controller joined");
-	}
-	if (crashpadControlTh && crashpadControlTh->joinable())
-	{
-		crashpadControlTh->join();
-		spdlog::info("Crashpad Controller joined");
-	}
-	if (selfMonitorTh && selfMonitorTh->joinable())
-	{
-		selfMonitorTh->join();
-		spdlog::info("Self Monitor joined");
-	}
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
 	/* ################################################################################### */
@@ -214,6 +152,5 @@ int main(int argc, char **argv)
 
 	curl_global_cleanup();
 
-	spdlog::info("{} Exited", PROJECT_NAME);
 	return EXIT_SUCCESS;
 }

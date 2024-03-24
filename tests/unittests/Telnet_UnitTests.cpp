@@ -1,4 +1,3 @@
-#include "Utils.hpp"
 #include "metrics/PrometheusServer.hpp"
 #include "telnet/TelnetServer.hpp"
 #include "test-static-definitions.h"
@@ -8,6 +7,8 @@
 #include <thread>
 
 #include <gtest/gtest.h>
+
+constexpr int TELNET_PORT = 23000;
 
 TEST(Telnet_Tests, TelnetServerUnitTests)
 {
@@ -20,12 +21,12 @@ TEST(Telnet_Tests, TelnetServerUnitTests)
 
 	// Init Telnet Server
 	auto telnetServerPtr = std::make_shared<TelnetServer>();
-	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), "",
-											reporter.createNewRegistry()));
-	ASSERT_FALSE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT"))));
-	telnetServerPtr->shutdown();
+	std::shared_ptr<std::atomic_flag> checkFlag;
+	ASSERT_TRUE(telnetServerPtr->initialise(TELNET_PORT, checkFlag, "", reporter.createNewRegistry()));
+	ASSERT_FALSE(telnetServerPtr->initialise(TELNET_PORT, checkFlag));
+	ASSERT_NO_THROW(telnetServerPtr->shutdown());
 
-	ASSERT_TRUE(telnetServerPtr->initialise(std::stoi(readSingleConfig(TEST_CONFIG_PATH, "TELNET_PORT")), "> "));
+	ASSERT_TRUE(telnetServerPtr->initialise(TELNET_PORT, checkFlag, "> "));
 	telnetServerPtr->connectedCallback(TelnetConnectedCallback);
 	telnetServerPtr->newLineCallback(TelnetMessageCallback);
 	telnetServerPtr->tabCallback(TelnetTabCallback);
@@ -36,14 +37,8 @@ TEST(Telnet_Tests, TelnetServerUnitTests)
 		return system(("expect " + std::string(TEST_TELNET_SH_PATH) + " >/dev/null").c_str());
 	});
 
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	for (size_t idx = 0; idx < 250; ++idx)
-	{
-		telnetServerPtr->update();
-		std::this_thread::sleep_for(std::chrono::milliseconds(20));
-	}
-
 	shResult.wait();
-	telnetServerPtr->shutdown();
+	ASSERT_NO_THROW(telnetServerPtr->shutdown());
+	ASSERT_NO_THROW(telnetServerPtr->shutdown());
 	ASSERT_EQ(0, shResult.get());
 }

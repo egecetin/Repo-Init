@@ -4,7 +4,7 @@
 
 /**
  * @class StatusTracker
- * @brief Class for tracking the status of events and counting successes and failures.
+ * Class for tracking the status of events and counting successes and failures.
  */
 class StatusTracker {
   private:
@@ -15,7 +15,7 @@ class StatusTracker {
 
   public:
 	/**
-	 * @brief Construct a new Status Tracker
+	 * Construct a new Status Tracker
 	 * @param[in] reg Registry to prometheus
 	 * @param[in] name Name of the metric
 	 * @param[in] metricID ID to append to metric names
@@ -23,28 +23,28 @@ class StatusTracker {
 	StatusTracker(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name, uint64_t metricID = 0);
 
 	/**
-	 * @brief Increment number of current events
+	 * Increment number of current events
 	 */
 	void incrementActive();
 
 	/**
-	 * @brief Decrement number of current events
+	 * Decrement number of current events
 	 */
 	void decrementActive();
 
 	/**
-	 * @brief Increment number of success
+	 * Increment number of success
 	 */
 	void incrementSuccess();
 
 	/**
-	 * @brief Increment number of fail
+	 * Increment number of fail
 	 */
 	void incrementFail();
 };
 
 /**
- * @brief RAII style wrapper for StatusTracker
+ * RAII style wrapper for StatusTracker
  */
 class TrackStatus {
   private:
@@ -54,15 +54,15 @@ class TrackStatus {
 	explicit TrackStatus(StatusTracker &tracker) : _tracker(tracker) { _tracker.incrementActive(); }
 	~TrackStatus() { _tracker.decrementActive(); }
 
-	/// @brief Copy constructor
+	/// Copy constructor
 	TrackStatus(const TrackStatus & /*unused*/) = delete;
 
-	/// @brief Move constructor
+	/// Move constructor
 	TrackStatus(TrackStatus && /*unused*/) = delete;
 
-	/// @brief Copy assignment operator
+	/// Copy assignment operator
 	TrackStatus &operator=(TrackStatus /*unused*/) = delete;
 
-	/// @brief Move assignment operator
+	/// Move assignment operator
 	TrackStatus &operator=(TrackStatus && /*unused*/) = delete;
 };

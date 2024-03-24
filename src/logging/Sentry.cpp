@@ -1,6 +1,7 @@
 #include "logging/Sentry.hpp"
-#include "Utils.hpp"
+
 #include "Version.h"
+#include "utils/FileHelpers.hpp"
 
 #include <arpa/inet.h>
 #include <ifaddrs.h>
