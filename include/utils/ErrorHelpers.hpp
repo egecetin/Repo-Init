@@ -9,7 +9,7 @@
 
 /// Global variable to check if the servers are running
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-static std::vector<std::pair<std::string, std::shared_ptr<std::atomic_flag>>> vCheckFlag;
+extern std::vector<std::pair<std::string, std::shared_ptr<std::atomic_flag>>> vCheckFlag;
 
 /**
  * Converts errno to a readable string
