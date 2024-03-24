@@ -11,7 +11,8 @@ TEST(Logger_Tests, LoggingUnitTests)
 {
 	std::future<int> shResult;
 
-	const MainLogger logger("http://localhost:8400", "http://username:password@localhost:8400/foo");
+	const MainLogger logger("http://localhost:8400",
+							"http://username:password@localhost:8400/foo"); // pragma: allowlist secret
 
 	// Launch script
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
