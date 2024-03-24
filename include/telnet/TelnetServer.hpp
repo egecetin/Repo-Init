@@ -145,7 +145,17 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	TelnetServer &operator=(TelnetServer && /*unused*/) = delete;
 
 	/// Destructor for server
-	~TelnetServer() { shutdown(); }
+	~TelnetServer()
+	{
+		try
+		{
+			shutdown();
+		}
+		catch (const std::exception &e)
+		{
+			// Just catch the exception to ensure not throwing to main code
+		}
+	}
 
 	/**
 	 * Initializes a new Telnet server

@@ -87,19 +87,19 @@ class ZeroMQ {
 	 * Get the reference of socket
 	 * @return const std::unique_ptr<zmq::socket_t>&
 	 */
-	const std::unique_ptr<zmq::socket_t> &getSocket() { return socketPtr; }
+	const std::unique_ptr<zmq::socket_t> &getSocket() const { return socketPtr; }
 
 	/**
 	 * Get the reference of context
 	 * @return const std::shared_ptr<zmq::context_t>&
 	 */
-	const std::shared_ptr<zmq::context_t> &getContext() { return contextPtr; }
+	const std::shared_ptr<zmq::context_t> &getContext() const { return contextPtr; }
 
 	/**
 	 * Get the address of the socket
 	 * @return const std::string& Address of the socket
 	 */
-	const std::string &getAddress() { return socketAddr; }
+	const std::string &getAddress() const { return socketAddr; }
 
 	/**
 	 * Destroy the ZeroMQ class

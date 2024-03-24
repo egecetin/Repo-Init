@@ -198,7 +198,7 @@ Tracer::Tracer(std::shared_ptr<std::atomic_flag> checkFlag, std::string serverPa
 
 	// Dump shared library information and add as attachment
 	dumpSharedLibraryInfo(_reportPath + "/shared_libs.txt");
-	_attachments.emplace_back(base::FilePath(_reportPath + "/shared_libs.txt"));
+	_attachments.emplace_back(_reportPath + "/shared_libs.txt");
 
 	startHandler();
 }
