@@ -14,6 +14,8 @@ TEST(Logger_Tests, LoggingUnitTests)
 	const MainLogger logger("http://localhost:8400",
 							"http://username:password@localhost:8400/foo"); // pragma: allowlist secret
 
+	ASSERT_NE(logger.getLogger(), nullptr);
+
 	// Launch script
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	shResult = std::async(std::launch::async, []() {
@@ -22,11 +24,11 @@ TEST(Logger_Tests, LoggingUnitTests)
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-	spdlog::trace("Trace message");
-	spdlog::debug("Debug message");
-	spdlog::warn("Warning message");
-	spdlog::error("Error message");
-	spdlog::critical("Critical message");
+	ASSERT_NO_THROW(spdlog::trace("Trace message"));
+	ASSERT_NO_THROW(spdlog::debug("Debug message"));
+	ASSERT_NO_THROW(spdlog::warn("Warning message"));
+	ASSERT_NO_THROW(spdlog::error("Error message"));
+	ASSERT_NO_THROW(spdlog::critical("Critical message"));
 
 	shResult.wait();
 	ASSERT_EQ(0, shResult.get());
