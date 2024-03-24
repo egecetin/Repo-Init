@@ -38,6 +38,20 @@ int main(int argc, char **argv)
 		return EXIT_FAILURE;
 	}
 
+	// Adjust log level
+	if (input.cmdOptionExists("-v"))
+	{
+		spdlog::set_level(spdlog::level::info);
+	}
+	if (input.cmdOptionExists("-vv"))
+	{
+		spdlog::set_level(spdlog::level::debug);
+	}
+	if (input.cmdOptionExists("-vvv"))
+	{
+		spdlog::set_level(spdlog::level::trace);
+	}
+
 	// Register alarm signal handler
 	if (std::signal(SIGALRM, alarmFunc) == SIG_ERR)
 	{
