@@ -98,17 +98,6 @@ std::string Tracer::getSelfExecutableDir()
 	return (lastDelimPos == std::string::npos) ? "" : path.substr(0, lastDelimPos);
 }
 
-bool Tracer::createDir(const std::string &path)
-{
-	struct stat info {};
-
-	if (stat(path.c_str(), &info) != 0 && errno == ENOENT)
-	{
-		return mkdir(path.c_str(), S_IRWXU | S_IRWXG) == 0;
-	}
-	return S_ISDIR(info.st_mode);
-}
-
 bool Tracer::isRunning()
 {
 	int sockId{-1};
