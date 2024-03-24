@@ -103,8 +103,8 @@ int main(int argc, char **argv)
 	// Initialize Telnet server
 	std::shared_ptr<TelnetServer> telnetController(nullptr);
 	vCheckFlag.emplace_back("Telnet Server", std::make_shared<std::atomic_flag>(false));
-	const int telnetPort =
-		input.cmdOptionExists("--enable-telnet") ? std::stoi(input.getCmdOption("--enable-telnet")) : 0;
+	const unsigned long telnetPort =
+		input.cmdOptionExists("--enable-telnet") ? std::stoul(input.getCmdOption("--enable-telnet")) : 0;
 	if (telnetPort > 0 && telnetPort < 65536)
 	{
 		try

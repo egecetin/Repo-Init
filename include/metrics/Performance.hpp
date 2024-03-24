@@ -4,7 +4,7 @@
 
 /**
  * @class PerformanceTracker
- * @brief Measures and calculates performance metrics.
+ * Measures and calculates performance metrics.
  *
  * The PerformanceTracker class is responsible for measuring and calculating performance metrics.
  * It provides functionality to start and stop a timer, and calculates the elapsed time between the start and stop
@@ -19,7 +19,7 @@ class PerformanceTracker {
 
   public:
 	/**
-	 * @brief Construct a new PerformanceTracker object.
+	 * Construct a new PerformanceTracker object.
 	 * @param[in] reg The registry to register the performance metrics.
 	 * @param[in] name The name of the metric.
 	 * @param[in] metricID The ID to append to metric names.
@@ -28,12 +28,12 @@ class PerformanceTracker {
 					   uint64_t metricID = 0);
 
 	/**
-	 * @brief Starts the timer.
+	 * Starts the timer.
 	 */
 	void startTimer();
 
 	/**
-	 * @brief Ends the timer and updates internal statistics.
+	 * Ends the timer and updates internal statistics.
 	 * @return The result of the timer in nanoseconds.
 	 */
 	double endTimer();
@@ -41,7 +41,7 @@ class PerformanceTracker {
 
 /**
  * @class TrackPerformance
- * @brief RAII style wrapper for PerformanceTracker.
+ * RAII style wrapper for PerformanceTracker.
  *
  * The TrackPerformance class is a RAII (Resource Acquisition Is Initialization) style wrapper for the
  * PerformanceTracker class. It automatically starts the timer when constructed and stops the timer when destructed.
@@ -54,13 +54,13 @@ class TrackPerformance {
 
   public:
 	/**
-	 * @brief Constructs a new TrackPerformance object.
+	 * Constructs a new TrackPerformance object.
 	 * @param[in] tracker The PerformanceTracker object to track.
 	 */
 	explicit TrackPerformance(PerformanceTracker &tracker) : _tracker(tracker) { _tracker.startTimer(); }
 
 	/**
-	 * @brief Destructs the TrackPerformance object and stops the timer.
+	 * Destructs the TrackPerformance object and stops the timer.
 	 */
 	~TrackPerformance() { _tracker.endTimer(); }
 

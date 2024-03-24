@@ -5,7 +5,7 @@
 
 /**
  * @class PrometheusServer
- * @brief Class representing a Prometheus server for collecting and exposing metrics.
+ * Class representing a Prometheus server for collecting and exposing metrics.
  */
 class PrometheusServer {
   private:
@@ -21,33 +21,33 @@ class PrometheusServer {
 
   public:
 	/**
-	 * @brief Construct a new Prometheus Server
+	 * Construct a new Prometheus Server
 	 * @param[in] serverAddr Server address in <IP>:<Port> format
 	 */
 	explicit PrometheusServer(const std::string &serverAddr);
 
 	/**
-	 * @brief Get the registry with id
+	 * Get the registry with id
 	 * @param[in] regId Registry id
 	 * @return std::shared_ptr<prometheus::Registry> Registry pointer if found, nullptr otherwise
 	 */
 	std::shared_ptr<prometheus::Registry> getRegistry(uint64_t regId);
 
 	/**
-	 * @brief Create a registry for prometheus
+	 * Create a registry for prometheus
 	 * @return std::shared_ptr<prometheus::Registry> Registry pointer
 	 */
 	std::shared_ptr<prometheus::Registry> createNewRegistry();
 
 	/**
-	 * @brief Create a registry for prometheus and returns id of the registry
+	 * Create a registry for prometheus and returns id of the registry
 	 * @param[out] regId Registry id
 	 * @return std::shared_ptr<prometheus::Registry> Registry pointer
 	 */
 	std::shared_ptr<prometheus::Registry> createNewRegistry(uint64_t &regId);
 
 	/**
-	 * @brief Deletes the registry with id
+	 * Deletes the registry with id
 	 * @param[in] regId Registry id
 	 * @return true If successfully removed
 	 * @return false otherwise

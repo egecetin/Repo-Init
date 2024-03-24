@@ -18,7 +18,7 @@ template <typename T> std::string stringifyRapidjson(const T &obj)
 void ConfigParser::readJson()
 {
 	std::ifstream inFile(_configPath);
-	if (inFile.is_open() == false)
+	if (!inFile.is_open())
 	{
 		throw std::invalid_argument("Can't open config file");
 	}
@@ -60,12 +60,12 @@ void ConfigParser::writeJson()
 	doc.Accept(writer);
 }
 
-ConfigParser::ConfigParser(const std::string &configPath) : _configPath(configPath) { load(); }
+ConfigParser::ConfigParser(std::string configPath) : _configPath(std::move(configPath)) { load(); }
 
-const std::string ConfigParser::get(const std::string &key) const
+std::string ConfigParser::get(const std::string &key) const
 {
-	auto it = _configMap.find(key);
-	return it == _configMap.end() ? "" : it->second;
+	auto itr = _configMap.find(key);
+	return itr == _configMap.end() ? "" : itr->second;
 }
 
 void ConfigParser::set(const std::string &key, const std::string &value) { _configMap[key] = value; }

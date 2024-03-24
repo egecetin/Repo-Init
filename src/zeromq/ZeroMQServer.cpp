@@ -68,9 +68,9 @@ void ZeroMQServer::threadFunc()
 	spdlog::info("ZeroMQ server stopped");
 }
 
-ZeroMQServer::ZeroMQServer(const std::string &hostAddr, const std::shared_ptr<std::atomic_flag> &checkFlag,
+ZeroMQServer::ZeroMQServer(const std::string &hostAddr, std::shared_ptr<std::atomic_flag> checkFlag,
 						   const std::shared_ptr<prometheus::Registry> &reg)
-	: ZeroMQ(zmq::socket_type::rep, hostAddr, true), ZeroMQMonitor(), _checkFlag(checkFlag)
+	: ZeroMQ(zmq::socket_type::rep, hostAddr, true), _checkFlag(std::move(checkFlag))
 {
 	if (reg)
 	{

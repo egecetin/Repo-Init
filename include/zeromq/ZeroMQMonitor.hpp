@@ -8,7 +8,7 @@
 
 /**
  * @class ZeroMQMonitor
- * @brief Class for monitoring ZeroMQ events on a socket.
+ * Class for monitoring ZeroMQ events on a socket.
  *
  * The ZeroMQMonitor class provides functionality to monitor ZeroMQ events on a socket.
  * It starts a separate thread to listen for events and invokes corresponding event handlers.
@@ -64,8 +64,23 @@ class ZeroMQMonitor : private zmq::monitor_t {
 	void on_event_unknown(const zmq_event_t & /*unused*/, const char *addr_) override;
 
   public:
+	/// Constructor.
+	ZeroMQMonitor() = default;
+
+	/// Copy constructor
+	ZeroMQMonitor(const ZeroMQMonitor & /*unused*/) = delete;
+
+	/// Move constructor
+	ZeroMQMonitor(ZeroMQMonitor && /*unused*/) = delete;
+
+	/// Copy assignment operator
+	ZeroMQMonitor &operator=(ZeroMQMonitor /*unused*/) = delete;
+
+	/// Move assignment operator
+	ZeroMQMonitor &operator=(ZeroMQMonitor && /*unused*/) = delete;
+
 	/**
-	 * @brief Start monitoring events on the given socket.
+	 * Start monitoring events on the given socket.
 	 *
 	 * This method starts a separate thread to listen for events on the given socket.
 	 * The method also sets up the event handlers for various event types.
@@ -76,12 +91,12 @@ class ZeroMQMonitor : private zmq::monitor_t {
 	void startMonitoring(const std::unique_ptr<zmq::socket_t> &socket, const std::string &monitorAddress);
 
 	/**
-	 * @brief Stop monitoring events on the socket.
+	 * Stop monitoring events on the socket.
 	 */
 	void stopMonitoring();
 
 	/**
-	 * @brief Destructor.
+	 * Destructor.
 	 */
-	~ZeroMQMonitor() { stopMonitoring(); }
+	~ZeroMQMonitor() override { stopMonitoring(); }
 };

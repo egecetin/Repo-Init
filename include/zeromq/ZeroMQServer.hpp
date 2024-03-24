@@ -29,16 +29,28 @@ class ZeroMQServer : private ZeroMQ, ZeroMQMonitor {
 
   public:
 	/**
-	 * @brief Constructor for server
+	 * Constructor for server
 	 * @param[in] hostAddr Host address to connect. Can be anything supported by ZeroMQ reply socket
 	 * @param[in] checkFlag Flag to check if the server is running
 	 * @param[in] reg Prometheus registry for stats
 	 */
-	ZeroMQServer(const std::string &hostAddr, const std::shared_ptr<std::atomic_flag> &checkFlag,
+	ZeroMQServer(const std::string &hostAddr, std::shared_ptr<std::atomic_flag> checkFlag,
 				 const std::shared_ptr<prometheus::Registry> &reg = nullptr);
 
+		/// @brief Copy constructor
+	ZeroMQServer(const ZeroMQServer & /*unused*/) = delete;
+
+	/// @brief Move constructor
+	ZeroMQServer(ZeroMQServer && /*unused*/) = delete;
+
+	/// @brief Copy assignment operator
+	ZeroMQServer &operator=(ZeroMQServer /*unused*/) = delete;
+
+	/// @brief Move assignment operator
+	ZeroMQServer &operator=(ZeroMQServer && /*unused*/) = delete;
+
 	/**
-	 * @brief Initializes a new ZeroMQ server
+	 * Initializes a new ZeroMQ server
 	 * @return true If initialized
 	 * @return false otherwise
 	 */
@@ -48,25 +60,25 @@ class ZeroMQServer : private ZeroMQ, ZeroMQMonitor {
 	void shutdown();
 
 	/**
-	 * @brief Deconstructor for server
+	 * Deconstructor for server
 	 */
-	~ZeroMQServer() { shutdown(); }
+	~ZeroMQServer() override { shutdown(); }
 
 	/**
-	 * @brief Sets the message callback function
+	 * Sets the message callback function
 	 * @param[in] func The message callback function to be set
 	 */
 	void messageCallback(FPTR_MessageCallback func) { _m_messageCallback = std::move(func); }
 
 	/**
-	 * @brief Gets the message callback function
+	 * Gets the message callback function
 	 * @return The message callback function
 	 */
 	FPTR_MessageCallback messageCallback() const { return _m_messageCallback; }
 };
 
 /**
- * @brief ZeroMQ message received callback
+ * ZeroMQ message received callback
  * @param[in] recvMsgs Received messages
  * @param[out] replyMsgs Reply messages returned by callback
  * @return true If the callback successfully processes the received messages

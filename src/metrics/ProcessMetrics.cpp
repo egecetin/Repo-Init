@@ -118,9 +118,9 @@ void ProcessMetrics::threadRunner()
 	}
 }
 
-ProcessMetrics::ProcessMetrics(const std::shared_ptr<std::atomic_flag> &checkFlag,
+ProcessMetrics::ProcessMetrics(std::shared_ptr<std::atomic_flag> checkFlag,
 							   const std::shared_ptr<prometheus::Registry> &reg)
-	: _checkFlag(checkFlag)
+	: _checkFlag(std::move(checkFlag))
 {
 	if (reg == nullptr)
 	{

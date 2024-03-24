@@ -178,10 +178,10 @@ void Tracer::dumpSharedLibraryInfo(const std::string &filePath)
 	}
 }
 
-Tracer::Tracer(const std::shared_ptr<std::atomic_flag> &checkFlag, std::string serverPath, std::string serverProxy,
+Tracer::Tracer(std::shared_ptr<std::atomic_flag> checkFlag, std::string serverPath, std::string serverProxy,
 			   const std::string &crashpadHandlerPath, const std::string &reportPath,
 			   std::vector<base::FilePath> attachments)
-	: _checkFlag(checkFlag), _serverPath(std::move(serverPath)), _serverProxy(std::move(serverProxy)),
+	: _checkFlag(std::move(checkFlag)), _serverPath(std::move(serverPath)), _serverProxy(std::move(serverProxy)),
 	  _attachments(std::move(attachments))
 {
 	auto selfDir = getSelfExecutableDir();
@@ -190,7 +190,7 @@ Tracer::Tracer(const std::shared_ptr<std::atomic_flag> &checkFlag, std::string s
 	_reportPath = reportPath.empty() ? selfDir : reportPath;
 	_clientHandler = std::make_unique<crashpad::CrashpadClient>();
 
-	_annotations = std::map<std::string, std::string>(
+	auto _annotations = std::map<std::string, std::string>(
 		{{"name", PROJECT_NAME},
 		 {"version", PROJECT_FULL_REVISION},
 		 {"build_info", PROJECT_BUILD_DATE + std::string(" ") + PROJECT_BUILD_TIME + std::string(" ") + BUILD_TYPE},
@@ -198,7 +198,7 @@ Tracer::Tracer(const std::shared_ptr<std::atomic_flag> &checkFlag, std::string s
 
 	// Dump shared library information and add as attachment
 	dumpSharedLibraryInfo(_reportPath + "/shared_libs.txt");
-	_attachments.push_back(base::FilePath(_reportPath + "/shared_libs.txt"));
+	_attachments.emplace_back(base::FilePath(_reportPath + "/shared_libs.txt"));
 
 	startHandler();
 }

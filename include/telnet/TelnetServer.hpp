@@ -51,7 +51,7 @@ class TelnetSession;
 using Socket = int;
 
 /**
- * @brief Session class for manage connections
+ * Session class for manage connections
  */
 class TelnetSession : public std::enable_shared_from_this<TelnetSession> {
   public:
@@ -131,11 +131,24 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
   public:
 	/// Constructor for server
 	TelnetServer() = default;
+
+	/// Copy constructor
+	TelnetServer(const TelnetServer & /*unused*/) = delete;
+
+	/// Move constructor
+	TelnetServer(TelnetServer && /*unused*/) = delete;
+
+	/// Copy assignment operator
+	TelnetServer &operator=(TelnetServer /*unused*/) = delete;
+
+	/// Move assignment operator
+	TelnetServer &operator=(TelnetServer && /*unused*/) = delete;
+
 	/// Destructor for server
 	~TelnetServer() { shutdown(); }
 
 	/**
-	 * @brief Initializes a new Telnet server
+	 * Initializes a new Telnet server
 	 * @param[in] listenPort Port to listen
 	 * @param[in] promptString Prompt string for connected users
 	 * @param[in] reg Prometheus registry for stats
@@ -193,20 +206,20 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 };
 
 /**
- * @brief Telnet session connection start callback
+ * Telnet session connection start callback
  * @param[in] session Handle to session
  */
 void TelnetConnectedCallback(const SP_TelnetSession &session);
 
 /**
- * @brief Telnet session message received callback
+ * Telnet session message received callback
  * @param[in] session Handle to session
  * @param[in] line Received message
  */
 bool TelnetMessageCallback(const SP_TelnetSession &session, const std::string &line);
 
 /**
- * @brief Telnet session TAB received callback
+ * Telnet session TAB received callback
  * @param[in] session Handle to session
  * @param[in] line Received message
  * @return std::string Command to complete

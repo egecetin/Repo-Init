@@ -7,7 +7,7 @@
 constexpr int HTTP_TIMEOUT_MS = 1000;
 
 /**
- * @brief Stats produced by HTTP
+ * Stats produced by HTTP
  */
 struct HTTPStats {
 	/// Total uploaded bytes
@@ -38,7 +38,7 @@ struct HTTPStats {
 
 /**
  * @class HTTP
- * @brief Represents an HTTP client connection
+ * Represents an HTTP client connection
  */
 class HTTP {
   private:
@@ -48,7 +48,7 @@ class HTTP {
 	std::string hostAddr;
 
 	/**
-	 * @brief Sets common fields for HTTP requests
+	 * Sets common fields for HTTP requests
 	 * @param[in] fullURL The full URL of the request
 	 * @param[out] receivedData The received data from the server
 	 * @param[in] method The HTTP method to use
@@ -56,7 +56,7 @@ class HTTP {
 	void setCommonFields(const std::string &fullURL, std::string &receivedData, CURLoption method);
 
 	/**
-	 * @brief Sets common fields for HTTP requests with payload
+	 * Sets common fields for HTTP requests with payload
 	 * @param[in] fullURL The full URL of the request
 	 * @param[out] receivedData The received data from the server
 	 * @param[in] method The HTTP method to use
@@ -66,7 +66,7 @@ class HTTP {
 						 const std::string &payload);
 
 	/**
-	 * @brief Callback function for writing received data
+	 * Callback function for writing received data
 	 * @param[in] contents The received data
 	 * @param[in] size The size of each element
 	 * @param[in] nmemb The number of elements
@@ -76,7 +76,7 @@ class HTTP {
 	static size_t writeDataCallback(void *contents, size_t size, size_t nmemb, void *userp);
 
 	/**
-	 * @brief Performs the request
+	 * Performs the request
 	 * @param[out] statusCode The HTTP status code (set if CURLE_OK, otherwise unchanged)
 	 * @return The status of the operation. CURLE_OK if successful.
 	 */
@@ -84,26 +84,26 @@ class HTTP {
 
   public:
 	/**
-	 * @brief Constructs a new HTTP object
+	 * Constructs a new HTTP object
 	 * @param[in] addr The full path to the server
 	 * @param[in] timeoutInMs The connection timeout in milliseconds
 	 */
 	explicit HTTP(std::string addr, int timeoutInMs = HTTP_TIMEOUT_MS);
 
-	/// @brief Copy constructor
+	/// Copy constructor
 	HTTP(const HTTP & /*unused*/) = delete;
 
-	/// @brief Move constructor
+	/// Move constructor
 	HTTP(HTTP && /*unused*/) = delete;
 
-	/// @brief Copy assignment operator
+	/// Copy assignment operator
 	HTTP &operator=(HTTP /*unused*/) = delete;
 
-	/// @brief Move assignment operator
+	/// Move assignment operator
 	HTTP &operator=(HTTP && /*unused*/) = delete;
 
 	/**
-	 * @brief Sets an option for the HTTP object
+	 * Sets an option for the HTTP object
 	 * @param[in] option The CURL option to set
 	 * @param[in] value The corresponding value
 	 * @return true if the option was set successfully, false otherwise
@@ -114,13 +114,13 @@ class HTTP {
 	}
 
 	/**
-	 * @brief Gets the host address of the object
+	 * Gets the host address of the object
 	 * @return The host address
 	 */
 	std::string getHostAddress() const { return hostAddr; }
 
 	/**
-	 * @brief Sends a GET request
+	 * Sends a GET request
 	 * @param[in] index The value to append to the server address
 	 * @param[out] receivedData The received reply from the server
 	 * @param[out] statusCode The HTTP status code (set if CURLE_OK, otherwise unchanged)
@@ -129,7 +129,7 @@ class HTTP {
 	CURLcode sendGETRequest(const std::string &index, std::string &receivedData, HttpStatus::Code &statusCode);
 
 	/**
-	 * @brief Sends a HEAD request
+	 * Sends a HEAD request
 	 * @param[in] index The value to append to the server address
 	 * @param[out] receivedData The received reply from the server
 	 * @param[out] statusCode The HTTP status code (set if CURLE_OK, otherwise unchanged)
@@ -138,7 +138,7 @@ class HTTP {
 	CURLcode sendHEADRequest(const std::string &index, std::string &receivedData, HttpStatus::Code &statusCode);
 
 	/**
-	 * @brief Sends a POST request
+	 * Sends a POST request
 	 * @param[in] index The value to append to the server address
 	 * @param[in] payload The payload to send to the server
 	 * @param[out] receivedData The received reply from the server
@@ -149,7 +149,7 @@ class HTTP {
 							 HttpStatus::Code &statusCode);
 
 	/**
-	 * @brief Sends a PUT request
+	 * Sends a PUT request
 	 * @param[in] index The value to append to the server address
 	 * @param[in] payload The payload to send to the server
 	 * @param[out] receivedData The received reply from the server
@@ -160,13 +160,13 @@ class HTTP {
 							HttpStatus::Code &statusCode);
 
 	/**
-	 * @brief Gets the statistics of the HTTP object
+	 * Gets the statistics of the HTTP object
 	 * @return The produced statistics
 	 */
 	HTTPStats getStats();
 
 	/**
-	 * @brief Destroys the HTTP object
+	 * Destroys the HTTP object
 	 */
 	~HTTP();
 };

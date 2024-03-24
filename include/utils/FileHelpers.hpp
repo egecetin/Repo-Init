@@ -6,7 +6,7 @@
 #include <vector>
 
 /**
- * @brief Searches line patterns from a file
+ * Searches line patterns from a file
  * @param[in] filePath Path to the file
  * @param[in] pattern Regex search pattern
  * @param[out] lastWord Last word (space delimiter) of the first found line
@@ -40,7 +40,7 @@ inline std::vector<std::string> findFromFile(const std::string &filePath, const 
 }
 
 /**
- * @brief Searches line patterns from a file
+ * Searches line patterns from a file
  * @param[in] filePath Path to the file
  * @param[in] pattern Regex search pattern
  * @return std::vector<std::string> Matched lines

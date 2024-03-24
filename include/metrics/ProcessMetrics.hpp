@@ -7,7 +7,7 @@
 
 /**
  * @class ProcessMetrics
- * @brief Class that provides metrics related to the current process.
+ * Class that provides metrics related to the current process.
  */
 class ProcessMetrics {
   private:
@@ -32,7 +32,7 @@ class ProcessMetrics {
 	clock_t _oldCpuTime{0}; /**< Variable to store the old CPU time */
 
 	/**
-	 * @brief Counts the number of entries in a directory.
+	 * Counts the number of entries in a directory.
 	 * @param path The path of the directory.
 	 * @return The number of entries in the directory.
 	 */
@@ -40,61 +40,73 @@ class ProcessMetrics {
 
   protected:
 	/**
-	 * @brief Gets the memory usage of the process.
+	 * Gets the memory usage of the process.
 	 * @return The memory usage in bytes.
 	 */
 	static long int getMemoryUsage();
 
 	/**
-	 * @brief Gets the number of page faults of the process.
+	 * Gets the number of page faults of the process.
 	 * @return The number of page faults.
 	 */
 	static long int getPageFaults();
 
 	/**
-	 * @brief Gets the CPU usage of the process.
+	 * Gets the CPU usage of the process.
 	 * @return The CPU usage as a percentage.
 	 */
 	double getCpuUsage();
 
 	/**
-	 * @brief Gets the disk read and write bytes of the process.
+	 * Gets the disk read and write bytes of the process.
 	 * @return A pair of the disk read and write bytes.
 	 */
 	std::pair<size_t, size_t> getDiskIO();
 
 	/**
-	 * @brief Gets the number of threads in the process.
+	 * Gets the number of threads in the process.
 	 * @return The number of threads.
 	 */
 	static size_t getThreadCount();
 
 	/**
-	 * @brief Gets the number of file descriptors in the process.
+	 * Gets the number of file descriptors in the process.
 	 * @return The number of file descriptors.
 	 */
 	static size_t getFileDescriptorCount();
 
 	/**
-	 * @brief Updates the metrics values.
+	 * Updates the metrics values.
 	 */
 	void update();
 
 	/**
-	 * @brief Main thread function
+	 * Main thread function
 	 */
 	void threadRunner();
 
   public:
 	/**
-	 * @brief Constructs a ProcessMetrics object.
+	 * Constructs a ProcessMetrics object.
 	 * @param[in] reg The Prometheus registry.
 	 * @param[in] checkFlag Runtime check flag
 	 */
-	ProcessMetrics(const std::shared_ptr<std::atomic_flag> &checkFlag, const std::shared_ptr<prometheus::Registry> &reg);
+	ProcessMetrics(std::shared_ptr<std::atomic_flag> checkFlag, const std::shared_ptr<prometheus::Registry> &reg);
+
+	/// Copy constructor
+	ProcessMetrics(const ProcessMetrics & /*unused*/) = delete;
+
+	/// Move constructor
+	ProcessMetrics(ProcessMetrics && /*unused*/) = delete;
+
+	/// Copy assignment operator
+	ProcessMetrics &operator=(ProcessMetrics /*unused*/) = delete;
+
+	/// Move assignment operator
+	ProcessMetrics &operator=(ProcessMetrics && /*unused*/) = delete;
 
 	/**
-	 * @brief Deconstructs a ProcessMetrics object.
+	 * Deconstructs a ProcessMetrics object.
 	 */
 	~ProcessMetrics();
 

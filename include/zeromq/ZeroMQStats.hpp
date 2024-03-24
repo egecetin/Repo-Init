@@ -5,7 +5,7 @@
 
 /**
  * @struct ZeroMQServerStats
- * @brief Represents the statistics of a ZeroMQ server connection.
+ * Represents the statistics of a ZeroMQ server connection.
  */
 struct ZeroMQServerStats {
 	std::chrono::high_resolution_clock::time_point processingTimeStart; ///< Processing time start
@@ -15,7 +15,7 @@ struct ZeroMQServerStats {
 
 /**
  * @class ZeroMQStats
- * @brief Represents the statistics of a ZeroMQ server.
+ * Represents the statistics of a ZeroMQ server.
  */
 class ZeroMQStats {
   private:
@@ -34,13 +34,13 @@ class ZeroMQStats {
 
   public:
 	/**
-	 * @brief Construct a new ZeroMQStats object.
+	 * Construct a new ZeroMQStats object.
 	 * @param[in] reg Prometheus registry.
 	 */
 	explicit ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg);
 
 	/**
-	 * @brief Updates the statistics with messages.
+	 * Updates the statistics with messages.
 	 * @param[in] recvMsgs Received messages.
 	 * @param[in] sendMsgs Send messages.
 	 * @param[in] serverStats ZeroMQ server stats.

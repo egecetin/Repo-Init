@@ -5,7 +5,7 @@
 #include <thread>
 
 /**
- * @brief Tracer class to handle operations of Crashpad
+ * Tracer class to handle operations of Crashpad
  */
 class Tracer {
   private:
@@ -22,43 +22,43 @@ class Tracer {
 	std::unique_ptr<crashpad::CrashpadClient> _clientHandler;
 
 	/**
-	 * @brief Start the crashpad handler process
+	 * Start the crashpad handler process
 	 */
 	void startHandler();
 
 	/**
-	 * @brief Thread function to check and restart the crashpad handler process
+	 * Thread function to check and restart the crashpad handler process
 	 */
 	void threadFunc();
 
 	/**
-	 * @brief Check if the given process ID is running
+	 * Check if the given process ID is running
 	 * @param[in] processId The process ID to check
 	 * @return true if the process is running, false otherwise
 	 */
 	static bool checkPidIsRunning(pid_t processId);
 
 	/**
-	 * @brief Check if the given socket ID is running
+	 * Check if the given socket ID is running
 	 * @param[in] sockId The socket ID to check
 	 * @return true if the socket is running, false otherwise
 	 */
 	static bool checkSocketIsRunning(int sockId);
 
 	/**
-	 * @brief Get the executable directory of the current application
+	 * Get the executable directory of the current application
 	 * @return The executable directory path
 	 */
 	static inline std::string getSelfExecutableDir();
 
 	/**
-	 * @brief Dump shared library information to a file
+	 * Dump shared library information to a file
 	 * @param[in] filePath File path to dump the information
 	 */
 	static void dumpSharedLibraryInfo(const std::string &filePath);
 
 	/**
-	 * @brief Create director if not exists
+	 * Create director if not exists
 	 * @param[in] path The path of the directory to create
 	 * @return true if the directory is created successfully or exists, false otherwise
 	 */
@@ -66,7 +66,7 @@ class Tracer {
 
   public:
 	/**
-	 * @brief Construct a new Tracer object
+	 * Construct a new Tracer object
 	 * @param[in] checkFlag Flag to check if the process is running
 	 * @param[in] serverPath Remote server address
 	 * @param[in] serverProxy Remote server proxy
@@ -74,23 +74,35 @@ class Tracer {
 	 * @param[in] crashpadHandlerPath Path to crashpad_handler executable
 	 * @param[in] attachments Attachments to add to the minidump
 	 */
-	explicit Tracer(const std::shared_ptr<std::atomic_flag> &checkFlag, std::string serverPath = "",
-					std::string serverProxy = "", const std::string &reportPath = "",
-					const std::string &crashpadHandlerPath = "", std::vector<base::FilePath> attachments = {});
+	explicit Tracer(std::shared_ptr<std::atomic_flag> checkFlag, std::string serverPath = "",
+					std::string serverProxy = "", const std::string &crashpadHandlerPath = "", const std::string &reportPath = "",
+					 std::vector<base::FilePath> attachments = {});
+
+	/// Copy constructor
+	Tracer(const Tracer & /*unused*/) = delete;
+
+	/// Move constructor
+	Tracer(Tracer && /*unused*/) = delete;
+
+	/// Copy assignment operator
+	Tracer &operator=(Tracer /*unused*/) = delete;
+
+	/// Move assignment operator
+	Tracer &operator=(Tracer && /*unused*/) = delete;
 
 	/**
-	 * @brief Destroy the Tracer object
+	 * Destroy the Tracer object
 	 */
 	~Tracer();
 
 	/**
-	 * @brief Check if the crashpad_handler process is running
+	 * Check if the crashpad_handler process is running
 	 * @return true if the crashpad_handler is running, false otherwise
 	 */
 	bool isRunning();
 
 	/**
-	 * @brief Check and restart the crashpad_handler process if it is not running
+	 * Check and restart the crashpad_handler process if it is not running
 	 */
 	void restart();
 };
