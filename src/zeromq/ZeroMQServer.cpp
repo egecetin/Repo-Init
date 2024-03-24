@@ -101,7 +101,6 @@ void ZeroMQServer::shutdown()
 		_serverThread.reset();
 	}
 
-	stopMonitoring();
 	stop();
 }
 
