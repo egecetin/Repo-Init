@@ -11,24 +11,24 @@
  */
 class ProcessMetrics {
   private:
-	std::atomic_flag _shouldStop{false}; /**< Flag to stop monitoring. */
-    std::unique_ptr<std::thread> _thread; /**< Thread handler */
+	std::atomic_flag _shouldStop{false};		  /**< Flag to stop monitoring. */
+	std::unique_ptr<std::thread> _thread;		  /**< Thread handler */
 	std::shared_ptr<std::atomic_flag> _checkFlag; /**< Runtime check flag */
 
-	prometheus::Gauge *_pMemory;				/**< Pointer to the memory usage gauge */
-	prometheus::Gauge *_pPageFaults;			/**< Pointer to the page faults gauge */
-	prometheus::Gauge *_pCpuUsage;			/**< Pointer to the CPU usage gauge */
-	prometheus::Gauge *_pDiskRead;			/**< Pointer to the disk read gauge */
-	prometheus::Gauge *_pDiskWrite;			/**< Pointer to the disk write gauge */
-	prometheus::Gauge *_pThreadCount;			/**< Pointer to the thread count gauge */
+	prometheus::Gauge *_pMemory;			  /**< Pointer to the memory usage gauge */
+	prometheus::Gauge *_pPageFaults;		  /**< Pointer to the page faults gauge */
+	prometheus::Gauge *_pCpuUsage;			  /**< Pointer to the CPU usage gauge */
+	prometheus::Gauge *_pDiskRead;			  /**< Pointer to the disk read gauge */
+	prometheus::Gauge *_pDiskWrite;			  /**< Pointer to the disk write gauge */
+	prometheus::Gauge *_pThreadCount;		  /**< Pointer to the thread count gauge */
 	prometheus::Gauge *_pFileDescriptorCount; /**< Pointer to the file descriptor count gauge */
 
-	size_t _oldReadBytes{0};	 /**< Variable to store the old read bytes */
+	size_t _oldReadBytes{0};  /**< Variable to store the old read bytes */
 	size_t _oldWriteBytes{0}; /**< Variable to store the old write bytes */
 
 	struct tms _oldCpu {
 		0, 0, 0, 0
-	};					   /**< Structure to store the old CPU times */
+	};						/**< Structure to store the old CPU times */
 	clock_t _oldCpuTime{0}; /**< Variable to store the old CPU time */
 
 	/**
@@ -109,5 +109,4 @@ class ProcessMetrics {
 	 * Deconstructs a ProcessMetrics object.
 	 */
 	~ProcessMetrics();
-
 };

@@ -37,7 +37,8 @@ void ConfigParser::readJson()
 	// Parse the configuration file
 	for (const auto &entry : doc.GetObject())
 	{
-		_configMap[entry.name.GetString()] = entry.value.IsString() ? entry.value.GetString() : stringifyRapidjson(entry.value);
+		_configMap[entry.name.GetString()] =
+			entry.value.IsString() ? entry.value.GetString() : stringifyRapidjson(entry.value);
 	}
 }
 
@@ -70,10 +71,7 @@ std::string ConfigParser::get(const std::string &key) const
 
 void ConfigParser::set(const std::string &key, const std::string &value) { _configMap[key] = value; }
 
-void ConfigParser::save()
-{
-	writeJson();
-}
+void ConfigParser::save() { writeJson(); }
 
 void ConfigParser::load()
 {

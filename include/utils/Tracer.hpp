@@ -75,8 +75,8 @@ class Tracer {
 	 * @param[in] attachments Attachments to add to the minidump
 	 */
 	explicit Tracer(std::shared_ptr<std::atomic_flag> checkFlag, std::string serverPath = "",
-					std::string serverProxy = "", const std::string &crashpadHandlerPath = "", const std::string &reportPath = "",
-					 std::vector<base::FilePath> attachments = {});
+					std::string serverProxy = "", const std::string &crashpadHandlerPath = "",
+					const std::string &reportPath = "", std::vector<base::FilePath> attachments = {});
 
 	/// Copy constructor
 	Tracer(const Tracer & /*unused*/) = delete;

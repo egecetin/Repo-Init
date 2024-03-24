@@ -1,8 +1,8 @@
 #include "zeromq/ZeroMQServer.hpp"
 
+#include "Version.h"
 #include "utils/ErrorHelpers.hpp"
 #include "utils/Hasher.hpp"
-#include "Version.h"
 
 #include <spdlog/spdlog.h>
 

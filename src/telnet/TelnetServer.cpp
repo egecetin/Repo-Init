@@ -1,8 +1,8 @@
 #include "telnet/TelnetServer.hpp"
 
+#include "Version.h"
 #include "utils/ErrorHelpers.hpp"
 #include "utils/Hasher.hpp"
-#include "Version.h"
 
 #include <spdlog/spdlog.h>
 
@@ -533,8 +533,8 @@ void TelnetSession::update()
 }
 
 /* ------------------ Telnet Server -------------------*/
-bool TelnetServer::initialise(u_long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag, std::string promptString,
-							  const std::shared_ptr<prometheus::Registry> &reg)
+bool TelnetServer::initialise(u_long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag,
+							  std::string promptString, const std::shared_ptr<prometheus::Registry> &reg)
 {
 	if (m_initialised)
 	{

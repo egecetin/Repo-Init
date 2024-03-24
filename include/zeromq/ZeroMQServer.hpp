@@ -37,7 +37,7 @@ class ZeroMQServer : private ZeroMQ, ZeroMQMonitor {
 	ZeroMQServer(const std::string &hostAddr, std::shared_ptr<std::atomic_flag> checkFlag,
 				 const std::shared_ptr<prometheus::Registry> &reg = nullptr);
 
-		/// @brief Copy constructor
+	/// @brief Copy constructor
 	ZeroMQServer(const ZeroMQServer & /*unused*/) = delete;
 
 	/// @brief Move constructor

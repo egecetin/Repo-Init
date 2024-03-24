@@ -1,7 +1,7 @@
 #include "logging/Loki.hpp"
 
-#include "utils/FileHelpers.hpp"
 #include "Version.h"
+#include "utils/FileHelpers.hpp"
 
 #include <sstream>
 

@@ -12,7 +12,8 @@
  * @param[out] lastWord Last word (space delimiter) of the first found line
  * @return std::vector<std::string> Matched lines
  */
-inline std::vector<std::string> findFromFile(const std::string &filePath, const std::string &pattern, std::string &lastWord)
+inline std::vector<std::string> findFromFile(const std::string &filePath, const std::string &pattern,
+											 std::string &lastWord)
 {
 	const std::regex regExp(pattern);
 	std::ifstream inFile(filePath);
