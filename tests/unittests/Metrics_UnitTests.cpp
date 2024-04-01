@@ -15,7 +15,7 @@ bool isAllValuesExist(std::ifstream &promFile, const std::vector<std::string> &t
 {
 	for (size_t idx = 0; idx < testVals.size(); ++idx)
 	{
-		while (!promFile.eof())
+		while (!promFile.of())
 		{
 			std::string line;
 			std::getline(promFile, line);
@@ -29,7 +29,7 @@ bool isAllValuesExist(std::ifstream &promFile, const std::vector<std::string> &t
 			}
 		}
 
-		if (promFile.eof())
+		if (promFile.of())
 			return false;
 	}
 
