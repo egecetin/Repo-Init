@@ -48,7 +48,7 @@ class InputParser {
 	 * Gets all command line options
 	 * @return std::vector<std::pair<std::string, std::string>> All command line options
 	 */
-	const std::vector<std::pair<std::string, std::string>> getCmdOptions() const
+	std::vector<std::pair<std::string, std::string>> getCmdOptions() const
 	{
 		std::vector<std::pair<std::string, std::string>> options;
 		for (auto itr = tokens.begin(); itr != tokens.end(); ++itr)
