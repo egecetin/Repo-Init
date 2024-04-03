@@ -57,9 +57,13 @@ class InputParser {
 			{
 				auto nextItr = std::next(itr);
 				if (nextItr != tokens.end() && !nextItr->empty() && nextItr->at(0) != '-')
+				{
 					options.emplace_back(*itr, *(nextItr));
+				}
 				else
+				{
 					options.emplace_back(*itr, "");
+				}
             }
         }
         return options;

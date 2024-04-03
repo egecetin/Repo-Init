@@ -16,6 +16,7 @@
 // SIGALRM interval in seconds
 constexpr uintmax_t alarmInterval = 1;
 // Interruption flag
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 volatile sig_atomic_t interruptFlag = 0;
 
 // Default SIGALRM function
@@ -185,7 +186,7 @@ int main(int argc, char **argv)
 	/* ################################ END MODIFICATIONS ################################ */
 	/* ################################################################################### */
 
-	while (!interruptFlag)
+	while (interruptFlag == 0)
 	{
 		std::this_thread::sleep_for(std::chrono::milliseconds(500));
 	}
