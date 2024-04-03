@@ -15,14 +15,21 @@
 
 // SIGALRM interval in seconds
 constexpr uintmax_t alarmInterval = 1;
+// Interruption flag
+volatile sig_atomic_t interruptFlag = 0;
 
 // Default SIGALRM function
-void alarmFunc(int /*unused*/)
+static void alarmFunc(int /*unused*/)
 {
 	alarm(alarmInterval);
 
 	// Clear all flags
 	std::for_each(vCheckFlag.begin(), vCheckFlag.end(), [](auto &entry) { entry.second->clear(); });
+}
+
+static void interruptFunc(int /*unused*/)
+{
+	interruptFlag = 1;
 }
 
 int main(int argc, char **argv)
@@ -51,6 +58,34 @@ int main(int argc, char **argv)
 	{
 		spdlog::set_level(spdlog::level::trace);
 	}
+
+	// Log input arguments
+	spdlog::debug("======== Detected input arguments ========");
+	for (const auto& entry : input.getCmdOptions())
+	{
+        spdlog::debug("{} = {}", entry.first, entry.second);
+    }
+
+	// Log detected configuration to debug
+	spdlog::debug("======== Detected configuration ========");
+	for (const auto& entry : config.getConfigMap())
+	{
+        spdlog::debug("{} = {}", entry.first, entry.second);
+    }
+
+	// Register interrupt signal handler
+	if (std::signal(SIGINT, interruptFunc) == SIG_ERR)
+	{
+        spdlog::critical("Can't set signal handler (SIGINT): {}", getErrnoString(errno));
+        return EXIT_FAILURE;
+    }
+
+	// Register termination signal handler
+	if (std::signal(SIGTERM, interruptFunc) == SIG_ERR)
+	{
+        spdlog::critical("Can't set signal handler (SIGTERM): {}", getErrnoString(errno));
+        return EXIT_FAILURE;
+    }
 
 	// Register alarm signal handler
 	if (std::signal(SIGALRM, alarmFunc) == SIG_ERR)
@@ -140,6 +175,19 @@ int main(int argc, char **argv)
 	{
 		spdlog::error("Invalid Telnet port: {}", telnetPort);
 		return EXIT_FAILURE;
+	}
+
+	/* ################################################################################### */
+	/* ############################# MAKE MODIFICATIONS HERE ############################# */
+	/* ################################################################################### */
+
+	/* ################################################################################### */
+	/* ################################ END MODIFICATIONS ################################ */
+	/* ################################################################################### */
+
+	while (!interruptFlag)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(500));
 	}
 
 	/* ################################################################################### */
