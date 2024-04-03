@@ -44,13 +44,13 @@ class InputParser {
 		return empty_string;
 	}
 
-    /**
-    * Gets all command line options
-    * @return std::vector<std::pair<std::string, std::string>> All command line options
-    */
-    const std::vector<std::pair<std::string, std::string>> getCmdOptions() const
-    {
-        std::vector<std::pair<std::string, std::string>> options;
+	/**
+	 * Gets all command line options
+	 * @return std::vector<std::pair<std::string, std::string>> All command line options
+	 */
+	const std::vector<std::pair<std::string, std::string>> getCmdOptions() const
+	{
+		std::vector<std::pair<std::string, std::string>> options;
 		for (auto itr = tokens.begin(); itr != tokens.end(); ++itr)
 		{
 			if (!itr->empty() && itr->at(0) == '-')
@@ -64,10 +64,10 @@ class InputParser {
 				{
 					options.emplace_back(*itr, "");
 				}
-            }
-        }
-        return options;
-    }
+			}
+		}
+		return options;
+	}
 
 	/**
 	 * Checks whether provided command line option exists.

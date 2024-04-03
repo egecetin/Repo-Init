@@ -28,10 +28,7 @@ static void alarmFunc(int /*unused*/)
 	std::for_each(vCheckFlag.begin(), vCheckFlag.end(), [](auto &entry) { entry.second->clear(); });
 }
 
-static void interruptFunc(int /*unused*/)
-{
-	interruptFlag = 1;
-}
+static void interruptFunc(int /*unused*/) { interruptFlag = 1; }
 
 int main(int argc, char **argv)
 {
@@ -62,31 +59,31 @@ int main(int argc, char **argv)
 
 	// Log input arguments
 	spdlog::debug("======== Detected input arguments ========");
-	for (const auto& entry : input.getCmdOptions())
+	for (const auto &entry : input.getCmdOptions())
 	{
-        spdlog::debug("{} = {}", entry.first, entry.second);
-    }
+		spdlog::debug("{} = {}", entry.first, entry.second);
+	}
 
 	// Log detected configuration to debug
 	spdlog::debug("======== Detected configuration ========");
-	for (const auto& entry : config.getConfigMap())
+	for (const auto &entry : config.getConfigMap())
 	{
-        spdlog::debug("{} = {}", entry.first, entry.second);
-    }
+		spdlog::debug("{} = {}", entry.first, entry.second);
+	}
 
 	// Register interrupt signal handler
 	if (std::signal(SIGINT, interruptFunc) == SIG_ERR)
 	{
-        spdlog::critical("Can't set signal handler (SIGINT): {}", getErrnoString(errno));
-        return EXIT_FAILURE;
-    }
+		spdlog::critical("Can't set signal handler (SIGINT): {}", getErrnoString(errno));
+		return EXIT_FAILURE;
+	}
 
 	// Register termination signal handler
 	if (std::signal(SIGTERM, interruptFunc) == SIG_ERR)
 	{
-        spdlog::critical("Can't set signal handler (SIGTERM): {}", getErrnoString(errno));
-        return EXIT_FAILURE;
-    }
+		spdlog::critical("Can't set signal handler (SIGTERM): {}", getErrnoString(errno));
+		return EXIT_FAILURE;
+	}
 
 	// Register alarm signal handler
 	if (std::signal(SIGALRM, alarmFunc) == SIG_ERR)
