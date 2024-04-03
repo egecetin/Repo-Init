@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classProcessMetrics.html#acb0cc057fee8a6bca21e26def5be8893":[1,0,7,2],
 "classProcessMetrics.html#acd231e123cf41cd967c8888a033c6586":[1,0,7,28],
 "classProcessMetrics.html#ad2c5639a8b3e6c64c56a55cd18ed9b10":[1,0,7,12],
 "classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636":[1,0,7,11],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classZeroMQStats.html#aba820d2f918486b00e1d3a6a88d5401b":[1,0,24,2],
 "classZeroMQStats.html#ac6d8a93da474db283fd9b0ea6ddd33ec":[1,0,24,6],
 "classZeroMQStats.html#ad0163112278ac3b3c4a97dd35f6dfa0b":[1,0,24,8],
-"classes.html":[1,1],
-"classspdlog_1_1sinks_1_1loki__api__sink.html":[1,0,0,0,0]
+"classes.html":[1,1]
 };

@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classspdlog_1_1sinks_1_1loki__api__sink.html":[1,0,0,0,0],
 "classspdlog_1_1sinks_1_1loki__api__sink.html#a0c2c070f78339f81bc36d728e811d463":[1,0,0,0,0,6],
 "classspdlog_1_1sinks_1_1loki__api__sink.html#a1f6dda58fb7b304d4559d6366e751690":[1,0,0,0,0,3],
 "classspdlog_1_1sinks_1_1loki__api__sink.html#a4fea2e13821a1eafd399884bb6b519b0":[1,0,0,0,0,7],
@@ -89,9 +90,11 @@ var NAVTREEINDEX2 =
 "index.html#autotoc_md4":[4],
 "index.html#autotoc_md5":[5],
 "main_8cpp.html":[2,0,1,6],
-"main_8cpp.html#a2b19e9b08a344702039cb07dbab604d8":[2,0,1,6,2],
-"main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627":[2,0,1,6,1],
-"main_8cpp.html#a8881842da1bfa8340392a8ca2b79ee63":[2,0,1,6,0],
+"main_8cpp.html#a0ad519630ebc85fedc5774f649444ece":[2,0,1,6,4],
+"main_8cpp.html#a2b19e9b08a344702039cb07dbab604d8":[2,0,1,6,3],
+"main_8cpp.html#a397820383d7c8d710e84d719e0ee8f98":[2,0,1,6,0],
+"main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627":[2,0,1,6,2],
+"main_8cpp.html#ad1209a7ee3fafd496e5c559da12562ed":[2,0,1,6,1],
 "main_8cpp_source.html":[2,0,1,6],
 "namespacemembers.html":[0,7,0],
 "namespacemembers_type.html":[0,7,1],

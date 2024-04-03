@@ -64,8 +64,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ConfigParser_8cpp.html",
-"classProcessMetrics.html#acd231e123cf41cd967c8888a033c6586",
-"classspdlog_1_1sinks_1_1loki__api__sink.html#a0c2c070f78339f81bc36d728e811d463"
+"classProcessMetrics.html#acb0cc057fee8a6bca21e26def5be8893",
+"classspdlog_1_1sinks_1_1loki__api__sink.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
