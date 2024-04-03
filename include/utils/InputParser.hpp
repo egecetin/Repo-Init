@@ -22,9 +22,8 @@ class InputParser {
 	{
 		for (int i = 1; i < argc; ++i)
 		{
-			this->tokens.emplace_back(argv[i]);
+			tokens.emplace_back(argv[i]);
 		}
-		this->tokens.emplace_back("");
 	}
 
 	/**
@@ -35,13 +34,38 @@ class InputParser {
 	const std::string &getCmdOption(const std::string &option) const
 	{
 		std::vector<std::string>::const_iterator itr;
-		itr = std::find(this->tokens.begin(), this->tokens.end(), option);
-		if (itr != this->tokens.end() && ++itr != this->tokens.end())
+		itr = std::find(tokens.begin(), tokens.end(), option);
+		if (itr != tokens.end() && ++itr != tokens.end())
 		{
 			return *itr;
 		}
 		static const std::string empty_string;
 		return empty_string;
+	}
+
+	/**
+	 * Gets all command line options
+	 * @return std::vector<std::pair<std::string, std::string>> All command line options
+	 */
+	std::vector<std::pair<std::string, std::string>> getCmdOptions() const
+	{
+		std::vector<std::pair<std::string, std::string>> options;
+		for (auto itr = tokens.begin(); itr != tokens.end(); ++itr)
+		{
+			if (!itr->empty() && itr->at(0) == '-')
+			{
+				auto nextItr = std::next(itr);
+				if (nextItr != tokens.end() && !nextItr->empty() && nextItr->at(0) != '-')
+				{
+					options.emplace_back(*itr, *(nextItr));
+				}
+				else
+				{
+					options.emplace_back(*itr, "");
+				}
+			}
+		}
+		return options;
 	}
 
 	/**
@@ -52,6 +76,6 @@ class InputParser {
 	 */
 	bool cmdOptionExists(const std::string &option) const
 	{
-		return std::find(this->tokens.begin(), this->tokens.end(), option) != this->tokens.end();
+		return std::find(tokens.begin(), tokens.end(), option) != tokens.end();
 	}
 };
