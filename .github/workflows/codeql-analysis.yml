@@ -3,6 +3,9 @@ name: "CodeQL"
 on:
   schedule:
     - cron: '21 9 * * 4'
+  pull_request:
+    paths:
+      - '.github/workflows/codeql-analysis.yml'
 
 jobs:
   analyze:
@@ -24,7 +27,7 @@ jobs:
         submodules: recursive
     - name: Prepare system
       run:  |
-        sudo apt install libcurl4-openssl-dev -y
+        sudo apt update && sudo apt install libcurl4-openssl-dev -y
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
