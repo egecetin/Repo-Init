@@ -5,6 +5,8 @@
 ![GitHub](https://img.shields.io/github/license/egecetin/Repo-Init)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/egecetin/Repo-Init/build_and_test.yml?label=Actions&branch=master&logo=github)](https://github.com/egecetin/Repo-Init/actions/workflows/build_and_test.yml)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=egecetin_Repo-Init&metric=coverage)](https://sonarcloud.io/summary/new_code?id=egecetin_Repo-Init)
+![OSSF-Scorecard Score](https://img.shields.io/ossf-scorecard/github.com/egecetin/Repo-Init?label=OSSF%20Score)
+
 </div>
 
 ## Project
