@@ -5,11 +5,19 @@ on:
     - 'master'
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   clang-tidy:
     runs-on: ubuntu-latest
     container: egecetinn/ubuntu2204
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
@@ -25,6 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     container: egecetinn/alpine
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Run clang-format
@@ -44,6 +57,11 @@ jobs:
           - image: rockylinux9-icx
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - name: Checkout Code
         uses: actions/checkout@v4
         with:

@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]' || github.event.pull_request.user.login == 'pre-commit-ci[bot]'
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
       - name: Dependabot metadata
         if: github.actor == 'dependabot[bot]'
         id: metadata
