@@ -7,6 +7,9 @@ on:
     - 'master'
   pull_request:
 
+# Declare default permissions as read only.
+permissions: read-all
+
 jobs:
   sonarcloud:
     runs-on: ubuntu-latest
