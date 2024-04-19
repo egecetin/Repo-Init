@@ -1,3 +1,5 @@
+#pragma once
+
 #include <prometheus/gauge.h>
 #include <prometheus/registry.h>
 
