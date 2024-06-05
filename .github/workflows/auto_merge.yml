@@ -2,12 +2,14 @@ name: Auto-merge
 on: pull_request
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   dependabot:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     if: github.actor == 'dependabot[bot]' || github.event.pull_request.user.login == 'pre-commit-ci[bot]'
     steps:
       - name: Dependabot metadata
