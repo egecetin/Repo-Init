@@ -71,6 +71,8 @@ std::string ConfigParser::get(const std::string &key) const
 
 void ConfigParser::set(const std::string &key, const std::string &value) { _configMap[key] = value; }
 
+void ConfigParser::remove(const std::string &key) { _configMap.erase(key); }
+
 void ConfigParser::save() const { writeJson(); }
 
 void ConfigParser::load()

@@ -47,6 +47,13 @@ class ConfigParser {
 	void set(const std::string &key, const std::string &value);
 
 	/**
+     * Remove a key from the configuration file. If the key does not exist, nothing will happen
+     * If you don't save to the file, the changes will be lost.
+     * @param[in] key Key to remove
+     */
+	void remove(const std::string &key);
+
+	/**
 	 * Save the configuration to the file
 	 */
 	void save() const;
