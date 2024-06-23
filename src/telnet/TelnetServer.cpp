@@ -549,8 +549,8 @@ TelnetServer::~TelnetServer()
 		}
 		catch (const std::exception &e2)
 		{
-			std::cerr << "Telnet server destructor and also logger thrown an exception: " << e.what() << std::endl << e2.what()
-					  << std::endl;
+			std::cerr << "Telnet server destructor and also logger thrown an exception: " << e.what() << std::endl
+					  << e2.what() << std::endl;
 		}
 	}
 }
