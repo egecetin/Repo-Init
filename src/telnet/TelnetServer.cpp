@@ -545,12 +545,12 @@ TelnetServer::~TelnetServer()
 	{
 		try
 		{
-            spdlog::error("Telnet server destructor thrown an exception: {}", e.what());
-        }
-        catch (...)
-        {
+			spdlog::error("Telnet server destructor thrown an exception: {}", e.what());
+		}
+		catch (...)
+		{
 			std::cerr << "Telnet server destructor and also logger thrown an exception" << std::endl;
-        }
+		}
 	}
 }
 
