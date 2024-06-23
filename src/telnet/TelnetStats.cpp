@@ -18,7 +18,7 @@ TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint1
 {
 	if (!reg)
 	{
-		throw std::runtime_error("Can't init Telnet statistics. Registry is null");
+		throw std::invalid_argument("Can't init Telnet statistics. Registry is null");
 	}
 
 	// Basic information

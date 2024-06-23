@@ -114,8 +114,8 @@ ZeroMQ::~ZeroMQ()
 	{
 		stop();
 	}
-	catch (const std::exception &)
+	catch (const std::exception &e)
 	{
-		// Just catch the exception to ensure not throwing to main code
+		spdlog::error("Error while stopping ZeroMQ connection {} ({}).", socketAddr, e.what());
 	}
 }

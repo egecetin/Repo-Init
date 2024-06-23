@@ -131,8 +131,13 @@ void ZeroMQMonitor::on_event_unknown(const zmq_event_t & /*unused*/, const char 
 	on_event("Unknown event", spdlog::level::warn, addr_);
 }
 
-void ZeroMQMonitor::startMonitoring(const std::unique_ptr<zmq::socket_t> &socket, const std::string &monitorAddress)
+void ZeroMQMonitor::startMonitoring(zmq::socket_t *socket, const std::string &monitorAddress)
 {
+	if (socket == nullptr)
+	{
+		throw std::invalid_argument("ZeroMQ socket to monitor is nullptr");
+	}
+
 	init(*socket, monitorAddress);
 	_monitorThread = std::make_unique<std::thread>(&ZeroMQMonitor::threadFunc, this);
 }

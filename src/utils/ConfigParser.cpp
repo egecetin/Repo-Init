@@ -42,7 +42,7 @@ void ConfigParser::readJson()
 	}
 }
 
-void ConfigParser::writeJson()
+void ConfigParser::writeJson() const
 {
 	std::ofstream outFile(_configPath);
 	rapidjson::OStreamWrapper fStreamWrapper(outFile);

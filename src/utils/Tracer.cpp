@@ -31,14 +31,14 @@ void Tracer::startHandler()
 	auto database = crashpad::CrashReportDatabase::Initialize(reportsDir);
 	if (database == nullptr)
 	{
-		throw std::runtime_error("Can't initialize crash report database");
+		throw std::ios_base::failure("Can't initialize crash report database");
 	}
 
 	// Enable automated crash uploads
 	auto *settings = database->GetSettings();
 	if (settings == nullptr)
 	{
-		throw std::runtime_error("Can't get crash report database settings");
+		throw std::ios_base::failure("Can't get crash report database settings");
 	}
 	settings->SetUploadsEnabled(true);
 
@@ -46,13 +46,13 @@ void Tracer::startHandler()
 	if (!_clientHandler->StartHandler(handler, reportsDir, metricsDir, _serverPath, _serverProxy, _annotations,
 									  {"--no-rate-limit"}, true, false, _attachments))
 	{
-		throw std::runtime_error("Can't start crash handler");
+		throw std::ios_base::failure("Can't start crash handler");
 	}
 
 	_thread = std::make_unique<std::thread>(&Tracer::threadFunc, this);
 }
 
-void Tracer::threadFunc()
+void Tracer::threadFunc() noexcept
 {
 	while (!_shouldStop._M_i)
 	{
@@ -98,7 +98,7 @@ std::string Tracer::getSelfExecutableDir()
 	return (lastDelimPos == std::string::npos) ? "" : path.substr(0, lastDelimPos);
 }
 
-bool Tracer::isRunning()
+bool Tracer::isRunning() const
 {
 	int sockId{-1};
 	pid_t processId{-1};

@@ -14,7 +14,7 @@ class ConfigParser {
 
 	// JSON helpers
 	void readJson();
-	void writeJson();
+	void writeJson() const;
 
   public:
 	/**

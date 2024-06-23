@@ -88,7 +88,7 @@ class ZeroMQMonitor : private zmq::monitor_t {
 	 * @param[in] socket Zeromq socket
 	 * @param[in] monitorAddress Monitoring address
 	 */
-	void startMonitoring(const std::unique_ptr<zmq::socket_t> &socket, const std::string &monitorAddress);
+	void startMonitoring(zmq::socket_t *socket, const std::string &monitorAddress);
 
 	/**
 	 * Stop monitoring events on the socket.
