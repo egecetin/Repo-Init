@@ -547,9 +547,10 @@ TelnetServer::~TelnetServer()
 		{
 			spdlog::error("Telnet server destructor thrown an exception: {}", e.what());
 		}
-		catch (...)
+		catch (const std::exception &e2)
 		{
-			std::cerr << "Telnet server destructor and also logger thrown an exception" << std::endl;
+			std::cerr << "Telnet server destructor and also logger thrown an exception: " << e.what() << std::endl << e2.what()
+					  << std::endl;
 		}
 	}
 }
