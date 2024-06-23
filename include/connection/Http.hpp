@@ -73,7 +73,7 @@ class HTTP {
 	 * @param[in] userp User pointer
 	 * @return The total size of the received data
 	 */
-	static size_t writeDataCallback(char *contents, size_t size, size_t nmemb, void *userp);
+	static size_t writeDataCallback(char const *contents, size_t size, size_t nmemb, void *userp);
 
 	/**
 	 * Performs the request
