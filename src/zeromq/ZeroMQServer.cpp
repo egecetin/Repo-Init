@@ -46,7 +46,7 @@ void ZeroMQServer::update()
 	}
 }
 
-void ZeroMQServer::threadFunc()
+void ZeroMQServer::threadFunc() noexcept
 {
 	spdlog::info("ZeroMQ server started");
 	while (!_shouldStop._M_i)
@@ -77,7 +77,7 @@ ZeroMQServer::ZeroMQServer(const std::string &hostAddr, std::shared_ptr<std::ato
 		_stats = std::make_unique<ZeroMQStats>(reg);
 	}
 
-	startMonitoring(getSocket(), "inproc://" + std::to_string(constHasher(hostAddr.c_str())) + ".rep");
+	startMonitoring(getSocket().get(), "inproc://" + std::to_string(constHasher(hostAddr.c_str())) + ".rep");
 }
 
 bool ZeroMQServer::initialise()

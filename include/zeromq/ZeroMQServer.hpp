@@ -8,7 +8,7 @@
 
 using FPTR_MessageCallback = std::function<bool(const std::vector<zmq::message_t> &, std::vector<zmq::message_t> &)>;
 
-class ZeroMQServer : private ZeroMQ, ZeroMQMonitor {
+class ZeroMQServer : private ZeroMQ, private ZeroMQMonitor {
   private:
 	// Thread for processing messages
 	std::unique_ptr<std::thread> _serverThread;
@@ -25,7 +25,7 @@ class ZeroMQServer : private ZeroMQ, ZeroMQMonitor {
 	void update();
 
 	/// Main thread function
-	void threadFunc();
+	void threadFunc() noexcept;
 
   public:
 	/**

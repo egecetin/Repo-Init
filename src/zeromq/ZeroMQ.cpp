@@ -1,5 +1,7 @@
 #include "zeromq/ZeroMQ.hpp"
 
+#include <iostream>
+
 #include <spdlog/spdlog.h>
 #include <zmq_addon.hpp>
 
@@ -114,8 +116,17 @@ ZeroMQ::~ZeroMQ()
 	{
 		stop();
 	}
-	catch (const std::exception &)
+	catch (const std::exception &e)
 	{
-		// Just catch the exception to ensure not throwing to main code
+		try
+		{
+			spdlog::error("Error while stopping ZeroMQ connection {} ({})", socketAddr, e.what());
+		}
+		catch (const std::exception &e2)
+		{
+			std::cerr << "Error while stopping ZeroMQ connection and logger for connection " << socketAddr << " ("
+					  << e.what() << ")" << std::endl
+					  << e2.what() << std::endl;
+		}
 	}
 }

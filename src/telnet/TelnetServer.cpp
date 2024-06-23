@@ -7,6 +7,7 @@
 #include <spdlog/spdlog.h>
 
 #include <iomanip>
+#include <iostream>
 #include <sstream>
 #include <utility>
 
@@ -533,6 +534,27 @@ void TelnetSession::update()
 }
 
 /* ------------------ Telnet Server -------------------*/
+
+TelnetServer::~TelnetServer()
+{
+	try
+	{
+		shutdown();
+	}
+	catch (const std::exception &e)
+	{
+		try
+		{
+			spdlog::error("Telnet server destructor thrown an exception: {}", e.what());
+		}
+		catch (const std::exception &e2)
+		{
+			std::cerr << "Telnet server destructor and also logger thrown an exception: " << e.what() << std::endl
+					  << e2.what() << std::endl;
+		}
+	}
+}
+
 bool TelnetServer::initialise(u_long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag,
 							  std::string promptString, const std::shared_ptr<prometheus::Registry> &reg)
 {
@@ -628,7 +650,7 @@ bool TelnetServer::acceptConnection()
 	return true;
 }
 
-void TelnetServer::threadFunc()
+void TelnetServer::threadFunc() noexcept
 {
 	spdlog::info("Telnet server started");
 	while (!m_shouldStop._M_i)

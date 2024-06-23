@@ -16,7 +16,7 @@ ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg)
 {
 	if (!reg)
 	{
-		throw std::runtime_error("Can't init ZeroMQ statistics. Registry is null");
+		throw std::invalid_argument("Can't init ZeroMQ statistics. Registry is null");
 	}
 
 	// Basic information

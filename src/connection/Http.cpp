@@ -34,13 +34,12 @@ CURLcode HTTP::performRequest(HttpStatus::Code &statusCode)
 	return retval;
 }
 
-size_t HTTP::writeDataCallback(void *contents, size_t size, size_t nmemb, void *userp)
+size_t HTTP::writeDataCallback(const char *contents, size_t size, size_t nmemb, void *userp)
 {
 	const size_t recvSize = size * nmemb;
-	const auto *dataPtr = static_cast<char *>(contents);
 	auto *userMemPtr = static_cast<std::string *>(userp);
 
-	userMemPtr->assign(dataPtr, dataPtr + recvSize);
+	userMemPtr->assign(contents, contents + recvSize);
 
 	return recvSize;
 }

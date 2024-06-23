@@ -97,7 +97,7 @@ void ProcessMetrics::update()
 	_pFileDescriptorCount->Set(static_cast<double>(getFileDescriptorCount()));
 }
 
-void ProcessMetrics::threadRunner()
+void ProcessMetrics::threadRunner() noexcept
 {
 	while (!_shouldStop._M_i)
 	{

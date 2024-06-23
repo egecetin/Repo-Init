@@ -85,7 +85,7 @@ class ProcessMetrics {
 	/**
 	 * Main thread function
 	 */
-	void threadRunner();
+	void threadRunner() noexcept;
 
   public:
 	/**

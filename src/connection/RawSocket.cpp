@@ -4,6 +4,7 @@
 
 #include <chrono>
 #include <cstring>
+#include <ios>
 #include <stdexcept>
 #include <utility>
 
@@ -18,11 +19,11 @@ void RawSocket::init(int domain, int type, int protocol, sockaddr_ll &_addr)
 	sockFd = socket(domain, type, protocol); // Init socket
 	if (sockFd < 0)
 	{
-		throw std::runtime_error(getErrnoString(errno));
+		throw std::ios_base::failure(getErrnoString(errno));
 	}
 	if (bind(sockFd, reinterpret_cast<sockaddr *>(&_addr), sizeof(_addr)) < 0)
 	{
-		throw std::runtime_error(std::string("Bind failed: ") + getErrnoString(errno));
+		throw std::ios_base::failure(std::string("Bind failed: ") + getErrnoString(errno));
 	}
 }
 
@@ -35,7 +36,7 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFac
 	addr.sll_ifindex = static_cast<int>(if_nametoindex(iFace.c_str()));
 	if (addr.sll_ifindex == 0)
 	{
-		throw std::runtime_error(std::string("Can't find interface: ") + getErrnoString(errno));
+		throw std::ios_base::failure(std::string("Can't find interface: ") + getErrnoString(errno));
 	}
 
 	// Interface request
@@ -49,7 +50,7 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFac
 		init(PF_PACKET, SOCK_RAW, IPPROTO_RAW, addr);
 		if (setsockopt(sockFd, SOL_SOCKET, SO_BINDTODEVICE, static_cast<void *>(&ifr), sizeof(ifr)) < 0)
 		{
-			throw std::runtime_error(std::string("Can't set socket options: ") + getErrnoString(errno));
+			throw std::ios_base::failure(std::string("Can't set socket options: ") + getErrnoString(errno));
 		}
 	}
 	else
@@ -59,7 +60,7 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : writeMode(isWrite), iFac
 	isReady = true;
 }
 
-int RawSocket::writeData(const void *data, size_t dataLen)
+int RawSocket::writeData(const unsigned char *data, size_t dataLen)
 {
 	if (!isReady || !writeMode)
 	{
@@ -76,7 +77,7 @@ int RawSocket::writeData(const void *data, size_t dataLen)
 	return retval;
 }
 
-int RawSocket::readData(void *data, size_t dataLen)
+int RawSocket::readData(unsigned char *data, size_t dataLen)
 {
 	if (!isReady || writeMode)
 	{

@@ -163,6 +163,7 @@ namespace spdlog
 			case spdlog::level::debug:
 			case spdlog::level::info:
 			case spdlog::level::off:
+				// For lower levels, do nothing for now. But you can easily handle them here.
 			default:
 				break;
 			}

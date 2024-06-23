@@ -145,17 +145,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	TelnetServer &operator=(TelnetServer && /*unused*/) = delete;
 
 	/// Destructor for server
-	~TelnetServer()
-	{
-		try
-		{
-			shutdown();
-		}
-		catch (const std::exception &e)
-		{
-			// Just catch the exception to ensure not throwing to main code
-		}
-	}
+	~TelnetServer();
 
 	/**
 	 * Initializes a new Telnet server
@@ -195,7 +185,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	FPTR_TabCallback m_tabCallback;
 
 	bool acceptConnection();
-	void threadFunc();
+	void threadFunc() noexcept;
 
 	/// Process new connections and messages
 	void update();

@@ -69,7 +69,7 @@ class RawSocket {
 	 * @param[in] dataLen Length of the data
 	 * @return int Status of the operation. Returns the number of written bytes, negative on errors.
 	 */
-	int writeData(const void *data, size_t dataLen);
+	int writeData(const unsigned char *data, size_t dataLen);
 
 	/**
 	 * Reads data from the interface
@@ -77,7 +77,7 @@ class RawSocket {
 	 * @param[out] dataLen Length of the data
 	 * @return int Status of the operation. Returns the number of read bytes, negative on errors.
 	 */
-	int readData(void *data, size_t dataLen);
+	int readData(unsigned char *data, size_t dataLen);
 
 	/**
 	 * Get the statistics of the class

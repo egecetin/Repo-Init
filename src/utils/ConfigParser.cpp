@@ -42,7 +42,7 @@ void ConfigParser::readJson()
 	}
 }
 
-void ConfigParser::writeJson()
+void ConfigParser::writeJson() const
 {
 	std::ofstream outFile(_configPath);
 	rapidjson::OStreamWrapper fStreamWrapper(outFile);
@@ -71,7 +71,9 @@ std::string ConfigParser::get(const std::string &key) const
 
 void ConfigParser::set(const std::string &key, const std::string &value) { _configMap[key] = value; }
 
-void ConfigParser::save() { writeJson(); }
+void ConfigParser::remove(const std::string &key) { _configMap.erase(key); }
+
+void ConfigParser::save() const { writeJson(); }
 
 void ConfigParser::load()
 {

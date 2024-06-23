@@ -29,6 +29,14 @@ TEST(Utils_Tests, ConfigParserUnitTests)
 	ConfigParser parser2(TEST_CONFIG_PATH);
 	ASSERT_EQ(parser2.get("NEW_KEY"), "NEW_VALUE");
 
+	ASSERT_NO_THROW(parser.remove("NEW_KEY"));
+	ASSERT_EQ(parser.get("NEW_KEY"), "");
+	ASSERT_NO_THROW(parser.save());
+
+	ASSERT_EQ(parser2.get("NEW_KEY"), "NEW_VALUE");
+	ASSERT_NO_THROW(parser2.load());
+	ASSERT_EQ(parser2.get("NEW_KEY"), "");
+
 	ASSERT_THROW(ConfigParser(""), std::invalid_argument);
 	ASSERT_THROW(ConfigParser(TEST_CONFIG_EMPTY_PATH), std::invalid_argument);
 }
