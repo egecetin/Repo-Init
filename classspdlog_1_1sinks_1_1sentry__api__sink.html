@@ -365,8 +365,8 @@ template&lt;typename Mutex &gt; </div>
 <p>Flushes the sink.</p>
 <p>This function is called to flush any buffered log messages to the Sentry server. </p>
 
-<p class="definition">Definition at line <a class="el" href="Sentry_8cpp_source.html#l00171">171</a> of file <a class="el" href="Sentry_8cpp_source.html">Sentry.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;{}</div>
+<p class="definition">Definition at line <a class="el" href="Sentry_8cpp_source.html#l00172">172</a> of file <a class="el" href="Sentry_8cpp_source.html">Sentry.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;{}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -428,10 +428,11 @@ template&lt;typename Mutex &gt; </div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <span class="keywordflow">case</span> spdlog::level::debug:</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="keywordflow">case</span> spdlog::level::info:</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <span class="keywordflow">case</span> spdlog::level::off:</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            }</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                <span class="comment">// For lower levels, do nothing for now. But you can easily handle them here.</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            }</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -473,7 +474,7 @@ template&lt;typename Mutex &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacespdlog.html">spdlog</a></li><li class="navelem"><a class="el" href="namespacespdlog_1_1sinks.html">sinks</a></li><li class="navelem"><a class="el" href="classspdlog_1_1sinks_1_1sentry__api__sink.html">sentry_api_sink</a></li>
-    <li class="footer">Generated on Wed Jun 5 2024 08:48:34 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Jun 23 2024 10:40:02 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

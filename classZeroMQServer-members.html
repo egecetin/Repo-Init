@@ -143,10 +143,10 @@ $(document).ready(function(){initNavTree('classZeroMQServer.html',''); initResiz
   <tr class="even"><td class="entry"><a class="el" href="classZeroMQ.html#a21fde4ed3d2e92375dfbf50b18962ff3">socketAddr</a></td><td class="entry"><a class="el" href="classZeroMQ.html">ZeroMQ</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a></td><td class="entry"><a class="el" href="classZeroMQ.html">ZeroMQ</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classZeroMQ.html#aed565a56046d2966f9312a58aaab0c2a">start</a>()</td><td class="entry"><a class="el" href="classZeroMQ.html">ZeroMQ</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classZeroMQMonitor.html#a8e532d43e45d037b86c274e0d75a9aa5">startMonitoring</a>(const std::unique_ptr&lt; zmq::socket_t &gt; &amp;socket, const std::string &amp;monitorAddress)</td><td class="entry"><a class="el" href="classZeroMQMonitor.html">ZeroMQMonitor</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classZeroMQMonitor.html#a64401abf922cdd6b41ae331f6fb502c7">startMonitoring</a>(zmq::socket_t *socket, const std::string &amp;monitorAddress)</td><td class="entry"><a class="el" href="classZeroMQMonitor.html">ZeroMQMonitor</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9">stop</a>()</td><td class="entry"><a class="el" href="classZeroMQ.html">ZeroMQ</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="classZeroMQMonitor.html#a83ffe6f50cab52994f05fa68db78c8df">stopMonitoring</a>()</td><td class="entry"><a class="el" href="classZeroMQMonitor.html">ZeroMQMonitor</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classZeroMQServer.html#ae557b887002f9518120432bf9c909570">threadFunc</a>()</td><td class="entry"><a class="el" href="classZeroMQServer.html">ZeroMQServer</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classZeroMQServer.html#a7607b05b014e520debed6914d559da53">threadFunc</a>() noexcept</td><td class="entry"><a class="el" href="classZeroMQServer.html">ZeroMQServer</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811">update</a>()</td><td class="entry"><a class="el" href="classZeroMQServer.html">ZeroMQServer</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classZeroMQ.html#afa401b962662f92b156a5707c7cf84ad">ZeroMQ</a>(const zmq::socket_type &amp;type, const std::string &amp;addr, bool isBind)</td><td class="entry"><a class="el" href="classZeroMQ.html">ZeroMQ</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr><td class="entry"><a class="el" href="classZeroMQ.html#a193417717ccecb48c40fc692cb0fb0c8">ZeroMQ</a>(const std::shared_ptr&lt; zmq::context_t &gt; &amp;ctx, const zmq::socket_type &amp;type, const std::string &amp;addr, bool isBind)</td><td class="entry"><a class="el" href="classZeroMQ.html">ZeroMQ</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
@@ -166,7 +166,7 @@ $(document).ready(function(){initNavTree('classZeroMQServer.html',''); initResiz
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Jun 5 2024 08:48:34 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Jun 23 2024 10:40:02 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

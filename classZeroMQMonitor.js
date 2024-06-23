@@ -23,7 +23,7 @@ var classZeroMQMonitor =
     [ "on_monitor_started", "classZeroMQMonitor.html#ab4212ec2e297f4f934ed7cadebd5e329", null ],
     [ "operator=", "classZeroMQMonitor.html#a34fd2dfb0c6ba81f5848ed11afc865ed", null ],
     [ "operator=", "classZeroMQMonitor.html#a65793ecc57f1a03c2fb2d49f5865818b", null ],
-    [ "startMonitoring", "classZeroMQMonitor.html#a8e532d43e45d037b86c274e0d75a9aa5", null ],
+    [ "startMonitoring", "classZeroMQMonitor.html#a64401abf922cdd6b41ae331f6fb502c7", null ],
     [ "stopMonitoring", "classZeroMQMonitor.html#a83ffe6f50cab52994f05fa68db78c8df", null ],
     [ "threadFunc", "classZeroMQMonitor.html#a822fbf3c0f167e77abdcc0cdc4f31545", null ],
     [ "_monitorThread", "classZeroMQMonitor.html#a777d8155790bec800f1bce9ac52f3508", null ],

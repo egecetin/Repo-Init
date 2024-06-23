@@ -113,8 +113,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a97bb2fa92df20d3fa656318ac27c7b5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addf9ff2c36c092ef802f457ad406afaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParser.html#addf9ff2c36c092ef802f457ad406afaf">set</a> (const std::string &amp;key, const std::string &amp;value)</td></tr>
 <tr class="separator:addf9ff2c36c092ef802f457ad406afaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa086fef2638bc88f67070c307161f54b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParser.html#aa086fef2638bc88f67070c307161f54b">save</a> ()</td></tr>
-<tr class="separator:aa086fef2638bc88f67070c307161f54b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a317867fa9bcc23be87dcccc38a22d7a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParser.html#a317867fa9bcc23be87dcccc38a22d7a6">remove</a> (const std::string &amp;key)</td></tr>
+<tr class="separator:a317867fa9bcc23be87dcccc38a22d7a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55051ce9cb3eace17f86ac931265aa5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParser.html#a55051ce9cb3eace17f86ac931265aa5f">save</a> () const</td></tr>
+<tr class="separator:a55051ce9cb3eace17f86ac931265aa5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad646c0cf5c0b0ca090b6b0ac176c6b97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParser.html#ad646c0cf5c0b0ca090b6b0ac176c6b97">load</a> ()</td></tr>
 <tr class="separator:ad646c0cf5c0b0ca090b6b0ac176c6b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -122,8 +124,8 @@ Public Member Functions</h2></td></tr>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:aca170271d8fe1a36f905c971f807e8db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParser.html#aca170271d8fe1a36f905c971f807e8db">readJson</a> ()</td></tr>
 <tr class="separator:aca170271d8fe1a36f905c971f807e8db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a804f35fac8ed624ce10cda66ab14b721"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParser.html#a804f35fac8ed624ce10cda66ab14b721">writeJson</a> ()</td></tr>
-<tr class="separator:a804f35fac8ed624ce10cda66ab14b721"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e7cd06bfeb1ceacf9e65711bb0ccd08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParser.html#a2e7cd06bfeb1ceacf9e65711bb0ccd08">writeJson</a> () const</td></tr>
+<tr class="separator:a2e7cd06bfeb1ceacf9e65711bb0ccd08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -170,7 +172,7 @@ Private Attributes</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00064">64</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;: <a class="code" href="classConfigParser.html#a888ca616f0978247aff4136823e5737d">_configPath</a>(std::move(configPath)) { <a class="code" href="classConfigParser.html#ad646c0cf5c0b0ca090b6b0ac176c6b97">load</a>(); }</div>
 <div class="ttc" id="aclassConfigParser_html_a888ca616f0978247aff4136823e5737d"><div class="ttname"><a href="classConfigParser.html#a888ca616f0978247aff4136823e5737d">ConfigParser::_configPath</a></div><div class="ttdeci">std::string _configPath</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8hpp_source.html#l00012">ConfigParser.hpp:12</a></div></div>
-<div class="ttc" id="aclassConfigParser_html_ad646c0cf5c0b0ca090b6b0ac176c6b97"><div class="ttname"><a href="classConfigParser.html#ad646c0cf5c0b0ca090b6b0ac176c6b97">ConfigParser::load</a></div><div class="ttdeci">void load()</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00076">ConfigParser.cpp:76</a></div></div>
+<div class="ttc" id="aclassConfigParser_html_ad646c0cf5c0b0ca090b6b0ac176c6b97"><div class="ttname"><a href="classConfigParser.html#ad646c0cf5c0b0ca090b6b0ac176c6b97">ConfigParser::load</a></div><div class="ttdeci">void load()</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00078">ConfigParser.cpp:78</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -281,11 +283,11 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Load the configuration from the file </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00076">76</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="classConfigParser.html#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>.clear();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="classConfigParser.html#aca170271d8fe1a36f905c971f807e8db">readJson</a>();</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00078">78</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="classConfigParser.html#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>.clear();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="classConfigParser.html#aca170271d8fe1a36f905c971f807e8db">readJson</a>();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
 <div class="ttc" id="aclassConfigParser_html_aca170271d8fe1a36f905c971f807e8db"><div class="ttname"><a href="classConfigParser.html#aca170271d8fe1a36f905c971f807e8db">ConfigParser::readJson</a></div><div class="ttdeci">void readJson()</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00018">ConfigParser.cpp:18</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -381,8 +383,35 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="aa086fef2638bc88f67070c307161f54b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa086fef2638bc88f67070c307161f54b">&#9670;&nbsp;</a></span>save()</h2>
+<a id="a317867fa9bcc23be87dcccc38a22d7a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a317867fa9bcc23be87dcccc38a22d7a6">&#9670;&nbsp;</a></span>remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConfigParser::remove </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Remove a key from the configuration file. If the key does not exist, nothing will happen If you don't save to the file, the changes will be lost. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>Key to remove </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00074">74</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{ <a class="code" href="classConfigParser.html#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>.erase(key); }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a55051ce9cb3eace17f86ac931265aa5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55051ce9cb3eace17f86ac931265aa5f">&#9670;&nbsp;</a></span>save()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -391,22 +420,22 @@ Here is the caller graph for this function:</div>
           <td class="memname">void ConfigParser::save </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Save the configuration to the file </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00074">74</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{ <a class="code" href="classConfigParser.html#a804f35fac8ed624ce10cda66ab14b721">writeJson</a>(); }</div>
-<div class="ttc" id="aclassConfigParser_html_a804f35fac8ed624ce10cda66ab14b721"><div class="ttname"><a href="classConfigParser.html#a804f35fac8ed624ce10cda66ab14b721">ConfigParser::writeJson</a></div><div class="ttdeci">void writeJson()</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00045">ConfigParser.cpp:45</a></div></div>
+<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00076">76</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{ <a class="code" href="classConfigParser.html#a2e7cd06bfeb1ceacf9e65711bb0ccd08">writeJson</a>(); }</div>
+<div class="ttc" id="aclassConfigParser_html_a2e7cd06bfeb1ceacf9e65711bb0ccd08"><div class="ttname"><a href="classConfigParser.html#a2e7cd06bfeb1ceacf9e65711bb0ccd08">ConfigParser::writeJson</a></div><div class="ttdeci">void writeJson() const</div><div class="ttdef"><b>Definition:</b> <a href="ConfigParser_8cpp_source.html#l00045">ConfigParser.cpp:45</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classConfigParser_aa086fef2638bc88f67070c307161f54b_cgraph.png" border="0" usemap="#aclassConfigParser_aa086fef2638bc88f67070c307161f54b_cgraph" alt=""/></div>
-<map name="aclassConfigParser_aa086fef2638bc88f67070c307161f54b_cgraph" id="aclassConfigParser_aa086fef2638bc88f67070c307161f54b_cgraph">
+<div class="center"><img src="classConfigParser_a55051ce9cb3eace17f86ac931265aa5f_cgraph.png" border="0" usemap="#aclassConfigParser_a55051ce9cb3eace17f86ac931265aa5f_cgraph" alt=""/></div>
+<map name="aclassConfigParser_a55051ce9cb3eace17f86ac931265aa5f_cgraph" id="aclassConfigParser_a55051ce9cb3eace17f86ac931265aa5f_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,148,32"/>
-<area shape="rect" href="classConfigParser.html#a804f35fac8ed624ce10cda66ab14b721" title=" " alt="" coords="196,5,367,32"/>
+<area shape="rect" href="classConfigParser.html#a2e7cd06bfeb1ceacf9e65711bb0ccd08" title=" " alt="" coords="196,5,367,32"/>
 </map>
 </div>
 
@@ -450,8 +479,8 @@ Here is the call graph for this function:</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a804f35fac8ed624ce10cda66ab14b721"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a804f35fac8ed624ce10cda66ab14b721">&#9670;&nbsp;</a></span>writeJson()</h2>
+<a id="a2e7cd06bfeb1ceacf9e65711bb0ccd08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e7cd06bfeb1ceacf9e65711bb0ccd08">&#9670;&nbsp;</a></span>writeJson()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -463,7 +492,7 @@ Here is the call graph for this function:</div>
           <td class="memname">void ConfigParser::writeJson </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -494,10 +523,10 @@ Here is the call graph for this function:</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classConfigParser_a804f35fac8ed624ce10cda66ab14b721_icgraph.png" border="0" usemap="#aclassConfigParser_a804f35fac8ed624ce10cda66ab14b721_icgraph" alt=""/></div>
-<map name="aclassConfigParser_a804f35fac8ed624ce10cda66ab14b721_icgraph" id="aclassConfigParser_a804f35fac8ed624ce10cda66ab14b721_icgraph">
+<div class="center"><img src="classConfigParser_a2e7cd06bfeb1ceacf9e65711bb0ccd08_icgraph.png" border="0" usemap="#aclassConfigParser_a2e7cd06bfeb1ceacf9e65711bb0ccd08_icgraph" alt=""/></div>
+<map name="aclassConfigParser_a2e7cd06bfeb1ceacf9e65711bb0ccd08_icgraph" id="aclassConfigParser_a2e7cd06bfeb1ceacf9e65711bb0ccd08_icgraph">
 <area shape="rect" title=" " alt="" coords="196,5,367,32"/>
-<area shape="rect" href="classConfigParser.html#aa086fef2638bc88f67070c307161f54b" title=" " alt="" coords="5,5,148,32"/>
+<area shape="rect" href="classConfigParser.html#a55051ce9cb3eace17f86ac931265aa5f" title=" " alt="" coords="5,5,148,32"/>
 </map>
 </div>
 
@@ -562,7 +591,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classConfigParser.html">ConfigParser</a></li>
-    <li class="footer">Generated on Wed Jun 5 2024 08:48:34 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Jun 23 2024 10:40:02 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

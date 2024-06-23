@@ -260,24 +260,25 @@ $(document).ready(function(){initNavTree('Sentry_8cpp_source.html',''); initResi
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <span class="keywordflow">case</span> spdlog::level::debug:</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="keywordflow">case</span> spdlog::level::info:</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <span class="keywordflow">case</span> spdlog::level::off:</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            }</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        }</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a3c0a6173191a8110bf4e54e3c1379267">  171</a></span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Mutex&gt; <span class="keywordtype">void</span> <a class="code" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a3c0a6173191a8110bf4e54e3c1379267">sentry_api_sink&lt;Mutex&gt;::flush_</a>() {}</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="keyword">template</span> <span class="keyword">class </span><a class="code" href="classspdlog_1_1sinks_1_1sentry__api__sink.html">sentry_api_sink&lt;std::mutex&gt;</a>;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <span class="keyword">template</span> <span class="keyword">class </span><a class="code" href="classspdlog_1_1sinks_1_1sentry__api__sink.html">sentry_api_sink&lt;details::null_mutex&gt;</a>;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    } <span class="comment">// namespace sinks</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;} <span class="comment">// namespace spdlog</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                <span class="comment">// For lower levels, do nothing for now. But you can easily handle them here.</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            }</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        }</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a3c0a6173191a8110bf4e54e3c1379267">  172</a></span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Mutex&gt; <span class="keywordtype">void</span> <a class="code" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a3c0a6173191a8110bf4e54e3c1379267">sentry_api_sink&lt;Mutex&gt;::flush_</a>() {}</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <span class="keyword">template</span> <span class="keyword">class </span><a class="code" href="classspdlog_1_1sinks_1_1sentry__api__sink.html">sentry_api_sink&lt;std::mutex&gt;</a>;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        <span class="keyword">template</span> <span class="keyword">class </span><a class="code" href="classspdlog_1_1sinks_1_1sentry__api__sink.html">sentry_api_sink&lt;details::null_mutex&gt;</a>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    } <span class="comment">// namespace sinks</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;} <span class="comment">// namespace spdlog</span></div>
 <div class="ttc" id="aFileHelpers_8hpp_html"><div class="ttname"><a href="FileHelpers_8hpp.html">FileHelpers.hpp</a></div></div>
 <div class="ttc" id="aFileHelpers_8hpp_html_ac9a16d00ef61344fc1ca49cfe7c69b52"><div class="ttname"><a href="FileHelpers_8hpp.html#ac9a16d00ef61344fc1ca49cfe7c69b52">findFromFile</a></div><div class="ttdeci">std::vector&lt; std::string &gt; findFromFile(const std::string &amp;filePath, const std::string &amp;pattern, std::string &amp;lastWord)</div><div class="ttdef"><b>Definition:</b> <a href="FileHelpers_8hpp_source.html#l00015">FileHelpers.hpp:15</a></div></div>
 <div class="ttc" id="aSentry_8cpp_html_ad7a90ea7fa751e405090d5fdab582d05"><div class="ttname"><a href="Sentry_8cpp.html#ad7a90ea7fa751e405090d5fdab582d05">MAC_LEN</a></div><div class="ttdeci">constexpr int MAC_LEN</div><div class="ttdef"><b>Definition:</b> <a href="Sentry_8cpp_source.html#l00016">Sentry.cpp:16</a></div></div>
 <div class="ttc" id="aSentry_8hpp_html"><div class="ttname"><a href="Sentry_8hpp.html">Sentry.hpp</a></div></div>
 <div class="ttc" id="aclassspdlog_1_1sinks_1_1sentry__api__sink_html"><div class="ttname"><a href="classspdlog_1_1sinks_1_1sentry__api__sink.html">spdlog::sinks::sentry_api_sink</a></div><div class="ttdef"><b>Definition:</b> <a href="Sentry_8hpp_source.html#l00022">Sentry.hpp:22</a></div></div>
 <div class="ttc" id="aclassspdlog_1_1sinks_1_1sentry__api__sink_html_a005dd6dd72151bf12eceed15c5ec8db3"><div class="ttname"><a href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a005dd6dd72151bf12eceed15c5ec8db3">spdlog::sinks::sentry_api_sink::sentry_api_sink</a></div><div class="ttdeci">sentry_api_sink(const std::string &amp;sentryAddress)</div><div class="ttdef"><b>Definition:</b> <a href="Sentry_8cpp_source.html#l00022">Sentry.cpp:22</a></div></div>
-<div class="ttc" id="aclassspdlog_1_1sinks_1_1sentry__api__sink_html_a3c0a6173191a8110bf4e54e3c1379267"><div class="ttname"><a href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a3c0a6173191a8110bf4e54e3c1379267">spdlog::sinks::sentry_api_sink::flush_</a></div><div class="ttdeci">void flush_() override</div><div class="ttdef"><b>Definition:</b> <a href="Sentry_8cpp_source.html#l00171">Sentry.cpp:171</a></div></div>
+<div class="ttc" id="aclassspdlog_1_1sinks_1_1sentry__api__sink_html_a3c0a6173191a8110bf4e54e3c1379267"><div class="ttname"><a href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a3c0a6173191a8110bf4e54e3c1379267">spdlog::sinks::sentry_api_sink::flush_</a></div><div class="ttdeci">void flush_() override</div><div class="ttdef"><b>Definition:</b> <a href="Sentry_8cpp_source.html#l00172">Sentry.cpp:172</a></div></div>
 <div class="ttc" id="aclassspdlog_1_1sinks_1_1sentry__api__sink_html_a6ec14e94520acc8164b9faa08ce53842"><div class="ttname"><a href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a6ec14e94520acc8164b9faa08ce53842">spdlog::sinks::sentry_api_sink::~sentry_api_sink</a></div><div class="ttdeci">~sentry_api_sink()</div><div class="ttdef"><b>Definition:</b> <a href="Sentry_8cpp_source.html#l00140">Sentry.cpp:140</a></div></div>
 <div class="ttc" id="aclassspdlog_1_1sinks_1_1sentry__api__sink_html_af79e71e949f84ccbf99f68059dc8b5bc"><div class="ttname"><a href="classspdlog_1_1sinks_1_1sentry__api__sink.html#af79e71e949f84ccbf99f68059dc8b5bc">spdlog::sinks::sentry_api_sink::sink_it_</a></div><div class="ttdeci">void sink_it_(const details::log_msg &amp;msg) override</div><div class="ttdef"><b>Definition:</b> <a href="Sentry_8cpp_source.html#l00142">Sentry.cpp:142</a></div></div>
 <div class="ttc" id="anamespacespdlog_html"><div class="ttname"><a href="namespacespdlog.html">spdlog</a></div><div class="ttdef"><b>Definition:</b> <a href="Loki_8cpp_source.html#l00016">Loki.cpp:17</a></div></div>
@@ -287,7 +288,7 @@ $(document).ready(function(){initNavTree('Sentry_8cpp_source.html',''); initResi
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_b3320b59a4aa4a7431bc8488b87009bf.html">logging</a></li><li class="navelem"><a class="el" href="Sentry_8cpp.html">Sentry.cpp</a></li>
-    <li class="footer">Generated on Wed Jun 5 2024 08:48:34 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Sun Jun 23 2024 10:40:02 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
