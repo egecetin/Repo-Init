@@ -49,7 +49,7 @@ class ConfigParser {
 	/**
 	 * Save the configuration to the file
 	 */
-	void save();
+	void save() const;
 
 	/**
 	 * Load the configuration from the file

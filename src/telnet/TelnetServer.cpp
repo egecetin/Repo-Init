@@ -7,6 +7,7 @@
 #include <spdlog/spdlog.h>
 
 #include <iomanip>
+#include <iostream>
 #include <sstream>
 #include <utility>
 
@@ -542,7 +543,14 @@ TelnetServer::~TelnetServer()
 	}
 	catch (const std::exception &e)
 	{
-		spdlog::error("Telnet server destructor thrown an exception: {}", e.what());
+		try
+		{
+            spdlog::error("Telnet server destructor thrown an exception: {}", e.what());
+        }
+        catch (...)
+        {
+			std::cerr << "Telnet server destructor and also logger thrown an exception" << std::endl;
+        }
 	}
 }
 
