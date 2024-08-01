@@ -27,7 +27,7 @@ jobs:
       - name: Install Test Requirements
         run: pip install -r tests/data/requirements.txt
       - name: Install sonar-scanner and build-wrapper
-        uses: sonarsource/sonarcloud-github-c-cpp@e25edaefff1e076daf6517d462ed86f8c99fec70 # v3.0.0
+        uses: sonarsource/sonarcloud-github-c-cpp@816b1822d71776ee0d32bc012e95024ec52ac1fc # v3.1.0
       - name: Configure
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DXXX_ENABLE_COVERAGE=ON -DXXX_ENABLE_MEMLEAK_CHECK=ON
       - name: Run build-wrapper
