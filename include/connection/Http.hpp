@@ -70,10 +70,10 @@ class HTTP {
 	 * @param[in] contents The received data
 	 * @param[in] size The size of each element
 	 * @param[in] nmemb The number of elements
-	 * @param[in] userp User pointer
+	 * @param[in] userp User pointer to a string
 	 * @return The total size of the received data
 	 */
-	static size_t writeDataCallback(const char *contents, size_t size, size_t nmemb, void *userp);
+	static size_t writeDataCallback(const char *contents, size_t size, size_t nmemb, std::string *userp);
 
 	/**
 	 * Performs the request
