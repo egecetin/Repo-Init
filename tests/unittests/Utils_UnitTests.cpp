@@ -7,9 +7,19 @@
 
 #include <gtest/gtest.h>
 
+#define TEST_CONFIG_PATH_COPY "/home/wsl-ubuntu/Repo-Init/tests/data/config_copy.json"
+
 TEST(Utils_Tests, ConfigParserUnitTests)
 {
-	ConfigParser parser(TEST_CONFIG_PATH);
+	// Copy original file to prevent modifying the original file
+	std::ifstream srcFile(TEST_CONFIG_PATH, std::ios::binary);
+	std::ofstream dstFile(TEST_CONFIG_PATH_COPY, std::ios::binary);
+	dstFile << srcFile.rdbuf();
+	dstFile.close();
+	ASSERT_FALSE(srcFile.fail());
+	ASSERT_FALSE(dstFile.fail());
+
+	ConfigParser parser(TEST_CONFIG_PATH_COPY);
 
 	ASSERT_EQ(parser.get("TELNET_PORT"), "23000");
 	ASSERT_EQ(parser.get("LOKI_ADDRESS"), "http://localhost:8400");
@@ -26,7 +36,7 @@ TEST(Utils_Tests, ConfigParserUnitTests)
 	ASSERT_NO_THROW(parser.set("NEW_KEY", "NEW_VALUE"));
 	ASSERT_NO_THROW(parser.save());
 
-	ConfigParser parser2(TEST_CONFIG_PATH);
+	ConfigParser parser2(TEST_CONFIG_PATH_COPY);
 	ASSERT_EQ(parser2.get("NEW_KEY"), "NEW_VALUE");
 
 	ASSERT_NO_THROW(parser.remove("NEW_KEY"));
