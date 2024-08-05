@@ -34,12 +34,11 @@ CURLcode HTTP::performRequest(HttpStatus::Code &statusCode)
 	return retval;
 }
 
-size_t HTTP::writeDataCallback(const char *contents, size_t size, size_t nmemb, void *userp)
+size_t HTTP::writeDataCallback(const char *contents, size_t size, size_t nmemb, std::string *userp)
 {
 	const size_t recvSize = size * nmemb;
-	auto *userMemPtr = static_cast<std::string *>(userp);
-
-	userMemPtr->assign(contents, contents + recvSize);
+	// Userp always referenced, there is no possibility of userp is nullptr. Directly use without checking
+	userp->assign(contents, contents + recvSize);
 
 	return recvSize;
 }
