@@ -7,8 +7,6 @@
 
 #include <gtest/gtest.h>
 
-#define TEST_CONFIG_PATH_COPY "/home/wsl-ubuntu/Repo-Init/tests/data/config_copy.json"
-
 TEST(Utils_Tests, ConfigParserUnitTests)
 {
 	// Copy original file to prevent modifying the original file
