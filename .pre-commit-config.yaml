@@ -1,5 +1,11 @@
 fail_fast: false
 repos:
+  - repo: local
+    hooks:
+      - id: test cppcheck
+        name: test cppcheck install
+        entry: sudo apt install -y cppcheck
+        language: system    
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
     hooks:
