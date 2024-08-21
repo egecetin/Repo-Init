@@ -4,7 +4,7 @@ repos:
     hooks:
       - id: test cppcheck
         name: test cppcheck install
-        entry: DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends cppcheck
+        entry: apt-get install -y --no-install-recommends cppcheck
         language: system    
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
