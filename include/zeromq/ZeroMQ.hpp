@@ -13,16 +13,16 @@
 class ZeroMQ {
   private:
 	// Internal context
-	std::shared_ptr<zmq::context_t> contextPtr;
+	std::shared_ptr<zmq::context_t> _contextPtr;
 	// Internal socket
-	std::unique_ptr<zmq::socket_t> socketPtr;
+	std::unique_ptr<zmq::socket_t> _socketPtr;
 
 	// Is currently active
-	bool isActive{false};
+	bool _isActive{false};
 	// Should be binded
-	bool isBinded{false};
+	bool _isBinded{false};
 	// Address to bind/connect
-	std::string socketAddr;
+	std::string _socketAddr;
 
 	// Initializes class
 	void init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr,
@@ -87,19 +87,19 @@ class ZeroMQ {
 	 * Get the reference of socket
 	 * @return const std::unique_ptr<zmq::socket_t>&
 	 */
-	const std::unique_ptr<zmq::socket_t> &getSocket() const { return socketPtr; }
+	const std::unique_ptr<zmq::socket_t> &getSocket() const { return _socketPtr; }
 
 	/**
 	 * Get the reference of context
 	 * @return const std::shared_ptr<zmq::context_t>&
 	 */
-	const std::shared_ptr<zmq::context_t> &getContext() const { return contextPtr; }
+	const std::shared_ptr<zmq::context_t> &getContext() const { return _contextPtr; }
 
 	/**
 	 * Get the address of the socket
 	 * @return const std::string& Address of the socket
 	 */
-	const std::string &getAddress() const { return socketAddr; }
+	const std::string &getAddress() const { return _socketAddr; }
 
 	/**
 	 * Destroy the ZeroMQ class

@@ -30,21 +30,21 @@ struct TelnetServerStats {
  */
 class TelnetStats {
   private:
-	prometheus::Family<prometheus::Info> *infoFamily; ///< Information metric family
-	prometheus::Gauge *activeConnection;			  ///< Number of active connections
-	prometheus::Counter *refusedConnection;			  ///< Number of refused connections
-	prometheus::Counter *totalConnection;			  ///< Number of total received connections
-	prometheus::Summary *processingTime;			  ///< Value of the command processing performance
-	prometheus::Gauge *maxProcessingTime;			  ///< Maximum value of the command processing performance
-	prometheus::Gauge *minProcessingTime;			  ///< Minimum value of the command processing performance
-	prometheus::Counter *succeededCommand;			  ///< Number of succeeded commands
-	prometheus::Counter *failedCommand;				  ///< Number of failed commands
-	prometheus::Counter *totalCommand;				  ///< Number of total received commands
-	prometheus::Counter *totalUploadBytes;			  ///< Total uploaded bytes
-	prometheus::Counter *totalDownloadBytes;		  ///< Total downloaded bytes
-	prometheus::Summary *sessionDuration;			  ///< Value of the duration of sessions
-	prometheus::Gauge *maxSessionDuration;			  ///< Maximum duration of sessions
-	prometheus::Gauge *minSessionDuration;			  ///< Minimum duration of sessions
+	prometheus::Family<prometheus::Info> *_infoFamily; ///< Information metric family
+	prometheus::Gauge *_activeConnection;			   ///< Number of active connections
+	prometheus::Counter *_refusedConnection;		   ///< Number of refused connections
+	prometheus::Counter *_totalConnection;			   ///< Number of total received connections
+	prometheus::Summary *_processingTime;			   ///< Value of the command processing performance
+	prometheus::Gauge *_maxProcessingTime;			   ///< Maximum value of the command processing performance
+	prometheus::Gauge *_minProcessingTime;			   ///< Minimum value of the command processing performance
+	prometheus::Counter *_succeededCommand;			   ///< Number of succeeded commands
+	prometheus::Counter *_failedCommand;			   ///< Number of failed commands
+	prometheus::Counter *_totalCommand;				   ///< Number of total received commands
+	prometheus::Counter *_totalUploadBytes;			   ///< Total uploaded bytes
+	prometheus::Counter *_totalDownloadBytes;		   ///< Total downloaded bytes
+	prometheus::Summary *_sessionDuration;			   ///< Value of the duration of sessions
+	prometheus::Gauge *_maxSessionDuration;			   ///< Maximum duration of sessions
+	prometheus::Gauge *_minSessionDuration;			   ///< Minimum duration of sessions
 
   public:
 	/**

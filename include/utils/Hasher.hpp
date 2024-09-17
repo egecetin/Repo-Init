@@ -7,15 +7,15 @@
 
 /**
  * Calculates the compile-time hash value of a string.
- * @param s The input string.
+ * @param[in] s The input string.
  * @return The hash value of the input string.
  */
 constexpr size_t constHasher(const char *s) { return *s ? *s + 33 * constHasher(s + 1) : 5381; }
 
 /**
  * Generates entropy using the input string and an initial value.
- * @param entropy The input string used for generating entropy.
- * @param iv The initial value for the entropy generation.
+ * @param[in] entropy The input string used for generating entropy.
+ * @param[in] iv The initial value for the entropy generation.
  * @return The generated entropy value.
  */
 template <size_t N> constexpr uint64_t constSeeder(const char (&entropy)[N], const uint64_t iv = 0)

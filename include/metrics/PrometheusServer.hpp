@@ -10,14 +10,14 @@
 class PrometheusServer {
   private:
 	/// Mutex for concurrent add tracker calls
-	std::mutex guardLock;
+	std::mutex _guardLock;
 	/// Main HTTP Server
-	std::unique_ptr<prometheus::Exposer> mainExposer;
+	std::unique_ptr<prometheus::Exposer> _mainExposer;
 	/// All tracker registries
-	std::vector<std::pair<uint64_t, std::shared_ptr<prometheus::Registry>>> vRegister;
+	std::vector<std::pair<uint64_t, std::shared_ptr<prometheus::Registry>>> _vRegister;
 
 	/// General application information
-	prometheus::Family<prometheus::Info> *infoFamily;
+	prometheus::Family<prometheus::Info> *_infoFamily;
 
   public:
 	/**

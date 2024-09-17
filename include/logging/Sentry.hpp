@@ -51,7 +51,7 @@ namespace spdlog
 			void flush_() override;
 
 		  private:
-			bool sentryAvailable{false}; /**< Flag indicating if the Sentry server is available. */
+			bool _sentryAvailable{false}; /**< Flag indicating if the Sentry server is available. */
 		};
 
 		using sentry_api_sink_mt = sentry_api_sink<std::mutex>; /**< Type alias for Sentry API sink with mutex. */

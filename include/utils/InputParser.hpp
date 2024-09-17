@@ -10,7 +10,7 @@
  */
 class InputParser {
   private:
-	std::vector<std::string> tokens;
+	std::vector<std::string> _tokens;
 
   public:
 	/**
@@ -22,7 +22,7 @@ class InputParser {
 	{
 		for (int i = 1; i < argc; ++i)
 		{
-			tokens.emplace_back(argv[i]);
+			_tokens.emplace_back(argv[i]);
 		}
 	}
 
@@ -34,8 +34,8 @@ class InputParser {
 	const std::string &getCmdOption(const std::string &option) const
 	{
 		std::vector<std::string>::const_iterator itr;
-		itr = std::find(tokens.begin(), tokens.end(), option);
-		if (itr != tokens.end() && ++itr != tokens.end())
+		itr = std::find(_tokens.begin(), _tokens.end(), option);
+		if (itr != _tokens.end() && ++itr != _tokens.end())
 		{
 			return *itr;
 		}
@@ -50,12 +50,12 @@ class InputParser {
 	std::vector<std::pair<std::string, std::string>> getCmdOptions() const
 	{
 		std::vector<std::pair<std::string, std::string>> options;
-		for (auto itr = tokens.begin(); itr != tokens.end(); ++itr)
+		for (auto itr = _tokens.begin(); itr != _tokens.end(); ++itr)
 		{
 			if (!itr->empty() && itr->at(0) == '-')
 			{
 				auto nextItr = std::next(itr);
-				if (nextItr != tokens.end() && !nextItr->empty() && nextItr->at(0) != '-')
+				if (nextItr != _tokens.end() && !nextItr->empty() && nextItr->at(0) != '-')
 				{
 					options.emplace_back(*itr, *(nextItr));
 				}
@@ -76,6 +76,6 @@ class InputParser {
 	 */
 	bool cmdOptionExists(const std::string &option) const
 	{
-		return std::find(tokens.begin(), tokens.end(), option) != tokens.end();
+		return std::find(_tokens.begin(), _tokens.end(), option) != _tokens.end();
 	}
 };

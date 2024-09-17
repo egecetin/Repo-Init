@@ -43,9 +43,9 @@ struct HTTPStats {
 class HTTP {
   private:
 	/// CURL handler
-	CURL *curl = curl_easy_init();
+	CURL *_curl = curl_easy_init();
 	/// Full path of server
-	std::string hostAddr;
+	std::string _hostAddr;
 
 	/**
 	 * Sets common fields for HTTP requests
@@ -110,14 +110,14 @@ class HTTP {
 	 */
 	template <typename T> bool setOption(CURLoption option, T value)
 	{
-		return curl_easy_setopt(curl, option, value) == CURLE_OK;
+		return curl_easy_setopt(_curl, option, value) == CURLE_OK;
 	}
 
 	/**
 	 * Gets the host address of the object
 	 * @return The host address
 	 */
-	std::string getHostAddress() const { return hostAddr; }
+	std::string getHostAddress() const { return _hostAddr; }
 
 	/**
 	 * Sends a GET request
