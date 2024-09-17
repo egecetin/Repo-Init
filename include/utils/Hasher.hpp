@@ -7,10 +7,10 @@
 
 /**
  * Calculates the compile-time hash value of a string.
- * @param[in] s The input string.
+ * @param[in] s The input string. Must be null-terminated.
  * @return The hash value of the input string.
  */
-constexpr size_t constHasher(const char *s) { return (s && *s) ? *s + 33 * constHasher(s + 1) : 5381; }
+constexpr size_t constHasher(const char *s) { return (s && *s) ? (*s + 33 * constHasher(s + 1)) : 5381; }
 
 /**
  * Generates entropy using the input string and an initial value.
