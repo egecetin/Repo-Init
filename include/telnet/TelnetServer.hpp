@@ -170,11 +170,11 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	void tabCallback(FPTR_TabCallback func) { m_tabCallback = std::move(func); }
 	FPTR_TabCallback tabCallback() const { return m_tabCallback; }
 
-	VEC_SP_TelnetSession sessions() const { return m_sessions; }
+	const VEC_SP_TelnetSession& sessions() const { return m_sessions; }
 
 	bool interactivePrompt() const { return m_promptString.length() > 0; }
 	void promptString(const std::string &prompt) { m_promptString = prompt; }
-	std::string promptString() const { return m_promptString; }
+	const std::string& promptString() const { return m_promptString; }
 
   private:
 	// Called after the telnet session is initialised. function(SP_TelnetSession) {}

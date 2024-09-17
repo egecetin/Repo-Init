@@ -61,7 +61,7 @@ class RawSocket {
 	 * Returns the binded ethernet interface
 	 * @return std::string Name of the interface
 	 */
-	std::string getInterfaceName() const { return _iFace; }
+	const std::string& getInterfaceName() const { return _iFace; }
 
 	/**
 	 * Writes data to the interface
