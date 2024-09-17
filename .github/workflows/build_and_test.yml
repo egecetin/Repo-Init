@@ -45,6 +45,8 @@ jobs:
           submodules: recursive
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Install Test Requirements
+        run: pip3 install -r tests/data/requirements.txt
       - name: Configure
         run: cmake -DXXX_ENABLE_MEMLEAK_CHECK=ON -S . -B build
       - name: Build
@@ -65,6 +67,8 @@ jobs:
           submodules: recursive
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Install Test Requirements
+        run: pip3 install -r tests/data/requirements.txt
       - name: Configure
         run: cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DXXX_BUILD_UNITTESTS=OFF -DXXX_BUILD_FUZZTESTS=ON -DXXX_ENABLE_${{ matrix.sanitizer }}=ON -S . -B build
       - name: Build
