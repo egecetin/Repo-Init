@@ -55,7 +55,8 @@ jobs:
   fuzzer:
     runs-on: ubuntu-latest
     container: egecetinn/ubuntu2204
-    # Create matrix for ASAN, UBSAN, MSAN, TSAN
+    matrix:
+      sanitizer: [ASAN, USAN, MSAN]
     steps:
       - name: Checkout Code
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
@@ -64,7 +65,7 @@ jobs:
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Configure
-        run: cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DXXX_BUILD_UNITTESTS=OFF -DXXX_BUILD_FUZZTESTS=ON -S . -B build
+        run: cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DXXX_BUILD_UNITTESTS=OFF -DXXX_BUILD_FUZZTESTS=ON -DXXX_ENABLE_${{ matrix.sanitizer }}=ON -S . -B build
       - name: Build
         run: cmake --build build --parallel
       - name: Run tests
