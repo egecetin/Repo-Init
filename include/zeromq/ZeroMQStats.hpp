@@ -19,18 +19,18 @@ struct ZeroMQServerStats {
  */
 class ZeroMQStats {
   private:
-	prometheus::Family<prometheus::Info> *infoFamily; ///< Information metric family
-	prometheus::Summary *processingTime;			  ///< Value of the command processing performance
-	prometheus::Gauge *maxProcessingTime;			  ///< Maximum value of the command processing performance
-	prometheus::Gauge *minProcessingTime;			  ///< Minimum value of the command processing performance
-	prometheus::Counter *succeededCommand;			  ///< Number of succeeded commands
-	prometheus::Counter *failedCommand;				  ///< Number of failed commands
-	prometheus::Counter *totalCommand;				  ///< Number of total received commands
-	prometheus::Counter *succeededCommandParts;		  ///< Number of received succeeded message parts
-	prometheus::Counter *failedCommandParts;		  ///< Number of received failed message parts
-	prometheus::Counter *totalCommandParts;			  ///< Number of received total message parts
-	prometheus::Counter *totalUploadBytes;			  ///< Total uploaded bytes
-	prometheus::Counter *totalDownloadBytes;		  ///< Total downloaded bytes
+	prometheus::Family<prometheus::Info> *_infoFamily; ///< Information metric family
+	prometheus::Summary *_processingTime;			   ///< Value of the command processing performance
+	prometheus::Gauge *_maxProcessingTime;			   ///< Maximum value of the command processing performance
+	prometheus::Gauge *_minProcessingTime;			   ///< Minimum value of the command processing performance
+	prometheus::Counter *_succeededCommand;			   ///< Number of succeeded commands
+	prometheus::Counter *_failedCommand;			   ///< Number of failed commands
+	prometheus::Counter *_totalCommand;				   ///< Number of total received commands
+	prometheus::Counter *_succeededCommandParts;	   ///< Number of received succeeded message parts
+	prometheus::Counter *_failedCommandParts;		   ///< Number of received failed message parts
+	prometheus::Counter *_totalCommandParts;		   ///< Number of received total message parts
+	prometheus::Counter *_totalUploadBytes;			   ///< Total uploaded bytes
+	prometheus::Counter *_totalDownloadBytes;		   ///< Total downloaded bytes
 
   public:
 	/**

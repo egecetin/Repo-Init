@@ -25,7 +25,7 @@ namespace spdlog
 			{
 				return;
 			}
-			sentryAvailable = true;
+			_sentryAvailable = true;
 
 			// Set options
 			sentry_options_t *sentryOptions = sentry_options_new();
@@ -141,7 +141,7 @@ namespace spdlog
 
 		template <typename Mutex> void sentry_api_sink<Mutex>::sink_it_(const details::log_msg &msg)
 		{
-			if (!sentryAvailable)
+			if (!_sentryAvailable)
 			{
 				return;
 			}

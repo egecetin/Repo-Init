@@ -7,48 +7,48 @@ StatusTracker::StatusTracker(const std::shared_ptr<prometheus::Registry> &reg, c
 							 uint64_t metricID)
 {
 	// Register values
-	activeCtr = &prometheus::BuildGauge()
+	_activeCtr = &prometheus::BuildGauge()
 					 .Name(name + "_active_event_ctr_" + std::to_string(metricID))
 					 .Help("Currently active number of events of " + name)
 					 .Register(*reg)
 					 .Add({});
-	totalCtr = &prometheus::BuildCounter()
+	_totalCtr = &prometheus::BuildCounter()
 					.Name(name + "_total_event_ctr_" + std::to_string(metricID))
 					.Help("Total occurrences of " + name)
 					.Register(*reg)
 					.Add({});
-	successCtr = &prometheus::BuildCounter()
+	_successCtr = &prometheus::BuildCounter()
 					  .Name(name + "_success_event_ctr_" + std::to_string(metricID))
 					  .Help("Successful events of " + name)
 					  .Register(*reg)
 					  .Add({});
-	failedCtr = &prometheus::BuildCounter()
+	_failedCtr = &prometheus::BuildCounter()
 					 .Name(name + "_fail_event_ctr_" + std::to_string(metricID))
 					 .Help("Failed events of " + name)
 					 .Register(*reg)
 					 .Add({});
 }
 
-void StatusTracker::incrementActive() { activeCtr->Increment(); }
+void StatusTracker::incrementActive() { _activeCtr->Increment(); }
 
-void StatusTracker::decrementActive() { activeCtr->Decrement(); }
+void StatusTracker::decrementActive() { _activeCtr->Decrement(); }
 
 void StatusTracker::incrementSuccess()
 {
-	successCtr->Increment();
-	totalCtr->Increment();
-	if (activeCtr->Value() > 0)
+	_successCtr->Increment();
+	_totalCtr->Increment();
+	if (_activeCtr->Value() > 0)
 	{
-		activeCtr->Decrement();
+		_activeCtr->Decrement();
 	}
 }
 
 void StatusTracker::incrementFail()
 {
-	failedCtr->Increment();
-	totalCtr->Increment();
-	if (activeCtr->Value() > 0)
+	_failedCtr->Increment();
+	_totalCtr->Increment();
+	if (_activeCtr->Value() > 0)
 	{
-		activeCtr->Decrement();
+		_activeCtr->Decrement();
 	}
 }

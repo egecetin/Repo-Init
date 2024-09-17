@@ -57,15 +57,15 @@ namespace spdlog
 			void flush_() override;
 
 		  private:
-			bool lokiAvailable{false};
-			std::unique_ptr<HTTP> connHandler;
-			std::string basicInformation;
+			bool _lokiAvailable{false};
+			std::unique_ptr<HTTP> _connHandler;
+			std::string _basicInformation;
 
 			struct logInfo_t {
 				std::string level;
 				std::vector<std::pair<std::string, std::string>> logs;
 			};
-			std::vector<struct logInfo_t> internalLogBuffer;
+			std::vector<struct logInfo_t> _internalLogBuffer;
 		};
 
 		using loki_api_sink_mt = loki_api_sink<std::mutex>;
