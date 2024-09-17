@@ -109,7 +109,7 @@ jobs:
         run: |
           . /opt/intel/oneapi/setvars.sh
           printenv >> $GITHUB_ENV
-      - name: Restore Ccache
+      - name: Restore ccache
         id: ccache-restore
         uses: actions/cache/restore@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
         with:
@@ -127,7 +127,7 @@ jobs:
       - name: Run Tests
         id: test-step
         run: ctest --output-on-failure --test-dir build
-      - name: Save Ccache
+      - name: Save ccache
         uses: actions/cache/save@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
         with:
           path: ${{ env.CCACHE_DIR }}
