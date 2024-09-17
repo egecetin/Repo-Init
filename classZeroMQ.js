@@ -15,9 +15,9 @@ var classZeroMQ =
     [ "sendMessages", "classZeroMQ.html#a67e9a20d56ac8197b16844b5e9955c0c", null ],
     [ "start", "classZeroMQ.html#aed565a56046d2966f9312a58aaab0c2a", null ],
     [ "stop", "classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9", null ],
-    [ "contextPtr", "classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1", null ],
-    [ "isActive", "classZeroMQ.html#a6a7e240865bb1b7bc7109c9b516b7884", null ],
-    [ "isBinded", "classZeroMQ.html#a6b48905a99ca422585216f431e8df905", null ],
-    [ "socketAddr", "classZeroMQ.html#a21fde4ed3d2e92375dfbf50b18962ff3", null ],
-    [ "socketPtr", "classZeroMQ.html#a688270ff3384706aab30aca941eb22d4", null ]
+    [ "_contextPtr", "classZeroMQ.html#af5291ef46358b7ec0a1a7aedaa662436", null ],
+    [ "_isActive", "classZeroMQ.html#a9812a5cf72a4db04dc253595b1a5c781", null ],
+    [ "_isBinded", "classZeroMQ.html#ad4655d75cce961408f0033d4f7c15bc2", null ],
+    [ "_socketAddr", "classZeroMQ.html#a93c55d5da3ceceed95303a8b9a0ac02a", null ],
+    [ "_socketPtr", "classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0", null ]
 ];

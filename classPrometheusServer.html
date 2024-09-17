@@ -117,18 +117,18 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a269c848b032e28db4347c90fc0945826"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPrometheusServer.html#a269c848b032e28db4347c90fc0945826">guardLock</a></td></tr>
-<tr class="memdesc:a269c848b032e28db4347c90fc0945826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutex for concurrent add tracker calls.  <a href="classPrometheusServer.html#a269c848b032e28db4347c90fc0945826">More...</a><br /></td></tr>
-<tr class="separator:a269c848b032e28db4347c90fc0945826"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79d7b62540fa4c9f6c172a9a2025098a"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; prometheus::Exposer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPrometheusServer.html#a79d7b62540fa4c9f6c172a9a2025098a">mainExposer</a></td></tr>
-<tr class="memdesc:a79d7b62540fa4c9f6c172a9a2025098a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main <a class="el" href="classHTTP.html">HTTP</a> Server.  <a href="classPrometheusServer.html#a79d7b62540fa4c9f6c172a9a2025098a">More...</a><br /></td></tr>
-<tr class="separator:a79d7b62540fa4c9f6c172a9a2025098a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af761d539e94a3f425a09baf197f18683"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; uint64_t, std::shared_ptr&lt; prometheus::Registry &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">vRegister</a></td></tr>
-<tr class="memdesc:af761d539e94a3f425a09baf197f18683"><td class="mdescLeft">&#160;</td><td class="mdescRight">All tracker registries.  <a href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">More...</a><br /></td></tr>
-<tr class="separator:af761d539e94a3f425a09baf197f18683"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78b95e3290f3b374211025b3c759cff3"><td class="memItemLeft" align="right" valign="top">prometheus::Family&lt; prometheus::Info &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPrometheusServer.html#a78b95e3290f3b374211025b3c759cff3">infoFamily</a></td></tr>
-<tr class="memdesc:a78b95e3290f3b374211025b3c759cff3"><td class="mdescLeft">&#160;</td><td class="mdescRight">General application information.  <a href="classPrometheusServer.html#a78b95e3290f3b374211025b3c759cff3">More...</a><br /></td></tr>
-<tr class="separator:a78b95e3290f3b374211025b3c759cff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87353b11906b640643ddd0cb84a660df"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPrometheusServer.html#a87353b11906b640643ddd0cb84a660df">_guardLock</a></td></tr>
+<tr class="memdesc:a87353b11906b640643ddd0cb84a660df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutex for concurrent add tracker calls.  <a href="classPrometheusServer.html#a87353b11906b640643ddd0cb84a660df">More...</a><br /></td></tr>
+<tr class="separator:a87353b11906b640643ddd0cb84a660df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a846773b0ed65d899f49002ac12b41cd2"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; prometheus::Exposer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPrometheusServer.html#a846773b0ed65d899f49002ac12b41cd2">_mainExposer</a></td></tr>
+<tr class="memdesc:a846773b0ed65d899f49002ac12b41cd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main <a class="el" href="classHTTP.html">HTTP</a> Server.  <a href="classPrometheusServer.html#a846773b0ed65d899f49002ac12b41cd2">More...</a><br /></td></tr>
+<tr class="separator:a846773b0ed65d899f49002ac12b41cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0db25b2906a10fd04d29f71041de95cf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; uint64_t, std::shared_ptr&lt; prometheus::Registry &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPrometheusServer.html#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a></td></tr>
+<tr class="memdesc:a0db25b2906a10fd04d29f71041de95cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">All tracker registries.  <a href="classPrometheusServer.html#a0db25b2906a10fd04d29f71041de95cf">More...</a><br /></td></tr>
+<tr class="separator:a0db25b2906a10fd04d29f71041de95cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a50f3af23a4b4a71e24aff627f708f3"><td class="memItemLeft" align="right" valign="top">prometheus::Family&lt; prometheus::Info &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPrometheusServer.html#a9a50f3af23a4b4a71e24aff627f708f3">_infoFamily</a></td></tr>
+<tr class="memdesc:a9a50f3af23a4b4a71e24aff627f708f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">General application information.  <a href="classPrometheusServer.html#a9a50f3af23a4b4a71e24aff627f708f3">More...</a><br /></td></tr>
+<tr class="separator:a9a50f3af23a4b4a71e24aff627f708f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class representing a Prometheus server for collecting and exposing metrics. </p>
@@ -166,24 +166,24 @@ Private Attributes</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="PrometheusServer_8cpp_source.html#l00010">10</a> of file <a class="el" href="PrometheusServer_8cpp_source.html">PrometheusServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    : <a class="code" href="classPrometheusServer.html#a79d7b62540fa4c9f6c172a9a2025098a">mainExposer</a>(std::make_unique&lt;prometheus::Exposer&gt;(serverAddr, 1))</div>
+<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    : <a class="code" href="classPrometheusServer.html#a846773b0ed65d899f49002ac12b41cd2">_mainExposer</a>(std::make_unique&lt;prometheus::Exposer&gt;(serverAddr, 1))</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">auto</span> reg = std::make_shared&lt;prometheus::Registry&gt;();</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment">// Basic information</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="classPrometheusServer.html#a78b95e3290f3b374211025b3c759cff3">infoFamily</a> =</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="classPrometheusServer.html#a9a50f3af23a4b4a71e24aff627f708f3">_infoFamily</a> =</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        &amp;prometheus::BuildInfo().Name(PROJECT_NAME).Help(std::string(PROJECT_NAME) + <span class="stringliteral">&quot; information&quot;</span>).Register(*reg);</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classPrometheusServer.html#a78b95e3290f3b374211025b3c759cff3">infoFamily</a>-&gt;Add({{<span class="stringliteral">&quot;init_time&quot;</span>, date::format(<span class="stringliteral">&quot;%FT%TZ&quot;</span>, date::floor&lt;std::chrono::nanoseconds&gt;(</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                                                              std::chrono::high_resolution_clock::now()))}});</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classPrometheusServer.html#a78b95e3290f3b374211025b3c759cff3">infoFamily</a>-&gt;Add({{<span class="stringliteral">&quot;version&quot;</span>, PROJECT_FULL_VERSION_STRING}});</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classPrometheusServer.html#a9a50f3af23a4b4a71e24aff627f708f3">_infoFamily</a>-&gt;Add({{<span class="stringliteral">&quot;init_time&quot;</span>, date::format(<span class="stringliteral">&quot;%FT%TZ&quot;</span>, date::floor&lt;std::chrono::nanoseconds&gt;(</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                                                               std::chrono::high_resolution_clock::now()))}});</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classPrometheusServer.html#a9a50f3af23a4b4a71e24aff627f708f3">_infoFamily</a>-&gt;Add({{<span class="stringliteral">&quot;version&quot;</span>, PROJECT_FULL_VERSION_STRING}});</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">vRegister</a>.emplace_back(std::numeric_limits&lt;uint64_t&gt;::max(), reg);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classPrometheusServer.html#a79d7b62540fa4c9f6c172a9a2025098a">mainExposer</a>-&gt;RegisterCollectable(reg);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classPrometheusServer.html#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.emplace_back(std::numeric_limits&lt;uint64_t&gt;::max(), reg);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classPrometheusServer.html#a846773b0ed65d899f49002ac12b41cd2">_mainExposer</a>-&gt;RegisterCollectable(reg);</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
-<div class="ttc" id="aclassPrometheusServer_html_a78b95e3290f3b374211025b3c759cff3"><div class="ttname"><a href="classPrometheusServer.html#a78b95e3290f3b374211025b3c759cff3">PrometheusServer::infoFamily</a></div><div class="ttdeci">prometheus::Family&lt; prometheus::Info &gt; * infoFamily</div><div class="ttdoc">General application information.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00020">PrometheusServer.hpp:20</a></div></div>
-<div class="ttc" id="aclassPrometheusServer_html_a79d7b62540fa4c9f6c172a9a2025098a"><div class="ttname"><a href="classPrometheusServer.html#a79d7b62540fa4c9f6c172a9a2025098a">PrometheusServer::mainExposer</a></div><div class="ttdeci">std::unique_ptr&lt; prometheus::Exposer &gt; mainExposer</div><div class="ttdoc">Main HTTP Server.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00015">PrometheusServer.hpp:15</a></div></div>
-<div class="ttc" id="aclassPrometheusServer_html_af761d539e94a3f425a09baf197f18683"><div class="ttname"><a href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">PrometheusServer::vRegister</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; uint64_t, std::shared_ptr&lt; prometheus::Registry &gt; &gt; &gt; vRegister</div><div class="ttdoc">All tracker registries.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00017">PrometheusServer.hpp:17</a></div></div>
+<div class="ttc" id="aclassPrometheusServer_html_a0db25b2906a10fd04d29f71041de95cf"><div class="ttname"><a href="classPrometheusServer.html#a0db25b2906a10fd04d29f71041de95cf">PrometheusServer::_vRegister</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; uint64_t, std::shared_ptr&lt; prometheus::Registry &gt; &gt; &gt; _vRegister</div><div class="ttdoc">All tracker registries.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00017">PrometheusServer.hpp:17</a></div></div>
+<div class="ttc" id="aclassPrometheusServer_html_a846773b0ed65d899f49002ac12b41cd2"><div class="ttname"><a href="classPrometheusServer.html#a846773b0ed65d899f49002ac12b41cd2">PrometheusServer::_mainExposer</a></div><div class="ttdeci">std::unique_ptr&lt; prometheus::Exposer &gt; _mainExposer</div><div class="ttdoc">Main HTTP Server.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00015">PrometheusServer.hpp:15</a></div></div>
+<div class="ttc" id="aclassPrometheusServer_html_a9a50f3af23a4b4a71e24aff627f708f3"><div class="ttname"><a href="classPrometheusServer.html#a9a50f3af23a4b4a71e24aff627f708f3">PrometheusServer::_infoFamily</a></div><div class="ttdeci">prometheus::Family&lt; prometheus::Info &gt; * _infoFamily</div><div class="ttdoc">General application information.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00020">PrometheusServer.hpp:20</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -238,18 +238,18 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="PrometheusServer_8cpp_source.html#l00048">48</a> of file <a class="el" href="PrometheusServer_8cpp_source.html">PrometheusServer.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">const</span> std::lock_guard&lt;std::mutex&gt; guard(<a class="code" href="classPrometheusServer.html#a269c848b032e28db4347c90fc0945826">guardLock</a>);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">const</span> std::lock_guard&lt;std::mutex&gt; guard(<a class="code" href="classPrometheusServer.html#a87353b11906b640643ddd0cb84a660df">_guardLock</a>);</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// Create registry</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">auto</span> reg = std::make_shared&lt;prometheus::Registry&gt;();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classPrometheusServer.html#a79d7b62540fa4c9f6c172a9a2025098a">mainExposer</a>-&gt;RegisterCollectable(reg);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classPrometheusServer.html#a846773b0ed65d899f49002ac12b41cd2">_mainExposer</a>-&gt;RegisterCollectable(reg);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// Push to vector (At least information registry always exist so back is valid)</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    regId = <a class="code" href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">vRegister</a>.back().first + 1;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">vRegister</a>.emplace_back(<a class="code" href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">vRegister</a>.back().first + 1, reg);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    regId = <a class="code" href="classPrometheusServer.html#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.back().first + 1;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="classPrometheusServer.html#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.emplace_back(<a class="code" href="classPrometheusServer.html#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.back().first + 1, reg);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> reg;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
-<div class="ttc" id="aclassPrometheusServer_html_a269c848b032e28db4347c90fc0945826"><div class="ttname"><a href="classPrometheusServer.html#a269c848b032e28db4347c90fc0945826">PrometheusServer::guardLock</a></div><div class="ttdeci">std::mutex guardLock</div><div class="ttdoc">Mutex for concurrent add tracker calls.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00013">PrometheusServer.hpp:13</a></div></div>
+<div class="ttc" id="aclassPrometheusServer_html_a87353b11906b640643ddd0cb84a660df"><div class="ttname"><a href="classPrometheusServer.html#a87353b11906b640643ddd0cb84a660df">PrometheusServer::_guardLock</a></div><div class="ttdeci">std::mutex _guardLock</div><div class="ttdoc">Mutex for concurrent add tracker calls.</div><div class="ttdef"><b>Definition:</b> <a href="PrometheusServer_8hpp_source.html#l00013">PrometheusServer.hpp:13</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -285,10 +285,10 @@ false otherwise </dd></dl>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">const</span> std::lock_guard&lt;std::mutex&gt; guard(<a class="code" href="classPrometheusServer.html#a269c848b032e28db4347c90fc0945826">guardLock</a>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">const</span> std::lock_guard&lt;std::mutex&gt; guard(<a class="code" href="classPrometheusServer.html#a87353b11906b640643ddd0cb84a660df">_guardLock</a>);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">vRegister</a>.erase(std::remove_if(</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">vRegister</a>.begin(), <a class="code" href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">vRegister</a>.end(),</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="classPrometheusServer.html#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.erase(std::remove_if(</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="classPrometheusServer.html#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.begin(), <a class="code" href="classPrometheusServer.html#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.end(),</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        [regId](<span class="keyword">const</span> std::pair&lt;uint64_t, std::shared_ptr&lt;prometheus::Registry&gt;&gt; &amp;val) { return regId == val.first; }));</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
@@ -321,13 +321,13 @@ false otherwise </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="PrometheusServer_8cpp_source.html#l00027">27</a> of file <a class="el" href="PrometheusServer_8cpp_source.html">PrometheusServer.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">const</span> std::lock_guard&lt;std::mutex&gt; guard(<a class="code" href="classPrometheusServer.html#a269c848b032e28db4347c90fc0945826">guardLock</a>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">const</span> std::lock_guard&lt;std::mutex&gt; guard(<a class="code" href="classPrometheusServer.html#a87353b11906b640643ddd0cb84a660df">_guardLock</a>);</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">auto</span> iter = std::find_if(</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">vRegister</a>.begin(), <a class="code" href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">vRegister</a>.end(),</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="classPrometheusServer.html#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.begin(), <a class="code" href="classPrometheusServer.html#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.end(),</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        [regId](<span class="keyword">const</span> std::pair&lt;uint64_t, std::shared_ptr&lt;prometheus::Registry&gt;&gt; &amp;val) { return regId == val.first; });</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">if</span> (iter != <a class="code" href="classPrometheusServer.html#af761d539e94a3f425a09baf197f18683">vRegister</a>.end())</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">if</span> (iter != <a class="code" href="classPrometheusServer.html#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.end())</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">return</span> iter-&gt;second;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
@@ -337,8 +337,8 @@ false otherwise </dd></dl>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a269c848b032e28db4347c90fc0945826"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a269c848b032e28db4347c90fc0945826">&#9670;&nbsp;</a></span>guardLock</h2>
+<a id="a87353b11906b640643ddd0cb84a660df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87353b11906b640643ddd0cb84a660df">&#9670;&nbsp;</a></span>_guardLock</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -347,7 +347,7 @@ false otherwise </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::mutex PrometheusServer::guardLock</td>
+          <td class="memname">std::mutex PrometheusServer::_guardLock</td>
         </tr>
       </table>
   </td>
@@ -363,8 +363,8 @@ false otherwise </dd></dl>
 
 </div>
 </div>
-<a id="a78b95e3290f3b374211025b3c759cff3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78b95e3290f3b374211025b3c759cff3">&#9670;&nbsp;</a></span>infoFamily</h2>
+<a id="a9a50f3af23a4b4a71e24aff627f708f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a50f3af23a4b4a71e24aff627f708f3">&#9670;&nbsp;</a></span>_infoFamily</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -373,7 +373,7 @@ false otherwise </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">prometheus::Family&lt;prometheus::Info&gt;* PrometheusServer::infoFamily</td>
+          <td class="memname">prometheus::Family&lt;prometheus::Info&gt;* PrometheusServer::_infoFamily</td>
         </tr>
       </table>
   </td>
@@ -389,8 +389,8 @@ false otherwise </dd></dl>
 
 </div>
 </div>
-<a id="a79d7b62540fa4c9f6c172a9a2025098a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79d7b62540fa4c9f6c172a9a2025098a">&#9670;&nbsp;</a></span>mainExposer</h2>
+<a id="a846773b0ed65d899f49002ac12b41cd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a846773b0ed65d899f49002ac12b41cd2">&#9670;&nbsp;</a></span>_mainExposer</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -399,7 +399,7 @@ false otherwise </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unique_ptr&lt;prometheus::Exposer&gt; PrometheusServer::mainExposer</td>
+          <td class="memname">std::unique_ptr&lt;prometheus::Exposer&gt; PrometheusServer::_mainExposer</td>
         </tr>
       </table>
   </td>
@@ -415,8 +415,8 @@ false otherwise </dd></dl>
 
 </div>
 </div>
-<a id="af761d539e94a3f425a09baf197f18683"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af761d539e94a3f425a09baf197f18683">&#9670;&nbsp;</a></span>vRegister</h2>
+<a id="a0db25b2906a10fd04d29f71041de95cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0db25b2906a10fd04d29f71041de95cf">&#9670;&nbsp;</a></span>_vRegister</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -425,7 +425,7 @@ false otherwise </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::pair&lt;uint64_t, std::shared_ptr&lt;prometheus::Registry&gt; &gt; &gt; PrometheusServer::vRegister</td>
+          <td class="memname">std::vector&lt;std::pair&lt;uint64_t, std::shared_ptr&lt;prometheus::Registry&gt; &gt; &gt; PrometheusServer::_vRegister</td>
         </tr>
       </table>
   </td>
@@ -451,7 +451,7 @@ false otherwise </dd></dl>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classPrometheusServer.html">PrometheusServer</a></li>
-    <li class="footer">Generated on Mon Aug 5 2024 06:22:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Tue Sep 17 2024 09:41:38 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['receivedbytes_772',['receivedBytes',['../structRawSocketStats.html#a37839e418b67b9c5a5aab1d0d4517bb2',1,'RawSocketStats']]],
-  ['redirecttime_773',['redirectTime',['../structHTTPStats.html#a99bcce4e603afe6c2a53e9ff501d90b1',1,'HTTPStats']]],
-  ['refusedconnection_774',['refusedConnection',['../classTelnetStats.html#a40f136c96a2a34a54feec3445e9ca867',1,'TelnetStats']]],
-  ['refusedconnectionctr_775',['refusedConnectionCtr',['../structTelnetServerStats.html#ac4556411d1a1f0f366b029bb8e5e8001',1,'TelnetServerStats']]],
-  ['requestbytes_776',['requestBytes',['../structHTTPStats.html#a28e77c97dbcb01973f51feac53743535',1,'HTTPStats']]]
+  ['telnet_5fhistory_5flimit_804',['TELNET_HISTORY_LIMIT',['../TelnetServer_8cpp.html#ae44f57c74351f5e127f80ef8f8541ff7',1,'TelnetServer.cpp']]],
+  ['telnet_5ftimeout_805',['TELNET_TIMEOUT',['../TelnetServer_8cpp.html#ae1f2e0b4a5e52072d11d7498ae9bfbb8',1,'TelnetServer.cpp']]],
+  ['telnetcommands_806',['telnetCommands',['../TelnetServer_8cpp.html#ad7eb609da36d3938b944feb1c42acbf9',1,'TelnetServer.cpp']]],
+  ['telnetserver_807',['TelnetServer',['../classTelnetSession.html#a0db9c6833fc2064df182f423c197feb5',1,'TelnetSession']]],
+  ['totaltime_808',['totalTime',['../structHTTPStats.html#a91226082d95c2b9e826a12de38e952d6',1,'HTTPStats']]]
 ];

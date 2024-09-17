@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['basicinformation_703',['basicInformation',['../classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61',1,'spdlog::sinks::loki_api_sink']]]
+  ['connectiontime_748',['connectionTime',['../structHTTPStats.html#ac39f15167c3edd05dc611939fbb2bf7c',1,'HTTPStats']]],
+  ['connecttime_749',['connectTime',['../structTelnetSessionStats.html#aa38639a98be09499a0c54cdfc8e20632',1,'TelnetSessionStats']]]
 ];

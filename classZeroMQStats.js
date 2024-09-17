@@ -2,16 +2,16 @@ var classZeroMQStats =
 [
     [ "ZeroMQStats", "classZeroMQStats.html#aafbee903dff769a5f498c5ba1b101067", null ],
     [ "consumeStats", "classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07", null ],
-    [ "failedCommand", "classZeroMQStats.html#aba820d2f918486b00e1d3a6a88d5401b", null ],
-    [ "failedCommandParts", "classZeroMQStats.html#aa1763800ba1f23ad97f5f06aa549efda", null ],
-    [ "infoFamily", "classZeroMQStats.html#a24933c1083732d7ff7962e4303aff730", null ],
-    [ "maxProcessingTime", "classZeroMQStats.html#a31278a1bbf55177b90677f54f8456d8d", null ],
-    [ "minProcessingTime", "classZeroMQStats.html#ac6d8a93da474db283fd9b0ea6ddd33ec", null ],
-    [ "processingTime", "classZeroMQStats.html#a32cf4236758f4c9d34b45933878db492", null ],
-    [ "succeededCommand", "classZeroMQStats.html#ad0163112278ac3b3c4a97dd35f6dfa0b", null ],
-    [ "succeededCommandParts", "classZeroMQStats.html#a1b477308d6083dc2a287ace9bc34834a", null ],
-    [ "totalCommand", "classZeroMQStats.html#a7b0f5a8eea84dc31f24e584609225232", null ],
-    [ "totalCommandParts", "classZeroMQStats.html#a3be413bfe8be16af66af6659b2231ff3", null ],
-    [ "totalDownloadBytes", "classZeroMQStats.html#a744222adbbc6eb9094471692b00d00c4", null ],
-    [ "totalUploadBytes", "classZeroMQStats.html#a617b1d3e54825165c467467d79b85b5e", null ]
+    [ "_failedCommand", "classZeroMQStats.html#a16e0c65cc6b50b78bcd7c6c794a00ebb", null ],
+    [ "_failedCommandParts", "classZeroMQStats.html#a02df63cbc78b799980bb73453e2bfee6", null ],
+    [ "_infoFamily", "classZeroMQStats.html#ae8610a25d5a4537fff0150d909e05780", null ],
+    [ "_maxProcessingTime", "classZeroMQStats.html#a1d9eb2bdea3c204133b4869487674764", null ],
+    [ "_minProcessingTime", "classZeroMQStats.html#adc9210ed7fa2bcaacd28989a8eda8294", null ],
+    [ "_processingTime", "classZeroMQStats.html#ad29f847cdb4ecfbb43b350970ee867bb", null ],
+    [ "_succeededCommand", "classZeroMQStats.html#a6580cf9b5514eda552868a476d2f647d", null ],
+    [ "_succeededCommandParts", "classZeroMQStats.html#ac8a8ef821487251ec3e0bddb356a5c96", null ],
+    [ "_totalCommand", "classZeroMQStats.html#a3857af564cf21fb1a3a66639525ba495", null ],
+    [ "_totalCommandParts", "classZeroMQStats.html#a71cc8db861739c93c0b209ec43429506", null ],
+    [ "_totalDownloadBytes", "classZeroMQStats.html#a3c156f7edf0406470f58b5daafa63a16", null ],
+    [ "_totalUploadBytes", "classZeroMQStats.html#ad9bbf3524838cc04daf49dc6ee2b7618", null ]
 ];

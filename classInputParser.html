@@ -115,8 +115,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a23ce0e47972606dd65099570ec4385b8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a></td></tr>
-<tr class="separator:a23ce0e47972606dd65099570ec4385b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fc6fe6b2674296649394a8777a82349"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a></td></tr>
+<tr class="separator:a5fc6fe6b2674296649394a8777a82349"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Parses command line inputs </p>
@@ -168,10 +168,10 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt; argc; ++i)</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.emplace_back(argv[i]);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <a class="code" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.emplace_back(argv[i]);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
-<div class="ttc" id="aclassInputParser_html_a23ce0e47972606dd65099570ec4385b8"><div class="ttname"><a href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">InputParser::tokens</a></div><div class="ttdeci">std::vector&lt; std::string &gt; tokens</div><div class="ttdef"><b>Definition:</b> <a href="InputParser_8hpp_source.html#l00013">InputParser.hpp:13</a></div></div>
+<div class="ttc" id="aclassInputParser_html_a5fc6fe6b2674296649394a8777a82349"><div class="ttname"><a href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">InputParser::_tokens</a></div><div class="ttdeci">std::vector&lt; std::string &gt; _tokens</div><div class="ttdef"><b>Definition:</b> <a href="InputParser_8hpp_source.html#l00013">InputParser.hpp:13</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -211,7 +211,7 @@ false If the provided option is not found </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="InputParser_8hpp_source.html#l00077">77</a> of file <a class="el" href="InputParser_8hpp_source.html">InputParser.hpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">return</span> std::find(<a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.begin(), <a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.end(), option) != <a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.end();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">return</span> std::find(<a class="code" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.begin(), <a class="code" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end(), option) != <a class="code" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end();</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -259,8 +259,8 @@ Here is the caller graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="InputParser_8hpp_source.html#l00034">34</a> of file <a class="el" href="InputParser_8hpp_source.html">InputParser.hpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        std::vector&lt;std::string&gt;::const_iterator itr;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        itr = std::find(<a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.begin(), <a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.end(), option);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">if</span> (itr != <a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.end() &amp;&amp; ++itr != <a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.end())</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        itr = std::find(<a class="code" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.begin(), <a class="code" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end(), option);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">if</span> (itr != <a class="code" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end() &amp;&amp; ++itr != <a class="code" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end())</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        {</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordflow">return</span> *itr;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        }</div>
@@ -306,12 +306,12 @@ Here is the caller graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="InputParser_8hpp_source.html#l00050">50</a> of file <a class="el" href="InputParser_8hpp_source.html">InputParser.hpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt; options;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> itr = <a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.begin(); itr != <a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.end(); ++itr)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">auto</span> itr = <a class="code" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.begin(); itr != <a class="code" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end(); ++itr)</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        {</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">if</span> (!itr-&gt;empty() &amp;&amp; itr-&gt;at(0) == <span class="charliteral">&#39;-&#39;</span>)</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            {</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keyword">auto</span> nextItr = std::next(itr);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="keywordflow">if</span> (nextItr != <a class="code" href="classInputParser.html#a23ce0e47972606dd65099570ec4385b8">tokens</a>.end() &amp;&amp; !nextItr-&gt;empty() &amp;&amp; nextItr-&gt;at(0) != <span class="charliteral">&#39;-&#39;</span>)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="keywordflow">if</span> (nextItr != <a class="code" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end() &amp;&amp; !nextItr-&gt;empty() &amp;&amp; nextItr-&gt;at(0) != <span class="charliteral">&#39;-&#39;</span>)</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                {</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                    options.emplace_back(*itr, *(nextItr));</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                }</div>
@@ -336,8 +336,8 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a23ce0e47972606dd65099570ec4385b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23ce0e47972606dd65099570ec4385b8">&#9670;&nbsp;</a></span>tokens</h2>
+<a id="a5fc6fe6b2674296649394a8777a82349"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fc6fe6b2674296649394a8777a82349">&#9670;&nbsp;</a></span>_tokens</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -346,7 +346,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::string&gt; InputParser::tokens</td>
+          <td class="memname">std::vector&lt;std::string&gt; InputParser::_tokens</td>
         </tr>
       </table>
   </td>
@@ -369,7 +369,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classInputParser.html">InputParser</a></li>
-    <li class="footer">Generated on Mon Aug 5 2024 06:22:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Tue Sep 17 2024 09:41:38 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

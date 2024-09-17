@@ -143,14 +143,14 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:ab11b6601fc345d48240c0c5ed73fb297"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab11b6601fc345d48240c0c5ed73fb297">lokiAvailable</a> {false}</td></tr>
-<tr class="separator:ab11b6601fc345d48240c0c5ed73fb297"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c2c070f78339f81bc36d728e811d463"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classHTTP.html">HTTP</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a0c2c070f78339f81bc36d728e811d463">connHandler</a></td></tr>
-<tr class="separator:a0c2c070f78339f81bc36d728e811d463"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67f78fe371955918812c958031ec7c61"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">basicInformation</a></td></tr>
-<tr class="separator:a67f78fe371955918812c958031ec7c61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fea2e13821a1eafd399884bb6b519b0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; struct <a class="el" href="structspdlog_1_1sinks_1_1loki__api__sink_1_1logInfo__t.html">logInfo_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a4fea2e13821a1eafd399884bb6b519b0">internalLogBuffer</a></td></tr>
-<tr class="separator:a4fea2e13821a1eafd399884bb6b519b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22d013f6a68e406828f06eb5cc278bc4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a22d013f6a68e406828f06eb5cc278bc4">_lokiAvailable</a> {false}</td></tr>
+<tr class="separator:a22d013f6a68e406828f06eb5cc278bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10ccb5f3467c9e47e4d9ac1829b1a9dc"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classHTTP.html">HTTP</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a10ccb5f3467c9e47e4d9ac1829b1a9dc">_connHandler</a></td></tr>
+<tr class="separator:a10ccb5f3467c9e47e4d9ac1829b1a9dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7a647423898ad9c4d90277e0010319d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a></td></tr>
+<tr class="separator:ab7a647423898ad9c4d90277e0010319d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c1a4cc429a237373f78b7ead26d8718"><td class="memItemLeft" align="right" valign="top">std::vector&lt; struct <a class="el" href="structspdlog_1_1sinks_1_1loki__api__sink_1_1logInfo__t.html">logInfo_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a></td></tr>
+<tr class="separator:a5c1a4cc429a237373f78b7ead26d8718"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename Mutex&gt;<br />
@@ -207,49 +207,49 @@ template&lt;typename Mutex &gt; </div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            }</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a0c2c070f78339f81bc36d728e811d463">connHandler</a> = std::make_unique&lt;HTTP&gt;(lokiAddress);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a10ccb5f3467c9e47e4d9ac1829b1a9dc">_connHandler</a> = std::make_unique&lt;HTTP&gt;(lokiAddress);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="comment">// Pre-allocate buffers</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a4fea2e13821a1eafd399884bb6b519b0">internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;debug&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a4fea2e13821a1eafd399884bb6b519b0">internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;info&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a4fea2e13821a1eafd399884bb6b519b0">internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;warn&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a4fea2e13821a1eafd399884bb6b519b0">internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;error&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a4fea2e13821a1eafd399884bb6b519b0">internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;critical&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;debug&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;info&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;warn&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;error&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;critical&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="comment">// Prepare information (Loki limits maximum number of labels with 15)</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">basicInformation</a> = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;release_version&quot;:&quot;v)&quot;) + PROJECT_FULL_REVISION + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">basicInformation</a> +=</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;release_version&quot;:&quot;v)&quot;) + PROJECT_FULL_REVISION + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> +=</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                std::string(R<span class="stringliteral">&quot;(&quot;release_date&quot;:&quot;)&quot;) + PROJECT_BUILD_DATE + </span><span class="stringliteral">&quot; &quot;</span> + PROJECT_BUILD_TIME + <span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;compiler_name&quot;:&quot;)&quot;) + COMPILER_NAME + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;compiler_version&quot;:&quot;)&quot;) + COMPILER_VERSION + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;build&quot;:&quot;)&quot;) + BUILD_TYPE + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;compiler_name&quot;:&quot;)&quot;) + COMPILER_NAME + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;compiler_version&quot;:&quot;)&quot;) + COMPILER_VERSION + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;build&quot;:&quot;)&quot;) + BUILD_TYPE + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="comment">// Parse hostname</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            std::array&lt;char, BUFSIZ&gt; hostBuffer{};</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            gethostname(hostBuffer.data(), BUFSIZ);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;hostname&quot;:&quot;)&quot;) + hostBuffer.data() + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;hostname&quot;:&quot;)&quot;) + hostBuffer.data() + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="comment">// Parse CPU information</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keyword">const</span> std::string cpuInfoPath = <span class="stringliteral">&quot;/proc/cpuinfo&quot;</span>;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            std::string word;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <a class="code" href="FileHelpers_8hpp.html#ac9a16d00ef61344fc1ca49cfe7c69b52">findFromFile</a>(cpuInfoPath, <span class="stringliteral">&quot;^siblings&quot;</span>, word);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_threadcount&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_threadcount&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <a class="code" href="FileHelpers_8hpp.html#ac9a16d00ef61344fc1ca49cfe7c69b52">findFromFile</a>(cpuInfoPath, <span class="stringliteral">&quot;^(cpu cores)&quot;</span>, word);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_corecount&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_corecount&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <a class="code" href="FileHelpers_8hpp.html#ac9a16d00ef61344fc1ca49cfe7c69b52">findFromFile</a>(cpuInfoPath, <span class="stringliteral">&quot;^(model name)&quot;</span>, word);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_model&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_model&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <a class="code" href="FileHelpers_8hpp.html#ac9a16d00ef61344fc1ca49cfe7c69b52">findFromFile</a>(cpuInfoPath, <span class="stringliteral">&quot;^vendor_id&quot;</span>, word);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_vendorid&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_vendorid&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab11b6601fc345d48240c0c5ed73fb297">lokiAvailable</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a22d013f6a68e406828f06eb5cc278bc4">_lokiAvailable</a> = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div>
 <div class="ttc" id="aFileHelpers_8hpp_html_ac9a16d00ef61344fc1ca49cfe7c69b52"><div class="ttname"><a href="FileHelpers_8hpp.html#ac9a16d00ef61344fc1ca49cfe7c69b52">findFromFile</a></div><div class="ttdeci">std::vector&lt; std::string &gt; findFromFile(const std::string &amp;filePath, const std::string &amp;pattern, std::string &amp;lastWord)</div><div class="ttdef"><b>Definition:</b> <a href="FileHelpers_8hpp_source.html#l00015">FileHelpers.hpp:15</a></div></div>
-<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a0c2c070f78339f81bc36d728e811d463"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#a0c2c070f78339f81bc36d728e811d463">spdlog::sinks::loki_api_sink::connHandler</a></div><div class="ttdeci">std::unique_ptr&lt; HTTP &gt; connHandler</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00061">Loki.hpp:61</a></div></div>
-<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a4fea2e13821a1eafd399884bb6b519b0"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#a4fea2e13821a1eafd399884bb6b519b0">spdlog::sinks::loki_api_sink::internalLogBuffer</a></div><div class="ttdeci">std::vector&lt; struct logInfo_t &gt; internalLogBuffer</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00068">Loki.hpp:68</a></div></div>
-<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a67f78fe371955918812c958031ec7c61"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">spdlog::sinks::loki_api_sink::basicInformation</a></div><div class="ttdeci">std::string basicInformation</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00062">Loki.hpp:62</a></div></div>
-<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_ab11b6601fc345d48240c0c5ed73fb297"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab11b6601fc345d48240c0c5ed73fb297">spdlog::sinks::loki_api_sink::lokiAvailable</a></div><div class="ttdeci">bool lokiAvailable</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00060">Loki.hpp:60</a></div></div>
+<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a10ccb5f3467c9e47e4d9ac1829b1a9dc"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#a10ccb5f3467c9e47e4d9ac1829b1a9dc">spdlog::sinks::loki_api_sink::_connHandler</a></div><div class="ttdeci">std::unique_ptr&lt; HTTP &gt; _connHandler</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00061">Loki.hpp:61</a></div></div>
+<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a22d013f6a68e406828f06eb5cc278bc4"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#a22d013f6a68e406828f06eb5cc278bc4">spdlog::sinks::loki_api_sink::_lokiAvailable</a></div><div class="ttdeci">bool _lokiAvailable</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00060">Loki.hpp:60</a></div></div>
+<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a5c1a4cc429a237373f78b7ead26d8718"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#a5c1a4cc429a237373f78b7ead26d8718">spdlog::sinks::loki_api_sink::_internalLogBuffer</a></div><div class="ttdeci">std::vector&lt; struct logInfo_t &gt; _internalLogBuffer</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00068">Loki.hpp:68</a></div></div>
+<div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_ab7a647423898ad9c4d90277e0010319d"><div class="ttname"><a href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d">spdlog::sinks::loki_api_sink::_basicInformation</a></div><div class="ttdeci">std::string _basicInformation</div><div class="ttdef"><b>Definition:</b> <a href="Loki_8hpp_source.html#l00062">Loki.hpp:62</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -323,7 +323,7 @@ template&lt;typename Mutex &gt; </div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            std::ostringstream sStream;</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            sStream &lt;&lt; <span class="stringliteral">&quot;{\&quot;streams\&quot;:[&quot;</span>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;entry : <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a4fea2e13821a1eafd399884bb6b519b0">internalLogBuffer</a>)</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;entry : <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>)</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            {</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="keywordflow">if</span> (entry.logs.empty())</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                {</div>
@@ -335,7 +335,7 @@ template&lt;typename Mutex &gt; </div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                    sStream &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                }</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                flag = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                sStream &lt;&lt; <span class="stringliteral">&quot;{\&quot;stream\&quot;:{&quot;</span> &lt;&lt; <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61">basicInformation</a> + R<span class="stringliteral">&quot;(&quot;level&quot;:&quot;)&quot; &lt;&lt; entry.level &lt;&lt; R</span><span class="stringliteral">&quot;(&quot;},&quot;values&quot;:[)&quot;;</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                sStream &lt;&lt; <span class="stringliteral">&quot;{\&quot;stream\&quot;:{&quot;</span> &lt;&lt; <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> + R<span class="stringliteral">&quot;(&quot;level&quot;:&quot;)&quot; &lt;&lt; entry.level &lt;&lt; R</span><span class="stringliteral">&quot;(&quot;},&quot;values&quot;:[)&quot;;</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="stringliteral"></span> </div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="stringliteral">                </span><span class="keywordtype">bool</span> subflag = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;subentry : entry.logs)</div>
@@ -358,7 +358,7 @@ template&lt;typename Mutex &gt; </div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                <span class="comment">// Send request</span></div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                std::string recvData;</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                HttpStatus::Code replyCode = HttpStatus::Code::xxx_max;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a0c2c070f78339f81bc36d728e811d463">connHandler</a>-&gt;sendPOSTRequest(<span class="stringliteral">&quot;/loki/api/v1/push&quot;</span>, sStream.str(), recvData, replyCode);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a10ccb5f3467c9e47e4d9ac1829b1a9dc">_connHandler</a>-&gt;sendPOSTRequest(<span class="stringliteral">&quot;/loki/api/v1/push&quot;</span>, sStream.str(), recvData, replyCode);</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            }</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        }</div>
 </div><!-- fragment -->
@@ -400,14 +400,14 @@ template&lt;typename Mutex &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="Loki_8cpp_source.html#l00068">68</a> of file <a class="el" href="Loki_8cpp_source.html">Loki.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">if</span> (!<a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#ab11b6601fc345d48240c0c5ed73fb297">lokiAvailable</a>)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">if</span> (!<a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a22d013f6a68e406828f06eb5cc278bc4">_lokiAvailable</a>)</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            {</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            }</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">if</span> (msg.level &gt;= spdlog::level::debug &amp;&amp; msg.level &lt;= spdlog::level::critical)</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a4fea2e13821a1eafd399884bb6b519b0">internalLogBuffer</a>[<span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(msg.level) - 1].logs.push_back(</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <a class="code" href="classspdlog_1_1sinks_1_1loki__api__sink.html#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>[<span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(msg.level) - 1].logs.push_back(</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                    {std::to_string(msg.time.time_since_epoch().count()),</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                     std::string(msg.payload.data(), msg.payload.size())});</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            }</div>
@@ -416,8 +416,8 @@ template&lt;typename Mutex &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a67f78fe371955918812c958031ec7c61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67f78fe371955918812c958031ec7c61">&#9670;&nbsp;</a></span>basicInformation</h2>
+<a id="ab7a647423898ad9c4d90277e0010319d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7a647423898ad9c4d90277e0010319d">&#9670;&nbsp;</a></span>_basicInformation</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -428,7 +428,7 @@ template&lt;typename Mutex &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string <a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html">spdlog::sinks::loki_api_sink</a>&lt; Mutex &gt;::basicInformation</td>
+          <td class="memname">std::string <a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html">spdlog::sinks::loki_api_sink</a>&lt; Mutex &gt;::_basicInformation</td>
         </tr>
       </table>
   </td>
@@ -442,8 +442,8 @@ template&lt;typename Mutex &gt; </div>
 
 </div>
 </div>
-<a id="a0c2c070f78339f81bc36d728e811d463"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c2c070f78339f81bc36d728e811d463">&#9670;&nbsp;</a></span>connHandler</h2>
+<a id="a10ccb5f3467c9e47e4d9ac1829b1a9dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10ccb5f3467c9e47e4d9ac1829b1a9dc">&#9670;&nbsp;</a></span>_connHandler</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -454,7 +454,7 @@ template&lt;typename Mutex &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unique_ptr&lt;<a class="el" href="classHTTP.html">HTTP</a>&gt; <a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html">spdlog::sinks::loki_api_sink</a>&lt; Mutex &gt;::connHandler</td>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classHTTP.html">HTTP</a>&gt; <a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html">spdlog::sinks::loki_api_sink</a>&lt; Mutex &gt;::_connHandler</td>
         </tr>
       </table>
   </td>
@@ -468,8 +468,8 @@ template&lt;typename Mutex &gt; </div>
 
 </div>
 </div>
-<a id="a4fea2e13821a1eafd399884bb6b519b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4fea2e13821a1eafd399884bb6b519b0">&#9670;&nbsp;</a></span>internalLogBuffer</h2>
+<a id="a5c1a4cc429a237373f78b7ead26d8718"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c1a4cc429a237373f78b7ead26d8718">&#9670;&nbsp;</a></span>_internalLogBuffer</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -480,7 +480,7 @@ template&lt;typename Mutex &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;struct <a class="el" href="structspdlog_1_1sinks_1_1loki__api__sink_1_1logInfo__t.html">logInfo_t</a>&gt; <a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html">spdlog::sinks::loki_api_sink</a>&lt; Mutex &gt;::internalLogBuffer</td>
+          <td class="memname">std::vector&lt;struct <a class="el" href="structspdlog_1_1sinks_1_1loki__api__sink_1_1logInfo__t.html">logInfo_t</a>&gt; <a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html">spdlog::sinks::loki_api_sink</a>&lt; Mutex &gt;::_internalLogBuffer</td>
         </tr>
       </table>
   </td>
@@ -494,8 +494,8 @@ template&lt;typename Mutex &gt; </div>
 
 </div>
 </div>
-<a id="ab11b6601fc345d48240c0c5ed73fb297"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab11b6601fc345d48240c0c5ed73fb297">&#9670;&nbsp;</a></span>lokiAvailable</h2>
+<a id="a22d013f6a68e406828f06eb5cc278bc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22d013f6a68e406828f06eb5cc278bc4">&#9670;&nbsp;</a></span>_lokiAvailable</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -506,7 +506,7 @@ template&lt;typename Mutex &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html">spdlog::sinks::loki_api_sink</a>&lt; Mutex &gt;::lokiAvailable {false}</td>
+          <td class="memname">bool <a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html">spdlog::sinks::loki_api_sink</a>&lt; Mutex &gt;::_lokiAvailable {false}</td>
         </tr>
       </table>
   </td>
@@ -530,7 +530,7 @@ template&lt;typename Mutex &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacespdlog.html">spdlog</a></li><li class="navelem"><a class="el" href="namespacespdlog_1_1sinks.html">sinks</a></li><li class="navelem"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html">loki_api_sink</a></li>
-    <li class="footer">Generated on Mon Aug 5 2024 06:22:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Tue Sep 17 2024 09:41:38 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

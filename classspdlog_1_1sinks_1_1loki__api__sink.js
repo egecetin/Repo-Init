@@ -5,8 +5,8 @@ var classspdlog_1_1sinks_1_1loki__api__sink =
     [ "~loki_api_sink", "classspdlog_1_1sinks_1_1loki__api__sink.html#adba6354aa13467bf2a51a2d186e7ecc3", null ],
     [ "flush_", "classspdlog_1_1sinks_1_1loki__api__sink.html#a1f6dda58fb7b304d4559d6366e751690", null ],
     [ "sink_it_", "classspdlog_1_1sinks_1_1loki__api__sink.html#a76afe17cd0e88f26ca49a3cd4cae37bf", null ],
-    [ "basicInformation", "classspdlog_1_1sinks_1_1loki__api__sink.html#a67f78fe371955918812c958031ec7c61", null ],
-    [ "connHandler", "classspdlog_1_1sinks_1_1loki__api__sink.html#a0c2c070f78339f81bc36d728e811d463", null ],
-    [ "internalLogBuffer", "classspdlog_1_1sinks_1_1loki__api__sink.html#a4fea2e13821a1eafd399884bb6b519b0", null ],
-    [ "lokiAvailable", "classspdlog_1_1sinks_1_1loki__api__sink.html#ab11b6601fc345d48240c0c5ed73fb297", null ]
+    [ "_basicInformation", "classspdlog_1_1sinks_1_1loki__api__sink.html#ab7a647423898ad9c4d90277e0010319d", null ],
+    [ "_connHandler", "classspdlog_1_1sinks_1_1loki__api__sink.html#a10ccb5f3467c9e47e4d9ac1829b1a9dc", null ],
+    [ "_internalLogBuffer", "classspdlog_1_1sinks_1_1loki__api__sink.html#a5c1a4cc429a237373f78b7ead26d8718", null ],
+    [ "_lokiAvailable", "classspdlog_1_1sinks_1_1loki__api__sink.html#a22d013f6a68e406828f06eb5cc278bc4", null ]
 ];

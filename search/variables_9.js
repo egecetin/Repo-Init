@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['iface_722',['iFace',['../classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef',1,'RawSocket']]],
-  ['infofamily_723',['infoFamily',['../classPrometheusServer.html#a78b95e3290f3b374211025b3c759cff3',1,'PrometheusServer::infoFamily()'],['../classTelnetStats.html#adbb7d142aac4e2d8507da67ba13f07ac',1,'TelnetStats::infoFamily()'],['../classZeroMQStats.html#a24933c1083732d7ff7962e4303aff730',1,'ZeroMQStats::infoFamily()']]],
-  ['internallogbuffer_724',['internalLogBuffer',['../classspdlog_1_1sinks_1_1loki__api__sink.html#a4fea2e13821a1eafd399884bb6b519b0',1,'spdlog::sinks::loki_api_sink']]],
-  ['interruptflag_725',['interruptFlag',['../main_8cpp.html#a0ad519630ebc85fedc5774f649444ece',1,'main.cpp']]],
-  ['invalid_5fsocket_726',['INVALID_SOCKET',['../TelnetServer_8cpp.html#aa929f5b468b322e1661545d1e70866d3',1,'TelnetServer.cpp']]],
-  ['isactive_727',['isActive',['../classZeroMQ.html#a6a7e240865bb1b7bc7109c9b516b7884',1,'ZeroMQ']]],
-  ['isbinded_728',['isBinded',['../classZeroMQ.html#a6b48905a99ca422585216f431e8df905',1,'ZeroMQ']]],
-  ['isready_729',['isReady',['../classRawSocket.html#a85c2dd10b144711eed2e80b720824b2b',1,'RawSocket']]],
-  ['issuccessful_730',['isSuccessful',['../structZeroMQServerStats.html#a0f72b56ee407f90b03badaa34e1727fe',1,'ZeroMQServerStats']]]
+  ['lastseentime_762',['lastSeenTime',['../classTelnetSession.html#a3d4d56c64527b1f3320f1d0ca754845c',1,'TelnetSession']]],
+  ['level_763',['level',['../structspdlog_1_1sinks_1_1loki__api__sink_1_1logInfo__t.html#a57437b6c9d659c12b99a62ae7b371a10',1,'spdlog::sinks::loki_api_sink::logInfo_t']]],
+  ['log_5ffilter_5fsecs_764',['LOG_FILTER_SECS',['../Logger_8cpp.html#a2ef4a7f5319495a657d254a5e5ead3bf',1,'Logger.cpp']]],
+  ['log_5fflush_5fsecs_765',['LOG_FLUSH_SECS',['../Logger_8cpp.html#ae48a51b4c20e7277e6f72ef20d17426d',1,'Logger.cpp']]],
+  ['log_5flevel_5fid_766',['LOG_LEVEL_ID',['../ZeroMQServer_8cpp.html#a741f5f05509b2793073f13cc748d362d',1,'ZeroMQServer.cpp']]],
+  ['logs_767',['logs',['../structspdlog_1_1sinks_1_1loki__api__sink_1_1logInfo__t.html#a5c7308eee977dd5c16b71a91a12fa339',1,'spdlog::sinks::loki_api_sink::logInfo_t']]]
 ];

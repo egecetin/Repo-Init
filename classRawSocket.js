@@ -11,10 +11,10 @@ var classRawSocket =
     [ "operator=", "classRawSocket.html#af743794b7b7cdd631a8af94ed85990c9", null ],
     [ "readData", "classRawSocket.html#aa0c5a1d1cd751525ca77642a16928a24", null ],
     [ "writeData", "classRawSocket.html#ac26d0eced188521ccc9b540fc9ecf4bf", null ],
-    [ "addr", "classRawSocket.html#aa7c208e35092f37088061bf3a38334c5", null ],
-    [ "iFace", "classRawSocket.html#a706d8fa5d4e8597026f4ac7f898570ef", null ],
-    [ "isReady", "classRawSocket.html#a85c2dd10b144711eed2e80b720824b2b", null ],
-    [ "sockFd", "classRawSocket.html#a05ce445b1acec4ce317247a16e40f19a", null ],
-    [ "stats", "classRawSocket.html#a76f8185cc289212573bb184892e32fed", null ],
-    [ "writeMode", "classRawSocket.html#a9a7162db9a22144cae19670b775319e4", null ]
+    [ "_addr", "classRawSocket.html#ad6d865c5d39d44f4b4fe7d7427cee297", null ],
+    [ "_iFace", "classRawSocket.html#a8ce4f6eb7f979c9e07d6eeef9939f49b", null ],
+    [ "_isReady", "classRawSocket.html#a47482e3c860b2b7a739faa0506a37042", null ],
+    [ "_sockFd", "classRawSocket.html#a01a1855fd2567c65fb165eff798d3ead", null ],
+    [ "_stats", "classRawSocket.html#a1d63abbc57790ec81dc79137f68f2fe8", null ],
+    [ "_writeMode", "classRawSocket.html#a1b3379c21984f09d3fac599fe22f6018", null ]
 ];

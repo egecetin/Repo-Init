@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['namelookuptime_765',['nameLookupTime',['../structHTTPStats.html#a8856fe05b0ad801f656bff33192675a2',1,'HTTPStats']]]
+  ['receivedbytes_793',['receivedBytes',['../structRawSocketStats.html#a37839e418b67b9c5a5aab1d0d4517bb2',1,'RawSocketStats']]],
+  ['redirecttime_794',['redirectTime',['../structHTTPStats.html#a99bcce4e603afe6c2a53e9ff501d90b1',1,'HTTPStats']]],
+  ['refusedconnectionctr_795',['refusedConnectionCtr',['../structTelnetServerStats.html#ac4556411d1a1f0f366b029bb8e5e8001',1,'TelnetServerStats']]],
+  ['requestbytes_796',['requestBytes',['../structHTTPStats.html#a28e77c97dbcb01973f51feac53743535',1,'HTTPStats']]]
 ];

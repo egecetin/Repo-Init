@@ -113,18 +113,18 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:ada70333a12c452d596affa43c0637357"><td class="memItemLeft" align="right" valign="top">std::chrono::high_resolution_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPerformanceTracker.html#ada70333a12c452d596affa43c0637357">startTime</a></td></tr>
-<tr class="memdesc:ada70333a12c452d596affa43c0637357"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set after startTimer to measure counter difference.  <a href="classPerformanceTracker.html#ada70333a12c452d596affa43c0637357">More...</a><br /></td></tr>
-<tr class="separator:ada70333a12c452d596affa43c0637357"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01e2782af1a1b8381bb1e278ed75b98b"><td class="memItemLeft" align="right" valign="top">prometheus::Summary *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPerformanceTracker.html#a01e2782af1a1b8381bb1e278ed75b98b">perfTiming</a></td></tr>
-<tr class="memdesc:a01e2782af1a1b8381bb1e278ed75b98b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overall performance.  <a href="classPerformanceTracker.html#a01e2782af1a1b8381bb1e278ed75b98b">More...</a><br /></td></tr>
-<tr class="separator:a01e2782af1a1b8381bb1e278ed75b98b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ed8957b4dcfe704c5b8087d68d6e4f3"><td class="memItemLeft" align="right" valign="top">prometheus::Gauge *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPerformanceTracker.html#a8ed8957b4dcfe704c5b8087d68d6e4f3">maxTiming</a></td></tr>
-<tr class="memdesc:a8ed8957b4dcfe704c5b8087d68d6e4f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum observed value.  <a href="classPerformanceTracker.html#a8ed8957b4dcfe704c5b8087d68d6e4f3">More...</a><br /></td></tr>
-<tr class="separator:a8ed8957b4dcfe704c5b8087d68d6e4f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabf6e2dd634dea35ec78f7c7c10af22f"><td class="memItemLeft" align="right" valign="top">prometheus::Gauge *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPerformanceTracker.html#aabf6e2dd634dea35ec78f7c7c10af22f">minTiming</a></td></tr>
-<tr class="memdesc:aabf6e2dd634dea35ec78f7c7c10af22f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum observed value.  <a href="classPerformanceTracker.html#aabf6e2dd634dea35ec78f7c7c10af22f">More...</a><br /></td></tr>
-<tr class="separator:aabf6e2dd634dea35ec78f7c7c10af22f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8dc7d616e7a2b0a72ecba0f39abb445"><td class="memItemLeft" align="right" valign="top">std::chrono::high_resolution_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPerformanceTracker.html#ab8dc7d616e7a2b0a72ecba0f39abb445">_startTime</a></td></tr>
+<tr class="memdesc:ab8dc7d616e7a2b0a72ecba0f39abb445"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set after startTimer to measure counter difference.  <a href="classPerformanceTracker.html#ab8dc7d616e7a2b0a72ecba0f39abb445">More...</a><br /></td></tr>
+<tr class="separator:ab8dc7d616e7a2b0a72ecba0f39abb445"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae638d664c640da9a16e72b8decab4b9e"><td class="memItemLeft" align="right" valign="top">prometheus::Summary *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPerformanceTracker.html#ae638d664c640da9a16e72b8decab4b9e">_perfTiming</a></td></tr>
+<tr class="memdesc:ae638d664c640da9a16e72b8decab4b9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overall performance.  <a href="classPerformanceTracker.html#ae638d664c640da9a16e72b8decab4b9e">More...</a><br /></td></tr>
+<tr class="separator:ae638d664c640da9a16e72b8decab4b9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affcbc6189c2e5b05bea3e272f2ac754b"><td class="memItemLeft" align="right" valign="top">prometheus::Gauge *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPerformanceTracker.html#affcbc6189c2e5b05bea3e272f2ac754b">_maxTiming</a></td></tr>
+<tr class="memdesc:affcbc6189c2e5b05bea3e272f2ac754b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum observed value.  <a href="classPerformanceTracker.html#affcbc6189c2e5b05bea3e272f2ac754b">More...</a><br /></td></tr>
+<tr class="separator:affcbc6189c2e5b05bea3e272f2ac754b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56f720933d2154f44b1903d6b8e909dd"><td class="memItemLeft" align="right" valign="top">prometheus::Gauge *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPerformanceTracker.html#a56f720933d2154f44b1903d6b8e909dd">_minTiming</a></td></tr>
+<tr class="memdesc:a56f720933d2154f44b1903d6b8e909dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum observed value.  <a href="classPerformanceTracker.html#a56f720933d2154f44b1903d6b8e909dd">More...</a><br /></td></tr>
+<tr class="separator:a56f720933d2154f44b1903d6b8e909dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Measures and calculates performance metrics.</p>
@@ -174,28 +174,28 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="Performance_8cpp_source.html#l00012">12</a> of file <a class="el" href="Performance_8cpp_source.html">Performance.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classPerformanceTracker.html#a01e2782af1a1b8381bb1e278ed75b98b">perfTiming</a> = &amp;prometheus::BuildSummary()</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                      .Name(name + <span class="stringliteral">&quot;_processing_time_&quot;</span> + std::to_string(metricID))</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                      .Help(name + <span class="stringliteral">&quot; processing performance&quot;</span>)</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                      .Register(*reg)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                      .Add({}, <a class="code" href="Performance_8cpp.html#a6c1e8e86b55ecaf45cc433f96a2ac8df">QUANTILE_DEFAULTS</a>);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classPerformanceTracker.html#a8ed8957b4dcfe704c5b8087d68d6e4f3">maxTiming</a> = &amp;prometheus::BuildGauge()</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                     .Name(name + <span class="stringliteral">&quot;_maximum_processing_time_&quot;</span> + std::to_string(metricID))</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                     .Help(<span class="stringliteral">&quot;Maximum value of the &quot;</span> + name + <span class="stringliteral">&quot; processing performance&quot;</span>)</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                     .Register(*reg)</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                     .Add({});</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classPerformanceTracker.html#aabf6e2dd634dea35ec78f7c7c10af22f">minTiming</a> = &amp;prometheus::BuildGauge()</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                     .Name(name + <span class="stringliteral">&quot;_minimum_processing_time_&quot;</span> + std::to_string(metricID))</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                     .Help(<span class="stringliteral">&quot;Minimum value of the &quot;</span> + name + <span class="stringliteral">&quot; processing performance&quot;</span>)</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                     .Register(*reg)</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                     .Add({});</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classPerformanceTracker.html#ae638d664c640da9a16e72b8decab4b9e">_perfTiming</a> = &amp;prometheus::BuildSummary()</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                       .Name(name + <span class="stringliteral">&quot;_processing_time_&quot;</span> + std::to_string(metricID))</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                       .Help(name + <span class="stringliteral">&quot; processing performance&quot;</span>)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                       .Register(*reg)</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                       .Add({}, <a class="code" href="Performance_8cpp.html#a6c1e8e86b55ecaf45cc433f96a2ac8df">QUANTILE_DEFAULTS</a>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classPerformanceTracker.html#affcbc6189c2e5b05bea3e272f2ac754b">_maxTiming</a> = &amp;prometheus::BuildGauge()</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                      .Name(name + <span class="stringliteral">&quot;_maximum_processing_time_&quot;</span> + std::to_string(metricID))</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                      .Help(<span class="stringliteral">&quot;Maximum value of the &quot;</span> + name + <span class="stringliteral">&quot; processing performance&quot;</span>)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                      .Register(*reg)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                      .Add({});</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classPerformanceTracker.html#a56f720933d2154f44b1903d6b8e909dd">_minTiming</a> = &amp;prometheus::BuildGauge()</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                      .Name(name + <span class="stringliteral">&quot;_minimum_processing_time_&quot;</span> + std::to_string(metricID))</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                      .Help(<span class="stringliteral">&quot;Minimum value of the &quot;</span> + name + <span class="stringliteral">&quot; processing performance&quot;</span>)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                      .Register(*reg)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                      .Add({});</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="classPerformanceTracker.html#aabf6e2dd634dea35ec78f7c7c10af22f">minTiming</a>-&gt;Set(std::numeric_limits&lt;double&gt;::max());</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="classPerformanceTracker.html#a56f720933d2154f44b1903d6b8e909dd">_minTiming</a>-&gt;Set(std::numeric_limits&lt;double&gt;::max());</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
 <div class="ttc" id="aPerformance_8cpp_html_a6c1e8e86b55ecaf45cc433f96a2ac8df"><div class="ttname"><a href="Performance_8cpp.html#a6c1e8e86b55ecaf45cc433f96a2ac8df">QUANTILE_DEFAULTS</a></div><div class="ttdeci">#define QUANTILE_DEFAULTS</div><div class="ttdef"><b>Definition:</b> <a href="Performance_8cpp_source.html#l00006">Performance.cpp:6</a></div></div>
-<div class="ttc" id="aclassPerformanceTracker_html_a01e2782af1a1b8381bb1e278ed75b98b"><div class="ttname"><a href="classPerformanceTracker.html#a01e2782af1a1b8381bb1e278ed75b98b">PerformanceTracker::perfTiming</a></div><div class="ttdeci">prometheus::Summary * perfTiming</div><div class="ttdoc">Overall performance.</div><div class="ttdef"><b>Definition:</b> <a href="Performance_8hpp_source.html#l00016">Performance.hpp:16</a></div></div>
-<div class="ttc" id="aclassPerformanceTracker_html_a8ed8957b4dcfe704c5b8087d68d6e4f3"><div class="ttname"><a href="classPerformanceTracker.html#a8ed8957b4dcfe704c5b8087d68d6e4f3">PerformanceTracker::maxTiming</a></div><div class="ttdeci">prometheus::Gauge * maxTiming</div><div class="ttdoc">Maximum observed value.</div><div class="ttdef"><b>Definition:</b> <a href="Performance_8hpp_source.html#l00017">Performance.hpp:17</a></div></div>
-<div class="ttc" id="aclassPerformanceTracker_html_aabf6e2dd634dea35ec78f7c7c10af22f"><div class="ttname"><a href="classPerformanceTracker.html#aabf6e2dd634dea35ec78f7c7c10af22f">PerformanceTracker::minTiming</a></div><div class="ttdeci">prometheus::Gauge * minTiming</div><div class="ttdoc">Minimum observed value.</div><div class="ttdef"><b>Definition:</b> <a href="Performance_8hpp_source.html#l00018">Performance.hpp:18</a></div></div>
+<div class="ttc" id="aclassPerformanceTracker_html_a56f720933d2154f44b1903d6b8e909dd"><div class="ttname"><a href="classPerformanceTracker.html#a56f720933d2154f44b1903d6b8e909dd">PerformanceTracker::_minTiming</a></div><div class="ttdeci">prometheus::Gauge * _minTiming</div><div class="ttdoc">Minimum observed value.</div><div class="ttdef"><b>Definition:</b> <a href="Performance_8hpp_source.html#l00018">Performance.hpp:18</a></div></div>
+<div class="ttc" id="aclassPerformanceTracker_html_ae638d664c640da9a16e72b8decab4b9e"><div class="ttname"><a href="classPerformanceTracker.html#ae638d664c640da9a16e72b8decab4b9e">PerformanceTracker::_perfTiming</a></div><div class="ttdeci">prometheus::Summary * _perfTiming</div><div class="ttdoc">Overall performance.</div><div class="ttdef"><b>Definition:</b> <a href="Performance_8hpp_source.html#l00016">Performance.hpp:16</a></div></div>
+<div class="ttc" id="aclassPerformanceTracker_html_affcbc6189c2e5b05bea3e272f2ac754b"><div class="ttname"><a href="classPerformanceTracker.html#affcbc6189c2e5b05bea3e272f2ac754b">PerformanceTracker::_maxTiming</a></div><div class="ttdeci">prometheus::Gauge * _maxTiming</div><div class="ttdoc">Maximum observed value.</div><div class="ttdef"><b>Definition:</b> <a href="Performance_8hpp_source.html#l00017">Performance.hpp:17</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -218,21 +218,21 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="Performance_8cpp_source.html#l00036">36</a> of file <a class="el" href="Performance_8cpp_source.html">Performance.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span> val = <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>((std::chrono::high_resolution_clock::now() - <a class="code" href="classPerformanceTracker.html#ada70333a12c452d596affa43c0637357">startTime</a>).count());</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span> val = <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>((std::chrono::high_resolution_clock::now() - <a class="code" href="classPerformanceTracker.html#ab8dc7d616e7a2b0a72ecba0f39abb445">_startTime</a>).count());</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classPerformanceTracker.html#a01e2782af1a1b8381bb1e278ed75b98b">perfTiming</a>-&gt;Observe(val);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">if</span> (val &lt; minTiming-&gt;Value())</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classPerformanceTracker.html#ae638d664c640da9a16e72b8decab4b9e">_perfTiming</a>-&gt;Observe(val);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">if</span> (val &lt; _minTiming-&gt;Value())</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="classPerformanceTracker.html#aabf6e2dd634dea35ec78f7c7c10af22f">minTiming</a>-&gt;Set(val);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="classPerformanceTracker.html#a56f720933d2154f44b1903d6b8e909dd">_minTiming</a>-&gt;Set(val);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span> (val &gt; <a class="code" href="classPerformanceTracker.html#a8ed8957b4dcfe704c5b8087d68d6e4f3">maxTiming</a>-&gt;Value())</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span> (val &gt; <a class="code" href="classPerformanceTracker.html#affcbc6189c2e5b05bea3e272f2ac754b">_maxTiming</a>-&gt;Value())</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="classPerformanceTracker.html#a8ed8957b4dcfe704c5b8087d68d6e4f3">maxTiming</a>-&gt;Set(val);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="classPerformanceTracker.html#affcbc6189c2e5b05bea3e272f2ac754b">_maxTiming</a>-&gt;Set(val);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">return</span> val;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
-<div class="ttc" id="aclassPerformanceTracker_html_ada70333a12c452d596affa43c0637357"><div class="ttname"><a href="classPerformanceTracker.html#ada70333a12c452d596affa43c0637357">PerformanceTracker::startTime</a></div><div class="ttdeci">std::chrono::high_resolution_clock::time_point startTime</div><div class="ttdoc">Set after startTimer to measure counter difference.</div><div class="ttdef"><b>Definition:</b> <a href="Performance_8hpp_source.html#l00015">Performance.hpp:15</a></div></div>
+<div class="ttc" id="aclassPerformanceTracker_html_ab8dc7d616e7a2b0a72ecba0f39abb445"><div class="ttname"><a href="classPerformanceTracker.html#ab8dc7d616e7a2b0a72ecba0f39abb445">PerformanceTracker::_startTime</a></div><div class="ttdeci">std::chrono::high_resolution_clock::time_point _startTime</div><div class="ttdoc">Set after startTimer to measure counter difference.</div><div class="ttdef"><b>Definition:</b> <a href="Performance_8hpp_source.html#l00015">Performance.hpp:15</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -262,7 +262,7 @@ Here is the caller graph for this function:</div>
 <p>Starts the timer. </p>
 
 <p class="definition">Definition at line <a class="el" href="Performance_8cpp_source.html#l00034">34</a> of file <a class="el" href="Performance_8cpp_source.html">Performance.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{ <a class="code" href="classPerformanceTracker.html#ada70333a12c452d596affa43c0637357">startTime</a> = std::chrono::high_resolution_clock::now(); }</div>
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{ <a class="code" href="classPerformanceTracker.html#ab8dc7d616e7a2b0a72ecba0f39abb445">_startTime</a> = std::chrono::high_resolution_clock::now(); }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -276,8 +276,8 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a8ed8957b4dcfe704c5b8087d68d6e4f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ed8957b4dcfe704c5b8087d68d6e4f3">&#9670;&nbsp;</a></span>maxTiming</h2>
+<a id="affcbc6189c2e5b05bea3e272f2ac754b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affcbc6189c2e5b05bea3e272f2ac754b">&#9670;&nbsp;</a></span>_maxTiming</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -286,7 +286,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">prometheus::Gauge* PerformanceTracker::maxTiming</td>
+          <td class="memname">prometheus::Gauge* PerformanceTracker::_maxTiming</td>
         </tr>
       </table>
   </td>
@@ -302,8 +302,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="aabf6e2dd634dea35ec78f7c7c10af22f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabf6e2dd634dea35ec78f7c7c10af22f">&#9670;&nbsp;</a></span>minTiming</h2>
+<a id="a56f720933d2154f44b1903d6b8e909dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56f720933d2154f44b1903d6b8e909dd">&#9670;&nbsp;</a></span>_minTiming</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -312,7 +312,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">prometheus::Gauge* PerformanceTracker::minTiming</td>
+          <td class="memname">prometheus::Gauge* PerformanceTracker::_minTiming</td>
         </tr>
       </table>
   </td>
@@ -328,8 +328,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a01e2782af1a1b8381bb1e278ed75b98b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01e2782af1a1b8381bb1e278ed75b98b">&#9670;&nbsp;</a></span>perfTiming</h2>
+<a id="ae638d664c640da9a16e72b8decab4b9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae638d664c640da9a16e72b8decab4b9e">&#9670;&nbsp;</a></span>_perfTiming</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -338,7 +338,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">prometheus::Summary* PerformanceTracker::perfTiming</td>
+          <td class="memname">prometheus::Summary* PerformanceTracker::_perfTiming</td>
         </tr>
       </table>
   </td>
@@ -354,8 +354,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ada70333a12c452d596affa43c0637357"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada70333a12c452d596affa43c0637357">&#9670;&nbsp;</a></span>startTime</h2>
+<a id="ab8dc7d616e7a2b0a72ecba0f39abb445"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8dc7d616e7a2b0a72ecba0f39abb445">&#9670;&nbsp;</a></span>_startTime</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -364,7 +364,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::chrono::high_resolution_clock::time_point PerformanceTracker::startTime</td>
+          <td class="memname">std::chrono::high_resolution_clock::time_point PerformanceTracker::_startTime</td>
         </tr>
       </table>
   </td>
@@ -390,7 +390,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classPerformanceTracker.html">PerformanceTracker</a></li>
-    <li class="footer">Generated on Mon Aug 5 2024 06:22:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Tue Sep 17 2024 09:41:38 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

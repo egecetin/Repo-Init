@@ -137,8 +137,8 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a62c831f25cbce6b5481aaeb26418080f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a62c831f25cbce6b5481aaeb26418080f">sentryAvailable</a> {false}</td></tr>
-<tr class="separator:a62c831f25cbce6b5481aaeb26418080f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28154a3696ad70fc7f6c964c751b6142"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a28154a3696ad70fc7f6c964c751b6142">_sentryAvailable</a> {false}</td></tr>
+<tr class="separator:a28154a3696ad70fc7f6c964c751b6142"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename Mutex&gt;<br />
@@ -194,7 +194,7 @@ template&lt;typename Mutex &gt; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            }</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a62c831f25cbce6b5481aaeb26418080f">sentryAvailable</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <a class="code" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a28154a3696ad70fc7f6c964c751b6142">_sentryAvailable</a> = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="comment">// Set options</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            sentry_options_t *sentryOptions = sentry_options_new();</div>
@@ -307,7 +307,7 @@ template&lt;typename Mutex &gt; </div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        }</div>
 <div class="ttc" id="aFileHelpers_8hpp_html_ac9a16d00ef61344fc1ca49cfe7c69b52"><div class="ttname"><a href="FileHelpers_8hpp.html#ac9a16d00ef61344fc1ca49cfe7c69b52">findFromFile</a></div><div class="ttdeci">std::vector&lt; std::string &gt; findFromFile(const std::string &amp;filePath, const std::string &amp;pattern, std::string &amp;lastWord)</div><div class="ttdef"><b>Definition:</b> <a href="FileHelpers_8hpp_source.html#l00015">FileHelpers.hpp:15</a></div></div>
 <div class="ttc" id="aSentry_8cpp_html_ad7a90ea7fa751e405090d5fdab582d05"><div class="ttname"><a href="Sentry_8cpp.html#ad7a90ea7fa751e405090d5fdab582d05">MAC_LEN</a></div><div class="ttdeci">constexpr int MAC_LEN</div><div class="ttdef"><b>Definition:</b> <a href="Sentry_8cpp_source.html#l00016">Sentry.cpp:16</a></div></div>
-<div class="ttc" id="aclassspdlog_1_1sinks_1_1sentry__api__sink_html_a62c831f25cbce6b5481aaeb26418080f"><div class="ttname"><a href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a62c831f25cbce6b5481aaeb26418080f">spdlog::sinks::sentry_api_sink::sentryAvailable</a></div><div class="ttdeci">bool sentryAvailable</div><div class="ttdef"><b>Definition:</b> <a href="Sentry_8hpp_source.html#l00054">Sentry.hpp:54</a></div></div>
+<div class="ttc" id="aclassspdlog_1_1sinks_1_1sentry__api__sink_html_a28154a3696ad70fc7f6c964c751b6142"><div class="ttname"><a href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a28154a3696ad70fc7f6c964c751b6142">spdlog::sinks::sentry_api_sink::_sentryAvailable</a></div><div class="ttdeci">bool _sentryAvailable</div><div class="ttdef"><b>Definition:</b> <a href="Sentry_8hpp_source.html#l00054">Sentry.hpp:54</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -406,7 +406,7 @@ template&lt;typename Mutex &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="Sentry_8cpp_source.html#l00142">142</a> of file <a class="el" href="Sentry_8cpp_source.html">Sentry.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        {</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            <span class="keywordflow">if</span> (!<a class="code" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a62c831f25cbce6b5481aaeb26418080f">sentryAvailable</a>)</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            <span class="keywordflow">if</span> (!<a class="code" href="classspdlog_1_1sinks_1_1sentry__api__sink.html#a28154a3696ad70fc7f6c964c751b6142">_sentryAvailable</a>)</div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            {</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            }</div>
@@ -437,8 +437,8 @@ template&lt;typename Mutex &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a62c831f25cbce6b5481aaeb26418080f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62c831f25cbce6b5481aaeb26418080f">&#9670;&nbsp;</a></span>sentryAvailable</h2>
+<a id="a28154a3696ad70fc7f6c964c751b6142"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28154a3696ad70fc7f6c964c751b6142">&#9670;&nbsp;</a></span>_sentryAvailable</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -449,7 +449,7 @@ template&lt;typename Mutex &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classspdlog_1_1sinks_1_1sentry__api__sink.html">spdlog::sinks::sentry_api_sink</a>&lt; Mutex &gt;::sentryAvailable {false}</td>
+          <td class="memname">bool <a class="el" href="classspdlog_1_1sinks_1_1sentry__api__sink.html">spdlog::sinks::sentry_api_sink</a>&lt; Mutex &gt;::_sentryAvailable {false}</td>
         </tr>
       </table>
   </td>
@@ -474,7 +474,7 @@ template&lt;typename Mutex &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacespdlog.html">spdlog</a></li><li class="navelem"><a class="el" href="namespacespdlog_1_1sinks.html">sinks</a></li><li class="navelem"><a class="el" href="classspdlog_1_1sinks_1_1sentry__api__sink.html">sentry_api_sink</a></li>
-    <li class="footer">Generated on Mon Aug 5 2024 06:22:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Tue Sep 17 2024 09:41:38 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -109,6 +109,7 @@ $(document).ready(function(){initNavTree('classProcessMetrics.html',''); initRes
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structProcessMetrics_1_1__oldCpu.html">_oldCpu</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure to store the old CPU times.  <a href="structProcessMetrics_1_1__oldCpu.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -160,30 +161,43 @@ Static Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a35fd70f84873719e0128a6b69bba09a1"><td class="memItemLeft" align="right" valign="top">std::atomic_flag&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classProcessMetrics.html#a35fd70f84873719e0128a6b69bba09a1">_shouldStop</a> {false}</td></tr>
+<tr class="memdesc:a35fd70f84873719e0128a6b69bba09a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to stop monitoring.  <a href="classProcessMetrics.html#a35fd70f84873719e0128a6b69bba09a1">More...</a><br /></td></tr>
 <tr class="separator:a35fd70f84873719e0128a6b69bba09a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd231e123cf41cd967c8888a033c6586"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; std::thread &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classProcessMetrics.html#acd231e123cf41cd967c8888a033c6586">_thread</a></td></tr>
+<tr class="memdesc:acd231e123cf41cd967c8888a033c6586"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread handler.  <a href="classProcessMetrics.html#acd231e123cf41cd967c8888a033c6586">More...</a><br /></td></tr>
 <tr class="separator:acd231e123cf41cd967c8888a033c6586"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac700adb6902d2894970ecb2e7a28778e"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; std::atomic_flag &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classProcessMetrics.html#ac700adb6902d2894970ecb2e7a28778e">_checkFlag</a></td></tr>
+<tr class="memdesc:ac700adb6902d2894970ecb2e7a28778e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runtime check flag.  <a href="classProcessMetrics.html#ac700adb6902d2894970ecb2e7a28778e">More...</a><br /></td></tr>
 <tr class="separator:ac700adb6902d2894970ecb2e7a28778e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03917bb66122ce6a87ec96aac35379f8"><td class="memItemLeft" align="right" valign="top">prometheus::Gauge *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classProcessMetrics.html#a03917bb66122ce6a87ec96aac35379f8">_pMemory</a></td></tr>
+<tr class="memdesc:a03917bb66122ce6a87ec96aac35379f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the memory usage gauge.  <a href="classProcessMetrics.html#a03917bb66122ce6a87ec96aac35379f8">More...</a><br /></td></tr>
 <tr class="separator:a03917bb66122ce6a87ec96aac35379f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49957238a9cacaa8da241cf635961be5"><td class="memItemLeft" align="right" valign="top">prometheus::Gauge *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classProcessMetrics.html#a49957238a9cacaa8da241cf635961be5">_pPageFaults</a></td></tr>
+<tr class="memdesc:a49957238a9cacaa8da241cf635961be5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the page faults gauge.  <a href="classProcessMetrics.html#a49957238a9cacaa8da241cf635961be5">More...</a><br /></td></tr>
 <tr class="separator:a49957238a9cacaa8da241cf635961be5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3638b0d658ae926e8d87be55058af731"><td class="memItemLeft" align="right" valign="top">prometheus::Gauge *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classProcessMetrics.html#a3638b0d658ae926e8d87be55058af731">_pCpuUsage</a></td></tr>
+<tr class="memdesc:a3638b0d658ae926e8d87be55058af731"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the CPU usage gauge.  <a href="classProcessMetrics.html#a3638b0d658ae926e8d87be55058af731">More...</a><br /></td></tr>
 <tr class="separator:a3638b0d658ae926e8d87be55058af731"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e4dfe87932570fe4780fd45a43e5281"><td class="memItemLeft" align="right" valign="top">prometheus::Gauge *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classProcessMetrics.html#a8e4dfe87932570fe4780fd45a43e5281">_pDiskRead</a></td></tr>
+<tr class="memdesc:a8e4dfe87932570fe4780fd45a43e5281"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the disk read gauge.  <a href="classProcessMetrics.html#a8e4dfe87932570fe4780fd45a43e5281">More...</a><br /></td></tr>
 <tr class="separator:a8e4dfe87932570fe4780fd45a43e5281"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afde9e5e41c55e21e46f79d1ad771d1d9"><td class="memItemLeft" align="right" valign="top">prometheus::Gauge *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classProcessMetrics.html#afde9e5e41c55e21e46f79d1ad771d1d9">_pDiskWrite</a></td></tr>
+<tr class="memdesc:afde9e5e41c55e21e46f79d1ad771d1d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the disk write gauge.  <a href="classProcessMetrics.html#afde9e5e41c55e21e46f79d1ad771d1d9">More...</a><br /></td></tr>
 <tr class="separator:afde9e5e41c55e21e46f79d1ad771d1d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa08783fd9849823736ad7ce4d99bfa4c"><td class="memItemLeft" align="right" valign="top">prometheus::Gauge *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classProcessMetrics.html#aa08783fd9849823736ad7ce4d99bfa4c">_pThreadCount</a></td></tr>
+<tr class="memdesc:aa08783fd9849823736ad7ce4d99bfa4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the thread count gauge.  <a href="classProcessMetrics.html#aa08783fd9849823736ad7ce4d99bfa4c">More...</a><br /></td></tr>
 <tr class="separator:aa08783fd9849823736ad7ce4d99bfa4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5641fe84877380fdb0e09c8609ced178"><td class="memItemLeft" align="right" valign="top">prometheus::Gauge *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classProcessMetrics.html#a5641fe84877380fdb0e09c8609ced178">_pFileDescriptorCount</a></td></tr>
+<tr class="memdesc:a5641fe84877380fdb0e09c8609ced178"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the file descriptor count gauge.  <a href="classProcessMetrics.html#a5641fe84877380fdb0e09c8609ced178">More...</a><br /></td></tr>
 <tr class="separator:a5641fe84877380fdb0e09c8609ced178"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f9820761f1229aa5faad6c780af0188"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classProcessMetrics.html#a8f9820761f1229aa5faad6c780af0188">_oldReadBytes</a> {0}</td></tr>
+<tr class="memdesc:a8f9820761f1229aa5faad6c780af0188"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable to store the old read bytes.  <a href="classProcessMetrics.html#a8f9820761f1229aa5faad6c780af0188">More...</a><br /></td></tr>
 <tr class="separator:a8f9820761f1229aa5faad6c780af0188"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a296649916d4acb4c21865a549acdec2b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classProcessMetrics.html#a296649916d4acb4c21865a549acdec2b">_oldWriteBytes</a> {0}</td></tr>
+<tr class="memdesc:a296649916d4acb4c21865a549acdec2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable to store the old write bytes.  <a href="classProcessMetrics.html#a296649916d4acb4c21865a549acdec2b">More...</a><br /></td></tr>
 <tr class="separator:a296649916d4acb4c21865a549acdec2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dae89a805461aea0e186edc3ed00f41"><td class="memItemLeft" align="right" valign="top">clock_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classProcessMetrics.html#a0dae89a805461aea0e186edc3ed00f41">_oldCpuTime</a> {0}</td></tr>
+<tr class="memdesc:a0dae89a805461aea0e186edc3ed00f41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable to store the old CPU time.  <a href="classProcessMetrics.html#a0dae89a805461aea0e186edc3ed00f41">More...</a><br /></td></tr>
 <tr class="separator:a0dae89a805461aea0e186edc3ed00f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -249,16 +263,16 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <a class="code" href="classProcessMetrics.html#acd231e123cf41cd967c8888a033c6586">_thread</a> = std::make_unique&lt;std::thread&gt;(&amp;<a class="code" href="classProcessMetrics.html#a48996912e89faa15ddb289ec1c6c46a0">ProcessMetrics::threadRunner</a>, <span class="keyword">this</span>);</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;}</div>
-<div class="ttc" id="aclassProcessMetrics_html_a03917bb66122ce6a87ec96aac35379f8"><div class="ttname"><a href="classProcessMetrics.html#a03917bb66122ce6a87ec96aac35379f8">ProcessMetrics::_pMemory</a></div><div class="ttdeci">prometheus::Gauge * _pMemory</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00020">ProcessMetrics.hpp:20</a></div></div>
-<div class="ttc" id="aclassProcessMetrics_html_a3638b0d658ae926e8d87be55058af731"><div class="ttname"><a href="classProcessMetrics.html#a3638b0d658ae926e8d87be55058af731">ProcessMetrics::_pCpuUsage</a></div><div class="ttdeci">prometheus::Gauge * _pCpuUsage</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00022">ProcessMetrics.hpp:22</a></div></div>
+<div class="ttc" id="aclassProcessMetrics_html_a03917bb66122ce6a87ec96aac35379f8"><div class="ttname"><a href="classProcessMetrics.html#a03917bb66122ce6a87ec96aac35379f8">ProcessMetrics::_pMemory</a></div><div class="ttdeci">prometheus::Gauge * _pMemory</div><div class="ttdoc">Pointer to the memory usage gauge.</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00020">ProcessMetrics.hpp:20</a></div></div>
+<div class="ttc" id="aclassProcessMetrics_html_a3638b0d658ae926e8d87be55058af731"><div class="ttname"><a href="classProcessMetrics.html#a3638b0d658ae926e8d87be55058af731">ProcessMetrics::_pCpuUsage</a></div><div class="ttdeci">prometheus::Gauge * _pCpuUsage</div><div class="ttdoc">Pointer to the CPU usage gauge.</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00022">ProcessMetrics.hpp:22</a></div></div>
 <div class="ttc" id="aclassProcessMetrics_html_a48996912e89faa15ddb289ec1c6c46a0"><div class="ttname"><a href="classProcessMetrics.html#a48996912e89faa15ddb289ec1c6c46a0">ProcessMetrics::threadRunner</a></div><div class="ttdeci">void threadRunner() noexcept</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8cpp_source.html#l00100">ProcessMetrics.cpp:100</a></div></div>
-<div class="ttc" id="aclassProcessMetrics_html_a49957238a9cacaa8da241cf635961be5"><div class="ttname"><a href="classProcessMetrics.html#a49957238a9cacaa8da241cf635961be5">ProcessMetrics::_pPageFaults</a></div><div class="ttdeci">prometheus::Gauge * _pPageFaults</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00021">ProcessMetrics.hpp:21</a></div></div>
-<div class="ttc" id="aclassProcessMetrics_html_a5641fe84877380fdb0e09c8609ced178"><div class="ttname"><a href="classProcessMetrics.html#a5641fe84877380fdb0e09c8609ced178">ProcessMetrics::_pFileDescriptorCount</a></div><div class="ttdeci">prometheus::Gauge * _pFileDescriptorCount</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00026">ProcessMetrics.hpp:26</a></div></div>
-<div class="ttc" id="aclassProcessMetrics_html_a8e4dfe87932570fe4780fd45a43e5281"><div class="ttname"><a href="classProcessMetrics.html#a8e4dfe87932570fe4780fd45a43e5281">ProcessMetrics::_pDiskRead</a></div><div class="ttdeci">prometheus::Gauge * _pDiskRead</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00023">ProcessMetrics.hpp:23</a></div></div>
-<div class="ttc" id="aclassProcessMetrics_html_aa08783fd9849823736ad7ce4d99bfa4c"><div class="ttname"><a href="classProcessMetrics.html#aa08783fd9849823736ad7ce4d99bfa4c">ProcessMetrics::_pThreadCount</a></div><div class="ttdeci">prometheus::Gauge * _pThreadCount</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00025">ProcessMetrics.hpp:25</a></div></div>
-<div class="ttc" id="aclassProcessMetrics_html_ac700adb6902d2894970ecb2e7a28778e"><div class="ttname"><a href="classProcessMetrics.html#ac700adb6902d2894970ecb2e7a28778e">ProcessMetrics::_checkFlag</a></div><div class="ttdeci">std::shared_ptr&lt; std::atomic_flag &gt; _checkFlag</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00018">ProcessMetrics.hpp:18</a></div></div>
-<div class="ttc" id="aclassProcessMetrics_html_acd231e123cf41cd967c8888a033c6586"><div class="ttname"><a href="classProcessMetrics.html#acd231e123cf41cd967c8888a033c6586">ProcessMetrics::_thread</a></div><div class="ttdeci">std::unique_ptr&lt; std::thread &gt; _thread</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00017">ProcessMetrics.hpp:17</a></div></div>
-<div class="ttc" id="aclassProcessMetrics_html_afde9e5e41c55e21e46f79d1ad771d1d9"><div class="ttname"><a href="classProcessMetrics.html#afde9e5e41c55e21e46f79d1ad771d1d9">ProcessMetrics::_pDiskWrite</a></div><div class="ttdeci">prometheus::Gauge * _pDiskWrite</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00024">ProcessMetrics.hpp:24</a></div></div>
+<div class="ttc" id="aclassProcessMetrics_html_a49957238a9cacaa8da241cf635961be5"><div class="ttname"><a href="classProcessMetrics.html#a49957238a9cacaa8da241cf635961be5">ProcessMetrics::_pPageFaults</a></div><div class="ttdeci">prometheus::Gauge * _pPageFaults</div><div class="ttdoc">Pointer to the page faults gauge.</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00021">ProcessMetrics.hpp:21</a></div></div>
+<div class="ttc" id="aclassProcessMetrics_html_a5641fe84877380fdb0e09c8609ced178"><div class="ttname"><a href="classProcessMetrics.html#a5641fe84877380fdb0e09c8609ced178">ProcessMetrics::_pFileDescriptorCount</a></div><div class="ttdeci">prometheus::Gauge * _pFileDescriptorCount</div><div class="ttdoc">Pointer to the file descriptor count gauge.</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00026">ProcessMetrics.hpp:26</a></div></div>
+<div class="ttc" id="aclassProcessMetrics_html_a8e4dfe87932570fe4780fd45a43e5281"><div class="ttname"><a href="classProcessMetrics.html#a8e4dfe87932570fe4780fd45a43e5281">ProcessMetrics::_pDiskRead</a></div><div class="ttdeci">prometheus::Gauge * _pDiskRead</div><div class="ttdoc">Pointer to the disk read gauge.</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00023">ProcessMetrics.hpp:23</a></div></div>
+<div class="ttc" id="aclassProcessMetrics_html_aa08783fd9849823736ad7ce4d99bfa4c"><div class="ttname"><a href="classProcessMetrics.html#aa08783fd9849823736ad7ce4d99bfa4c">ProcessMetrics::_pThreadCount</a></div><div class="ttdeci">prometheus::Gauge * _pThreadCount</div><div class="ttdoc">Pointer to the thread count gauge.</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00025">ProcessMetrics.hpp:25</a></div></div>
+<div class="ttc" id="aclassProcessMetrics_html_ac700adb6902d2894970ecb2e7a28778e"><div class="ttname"><a href="classProcessMetrics.html#ac700adb6902d2894970ecb2e7a28778e">ProcessMetrics::_checkFlag</a></div><div class="ttdeci">std::shared_ptr&lt; std::atomic_flag &gt; _checkFlag</div><div class="ttdoc">Runtime check flag.</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00018">ProcessMetrics.hpp:18</a></div></div>
+<div class="ttc" id="aclassProcessMetrics_html_acd231e123cf41cd967c8888a033c6586"><div class="ttname"><a href="classProcessMetrics.html#acd231e123cf41cd967c8888a033c6586">ProcessMetrics::_thread</a></div><div class="ttdeci">std::unique_ptr&lt; std::thread &gt; _thread</div><div class="ttdoc">Thread handler.</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00017">ProcessMetrics.hpp:17</a></div></div>
+<div class="ttc" id="aclassProcessMetrics_html_afde9e5e41c55e21e46f79d1ad771d1d9"><div class="ttname"><a href="classProcessMetrics.html#afde9e5e41c55e21e46f79d1ad771d1d9">ProcessMetrics::_pDiskWrite</a></div><div class="ttdeci">prometheus::Gauge * _pDiskWrite</div><div class="ttdoc">Pointer to the disk write gauge.</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00024">ProcessMetrics.hpp:24</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -360,7 +374,7 @@ Here is the call graph for this function:</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <a class="code" href="classProcessMetrics.html#acd231e123cf41cd967c8888a033c6586">_thread</a>-&gt;join();</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    }</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;}</div>
-<div class="ttc" id="aclassProcessMetrics_html_a35fd70f84873719e0128a6b69bba09a1"><div class="ttname"><a href="classProcessMetrics.html#a35fd70f84873719e0128a6b69bba09a1">ProcessMetrics::_shouldStop</a></div><div class="ttdeci">std::atomic_flag _shouldStop</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00016">ProcessMetrics.hpp:16</a></div></div>
+<div class="ttc" id="aclassProcessMetrics_html_a35fd70f84873719e0128a6b69bba09a1"><div class="ttname"><a href="classProcessMetrics.html#a35fd70f84873719e0128a6b69bba09a1">ProcessMetrics::_shouldStop</a></div><div class="ttdeci">std::atomic_flag _shouldStop</div><div class="ttdoc">Flag to stop monitoring.</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00016">ProcessMetrics.hpp:16</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -390,7 +404,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <p>Counts the number of entries in a directory. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">path</td><td>The path of the directory. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">path</td><td>The path of the directory. </td></tr>
   </table>
   </dd>
 </dl>
@@ -474,7 +488,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">return</span> usage;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
-<div class="ttc" id="aclassProcessMetrics_html_a0dae89a805461aea0e186edc3ed00f41"><div class="ttname"><a href="classProcessMetrics.html#a0dae89a805461aea0e186edc3ed00f41">ProcessMetrics::_oldCpuTime</a></div><div class="ttdeci">clock_t _oldCpuTime</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00034">ProcessMetrics.hpp:34</a></div></div>
+<div class="ttc" id="aclassProcessMetrics_html_a0dae89a805461aea0e186edc3ed00f41"><div class="ttname"><a href="classProcessMetrics.html#a0dae89a805461aea0e186edc3ed00f41">ProcessMetrics::_oldCpuTime</a></div><div class="ttdeci">clock_t _oldCpuTime</div><div class="ttdoc">Variable to store the old CPU time.</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00034">ProcessMetrics.hpp:34</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -531,8 +545,8 @@ Here is the caller graph for this function:</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">return</span> result;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
 <div class="ttc" id="aFileHelpers_8hpp_html_ac9a16d00ef61344fc1ca49cfe7c69b52"><div class="ttname"><a href="FileHelpers_8hpp.html#ac9a16d00ef61344fc1ca49cfe7c69b52">findFromFile</a></div><div class="ttdeci">std::vector&lt; std::string &gt; findFromFile(const std::string &amp;filePath, const std::string &amp;pattern, std::string &amp;lastWord)</div><div class="ttdef"><b>Definition:</b> <a href="FileHelpers_8hpp_source.html#l00015">FileHelpers.hpp:15</a></div></div>
-<div class="ttc" id="aclassProcessMetrics_html_a296649916d4acb4c21865a549acdec2b"><div class="ttname"><a href="classProcessMetrics.html#a296649916d4acb4c21865a549acdec2b">ProcessMetrics::_oldWriteBytes</a></div><div class="ttdeci">size_t _oldWriteBytes</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00029">ProcessMetrics.hpp:29</a></div></div>
-<div class="ttc" id="aclassProcessMetrics_html_a8f9820761f1229aa5faad6c780af0188"><div class="ttname"><a href="classProcessMetrics.html#a8f9820761f1229aa5faad6c780af0188">ProcessMetrics::_oldReadBytes</a></div><div class="ttdeci">size_t _oldReadBytes</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00028">ProcessMetrics.hpp:28</a></div></div>
+<div class="ttc" id="aclassProcessMetrics_html_a296649916d4acb4c21865a549acdec2b"><div class="ttname"><a href="classProcessMetrics.html#a296649916d4acb4c21865a549acdec2b">ProcessMetrics::_oldWriteBytes</a></div><div class="ttdeci">size_t _oldWriteBytes</div><div class="ttdoc">Variable to store the old write bytes.</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00029">ProcessMetrics.hpp:29</a></div></div>
+<div class="ttc" id="aclassProcessMetrics_html_a8f9820761f1229aa5faad6c780af0188"><div class="ttname"><a href="classProcessMetrics.html#a8f9820761f1229aa5faad6c780af0188">ProcessMetrics::_oldReadBytes</a></div><div class="ttdeci">size_t _oldReadBytes</div><div class="ttdoc">Variable to store the old read bytes.</div><div class="ttdef"><b>Definition:</b> <a href="ProcessMetrics_8hpp_source.html#l00028">ProcessMetrics.hpp:28</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -964,7 +978,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Runtime check flag </p>
+
+<p>Runtime check flag. </p>
 
 <p class="definition">Definition at line <a class="el" href="ProcessMetrics_8hpp_source.html#l00018">18</a> of file <a class="el" href="ProcessMetrics_8hpp_source.html">ProcessMetrics.hpp</a>.</p>
 
@@ -989,7 +1004,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Variable to store the old CPU time </p>
+
+<p>Variable to store the old CPU time. </p>
 
 <p class="definition">Definition at line <a class="el" href="ProcessMetrics_8hpp_source.html#l00034">34</a> of file <a class="el" href="ProcessMetrics_8hpp_source.html">ProcessMetrics.hpp</a>.</p>
 
@@ -1014,7 +1030,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Variable to store the old read bytes </p>
+
+<p>Variable to store the old read bytes. </p>
 
 <p class="definition">Definition at line <a class="el" href="ProcessMetrics_8hpp_source.html#l00028">28</a> of file <a class="el" href="ProcessMetrics_8hpp_source.html">ProcessMetrics.hpp</a>.</p>
 
@@ -1039,7 +1056,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Variable to store the old write bytes </p>
+
+<p>Variable to store the old write bytes. </p>
 
 <p class="definition">Definition at line <a class="el" href="ProcessMetrics_8hpp_source.html#l00029">29</a> of file <a class="el" href="ProcessMetrics_8hpp_source.html">ProcessMetrics.hpp</a>.</p>
 
@@ -1064,7 +1082,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Pointer to the CPU usage gauge </p>
+
+<p>Pointer to the CPU usage gauge. </p>
 
 <p class="definition">Definition at line <a class="el" href="ProcessMetrics_8hpp_source.html#l00022">22</a> of file <a class="el" href="ProcessMetrics_8hpp_source.html">ProcessMetrics.hpp</a>.</p>
 
@@ -1089,7 +1108,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Pointer to the disk read gauge </p>
+
+<p>Pointer to the disk read gauge. </p>
 
 <p class="definition">Definition at line <a class="el" href="ProcessMetrics_8hpp_source.html#l00023">23</a> of file <a class="el" href="ProcessMetrics_8hpp_source.html">ProcessMetrics.hpp</a>.</p>
 
@@ -1114,7 +1134,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Pointer to the disk write gauge </p>
+
+<p>Pointer to the disk write gauge. </p>
 
 <p class="definition">Definition at line <a class="el" href="ProcessMetrics_8hpp_source.html#l00024">24</a> of file <a class="el" href="ProcessMetrics_8hpp_source.html">ProcessMetrics.hpp</a>.</p>
 
@@ -1139,7 +1160,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Pointer to the file descriptor count gauge </p>
+
+<p>Pointer to the file descriptor count gauge. </p>
 
 <p class="definition">Definition at line <a class="el" href="ProcessMetrics_8hpp_source.html#l00026">26</a> of file <a class="el" href="ProcessMetrics_8hpp_source.html">ProcessMetrics.hpp</a>.</p>
 
@@ -1164,7 +1186,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Pointer to the memory usage gauge </p>
+
+<p>Pointer to the memory usage gauge. </p>
 
 <p class="definition">Definition at line <a class="el" href="ProcessMetrics_8hpp_source.html#l00020">20</a> of file <a class="el" href="ProcessMetrics_8hpp_source.html">ProcessMetrics.hpp</a>.</p>
 
@@ -1189,7 +1212,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Pointer to the page faults gauge </p>
+
+<p>Pointer to the page faults gauge. </p>
 
 <p class="definition">Definition at line <a class="el" href="ProcessMetrics_8hpp_source.html#l00021">21</a> of file <a class="el" href="ProcessMetrics_8hpp_source.html">ProcessMetrics.hpp</a>.</p>
 
@@ -1214,7 +1238,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Pointer to the thread count gauge </p>
+
+<p>Pointer to the thread count gauge. </p>
 
 <p class="definition">Definition at line <a class="el" href="ProcessMetrics_8hpp_source.html#l00025">25</a> of file <a class="el" href="ProcessMetrics_8hpp_source.html">ProcessMetrics.hpp</a>.</p>
 
@@ -1239,6 +1264,7 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>Flag to stop monitoring. </p>
 
 <p class="definition">Definition at line <a class="el" href="ProcessMetrics_8hpp_source.html#l00016">16</a> of file <a class="el" href="ProcessMetrics_8hpp_source.html">ProcessMetrics.hpp</a>.</p>
@@ -1264,7 +1290,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Thread handler </p>
+
+<p>Thread handler. </p>
 
 <p class="definition">Definition at line <a class="el" href="ProcessMetrics_8hpp_source.html#l00017">17</a> of file <a class="el" href="ProcessMetrics_8hpp_source.html">ProcessMetrics.hpp</a>.</p>
 
@@ -1280,7 +1307,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classProcessMetrics.html">ProcessMetrics</a></li>
-    <li class="footer">Generated on Mon Aug 5 2024 06:22:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Tue Sep 17 2024 09:41:38 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

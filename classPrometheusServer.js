@@ -5,8 +5,8 @@ var classPrometheusServer =
     [ "createNewRegistry", "classPrometheusServer.html#a1238fb991b79e91fa01e7f24ca1950c5", null ],
     [ "deleteRegistry", "classPrometheusServer.html#a0f96aea3bfdbd90c0dfd355f830a5d04", null ],
     [ "getRegistry", "classPrometheusServer.html#a2f2b852d15c1feaffe2ed8a2160fe1d0", null ],
-    [ "guardLock", "classPrometheusServer.html#a269c848b032e28db4347c90fc0945826", null ],
-    [ "infoFamily", "classPrometheusServer.html#a78b95e3290f3b374211025b3c759cff3", null ],
-    [ "mainExposer", "classPrometheusServer.html#a79d7b62540fa4c9f6c172a9a2025098a", null ],
-    [ "vRegister", "classPrometheusServer.html#af761d539e94a3f425a09baf197f18683", null ]
+    [ "_guardLock", "classPrometheusServer.html#a87353b11906b640643ddd0cb84a660df", null ],
+    [ "_infoFamily", "classPrometheusServer.html#a9a50f3af23a4b4a71e24aff627f708f3", null ],
+    [ "_mainExposer", "classPrometheusServer.html#a846773b0ed65d899f49002ac12b41cd2", null ],
+    [ "_vRegister", "classPrometheusServer.html#a0db25b2906a10fd04d29f71041de95cf", null ]
 ];

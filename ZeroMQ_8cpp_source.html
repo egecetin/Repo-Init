@@ -110,19 +110,19 @@ $(document).ready(function(){initNavTree('ZeroMQ_8cpp_source.html',''); initResi
 <div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classZeroMQ.html#a763bac0903b21d20cb20798582eca5db">   13</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classZeroMQ.html#a763bac0903b21d20cb20798582eca5db">ZeroMQ::init</a>(<span class="keyword">const</span> std::shared_ptr&lt;zmq::context_t&gt; &amp;ctx, <span class="keyword">const</span> zmq::socket_type &amp;type, <span class="keyword">const</span> std::string &amp;addr,</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                  <span class="keywordtype">bool</span> isBind)</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">contextPtr</a> = ctx;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classZeroMQ.html#a21fde4ed3d2e92375dfbf50b18962ff3">socketAddr</a> = addr;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classZeroMQ.html#a6b48905a99ca422585216f431e8df905">isBinded</a> = isBind;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classZeroMQ.html#a6a7e240865bb1b7bc7109c9b516b7884">isActive</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="classZeroMQ.html#af5291ef46358b7ec0a1a7aedaa662436">_contextPtr</a> = ctx;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classZeroMQ.html#a93c55d5da3ceceed95303a8b9a0ac02a">_socketAddr</a> = addr;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classZeroMQ.html#ad4655d75cce961408f0033d4f7c15bc2">_isBinded</a> = isBind;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classZeroMQ.html#a9812a5cf72a4db04dc253595b1a5c781">_isActive</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment">// Init ZMQ connection</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a> = std::make_unique&lt;zmq::socket_t&gt;(*<a class="code" href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">contextPtr</a>, type);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a>-&gt;set(zmq::sockopt::linger, 0);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a>-&gt;set(zmq::sockopt::sndtimeo, <a class="code" href="ZeroMQ_8cpp.html#ad78f588b5ecf561c6dfc6c0cf2348304">ZEROMQ_MSG_TIMEOUT_MS</a>);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a>-&gt;set(zmq::sockopt::rcvtimeo, <a class="code" href="ZeroMQ_8cpp.html#ad78f588b5ecf561c6dfc6c0cf2348304">ZEROMQ_MSG_TIMEOUT_MS</a>);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a>-&gt;set(zmq::sockopt::heartbeat_ivl, <a class="code" href="ZeroMQ_8cpp.html#a94f790c136cc969cb897b4d1f32a989c">ZEROMQ_HEARTBEAT_TIMEOUT_MS</a>);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a>-&gt;set(zmq::sockopt::heartbeat_ttl, <a class="code" href="ZeroMQ_8cpp.html#a94f790c136cc969cb897b4d1f32a989c">ZEROMQ_HEARTBEAT_TIMEOUT_MS</a> * 3);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a>-&gt;set(zmq::sockopt::heartbeat_timeout, <a class="code" href="ZeroMQ_8cpp.html#a94f790c136cc969cb897b4d1f32a989c">ZEROMQ_HEARTBEAT_TIMEOUT_MS</a>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0">_socketPtr</a> = std::make_unique&lt;zmq::socket_t&gt;(*<a class="code" href="classZeroMQ.html#af5291ef46358b7ec0a1a7aedaa662436">_contextPtr</a>, type);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0">_socketPtr</a>-&gt;set(zmq::sockopt::linger, 0);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0">_socketPtr</a>-&gt;set(zmq::sockopt::sndtimeo, <a class="code" href="ZeroMQ_8cpp.html#ad78f588b5ecf561c6dfc6c0cf2348304">ZEROMQ_MSG_TIMEOUT_MS</a>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0">_socketPtr</a>-&gt;set(zmq::sockopt::rcvtimeo, <a class="code" href="ZeroMQ_8cpp.html#ad78f588b5ecf561c6dfc6c0cf2348304">ZEROMQ_MSG_TIMEOUT_MS</a>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0">_socketPtr</a>-&gt;set(zmq::sockopt::heartbeat_ivl, <a class="code" href="ZeroMQ_8cpp.html#a94f790c136cc969cb897b4d1f32a989c">ZEROMQ_HEARTBEAT_TIMEOUT_MS</a>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0">_socketPtr</a>-&gt;set(zmq::sockopt::heartbeat_ttl, <a class="code" href="ZeroMQ_8cpp.html#a94f790c136cc969cb897b4d1f32a989c">ZEROMQ_HEARTBEAT_TIMEOUT_MS</a> * 3);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0">_socketPtr</a>-&gt;set(zmq::sockopt::heartbeat_timeout, <a class="code" href="ZeroMQ_8cpp.html#a94f790c136cc969cb897b4d1f32a989c">ZEROMQ_HEARTBEAT_TIMEOUT_MS</a>);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 <div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classZeroMQ.html#afa401b962662f92b156a5707c7cf84ad">   31</a></span>&#160;<a class="code" href="classZeroMQ.html#afa401b962662f92b156a5707c7cf84ad">ZeroMQ::ZeroMQ</a>(<span class="keyword">const</span> zmq::socket_type &amp;type, <span class="keyword">const</span> std::string &amp;addr, <span class="keywordtype">bool</span> isBind)</div>
@@ -138,52 +138,52 @@ $(document).ready(function(){initNavTree('ZeroMQ_8cpp_source.html',''); initResi
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
 <div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classZeroMQ.html#aed565a56046d2966f9312a58aaab0c2a">   42</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classZeroMQ.html#aed565a56046d2966f9312a58aaab0c2a">ZeroMQ::start</a>()</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classZeroMQ.html#a6a7e240865bb1b7bc7109c9b516b7884">isActive</a>)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classZeroMQ.html#a9812a5cf72a4db04dc253595b1a5c781">_isActive</a>)</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classZeroMQ.html#a6b48905a99ca422585216f431e8df905">isBinded</a>)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classZeroMQ.html#ad4655d75cce961408f0033d4f7c15bc2">_isBinded</a>)</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a>-&gt;bind(<a class="code" href="classZeroMQ.html#a21fde4ed3d2e92375dfbf50b18962ff3">socketAddr</a>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0">_socketPtr</a>-&gt;bind(<a class="code" href="classZeroMQ.html#a93c55d5da3ceceed95303a8b9a0ac02a">_socketAddr</a>);</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a>-&gt;connect(<a class="code" href="classZeroMQ.html#a21fde4ed3d2e92375dfbf50b18962ff3">socketAddr</a>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0">_socketPtr</a>-&gt;connect(<a class="code" href="classZeroMQ.html#a93c55d5da3ceceed95303a8b9a0ac02a">_socketAddr</a>);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="classZeroMQ.html#a6a7e240865bb1b7bc7109c9b516b7884">isActive</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="classZeroMQ.html#a9812a5cf72a4db04dc253595b1a5c781">_isActive</a> = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
 <div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9">   62</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9">ZeroMQ::stop</a>()</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classZeroMQ.html#a6a7e240865bb1b7bc7109c9b516b7884">isActive</a>)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classZeroMQ.html#a9812a5cf72a4db04dc253595b1a5c781">_isActive</a>)</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    {</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classZeroMQ.html#a6b48905a99ca422585216f431e8df905">isBinded</a>)</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classZeroMQ.html#ad4655d75cce961408f0033d4f7c15bc2">_isBinded</a>)</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a>-&gt;unbind(<a class="code" href="classZeroMQ.html#a21fde4ed3d2e92375dfbf50b18962ff3">socketAddr</a>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <a class="code" href="classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0">_socketPtr</a>-&gt;unbind(<a class="code" href="classZeroMQ.html#a93c55d5da3ceceed95303a8b9a0ac02a">_socketAddr</a>);</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a>-&gt;disconnect(<a class="code" href="classZeroMQ.html#a21fde4ed3d2e92375dfbf50b18962ff3">socketAddr</a>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0">_socketPtr</a>-&gt;disconnect(<a class="code" href="classZeroMQ.html#a93c55d5da3ceceed95303a8b9a0ac02a">_socketAddr</a>);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="classZeroMQ.html#a6a7e240865bb1b7bc7109c9b516b7884">isActive</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="classZeroMQ.html#a9812a5cf72a4db04dc253595b1a5c781">_isActive</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
 <div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3">   80</a></span>&#160;std::vector&lt;zmq::message_t&gt; <a class="code" href="classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3">ZeroMQ::recvMessages</a>()</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;{</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    std::vector&lt;zmq::message_t&gt; recvMsgs;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classZeroMQ.html#a6a7e240865bb1b7bc7109c9b516b7884">isActive</a>)</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classZeroMQ.html#a9812a5cf72a4db04dc253595b1a5c781">_isActive</a>)</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    {</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        spdlog::warn(<span class="stringliteral">&quot;Connection needs to starting&quot;</span>);</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        zmq::recv_multipart(*<a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a>, std::back_inserter(recvMsgs));</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        zmq::recv_multipart(*<a class="code" href="classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0">_socketPtr</a>, std::back_inserter(recvMsgs));</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">return</span> recvMsgs;</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
@@ -191,13 +191,13 @@ $(document).ready(function(){initNavTree('ZeroMQ_8cpp_source.html',''); initResi
 <div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classZeroMQ.html#a67e9a20d56ac8197b16844b5e9955c0c">   94</a></span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="classZeroMQ.html#a67e9a20d56ac8197b16844b5e9955c0c">ZeroMQ::sendMessages</a>(std::vector&lt;zmq::message_t&gt; &amp;msg)</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;{</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    zmq::send_result_t res;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classZeroMQ.html#a6a7e240865bb1b7bc7109c9b516b7884">isActive</a>)</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classZeroMQ.html#a9812a5cf72a4db04dc253595b1a5c781">_isActive</a>)</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    {</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        spdlog::warn(<span class="stringliteral">&quot;Connection needs to starting&quot;</span>);</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        res = zmq::send_multipart(*<a class="code" href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">socketPtr</a>, msg);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        res = zmq::send_multipart(*<a class="code" href="classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0">_socketPtr</a>, msg);</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    }</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordflow">if</span> (res.has_value())</div>
@@ -217,11 +217,11 @@ $(document).ready(function(){initNavTree('ZeroMQ_8cpp_source.html',''); initResi
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    {</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            spdlog::error(<span class="stringliteral">&quot;Error while stopping ZeroMQ connection {} ({})&quot;</span>, <a class="code" href="classZeroMQ.html#a21fde4ed3d2e92375dfbf50b18962ff3">socketAddr</a>, e.what());</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            spdlog::error(<span class="stringliteral">&quot;Error while stopping ZeroMQ connection {} ({})&quot;</span>, <a class="code" href="classZeroMQ.html#a93c55d5da3ceceed95303a8b9a0ac02a">_socketAddr</a>, e.what());</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        }</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e2)</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        {</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            std::cerr &lt;&lt; <span class="stringliteral">&quot;Error while stopping ZeroMQ connection and logger for connection &quot;</span> &lt;&lt; <a class="code" href="classZeroMQ.html#a21fde4ed3d2e92375dfbf50b18962ff3">socketAddr</a> &lt;&lt; <span class="stringliteral">&quot; (&quot;</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            std::cerr &lt;&lt; <span class="stringliteral">&quot;Error while stopping ZeroMQ connection and logger for connection &quot;</span> &lt;&lt; <a class="code" href="classZeroMQ.html#a93c55d5da3ceceed95303a8b9a0ac02a">_socketAddr</a> &lt;&lt; <span class="stringliteral">&quot; (&quot;</span></div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                      &lt;&lt; e.what() &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt; std::endl</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                      &lt;&lt; e2.what() &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        }</div>
@@ -231,16 +231,16 @@ $(document).ready(function(){initNavTree('ZeroMQ_8cpp_source.html',''); initResi
 <div class="ttc" id="aZeroMQ_8cpp_html_ad78f588b5ecf561c6dfc6c0cf2348304"><div class="ttname"><a href="ZeroMQ_8cpp.html#ad78f588b5ecf561c6dfc6c0cf2348304">ZEROMQ_MSG_TIMEOUT_MS</a></div><div class="ttdeci">constexpr int ZEROMQ_MSG_TIMEOUT_MS</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8cpp_source.html#l00009">ZeroMQ.cpp:9</a></div></div>
 <div class="ttc" id="aZeroMQ_8hpp_html"><div class="ttname"><a href="ZeroMQ_8hpp.html">ZeroMQ.hpp</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_a1db454a94cec6d462e3f686fe156e5a9"><div class="ttname"><a href="classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9">ZeroMQ::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8cpp_source.html#l00062">ZeroMQ.cpp:62</a></div></div>
-<div class="ttc" id="aclassZeroMQ_html_a21fde4ed3d2e92375dfbf50b18962ff3"><div class="ttname"><a href="classZeroMQ.html#a21fde4ed3d2e92375dfbf50b18962ff3">ZeroMQ::socketAddr</a></div><div class="ttdeci">std::string socketAddr</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8hpp_source.html#l00025">ZeroMQ.hpp:25</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_a325eaa87b401739d540d4fd2ecd01ca3"><div class="ttname"><a href="classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3">ZeroMQ::recvMessages</a></div><div class="ttdeci">std::vector&lt; zmq::message_t &gt; recvMessages()</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8cpp_source.html#l00080">ZeroMQ.cpp:80</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_a67e9a20d56ac8197b16844b5e9955c0c"><div class="ttname"><a href="classZeroMQ.html#a67e9a20d56ac8197b16844b5e9955c0c">ZeroMQ::sendMessages</a></div><div class="ttdeci">size_t sendMessages(std::vector&lt; zmq::message_t &gt; &amp;msg)</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8cpp_source.html#l00094">ZeroMQ.cpp:94</a></div></div>
-<div class="ttc" id="aclassZeroMQ_html_a688270ff3384706aab30aca941eb22d4"><div class="ttname"><a href="classZeroMQ.html#a688270ff3384706aab30aca941eb22d4">ZeroMQ::socketPtr</a></div><div class="ttdeci">std::unique_ptr&lt; zmq::socket_t &gt; socketPtr</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8hpp_source.html#l00018">ZeroMQ.hpp:18</a></div></div>
-<div class="ttc" id="aclassZeroMQ_html_a6a7e240865bb1b7bc7109c9b516b7884"><div class="ttname"><a href="classZeroMQ.html#a6a7e240865bb1b7bc7109c9b516b7884">ZeroMQ::isActive</a></div><div class="ttdeci">bool isActive</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8hpp_source.html#l00021">ZeroMQ.hpp:21</a></div></div>
-<div class="ttc" id="aclassZeroMQ_html_a6b48905a99ca422585216f431e8df905"><div class="ttname"><a href="classZeroMQ.html#a6b48905a99ca422585216f431e8df905">ZeroMQ::isBinded</a></div><div class="ttdeci">bool isBinded</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8hpp_source.html#l00023">ZeroMQ.hpp:23</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_a763bac0903b21d20cb20798582eca5db"><div class="ttname"><a href="classZeroMQ.html#a763bac0903b21d20cb20798582eca5db">ZeroMQ::init</a></div><div class="ttdeci">void init(const std::shared_ptr&lt; zmq::context_t &gt; &amp;ctx, const zmq::socket_type &amp;type, const std::string &amp;addr, bool isBind)</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8cpp_source.html#l00013">ZeroMQ.cpp:13</a></div></div>
+<div class="ttc" id="aclassZeroMQ_html_a93c55d5da3ceceed95303a8b9a0ac02a"><div class="ttname"><a href="classZeroMQ.html#a93c55d5da3ceceed95303a8b9a0ac02a">ZeroMQ::_socketAddr</a></div><div class="ttdeci">std::string _socketAddr</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8hpp_source.html#l00025">ZeroMQ.hpp:25</a></div></div>
+<div class="ttc" id="aclassZeroMQ_html_a9812a5cf72a4db04dc253595b1a5c781"><div class="ttname"><a href="classZeroMQ.html#a9812a5cf72a4db04dc253595b1a5c781">ZeroMQ::_isActive</a></div><div class="ttdeci">bool _isActive</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8hpp_source.html#l00021">ZeroMQ.hpp:21</a></div></div>
+<div class="ttc" id="aclassZeroMQ_html_aa0b695aef616ab6891d6600e8b4a48e0"><div class="ttname"><a href="classZeroMQ.html#aa0b695aef616ab6891d6600e8b4a48e0">ZeroMQ::_socketPtr</a></div><div class="ttdeci">std::unique_ptr&lt; zmq::socket_t &gt; _socketPtr</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8hpp_source.html#l00018">ZeroMQ.hpp:18</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_ad274cd6a69ba9308acbe17fa49978467"><div class="ttname"><a href="classZeroMQ.html#ad274cd6a69ba9308acbe17fa49978467">ZeroMQ::~ZeroMQ</a></div><div class="ttdeci">~ZeroMQ()</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8cpp_source.html#l00113">ZeroMQ.cpp:113</a></div></div>
-<div class="ttc" id="aclassZeroMQ_html_ad50781ca1d02b059f6e8a52acd88a7c1"><div class="ttname"><a href="classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1">ZeroMQ::contextPtr</a></div><div class="ttdeci">std::shared_ptr&lt; zmq::context_t &gt; contextPtr</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8hpp_source.html#l00016">ZeroMQ.hpp:16</a></div></div>
+<div class="ttc" id="aclassZeroMQ_html_ad4655d75cce961408f0033d4f7c15bc2"><div class="ttname"><a href="classZeroMQ.html#ad4655d75cce961408f0033d4f7c15bc2">ZeroMQ::_isBinded</a></div><div class="ttdeci">bool _isBinded</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8hpp_source.html#l00023">ZeroMQ.hpp:23</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_aed565a56046d2966f9312a58aaab0c2a"><div class="ttname"><a href="classZeroMQ.html#aed565a56046d2966f9312a58aaab0c2a">ZeroMQ::start</a></div><div class="ttdeci">bool start()</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8cpp_source.html#l00042">ZeroMQ.cpp:42</a></div></div>
+<div class="ttc" id="aclassZeroMQ_html_af5291ef46358b7ec0a1a7aedaa662436"><div class="ttname"><a href="classZeroMQ.html#af5291ef46358b7ec0a1a7aedaa662436">ZeroMQ::_contextPtr</a></div><div class="ttdeci">std::shared_ptr&lt; zmq::context_t &gt; _contextPtr</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8hpp_source.html#l00016">ZeroMQ.hpp:16</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_afa401b962662f92b156a5707c7cf84ad"><div class="ttname"><a href="classZeroMQ.html#afa401b962662f92b156a5707c7cf84ad">ZeroMQ::ZeroMQ</a></div><div class="ttdeci">ZeroMQ(const zmq::socket_type &amp;type, const std::string &amp;addr, bool isBind)</div><div class="ttdef"><b>Definition:</b> <a href="ZeroMQ_8cpp_source.html#l00031">ZeroMQ.cpp:31</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -248,7 +248,7 @@ $(document).ready(function(){initNavTree('ZeroMQ_8cpp_source.html',''); initResi
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d88ff245824df7df97e108605ade0712.html">zeromq</a></li><li class="navelem"><a class="el" href="ZeroMQ_8cpp.html">ZeroMQ.cpp</a></li>
-    <li class="footer">Generated on Mon Aug 5 2024 06:22:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Tue Sep 17 2024 09:41:38 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

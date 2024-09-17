@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['uploadbytes_805',['uploadBytes',['../structHTTPStats.html#a871efcee2704af506360d41b2cec658c',1,'HTTPStats::uploadBytes()'],['../structTelnetSessionStats.html#ad4dbc1c062235253ee3bc00e642422d9',1,'TelnetSessionStats::uploadBytes()']]],
-  ['uploadspeed_806',['uploadSpeed',['../structHTTPStats.html#a34a3b403c56a12b698ff9c83974168b2',1,'HTTPStats']]]
+  ['zeromq_5fheartbeat_5ftimeout_5fms_814',['ZEROMQ_HEARTBEAT_TIMEOUT_MS',['../ZeroMQ_8cpp.html#a94f790c136cc969cb897b4d1f32a989c',1,'ZeroMQ.cpp']]],
+  ['zeromq_5fmsg_5ftimeout_5fms_815',['ZEROMQ_MSG_TIMEOUT_MS',['../ZeroMQ_8cpp.html#ad78f588b5ecf561c6dfc6c0cf2348304',1,'ZeroMQ.cpp']]]
 ];

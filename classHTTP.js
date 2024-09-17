@@ -17,6 +17,6 @@ var classHTTP =
     [ "setCommonFields", "classHTTP.html#a52873c0f6ed977ff287fbe38ad8f7c03", null ],
     [ "setOption", "classHTTP.html#accbda406014dffb5e3b144acd5e0f3d5", null ],
     [ "writeDataCallback", "classHTTP.html#adb8716401ed18ad3c9eb2c2839c81b05", null ],
-    [ "curl", "classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a", null ],
-    [ "hostAddr", "classHTTP.html#abc92993224cd21403f36e31aa9510159", null ]
+    [ "_curl", "classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5", null ],
+    [ "_hostAddr", "classHTTP.html#af7da86b2af737f7ee06e074f504f6cce", null ]
 ];

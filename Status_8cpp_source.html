@@ -104,68 +104,68 @@ $(document).ready(function(){initNavTree('Status_8cpp_source.html',''); initResi
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;                             uint64_t metricID)</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="comment">// Register values</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="classStatusTracker.html#abdbf119c2c3228df9f52272dd9aae68e">activeCtr</a> = &amp;prometheus::BuildGauge()</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                     .Name(name + <span class="stringliteral">&quot;_active_event_ctr_&quot;</span> + std::to_string(metricID))</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                     .Help(<span class="stringliteral">&quot;Currently active number of events of &quot;</span> + name)</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                     .Register(*reg)</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                     .Add({});</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classStatusTracker.html#afdc353812ae26abfe504d4b311c573e8">totalCtr</a> = &amp;prometheus::BuildCounter()</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                    .Name(name + <span class="stringliteral">&quot;_total_event_ctr_&quot;</span> + std::to_string(metricID))</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                    .Help(<span class="stringliteral">&quot;Total occurrences of &quot;</span> + name)</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                    .Register(*reg)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                    .Add({});</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classStatusTracker.html#ae53bf29e45aff4ca662f404011f1fa46">successCtr</a> = &amp;prometheus::BuildCounter()</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                      .Name(name + <span class="stringliteral">&quot;_success_event_ctr_&quot;</span> + std::to_string(metricID))</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                      .Help(<span class="stringliteral">&quot;Successful events of &quot;</span> + name)</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                      .Register(*reg)</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                      .Add({});</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classStatusTracker.html#ae71a9787ea9dcc6036c9f3f34b859456">failedCtr</a> = &amp;prometheus::BuildCounter()</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                     .Name(name + <span class="stringliteral">&quot;_fail_event_ctr_&quot;</span> + std::to_string(metricID))</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                     .Help(<span class="stringliteral">&quot;Failed events of &quot;</span> + name)</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                     .Register(*reg)</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                     .Add({});</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="classStatusTracker.html#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a> = &amp;prometheus::BuildGauge()</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                      .Name(name + <span class="stringliteral">&quot;_active_event_ctr_&quot;</span> + std::to_string(metricID))</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                      .Help(<span class="stringliteral">&quot;Currently active number of events of &quot;</span> + name)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                      .Register(*reg)</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                      .Add({});</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classStatusTracker.html#af6ec50a9bd799335568abad69be60f2e">_totalCtr</a> = &amp;prometheus::BuildCounter()</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                     .Name(name + <span class="stringliteral">&quot;_total_event_ctr_&quot;</span> + std::to_string(metricID))</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                     .Help(<span class="stringliteral">&quot;Total occurrences of &quot;</span> + name)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                     .Register(*reg)</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                     .Add({});</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classStatusTracker.html#adfe977979812224d225c888d355d4ae3">_successCtr</a> = &amp;prometheus::BuildCounter()</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                       .Name(name + <span class="stringliteral">&quot;_success_event_ctr_&quot;</span> + std::to_string(metricID))</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                       .Help(<span class="stringliteral">&quot;Successful events of &quot;</span> + name)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                       .Register(*reg)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                       .Add({});</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classStatusTracker.html#ad3369f49b5e9482f2816ccffd80eb15c">_failedCtr</a> = &amp;prometheus::BuildCounter()</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                      .Name(name + <span class="stringliteral">&quot;_fail_event_ctr_&quot;</span> + std::to_string(metricID))</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                      .Help(<span class="stringliteral">&quot;Failed events of &quot;</span> + name)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                      .Register(*reg)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                      .Add({});</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classStatusTracker.html#a18c54361442fb7a150c2bae3f6cedb1b">   32</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classStatusTracker.html#a18c54361442fb7a150c2bae3f6cedb1b">StatusTracker::incrementActive</a>() { <a class="code" href="classStatusTracker.html#abdbf119c2c3228df9f52272dd9aae68e">activeCtr</a>-&gt;Increment(); }</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classStatusTracker.html#a18c54361442fb7a150c2bae3f6cedb1b">   32</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classStatusTracker.html#a18c54361442fb7a150c2bae3f6cedb1b">StatusTracker::incrementActive</a>() { <a class="code" href="classStatusTracker.html#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Increment(); }</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classStatusTracker.html#adfaee3272ae558771c6d25ec2ee88241">   34</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classStatusTracker.html#adfaee3272ae558771c6d25ec2ee88241">StatusTracker::decrementActive</a>() { <a class="code" href="classStatusTracker.html#abdbf119c2c3228df9f52272dd9aae68e">activeCtr</a>-&gt;Decrement(); }</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classStatusTracker.html#adfaee3272ae558771c6d25ec2ee88241">   34</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classStatusTracker.html#adfaee3272ae558771c6d25ec2ee88241">StatusTracker::decrementActive</a>() { <a class="code" href="classStatusTracker.html#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Decrement(); }</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
 <div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classStatusTracker.html#a55f55d484e92e712e05352fd977c045b">   36</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classStatusTracker.html#a55f55d484e92e712e05352fd977c045b">StatusTracker::incrementSuccess</a>()</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classStatusTracker.html#ae53bf29e45aff4ca662f404011f1fa46">successCtr</a>-&gt;Increment();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="classStatusTracker.html#afdc353812ae26abfe504d4b311c573e8">totalCtr</a>-&gt;Increment();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classStatusTracker.html#abdbf119c2c3228df9f52272dd9aae68e">activeCtr</a>-&gt;Value() &gt; 0)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classStatusTracker.html#adfe977979812224d225c888d355d4ae3">_successCtr</a>-&gt;Increment();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="classStatusTracker.html#af6ec50a9bd799335568abad69be60f2e">_totalCtr</a>-&gt;Increment();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classStatusTracker.html#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Value() &gt; 0)</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classStatusTracker.html#abdbf119c2c3228df9f52272dd9aae68e">activeCtr</a>-&gt;Decrement();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classStatusTracker.html#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Decrement();</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
 <div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classStatusTracker.html#a6a819a3aa6c27b3597fc6ab25c83ad67">   46</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classStatusTracker.html#a6a819a3aa6c27b3597fc6ab25c83ad67">StatusTracker::incrementFail</a>()</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classStatusTracker.html#ae71a9787ea9dcc6036c9f3f34b859456">failedCtr</a>-&gt;Increment();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classStatusTracker.html#afdc353812ae26abfe504d4b311c573e8">totalCtr</a>-&gt;Increment();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classStatusTracker.html#abdbf119c2c3228df9f52272dd9aae68e">activeCtr</a>-&gt;Value() &gt; 0)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classStatusTracker.html#ad3369f49b5e9482f2816ccffd80eb15c">_failedCtr</a>-&gt;Increment();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classStatusTracker.html#af6ec50a9bd799335568abad69be60f2e">_totalCtr</a>-&gt;Increment();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classStatusTracker.html#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Value() &gt; 0)</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="classStatusTracker.html#abdbf119c2c3228df9f52272dd9aae68e">activeCtr</a>-&gt;Decrement();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="classStatusTracker.html#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Decrement();</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
 <div class="ttc" id="aStatus_8hpp_html"><div class="ttname"><a href="Status_8hpp.html">Status.hpp</a></div></div>
 <div class="ttc" id="aclassStatusTracker_html_a18c54361442fb7a150c2bae3f6cedb1b"><div class="ttname"><a href="classStatusTracker.html#a18c54361442fb7a150c2bae3f6cedb1b">StatusTracker::incrementActive</a></div><div class="ttdeci">void incrementActive()</div><div class="ttdef"><b>Definition:</b> <a href="Status_8cpp_source.html#l00032">Status.cpp:32</a></div></div>
+<div class="ttc" id="aclassStatusTracker_html_a46425ecd37b53a0aed20b273d34e171c"><div class="ttname"><a href="classStatusTracker.html#a46425ecd37b53a0aed20b273d34e171c">StatusTracker::_activeCtr</a></div><div class="ttdeci">prometheus::Gauge * _activeCtr</div><div class="ttdoc">Active number of events.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00011">Status.hpp:11</a></div></div>
 <div class="ttc" id="aclassStatusTracker_html_a55f55d484e92e712e05352fd977c045b"><div class="ttname"><a href="classStatusTracker.html#a55f55d484e92e712e05352fd977c045b">StatusTracker::incrementSuccess</a></div><div class="ttdeci">void incrementSuccess()</div><div class="ttdef"><b>Definition:</b> <a href="Status_8cpp_source.html#l00036">Status.cpp:36</a></div></div>
 <div class="ttc" id="aclassStatusTracker_html_a6a819a3aa6c27b3597fc6ab25c83ad67"><div class="ttname"><a href="classStatusTracker.html#a6a819a3aa6c27b3597fc6ab25c83ad67">StatusTracker::incrementFail</a></div><div class="ttdeci">void incrementFail()</div><div class="ttdef"><b>Definition:</b> <a href="Status_8cpp_source.html#l00046">Status.cpp:46</a></div></div>
 <div class="ttc" id="aclassStatusTracker_html_a87f9712c92f2338c890113aaeaf7f5f1"><div class="ttname"><a href="classStatusTracker.html#a87f9712c92f2338c890113aaeaf7f5f1">StatusTracker::StatusTracker</a></div><div class="ttdeci">StatusTracker(const std::shared_ptr&lt; prometheus::Registry &gt; &amp;reg, const std::string &amp;name, uint64_t metricID=0)</div><div class="ttdef"><b>Definition:</b> <a href="Status_8cpp_source.html#l00006">Status.cpp:6</a></div></div>
-<div class="ttc" id="aclassStatusTracker_html_abdbf119c2c3228df9f52272dd9aae68e"><div class="ttname"><a href="classStatusTracker.html#abdbf119c2c3228df9f52272dd9aae68e">StatusTracker::activeCtr</a></div><div class="ttdeci">prometheus::Gauge * activeCtr</div><div class="ttdoc">Active number of events.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00011">Status.hpp:11</a></div></div>
+<div class="ttc" id="aclassStatusTracker_html_ad3369f49b5e9482f2816ccffd80eb15c"><div class="ttname"><a href="classStatusTracker.html#ad3369f49b5e9482f2816ccffd80eb15c">StatusTracker::_failedCtr</a></div><div class="ttdeci">prometheus::Counter * _failedCtr</div><div class="ttdoc">Number of fail.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00014">Status.hpp:14</a></div></div>
 <div class="ttc" id="aclassStatusTracker_html_adfaee3272ae558771c6d25ec2ee88241"><div class="ttname"><a href="classStatusTracker.html#adfaee3272ae558771c6d25ec2ee88241">StatusTracker::decrementActive</a></div><div class="ttdeci">void decrementActive()</div><div class="ttdef"><b>Definition:</b> <a href="Status_8cpp_source.html#l00034">Status.cpp:34</a></div></div>
-<div class="ttc" id="aclassStatusTracker_html_ae53bf29e45aff4ca662f404011f1fa46"><div class="ttname"><a href="classStatusTracker.html#ae53bf29e45aff4ca662f404011f1fa46">StatusTracker::successCtr</a></div><div class="ttdeci">prometheus::Counter * successCtr</div><div class="ttdoc">Number of success.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00013">Status.hpp:13</a></div></div>
-<div class="ttc" id="aclassStatusTracker_html_ae71a9787ea9dcc6036c9f3f34b859456"><div class="ttname"><a href="classStatusTracker.html#ae71a9787ea9dcc6036c9f3f34b859456">StatusTracker::failedCtr</a></div><div class="ttdeci">prometheus::Counter * failedCtr</div><div class="ttdoc">Number of fail.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00014">Status.hpp:14</a></div></div>
-<div class="ttc" id="aclassStatusTracker_html_afdc353812ae26abfe504d4b311c573e8"><div class="ttname"><a href="classStatusTracker.html#afdc353812ae26abfe504d4b311c573e8">StatusTracker::totalCtr</a></div><div class="ttdeci">prometheus::Counter * totalCtr</div><div class="ttdoc">Total number of counters.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00012">Status.hpp:12</a></div></div>
+<div class="ttc" id="aclassStatusTracker_html_adfe977979812224d225c888d355d4ae3"><div class="ttname"><a href="classStatusTracker.html#adfe977979812224d225c888d355d4ae3">StatusTracker::_successCtr</a></div><div class="ttdeci">prometheus::Counter * _successCtr</div><div class="ttdoc">Number of success.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00013">Status.hpp:13</a></div></div>
+<div class="ttc" id="aclassStatusTracker_html_af6ec50a9bd799335568abad69be60f2e"><div class="ttname"><a href="classStatusTracker.html#af6ec50a9bd799335568abad69be60f2e">StatusTracker::_totalCtr</a></div><div class="ttdeci">prometheus::Counter * _totalCtr</div><div class="ttdoc">Total number of counters.</div><div class="ttdef"><b>Definition:</b> <a href="Status_8hpp_source.html#l00012">Status.hpp:12</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_ee0a2921d8a41481a2eb4b0c39976a70.html">metrics</a></li><li class="navelem"><a class="el" href="Status_8cpp.html">Status.cpp</a></li>
-    <li class="footer">Generated on Mon Aug 5 2024 06:22:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Tue Sep 17 2024 09:41:38 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

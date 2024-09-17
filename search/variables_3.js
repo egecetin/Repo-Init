@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['connectiontime_704',['connectionTime',['../structHTTPStats.html#ac39f15167c3edd05dc611939fbb2bf7c',1,'HTTPStats']]],
-  ['connecttime_705',['connectTime',['../structTelnetSessionStats.html#aa38639a98be09499a0c54cdfc8e20632',1,'TelnetSessionStats']]],
-  ['connhandler_706',['connHandler',['../classspdlog_1_1sinks_1_1loki__api__sink.html#a0c2c070f78339f81bc36d728e811d463',1,'spdlog::sinks::loki_api_sink']]],
-  ['contextptr_707',['contextPtr',['../classZeroMQ.html#ad50781ca1d02b059f6e8a52acd88a7c1',1,'ZeroMQ']]],
-  ['curl_708',['curl',['../classHTTP.html#a33c4ec8c15d5920c96f26ea53f93194a',1,'HTTP']]]
+  ['default_5fbuflen_750',['DEFAULT_BUFLEN',['../TelnetServer_8cpp.html#a9fff914e3f197a513d2137f5fc0d0fe0',1,'TelnetServer.cpp']]],
+  ['disconnecttime_751',['disconnectTime',['../structTelnetSessionStats.html#a2b44b296364265e460d47212105c11e3',1,'TelnetSessionStats']]],
+  ['downloadbytes_752',['downloadBytes',['../structHTTPStats.html#ac2e196f65a56cff893c5ee55709be2a7',1,'HTTPStats::downloadBytes()'],['../structTelnetSessionStats.html#a93001f883b7f45d77d43bfd4ba51cdab',1,'TelnetSessionStats::downloadBytes()']]],
+  ['downloadspeed_753',['downloadSpeed',['../structHTTPStats.html#afa1cc613c384c58d5860098245c5ce5e',1,'HTTPStats']]]
 ];

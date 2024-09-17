@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['event_5fcheck_5ftimeout_5fms_713',['EVENT_CHECK_TIMEOUT_MS',['../ZeroMQMonitor_8cpp.html#af51d7fee89249cab8bb83de9e3c8a1d7',1,'ZeroMQMonitor.cpp']]]
+  ['failcmdctr_755',['failCmdCtr',['../structTelnetSessionStats.html#a57bfc50e80600a8060dae059d58b04eb',1,'TelnetSessionStats']]]
 ];

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['headerbytes_719',['headerBytes',['../structHTTPStats.html#a47df34eaa6d601d28addda7be27b4254',1,'HTTPStats']]],
-  ['hostaddr_720',['hostAddr',['../classHTTP.html#abc92993224cd21403f36e31aa9510159',1,'HTTP']]],
-  ['http_5ftimeout_5fms_721',['HTTP_TIMEOUT_MS',['../Http_8hpp.html#acc66b330b058210d8f5cad8a60a77463',1,'Http.hpp']]]
+  ['key_5fwidth_761',['KEY_WIDTH',['../TelnetServer_8cpp.html#a5ba785f30cf1b83e34a0613a0e9633a1',1,'TelnetServer.cpp']]]
 ];
