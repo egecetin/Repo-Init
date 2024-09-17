@@ -23,17 +23,17 @@ struct RawSocketStats {
 class RawSocket {
   private:
 	/// Ready flag
-	bool isReady{false};
+	bool _isReady{false};
 	/// Mode indicator. True = Write, False = Read
-	bool writeMode{false};
+	bool _writeMode{false};
 	/// Socket descriptor
-	int sockFd{-1};
+	int _sockFd{-1};
 	/// Currently used ethernet interface
-	std::string iFace;
+	std::string _iFace;
 	/// Socket structure
-	sockaddr_ll addr{};
+	sockaddr_ll _addr{};
 	/// Internal structure for statistics
-	RawSocketStats stats{};
+	RawSocketStats _stats{};
 
 	void init(int domain, int type, int protocol, sockaddr_ll &_addr);
 
@@ -61,7 +61,7 @@ class RawSocket {
 	 * Returns the binded ethernet interface
 	 * @return std::string Name of the interface
 	 */
-	std::string getInterfaceName() const { return iFace; }
+	std::string getInterfaceName() const { return _iFace; }
 
 	/**
 	 * Writes data to the interface

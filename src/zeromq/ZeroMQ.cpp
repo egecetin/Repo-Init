@@ -13,19 +13,19 @@ constexpr int ZEROMQ_HEARTBEAT_TIMEOUT_MS = 1000;
 void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr,
 				  bool isBind)
 {
-	contextPtr = ctx;
-	socketAddr = addr;
-	isBinded = isBind;
-	isActive = false;
+	_contextPtr = ctx;
+	_socketAddr = addr;
+	_isBinded = isBind;
+	_isActive = false;
 
 	// Init ZMQ connection
-	socketPtr = std::make_unique<zmq::socket_t>(*contextPtr, type);
-	socketPtr->set(zmq::sockopt::linger, 0);
-	socketPtr->set(zmq::sockopt::sndtimeo, ZEROMQ_MSG_TIMEOUT_MS);
-	socketPtr->set(zmq::sockopt::rcvtimeo, ZEROMQ_MSG_TIMEOUT_MS);
-	socketPtr->set(zmq::sockopt::heartbeat_ivl, ZEROMQ_HEARTBEAT_TIMEOUT_MS);
-	socketPtr->set(zmq::sockopt::heartbeat_ttl, ZEROMQ_HEARTBEAT_TIMEOUT_MS * 3);
-	socketPtr->set(zmq::sockopt::heartbeat_timeout, ZEROMQ_HEARTBEAT_TIMEOUT_MS);
+	_socketPtr = std::make_unique<zmq::socket_t>(*_contextPtr, type);
+	_socketPtr->set(zmq::sockopt::linger, 0);
+	_socketPtr->set(zmq::sockopt::sndtimeo, ZEROMQ_MSG_TIMEOUT_MS);
+	_socketPtr->set(zmq::sockopt::rcvtimeo, ZEROMQ_MSG_TIMEOUT_MS);
+	_socketPtr->set(zmq::sockopt::heartbeat_ivl, ZEROMQ_HEARTBEAT_TIMEOUT_MS);
+	_socketPtr->set(zmq::sockopt::heartbeat_ttl, ZEROMQ_HEARTBEAT_TIMEOUT_MS * 3);
+	_socketPtr->set(zmq::sockopt::heartbeat_timeout, ZEROMQ_HEARTBEAT_TIMEOUT_MS);
 }
 
 ZeroMQ::ZeroMQ(const zmq::socket_type &type, const std::string &addr, bool isBind)
@@ -41,52 +41,52 @@ ZeroMQ::ZeroMQ(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_typ
 
 bool ZeroMQ::start()
 {
-	if (isActive)
+	if (_isActive)
 	{
 		return false;
 	}
 
-	if (isBinded)
+	if (_isBinded)
 	{
-		socketPtr->bind(socketAddr);
+		_socketPtr->bind(_socketAddr);
 	}
 	else
 	{
-		socketPtr->connect(socketAddr);
+		_socketPtr->connect(_socketAddr);
 	}
-	isActive = true;
+	_isActive = true;
 
 	return true;
 }
 
 void ZeroMQ::stop()
 {
-	if (!isActive)
+	if (!_isActive)
 	{
 		return;
 	}
 
-	if (isBinded)
+	if (_isBinded)
 	{
-		socketPtr->unbind(socketAddr);
+		_socketPtr->unbind(_socketAddr);
 	}
 	else
 	{
-		socketPtr->disconnect(socketAddr);
+		_socketPtr->disconnect(_socketAddr);
 	}
-	isActive = false;
+	_isActive = false;
 }
 
 std::vector<zmq::message_t> ZeroMQ::recvMessages()
 {
 	std::vector<zmq::message_t> recvMsgs;
-	if (!isActive)
+	if (!_isActive)
 	{
 		spdlog::warn("Connection needs to starting");
 	}
 	else
 	{
-		zmq::recv_multipart(*socketPtr, std::back_inserter(recvMsgs));
+		zmq::recv_multipart(*_socketPtr, std::back_inserter(recvMsgs));
 	}
 	return recvMsgs;
 }
@@ -94,13 +94,13 @@ std::vector<zmq::message_t> ZeroMQ::recvMessages()
 size_t ZeroMQ::sendMessages(std::vector<zmq::message_t> &msg)
 {
 	zmq::send_result_t res;
-	if (!isActive)
+	if (!_isActive)
 	{
 		spdlog::warn("Connection needs to starting");
 	}
 	else
 	{
-		res = zmq::send_multipart(*socketPtr, msg);
+		res = zmq::send_multipart(*_socketPtr, msg);
 	}
 
 	if (res.has_value())
@@ -120,11 +120,11 @@ ZeroMQ::~ZeroMQ()
 	{
 		try
 		{
-			spdlog::error("Error while stopping ZeroMQ connection {} ({})", socketAddr, e.what());
+			spdlog::error("Error while stopping ZeroMQ connection {} ({})", _socketAddr, e.what());
 		}
 		catch (const std::exception &e2)
 		{
-			std::cerr << "Error while stopping ZeroMQ connection and logger for connection " << socketAddr << " ("
+			std::cerr << "Error while stopping ZeroMQ connection and logger for connection " << _socketAddr << " ("
 					  << e.what() << ")" << std::endl
 					  << e2.what() << std::endl;
 		}

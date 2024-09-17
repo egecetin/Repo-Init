@@ -12,39 +12,39 @@
 PerformanceTracker::PerformanceTracker(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name,
 									   uint64_t metricID)
 {
-	perfTiming = &prometheus::BuildSummary()
-					  .Name(name + "_processing_time_" + std::to_string(metricID))
-					  .Help(name + " processing performance")
+	_perfTiming = &prometheus::BuildSummary()
+					   .Name(name + "_processing_time_" + std::to_string(metricID))
+					   .Help(name + " processing performance")
+					   .Register(*reg)
+					   .Add({}, QUANTILE_DEFAULTS);
+	_maxTiming = &prometheus::BuildGauge()
+					  .Name(name + "_maximum_processing_time_" + std::to_string(metricID))
+					  .Help("Maximum value of the " + name + " processing performance")
 					  .Register(*reg)
-					  .Add({}, QUANTILE_DEFAULTS);
-	maxTiming = &prometheus::BuildGauge()
-					 .Name(name + "_maximum_processing_time_" + std::to_string(metricID))
-					 .Help("Maximum value of the " + name + " processing performance")
-					 .Register(*reg)
-					 .Add({});
-	minTiming = &prometheus::BuildGauge()
-					 .Name(name + "_minimum_processing_time_" + std::to_string(metricID))
-					 .Help("Minimum value of the " + name + " processing performance")
-					 .Register(*reg)
-					 .Add({});
+					  .Add({});
+	_minTiming = &prometheus::BuildGauge()
+					  .Name(name + "_minimum_processing_time_" + std::to_string(metricID))
+					  .Help("Minimum value of the " + name + " processing performance")
+					  .Register(*reg)
+					  .Add({});
 
-	minTiming->Set(std::numeric_limits<double>::max());
+	_minTiming->Set(std::numeric_limits<double>::max());
 }
 
-void PerformanceTracker::startTimer() { startTime = std::chrono::high_resolution_clock::now(); }
+void PerformanceTracker::startTimer() { _startTime = std::chrono::high_resolution_clock::now(); }
 
 double PerformanceTracker::endTimer()
 {
-	const auto val = static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
+	const auto val = static_cast<double>((std::chrono::high_resolution_clock::now() - _startTime).count());
 
-	perfTiming->Observe(val);
-	if (val < minTiming->Value())
+	_perfTiming->Observe(val);
+	if (val < _minTiming->Value())
 	{
-		minTiming->Set(val);
+		_minTiming->Set(val);
 	}
-	if (val > maxTiming->Value())
+	if (val > _maxTiming->Value())
 	{
-		maxTiming->Set(val);
+		_maxTiming->Set(val);
 	}
 
 	return val;

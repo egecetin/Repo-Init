@@ -110,6 +110,11 @@ TEST(Connection_Tests, HttpUnitTests)
 
 TEST(Connection_Tests, RawSocketUnitTests)
 {
+	if (geteuid() != 0)
+	{
+		GTEST_SKIP() << "Skipping test due to insufficient permissions.";
+	}
+
 	// Launch packet sender
 	std::future<int> pyResult;
 	pyResult = std::async(std::launch::async, []() {

@@ -8,10 +8,10 @@
  */
 class StatusTracker {
   private:
-	prometheus::Gauge *activeCtr;	 ///< Active number of events
-	prometheus::Counter *totalCtr;	 ///< Total number of counters
-	prometheus::Counter *successCtr; ///< Number of success
-	prometheus::Counter *failedCtr;	 ///< Number of fail
+	prometheus::Gauge *_activeCtr;	  ///< Active number of events
+	prometheus::Counter *_totalCtr;	  ///< Total number of counters
+	prometheus::Counter *_successCtr; ///< Number of success
+	prometheus::Counter *_failedCtr;  ///< Number of fail
 
   public:
 	/**
