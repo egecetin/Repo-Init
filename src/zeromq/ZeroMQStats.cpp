@@ -23,66 +23,66 @@ ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg)
 	_infoFamily = &prometheus::BuildInfo().Name("zeromq").Help("ZeroMQ server information").Register(*reg);
 
 	_infoFamily->Add({{"init_time", date::format("%FT%TZ", date::floor<std::chrono::nanoseconds>(
-															  std::chrono::high_resolution_clock::now()))}});
+															   std::chrono::high_resolution_clock::now()))}});
 	_infoFamily->Add({{"performance_unit", "nanoseconds"}});
 
 	// Performance stats
 	_processingTime = &prometheus::BuildSummary()
-						  .Name("zeromq_processing_time")
-						  .Help("Command processing performance")
-						  .Register(*reg)
-						  .Add({}, QUANTILE_DEFAULTS);
+						   .Name("zeromq_processing_time")
+						   .Help("Command processing performance")
+						   .Register(*reg)
+						   .Add({}, QUANTILE_DEFAULTS);
 	_maxProcessingTime = &prometheus::BuildGauge()
-							 .Name("zeromq_maximum_processing_time")
-							 .Help("Maximum value of the command processing performance")
-							 .Register(*reg)
-							 .Add({});
+							  .Name("zeromq_maximum_processing_time")
+							  .Help("Maximum value of the command processing performance")
+							  .Register(*reg)
+							  .Add({});
 	_minProcessingTime = &prometheus::BuildGauge()
-							 .Name("zeromq_minimum_processing_time")
-							 .Help("Minimum value of the command processing performance")
-							 .Register(*reg)
-							 .Add({});
+							  .Name("zeromq_minimum_processing_time")
+							  .Help("Minimum value of the command processing performance")
+							  .Register(*reg)
+							  .Add({});
 
 	// Command stats
 	_succeededCommand = &prometheus::BuildCounter()
-							.Name("zeromq_succeeded_commands")
-							.Help("Number of succeeded commands")
-							.Register(*reg)
-							.Add({});
-	_failedCommand = &prometheus::BuildCounter()
-						 .Name("zeromq_failed_commands")
-						 .Help("Number of failed commands")
-						 .Register(*reg)
-						 .Add({});
-	_totalCommand = &prometheus::BuildCounter()
-						.Name("zeromq_received_commands")
-						.Help("Number of received commands")
-						.Register(*reg)
-						.Add({});
-	_succeededCommandParts = &prometheus::BuildCounter()
-								 .Name("zeromq_succeeded_command_parts")
-								 .Help("Number of received succeeded message parts")
-								 .Register(*reg)
-								 .Add({});
-	_failedCommandParts = &prometheus::BuildCounter()
-							  .Name("zeromq_failed_command_parts")
-							  .Help("Number of received failed message parts")
-							  .Register(*reg)
-							  .Add({});
-	_totalCommandParts = &prometheus::BuildCounter()
-							 .Name("zeromq_total_command_parts")
-							 .Help("Number of received total message parts")
+							 .Name("zeromq_succeeded_commands")
+							 .Help("Number of succeeded commands")
 							 .Register(*reg)
 							 .Add({});
+	_failedCommand = &prometheus::BuildCounter()
+						  .Name("zeromq_failed_commands")
+						  .Help("Number of failed commands")
+						  .Register(*reg)
+						  .Add({});
+	_totalCommand = &prometheus::BuildCounter()
+						 .Name("zeromq_received_commands")
+						 .Help("Number of received commands")
+						 .Register(*reg)
+						 .Add({});
+	_succeededCommandParts = &prometheus::BuildCounter()
+								  .Name("zeromq_succeeded_command_parts")
+								  .Help("Number of received succeeded message parts")
+								  .Register(*reg)
+								  .Add({});
+	_failedCommandParts = &prometheus::BuildCounter()
+							   .Name("zeromq_failed_command_parts")
+							   .Help("Number of received failed message parts")
+							   .Register(*reg)
+							   .Add({});
+	_totalCommandParts = &prometheus::BuildCounter()
+							  .Name("zeromq_total_command_parts")
+							  .Help("Number of received total message parts")
+							  .Register(*reg)
+							  .Add({});
 
 	// Bandwidth stats
 	_totalUploadBytes =
 		&prometheus::BuildCounter().Name("zeromq_uploaded_bytes").Help("Total uploaded bytes").Register(*reg).Add({});
 	_totalDownloadBytes = &prometheus::BuildCounter()
-							  .Name("zeromq_downloaded_bytes")
-							  .Help("Total downloaded bytes")
-							  .Register(*reg)
-							  .Add({});
+							   .Name("zeromq_downloaded_bytes")
+							   .Help("Total downloaded bytes")
+							   .Register(*reg)
+							   .Add({});
 
 	// Set defaults
 	_minProcessingTime->Set(std::numeric_limits<double>::max());

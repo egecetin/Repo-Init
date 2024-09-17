@@ -13,20 +13,20 @@ PerformanceTracker::PerformanceTracker(const std::shared_ptr<prometheus::Registr
 									   uint64_t metricID)
 {
 	_perfTiming = &prometheus::BuildSummary()
-					  .Name(name + "_processing_time_" + std::to_string(metricID))
-					  .Help(name + " processing performance")
-					  .Register(*reg)
-					  .Add({}, QUANTILE_DEFAULTS);
+					   .Name(name + "_processing_time_" + std::to_string(metricID))
+					   .Help(name + " processing performance")
+					   .Register(*reg)
+					   .Add({}, QUANTILE_DEFAULTS);
 	_maxTiming = &prometheus::BuildGauge()
-					 .Name(name + "_maximum_processing_time_" + std::to_string(metricID))
-					 .Help("Maximum value of the " + name + " processing performance")
-					 .Register(*reg)
-					 .Add({});
+					  .Name(name + "_maximum_processing_time_" + std::to_string(metricID))
+					  .Help("Maximum value of the " + name + " processing performance")
+					  .Register(*reg)
+					  .Add({});
 	_minTiming = &prometheus::BuildGauge()
-					 .Name(name + "_minimum_processing_time_" + std::to_string(metricID))
-					 .Help("Minimum value of the " + name + " processing performance")
-					 .Register(*reg)
-					 .Add({});
+					  .Name(name + "_minimum_processing_time_" + std::to_string(metricID))
+					  .Help("Minimum value of the " + name + " processing performance")
+					  .Register(*reg)
+					  .Add({});
 
 	_minTiming->Set(std::numeric_limits<double>::max());
 }

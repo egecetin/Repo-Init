@@ -13,9 +13,9 @@
 class PerformanceTracker {
   private:
 	std::chrono::high_resolution_clock::time_point _startTime; ///< Set after startTimer to measure counter difference
-	prometheus::Summary *_perfTiming;						  ///< Overall performance
-	prometheus::Gauge *_maxTiming;							  ///< Maximum observed value
-	prometheus::Gauge *_minTiming;							  ///< Minimum observed value
+	prometheus::Summary *_perfTiming;						   ///< Overall performance
+	prometheus::Gauge *_maxTiming;							   ///< Maximum observed value
+	prometheus::Gauge *_minTiming;							   ///< Minimum observed value
 
   public:
 	/**

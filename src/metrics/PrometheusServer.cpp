@@ -17,7 +17,7 @@ PrometheusServer::PrometheusServer(const std::string &serverAddr)
 		&prometheus::BuildInfo().Name(PROJECT_NAME).Help(std::string(PROJECT_NAME) + " information").Register(*reg);
 
 	_infoFamily->Add({{"init_time", date::format("%FT%TZ", date::floor<std::chrono::nanoseconds>(
-															  std::chrono::high_resolution_clock::now()))}});
+															   std::chrono::high_resolution_clock::now()))}});
 	_infoFamily->Add({{"version", PROJECT_FULL_VERSION_STRING}});
 
 	_vRegister.emplace_back(std::numeric_limits<uint64_t>::max(), reg);
