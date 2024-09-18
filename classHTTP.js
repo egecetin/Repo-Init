@@ -4,7 +4,7 @@ var classHTTP =
     [ "HTTP", "classHTTP.html#a516781f109229d6652dbdda339ef45fe", null ],
     [ "HTTP", "classHTTP.html#a9294eff1b6f07d7b0e6b5de47fe87770", null ],
     [ "~HTTP", "classHTTP.html#ae252d5f9c5114a0976bd3993bfcd8563", null ],
-    [ "getHostAddress", "classHTTP.html#a0a65072c45377fd8e991bc790f71fdf5", null ],
+    [ "getHostAddress", "classHTTP.html#abb86ccac95222dce72f8fe3f1415b7bc", null ],
     [ "getStats", "classHTTP.html#af36f36f547e48a89361cf150aeb177d8", null ],
     [ "operator=", "classHTTP.html#a090a91086d47418987af3a548a1184f7", null ],
     [ "operator=", "classHTTP.html#aab2faff0fff4b9986e4c2f7d1decbdae", null ],

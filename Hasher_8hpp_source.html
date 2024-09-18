@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('Hasher_8hpp_source.html',''); initResi
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// NOLINTBEGIN</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">   13</a></span>&#160;constexpr <span class="keywordtype">size_t</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *s) { <span class="keywordflow">return</span> *s ? *s + 33 * <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(s + 1) : 5381; }</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">   13</a></span>&#160;constexpr <span class="keywordtype">size_t</span> <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *s) { <span class="keywordflow">return</span> (s &amp;&amp; *s) ? (*s + 33 * <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(s + 1)) : 5381; }</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="Hasher_8hpp.html#a19de363e44f82446f890dc47a27d101c">   21</a></span>&#160;<span class="keyword">template</span> &lt;<span class="keywordtype">size_t</span> N&gt; constexpr uint64_t <a class="code" href="Hasher_8hpp.html#a19de363e44f82446f890dc47a27d101c">constSeeder</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> (&amp;entropy)[N], <span class="keyword">const</span> uint64_t iv = 0)</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
@@ -126,7 +126,7 @@ $(document).ready(function(){initNavTree('Hasher_8hpp_source.html',''); initResi
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_821002d4f10779a80d4fb17bc32f21f1.html">utils</a></li><li class="navelem"><a class="el" href="Hasher_8hpp.html">Hasher.hpp</a></li>
-    <li class="footer">Generated on Tue Sep 17 2024 09:41:38 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Wed Sep 18 2024 05:47:34 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

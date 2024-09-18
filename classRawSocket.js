@@ -4,7 +4,7 @@ var classRawSocket =
     [ "RawSocket", "classRawSocket.html#aedb0c47dc4c6f83606b8960698d26b0a", null ],
     [ "RawSocket", "classRawSocket.html#a67beb6975831cc836a11c75629bc04ff", null ],
     [ "~RawSocket", "classRawSocket.html#a8a2386aad78626913a844f5ac4cbaadc", null ],
-    [ "getInterfaceName", "classRawSocket.html#acad7d2566a1fd692d8b6a0abce722d13", null ],
+    [ "getInterfaceName", "classRawSocket.html#aef4e0545cb8fbbc51602058b2a4b14b2", null ],
     [ "getStats", "classRawSocket.html#a1f203ecb915c624a0dadb5e3de38188e", null ],
     [ "init", "classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d", null ],
     [ "operator=", "classRawSocket.html#a5035edbafe7fad052622e107f6186a13", null ],

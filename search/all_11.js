@@ -14,7 +14,7 @@ var searchData=
   ['sentry_5fapi_5fsink_306',['sentry_api_sink',['../classspdlog_1_1sinks_1_1sentry__api__sink.html#a005dd6dd72151bf12eceed15c5ec8db3',1,'spdlog::sinks::sentry_api_sink::sentry_api_sink()'],['../classspdlog_1_1sinks_1_1sentry__api__sink.html',1,'spdlog::sinks::sentry_api_sink&lt; Mutex &gt;']]],
   ['sentry_5fapi_5fsink_5fmt_307',['sentry_api_sink_mt',['../namespacespdlog_1_1sinks.html#a3c19d48dc934c77f44320dadbdab3d64',1,'spdlog::sinks']]],
   ['sentry_5fapi_5fsink_5fst_308',['sentry_api_sink_st',['../namespacespdlog_1_1sinks.html#a67ec7c7fd5a0e0b9d4c4bcdb7a423088',1,'spdlog::sinks']]],
-  ['sessions_309',['sessions',['../classTelnetServer.html#a172059c56b3550c713c42ef537a8d2ee',1,'TelnetServer']]],
+  ['sessions_309',['sessions',['../classTelnetServer.html#a3d50321156d068dd9cc5a16d166e7c2a',1,'TelnetServer']]],
   ['set_310',['set',['../classConfigParser.html#addf9ff2c36c092ef802f457ad406afaf',1,'ConfigParser']]],
   ['setcommonfields_311',['setCommonFields',['../classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4',1,'HTTP::setCommonFields(const std::string &amp;fullURL, std::string &amp;receivedData, CURLoption method)'],['../classHTTP.html#a52873c0f6ed977ff287fbe38ad8f7c03',1,'HTTP::setCommonFields(const std::string &amp;fullURL, std::string &amp;receivedData, CURLoption method, const std::string &amp;payload)']]],
   ['setoption_312',['setOption',['../classHTTP.html#accbda406014dffb5e3b144acd5e0f3d5',1,'HTTP']]],

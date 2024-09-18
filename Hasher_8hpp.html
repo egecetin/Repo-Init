@@ -156,14 +156,14 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Calculates the compile-time hash value of a string. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">s</td><td>The input string. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">s</td><td>The input string. Must be null-terminated. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The hash value of the input string. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Hasher_8hpp_source.html#l00013">13</a> of file <a class="el" href="Hasher_8hpp_source.html">Hasher.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{ <span class="keywordflow">return</span> *s ? *s + 33 * <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(s + 1) : 5381; }</div>
+<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{ <span class="keywordflow">return</span> (s &amp;&amp; *s) ? (*s + 33 * <a class="code" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(s + 1)) : 5381; }</div>
 <div class="ttc" id="aHasher_8hpp_html_a69c2bf176d386d2413b9ae6d8346588b"><div class="ttname"><a href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a></div><div class="ttdeci">constexpr size_t constHasher(const char *s)</div><div class="ttdef"><b>Definition:</b> <a href="Hasher_8hpp_source.html#l00013">Hasher.hpp:13</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -244,7 +244,7 @@ template&lt;size_t N&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_821002d4f10779a80d4fb17bc32f21f1.html">utils</a></li><li class="navelem"><a class="el" href="Hasher_8hpp.html">Hasher.hpp</a></li>
-    <li class="footer">Generated on Tue Sep 17 2024 09:41:38 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Wed Sep 18 2024 05:47:34 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

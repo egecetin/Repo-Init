@@ -158,14 +158,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa18a4e6fc0755d3b8b43550a0f0c0c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66382d7b3088a089983fd139089eba88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="TelnetServer_8hpp.html#a132784f510fb4dffb68c25c13170ac89">FPTR_TabCallback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTelnetServer.html#a66382d7b3088a089983fd139089eba88">tabCallback</a> () const</td></tr>
 <tr class="separator:a66382d7b3088a089983fd139089eba88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a172059c56b3550c713c42ef537a8d2ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="TelnetServer_8hpp.html#a0bbcbd046b03e259f88f694296e4a37f">VEC_SP_TelnetSession</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTelnetServer.html#a172059c56b3550c713c42ef537a8d2ee">sessions</a> () const</td></tr>
-<tr class="separator:a172059c56b3550c713c42ef537a8d2ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d50321156d068dd9cc5a16d166e7c2a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="TelnetServer_8hpp.html#a0bbcbd046b03e259f88f694296e4a37f">VEC_SP_TelnetSession</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTelnetServer.html#a3d50321156d068dd9cc5a16d166e7c2a">sessions</a> () const</td></tr>
+<tr class="separator:a3d50321156d068dd9cc5a16d166e7c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f43f36263281e1a6cd52d5f823b13e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTelnetServer.html#a4f43f36263281e1a6cd52d5f823b13e7">interactivePrompt</a> () const</td></tr>
 <tr class="separator:a4f43f36263281e1a6cd52d5f823b13e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad69972f1001887ff4e0ceec55fa7677d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTelnetServer.html#ad69972f1001887ff4e0ceec55fa7677d">promptString</a> (const std::string &amp;prompt)</td></tr>
 <tr class="separator:ad69972f1001887ff4e0ceec55fa7677d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba8efd94d131fd3f90c60df5eb08e489"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTelnetServer.html#aba8efd94d131fd3f90c60df5eb08e489">promptString</a> () const</td></tr>
-<tr class="separator:aba8efd94d131fd3f90c60df5eb08e489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59e1d9d39d5167a51c14f91d3001a5b1"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTelnetServer.html#a59e1d9d39d5167a51c14f91d3001a5b1">promptString</a> () const</td></tr>
+<tr class="separator:a59e1d9d39d5167a51c14f91d3001a5b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -522,7 +522,7 @@ false otherwise </dd></dl>
 <div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160; </div>
 <div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;    <a class="code" href="classTelnetServer.html#aad83895ceac708dcb9b9fd996754847a">m_checkFlag</a> = checkFlag;</div>
 <div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;    <a class="code" href="classTelnetServer.html#ab6ae9be1730257df753ef2ee9e3a0a09">m_listenPort</a> = listenPort;</div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;    <a class="code" href="classTelnetServer.html#a49a68560f22235999bd540dcaddce0e3">m_promptString</a> = std::move(<a class="code" href="classTelnetServer.html#aba8efd94d131fd3f90c60df5eb08e489">promptString</a>);</div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;    <a class="code" href="classTelnetServer.html#a49a68560f22235999bd540dcaddce0e3">m_promptString</a> = std::move(<a class="code" href="classTelnetServer.html#a59e1d9d39d5167a51c14f91d3001a5b1">promptString</a>);</div>
 <div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160; </div>
 <div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;    addrinfo hints{};</div>
 <div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;    memset(&amp;hints, 0, <span class="keyword">sizeof</span>(hints));</div>
@@ -585,19 +585,19 @@ false otherwise </dd></dl>
 <div class="ttc" id="aclassTelnetServer_html_a122b02690e59a21b013aab850bdb6373"><div class="ttname"><a href="classTelnetServer.html#a122b02690e59a21b013aab850bdb6373">TelnetServer::m_stats</a></div><div class="ttdeci">std::unique_ptr&lt; TelnetStats &gt; m_stats</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8hpp_source.html#l00201">TelnetServer.hpp:201</a></div></div>
 <div class="ttc" id="aclassTelnetServer_html_a48d5fdb3a00ccb79eabfe27a87df4d6f"><div class="ttname"><a href="classTelnetServer.html#a48d5fdb3a00ccb79eabfe27a87df4d6f">TelnetServer::m_shouldStop</a></div><div class="ttdeci">std::atomic_flag m_shouldStop</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8hpp_source.html#l00203">TelnetServer.hpp:203</a></div></div>
 <div class="ttc" id="aclassTelnetServer_html_a49a68560f22235999bd540dcaddce0e3"><div class="ttname"><a href="classTelnetServer.html#a49a68560f22235999bd540dcaddce0e3">TelnetServer::m_promptString</a></div><div class="ttdeci">std::string m_promptString</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8hpp_source.html#l00198">TelnetServer.hpp:198</a></div></div>
+<div class="ttc" id="aclassTelnetServer_html_a59e1d9d39d5167a51c14f91d3001a5b1"><div class="ttname"><a href="classTelnetServer.html#a59e1d9d39d5167a51c14f91d3001a5b1">TelnetServer::promptString</a></div><div class="ttdeci">const std::string &amp; promptString() const</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8hpp_source.html#l00177">TelnetServer.hpp:177</a></div></div>
 <div class="ttc" id="aclassTelnetServer_html_a5a98bd1d160489c7d8bfa6306dc16663"><div class="ttname"><a href="classTelnetServer.html#a5a98bd1d160489c7d8bfa6306dc16663">TelnetServer::m_serverThread</a></div><div class="ttdeci">std::unique_ptr&lt; std::thread &gt; m_serverThread</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8hpp_source.html#l00204">TelnetServer.hpp:204</a></div></div>
 <div class="ttc" id="aclassTelnetServer_html_a5af7f92eb34055044cb23435c08ea057"><div class="ttname"><a href="classTelnetServer.html#a5af7f92eb34055044cb23435c08ea057">TelnetServer::m_initialised</a></div><div class="ttdeci">bool m_initialised</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8hpp_source.html#l00196">TelnetServer.hpp:196</a></div></div>
 <div class="ttc" id="aclassTelnetServer_html_a8c9df79dede3e2a03f043e70606287df"><div class="ttname"><a href="classTelnetServer.html#a8c9df79dede3e2a03f043e70606287df">TelnetServer::threadFunc</a></div><div class="ttdeci">void threadFunc() noexcept</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8cpp_source.html#l00653">TelnetServer.cpp:653</a></div></div>
 <div class="ttc" id="aclassTelnetServer_html_aad83895ceac708dcb9b9fd996754847a"><div class="ttname"><a href="classTelnetServer.html#aad83895ceac708dcb9b9fd996754847a">TelnetServer::m_checkFlag</a></div><div class="ttdeci">std::shared_ptr&lt; std::atomic_flag &gt; m_checkFlag</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8hpp_source.html#l00205">TelnetServer.hpp:205</a></div></div>
 <div class="ttc" id="aclassTelnetServer_html_ab6ae9be1730257df753ef2ee9e3a0a09"><div class="ttname"><a href="classTelnetServer.html#ab6ae9be1730257df753ef2ee9e3a0a09">TelnetServer::m_listenPort</a></div><div class="ttdeci">u_long m_listenPort</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8hpp_source.html#l00193">TelnetServer.hpp:193</a></div></div>
-<div class="ttc" id="aclassTelnetServer_html_aba8efd94d131fd3f90c60df5eb08e489"><div class="ttname"><a href="classTelnetServer.html#aba8efd94d131fd3f90c60df5eb08e489">TelnetServer::promptString</a></div><div class="ttdeci">std::string promptString() const</div><div class="ttdef"><b>Definition:</b> <a href="TelnetServer_8hpp_source.html#l00177">TelnetServer.hpp:177</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTelnetServer_ad29ec932294d2bc05797f0580c66b0f1_cgraph.png" border="0" usemap="#aclassTelnetServer_ad29ec932294d2bc05797f0580c66b0f1_cgraph" alt=""/></div>
 <map name="aclassTelnetServer_ad29ec932294d2bc05797f0580c66b0f1_cgraph" id="aclassTelnetServer_ad29ec932294d2bc05797f0580c66b0f1_cgraph">
 <area shape="rect" title=" " alt="" coords="5,31,172,57"/>
-<area shape="rect" href="classTelnetServer.html#aba8efd94d131fd3f90c60df5eb08e489" title=" " alt="" coords="220,5,416,32"/>
+<area shape="rect" href="classTelnetServer.html#a59e1d9d39d5167a51c14f91d3001a5b1" title=" " alt="" coords="220,5,416,32"/>
 <area shape="rect" href="classTelnetServer.html#a8c9df79dede3e2a03f043e70606287df" title=" " alt="" coords="227,56,409,83"/>
 <area shape="rect" href="classTelnetServer.html#acd6b4cead01d745646ba4538093aa11d" title="Process new connections and messages." alt="" coords="464,56,620,83"/>
 <area shape="rect" href="classTelnetServer.html#a14a98513c8caf58a0bc5f78fc3f1b141" title=" " alt="" coords="668,56,895,83"/>
@@ -748,8 +748,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="aba8efd94d131fd3f90c60df5eb08e489"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba8efd94d131fd3f90c60df5eb08e489">&#9670;&nbsp;</a></span>promptString() <span class="overload">[1/2]</span></h2>
+<a id="a59e1d9d39d5167a51c14f91d3001a5b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59e1d9d39d5167a51c14f91d3001a5b1">&#9670;&nbsp;</a></span>promptString() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -758,7 +758,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string TelnetServer::promptString </td>
+          <td class="memname">const std::string&amp; TelnetServer::promptString </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -776,8 +776,8 @@ Here is the call graph for this function:</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classTelnetServer_aba8efd94d131fd3f90c60df5eb08e489_icgraph.png" border="0" usemap="#aclassTelnetServer_aba8efd94d131fd3f90c60df5eb08e489_icgraph" alt=""/></div>
-<map name="aclassTelnetServer_aba8efd94d131fd3f90c60df5eb08e489_icgraph" id="aclassTelnetServer_aba8efd94d131fd3f90c60df5eb08e489_icgraph">
+<div class="center"><img src="classTelnetServer_a59e1d9d39d5167a51c14f91d3001a5b1_icgraph.png" border="0" usemap="#aclassTelnetServer_a59e1d9d39d5167a51c14f91d3001a5b1_icgraph" alt=""/></div>
+<map name="aclassTelnetServer_a59e1d9d39d5167a51c14f91d3001a5b1_icgraph" id="aclassTelnetServer_a59e1d9d39d5167a51c14f91d3001a5b1_icgraph">
 <area shape="rect" title=" " alt="" coords="220,5,416,32"/>
 <area shape="rect" href="classTelnetServer.html#ad29ec932294d2bc05797f0580c66b0f1" title=" " alt="" coords="5,5,172,32"/>
 </map>
@@ -814,8 +814,8 @@ Here is the caller graph for this function:</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a172059c56b3550c713c42ef537a8d2ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a172059c56b3550c713c42ef537a8d2ee">&#9670;&nbsp;</a></span>sessions()</h2>
+<a id="a3d50321156d068dd9cc5a16d166e7c2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d50321156d068dd9cc5a16d166e7c2a">&#9670;&nbsp;</a></span>sessions()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -824,7 +824,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="TelnetServer_8hpp.html#a0bbcbd046b03e259f88f694296e4a37f">VEC_SP_TelnetSession</a> TelnetServer::sessions </td>
+          <td class="memname">const <a class="el" href="TelnetServer_8hpp.html#a0bbcbd046b03e259f88f694296e4a37f">VEC_SP_TelnetSession</a>&amp; TelnetServer::sessions </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1439,7 +1439,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classTelnetServer.html">TelnetServer</a></li>
-    <li class="footer">Generated on Tue Sep 17 2024 09:41:38 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Wed Sep 18 2024 05:47:34 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

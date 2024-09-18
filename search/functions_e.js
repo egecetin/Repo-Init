@@ -9,7 +9,7 @@ var searchData=
   ['sendpromptandbuffer_611',['sendPromptAndBuffer',['../classTelnetSession.html#ac0f89ffb38a58704ece76e84044f04e8',1,'TelnetSession']]],
   ['sendputrequest_612',['sendPUTRequest',['../classHTTP.html#a305ae916fcf07e8dcd25b4defbae80d9',1,'HTTP']]],
   ['sentry_5fapi_5fsink_613',['sentry_api_sink',['../classspdlog_1_1sinks_1_1sentry__api__sink.html#a005dd6dd72151bf12eceed15c5ec8db3',1,'spdlog::sinks::sentry_api_sink']]],
-  ['sessions_614',['sessions',['../classTelnetServer.html#a172059c56b3550c713c42ef537a8d2ee',1,'TelnetServer']]],
+  ['sessions_614',['sessions',['../classTelnetServer.html#a3d50321156d068dd9cc5a16d166e7c2a',1,'TelnetServer']]],
   ['set_615',['set',['../classConfigParser.html#addf9ff2c36c092ef802f457ad406afaf',1,'ConfigParser']]],
   ['setcommonfields_616',['setCommonFields',['../classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4',1,'HTTP::setCommonFields(const std::string &amp;fullURL, std::string &amp;receivedData, CURLoption method)'],['../classHTTP.html#a52873c0f6ed977ff287fbe38ad8f7c03',1,'HTTP::setCommonFields(const std::string &amp;fullURL, std::string &amp;receivedData, CURLoption method, const std::string &amp;payload)']]],
   ['setoption_617',['setOption',['../classHTTP.html#accbda406014dffb5e3b144acd5e0f3d5',1,'HTTP']]],
