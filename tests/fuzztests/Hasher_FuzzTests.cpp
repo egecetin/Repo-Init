@@ -5,13 +5,13 @@
 
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size)
 {
-	char seederBuffer[4096] = {'\0'};
+	char buffer[4096] = {'\0'};
 
-	std::string dataStr(reinterpret_cast<const char *>(data), size);
-	constHasher(dataStr.c_str());
+	memcpy(buffer, data, size > 4095 ? 4095 : size);
+	constHasher(buffer);
 
-	memcpy(seederBuffer, data, size > 4096 ? 4096 : size);
-	constSeeder(seederBuffer);
+	memcpy(buffer, data, size > 4096 ? 4096 : size);
+	constSeeder(buffer);
 
 	return 0;
 }

@@ -7,26 +7,6 @@
 
 #define TELNET_SERVER_PORT 9001
 
-// Parse fuzzer arguments
-std::string findOptionValue(const std::string &option, int argc, char **argv)
-{
-	for (int idx = 0; idx < argc; ++idx)
-	{
-		const std::string argument = argv[idx];
-		auto pos = argument.find("=");
-		if (pos != std::string::npos)
-		{
-			const std::string key = argument.substr(1, pos - 1);
-			if (key == option)
-			{
-				return argument.substr(pos + 1);
-			}
-		}
-	}
-
-	return "";
-}
-
 class SocketWrapper {
   private:
 	int sockFd{-1};

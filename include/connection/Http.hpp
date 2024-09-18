@@ -117,7 +117,7 @@ class HTTP {
 	 * Gets the host address of the object
 	 * @return The host address
 	 */
-	std::string getHostAddress() const { return _hostAddr; }
+	const std::string &getHostAddress() const { return _hostAddr; }
 
 	/**
 	 * Sends a GET request
