@@ -52,6 +52,15 @@ jobs:
           submodules: recursive
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Restore ccache
+        id: ccache-restore
+        uses: actions/cache/restore@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
+        with:
+          path: |
+            ${{ env.CCACHE_DIR }}
+          key: memleak-ccache-${{ github.run_id }}
+          restore-keys: |
+            memleak-ccache
       - name: Install Test Requirements
         run: pip3 install -r tests/data/requirements.txt
       - name: Configure
@@ -60,6 +69,11 @@ jobs:
         run: cmake --build build --parallel
       - name: Run tests
         run: ctest --output-on-failure --test-dir build
+      - name: Save ccache
+        uses: actions/cache/save@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
+        with:
+          path: ${{ env.CCACHE_DIR }}
+          key: ${{ steps.ccache-restore.outputs.cache-primary-key }}
 
   fuzzer:
     runs-on: ubuntu-latest
@@ -74,6 +88,15 @@ jobs:
           submodules: recursive
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Restore ccache
+        id: ccache-restore
+        uses: actions/cache/restore@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
+        with:
+          path: |
+            ${{ env.CCACHE_DIR }}
+          key: ${{ matrix.sanitizer }}-ccache-${{ github.run_id }}
+          restore-keys: |
+            ${{ matrix.sanitizer }}-ccache
       - name: Install Test Requirements
         run: pip3 install -r tests/data/requirements.txt
       - name: Configure
@@ -82,6 +105,11 @@ jobs:
         run: cmake --build build --parallel
       - name: Run tests
         run: ctest --output-on-failure --test-dir build
+      - name: Save ccache
+        uses: actions/cache/save@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
+        with:
+          path: ${{ env.CCACHE_DIR }}
+          key: ${{ steps.ccache-restore.outputs.cache-primary-key }}
       # Upload regressions if failed
 
   rockylinux:
