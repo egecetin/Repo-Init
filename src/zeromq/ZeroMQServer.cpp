@@ -69,12 +69,12 @@ void ZeroMQServer::threadFunc() noexcept
 }
 
 ZeroMQServer::ZeroMQServer(const std::string &hostAddr, std::shared_ptr<std::atomic_flag> checkFlag,
-						   const std::shared_ptr<prometheus::Registry> &reg)
+						   const std::shared_ptr<prometheus::Registry> &reg, const std::string prependName)
 	: ZeroMQ(zmq::socket_type::rep, hostAddr, true), _checkFlag(std::move(checkFlag))
 {
 	if (reg)
 	{
-		_stats = std::make_unique<ZeroMQStats>(reg);
+		_stats = std::make_unique<ZeroMQStats>(reg, prependName);
 	}
 
 	startMonitoring(getSocket().get(), "inproc://" + std::to_string(constHasher(hostAddr.c_str())) + ".rep");

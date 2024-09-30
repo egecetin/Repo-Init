@@ -14,15 +14,18 @@
 		{0.5, 0.1}, {0.9, 0.1}, { 0.99, 0.1 }                                                                          \
 	}
 
-TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint16_t portNumber)
+TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint16_t portNumber,
+						 const std::string prependName = "")
 {
 	if (!reg)
 	{
 		throw std::invalid_argument("Can't init Telnet statistics. Registry is null");
 	}
 
+	const auto name = prependName.empty() ? "telnet" : prependName + "_telnet";
+
 	// Basic information
-	_infoFamily = &prometheus::BuildInfo().Name("telnet").Help("Telnet server information").Register(*reg);
+	_infoFamily = &prometheus::BuildInfo().Name(name).Help("Telnet server information").Register(*reg);
 
 	_infoFamily->Add({{"server_port", std::to_string(portNumber)}});
 	_infoFamily->Add({{"init_time", date::format("%FT%TZ", date::floor<std::chrono::nanoseconds>(
@@ -31,77 +34,77 @@ TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint1
 
 	// Connection stats
 	_activeConnection = &prometheus::BuildGauge()
-							 .Name("telnet_active_connections")
+							 .Name(name + "active_connections")
 							 .Help("Number of active connections")
 							 .Register(*reg)
 							 .Add({});
 	_refusedConnection = &prometheus::BuildCounter()
-							  .Name("telnet_refused_connections")
+							  .Name(name + "refused_connections")
 							  .Help("Number of refused connections")
 							  .Register(*reg)
 							  .Add({});
 	_totalConnection = &prometheus::BuildCounter()
-							.Name("telnet_received_connections")
+							.Name(name + "received_connections")
 							.Help("Number of received connections")
 							.Register(*reg)
 							.Add({});
 
 	// Performance stats
 	_processingTime = &prometheus::BuildSummary()
-						   .Name("telnet_processing_time")
+						   .Name(name + "processing_time")
 						   .Help("Command processing performance")
 						   .Register(*reg)
 						   .Add({}, QUANTILE_DEFAULTS);
 	_maxProcessingTime = &prometheus::BuildGauge()
-							  .Name("telnet_maximum_processing_time")
+							  .Name(name + "maximum_processing_time")
 							  .Help("Maximum value of the command processing performance")
 							  .Register(*reg)
 							  .Add({});
 	_minProcessingTime = &prometheus::BuildGauge()
-							  .Name("telnet_minimum_processing_time")
+							  .Name(name + "minimum_processing_time")
 							  .Help("Minimum value of the command processing performance")
 							  .Register(*reg)
 							  .Add({});
 
 	// Command stats
 	_succeededCommand = &prometheus::BuildCounter()
-							 .Name("telnet_succeeded_commands")
+							 .Name(name + "succeeded_commands")
 							 .Help("Number of succeeded commands")
 							 .Register(*reg)
 							 .Add({});
 	_failedCommand = &prometheus::BuildCounter()
-						  .Name("telnet_failed_commands")
+						  .Name(name + "failed_commands")
 						  .Help("Number of failed commands")
 						  .Register(*reg)
 						  .Add({});
 	_totalCommand = &prometheus::BuildCounter()
-						 .Name("telnet_received_commands")
+						 .Name(name + "received_commands")
 						 .Help("Number of received commands")
 						 .Register(*reg)
 						 .Add({});
 
 	// Bandwidth stats
 	_totalUploadBytes =
-		&prometheus::BuildCounter().Name("telnet_uploaded_bytes").Help("Total uploaded bytes").Register(*reg).Add({});
+		&prometheus::BuildCounter().Name(name + "uploaded_bytes").Help("Total uploaded bytes").Register(*reg).Add({});
 	_totalDownloadBytes = &prometheus::BuildCounter()
-							   .Name("telnet_downloaded_bytes")
+							   .Name(name + "downloaded_bytes")
 							   .Help("Total downloaded bytes")
 							   .Register(*reg)
 							   .Add({});
 
 	// Session durations
 	_sessionDuration = &prometheus::BuildSummary()
-							.Name("telnet_session_duration")
+							.Name(name + "session_duration")
 							.Help("Duration of sessions")
 							.Register(*reg)
 							.Add({}, QUANTILE_DEFAULTS);
 	_maxSessionDuration = &prometheus::BuildGauge()
-							   .Name("telnet_maximum_session_duration")
+							   .Name(name + "maximum_session_duration")
 							   .Help("Maximum duration of sessions")
 							   .Register(*reg)
 							   .Add({});
 	_minSessionDuration = &prometheus::BuildGauge()
-							   .Name("telnet_minimum_session_duration")
+							   .Name(name + "minimum_session_duration")
 							   .Help("Minimum duration of sessions")
 							   .Register(*reg)
 							   .Add({});

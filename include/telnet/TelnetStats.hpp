@@ -51,8 +51,10 @@ class TelnetStats {
 	 * Construct a new Telnet statistics
 	 * @param[in] reg Prometheus registry
 	 * @param[in] portNumber Telnet server port
+	 * @param[in] prependName Prefix for Prometheus stats
 	 */
-	TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint16_t portNumber);
+	TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint16_t portNumber,
+				const std::string prependName = "");
 
 	/**
 	 * Updates statistics with session values

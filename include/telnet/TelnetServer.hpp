@@ -152,11 +152,13 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	 * @param[in] listenPort Port to listen
 	 * @param[in] promptString Prompt string for connected users
 	 * @param[in] reg Prometheus registry for stats
+	 * @param[in] prependName Prefix for Prometheus stats
 	 * @return true If initialized
 	 * @return false otherwise
 	 */
 	bool initialise(u_long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag,
-					std::string promptString = "", const std::shared_ptr<prometheus::Registry> &reg = nullptr);
+					std::string promptString = "", const std::shared_ptr<prometheus::Registry> &reg = nullptr,
+					const std::string prependName = "");
 
 	/// Closes the Telnet Server
 	void shutdown();

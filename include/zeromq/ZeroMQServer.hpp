@@ -33,9 +33,11 @@ class ZeroMQServer : private ZeroMQ, private ZeroMQMonitor {
 	 * @param[in] hostAddr Host address to connect. Can be anything supported by ZeroMQ reply socket
 	 * @param[in] checkFlag Flag to check if the server is running
 	 * @param[in] reg Prometheus registry for stats
+	 * @param[in] prependName Prefix for Prometheus stats
 	 */
 	ZeroMQServer(const std::string &hostAddr, std::shared_ptr<std::atomic_flag> checkFlag,
-				 const std::shared_ptr<prometheus::Registry> &reg = nullptr);
+				 const std::shared_ptr<prometheus::Registry> &reg = nullptr,
+					const std::string prependName = "");
 
 	/// @brief Copy constructor
 	ZeroMQServer(const ZeroMQServer & /*unused*/) = delete;

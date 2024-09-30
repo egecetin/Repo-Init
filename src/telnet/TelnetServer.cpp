@@ -556,7 +556,8 @@ TelnetServer::~TelnetServer()
 }
 
 bool TelnetServer::initialise(u_long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag,
-							  std::string promptString, const std::shared_ptr<prometheus::Registry> &reg)
+							  std::string promptString, const std::shared_ptr<prometheus::Registry> &reg,
+							  const std::string prependName)
 {
 	if (m_initialised)
 	{
@@ -616,7 +617,7 @@ bool TelnetServer::initialise(u_long listenPort, const std::shared_ptr<std::atom
 	// If prometheus registry is provided prepare statistics
 	if (reg)
 	{
-		m_stats = std::make_unique<TelnetStats>(reg, listenPort);
+		m_stats = std::make_unique<TelnetStats>(reg, listenPort, prependName);
 	}
 
 	m_shouldStop.clear();
