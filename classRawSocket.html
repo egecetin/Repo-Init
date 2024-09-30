@@ -141,8 +141,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:abd125f5b790a3dbee5eb79d45cdb8c3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d">init</a> (int domain, int type, int protocol, sockaddr_ll &amp;<a class="el" href="classRawSocket.html#ad6d865c5d39d44f4b4fe7d7427cee297">_addr</a>)</td></tr>
-<tr class="separator:abd125f5b790a3dbee5eb79d45cdb8c3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a92440dda76b4d383fc6fb488e436af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRawSocket.html#a7a92440dda76b4d383fc6fb488e436af">init</a> (int domain, int type, int protocol)</td></tr>
+<tr class="separator:a7a92440dda76b4d383fc6fb488e436af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -232,7 +232,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">if</span> (isWrite)</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d">init</a>(PF_PACKET, SOCK_RAW, IPPROTO_RAW, <a class="code" href="classRawSocket.html#ad6d865c5d39d44f4b4fe7d7427cee297">_addr</a>);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="classRawSocket.html#a7a92440dda76b4d383fc6fb488e436af">init</a>(PF_PACKET, SOCK_RAW, IPPROTO_RAW);</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">if</span> (setsockopt(<a class="code" href="classRawSocket.html#a01a1855fd2567c65fb165eff798d3ead">_sockFd</a>, SOL_SOCKET, SO_BINDTODEVICE, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;ifr), <span class="keyword">sizeof</span>(ifr)) &lt; 0)</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        {</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">throw</span> std::ios_base::failure(std::string(<span class="stringliteral">&quot;Can&#39;t set socket options: &quot;</span>) + <a class="code" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
@@ -240,7 +240,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d">init</a>(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL), <a class="code" href="classRawSocket.html#ad6d865c5d39d44f4b4fe7d7427cee297">_addr</a>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="classRawSocket.html#a7a92440dda76b4d383fc6fb488e436af">init</a>(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL));</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="classRawSocket.html#a47482e3c860b2b7a739faa0506a37042">_isReady</a> = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
@@ -248,8 +248,8 @@ Private Attributes</h2></td></tr>
 <div class="ttc" id="aclassRawSocket_html_a01a1855fd2567c65fb165eff798d3ead"><div class="ttname"><a href="classRawSocket.html#a01a1855fd2567c65fb165eff798d3ead">RawSocket::_sockFd</a></div><div class="ttdeci">int _sockFd</div><div class="ttdoc">Socket descriptor.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00030">RawSocket.hpp:30</a></div></div>
 <div class="ttc" id="aclassRawSocket_html_a1b3379c21984f09d3fac599fe22f6018"><div class="ttname"><a href="classRawSocket.html#a1b3379c21984f09d3fac599fe22f6018">RawSocket::_writeMode</a></div><div class="ttdeci">bool _writeMode</div><div class="ttdoc">Mode indicator. True = Write, False = Read.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00028">RawSocket.hpp:28</a></div></div>
 <div class="ttc" id="aclassRawSocket_html_a47482e3c860b2b7a739faa0506a37042"><div class="ttname"><a href="classRawSocket.html#a47482e3c860b2b7a739faa0506a37042">RawSocket::_isReady</a></div><div class="ttdeci">bool _isReady</div><div class="ttdoc">Ready flag.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00026">RawSocket.hpp:26</a></div></div>
+<div class="ttc" id="aclassRawSocket_html_a7a92440dda76b4d383fc6fb488e436af"><div class="ttname"><a href="classRawSocket.html#a7a92440dda76b4d383fc6fb488e436af">RawSocket::init</a></div><div class="ttdeci">void init(int domain, int type, int protocol)</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8cpp_source.html#l00017">RawSocket.cpp:17</a></div></div>
 <div class="ttc" id="aclassRawSocket_html_a8ce4f6eb7f979c9e07d6eeef9939f49b"><div class="ttname"><a href="classRawSocket.html#a8ce4f6eb7f979c9e07d6eeef9939f49b">RawSocket::_iFace</a></div><div class="ttdeci">std::string _iFace</div><div class="ttdoc">Currently used ethernet interface.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00032">RawSocket.hpp:32</a></div></div>
-<div class="ttc" id="aclassRawSocket_html_abd125f5b790a3dbee5eb79d45cdb8c3d"><div class="ttname"><a href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d">RawSocket::init</a></div><div class="ttdeci">void init(int domain, int type, int protocol, sockaddr_ll &amp;_addr)</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8cpp_source.html#l00017">RawSocket.cpp:17</a></div></div>
 <div class="ttc" id="aclassRawSocket_html_ad6d865c5d39d44f4b4fe7d7427cee297"><div class="ttname"><a href="classRawSocket.html#ad6d865c5d39d44f4b4fe7d7427cee297">RawSocket::_addr</a></div><div class="ttdeci">sockaddr_ll _addr</div><div class="ttdoc">Socket structure.</div><div class="ttdef"><b>Definition:</b> <a href="RawSocket_8hpp_source.html#l00034">RawSocket.hpp:34</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -258,7 +258,7 @@ Here is the call graph for this function:</div>
 <map name="aclassRawSocket_a1a1f22c977bf55bd27b329646ef1840d_cgraph" id="aclassRawSocket_a1a1f22c977bf55bd27b329646ef1840d_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,177,32"/>
 <area shape="rect" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title=" " alt="" coords="396,5,511,32"/>
-<area shape="rect" href="classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d" title=" " alt="" coords="225,31,348,57"/>
+<area shape="rect" href="classRawSocket.html#a7a92440dda76b4d383fc6fb488e436af" title=" " alt="" coords="225,31,348,57"/>
 </map>
 </div>
 
@@ -409,8 +409,8 @@ Here is the call graph for this function:</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="abd125f5b790a3dbee5eb79d45cdb8c3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd125f5b790a3dbee5eb79d45cdb8c3d">&#9670;&nbsp;</a></span>init()</h2>
+<a id="a7a92440dda76b4d383fc6fb488e436af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a92440dda76b4d383fc6fb488e436af">&#9670;&nbsp;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -434,13 +434,7 @@ Here is the call graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>protocol</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">sockaddr_ll &amp;&#160;</td>
-          <td class="paramname"><em>_addr</em>&#160;</td>
+          <td class="paramname"><em>protocol</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -470,8 +464,8 @@ Here is the call graph for this function:</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_cgraph.png" border="0" usemap="#aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_cgraph" alt=""/></div>
-<map name="aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_cgraph" id="aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_cgraph">
+<div class="center"><img src="classRawSocket_a7a92440dda76b4d383fc6fb488e436af_cgraph.png" border="0" usemap="#aclassRawSocket_a7a92440dda76b4d383fc6fb488e436af_cgraph" alt=""/></div>
+<map name="aclassRawSocket_a7a92440dda76b4d383fc6fb488e436af_cgraph" id="aclassRawSocket_a7a92440dda76b4d383fc6fb488e436af_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,128,32"/>
 <area shape="rect" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title=" " alt="" coords="176,5,291,32"/>
 </map>
@@ -479,8 +473,8 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_icgraph.png" border="0" usemap="#aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_icgraph" alt=""/></div>
-<map name="aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_icgraph" id="aclassRawSocket_abd125f5b790a3dbee5eb79d45cdb8c3d_icgraph">
+<div class="center"><img src="classRawSocket_a7a92440dda76b4d383fc6fb488e436af_icgraph.png" border="0" usemap="#aclassRawSocket_a7a92440dda76b4d383fc6fb488e436af_icgraph" alt=""/></div>
+<map name="aclassRawSocket_a7a92440dda76b4d383fc6fb488e436af_icgraph" id="aclassRawSocket_a7a92440dda76b4d383fc6fb488e436af_icgraph">
 <area shape="rect" title=" " alt="" coords="225,5,348,32"/>
 <area shape="rect" href="classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d" title=" " alt="" coords="5,5,177,32"/>
 </map>
@@ -822,7 +816,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classRawSocket.html">RawSocket</a></li>
-    <li class="footer">Generated on Mon Sep 30 2024 05:36:46 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Sep 30 2024 05:43:53 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

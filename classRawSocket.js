@@ -6,7 +6,7 @@ var classRawSocket =
     [ "~RawSocket", "classRawSocket.html#a8a2386aad78626913a844f5ac4cbaadc", null ],
     [ "getInterfaceName", "classRawSocket.html#aef4e0545cb8fbbc51602058b2a4b14b2", null ],
     [ "getStats", "classRawSocket.html#a1f203ecb915c624a0dadb5e3de38188e", null ],
-    [ "init", "classRawSocket.html#abd125f5b790a3dbee5eb79d45cdb8c3d", null ],
+    [ "init", "classRawSocket.html#a7a92440dda76b4d383fc6fb488e436af", null ],
     [ "operator=", "classRawSocket.html#a5035edbafe7fad052622e107f6186a13", null ],
     [ "operator=", "classRawSocket.html#af743794b7b7cdd631a8af94ed85990c9", null ],
     [ "readData", "classRawSocket.html#aa0c5a1d1cd751525ca77642a16928a24", null ],
