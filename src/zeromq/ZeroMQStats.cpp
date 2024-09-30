@@ -6,8 +6,8 @@
 #include <prometheus/info.h>
 #include <prometheus/summary.h>
 
-// cppcheck-suppress uninitDerivedMemberVar
-ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg, const std::string &prependName) : BaseServerStats()
+ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg, const std::string &prependName)
+	: BaseServerStats()
 {
 	if (!reg)
 	{

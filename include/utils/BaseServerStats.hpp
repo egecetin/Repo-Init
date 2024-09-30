@@ -14,12 +14,12 @@
  */
 class BaseServerStats {
   private:
-	prometheus::Summary *_processingTime;	///< Value of the command processing performance
-	prometheus::Gauge *_maxProcessingTime;	///< Maximum value of the command processing performance
-	prometheus::Gauge *_minProcessingTime;	///< Minimum value of the command processing performance
-	prometheus::Counter *_succeededCommand; ///< Number of succeeded commands
-	prometheus::Counter *_failedCommand;	///< Number of failed commands
-	prometheus::Counter *_totalCommand;		///< Number of total received commands
+	prometheus::Summary *_processingTime{nullptr};	 ///< Value of the command processing performance
+	prometheus::Gauge *_maxProcessingTime{nullptr};	 ///< Maximum value of the command processing performance
+	prometheus::Gauge *_minProcessingTime{nullptr};	 ///< Minimum value of the command processing performance
+	prometheus::Counter *_succeededCommand{nullptr}; ///< Number of succeeded commands
+	prometheus::Counter *_failedCommand{nullptr};	 ///< Number of failed commands
+	prometheus::Counter *_totalCommand{nullptr};	 ///< Number of total received commands
 
   protected:
 	void initBaseStats(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name);
