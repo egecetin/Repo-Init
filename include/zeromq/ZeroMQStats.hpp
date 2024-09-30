@@ -1,5 +1,7 @@
 #pragma once
 
+#include "utils/BaseServerStats.hpp"
+
 #include <prometheus/registry.h>
 #include <zmq.hpp>
 
@@ -17,15 +19,9 @@ struct ZeroMQServerStats {
  * @class ZeroMQStats
  * Represents the statistics of a ZeroMQ server.
  */
-class ZeroMQStats {
+class ZeroMQStats : private BaseServerStats {
   private:
 	prometheus::Family<prometheus::Info> *_infoFamily; ///< Information metric family
-	prometheus::Summary *_processingTime;			   ///< Value of the command processing performance
-	prometheus::Gauge *_maxProcessingTime;			   ///< Maximum value of the command processing performance
-	prometheus::Gauge *_minProcessingTime;			   ///< Minimum value of the command processing performance
-	prometheus::Counter *_succeededCommand;			   ///< Number of succeeded commands
-	prometheus::Counter *_failedCommand;			   ///< Number of failed commands
-	prometheus::Counter *_totalCommand;				   ///< Number of total received commands
 	prometheus::Counter *_succeededCommandParts;	   ///< Number of received succeeded message parts
 	prometheus::Counter *_failedCommandParts;		   ///< Number of received failed message parts
 	prometheus::Counter *_totalCommandParts;		   ///< Number of received total message parts
@@ -39,7 +35,7 @@ class ZeroMQStats {
 	 * @param[in] prependName Prefix for Prometheus stats.
 	 */
 	explicit ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg,
-					const std::string prependName = "");
+					const std::string &prependName = "");
 
 	/**
 	 * Updates the statistics with messages.

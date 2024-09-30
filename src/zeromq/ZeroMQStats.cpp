@@ -6,14 +6,8 @@
 #include <prometheus/info.h>
 #include <prometheus/summary.h>
 
-#define QUANTILE_DEFAULTS                                                                                              \
-	prometheus::Summary::Quantiles                                                                                     \
-	{                                                                                                                  \
-		{0.5, 0.1}, {0.9, 0.1}, { 0.99, 0.1 }                                                                          \
-	}
-
 ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg,
-					const std::string prependName)
+					const std::string &prependName)
 {
 	if (!reg)
 	{
@@ -21,6 +15,9 @@ ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg,
 	}
 
 	const auto name = prependName.empty() ? "zeromq_" : prependName + "_zeromq_";
+
+	// Stats from base class
+	initBaseStats(reg, name);
 
 	// Basic information
 	_infoFamily = &prometheus::BuildInfo().Name("zeromq").Help("ZeroMQ server information").Register(*reg);

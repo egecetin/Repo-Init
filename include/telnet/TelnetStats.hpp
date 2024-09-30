@@ -1,5 +1,7 @@
 #pragma once
 
+#include "utils/BaseServerStats.hpp"
+
 #include <prometheus/registry.h>
 
 /**
@@ -28,18 +30,12 @@ struct TelnetServerStats {
 /**
  * Prometheus statistics for Telnet server
  */
-class TelnetStats {
+class TelnetStats : private BaseServerStats {
   private:
 	prometheus::Family<prometheus::Info> *_infoFamily; ///< Information metric family
 	prometheus::Gauge *_activeConnection;			   ///< Number of active connections
 	prometheus::Counter *_refusedConnection;		   ///< Number of refused connections
 	prometheus::Counter *_totalConnection;			   ///< Number of total received connections
-	prometheus::Summary *_processingTime;			   ///< Value of the command processing performance
-	prometheus::Gauge *_maxProcessingTime;			   ///< Maximum value of the command processing performance
-	prometheus::Gauge *_minProcessingTime;			   ///< Minimum value of the command processing performance
-	prometheus::Counter *_succeededCommand;			   ///< Number of succeeded commands
-	prometheus::Counter *_failedCommand;			   ///< Number of failed commands
-	prometheus::Counter *_totalCommand;				   ///< Number of total received commands
 	prometheus::Counter *_totalUploadBytes;			   ///< Total uploaded bytes
 	prometheus::Counter *_totalDownloadBytes;		   ///< Total downloaded bytes
 	prometheus::Summary *_sessionDuration;			   ///< Value of the duration of sessions
@@ -54,7 +50,7 @@ class TelnetStats {
 	 * @param[in] prependName Prefix for Prometheus stats
 	 */
 	TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint16_t portNumber,
-				const std::string prependName = "");
+				const std::string &prependName = "");
 
 	/**
 	 * Updates statistics with session values

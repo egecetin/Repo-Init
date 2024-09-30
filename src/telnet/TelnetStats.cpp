@@ -8,14 +8,8 @@
 
 #include <limits>
 
-#define QUANTILE_DEFAULTS                                                                                              \
-	prometheus::Summary::Quantiles                                                                                     \
-	{                                                                                                                  \
-		{0.5, 0.1}, {0.9, 0.1}, { 0.99, 0.1 }                                                                          \
-	}
-
 TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint16_t portNumber,
-						 const std::string prependName)
+						 const std::string &prependName)
 {
 	if (!reg)
 	{
@@ -23,6 +17,9 @@ TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint1
 	}
 
 	const auto name = prependName.empty() ? "telnet_" : prependName + "_telnet_";
+
+	// Stats from base class
+	initBaseStats(reg, name);
 
 	// Basic information
 	_infoFamily = &prometheus::BuildInfo().Name(name).Help("Telnet server information").Register(*reg);
@@ -48,40 +45,6 @@ TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint1
 							.Help("Number of received connections")
 							.Register(*reg)
 							.Add({});
-
-	// Performance stats
-	_processingTime = &prometheus::BuildSummary()
-						   .Name(name + "processing_time")
-						   .Help("Command processing performance")
-						   .Register(*reg)
-						   .Add({}, QUANTILE_DEFAULTS);
-	_maxProcessingTime = &prometheus::BuildGauge()
-							  .Name(name + "maximum_processing_time")
-							  .Help("Maximum value of the command processing performance")
-							  .Register(*reg)
-							  .Add({});
-	_minProcessingTime = &prometheus::BuildGauge()
-							  .Name(name + "minimum_processing_time")
-							  .Help("Minimum value of the command processing performance")
-							  .Register(*reg)
-							  .Add({});
-
-	// Command stats
-	_succeededCommand = &prometheus::BuildCounter()
-							 .Name(name + "succeeded_commands")
-							 .Help("Number of succeeded commands")
-							 .Register(*reg)
-							 .Add({});
-	_failedCommand = &prometheus::BuildCounter()
-						  .Name(name + "failed_commands")
-						  .Help("Number of failed commands")
-						  .Register(*reg)
-						  .Add({});
-	_totalCommand = &prometheus::BuildCounter()
-						 .Name(name + "received_commands")
-						 .Help("Number of received commands")
-						 .Register(*reg)
-						 .Add({});
 
 	// Bandwidth stats
 	_totalUploadBytes =
