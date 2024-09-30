@@ -97,7 +97,7 @@ HTTPStats HTTP::getStats()
 	curl_off_t value = 0;
 	curl_easy_getinfo(_curl, CURLINFO_SIZE_UPLOAD_T, &value);
 	stats.uploadBytes = static_cast<size_t>(value);
-	curl_easy_getinfo(_curl, CURLINFO_SIZE_UPLOAD_T, &value);
+	curl_easy_getinfo(_curl, CURLINFO_SIZE_DOWNLOAD_T, &value);
 	stats.downloadBytes = static_cast<size_t>(value);
 	curl_easy_getinfo(_curl, CURLINFO_HEADER_SIZE, &value);
 	stats.headerBytes = static_cast<size_t>(value);
