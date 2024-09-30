@@ -194,7 +194,7 @@ $(document).ready(function(){initNavTree('Http_8cpp_source.html',''); initResiza
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    curl_off_t value = 0;</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    curl_easy_getinfo(<a class="code" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_SIZE_UPLOAD_T, &amp;value);</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    stats.uploadBytes = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(value);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    curl_easy_getinfo(<a class="code" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_SIZE_UPLOAD_T, &amp;value);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    curl_easy_getinfo(<a class="code" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_SIZE_DOWNLOAD_T, &amp;value);</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    stats.downloadBytes = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(value);</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    curl_easy_getinfo(<a class="code" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_HEADER_SIZE, &amp;value);</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    stats.headerBytes = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(value);</div>
@@ -241,7 +241,7 @@ $(document).ready(function(){initNavTree('Http_8cpp_source.html',''); initResiza
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_7809a5fd4a748505dcdbefeb977685f2.html">connection</a></li><li class="navelem"><a class="el" href="Http_8cpp.html">Http.cpp</a></li>
-    <li class="footer">Generated on Thu Sep 19 2024 01:18:59 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Sep 30 2024 03:47:01 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
