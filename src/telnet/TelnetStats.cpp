@@ -15,7 +15,7 @@
 	}
 
 TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint16_t portNumber,
-						 const std::string prependName = "")
+						 const std::string prependName)
 {
 	if (!reg)
 	{
