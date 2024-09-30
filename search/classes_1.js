@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['configparser_404',['ConfigParser',['../classConfigParser.html',1,'']]]
+  ['baseserverstats_409',['BaseServerStats',['../classBaseServerStats.html',1,'']]]
 ];

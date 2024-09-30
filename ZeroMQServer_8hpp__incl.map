@@ -1,12 +1,13 @@
 <map id="/__w/Repo&#45;Init/Repo&#45;Init/include/zeromq/ZeroMQServer.hpp" name="/__w/Repo&#45;Init/Repo&#45;Init/include/zeromq/ZeroMQServer.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="351,5,503,61"/>
-<area shape="rect" id="node2" href="$ZeroMQ_8hpp.html" title=" " alt="" coords="252,109,407,136"/>
-<area shape="rect" id="node4" href="$ZeroMQMonitor_8hpp.html" title=" " alt="" coords="23,109,227,136"/>
-<area shape="rect" id="node8" href="$ZeroMQStats_8hpp.html" title=" " alt="" coords="431,109,619,136"/>
-<area shape="rect" id="node10" title=" " alt="" coords="643,109,730,136"/>
-<area shape="rect" id="node3" title=" " alt="" coords="290,184,369,211"/>
-<area shape="rect" id="node5" title=" " alt="" coords="5,184,72,211"/>
-<area shape="rect" id="node6" title=" " alt="" coords="96,184,155,211"/>
-<area shape="rect" id="node7" title=" " alt="" coords="179,184,243,211"/>
-<area shape="rect" id="node9" title=" " alt="" coords="443,184,607,211"/>
+<area shape="rect" id="node1" title=" " alt="" coords="345,5,497,61"/>
+<area shape="rect" id="node2" href="$ZeroMQ_8hpp.html" title=" " alt="" coords="247,109,401,136"/>
+<area shape="rect" id="node4" href="$ZeroMQMonitor_8hpp.html" title=" " alt="" coords="18,109,222,136"/>
+<area shape="rect" id="node8" href="$ZeroMQStats_8hpp.html" title=" " alt="" coords="426,109,614,136"/>
+<area shape="rect" id="node11" title=" " alt="" coords="638,109,725,136"/>
+<area shape="rect" id="node3" title=" " alt="" coords="285,184,363,211"/>
+<area shape="rect" id="node5" title=" " alt="" coords="176,184,243,211"/>
+<area shape="rect" id="node6" title=" " alt="" coords="5,184,64,211"/>
+<area shape="rect" id="node7" title=" " alt="" coords="88,184,152,211"/>
+<area shape="rect" id="node9" href="$BaseServerStats_8hpp.html" title=" " alt="" coords="407,184,596,211"/>
+<area shape="rect" id="node10" title=" " alt="" coords="485,259,649,285"/>
 </map>

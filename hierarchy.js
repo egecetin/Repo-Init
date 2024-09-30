@@ -5,6 +5,10 @@ var hierarchy =
       [ "spdlog::sinks::loki_api_sink< Mutex >", "classspdlog_1_1sinks_1_1loki__api__sink.html", null ],
       [ "spdlog::sinks::sentry_api_sink< Mutex >", "classspdlog_1_1sinks_1_1sentry__api__sink.html", null ]
     ] ],
+    [ "BaseServerStats", "classBaseServerStats.html", [
+      [ "TelnetStats", "classTelnetStats.html", null ],
+      [ "ZeroMQStats", "classZeroMQStats.html", null ]
+    ] ],
     [ "ConfigParser", "classConfigParser.html", null ],
     [ "std::enable_shared_from_this", null, [
       [ "TelnetServer", "classTelnetServer.html", null ],
@@ -28,13 +32,11 @@ var hierarchy =
     [ "StatusTracker", "classStatusTracker.html", null ],
     [ "TelnetServerStats", "structTelnetServerStats.html", null ],
     [ "TelnetSessionStats", "structTelnetSessionStats.html", null ],
-    [ "TelnetStats", "classTelnetStats.html", null ],
     [ "Tracer", "classTracer.html", null ],
     [ "TrackPerformance", "classTrackPerformance.html", null ],
     [ "TrackStatus", "classTrackStatus.html", null ],
     [ "ZeroMQ", "classZeroMQ.html", [
       [ "ZeroMQServer", "classZeroMQServer.html", null ]
     ] ],
-    [ "ZeroMQServerStats", "structZeroMQServerStats.html", null ],
-    [ "ZeroMQStats", "classZeroMQStats.html", null ]
+    [ "ZeroMQServerStats", "structZeroMQServerStats.html", null ]
 ];

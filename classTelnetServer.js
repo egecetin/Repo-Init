@@ -7,7 +7,7 @@ var classTelnetServer =
     [ "acceptConnection", "classTelnetServer.html#a14a98513c8caf58a0bc5f78fc3f1b141", null ],
     [ "connectedCallback", "classTelnetServer.html#aa9981d5236f6fee6f5da98ef86ab0676", null ],
     [ "connectedCallback", "classTelnetServer.html#a9ddf1f0a38914b1f2d1395c3e467985b", null ],
-    [ "initialise", "classTelnetServer.html#ad29ec932294d2bc05797f0580c66b0f1", null ],
+    [ "initialise", "classTelnetServer.html#aa9435227904ef005e70eb14fd1b6d55a", null ],
     [ "interactivePrompt", "classTelnetServer.html#a4f43f36263281e1a6cd52d5f823b13e7", null ],
     [ "newLineCallBack", "classTelnetServer.html#a33bfcd2496a2531640cd1e6b1a6f18fb", null ],
     [ "newLineCallback", "classTelnetServer.html#a2cb12ee59caacd5e6cd879aa6ca7b7ef", null ],

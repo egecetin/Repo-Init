@@ -63,8 +63,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"ConfigParser_8cpp.html",
-"classProcessMetrics.html#ac700adb6902d2894970ecb2e7a28778e",
+"BaseServerStats_8cpp.html",
+"classProcessMetrics.html#a48996912e89faa15ddb289ec1c6c46a0",
 "classes.html"
 ];
 

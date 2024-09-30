@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['http_405',['HTTP',['../classHTTP.html',1,'']]],
-  ['httpstats_406',['HTTPStats',['../structHTTPStats.html',1,'']]]
+  ['configparser_410',['ConfigParser',['../classConfigParser.html',1,'']]]
 ];

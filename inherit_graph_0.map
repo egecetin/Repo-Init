@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classConfigParser.html" title=" " alt="" coords="5,5,108,32"/>
+<area shape="rect" id="node1" href="$classBaseServerStats.html" title=" " alt="" coords="5,31,135,57"/>
+<area shape="rect" id="node2" href="$classTelnetStats.html" title=" " alt="" coords="189,5,283,32"/>
+<area shape="rect" id="node3" href="$classZeroMQStats.html" title=" " alt="" coords="183,56,289,83"/>
 </map>

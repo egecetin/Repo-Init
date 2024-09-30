@@ -6,6 +6,7 @@ var annotated_dup =
         [ "sentry_api_sink", "classspdlog_1_1sinks_1_1sentry__api__sink.html", "classspdlog_1_1sinks_1_1sentry__api__sink" ]
       ] ]
     ] ],
+    [ "BaseServerStats", "classBaseServerStats.html", "classBaseServerStats" ],
     [ "ConfigParser", "classConfigParser.html", "classConfigParser" ],
     [ "HTTP", "classHTTP.html", "classHTTP" ],
     [ "HTTPStats", "structHTTPStats.html", "structHTTPStats" ],

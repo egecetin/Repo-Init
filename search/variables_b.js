@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['namelookuptime_787',['nameLookupTime',['../structHTTPStats.html#a8856fe05b0ad801f656bff33192675a2',1,'HTTPStats']]]
+  ['namelookuptime_797',['nameLookupTime',['../structHTTPStats.html#a8856fe05b0ad801f656bff33192675a2',1,'HTTPStats']]]
 ];
