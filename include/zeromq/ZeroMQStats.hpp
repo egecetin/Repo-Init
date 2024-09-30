@@ -34,8 +34,7 @@ class ZeroMQStats : private BaseServerStats {
 	 * @param[in] reg Prometheus registry.
 	 * @param[in] prependName Prefix for Prometheus stats.
 	 */
-	explicit ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg,
-					const std::string &prependName = "");
+	explicit ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg, const std::string &prependName = "");
 
 	/**
 	 * Updates the statistics with messages.

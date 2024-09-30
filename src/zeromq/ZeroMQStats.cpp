@@ -6,8 +6,8 @@
 #include <prometheus/info.h>
 #include <prometheus/summary.h>
 
-ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg,
-					const std::string &prependName)
+// cppcheck-suppress uninitDerivedMemberVar
+ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg, const std::string &prependName)
 {
 	if (!reg)
 	{
@@ -16,7 +16,7 @@ ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg,
 
 	const auto name = prependName.empty() ? "zeromq_" : prependName + "_zeromq_";
 
-	// Stats from base class
+	// Init stats from base class
 	initBaseStats(reg, name);
 
 	// Basic information
@@ -26,39 +26,7 @@ ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg,
 															   std::chrono::high_resolution_clock::now()))}});
 	_infoFamily->Add({{"performance_unit", "nanoseconds"}});
 
-	// Performance stats
-	_processingTime = &prometheus::BuildSummary()
-						   .Name(name + "processing_time")
-						   .Help("Command processing performance")
-						   .Register(*reg)
-						   .Add({}, QUANTILE_DEFAULTS);
-	_maxProcessingTime = &prometheus::BuildGauge()
-							  .Name(name + "maximum_processing_time")
-							  .Help("Maximum value of the command processing performance")
-							  .Register(*reg)
-							  .Add({});
-	_minProcessingTime = &prometheus::BuildGauge()
-							  .Name(name + "minimum_processing_time")
-							  .Help("Minimum value of the command processing performance")
-							  .Register(*reg)
-							  .Add({});
-
 	// Command stats
-	_succeededCommand = &prometheus::BuildCounter()
-							 .Name(name + "succeeded_commands")
-							 .Help("Number of succeeded commands")
-							 .Register(*reg)
-							 .Add({});
-	_failedCommand = &prometheus::BuildCounter()
-						  .Name(name + "failed_commands")
-						  .Help("Number of failed commands")
-						  .Register(*reg)
-						  .Add({});
-	_totalCommand = &prometheus::BuildCounter()
-						 .Name(name + "received_commands")
-						 .Help("Number of received commands")
-						 .Register(*reg)
-						 .Add({});
 	_succeededCommandParts = &prometheus::BuildCounter()
 								  .Name(name + "succeeded_command_parts")
 								  .Help("Number of received succeeded message parts")

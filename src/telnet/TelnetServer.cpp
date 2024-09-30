@@ -557,7 +557,7 @@ TelnetServer::~TelnetServer()
 
 bool TelnetServer::initialise(u_long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag,
 							  std::string promptString, const std::shared_ptr<prometheus::Registry> &reg,
-							  const std::string prependName)
+							  const std::string &prependName)
 {
 	if (m_initialised)
 	{

@@ -3,7 +3,7 @@
 #include <prometheus/counter.h>
 #include <prometheus/summary.h>
 
-void BaseServerStats::initBaseStats(const std::shared_ptr<prometheus::Registry> &reg, const std::string name)
+void BaseServerStats::initBaseStats(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name)
 {
 	// Command stats
 	_succeededCommand = &prometheus::BuildCounter()
