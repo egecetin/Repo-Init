@@ -38,4 +38,7 @@ void BaseServerStats::initBaseStats(const std::shared_ptr<prometheus::Registry> 
 							  .Help("Minimum value of the command processing performance")
 							  .Register(*reg)
 							  .Add({});
+							  
+	// Set defaults
+	_minProcessingTime->Set(std::numeric_limits<double>::max());
 }

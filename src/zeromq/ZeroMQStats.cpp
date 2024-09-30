@@ -51,9 +51,6 @@ ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg, const
 							   .Help("Total downloaded bytes")
 							   .Register(*reg)
 							   .Add({});
-
-	// Set defaults
-	_minProcessingTime->Set(std::numeric_limits<double>::max());
 }
 
 void ZeroMQStats::consumeStats(const std::vector<zmq::message_t> &recvMsgs, const std::vector<zmq::message_t> &sendMsgs,
