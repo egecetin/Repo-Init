@@ -12,7 +12,7 @@ class SocketWrapper {
 	int sockFd{-1};
 
   public:
-	SocketWrapper(uint16_t port)
+	explicit SocketWrapper(uint16_t port)
 	{
 		struct hostent *host = gethostbyname("localhost");
 		if (host == nullptr)
@@ -64,7 +64,6 @@ class TelnetWrapper {
 		server->connectedCallback(TelnetConnectedCallback);
 		server->newLineCallback(TelnetMessageCallback);
 		server->tabCallback(TelnetTabCallback);
-
 	}
 };
 

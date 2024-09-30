@@ -16,6 +16,15 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - name: Pre-commit
+      - uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
+
   clang-tidy:
     runs-on: ubuntu-latest
     container: egecetinn/ubuntu2204
@@ -30,17 +39,6 @@ jobs:
         run: cmake -S . -B build
       - name: Clang-tidy
         run: run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/*.cpp src/**/*.cpp
-
-  format:
-    runs-on: ubuntu-latest
-    container: egecetinn/alpine
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-      - name: Run clang-format
-        run: clang-format include/**/*.hpp src/*.cpp src/**/*.cpp --verbose --dry-run --Werror
-      - name: Run cppcheck
-        run: cppcheck -Iinclude/ src --verbose --enable=all --error-exitcode=1 --std=c++14 --language=c++ --suppressions-list=cppcheckSuppressions.txt --inline-suppr --check-level=exhaustive
 
   memleak:
     runs-on: ubuntu-latest

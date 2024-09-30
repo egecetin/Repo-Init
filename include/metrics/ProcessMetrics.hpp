@@ -30,7 +30,7 @@ class ProcessMetrics {
 
 	struct tms _oldCpu {
 		0, 0, 0, 0
-	};						///< Structure to store the old CPU times
+	}; ///< Structure to store the old CPU times
 	clock_t _oldCpuTime{0}; ///< Variable to store the old CPU time
 
 	/**

@@ -1,4 +1,4 @@
 missingInclude:*
-missingIncludeSystem:*
-unmatchedSuppression:*
-unusedFunction:*
+unusedStructMember:*
+
+*:tests/*
