@@ -20,7 +20,7 @@ ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg,
 		throw std::invalid_argument("Can't init ZeroMQ statistics. Registry is null");
 	}
 
-	const auto name = prependName.empty() ? "zeromq" : prependName + "_zeromq";
+	const auto name = prependName.empty() ? "zeromq_" : prependName + "_zeromq_";
 
 	// Basic information
 	_infoFamily = &prometheus::BuildInfo().Name("zeromq").Help("ZeroMQ server information").Register(*reg);

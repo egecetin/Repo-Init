@@ -22,7 +22,7 @@ TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint1
 		throw std::invalid_argument("Can't init Telnet statistics. Registry is null");
 	}
 
-	const auto name = prependName.empty() ? "telnet" : prependName + "_telnet";
+	const auto name = prependName.empty() ? "telnet_" : prependName + "_telnet_";
 
 	// Basic information
 	_infoFamily = &prometheus::BuildInfo().Name(name).Help("Telnet server information").Register(*reg);
