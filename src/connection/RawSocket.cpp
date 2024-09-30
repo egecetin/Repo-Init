@@ -14,7 +14,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-void RawSocket::init(int domain, int type, int protocol, sockaddr_ll &_addr)
+void RawSocket::init(int domain, int type, int protocol)
 {
 	_sockFd = socket(domain, type, protocol); // Init socket
 	if (_sockFd < 0)
@@ -47,7 +47,7 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : _writeMode(isWrite), _iF
 
 	if (isWrite)
 	{
-		init(PF_PACKET, SOCK_RAW, IPPROTO_RAW, _addr);
+		init(PF_PACKET, SOCK_RAW, IPPROTO_RAW);
 		if (setsockopt(_sockFd, SOL_SOCKET, SO_BINDTODEVICE, static_cast<void *>(&ifr), sizeof(ifr)) < 0)
 		{
 			throw std::ios_base::failure(std::string("Can't set socket options: ") + getErrnoString(errno));
@@ -55,7 +55,7 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : _writeMode(isWrite), _iF
 	}
 	else
 	{
-		init(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL), _addr);
+		init(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL));
 	}
 	_isReady = true;
 }
