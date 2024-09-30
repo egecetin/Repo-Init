@@ -7,7 +7,7 @@
 #include <prometheus/summary.h>
 
 // cppcheck-suppress uninitDerivedMemberVar
-ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg, const std::string &prependName)
+ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg, const std::string &prependName) : BaseServerStats()
 {
 	if (!reg)
 	{
@@ -56,9 +56,8 @@ ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg, const
 void ZeroMQStats::consumeStats(const std::vector<zmq::message_t> &recvMsgs, const std::vector<zmq::message_t> &sendMsgs,
 							   const ZeroMQServerStats &serverStats)
 {
-	_succeededCommand->Increment(static_cast<double>(serverStats.isSuccessful));
-	_failedCommand->Increment(static_cast<double>(!serverStats.isSuccessful));
-	_totalCommand->Increment();
+	consumeBaseStats(static_cast<uint64_t>(serverStats.isSuccessful), static_cast<uint64_t>(!serverStats.isSuccessful),
+					 static_cast<double>((serverStats.processingTimeEnd - serverStats.processingTimeStart).count()));
 
 	for (const auto &entry : recvMsgs)
 	{
@@ -78,17 +77,5 @@ void ZeroMQStats::consumeStats(const std::vector<zmq::message_t> &recvMsgs, cons
 	for (const auto &entry : sendMsgs)
 	{
 		_totalUploadBytes->Increment(static_cast<double>(entry.size()));
-	}
-
-	const auto processTime =
-		static_cast<double>((serverStats.processingTimeEnd - serverStats.processingTimeStart).count());
-	_processingTime->Observe(processTime);
-	if (processTime < _minProcessingTime->Value())
-	{
-		_minProcessingTime->Set(processTime);
-	}
-	if (processTime > _maxProcessingTime->Value())
-	{
-		_maxProcessingTime->Set(processTime);
 	}
 }

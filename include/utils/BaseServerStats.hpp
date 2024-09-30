@@ -13,7 +13,7 @@
  * Represents the base statistics for a server.
  */
 class BaseServerStats {
-  protected:
+  private:
 	prometheus::Summary *_processingTime;	///< Value of the command processing performance
 	prometheus::Gauge *_maxProcessingTime;	///< Maximum value of the command processing performance
 	prometheus::Gauge *_minProcessingTime;	///< Minimum value of the command processing performance
@@ -21,5 +21,8 @@ class BaseServerStats {
 	prometheus::Counter *_failedCommand;	///< Number of failed commands
 	prometheus::Counter *_totalCommand;		///< Number of total received commands
 
+  protected:
 	void initBaseStats(const std::shared_ptr<prometheus::Registry> &reg, const std::string &name);
+
+	void consumeBaseStats(uint64_t succeeded, uint64_t failed, double processingTime);
 };

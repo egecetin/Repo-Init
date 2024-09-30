@@ -38,7 +38,23 @@ void BaseServerStats::initBaseStats(const std::shared_ptr<prometheus::Registry> 
 							  .Help("Minimum value of the command processing performance")
 							  .Register(*reg)
 							  .Add({});
-							  
+
 	// Set defaults
 	_minProcessingTime->Set(std::numeric_limits<double>::max());
+}
+
+void BaseServerStats::consumeBaseStats(uint64_t succeeded, uint64_t failed, double processingTime)
+{
+	// Command stats
+	_succeededCommand->Increment(static_cast<double>(succeeded));
+	_failedCommand->Increment(static_cast<double>(failed));
+	_totalCommand->Increment(static_cast<double>(succeeded + failed));
+
+	// Performance stats
+	if (processingTime > 0)
+	{
+		_processingTime->Observe(processingTime);
+		_maxProcessingTime->Set(std::max(_maxProcessingTime->Value(), processingTime));
+		_minProcessingTime->Set(std::min(_minProcessingTime->Value(), processingTime));
+	}
 }

@@ -10,7 +10,7 @@
 
 // cppcheck-suppress uninitDerivedMemberVar
 TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint16_t portNumber,
-						 const std::string &prependName)
+						 const std::string &prependName) : BaseServerStats()
 {
 	if (!reg)
 	{
@@ -79,9 +79,7 @@ TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint1
 
 void TelnetStats::consumeStats(const TelnetSessionStats &stat, bool sessionClosed)
 {
-	_succeededCommand->Increment(static_cast<double>(stat.successCmdCtr));
-	_failedCommand->Increment(static_cast<double>(stat.failCmdCtr));
-	_totalCommand->Increment(static_cast<double>(stat.successCmdCtr + stat.failCmdCtr));
+	consumeBaseStats(stat.successCmdCtr, stat.failCmdCtr, 0);
 
 	_totalUploadBytes->Increment(static_cast<double>(stat.uploadBytes));
 	_totalDownloadBytes->Increment(static_cast<double>(stat.downloadBytes));
@@ -113,15 +111,6 @@ void TelnetStats::consumeStats(const TelnetServerStats &stat)
 	// Performance stats if there is an active connection
 	if (stat.activeConnectionCtr > 0)
 	{
-		const auto processTime = static_cast<double>((stat.processingTimeEnd - stat.processingTimeStart).count());
-		_processingTime->Observe(processTime);
-		if (processTime < _minProcessingTime->Value())
-		{
-			_minProcessingTime->Set(processTime);
-		}
-		if (processTime > _maxProcessingTime->Value())
-		{
-			_maxProcessingTime->Set(processTime);
-		}
+		consumeBaseStats(0, 0, static_cast<double>((stat.processingTimeEnd - stat.processingTimeStart).count()));
 	}
 }
