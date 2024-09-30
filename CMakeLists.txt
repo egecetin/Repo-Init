@@ -72,6 +72,7 @@ file(GLOB ProjectSources
   ${PROJECT_SOURCE_DIR}/src/metrics/Status.cpp
   ${PROJECT_SOURCE_DIR}/src/telnet/TelnetServer.cpp
   ${PROJECT_SOURCE_DIR}/src/telnet/TelnetStats.cpp
+  ${PROJECT_SOURCE_DIR}/src/utils/BaseServerStats.cpp
   ${PROJECT_SOURCE_DIR}/src/utils/ConfigParser.cpp
   ${PROJECT_SOURCE_DIR}/src/utils/ErrorHelpers.cpp
   ${PROJECT_SOURCE_DIR}/src/utils/Tracer.cpp

@@ -25,6 +25,11 @@ repos:
     hooks:
       - id: detect-secrets
         exclude: tests/data/config.json
+  - repo: https://github.com/BlankSpruce/gersemi
+    rev: 0.15.1
+    hooks:
+    - id: gersemi
+      args: ['--line-length', '120']
   - repo: https://github.com/lovesegfault/beautysh
     rev: v6.2.1
     hooks:

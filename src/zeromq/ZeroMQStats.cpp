@@ -6,18 +6,18 @@
 #include <prometheus/info.h>
 #include <prometheus/summary.h>
 
-#define QUANTILE_DEFAULTS                                                                                              \
-	prometheus::Summary::Quantiles                                                                                     \
-	{                                                                                                                  \
-		{0.5, 0.1}, {0.9, 0.1}, { 0.99, 0.1 }                                                                          \
-	}
-
-ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg)
+ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg, const std::string &prependName)
+	: BaseServerStats()
 {
 	if (!reg)
 	{
 		throw std::invalid_argument("Can't init ZeroMQ statistics. Registry is null");
 	}
+
+	const auto name = prependName.empty() ? "zeromq_" : prependName + "_zeromq_";
+
+	// Init stats from base class
+	initBaseStats(reg, name);
 
 	// Basic information
 	_infoFamily = &prometheus::BuildInfo().Name("zeromq").Help("ZeroMQ server information").Register(*reg);
@@ -26,74 +26,38 @@ ZeroMQStats::ZeroMQStats(const std::shared_ptr<prometheus::Registry> &reg)
 															   std::chrono::high_resolution_clock::now()))}});
 	_infoFamily->Add({{"performance_unit", "nanoseconds"}});
 
-	// Performance stats
-	_processingTime = &prometheus::BuildSummary()
-						   .Name("zeromq_processing_time")
-						   .Help("Command processing performance")
-						   .Register(*reg)
-						   .Add({}, QUANTILE_DEFAULTS);
-	_maxProcessingTime = &prometheus::BuildGauge()
-							  .Name("zeromq_maximum_processing_time")
-							  .Help("Maximum value of the command processing performance")
-							  .Register(*reg)
-							  .Add({});
-	_minProcessingTime = &prometheus::BuildGauge()
-							  .Name("zeromq_minimum_processing_time")
-							  .Help("Minimum value of the command processing performance")
-							  .Register(*reg)
-							  .Add({});
-
 	// Command stats
-	_succeededCommand = &prometheus::BuildCounter()
-							 .Name("zeromq_succeeded_commands")
-							 .Help("Number of succeeded commands")
-							 .Register(*reg)
-							 .Add({});
-	_failedCommand = &prometheus::BuildCounter()
-						  .Name("zeromq_failed_commands")
-						  .Help("Number of failed commands")
-						  .Register(*reg)
-						  .Add({});
-	_totalCommand = &prometheus::BuildCounter()
-						 .Name("zeromq_received_commands")
-						 .Help("Number of received commands")
-						 .Register(*reg)
-						 .Add({});
 	_succeededCommandParts = &prometheus::BuildCounter()
-								  .Name("zeromq_succeeded_command_parts")
+								  .Name(name + "succeeded_command_parts")
 								  .Help("Number of received succeeded message parts")
 								  .Register(*reg)
 								  .Add({});
 	_failedCommandParts = &prometheus::BuildCounter()
-							   .Name("zeromq_failed_command_parts")
+							   .Name(name + "failed_command_parts")
 							   .Help("Number of received failed message parts")
 							   .Register(*reg)
 							   .Add({});
 	_totalCommandParts = &prometheus::BuildCounter()
-							  .Name("zeromq_total_command_parts")
+							  .Name(name + "total_command_parts")
 							  .Help("Number of received total message parts")
 							  .Register(*reg)
 							  .Add({});
 
 	// Bandwidth stats
 	_totalUploadBytes =
-		&prometheus::BuildCounter().Name("zeromq_uploaded_bytes").Help("Total uploaded bytes").Register(*reg).Add({});
+		&prometheus::BuildCounter().Name(name + "uploaded_bytes").Help("Total uploaded bytes").Register(*reg).Add({});
 	_totalDownloadBytes = &prometheus::BuildCounter()
-							   .Name("zeromq_downloaded_bytes")
+							   .Name(name + "downloaded_bytes")
 							   .Help("Total downloaded bytes")
 							   .Register(*reg)
 							   .Add({});
-
-	// Set defaults
-	_minProcessingTime->Set(std::numeric_limits<double>::max());
 }
 
 void ZeroMQStats::consumeStats(const std::vector<zmq::message_t> &recvMsgs, const std::vector<zmq::message_t> &sendMsgs,
 							   const ZeroMQServerStats &serverStats)
 {
-	_succeededCommand->Increment(static_cast<double>(serverStats.isSuccessful));
-	_failedCommand->Increment(static_cast<double>(!serverStats.isSuccessful));
-	_totalCommand->Increment();
+	consumeBaseStats(static_cast<uint64_t>(serverStats.isSuccessful), static_cast<uint64_t>(!serverStats.isSuccessful),
+					 static_cast<double>((serverStats.processingTimeEnd - serverStats.processingTimeStart).count()));
 
 	for (const auto &entry : recvMsgs)
 	{
@@ -113,17 +77,5 @@ void ZeroMQStats::consumeStats(const std::vector<zmq::message_t> &recvMsgs, cons
 	for (const auto &entry : sendMsgs)
 	{
 		_totalUploadBytes->Increment(static_cast<double>(entry.size()));
-	}
-
-	const auto processTime =
-		static_cast<double>((serverStats.processingTimeEnd - serverStats.processingTimeStart).count());
-	_processingTime->Observe(processTime);
-	if (processTime < _minProcessingTime->Value())
-	{
-		_minProcessingTime->Set(processTime);
-	}
-	if (processTime > _maxProcessingTime->Value())
-	{
-		_maxProcessingTime->Set(processTime);
 	}
 }
