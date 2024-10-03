@@ -25,6 +25,10 @@ repos:
     hooks:
       - id: detect-secrets
         exclude: tests/data/config.json
+  - repo: https://github.com/cmake-lint/cmake-lint
+    rev: 1.4.3
+    hooks:
+      - id: cmakelint
   - repo: https://github.com/BlankSpruce/gersemi
     rev: 0.15.1
     hooks:
