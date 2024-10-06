@@ -23,6 +23,8 @@ class ZeroMQMonitor : private zmq::monitor_t {
 
 	static void on_event(const std::string &messageStr, int level, const char *addr = nullptr);
 
+	void on_monitor_stopped() override;
+
 	void on_monitor_started() override;
 
 	void on_event_connected(const zmq_event_t & /*unused*/, const char *addr_) override;

@@ -40,6 +40,8 @@ void ZeroMQMonitor::on_event(const std::string &messageStr, int level, const cha
 	}
 }
 
+void ZeroMQMonitor::on_monitor_stopped() { on_event("Monitor stopped", spdlog::level::info); }
+
 void ZeroMQMonitor::on_monitor_started() { on_event("Monitor started", spdlog::level::info); }
 
 void ZeroMQMonitor::on_event_connected(const zmq_event_t & /*unused*/, const char *addr_)
@@ -155,6 +157,4 @@ void ZeroMQMonitor::stopMonitoring()
 		_monitorThread->join();
 		_monitorThread.reset();
 	}
-
-	spdlog::info("Monitor stopped");
 }
