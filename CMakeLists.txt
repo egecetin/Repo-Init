@@ -77,6 +77,7 @@ file(GLOB ProjectSources
   ${PROJECT_SOURCE_DIR}/src/utils/ErrorHelpers.cpp
   ${PROJECT_SOURCE_DIR}/src/utils/Tracer.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQ.cpp
+  ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQAuth.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQMonitor.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQServer.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQStats.cpp

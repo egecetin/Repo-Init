@@ -57,7 +57,7 @@ void ZeroMQStats::consumeStats(const std::vector<zmq::message_t> &recvMsgs, cons
 							   const ZeroMQServerStats &serverStats)
 {
 	consumeBaseStats(static_cast<uint64_t>(serverStats.isSuccessful), static_cast<uint64_t>(!serverStats.isSuccessful),
-					 static_cast<double>((serverStats.processingTimeEnd - serverStats.processingTimeStart).count()));
+					 static_cast<double>(serverStats.processingTime.count()));
 
 	for (const auto &entry : recvMsgs)
 	{

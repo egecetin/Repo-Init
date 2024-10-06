@@ -29,7 +29,7 @@ void ZeroMQServer::update()
 		std::vector<zmq::message_t> replyMsgs;
 
 		ZeroMQServerStats serverStats;
-		serverStats.processingTimeStart = std::chrono::high_resolution_clock::now();
+		auto processingTimeStart = std::chrono::high_resolution_clock::now();
 		serverStats.isSuccessful = messageCallback() && messageCallback()(recvMsgs, replyMsgs);
 
 		size_t nSentMsg = sendMessages(replyMsgs);
@@ -37,7 +37,7 @@ void ZeroMQServer::update()
 		{
 			spdlog::warn("Can't send whole reply: Sent messages {} / {}", nSentMsg, replyMsgs.size());
 		}
-		serverStats.processingTimeEnd = std::chrono::high_resolution_clock::now();
+		serverStats.processingTime = std::chrono::high_resolution_clock::now() - processingTimeStart;
 
 		if (_stats)
 		{
@@ -63,7 +63,6 @@ void ZeroMQServer::threadFunc() noexcept
 		{
 			spdlog::error("ZeroMQ server failed: {}", e.what());
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_INTERVAL_MS));
 	}
 	spdlog::info("ZeroMQ server stopped");
 }
