@@ -44,6 +44,20 @@ bool ZeroMQAuth::authenticateConnection(const std::vector<zmq::message_t> &recvM
 			throw ZeroMQAuthException("Unsupported authentication version for " + identityStr + " (" + addressStr + "): " + versionStr);
 		}
 
+        // Check mechanism
+        if (!checkMechanismAllowed(mechanismStr))
+        {
+            throw ZeroMQAuthException("Mechanism not allowed for " + identityStr + " (" + addressStr + "): " + mechanismStr);
+        }
+        spdlog::debug("Mechanism allowed for {} ({})", identityStr, addressStr);
+
+		// Check identity
+		if (!checkIdentityAllowed(identityStr))
+		{
+			throw ZeroMQAuthException("Identity not allowed for " + identityStr + " (" + addressStr + "): " + identityStr);
+		}
+        spdlog::debug("Identity allowed for {} ({})", identityStr, addressStr);
+
         // Check domain
         if (!checkDomainAllowed(domainStr))
         {
@@ -58,29 +72,10 @@ bool ZeroMQAuth::authenticateConnection(const std::vector<zmq::message_t> &recvM
         }
         spdlog::debug("Address allowed for {} ({})", identityStr, addressStr);
 
-        // Check mechanism
-        if (!checkMechanismAllowed(mechanismStr))
-        {
-            throw ZeroMQAuthException("Mechanism not allowed for " + identityStr + " (" + addressStr + "): " + mechanismStr);
-        }
-        spdlog::debug("Mechanism allowed for {} ({})", identityStr, addressStr);
-
-        switch (constHasher(mechanismStr.c_str()))
-        {
-        case constHasher("NULL"):
-            spdlog::info("Authenticated NULL for {} ({})", identityStr, addressStr);
-            break;
-        case constHasher("PLAIN"):
-            /* code */
-            break;
-        case constHasher("CURVE"):
-            /* code */
-            break;
-        
-        default:
-            // This should not happen since we already checked the mechanism
-            throw std::runtime_error("Mechanism calculation failed");
-        }
+		if (authenticateCredentials(recvMsgs, constHasher(mechanismStr.c_str())))
+		{
+			throw ZeroMQAuthException("Credentials rejected for " + identityStr + " (" + addressStr + ")");
+		}
 
         spdlog::debug("Authenticated {} ({})", identityStr, addressStr);
 	}
@@ -93,6 +88,7 @@ bool ZeroMQAuth::authenticateConnection(const std::vector<zmq::message_t> &recvM
 	catch (const std::exception &e)
 	{
 		statusText = e.what();
+		spdlog::error("Authentication failed: {}", e.what());
 	}
 
 	// Prepare reply
