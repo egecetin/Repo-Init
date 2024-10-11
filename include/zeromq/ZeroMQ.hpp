@@ -2,6 +2,8 @@
 
 #include <zmq.hpp>
 
+#include <functional>
+
 /// @brief ZeroMQ message received callback
 using FPTR_MessageCallback = std::function<bool(const std::vector<zmq::message_t> &, std::vector<zmq::message_t> &)>;
 
