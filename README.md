@@ -10,21 +10,23 @@
 </div>
 
 ## Project
+
 CMake template to create new C++ applications with basic codes/interfaces are already defined. Requires a C++14 supported compiler.
 
 It provides the following features
-  - Tracing
-    - Generates automatically minidump files using [Crashpad](https://chromium.googlesource.com/crashpad/crashpad/) for error signals.
-  - Logging
-    - Spdlog with rotating file, syslog and coloured stdout outputs
-    - [Sentry](https://sentry.io/) and [Grafana Loki](https://grafana.com/oss/loki/) integration for automatic forwarding of logs to an external HTTP server
-    - [Prometheus](https://prometheus.io/) client for track internal metrics like error counts, performance of functions including
-      - Incremental counters to track success/fail rates and active processes,
-      - Minimum and maximum timings,
-      - Quantile based performance metrics to determine bottlenecks
-  - User interactivity
-    - Embedded Telnet Server
-    - [ZeroMQ](https://zeromq.org/) socket
+
+- Tracing
+  - Generates automatically minidump files using [Crashpad](https://chromium.googlesource.com/crashpad/crashpad/) for error signals.
+- Logging
+  - Spdlog with rotating file, syslog and coloured stdout outputs
+  - [Sentry](https://sentry.io/) and [Grafana Loki](https://grafana.com/oss/loki/) integration for automatic forwarding of logs to an external HTTP server
+  - [Prometheus](https://prometheus.io/) client for track internal metrics like error counts, performance of functions including
+    - Incremental counters to track success/fail rates and active processes,
+    - Minimum and maximum timings,
+    - Quantile based performance metrics to determine bottlenecks
+- User interactivity
+  - Embedded Telnet Server
+  - [ZeroMQ](https://zeromq.org/) socket
 
 Feel free to ask, use and report any bugs you encountered!
 
@@ -60,35 +62,36 @@ All scripts should be executed from top level directory
 
 ## Dependencies
 
- - [CppZMQ](https://github.com/zeromq/cppzmq.git)
- - [crashpad](https://chromium.googlesource.com/crashpad/crashpad/)
- - [Date](https://github.com/HowardHinnant/date.git)
- - [Http-status-codes](https://github.com/j-ulrich/http-status-codes-cpp.git)
- - [Prometheus-cpp](https://github.com/jupp0r/prometheus-cpp.git)
- - [RapidJSON](https://github.com/Tencent/rapidjson.git)
- - [Sentry](https://github.com/getsentry/sentry-native.git)
- - [TelnetServLib](https://github.com/lukemalcolm/TelnetServLib.git) (Modified and embedded to source directory)
+- [CppZMQ](https://github.com/zeromq/cppzmq.git)
+- [crashpad](https://chromium.googlesource.com/crashpad/crashpad/)
+- [Date](https://github.com/HowardHinnant/date.git)
+- [Http-status-codes](https://github.com/j-ulrich/http-status-codes-cpp.git)
+- [PcapPlusPlus](https://github.com/seladb/PcapPlusPlus.git)
+- [Prometheus-cpp](https://github.com/jupp0r/prometheus-cpp.git)
+- [RapidJSON](https://github.com/Tencent/rapidjson.git)
+- [Sentry](https://github.com/getsentry/sentry-native.git)
+- [TelnetServLib](https://github.com/lukemalcolm/TelnetServLib.git) (Modified and embedded to source directory)
 
 Developing dependencies not required for runtime,
 
- - [breakpad](https://chromium.googlesource.com/breakpad/breakpad/) (It is required for automatically dumping symbols)
- - [GoogleTest](https://github.com/google/googletest.git) (For testing)
- - [MemPlumber](https://github.com/seladb/MemPlumber.git) (For testing)
- - [ZLIB]() (It is required by breakpad)
+- [breakpad](https://chromium.googlesource.com/breakpad/breakpad/) (It is required for automatically dumping symbols)
+- [GoogleTest](https://github.com/google/googletest.git) (For testing)
+- [MemPlumber](https://github.com/seladb/MemPlumber.git) (For testing)
+- [ZLIB]() (It is required by breakpad)
 
 These runtime dependencies should be installed to the system (for example via package managers like apt or dnf),
 
- - [cURL](https://github.com/curl/curl)
- - [Spdlog](https://github.com/gabime/spdlog.git)
- - [ZeroMQ](https://github.com/zeromq/libzmq.git)
+- [cURL](https://github.com/curl/curl)
+- [Spdlog](https://github.com/gabime/spdlog.git)
+- [ZeroMQ](https://github.com/zeromq/libzmq.git)
 
 Full dependency graph can be seen [here](doc/XXX-tree.svg)
 
 ## Targets
 
- - all              : Prepares all targets
- - coverage         : Prepares coverage report
- - docs             : Prepares documentation
- - dependency-graph : Prepares graphviz visualization of dependencies
- - package          : Prepares default packages
- - test             : Prepares gtest target
+- all              : Prepares all targets
+- coverage         : Prepares coverage report
+- docs             : Prepares documentation
+- dependency-graph : Prepares graphviz visualization of dependencies
+- package          : Prepares default packages
+- test             : Prepares gtest target

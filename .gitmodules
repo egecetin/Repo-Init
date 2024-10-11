@@ -19,3 +19,6 @@
 [submodule "tests/gtest"]
 	path = tests/gtest
 	url = https://github.com/google/googletest.git
+[submodule "thirdparty/pcapplusplus"]
+	path = thirdparty/pcapplusplus
+	url = https://github.com/seladb/PcapPlusPlus.git
