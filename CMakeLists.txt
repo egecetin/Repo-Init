@@ -88,6 +88,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/cppzmq)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/date/include)
+include_directories(${PROJECT_SOURCE_DIR}/thirdparty/pcapplusplus)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/http-status-codes)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/core/include)
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/pull/include)
@@ -95,6 +96,7 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/include)
 
 # Subdirectories
 add_subdirectory(thirdparty/cppzmq EXCLUDE_FROM_ALL)
+add_subdirectory(thirdparty/pcapplusplus EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry/external/crashpad EXCLUDE_FROM_ALL)
@@ -128,6 +130,7 @@ target_compile_options(${PROJECT_NAME}-lib PRIVATE -Wall -Wextra -g -Wl,--build-
 target_include_directories(${PROJECT_NAME}-lib PRIVATE ${PROJECT_BINARY_DIR})
 target_link_libraries(
   ${PROJECT_NAME}-lib PUBLIC
+  Common++
   cppzmq
   crashpad::client
   CURL::libcurl
