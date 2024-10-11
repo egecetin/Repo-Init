@@ -2,27 +2,50 @@
 
 #include "utils/Hasher.hpp"
 #include "zeromq/ZeroMQ.hpp"
+#include "zeromq/ZeroMQStats.hpp"
+
+#include "Common++/header/IpAddress.h"
 
 #include <thread>
+#include <unordered_set>
+
+/**
+ * Mechanism for authentication
+ */
+enum class Mechanism : uint64_t
+{
+	/// NULL mechanism
+	NULLMECH = constHasher("NULL"),
+	PLAIN = constHasher("PLAIN"),
+	CURVE = constHasher("CURVE")
+};
 
 class AuthPermissionChecker {
-  public:
-	/**
-	 * Mechanism for authentication
-	 */
-	enum Mechanism
-	{
-		/// NULL mechanism
-		NULLMECH = constHasher("NULL"),
-		PLAIN = constHasher("PLAIN"),
-		CURVE = constHasher("CURVE")
-	};
+  private:
+	/// Domain filters
+	bool _isUnknownDomainAllowed{false};
+	std::unordered_set<std::string> _allowedDomains;
+	std::unordered_set<std::string> _disallowedDomains;
+
+	/// Address filters
+	bool _isUnknownAddressAllowed{false};
+	std::vector<pcpp::IPNetwork> _allowedAddresses;
+	std::vector<pcpp::IPNetwork> _disallowedAddresses;
+
+	/// Identity filters
+	bool _isUnknownIdentityAllowed{false};
+	std::unordered_set<std::string> _allowedIdentities;
+	std::unordered_set<std::string> _disallowedIdentities;
+
+	/// Mechanism filters
+	uint8_t _allowedMechanisms{0};
 
   protected:
 	/**
-	 * Construct a new AuthPermissionChecker object
+	 * Construct a new AuthPermissionChecker object with default values
+	 * Initially all unknown entities are disallowed. You should enable them if needed.
 	 */
-	AuthPermissionChecker() = default;
+	AuthPermissionChecker();
 
 	/**
 	 * Check if the domain is allowed
@@ -69,6 +92,46 @@ class AuthPermissionChecker {
 	 * Deconstructor for AuthPermissionChecker
 	 */
 	~AuthPermissionChecker() = default;
+
+  public:
+	/**
+	 * Should allow unknown domains
+	 * @param[in] allow True if should allow
+	 */
+	void shouldAllowUnknownDomain(bool allow) { _isUnknownDomainAllowed = allow; }
+
+	/**
+	 * Is allowing unknown domains
+	 * @return true If allowed
+	 * @return false otherwise
+	 */
+	bool isUnknownDomainAllowed() const { return _isUnknownDomainAllowed; }
+
+	/**
+	 * Should allow unknown addresses
+	 * @param[in] allow True if should allow
+	 */
+	void shouldAllowUnknownAddress(bool allow) { _isUnknownAddressAllowed = allow; }
+
+	/**
+	 * Is allowing unknown addresses
+	 * @return true If allowed
+	 * @return false otherwise
+	 */
+	bool isUnknownAddressAllowed() const { return _isUnknownAddressAllowed; }
+
+	/**
+	 * Should allow unknown identities
+	 * @param[in] allow True if should allow
+	 */
+	void shouldAllowUnknownIdentity(bool allow) { _isUnknownIdentityAllowed = allow; }
+
+	/**
+	 * Is allowing unknown identities
+	 * @return true If allowed
+	 * @return false otherwise
+	 */
+	bool isUnknownIdentityAllowed() const { return _isUnknownIdentityAllowed; }
 };
 
 /**

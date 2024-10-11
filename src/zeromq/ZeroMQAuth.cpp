@@ -72,7 +72,7 @@ bool ZeroMQAuth::authenticateConnection(const std::vector<zmq::message_t> &recvM
         }
         spdlog::debug("Address allowed for {} ({})", identityStr, addressStr);
 
-		if (authenticateCredentials(recvMsgs, constHasher(mechanismStr.c_str())))
+		if (authenticateCredentials(recvMsgs, static_cast<Mechanism>(constHasher(mechanismStr.c_str()))))
 		{
 			throw ZeroMQAuthException("Credentials rejected for " + identityStr + " (" + addressStr + ")");
 		}
@@ -93,7 +93,7 @@ bool ZeroMQAuth::authenticateConnection(const std::vector<zmq::message_t> &recvM
 
 	// Prepare reply
 	replyMsgs.emplace_back("1.0");
-	replyMsgs.emplace_back(recvMsgs[1]);
+	replyMsgs.emplace_back(recvMsgs[1].data(), recvMsgs[1].size());
 	replyMsgs.emplace_back(statusCode);
 	replyMsgs.emplace_back(statusText);
 
@@ -126,7 +126,7 @@ void ZeroMQAuth::update()
 	}
 }
 
-void ZeroMQAuth::threadFunc()
+void ZeroMQAuth::threadFunc() noexcept
 {
 	spdlog::info("ZeroMQ auth started");
 	while (!_shouldStop._M_i)
