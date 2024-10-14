@@ -77,7 +77,7 @@ Developing dependencies not required for runtime,
 - [breakpad](https://chromium.googlesource.com/breakpad/breakpad/) (It is required for automatically dumping symbols)
 - [GoogleTest](https://github.com/google/googletest.git) (For testing)
 - [MemPlumber](https://github.com/seladb/MemPlumber.git) (For testing)
-- [ZLIB]() (It is required by breakpad)
+- [ZLIB](https://zlib.net/) (It is required by breakpad)
 
 These runtime dependencies should be installed to the system (for example via package managers like apt or dnf),
 
