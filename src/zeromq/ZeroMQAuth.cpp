@@ -13,6 +13,34 @@ class ZeroMQAuthException : public std::exception {
 	virtual const char *what() const noexcept override { return msg_.c_str(); }
 };
 
+void AuthPermissionChecker::modifySingleStringEntry(std::unordered_set<std::string> &list, const std::string &entry, bool add)
+{
+	if (add)
+	{
+		list.insert(entry);
+	}
+	else
+	{
+		list.erase(entry);
+	}
+}
+
+template <typename IterableContainer>
+void AuthPermissionChecker::modifyMultipleStringEntries(std::unordered_set<std::string> &list, const IterableContainer &entries, bool add)
+{
+	if (add)
+	{
+		list.insert(entries.begin(), entries.end());
+	}
+	else
+	{
+		for (const auto &entry : entries)
+		{
+			list.erase(entry);
+		}
+	}
+}
+
 bool ZeroMQAuth::authenticateConnection(const std::vector<zmq::message_t> &recvMsgs,
 										std::vector<zmq::message_t> &replyMsgs)
 {

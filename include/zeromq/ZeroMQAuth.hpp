@@ -40,6 +40,12 @@ class AuthPermissionChecker {
 	/// Mechanism filters
 	uint8_t _allowedMechanisms{0};
 
+	/// Modify allowed/disallowed filters
+	inline void modifySingleStringEntry(std::unordered_set<std::string> &list, const std::string &entry, bool add);
+
+	template <typename IterableContainer>
+	inline void modifyMultipleStringEntries(std::unordered_set<std::string> &list, const IterableContainer &entries, bool add);
+
   protected:
 	/**
 	 * Construct a new AuthPermissionChecker object with default values
