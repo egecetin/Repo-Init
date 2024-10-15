@@ -13,20 +13,8 @@ class ZeroMQAuthException : public std::exception {
 	virtual const char *what() const noexcept override { return msg_.c_str(); }
 };
 
-void AuthPermissionChecker::modifySingleStringEntry(std::unordered_set<std::string> &list, const std::string &entry, bool add)
-{
-	if (add)
-	{
-		list.insert(entry);
-	}
-	else
-	{
-		list.erase(entry);
-	}
-}
-
 template <typename IterableContainer>
-void AuthPermissionChecker::modifyMultipleStringEntries(std::unordered_set<std::string> &list, const IterableContainer &entries, bool add)
+bool PermissionChecker::modifyEntry(std::unordered_set<std::string> &list, const IterableContainer &entries, bool add)
 {
 	if (add)
 	{
@@ -56,62 +44,68 @@ bool ZeroMQAuth::authenticateConnection(const std::vector<zmq::message_t> &recvM
 		{
 			throw ZeroMQAuthException("Received unknown number of messages for authentication");
 		}
-        
-        // Parse received messages
-        const auto versionStr = std::string(static_cast<const char *>(recvMsgs[0].data()), recvMsgs[0].size());
+
+		// Parse received messages
+		const auto versionStr = std::string(static_cast<const char *>(recvMsgs[0].data()), recvMsgs[0].size());
 		const auto domainStr = std::string(static_cast<const char *>(recvMsgs[2].data()), recvMsgs[2].size());
 		const auto addressStr = std::string(static_cast<const char *>(recvMsgs[3].data()), recvMsgs[3].size());
 		const auto identityStr = std::string(static_cast<const char *>(recvMsgs[4].data()), recvMsgs[4].size());
 		const auto mechanismStr = std::string(static_cast<const char *>(recvMsgs[5].data()), recvMsgs[5].size());
 
-        spdlog::debug("Received authentication request for {} ({})", identityStr, addressStr);
+		spdlog::debug("Received authentication request for {} ({})", identityStr, addressStr);
 
 		// Check version
 		if (versionStr.compare("1.0"))
 		{
-			throw ZeroMQAuthException("Unsupported authentication version for " + identityStr + " (" + addressStr + "): " + versionStr);
+			throw ZeroMQAuthException("Unsupported authentication version for " + identityStr + " (" + addressStr +
+									  "): " + versionStr);
 		}
 
-        // Check mechanism
-        if (!checkMechanismAllowed(mechanismStr))
-        {
-            throw ZeroMQAuthException("Mechanism not allowed for " + identityStr + " (" + addressStr + "): " + mechanismStr);
-        }
-        spdlog::debug("Mechanism allowed for {} ({})", identityStr, addressStr);
+		// Check mechanism
+		if (!checkMechanismAllowed(mechanismStr))
+		{
+			throw ZeroMQAuthException("Mechanism not allowed for " + identityStr + " (" + addressStr +
+									  "): " + mechanismStr);
+		}
+		spdlog::debug("Mechanism allowed for {} ({})", identityStr, addressStr);
 
 		// Check identity
 		if (!checkIdentityAllowed(identityStr))
 		{
-			throw ZeroMQAuthException("Identity not allowed for " + identityStr + " (" + addressStr + "): " + identityStr);
+			throw ZeroMQAuthException("Identity not allowed for " + identityStr + " (" + addressStr +
+									  "): " + identityStr);
 		}
-        spdlog::debug("Identity allowed for {} ({})", identityStr, addressStr);
+		spdlog::debug("Identity allowed for {} ({})", identityStr, addressStr);
 
-        // Check domain
-        if (!checkDomainAllowed(domainStr))
-        {
-            throw ZeroMQAuthException("Domain not allowed for " + identityStr + " (" + addressStr + "): " + domainStr);
-        }
-        spdlog::debug("Domain allowed for {} ({})", identityStr, addressStr);
+		// Check domain
+		if (!checkDomainAllowed(domainStr))
+		{
+			throw ZeroMQAuthException("Domain not allowed for " + identityStr + " (" + addressStr + "): " + domainStr);
+		}
+		spdlog::debug("Domain allowed for {} ({})", identityStr, addressStr);
 
-        // Check address
-        if (!checkAddressAllowed(addressStr))
-        {
-            throw ZeroMQAuthException("Address not allowed for " + identityStr + " (" + addressStr + "): " + addressStr);
-        }
-        spdlog::debug("Address allowed for {} ({})", identityStr, addressStr);
+		// Check address
+		if (!checkAddressAllowed(addressStr))
+		{
+			throw ZeroMQAuthException("Address not allowed for " + identityStr + " (" + addressStr +
+									  "): " + addressStr);
+		}
+		spdlog::debug("Address allowed for {} ({})", identityStr, addressStr);
 
 		if (authenticateCredentials(recvMsgs, static_cast<Mechanism>(constHasher(mechanismStr.c_str()))))
 		{
 			throw ZeroMQAuthException("Credentials rejected for " + identityStr + " (" + addressStr + ")");
 		}
 
-        spdlog::debug("Authenticated {} ({})", identityStr, addressStr);
+		statusCode = "200";
+		statusText = "Authenticated";
+		spdlog::debug("Authenticated {} ({})", identityStr, addressStr);
 	}
 	catch (const ZeroMQAuthException &e)
 	{
 		statusCode = "400";
 		statusText = e.what();
-        spdlog::warn("Authentication failed: {}", e.what());
+		spdlog::warn("Authentication failed: {}", e.what());
 	}
 	catch (const std::exception &e)
 	{
