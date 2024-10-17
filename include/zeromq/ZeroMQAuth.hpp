@@ -1,6 +1,5 @@
 #pragma once
 
-#include "utils/Hasher.hpp"
 #include "zeromq/ZeroMQ.hpp"
 #include "zeromq/ZeroMQStats.hpp"
 
@@ -8,17 +7,6 @@
 
 #include <thread>
 #include <unordered_set>
-
-/**
- * Mechanism for authentication
- */
-enum class Mechanism : uint64_t
-{
-	/// NULL mechanism
-	NULLMECH = constHasher("NULL"),
-	PLAIN = constHasher("PLAIN"),
-	CURVE = constHasher("CURVE")
-};
 
 /**
  * Permission checker
@@ -31,8 +19,6 @@ class PermissionChecker {
 	bool _isUnknownAllowed{false};
 	/// Allowed entities
 	std::unordered_set<std::string> _allowed;
-	/// Disallowed entities
-	std::unordered_set<std::string> _disallowed;
 
 	/// Modify allowed/disallowed filters
 	inline bool modifyEntry(std::unordered_set<std::string> &list, const std::string &entry, bool add)
@@ -52,8 +38,7 @@ class PermissionChecker {
 	 */
 	bool checkAllowed(const std::string &entry)
 	{
-		return _isUnknownAllowed &&
-			   ((_allowed.find(entry) == _allowed.end()) || (_disallowed.find(entry) == _disallowed.end()));
+		return _isUnknownAllowed && (_allowed.find(entry) == _allowed.end());
 	}
 
 	/**
@@ -102,48 +87,12 @@ class PermissionChecker {
 	{
 		return modifyEntry(_allowed, entries, false);
 	}
-
-	/**
-	 * Disallow entry
-	 * @param[in] entry Entry to disallow
-	 */
-	bool disallow(const std::string &entry) { return modifyEntry(_disallowed, entry, true); }
-
-	/**
-	 * Disallow multiple entries
-	 * @param[in] entries Entries to disallow
-	 * @tparam IterableContainer Type of the container. Must be iterable and contain std::string elements.
-	 * @return true If all entries were disallowed
-	 */
-	template <typename IterableContainer> bool disallow(const IterableContainer &entries)
-	{
-		return modifyEntry(_disallowed, entries, true);
-	}
-
-	/**
-	 * Remove disallowed entry
-	 * @param[in] entry Entry to remove
-	 */
-	bool removeDisallowed(const std::string &entry) { return modifyEntry(_disallowed, entry, false); }
-
-	/**
-	 * Remove multiple disallowed entries
-	 * @param[in] entries Entries to remove
-	 * @tparam IterableContainer Type of the container. Must be iterable and contain std::string elements.
-	 * @return true If all entries were removed
-	 */
-	template <typename IterableContainer> bool removeDisallowed(const IterableContainer &entries)
-	{
-		return modifyEntry(_disallowed, entries, false);
-	}
 };
 
 /**
  * Class to authenticate ZeroMQ connections. It has filter lists to allow or disallow domains, addresses and identities.
  */
 class AuthPermissionChecker {
-	friend class PermissionChecker;
-
   private:
 	/// Domain filters
 	PermissionChecker _domainChecker;
@@ -157,17 +106,11 @@ class AuthPermissionChecker {
 	 * Construct a new AuthPermissionChecker object with default values
 	 * Initially all unknown entities are disallowed. You should enable them if needed.
 	 * @param[in] allowedDomains File path with allowed domains. One domain per line. Empty string if not used.
-	 * @param[in] disallowedDomains File path with disallowed domains. One domain per line. Empty string if not used.
 	 * @param[in] allowedAddresses File path with allowed addresses. One address per line. Empty string if not used.
-	 * @param[in] disallowedAddresses File path with disallowed addresses. One address per line. Empty string if not
-	 * used.
 	 * @param[in] allowedIdentities File path with allowed identities. One identity per line. Empty string if not used.
-	 * @param[in] disallowedIdentities File path with disallowed identities. One identity per line. Empty string if not
-	 * used.
 	 */
-	AuthPermissionChecker(const std::string &allowedDomains = "", const std::string &disallowedDomains = "",
-						   const std::string &allowedAddresses = "", const std::string &disallowedAddresses = "",
-						   const std::string &allowedIdentities = "", const std::string &disallowedIdentities = "");
+	AuthPermissionChecker(const std::string &allowedDomains = "", const std::string &allowedAddresses = "",
+						  const std::string &allowedIdentities = "");
 
 	/**
 	 * Check if the domain is allowed
@@ -192,23 +135,6 @@ class AuthPermissionChecker {
 	 * @return false otherwise
 	 */
 	bool checkIdentityAllowed(const std::string &identity);
-
-	/**
-	 * Check if the mechanism is allowed
-	 * @param[in] mechanism Mechanism to check
-	 * @return true If allowed
-	 * @return false otherwise
-	 */
-	bool checkMechanismAllowed(const std::string &mechanism);
-
-	/**
-	 * Authenticate credentials
-	 * @param[in] recvMsgs Received messages
-	 * @param[in] mechanism Mechanism to use
-	 * @return true If authenticated
-	 * @return false otherwise
-	 */
-	bool authenticateCredentials(const std::vector<zmq::message_t> &recvMsgs, Mechanism mechanism);
 
   public:
 	/**
@@ -253,31 +179,20 @@ class AuthPermissionChecker {
 	/**
 	 * Read configuration from text files
 	 * @param[in] allowedDomains File path with allowed domains. One domain per line. Empty string if not used.
-	 * @param[in] disallowedDomains File path with disallowed domains. One domain per line. Empty string if not used.
 	 * @param[in] allowedAddresses File path with allowed addresses. One address per line. Empty string if not used.
-	 * @param[in] disallowedAddresses File path with disallowed addresses. One address per line. Empty string if not
-	 * used.
 	 * @param[in] allowedIdentities File path with allowed identities. One identity per line. Empty string if not used.
-	 * @param[in] disallowedIdentities File path with disallowed identities. One identity per line. Empty string if not
-	 * used.
 	 */
-	void readConfiguration(const std::string &allowedDomains = "", const std::string &disallowedDomains = "",
-						   const std::string &allowedAddresses = "", const std::string &disallowedAddresses = "",
-						   const std::string &allowedIdentities = "", const std::string &disallowedIdentities = "");
+	void readConfiguration(const std::string &allowedDomains = "", const std::string &allowedAddresses = "",
+						   const std::string &allowedIdentities = "");
 
 	/**
 	 * Dump configuration to files
 	 * @param[in] allowedDomains File path to dump allowed domains. Empty string if not used.
-	 * @param[in] disallowedDomains File path to dump disallowed domains. Empty string if not used.
 	 * @param[in] allowedAddresses File path to dump allowed addresses. Empty string if not used.
-	 * @param[in] disallowedAddresses File path to dump disallowed addresses. Empty string if not used.
 	 * @param[in] allowedIdentities File path to dump allowed identities. Empty string if not used.
-	 * @param[in] disallowedIdentities File path to dump disallowed identities. Empty string if not used.
 	 */
-	void dumpConfiguration(const std::string &allowedDomains = "", const std::string &disallowedDomains = "",
-						   const std::string &allowedAddresses = "", const std::string &disallowedAddresses = "",
-						   const std::string &allowedIdentities = "",
-						   const std::string &disallowedIdentities = "") const;
+	void dumpConfiguration(const std::string &allowedDomains = "", const std::string &allowedAddresses = "",
+						   const std::string &allowedIdentities = "") const;
 };
 
 /**
@@ -295,9 +210,6 @@ class ZeroMQAuth : private ZeroMQ, private AuthPermissionChecker {
 	std::atomic_flag _shouldStop{false};
 	// Statistics
 	std::unique_ptr<ZeroMQStats> _stats;
-
-	/// Mechanism filters
-	uint8_t _allowedMechanisms{0};
 
 	/// Authenticate new connections
 	bool authenticateConnection(const std::vector<zmq::message_t> &recvMsgs, std::vector<zmq::message_t> &replyMsgs);
@@ -326,8 +238,9 @@ class ZeroMQAuth : private ZeroMQ, private AuthPermissionChecker {
 	 * @param[in] reg Prometheus registry for stats
 	 * @param[in] prependName Prefix for Prometheus stats
 	 */
-	ZeroMQAuth(const std::shared_ptr<zmq::context_t> &ctx, const std::shared_ptr<prometheus::Registry> &reg = nullptr,
-			   const std::string &prependName = "");
+	explicit ZeroMQAuth(const std::shared_ptr<zmq::context_t> &ctx,
+						const std::shared_ptr<prometheus::Registry> &reg = nullptr,
+						const std::string &prependName = "");
 
 	/**
 	 * Deconstructor for ZeroMQAuth

@@ -9,7 +9,7 @@
 /**
  * @class ZeroMQServer
  * A class that provides a wrapper for ZeroMQ server functionality.
- * 
+ *
  * This class encapsulates the ZeroMQ library and provides methods to initialize, start, stop, send, and receive
  * messages using ZeroMQ sockets. It supports both binding and connecting to sockets and provides a convenient interface
  * for working with multipart messages.

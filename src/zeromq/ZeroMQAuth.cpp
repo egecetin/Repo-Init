@@ -27,6 +27,8 @@ bool PermissionChecker::modifyEntry(std::unordered_set<std::string> &list, const
 			list.erase(entry);
 		}
 	}
+
+	return true;
 }
 
 bool ZeroMQAuth::authenticateConnection(const std::vector<zmq::message_t> &recvMsgs,
@@ -50,7 +52,8 @@ bool ZeroMQAuth::authenticateConnection(const std::vector<zmq::message_t> &recvM
 		const auto domainStr = std::string(static_cast<const char *>(recvMsgs[2].data()), recvMsgs[2].size());
 		const auto addressStr = std::string(static_cast<const char *>(recvMsgs[3].data()), recvMsgs[3].size());
 		const auto identityStr = std::string(static_cast<const char *>(recvMsgs[4].data()), recvMsgs[4].size());
-		const auto mechanismStr = std::string(static_cast<const char *>(recvMsgs[5].data()), recvMsgs[5].size());
+		// TODO: Mechanism not supported for now
+		// const auto mechanismStr = std::string(static_cast<const char *>(recvMsgs[5].data()), recvMsgs[5].size());
 
 		spdlog::debug("Received authentication request for {} ({})", identityStr, addressStr);
 
@@ -60,14 +63,6 @@ bool ZeroMQAuth::authenticateConnection(const std::vector<zmq::message_t> &recvM
 			throw ZeroMQAuthException("Unsupported authentication version for " + identityStr + " (" + addressStr +
 									  "): " + versionStr);
 		}
-
-		// Check mechanism
-		if (!checkMechanismAllowed(mechanismStr))
-		{
-			throw ZeroMQAuthException("Mechanism not allowed for " + identityStr + " (" + addressStr +
-									  "): " + mechanismStr);
-		}
-		spdlog::debug("Mechanism allowed for {} ({})", identityStr, addressStr);
 
 		// Check identity
 		if (!checkIdentityAllowed(identityStr))
@@ -92,10 +87,12 @@ bool ZeroMQAuth::authenticateConnection(const std::vector<zmq::message_t> &recvM
 		}
 		spdlog::debug("Address allowed for {} ({})", identityStr, addressStr);
 
+		/* TODO: Mechanism not supported for now
 		if (authenticateCredentials(recvMsgs, static_cast<Mechanism>(constHasher(mechanismStr.c_str()))))
 		{
 			throw ZeroMQAuthException("Credentials rejected for " + identityStr + " (" + addressStr + ")");
 		}
+		*/
 
 		statusCode = "200";
 		statusText = "Authenticated";

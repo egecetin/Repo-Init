@@ -10,7 +10,7 @@
  * Represents the statistics of a ZeroMQ server connection.
  */
 struct ZeroMQServerStats {
-	std::chrono::high_resolution_clock::duration processingTime;	///< Processing time end
+	std::chrono::high_resolution_clock::duration processingTime; ///< Processing time end
 	bool isSuccessful{false}; ///< Indicates if processing was successful for this connection
 };
 
