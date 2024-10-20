@@ -38,6 +38,8 @@ repos:
     rev: v6.2.1
     hooks:
       - id: beautysh
+        additional_dependencies:
+          - setuptools
   - repo: https://github.com/psf/black
     rev: 24.10.0
     hooks:
