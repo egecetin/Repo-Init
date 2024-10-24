@@ -13,7 +13,7 @@ jobs:
   deploy:
     permissions:
       contents: write  # for JamesIves/github-pages-deploy-action to push changes in repo
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     container: egecetinn/ubuntu2204
     steps:
       - name: Checkout repository
