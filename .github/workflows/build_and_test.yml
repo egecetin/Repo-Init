@@ -16,22 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  clang-tidy:
-    runs-on: ubuntu-latest
-    container: egecetinn/ubuntu2204
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
-        with:
-          submodules: recursive
-      - name: Prepare
-        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-      - name: Configure
-        run: cmake -S . -B build
-      - name: Clang-tidy
-        run: run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/*.cpp src/**/*.cpp
-
-  format:
+  static-analysis:
     runs-on: ubuntu-latest
     container: egecetinn/alpine
     steps:
@@ -41,6 +26,10 @@ jobs:
         run: clang-format include/**/*.hpp src/*.cpp src/**/*.cpp --verbose --dry-run --Werror
       - name: Run cppcheck
         run: cppcheck -Iinclude/ src --verbose --enable=all --error-exitcode=1 --std=c++14 --language=c++ --suppressions-list=cppcheckSuppressions.txt --inline-suppr --check-level=exhaustive
+      - name: Configure for clang-tidy
+        run: cmake -S . -B build
+      - name: Clang-tidy
+        run: run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/*.cpp src/**/*.cpp
 
   memleak:
     runs-on: ubuntu-latest
@@ -75,7 +64,7 @@ jobs:
           path: ${{ env.CCACHE_DIR }}
           key: ${{ steps.ccache-restore.outputs.cache-primary-key }}
 
-  fuzzer:
+  fuzztests:
     runs-on: ubuntu-latest
     container: egecetinn/ubuntu2204
     strategy:
@@ -117,18 +106,14 @@ jobs:
           name: regressions-${{ matrix.sanitizer }}
           path: build/tests/fuzztests/crash*
 
-  rockylinux:
+  unittests:
     runs-on: ubuntu-latest
     container: egecetinn/${{ matrix.image }}
     strategy:
       matrix:
         include:
-          - image: rockylinux8
-          - image: rockylinux8-icx
-            additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
-          - image: rockylinux9
-          - image: rockylinux9-icx
-            additional-flags: -DCMAKE_C_COMPILER=icx -DCMAKE_CXX_COMPILER=icpx
+          - image: ubuntu-2204
+          - image: ubuntu-2404
 
     steps:
       - name: Checkout Code
@@ -137,11 +122,6 @@ jobs:
           submodules: recursive
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-      - name: Setup Intel Compiler variables
-        if: contains(matrix.image, 'icx')
-        run: |
-          . /opt/intel/oneapi/setvars.sh
-          printenv >> $GITHUB_ENV
       - name: Restore ccache
         id: ccache-restore
         uses: actions/cache/restore@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
