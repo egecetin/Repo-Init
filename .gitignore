@@ -5,6 +5,7 @@ doc
 tests/data
 Testing
 .git
+.venv
 .vscode
 .sentry-native
 

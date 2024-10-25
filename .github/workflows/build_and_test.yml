@@ -51,13 +51,18 @@ jobs:
           restore-keys: |
             memleak-ccache
       - name: Install Test Requirements
-        run: pip3 install -r tests/data/requirements.txt
+        run: |
+          python3 -m venv .venv
+          . .venv/bin/activate
+          pip3 install -r tests/data/requirements.txt
       - name: Configure
         run: cmake -DXXX_ENABLE_MEMLEAK_CHECK=ON -S . -B build
       - name: Build
         run: cmake --build build --parallel
       - name: Run tests
-        run: ctest --output-on-failure --test-dir build
+        run: |
+          . .venv/bin/activate
+          ctest --output-on-failure --test-dir build
       - name: Save ccache
         uses: actions/cache/save@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
         with:
@@ -87,13 +92,18 @@ jobs:
           restore-keys: |
             ${{ matrix.sanitizer }}-ccache
       - name: Install Test Requirements
-        run: pip3 install -r tests/data/requirements.txt
+        run: |
+          python3 -m venv .venv
+          . .venv/bin/activate
+          pip3 install -r tests/data/requirements.txt
       - name: Configure
         run: cmake -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DXXX_BUILD_UNITTESTS=OFF -DXXX_BUILD_FUZZTESTS=ON -DXXX_ENABLE_${{ matrix.sanitizer }}=ON -S . -B build
       - name: Build
         run: cmake --build build --parallel
       - name: Run tests
-        run: ctest --output-on-failure --test-dir build
+        run: |
+          . .venv/bin/activate
+          ctest --output-on-failure --test-dir build
       - name: Save ccache
         uses: actions/cache/save@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
         with:
@@ -132,14 +142,18 @@ jobs:
           restore-keys: |
             ${{ matrix.image }}-ccache
       - name: Install Test Requirements
-        run: pip3 install -r tests/data/requirements.txt
+        run: |
+          python3 -m venv .venv
+          . .venv/bin/activate
+          pip3 install -r tests/data/requirements.txt
       - name: Configure
         run: cmake ${{ matrix.additional-flags }} -S . -B build
       - name: Build
         run: cmake --build build --parallel
       - name: Run Tests
-        id: test-step
-        run: ctest --output-on-failure --test-dir build
+        run: |
+          . .venv/bin/activate
+          ctest --output-on-failure --test-dir build
       - name: Save ccache
         uses: actions/cache/save@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
         with:
