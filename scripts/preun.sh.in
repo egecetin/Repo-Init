@@ -1,3 +1,0 @@
-echo "Running preun script for @PROJECT_NAME@ v@PROJECT_VERSION@"
-
-%systemd_preun @SERVICE_NAME@

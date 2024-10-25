@@ -165,7 +165,13 @@ install(FILES ${CMAKE_BINARY_DIR}/config.json DESTINATION ${CMAKE_INSTALL_PREFIX
 if(XXX_ENABLE_PACKAGING)
   set(EXE_PATH ${CMAKE_INSTALL_PREFIX}/bin/${PROJECT_NAME})
   set(SERVICE_NAME ${PROJECT_NAME}.service)
+  set(POST_INSTALL_SCRIPT ${CMAKE_CURRENT_BINARY_DIR}/postinst)
+  set(PRE_UNINSTALL_SCRIPT ${CMAKE_CURRENT_BINARY_DIR}/prerm)
+
   configure_file(${PROJECT_SOURCE_DIR}/scripts/template.service.in ${CMAKE_CURRENT_BINARY_DIR}/${SERVICE_NAME} @ONLY)
+  configure_file(${PROJECT_SOURCE_DIR}/scripts/postinst.in ${POST_INSTALL_SCRIPT})
+  configure_file(${PROJECT_SOURCE_DIR}/scripts/prerm.in ${PRE_UNINSTALL_SCRIPT})
+
   install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.service DESTINATION /lib/systemd/system)
 
   set(CPACK_GENERATOR "DEB")
@@ -182,8 +188,8 @@ Also, it can send logs to syslog using Spdlog, to a Sentry server and Grafana Lo
   set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.md")
 
   set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
-  set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "")
-  set(CPACK_DEBIAN_PACKAGE_DEPENDS "libcurl4 (>= 7.0), libspdlog1 (>= 1.8.0), libzmq5 (>= 4.0.0)")
+  set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${POST_INSTALL_SCRIPT};${PRE_UNINSTALL_SCRIPT}")
+  set(CPACK_DEBIAN_PACKAGE_DEPENDS "libcurl4 (>= 7.0), libspdlog1 (>= 1.8.0), libzmq5 (>= 4.0.0), systemd")
   set(CPACK_DEBIAN_PACKAGE_SECTION "misc")
   set(CPACK_DEBIAN_PACKAGE_GENERATE_SHLIBS ON)
   set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
@@ -195,7 +201,8 @@ Also, it can send logs to syslog using Spdlog, to a Sentry server and Grafana Lo
     add_custom_command(
       TARGET ${PROJECT_NAME}
       POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E tar cfvz ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-\${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}-syms.tar.gz --format=gnutar ${CMAKE_BINARY_DIR}/syms
+      COMMAND ${CMAKE_COMMAND} -E tar cfvz ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-${PROJECT_VERSION}-syms.tar.gz
+      --format=gnutar ${CMAKE_BINARY_DIR}/syms
       COMMENT "Creating tar gz archive from ${CMAKE_BINARY_DIR}/syms"
     )
   endif()
