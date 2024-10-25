@@ -112,8 +112,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: ubuntu-2204
-          - image: ubuntu-2404
+          - image: ubuntu2204
+          - image: ubuntu2404
 
     steps:
       - name: Checkout Code
