@@ -3,6 +3,7 @@
 #include "Version.h"
 #include "utils/FileHelpers.hpp"
 
+#include <array>
 #include <sstream>
 
 #include <arpa/inet.h>

@@ -3,6 +3,8 @@
 #include "Version.h"
 #include "utils/FileHelpers.hpp"
 
+#include <array>
+
 #include <arpa/inet.h>
 #include <ifaddrs.h>
 #include <net/if.h>

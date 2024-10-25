@@ -6,6 +6,7 @@
 
 #include <spdlog/spdlog.h>
 
+#include <array>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
