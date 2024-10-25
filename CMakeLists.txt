@@ -21,7 +21,7 @@ option(XXX_BUILD_FUZZTESTS "Build XXX fuzz tests" OFF)
 option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
 option(XXX_ENABLE_SYMBOL_GENERATION "Enables symbol generation for binaries (Requires breakpad)" OFF)
-option(XXX_ENABLE_PACKAGING "Enables RPM packaging" OFF)
+option(XXX_ENABLE_PACKAGING "Enables DEB packaging" OFF)
 
 # Set project properties
 set(PROJECT_VERSION_MAJOR 0)
@@ -165,32 +165,40 @@ install(FILES ${CMAKE_BINARY_DIR}/config.json DESTINATION ${CMAKE_INSTALL_PREFIX
 if(XXX_ENABLE_PACKAGING)
   set(EXE_PATH ${CMAKE_INSTALL_PREFIX}/bin/${PROJECT_NAME})
   set(SERVICE_NAME ${PROJECT_NAME}.service)
-  set(POST_INSTALL_SCRIPT ${CMAKE_CURRENT_BINARY_DIR}/postinst.sh)
-  set(POST_UNINSTALL_SCRIPT ${CMAKE_CURRENT_BINARY_DIR}/postuninst.sh)
-  set(PRE_UNINSTALL_SCRIPT ${CMAKE_CURRENT_BINARY_DIR}/preuninst.sh)
-
   configure_file(${PROJECT_SOURCE_DIR}/scripts/template.service.in ${CMAKE_CURRENT_BINARY_DIR}/${SERVICE_NAME} @ONLY)
-  configure_file(${PROJECT_SOURCE_DIR}/scripts/post.sh.in ${POST_INSTALL_SCRIPT})
-  configure_file(${PROJECT_SOURCE_DIR}/scripts/postun.sh.in ${POST_UNINSTALL_SCRIPT})
-  configure_file(${PROJECT_SOURCE_DIR}/scripts/preun.sh.in ${PRE_UNINSTALL_SCRIPT})
-  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.service DESTINATION ${CMAKE_INSTALL_PREFIX}/share)
+  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.service DESTINATION /lib/systemd/system)
 
-  set(CPACK_GENERATOR "RPM")
+  set(CPACK_GENERATOR "DEB")
+  set(CPACK_PACKAGE_CONTACT "Ege Cetin <egecetin@hotmail.com.tr>")
+  set(CPACK_PACKAGE_DESCRIPTION "C++ Application Template. It has already integrated a Telnet and ZeroMQ server to \
+receive commands, Crashpad handler to generate minidump, a Prometheus server to broadcast performance metrics. \
+Also, it can send logs to syslog using Spdlog, to a Sentry server and Grafana Loki instance")
+  set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Repository template for C++ applications")
   set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
   set(CPACK_PACKAGE_RELEASE 1)
   set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
+  set(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
   set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
   set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.md")
-  set(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
-  set(CPACK_RPM_PACKAGE_LICENSE "MIT")
-  set(CPACK_RPM_PACKAGE_REQUIRES_POSTUN "systemd")
-  set(CPACK_RPM_PACKAGE_REQUIRES_PREUN "systemd")
-  set(CPACK_RPM_PACKAGE_REQUIRES_POST "systemd")
-  set(CPACK_RPM_PACKAGE_REQUIRES "libcurl >= 7.0, spdlog >= 1.8.0, zeromq >= 4.0.0")
-  set(CPACK_RPM_POST_INSTALL_SCRIPT_FILE ${POST_INSTALL_SCRIPT})
-  set(CPACK_RPM_POST_UNINSTALL_SCRIPT_FILE ${POST_UNINSTALL_SCRIPT})
-  set(CPACK_RPM_PRE_UNINSTALL_SCRIPT_FILE ${PRE_UNINSTALL_SCRIPT})
+
+  set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
+  set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "")
+  set(CPACK_DEBIAN_PACKAGE_DEPENDS "libcurl4 (>= 7.0), libspdlog1 (>= 1.8.0), libzmq5 (>= 4.0.0)")
+  set(CPACK_DEBIAN_PACKAGE_SECTION "misc")
+  set(CPACK_DEBIAN_PACKAGE_GENERATE_SHLIBS ON)
+  set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+
   include(CPack)
+
+  if(XXX_ENABLE_SYMBOL_GENERATION)
+    # Create archive from symbols
+    add_custom_command(
+      TARGET ${PROJECT_NAME}
+      POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E tar cfvz ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-\${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}-syms.tar.gz --format=gnutar ${CMAKE_BINARY_DIR}/syms
+      COMMENT "Creating tar gz archive from ${CMAKE_BINARY_DIR}/syms"
+    )
+  endif()
 endif()
 
 # Enable test framework
