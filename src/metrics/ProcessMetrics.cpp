@@ -54,7 +54,7 @@ double ProcessMetrics::getCpuUsage()
 	struct tms nowCpu {};
 	auto nowCpuTime = times(&nowCpu);
 
-	double usage = 100.0 * static_cast<double>(nowCpu.tms_utime - _oldCpu.tms_utime) /
+	const double usage = 100.0 * static_cast<double>(nowCpu.tms_utime - _oldCpu.tms_utime) /
 				   static_cast<double>(nowCpuTime - _oldCpuTime);
 
 	std::swap(_oldCpu, nowCpu);
