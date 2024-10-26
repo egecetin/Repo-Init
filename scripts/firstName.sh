@@ -14,5 +14,7 @@ done
 sed -i "s/XXX/${ARGUMENT_NAME}/" CMakeLists.txt
 sed -i "s/XXX/${ARGUMENT_NAME}/" CMakeLists.txt
 sed -i "s/XXX/${ARGUMENT_NAME}/" tests/CMakeLists.txt
+sed -i "s/XXX/${ARGUMENT_NAME}/" tests/CMakeLists.txt
+sed -i "s/XXX/${ARGUMENT_NAME}/" tests/unittests/CMakeLists.txt
 sed -i "s/XXX/${ARGUMENT_NAME}/" tests/unittests/gtest_main.cpp
 sed -i "s/XXX/${ARGUMENT_NAME}/" tests/test-static-definitions.h.in
