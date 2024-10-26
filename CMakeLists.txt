@@ -21,7 +21,7 @@ option(XXX_BUILD_FUZZTESTS "Build XXX fuzz tests" OFF)
 option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
 option(XXX_ENABLE_SYMBOL_GENERATION "Enables symbol generation for binaries (Requires breakpad)" OFF)
-option(XXX_ENABLE_PACKAGING "Enables DEB packaging" OFF)
+option(XXX_ENABLE_PACKAGING "Enables DEB/RPM packaging" OFF)
 
 # Set project properties
 set(PROJECT_VERSION_MAJOR 0)
