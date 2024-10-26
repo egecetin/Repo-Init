@@ -75,7 +75,7 @@ class ZeroMQServer : private ZeroMQ, private ZeroMQMonitor {
 	 * Gets the message callback function
 	 * @return The message callback function
 	 */
-	FPTR_MessageCallback messageCallback() const { return _m_messageCallback; }
+	[[nodiscard]] FPTR_MessageCallback messageCallback() const { return _m_messageCallback; }
 };
 
 /**

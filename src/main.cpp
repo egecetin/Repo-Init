@@ -22,7 +22,7 @@ volatile sig_atomic_t interruptFlag = 0;
 namespace
 {
 	// Default SIGALRM function
-	static void alarmFunc(int /*unused*/)
+	void alarmFunc(int /*unused*/)
 	{
 		alarm(alarmInterval);
 
@@ -30,7 +30,7 @@ namespace
 		std::for_each(vCheckFlag.begin(), vCheckFlag.end(), [](auto &entry) { entry.second->clear(); });
 	}
 
-	static void interruptFunc(int /*unused*/) { interruptFlag = 1; }
+	void interruptFunc(int /*unused*/) { interruptFlag = 1; }
 } // namespace
 
 int main(int argc, char **argv)

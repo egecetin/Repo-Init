@@ -31,7 +31,7 @@ class InputParser {
 	 * @param[in] option Option to check
 	 * @return const std::string& Found command line input. Empty string if not found
 	 */
-	const std::string &getCmdOption(const std::string &option) const
+	[[nodiscard]] const std::string &getCmdOption(const std::string &option) const
 	{
 		std::vector<std::string>::const_iterator itr;
 		itr = std::find(_tokens.begin(), _tokens.end(), option);
@@ -47,7 +47,7 @@ class InputParser {
 	 * Gets all command line options
 	 * @return std::vector<std::pair<std::string, std::string>> All command line options
 	 */
-	std::vector<std::pair<std::string, std::string>> getCmdOptions() const
+	[[nodiscard]] std::vector<std::pair<std::string, std::string>> getCmdOptions() const
 	{
 		std::vector<std::pair<std::string, std::string>> options;
 		for (auto itr = _tokens.begin(); itr != _tokens.end(); ++itr)
@@ -74,7 +74,7 @@ class InputParser {
 	 * @return true If the provided option is found
 	 * @return false If the provided option is not found
 	 */
-	bool cmdOptionExists(const std::string &option) const
+	[[nodiscard]] bool cmdOptionExists(const std::string &option) const
 	{
 		return std::find(_tokens.begin(), _tokens.end(), option) != _tokens.end();
 	}
