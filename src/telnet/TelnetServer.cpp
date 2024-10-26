@@ -7,10 +7,13 @@
 #include <spdlog/spdlog.h>
 
 #include <array>
+#include <ctime>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <utility>
+
+#include <sys/time.h>
 
 // Invalid socket identifier for readability
 constexpr int INVALID_SOCKET = -1;
