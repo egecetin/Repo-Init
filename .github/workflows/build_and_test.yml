@@ -27,7 +27,7 @@ jobs:
       - name: Run clang-format
         run: clang-format include/**/*.hpp src/*.cpp src/**/*.cpp --verbose --dry-run --Werror
       - name: Run cppcheck
-        run: cppcheck -Iinclude/ src --verbose --enable=all --error-exitcode=1 --std=c++14 --language=c++ --suppressions-list=cppcheckSuppressions.txt --inline-suppr --check-level=exhaustive
+        run: cppcheck -Iinclude/ src --verbose --enable=all --error-exitcode=1 --std=c++17 --language=c++ --suppressions-list=cppcheckSuppressions.txt --inline-suppr --check-level=exhaustive
       - name: Configure for clang-tidy
         run: cmake -S . -B build
       - name: Clang-tidy
