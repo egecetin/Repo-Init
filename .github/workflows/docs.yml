@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -21,7 +22,7 @@ jobs:
         with:
           submodules: recursive
       - name: Rename templates
-        run: ./scripts/firstName.sh -n Repo-Init
+        run: sh scripts/firstName.sh -n Repo-Init
       - name: Configure
         run: cmake -S . -B build
       - name: Generate Doxygen Documentation
@@ -29,6 +30,7 @@ jobs:
       - name: Create .nojekyll (ensures pages with underscores work on gh pages)
         run: touch doc/html/.nojekyll
       - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/master'
         uses: JamesIves/github-pages-deploy-action@881db5376404c5c8d621010bcbec0310b58d5e29 # v4.6.8
         with:
           branch: gh-pages

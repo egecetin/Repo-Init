@@ -7,8 +7,6 @@ on:
     branches:
       - 'master'
   pull_request:
-    paths:
-      - '.github/workflows/codeql-analysis.yml'
 
 permissions:
   contents: read
