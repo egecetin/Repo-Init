@@ -1,6 +1,7 @@
 #include "zeromq/ZeroMQ.hpp"
 
 #include <iostream>
+#include <optional>
 
 #include <spdlog/spdlog.h>
 #include <zmq_addon.hpp>
@@ -87,7 +88,7 @@ std::vector<zmq::message_t> ZeroMQ::recvMessages()
 	else
 	{
 		auto nMsgs = zmq::recv_multipart(*_socketPtr, std::back_inserter(recvMsgs));
-		spdlog::debug("Received {} messages", nMsgs.has_value() ? nMsgs.value() : 0);
+		spdlog::debug("Received {} messages", nMsgs.value_or(0));
 	}
 	return recvMsgs;
 }
@@ -104,11 +105,7 @@ size_t ZeroMQ::sendMessages(std::vector<zmq::message_t> &msg)
 		res = zmq::send_multipart(*_socketPtr, msg);
 	}
 
-	if (res.has_value())
-	{
-		return res.value();
-	}
-	return 0;
+	return res.value_or(0);
 }
 
 ZeroMQ::~ZeroMQ()
