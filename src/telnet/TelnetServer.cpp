@@ -593,8 +593,7 @@ bool TelnetServer::initialise(unsigned long listenPort, const std::shared_ptr<st
 		return false;
 	}
 
-	int optionVal = 1;
-	if (setsockopt(m_listenSocket, SOL_SOCKET, SO_REUSEADDR, &optionVal, sizeof(optionVal)) < 0)
+	if (int optionVal = 1; setsockopt(m_listenSocket, SOL_SOCKET, SO_REUSEADDR, &optionVal, sizeof(optionVal)) < 0)
 	{
 		freeaddrinfo(result);
 		close(m_listenSocket);
