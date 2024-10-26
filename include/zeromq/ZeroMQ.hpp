@@ -25,7 +25,7 @@ class ZeroMQ {
 	std::string _socketAddr;
 
 	// Initializes class
-	void init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, std::string_view addr,
+	void init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string_view &addr,
 			  bool isBind);
 
   public:

@@ -10,8 +10,8 @@ constexpr int ZEROMQ_MSG_TIMEOUT_MS = 1000;
 // ZeroMQ heartbeat timeout in milliseconds
 constexpr int ZEROMQ_HEARTBEAT_TIMEOUT_MS = 1000;
 
-void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, std::string_view addr,
-				  bool isBind)
+void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type,
+				  const std::string_view &addr, bool isBind)
 {
 	_contextPtr = ctx;
 	_socketAddr = addr;
