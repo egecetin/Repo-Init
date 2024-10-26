@@ -1,7 +1,11 @@
 <map id="/__w/Repo&#45;Init/Repo&#45;Init/src/metrics/Performance.cpp" name="/__w/Repo&#45;Init/Repo&#45;Init/src/metrics/Performance.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="175,5,414,47"/>
-<area shape="rect" id="node2" href="$Performance_8hpp.html" title=" " alt="" coords="5,95,192,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="217,95,373,121"/>
-<area shape="rect" id="node5" title=" " alt="" coords="397,95,573,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="17,169,181,196"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="165,5,392,50"/>
+<area shape="rect" id="Node000002" href="$Performance_8hpp.html" title=" " alt="" coords="5,98,181,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,53,137,94,135,89,228,48"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="205,98,352,126"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="281,50,281,82,276,82,276,50"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="376,98,541,126"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="327,48,417,89,415,94,325,53"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="15,174,171,201"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="96,126,96,158,90,158,90,126"/>
 </map>

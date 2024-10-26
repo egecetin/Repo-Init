@@ -1,4 +1,5 @@
 <map id="RawSocket::init" name="RawSocket::init">
-<area shape="rect" id="node1" title=" " alt="" coords="225,5,348,32"/>
-<area shape="rect" id="node2" href="$classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d" title=" " alt="" coords="5,5,177,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="211,5,322,33"/>
+<area shape="rect" id="Node000002" href="$classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d" title=" " alt="" coords="5,5,163,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,22,163,22,163,17,195,17"/>
 </map>

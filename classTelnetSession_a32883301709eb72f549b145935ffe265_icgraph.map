@@ -1,4 +1,5 @@
 <map id="TelnetSession::processCommandHistory" name="TelnetSession::processCommandHistory">
-<area shape="rect" id="node1" title=" " alt="" coords="217,5,453,47"/>
-<area shape="rect" id="node2" href="$classTelnetSession.html#a0348872a381dd52fbf0e5529aa173ff4" title="Called every frame/loop by the Terminal Server." alt="" coords="5,13,169,39"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="207,5,428,50"/>
+<area shape="rect" id="Node000002" href="$classTelnetSession.html#a0348872a381dd52fbf0e5529aa173ff4" title="Called every frame/loop by the Terminal Server." alt="" coords="5,14,159,42"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,30,159,30,159,25,191,25"/>
 </map>

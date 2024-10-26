@@ -1,5 +1,7 @@
 <map id="HTTP::sendGETRequest" name="HTTP::sendGETRequest">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,180,57"/>
-<area shape="rect" id="node2" href="$classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title=" " alt="" coords="234,5,403,32"/>
-<area shape="rect" id="node3" href="$classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title=" " alt="" coords="228,56,409,83"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,32,170,60"/>
+<area shape="rect" id="Node000002" href="$classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title=" " alt="" coords="224,5,384,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,33,209,28,209,33,171,38"/>
+<area shape="rect" id="Node000003" href="$classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title=" " alt="" coords="218,57,390,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="171,53,202,57,202,62,170,58"/>
 </map>

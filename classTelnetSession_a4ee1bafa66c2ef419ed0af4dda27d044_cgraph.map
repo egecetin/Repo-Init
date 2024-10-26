@@ -1,4 +1,5 @@
 <map id="TelnetSession::eraseLine" name="TelnetSession::eraseLine">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,188,32"/>
-<area shape="rect" id="node2" href="$TelnetServer_8cpp.html#af85dc473a887f6016546a64f7599ad64" title=" " alt="" coords="236,5,375,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,174,33"/>
+<area shape="rect" id="Node000002" href="$TelnetServer_8cpp.html#af85dc473a887f6016546a64f7599ad64" title=" " alt="" coords="222,5,354,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,17,206,17,206,22,174,22"/>
 </map>

@@ -1,5 +1,7 @@
 <map id="/__w/Repo&#45;Init/Repo&#45;Init/include/logging/Logger.hpp" name="/__w/Repo&#45;Init/Repo&#45;Init/include/logging/Logger.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="127,5,278,61"/>
-<area shape="rect" id="node2" href="$Logger_8cpp.html" title=" " alt="" coords="5,109,203,151"/>
-<area shape="rect" id="node3" href="$main_8cpp.html" title=" " alt="" coords="227,109,378,151"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="126,5,274,67"/>
+<area shape="rect" id="Node000002" href="$Logger_8cpp.html" title=" " alt="" coords="5,115,200,160"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,80,126,116,122,113,158,76"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html" title=" " alt="" coords="224,115,373,160"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="243,76,279,113,275,116,239,80"/>
 </map>

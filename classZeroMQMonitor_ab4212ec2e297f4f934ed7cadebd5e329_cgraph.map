@@ -1,4 +1,5 @@
 <map id="ZeroMQMonitor::on_monitor_started" name="ZeroMQMonitor::on_monitor_started">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,212,47"/>
-<area shape="rect" id="node2" href="$classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="260,13,452,39"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,202,50"/>
+<area shape="rect" id="Node000002" href="$classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="250,14,430,42"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="202,25,234,25,234,30,202,30"/>
 </map>

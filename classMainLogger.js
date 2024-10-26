@@ -4,8 +4,8 @@ var classMainLogger =
     [ "MainLogger", "classMainLogger.html#acdedc3e6472dc7cc9974ff7b24e31e4e", null ],
     [ "MainLogger", "classMainLogger.html#ade0742356012fad4e40c3c6379601a18", null ],
     [ "~MainLogger", "classMainLogger.html#a124c6c161f48b08587e72dde8bcb8970", null ],
-    [ "getLogger", "classMainLogger.html#a3465c39c88ca9c361be3a7de114ccd7d", null ],
-    [ "operator=", "classMainLogger.html#a5a0464580e3b8955e8b8dfc7469f0fde", null ],
-    [ "operator=", "classMainLogger.html#ae17db8368189b6717ec9edf26d7638bc", null ],
+    [ "getLogger", "classMainLogger.html#a42eca219d4e6aa6bb93fb22a55f86a3f", null ],
+    [ "operator=", "classMainLogger.html#a1b1a5afe10760a6d57f19d9febccb5a1", null ],
+    [ "operator=", "classMainLogger.html#a20738dd01a446bea4e117192ced87224", null ],
     [ "_mainLogger", "classMainLogger.html#a73f0b65ba5e4e61e70b5eb82b5353305", null ]
 ];

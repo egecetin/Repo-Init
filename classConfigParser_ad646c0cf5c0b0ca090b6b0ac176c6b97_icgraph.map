@@ -1,4 +1,5 @@
 <map id="ConfigParser::load" name="ConfigParser::load">
-<area shape="rect" id="node1" title=" " alt="" coords="245,5,384,32"/>
-<area shape="rect" id="node2" href="$classConfigParser.html#acf4886a0e2500b5ec83132a439d18bb2" title=" " alt="" coords="5,5,197,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="239,5,372,33"/>
+<area shape="rect" id="Node000002" href="$classConfigParser.html#acf4886a0e2500b5ec83132a439d18bb2" title=" " alt="" coords="5,5,191,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,22,191,22,191,17,223,17"/>
 </map>

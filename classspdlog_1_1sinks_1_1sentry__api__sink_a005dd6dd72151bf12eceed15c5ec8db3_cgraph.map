@@ -1,4 +1,5 @@
 <map id="spdlog::sinks::sentry_api_sink::sentry_api_sink" name="spdlog::sinks::sentry_api_sink::sentry_api_sink">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,199,47"/>
-<area shape="rect" id="node2" href="$FileHelpers_8hpp.html#ac9a16d00ef61344fc1ca49cfe7c69b52" title=" " alt="" coords="247,13,349,39"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,182,50"/>
+<area shape="rect" id="Node000002" href="$FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86" title=" " alt="" coords="230,14,330,42"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,25,214,25,214,30,182,30"/>
 </map>

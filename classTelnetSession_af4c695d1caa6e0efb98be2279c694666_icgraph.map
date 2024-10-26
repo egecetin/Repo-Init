@@ -1,5 +1,7 @@
 <map id="TelnetSession::getPeerIP" name="TelnetSession::getPeerIP">
-<area shape="rect" id="node1" title=" " alt="" coords="244,31,425,57"/>
-<area shape="rect" id="node2" href="$classTelnetSession.html#acd4fae03ff70b3d19551d4c7f5083b2f" title="Finish the session." alt="" coords="5,5,196,32"/>
-<area shape="rect" id="node3" href="$classTelnetSession.html#ad002c09337a26af497672afe057d9b30" title="Initialise session." alt="" coords="13,56,188,83"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="232,32,402,60"/>
+<area shape="rect" id="Node000002" href="$classTelnetSession.html#acd4fae03ff70b3d19551d4c7f5083b2f" title="Finish the session." alt="" coords="5,5,184,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,36,184,33,185,27,217,31"/>
+<area shape="rect" id="Node000003" href="$classTelnetSession.html#ad002c09337a26af497672afe057d9b30" title="Initialise session." alt="" coords="14,57,175,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="217,60,176,65,175,59,216,55"/>
 </map>

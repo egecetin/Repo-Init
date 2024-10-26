@@ -1,4 +1,5 @@
 <map id="TrackStatus" name="TrackStatus">
-<area shape="rect" id="node1" title=" " alt="" coords="11,95,109,121"/>
-<area shape="rect" id="node2" href="$classStatusTracker.html" title=" " alt="" coords="5,5,115,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="11,98,103,126"/>
+<area shape="rect" id="Node000002" href="$classStatusTracker.html" title=" " alt="" coords="5,5,109,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="60,48,60,98,54,98,54,48"/>
 </map>

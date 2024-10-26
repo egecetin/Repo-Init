@@ -1,4 +1,5 @@
 <map id="PerformanceTracker::startTimer" name="PerformanceTracker::startTimer">
-<area shape="rect" id="node1" title=" " alt="" coords="317,5,468,47"/>
-<area shape="rect" id="node2" href="$classTrackPerformance.html#a6698f5ad202e247f2c41074b60de0246" title=" " alt="" coords="5,13,269,39"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="303,5,447,50"/>
+<area shape="rect" id="Node000002" href="$classTrackPerformance.html#a6698f5ad202e247f2c41074b60de0246" title=" " alt="" coords="5,14,255,42"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="287,30,255,30,255,25,287,25"/>
 </map>

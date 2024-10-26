@@ -1,4 +1,5 @@
 <map id="ZeroMQ::start" name="ZeroMQ::start">
-<area shape="rect" id="node1" title=" " alt="" coords="233,5,345,32"/>
-<area shape="rect" id="node2" href="$classZeroMQServer.html#ad1c5ff929aee9963e4752e238a658b5c" title=" " alt="" coords="5,5,185,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="216,5,320,33"/>
+<area shape="rect" id="Node000002" href="$classZeroMQServer.html#ad1c5ff929aee9963e4752e238a658b5c" title=" " alt="" coords="5,5,168,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,22,168,22,168,17,200,17"/>
 </map>

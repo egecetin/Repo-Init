@@ -1,8 +1,14 @@
 <map id="ProcessMetrics::countDirectoryEntries" name="ProcessMetrics::countDirectoryEntries">
-<area shape="rect" id="node1" title=" " alt="" coords="1052,39,1276,80"/>
-<area shape="rect" id="node2" href="$classProcessMetrics.html#afc464f41490e92722af1d5e0f0c57d85" title=" " alt="" coords="765,5,1004,47"/>
-<area shape="rect" id="node6" href="$classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636" title=" " alt="" coords="787,71,982,112"/>
-<area shape="rect" id="node3" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title=" " alt="" coords="544,46,717,73"/>
-<area shape="rect" id="node4" href="$classProcessMetrics.html#a48996912e89faa15ddb289ec1c6c46a0" title=" " alt="" coords="280,46,496,73"/>
-<area shape="rect" id="node5" href="$classProcessMetrics.html#a102e67199855a44a2c6418fadb57ecb2" title=" " alt="" coords="5,46,232,73"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="981,40,1185,85"/>
+<area shape="rect" id="Node000002" href="$classProcessMetrics.html#afc464f41490e92722af1d5e0f0c57d85" title=" " alt="" coords="712,5,933,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="965,49,933,45,934,40,966,44"/>
+<area shape="rect" id="Node000006" href="$classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636" title=" " alt="" coords="733,75,912,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="966,81,913,88,912,82,965,75"/>
+<area shape="rect" id="Node000003" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title=" " alt="" coords="506,49,664,76"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="697,49,665,53,665,48,696,43"/>
+<area shape="rect" id="Node000004" href="$classProcessMetrics.html#a48996912e89faa15ddb289ec1c6c46a0" title=" " alt="" coords="259,49,458,76"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="490,65,459,65,459,60,490,60"/>
+<area shape="rect" id="Node000005" href="$classProcessMetrics.html#a102e67199855a44a2c6418fadb57ecb2" title=" " alt="" coords="5,49,211,76"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="243,65,211,65,211,60,243,60"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="717,84,665,77,665,71,718,79"/>
 </map>

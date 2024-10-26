@@ -1,5 +1,7 @@
 <map id="/__w/Repo&#45;Init/Repo&#45;Init/include/metrics/PrometheusServer.hpp" name="/__w/Repo&#45;Init/Repo&#45;Init/include/metrics/PrometheusServer.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="97,5,270,61"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,109,172,136"/>
-<area shape="rect" id="node3" title=" " alt="" coords="196,109,360,136"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="92,5,255,67"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,115,163,143"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,69,109,106,106,102,142,66"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="186,115,342,143"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="205,66,242,102,238,106,202,69"/>
 </map>

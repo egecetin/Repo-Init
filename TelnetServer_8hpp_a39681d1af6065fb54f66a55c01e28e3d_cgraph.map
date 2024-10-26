@@ -1,4 +1,5 @@
 <map id="TelnetConnectedCallback" name="TelnetConnectedCallback">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,192,32"/>
-<area shape="rect" id="node2" href="$TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f" title=" " alt="" coords="240,5,465,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,184,33"/>
+<area shape="rect" id="Node000002" href="$TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f" title=" " alt="" coords="232,5,445,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,17,216,17,216,22,184,22"/>
 </map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['baseserverstats_409',['BaseServerStats',['../classBaseServerStats.html',1,'']]]
+  ['baseserverstats_0',['BaseServerStats',['../classBaseServerStats.html',1,'']]]
 ];

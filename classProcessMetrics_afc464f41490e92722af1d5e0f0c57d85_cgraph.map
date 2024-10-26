@@ -1,4 +1,5 @@
 <map id="ProcessMetrics::getFileDescriptorCount" name="ProcessMetrics::getFileDescriptorCount">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,244,47"/>
-<area shape="rect" id="node2" href="$classProcessMetrics.html#aab60bd68d5a49dae6bd6d5f4364d1f9a" title=" " alt="" coords="292,5,516,47"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,226,50"/>
+<area shape="rect" id="Node000002" href="$classProcessMetrics.html#aab60bd68d5a49dae6bd6d5f4364d1f9a" title=" " alt="" coords="274,5,478,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="226,25,258,25,258,30,226,30"/>
 </map>

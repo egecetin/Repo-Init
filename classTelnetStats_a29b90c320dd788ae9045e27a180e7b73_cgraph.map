@@ -1,4 +1,5 @@
 <map id="TelnetStats::consumeStats" name="TelnetStats::consumeStats">
-<area shape="rect" id="node1" title=" " alt="" coords="5,13,200,39"/>
-<area shape="rect" id="node2" href="$classBaseServerStats.html#a4b718f45d89d7c4a71e93702d02fce31" title=" " alt="" coords="248,5,444,47"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,14,186,42"/>
+<area shape="rect" id="Node000002" href="$classBaseServerStats.html#a4b718f45d89d7c4a71e93702d02fce31" title=" " alt="" coords="234,5,410,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,25,218,25,218,30,186,30"/>
 </map>

@@ -1,6 +1,9 @@
 <map id="ProcessMetrics::getThreadCount" name="ProcessMetrics::getThreadCount">
-<area shape="rect" id="node1" title=" " alt="" coords="765,5,960,47"/>
-<area shape="rect" id="node2" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title=" " alt="" coords="544,13,717,39"/>
-<area shape="rect" id="node3" href="$classProcessMetrics.html#a48996912e89faa15ddb289ec1c6c46a0" title=" " alt="" coords="280,13,496,39"/>
-<area shape="rect" id="node4" href="$classProcessMetrics.html#a102e67199855a44a2c6418fadb57ecb2" title=" " alt="" coords="5,13,232,39"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="712,5,892,50"/>
+<area shape="rect" id="Node000002" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title=" " alt="" coords="506,14,664,42"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="697,30,665,30,665,25,697,25"/>
+<area shape="rect" id="Node000003" href="$classProcessMetrics.html#a48996912e89faa15ddb289ec1c6c46a0" title=" " alt="" coords="259,14,458,42"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="490,30,459,30,459,25,490,25"/>
+<area shape="rect" id="Node000004" href="$classProcessMetrics.html#a102e67199855a44a2c6418fadb57ecb2" title=" " alt="" coords="5,14,211,42"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="243,30,211,30,211,25,243,25"/>
 </map>

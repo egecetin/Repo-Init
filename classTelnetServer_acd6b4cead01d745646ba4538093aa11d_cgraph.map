@@ -1,4 +1,5 @@
 <map id="TelnetServer::update" name="TelnetServer::update">
-<area shape="rect" id="node1" title="Process new connections and messages." alt="" coords="5,5,161,32"/>
-<area shape="rect" id="node2" href="$classTelnetServer.html#a14a98513c8caf58a0bc5f78fc3f1b141" title=" " alt="" coords="209,5,436,32"/>
+<area shape="rect" id="Node000001" title="Process new connections and messages." alt="" coords="5,5,151,33"/>
+<area shape="rect" id="Node000002" href="$classTelnetServer.html#a14a98513c8caf58a0bc5f78fc3f1b141" title=" " alt="" coords="199,5,411,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,17,183,17,183,22,151,22"/>
 </map>

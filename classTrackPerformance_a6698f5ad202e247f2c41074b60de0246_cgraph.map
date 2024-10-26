@@ -1,4 +1,5 @@
 <map id="TrackPerformance::TrackPerformance" name="TrackPerformance::TrackPerformance">
-<area shape="rect" id="node1" title=" " alt="" coords="5,13,269,39"/>
-<area shape="rect" id="node2" href="$classPerformanceTracker.html#aca8499b39a7ce03e923834717fc68ab6" title=" " alt="" coords="317,5,468,47"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,14,255,42"/>
+<area shape="rect" id="Node000002" href="$classPerformanceTracker.html#aca8499b39a7ce03e923834717fc68ab6" title=" " alt="" coords="303,5,447,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="255,25,287,25,287,30,255,30"/>
 </map>

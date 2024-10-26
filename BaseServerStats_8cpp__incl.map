@@ -1,7 +1,11 @@
 <map id="/__w/Repo&#45;Init/Repo&#45;Init/src/utils/BaseServerStats.cpp" name="/__w/Repo&#45;Init/Repo&#45;Init/src/utils/BaseServerStats.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="211,5,392,61"/>
-<area shape="rect" id="node2" href="$BaseServerStats_8hpp.html" title=" " alt="" coords="5,109,195,136"/>
-<area shape="rect" id="node4" title=" " alt="" coords="219,109,383,136"/>
-<area shape="rect" id="node5" title=" " alt="" coords="408,109,584,136"/>
-<area shape="rect" id="node3" title=" " alt="" coords="18,184,182,211"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="197,5,366,67"/>
+<area shape="rect" id="Node000002" href="$BaseServerStats_8hpp.html" title=" " alt="" coords="5,115,179,143"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,70,134,110,132,106,217,65"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="203,115,360,143"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="284,67,284,99,279,99,279,67"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="384,115,549,143"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="344,65,427,105,425,110,342,70"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="14,191,170,218"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,143,95,175,89,175,89,143"/>
 </map>

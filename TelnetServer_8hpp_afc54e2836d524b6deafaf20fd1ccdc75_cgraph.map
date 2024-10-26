@@ -1,6 +1,10 @@
 <map id="TelnetMessageCallback" name="TelnetMessageCallback">
-<area shape="rect" id="node1" title=" " alt="" coords="5,56,180,83"/>
-<area shape="rect" id="node2" href="$Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b" title=" " alt="" coords="289,5,392,32"/>
-<area shape="rect" id="node3" href="$TelnetServer_8cpp.html#aaad0fd13b75d5ebde386438b336d77c7" title=" " alt="" coords="251,56,430,83"/>
-<area shape="rect" id="node4" href="$TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f" title=" " alt="" coords="228,107,453,133"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,81,170,109"/>
+<area shape="rect" id="Node000002" href="$Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b" title=" " alt="" coords="276,29,373,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,78,260,54,261,60,155,83"/>
+<area shape="rect" id="Node000003" href="$TelnetServer_8cpp.html#aaad0fd13b75d5ebde386438b336d77c7" title=" " alt="" coords="237,81,412,109"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="170,93,222,93,222,98,170,98"/>
+<area shape="rect" id="Node000004" href="$TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f" title=" " alt="" coords="218,133,431,161"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="155,107,243,127,242,132,153,112"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="284,30,277,20,283,11,298,5,324,3,352,5,367,12,365,16,351,10,324,8,300,10,286,15,283,20,288,27"/>
 </map>

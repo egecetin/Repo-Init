@@ -1,6 +1,10 @@
 <map id="TelnetPrintAvailableCommands" name="TelnetPrintAvailableCommands">
-<area shape="rect" id="node1" title=" " alt="" coords="343,31,568,57"/>
-<area shape="rect" id="node2" href="$TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d" title=" " alt="" coords="108,5,295,32"/>
-<area shape="rect" id="node4" href="$TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title=" " alt="" coords="114,56,289,83"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,31,60,57"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="331,32,544,60"/>
+<area shape="rect" id="Node000002" href="$TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d" title=" " alt="" coords="105,5,283,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="315,35,283,32,284,26,316,30"/>
+<area shape="rect" id="Node000004" href="$TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title=" " alt="" coords="112,57,276,85"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="316,61,277,65,276,60,315,56"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,32,57,60"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,39,57,44,56,39,90,33"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="96,59,57,52,58,47,96,53"/>
 </map>

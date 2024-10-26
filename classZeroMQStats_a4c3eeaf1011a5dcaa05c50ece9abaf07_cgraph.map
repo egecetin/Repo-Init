@@ -1,4 +1,5 @@
 <map id="ZeroMQStats::consumeStats" name="ZeroMQStats::consumeStats">
-<area shape="rect" id="node1" title=" " alt="" coords="5,13,212,39"/>
-<area shape="rect" id="node2" href="$classBaseServerStats.html#a4b718f45d89d7c4a71e93702d02fce31" title=" " alt="" coords="260,5,456,47"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,14,196,42"/>
+<area shape="rect" id="Node000002" href="$classBaseServerStats.html#a4b718f45d89d7c4a71e93702d02fce31" title=" " alt="" coords="244,5,420,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,25,228,25,228,30,196,30"/>
 </map>

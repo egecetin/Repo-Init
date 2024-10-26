@@ -2,7 +2,7 @@ var classConfigParser =
 [
     [ "ConfigParser", "classConfigParser.html#acf4886a0e2500b5ec83132a439d18bb2", null ],
     [ "get", "classConfigParser.html#a29eba7ec75ccd47eb5e70a3b86d72be0", null ],
-    [ "getConfigMap", "classConfigParser.html#a97bb2fa92df20d3fa656318ac27c7b5e", null ],
+    [ "getConfigMap", "classConfigParser.html#aa457f33a2b46a6e627514c3ca7dd0667", null ],
     [ "load", "classConfigParser.html#ad646c0cf5c0b0ca090b6b0ac176c6b97", null ],
     [ "readJson", "classConfigParser.html#aca170271d8fe1a36f905c971f807e8db", null ],
     [ "remove", "classConfigParser.html#a317867fa9bcc23be87dcccc38a22d7a6", null ],

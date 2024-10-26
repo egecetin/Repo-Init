@@ -1,7 +1,0 @@
-<map id="TelnetServer::initialise" name="TelnetServer::initialise">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,172,57"/>
-<area shape="rect" id="node2" href="$classTelnetServer.html#a59e1d9d39d5167a51c14f91d3001a5b1" title=" " alt="" coords="220,5,416,32"/>
-<area shape="rect" id="node3" href="$classTelnetServer.html#a8c9df79dede3e2a03f043e70606287df" title=" " alt="" coords="227,56,409,83"/>
-<area shape="rect" id="node4" href="$classTelnetServer.html#acd6b4cead01d745646ba4538093aa11d" title="Process new connections and messages." alt="" coords="464,56,620,83"/>
-<area shape="rect" id="node5" href="$classTelnetServer.html#a14a98513c8caf58a0bc5f78fc3f1b141" title=" " alt="" coords="668,56,895,83"/>
-</map>

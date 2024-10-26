@@ -1,5 +1,7 @@
 <map id="TELNET_CLEAR_SCREEN" name="TELNET_CLEAR_SCREEN">
-<area shape="rect" id="node1" title=" " alt="" coords="331,5,509,32"/>
-<area shape="rect" id="node2" href="$TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title=" " alt="" coords="108,5,283,32"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="317,5,491,33"/>
+<area shape="rect" id="Node000002" href="$TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title=" " alt="" coords="105,5,269,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="302,22,269,22,269,17,302,17"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,57,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="89,22,57,22,57,17,89,17"/>
 </map>

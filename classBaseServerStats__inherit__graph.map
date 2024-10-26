@@ -1,5 +1,7 @@
 <map id="BaseServerStats" name="BaseServerStats">
-<area shape="rect" id="node1" title=" " alt="" coords="51,5,180,32"/>
-<area shape="rect" id="node2" href="$classTelnetStats.html" title=" " alt="" coords="5,80,100,107"/>
-<area shape="rect" id="node3" href="$classZeroMQStats.html" title=" " alt="" coords="125,80,231,107"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="52,5,169,33"/>
+<area shape="rect" id="Node000002" href="$classTelnetStats.html" title=" " alt="" coords="5,81,96,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,47,63,82,59,79,88,44"/>
+<area shape="rect" id="Node000003" href="$classZeroMQStats.html" title=" " alt="" coords="120,81,221,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,44,162,79,158,82,129,47"/>
 </map>

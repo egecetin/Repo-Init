@@ -1,4 +1,5 @@
 <map id="StatusTracker::incrementActive" name="StatusTracker::incrementActive">
-<area shape="rect" id="node1" title=" " alt="" coords="233,5,416,47"/>
-<area shape="rect" id="node2" href="$classTrackStatus.html#abb13150926104547ead7f939cf1d7ff3" title=" " alt="" coords="5,13,185,39"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="221,5,391,50"/>
+<area shape="rect" id="Node000002" href="$classTrackStatus.html#abb13150926104547ead7f939cf1d7ff3" title=" " alt="" coords="5,14,173,42"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,30,173,30,173,25,205,25"/>
 </map>

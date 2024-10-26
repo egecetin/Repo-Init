@@ -1,6 +1,10 @@
 <map id="/__w/Repo&#45;Init/Repo&#45;Init/include/zeromq/ZeroMQStats.hpp" name="/__w/Repo&#45;Init/Repo&#45;Init/include/zeromq/ZeroMQStats.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="156,5,308,61"/>
-<area shape="rect" id="node2" href="$BaseServerStats_8hpp.html" title=" " alt="" coords="5,109,195,136"/>
-<area shape="rect" id="node3" title=" " alt="" coords="83,184,247,211"/>
-<area shape="rect" id="node4" title=" " alt="" coords="270,109,349,136"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="142,5,290,67"/>
+<area shape="rect" id="Node000002" href="$BaseServerStats_8hpp.html" title=" " alt="" coords="5,115,179,143"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,70,124,108,121,103,173,65"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="76,191,231,218"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="214,68,206,105,193,144,174,179,169,177,188,142,201,103,209,67"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="254,115,328,143"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="243,66,272,101,268,104,239,69"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="105,142,135,177,131,181,101,145"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="TelnetSession" name="TelnetSession">
-<area shape="rect" id="node1" title=" " alt="" coords="55,95,166,121"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,216,47"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="49,98,155,126"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,199,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,66,105,97,99,97,99,66"/>
 </map>
