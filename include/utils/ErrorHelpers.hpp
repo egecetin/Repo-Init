@@ -13,8 +13,8 @@ extern std::vector<std::pair<std::string, std::shared_ptr<std::atomic_flag>>> vC
 
 // Alpine Linux incorrectly declares strerror_r
 // https://stackoverflow.com/questions/41953104/strerror-r-is-incorrectly-declared-on-alpine-linux
-char *checkError(int, char *buffer, int);
-char *checkError(char *result, char *, int);
+char *checkError(int /*unused*/, char *buffer, int /*unused*/);
+char *checkError(char *result, char * /*unused*/, int /*unused*/);
 
 /**
  * Converts errno to a readable string
