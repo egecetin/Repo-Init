@@ -163,8 +163,7 @@ void TelnetSession::sendLine(std::string data)
 	}
 
 	data.append("\r\n");
-	const ssize_t sendBytes = send(m_socket, data.c_str(), data.length(), 0);
-	if (sendBytes > 0)
+	if (auto sendBytes = send(m_socket, data.c_str(), data.length(), 0) > 0)
 	{
 		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
@@ -200,11 +199,10 @@ void TelnetSession::markTimeout()
 	lastSeenTime = std::chrono::system_clock::time_point(std::chrono::duration<int>(0));
 }
 
-void TelnetSession::echoBack(const char *buffer, u_long length)
+void TelnetSession::echoBack(const char *buffer, unsigned long length)
 {
 	// If you are an NVT command (i.e. first it of data is 255) then ignore the echo back
-	const auto firstItem = static_cast<uint8_t>(*buffer);
-	if (firstItem == ASCII_NBSP)
+	if (static_cast<uint8_t>(*buffer) == ASCII_NBSP)
 	{
 		return;
 	}
@@ -224,7 +222,7 @@ void TelnetSession::initialise()
 	stats.connectTime = std::chrono::high_resolution_clock::now();
 
 	// Set the connection to be non-blocking
-	u_long iMode = 1;
+	unsigned long iMode = 1;
 	ioctl(m_socket, FIONBIO, &iMode);
 
 	// Set NVT mode to say that I will echo back characters.
@@ -556,7 +554,7 @@ TelnetServer::~TelnetServer()
 	}
 }
 
-bool TelnetServer::initialise(u_long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag,
+bool TelnetServer::initialise(unsigned long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag,
 							  std::string promptString, const std::shared_ptr<prometheus::Registry> &reg,
 							  const std::string &prependName)
 {
