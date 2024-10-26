@@ -19,8 +19,8 @@ extern std::vector<std::pair<std::string, std::shared_ptr<std::atomic_flag>>> vC
 inline std::string getErrnoString(int errVal)
 {
 	std::array<char, BUFSIZ> buffer{};
-	auto val = strerror_r(errVal, buffer.data(), BUFSIZ);
-#if (_POSIX_C_SOURCE >= 200112L || _XOPEN_SOURCE >= 600) && ! _GNU_SOURCE
+	auto *val = strerror_r(errVal, buffer.data(), BUFSIZ);
+#if (_POSIX_C_SOURCE >= 200112L || _XOPEN_SOURCE >= 600) && !_GNU_SOURCE
 	if (val != 0)
 	{
 		return "Cannot get error message";

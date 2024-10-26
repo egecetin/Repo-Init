@@ -124,6 +124,8 @@ jobs:
     strategy:
       matrix:
         include:
+          - image: rockylinux8
+          - image: rockylinux9
           - image: ubuntu2204
           - image: ubuntu2404
 
