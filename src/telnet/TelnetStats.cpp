@@ -74,7 +74,7 @@ TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint1
 							   .Add({});
 
 	// Set defaults
-	_minSessionDuration->Set(std::numeric_limits<double>::max());
+	_minSessionDuration->Set(std::numeric_limits<int>::max());
 }
 
 void TelnetStats::consumeStats(const TelnetSessionStats &stat, bool sessionClosed)

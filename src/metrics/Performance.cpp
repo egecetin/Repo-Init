@@ -28,7 +28,7 @@ PerformanceTracker::PerformanceTracker(const std::shared_ptr<prometheus::Registr
 					  .Register(*reg)
 					  .Add({});
 
-	_minTiming->Set(std::numeric_limits<double>::max());
+	_minTiming->Set(std::numeric_limits<int>::max());
 }
 
 void PerformanceTracker::startTimer() { _startTime = std::chrono::high_resolution_clock::now(); }
