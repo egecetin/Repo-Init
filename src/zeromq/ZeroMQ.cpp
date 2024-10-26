@@ -87,7 +87,7 @@ std::vector<zmq::message_t> ZeroMQ::recvMessages()
 	else
 	{
 		auto nMsgs = zmq::recv_multipart(*_socketPtr, std::back_inserter(recvMsgs));
-		spdlog::debug("Received {} messages", nMsgs);
+		spdlog::debug("Received {} messages", nMsgs.has_value() ? nMsgs.value() : 0);
 	}
 	return recvMsgs;
 }
