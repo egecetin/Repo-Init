@@ -5,4 +5,4 @@ std::vector<std::pair<std::string, std::shared_ptr<std::atomic_flag>>> vCheckFla
 
 char *checkError(int /*unused*/, char *buffer, int /*unused*/) { return buffer; }
 
-char *checkError(char *result, char * /*unused*/, int /*unused*/) { return result; }
+char *checkError(char *result, const char * /*unused*/, int /*unused*/) { return result; }
