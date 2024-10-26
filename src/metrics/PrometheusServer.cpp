@@ -26,13 +26,13 @@ PrometheusServer::PrometheusServer(const std::string &serverAddr)
 
 std::shared_ptr<prometheus::Registry> PrometheusServer::getRegistry(uint64_t regId)
 {
-	const std::lock_guard<std::mutex> guard(_guardLock);
+	const std::scoped_lock guard(_guardLock);
 
-	auto iter = std::find_if(
-		_vRegister.begin(), _vRegister.end(),
-		[regId](const std::pair<uint64_t, std::shared_ptr<prometheus::Registry>> &val) { return regId == val.first; });
-
-	if (iter != _vRegister.end())
+	if (auto iter = std::find_if(_vRegister.begin(), _vRegister.end(),
+								 [regId](const std::pair<uint64_t, std::shared_ptr<prometheus::Registry>> &val) {
+									 return regId == val.first;
+								 });
+		iter != _vRegister.end())
 	{
 		return iter->second;
 	}
@@ -47,7 +47,7 @@ std::shared_ptr<prometheus::Registry> PrometheusServer::createNewRegistry()
 
 std::shared_ptr<prometheus::Registry> PrometheusServer::createNewRegistry(uint64_t &regId)
 {
-	const std::lock_guard<std::mutex> guard(_guardLock);
+	const std::scoped_lock guard(_guardLock);
 
 	// Create registry
 	auto reg = std::make_shared<prometheus::Registry>();
@@ -66,7 +66,7 @@ bool PrometheusServer::deleteRegistry(uint64_t regId)
 		return false;
 	}
 
-	const std::lock_guard<std::mutex> guard(_guardLock);
+	const std::scoped_lock guard(_guardLock);
 
 	_vRegister.erase(std::remove_if(
 		_vRegister.begin(), _vRegister.end(),

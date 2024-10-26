@@ -81,8 +81,7 @@ namespace spdlog::sinks
 		// Context: Network
 		const sentry_value_t networkContext = sentry_value_new_object();
 
-		ifaddrs *ifaddr = nullptr;
-		if (getifaddrs(&ifaddr) != -1)
+		if (ifaddrs *ifaddr = nullptr; getifaddrs(&ifaddr) != -1)
 		{
 			// Iterate interfaces
 			for (ifaddrs *ifa = ifaddr; ifa != nullptr; ifa = ifa->ifa_next)
