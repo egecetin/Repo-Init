@@ -19,16 +19,19 @@ constexpr uintmax_t alarmInterval = 1;
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 volatile sig_atomic_t interruptFlag = 0;
 
-// Default SIGALRM function
-static void alarmFunc(int /*unused*/)
+namespace
 {
-	alarm(alarmInterval);
+	// Default SIGALRM function
+	static void alarmFunc(int /*unused*/)
+	{
+		alarm(alarmInterval);
 
-	// Clear all flags
-	std::for_each(vCheckFlag.begin(), vCheckFlag.end(), [](auto &entry) { entry.second->clear(); });
-}
+		// Clear all flags
+		std::for_each(vCheckFlag.begin(), vCheckFlag.end(), [](auto &entry) { entry.second->clear(); });
+	}
 
-static void interruptFunc(int /*unused*/) { interruptFlag = 1; }
+	static void interruptFunc(int /*unused*/) { interruptFlag = 1; }
+} // namespace
 
 int main(int argc, char **argv)
 {

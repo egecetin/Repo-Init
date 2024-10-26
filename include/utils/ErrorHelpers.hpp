@@ -19,6 +19,5 @@ extern std::vector<std::pair<std::string, std::shared_ptr<std::atomic_flag>>> vC
 inline std::string getErrnoString(int errVal)
 {
 	std::array<char, BUFSIZ> buffer{};
-	// NOLINTNEXTLINE(clang-diagnostic-error)
 	return strerror_r(errVal, buffer.data(), BUFSIZ); // GNU Specific function not works everywhere
 }

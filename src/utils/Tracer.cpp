@@ -22,7 +22,7 @@ constexpr int SLEEP_INTERVAL_MS = 50;
 void Tracer::startHandler()
 {
 	// Path to crashpad executable
-	base::FilePath handler(_handlerPath);
+	const base::FilePath handler(_handlerPath);
 
 	// Must be writable or crashpad_handler will crash
 	const base::FilePath reportsDir(_reportPath);
