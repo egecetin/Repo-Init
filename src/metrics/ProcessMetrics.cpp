@@ -87,6 +87,7 @@ size_t ProcessMetrics::getFileDescriptorCount() { return countDirectoryEntries("
 
 void ProcessMetrics::update()
 {
+	_pCurrentTime->SetToCurrentTime();
 	_pMemory->Set(static_cast<double>(getMemoryUsage()));
 	_pPageFaults->Set(static_cast<double>(getPageFaults()));
 	_pCpuUsage->Set(getCpuUsage());
@@ -127,6 +128,10 @@ ProcessMetrics::ProcessMetrics(std::shared_ptr<std::atomic_flag> checkFlag,
 		throw std::invalid_argument("Registry is nullptr");
 	}
 
+	_pInitTime =
+		&prometheus::BuildGauge().Name("init_time").Help("Initialization time of application").Register(*reg).Add({});
+	_pCurrentTime =
+		&prometheus::BuildGauge().Name("current_time").Help("Current time of application").Register(*reg).Add({});
 	_pMemory =
 		&prometheus::BuildGauge().Name("memory_usage").Help("Memory usage of application").Register(*reg).Add({});
 	_pPageFaults =
@@ -141,6 +146,8 @@ ProcessMetrics::ProcessMetrics(std::shared_ptr<std::atomic_flag> checkFlag,
 								 .Help("File descriptor count of application")
 								 .Register(*reg)
 								 .Add({});
+
+	_pInitTime->SetToCurrentTime();
 
 	_thread = std::make_unique<std::thread>(&ProcessMetrics::threadRunner, this);
 }
