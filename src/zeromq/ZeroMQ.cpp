@@ -1,6 +1,7 @@
 #include "zeromq/ZeroMQ.hpp"
 
 #include <iostream>
+#include <optional>
 
 #include <spdlog/spdlog.h>
 #include <zmq_addon.hpp>
@@ -10,8 +11,8 @@ constexpr int ZEROMQ_MSG_TIMEOUT_MS = 1000;
 // ZeroMQ heartbeat timeout in milliseconds
 constexpr int ZEROMQ_HEARTBEAT_TIMEOUT_MS = 1000;
 
-void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type, const std::string &addr,
-				  bool isBind)
+void ZeroMQ::init(const std::shared_ptr<zmq::context_t> &ctx, const zmq::socket_type &type,
+				  const std::string_view &addr, bool isBind)
 {
 	_contextPtr = ctx;
 	_socketAddr = addr;
@@ -86,7 +87,8 @@ std::vector<zmq::message_t> ZeroMQ::recvMessages()
 	}
 	else
 	{
-		zmq::recv_multipart(*_socketPtr, std::back_inserter(recvMsgs));
+		auto nMsgs = zmq::recv_multipart(*_socketPtr, std::back_inserter(recvMsgs));
+		spdlog::debug("Received {} messages", nMsgs.value_or(0));
 	}
 	return recvMsgs;
 }
@@ -103,11 +105,7 @@ size_t ZeroMQ::sendMessages(std::vector<zmq::message_t> &msg)
 		res = zmq::send_multipart(*_socketPtr, msg);
 	}
 
-	if (res.has_value())
-	{
-		return res.value();
-	}
-	return 0;
+	return res.value_or(0);
 }
 
 ZeroMQ::~ZeroMQ()
@@ -125,8 +123,8 @@ ZeroMQ::~ZeroMQ()
 		catch (const std::exception &e2)
 		{
 			std::cerr << "Error while stopping ZeroMQ connection and logger for connection " << _socketAddr << " ("
-					  << e.what() << ")" << std::endl
-					  << e2.what() << std::endl;
+					  << e.what() << ")" << '\n'
+					  << e2.what() << '\n';
 		}
 	}
 }

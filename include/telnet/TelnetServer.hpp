@@ -85,7 +85,7 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession> {
 	// Erase all characters on the current line and move prompt back to beginning of line
 	void eraseLine();
 	// Echo back message
-	void echoBack(const char *buffer, u_long length);
+	void echoBack(const char *buffer, unsigned long length);
 	//
 	static void stripNVT(std::string &buffer);
 	// Remove all escape characters from the line
@@ -156,7 +156,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	 * @return true If initialized
 	 * @return false otherwise
 	 */
-	bool initialise(u_long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag,
+	bool initialise(unsigned long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag,
 					std::string promptString = "", const std::shared_ptr<prometheus::Registry> &reg = nullptr,
 					const std::string &prependName = "");
 
@@ -175,7 +175,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	const VEC_SP_TelnetSession &sessions() const { return m_sessions; }
 
 	bool interactivePrompt() const { return m_promptString.length() > 0; }
-	void promptString(const std::string &prompt) { m_promptString = prompt; }
+	void promptString(const std::string_view &prompt) { m_promptString = prompt; }
 	const std::string &promptString() const { return m_promptString; }
 
   private:
@@ -192,7 +192,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	/// Process new connections and messages
 	void update();
 
-	u_long m_listenPort{};
+	unsigned long m_listenPort{};
 	Socket m_listenSocket{-1};
 	VEC_SP_TelnetSession m_sessions;
 	bool m_initialised{false};
@@ -226,4 +226,4 @@ bool TelnetMessageCallback(const SP_TelnetSession &session, const std::string &l
  * @param[in] line Received message
  * @return std::string Command to complete
  */
-std::string TelnetTabCallback(const SP_TelnetSession &session, const std::string &line);
+std::string TelnetTabCallback(const SP_TelnetSession &session, std::string_view line);

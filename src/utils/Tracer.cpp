@@ -8,6 +8,7 @@
 #include <spdlog/spdlog.h>
 
 #include <algorithm>
+#include <array>
 #include <fstream>
 #include <sstream>
 
@@ -21,11 +22,11 @@ constexpr int SLEEP_INTERVAL_MS = 50;
 void Tracer::startHandler()
 {
 	// Path to crashpad executable
-	base::FilePath handler(_handlerPath);
+	const base::FilePath handler(_handlerPath);
 
 	// Must be writable or crashpad_handler will crash
-	base::FilePath reportsDir(_reportPath);
-	base::FilePath metricsDir(_reportPath);
+	const base::FilePath reportsDir(_reportPath);
+	const base::FilePath metricsDir(_reportPath);
 
 	// Initialize Crashpad database
 	auto database = crashpad::CrashReportDatabase::Initialize(reportsDir);
@@ -84,7 +85,7 @@ bool Tracer::checkSocketIsRunning(int sockId)
 	socklen_t len = sizeof(error);
 
 	char buff = 0;
-	int result = getsockopt(sockId, SOL_SOCKET, SO_ERROR, &error, &len);
+	const int result = getsockopt(sockId, SOL_SOCKET, SO_ERROR, &error, &len);
 	return result == 0 && error == 0 && recv(sockId, &buff, 1, MSG_PEEK | MSG_DONTWAIT) != 0;
 }
 
@@ -157,12 +158,12 @@ void Tracer::dumpSharedLibraryInfo(const std::string &filePath)
 		if (pathname.find(".so") != std::string::npos && perms.find("r-x") != std::string::npos)
 		{
 			// The address field is in the form of start-end, we only need the start address
-			std::string start = address.substr(0, address.find('-'));
+			const std::string start = address.substr(0, address.find('-'));
 
 			// Convert the start address from hexadecimal string to unsigned long
-			unsigned long addr = std::stoul(start, nullptr, 16);
+			const unsigned long addr = std::stoul(start, nullptr, 16);
 
-			ofile << pathname << " " << addr << std::endl;
+			ofile << pathname << " " << addr << '\n';
 		}
 	}
 }

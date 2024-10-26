@@ -10,7 +10,7 @@
 </div>
 
 ## Project
-CMake template to create new C++ applications with basic codes/interfaces are already defined. Requires a C++14 supported compiler.
+CMake template to create new C++ applications with basic codes/interfaces are already defined. Requires a C++17 supported compiler.
 
 It provides the following features
   - Tracing
@@ -90,5 +90,5 @@ Full dependency graph can be seen [here](doc/XXX-tree.svg)
  - coverage         : Prepares coverage report
  - docs             : Prepares documentation
  - dependency-graph : Prepares graphviz visualization of dependencies
- - package          : Prepares default packages
+ - package          : Prepares default packages which includes deb/rpm package and symbols with a systemd service. You should specify the desired package type with -DCPACK_GENERATOR="DEB" (or "RPM")
  - test             : Prepares gtest target

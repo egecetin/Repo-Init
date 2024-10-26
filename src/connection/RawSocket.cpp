@@ -83,6 +83,7 @@ int RawSocket::readData(unsigned char *data, size_t dataLen)
 	{
 		return -EPERM;
 	}
+	// NOLINTNEXTLINE(cppcoreguidelines-init-variables)
 	socklen_t socketLen = sizeof(_addr);
 
 	auto startTime = std::chrono::high_resolution_clock::now();

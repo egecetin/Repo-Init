@@ -6,10 +6,14 @@
 
 #include <spdlog/spdlog.h>
 
+#include <array>
+#include <ctime>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <utility>
+
+#include <sys/time.h>
 
 // Invalid socket identifier for readability
 constexpr int INVALID_SOCKET = -1;
@@ -162,8 +166,7 @@ void TelnetSession::sendLine(std::string data)
 	}
 
 	data.append("\r\n");
-	const ssize_t sendBytes = send(m_socket, data.c_str(), data.length(), 0);
-	if (sendBytes > 0)
+	if (auto sendBytes = send(m_socket, data.c_str(), data.length(), 0) > 0)
 	{
 		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
@@ -199,11 +202,10 @@ void TelnetSession::markTimeout()
 	lastSeenTime = std::chrono::system_clock::time_point(std::chrono::duration<int>(0));
 }
 
-void TelnetSession::echoBack(const char *buffer, u_long length)
+void TelnetSession::echoBack(const char *buffer, unsigned long length)
 {
 	// If you are an NVT command (i.e. first it of data is 255) then ignore the echo back
-	const auto firstItem = static_cast<uint8_t>(*buffer);
-	if (firstItem == ASCII_NBSP)
+	if (static_cast<uint8_t>(*buffer) == ASCII_NBSP)
 	{
 		return;
 	}
@@ -223,7 +225,7 @@ void TelnetSession::initialise()
 	stats.connectTime = std::chrono::high_resolution_clock::now();
 
 	// Set the connection to be non-blocking
-	u_long iMode = 1;
+	unsigned long iMode = 1;
 	ioctl(m_socket, FIONBIO, &iMode);
 
 	// Set NVT mode to say that I will echo back characters.
@@ -549,13 +551,13 @@ TelnetServer::~TelnetServer()
 		}
 		catch (const std::exception &e2)
 		{
-			std::cerr << "Telnet server destructor and also logger thrown an exception: " << e.what() << std::endl
-					  << e2.what() << std::endl;
+			std::cerr << "Telnet server destructor and also logger thrown an exception: " << e.what() << '\n'
+					  << e2.what() << '\n';
 		}
 	}
 }
 
-bool TelnetServer::initialise(u_long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag,
+bool TelnetServer::initialise(unsigned long listenPort, const std::shared_ptr<std::atomic_flag> &checkFlag,
 							  std::string promptString, const std::shared_ptr<prometheus::Registry> &reg,
 							  const std::string &prependName)
 {
@@ -591,8 +593,7 @@ bool TelnetServer::initialise(u_long listenPort, const std::shared_ptr<std::atom
 		return false;
 	}
 
-	int optionVal = 1;
-	if (setsockopt(m_listenSocket, SOL_SOCKET, SO_REUSEADDR, &optionVal, sizeof(optionVal)) < 0)
+	if (int optionVal = 1; setsockopt(m_listenSocket, SOL_SOCKET, SO_REUSEADDR, &optionVal, sizeof(optionVal)) < 0)
 	{
 		freeaddrinfo(result);
 		close(m_listenSocket);
@@ -766,10 +767,10 @@ void TelnetPrintAvailableCommands(const SP_TelnetSession &session)
 	session->sendLine("");
 	session->sendLine("Available commands:");
 	session->sendLine("");
-	for (const auto &entry : telnetCommands)
+	for (const auto &[command, info] : telnetCommands)
 	{
 		std::array<char, BUFSIZ> buffer{'\0'};
-		if (snprintf(buffer.data(), BUFSIZ, "%-25s : %s", entry.first.c_str(), entry.second.c_str()) > 0)
+		if (snprintf(buffer.data(), BUFSIZ, "%-25s : %s", command.c_str(), info.c_str()) > 0)
 		{
 			session->sendLine(buffer.data());
 		}
@@ -836,11 +837,11 @@ bool TelnetMessageCallback(const SP_TelnetSession &session, const std::string &l
 		session->sendLine(TELNET_CLEAR_SCREEN);
 		return true;
 	case constHasher("status"):
-		for (const auto &entry : vCheckFlag)
+		for (const auto &[service, statusFlag] : vCheckFlag)
 		{
 			std::ostringstream oss;
-			oss << std::left << std::setfill('.') << std::setw(KEY_WIDTH) << entry.first + " " << std::setw(VAL_WIDTH)
-				<< std::right << (entry.second->_M_i ? " OK" : " Not Active");
+			oss << std::left << std::setfill('.') << std::setw(KEY_WIDTH) << service + " " << std::setw(VAL_WIDTH)
+				<< std::right << (statusFlag->_M_i ? " OK" : " Not Active");
 			session->sendLine(oss.str());
 		}
 		return true;
@@ -862,19 +863,19 @@ bool TelnetMessageCallback(const SP_TelnetSession &session, const std::string &l
 	}
 }
 
-std::string TelnetTabCallback(const SP_TelnetSession &session, const std::string &line)
+std::string TelnetTabCallback(const SP_TelnetSession &session, std::string_view line)
 {
 	std::string retval;
 
 	size_t ctr = 0;
 	std::ostringstream sStream;
-	for (const auto &entry : telnetCommands)
+	for (const auto &[command, info] : telnetCommands)
 	{
-		if (entry.first.rfind(line, 0) == 0)
+		if (command.rfind(line, 0) == 0)
 		{
 			++ctr;
-			retval = entry.first;
-			sStream << entry.first << std::setw(KEY_WIDTH);
+			retval = command;
+			sStream << command << std::setw(KEY_WIDTH);
 		}
 	}
 	// Send suggestions if found any. If there is only one command retval will invoke completion
