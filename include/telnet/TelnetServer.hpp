@@ -175,7 +175,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	const VEC_SP_TelnetSession &sessions() const { return m_sessions; }
 
 	bool interactivePrompt() const { return m_promptString.length() > 0; }
-	void promptString(const std::string &prompt) { m_promptString = prompt; }
+	void promptString(std::string_view prompt) { m_promptString = prompt; }
 	const std::string &promptString() const { return m_promptString; }
 
   private:
@@ -226,4 +226,4 @@ bool TelnetMessageCallback(const SP_TelnetSession &session, const std::string &l
  * @param[in] line Received message
  * @return std::string Command to complete
  */
-std::string TelnetTabCallback(const SP_TelnetSession &session, const std::string &line);
+std::string TelnetTabCallback(const SP_TelnetSession &session, std::string_view line);

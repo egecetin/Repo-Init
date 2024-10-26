@@ -765,10 +765,10 @@ void TelnetPrintAvailableCommands(const SP_TelnetSession &session)
 	session->sendLine("");
 	session->sendLine("Available commands:");
 	session->sendLine("");
-	for (const auto &entry : telnetCommands)
+	for (const auto &[command, info] : telnetCommands)
 	{
 		std::array<char, BUFSIZ> buffer{'\0'};
-		if (snprintf(buffer.data(), BUFSIZ, "%-25s : %s", entry.first.c_str(), entry.second.c_str()) > 0)
+		if (snprintf(buffer.data(), BUFSIZ, "%-25s : %s", command.c_str(), info.c_str()) > 0)
 		{
 			session->sendLine(buffer.data());
 		}
@@ -835,11 +835,11 @@ bool TelnetMessageCallback(const SP_TelnetSession &session, const std::string &l
 		session->sendLine(TELNET_CLEAR_SCREEN);
 		return true;
 	case constHasher("status"):
-		for (const auto &entry : vCheckFlag)
+		for (const auto &[service, statusFlag] : vCheckFlag)
 		{
 			std::ostringstream oss;
-			oss << std::left << std::setfill('.') << std::setw(KEY_WIDTH) << entry.first + " " << std::setw(VAL_WIDTH)
-				<< std::right << (entry.second->_M_i ? " OK" : " Not Active");
+			oss << std::left << std::setfill('.') << std::setw(KEY_WIDTH) << service + " " << std::setw(VAL_WIDTH)
+				<< std::right << (statusFlag->_M_i ? " OK" : " Not Active");
 			session->sendLine(oss.str());
 		}
 		return true;
@@ -861,19 +861,19 @@ bool TelnetMessageCallback(const SP_TelnetSession &session, const std::string &l
 	}
 }
 
-std::string TelnetTabCallback(const SP_TelnetSession &session, const std::string &line)
+std::string TelnetTabCallback(const SP_TelnetSession &session, std::string_view line)
 {
 	std::string retval;
 
 	size_t ctr = 0;
 	std::ostringstream sStream;
-	for (const auto &entry : telnetCommands)
+	for (const auto &[command, info] : telnetCommands)
 	{
-		if (entry.first.rfind(line, 0) == 0)
+		if (command.rfind(line, 0) == 0)
 		{
 			++ctr;
-			retval = entry.first;
-			sStream << entry.first << std::setw(KEY_WIDTH);
+			retval = command;
+			sStream << command << std::setw(KEY_WIDTH);
 		}
 	}
 	// Send suggestions if found any. If there is only one command retval will invoke completion

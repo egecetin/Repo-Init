@@ -151,7 +151,7 @@ jobs:
           . .venv/bin/activate
           pip3 install -r tests/data/requirements.txt
       - name: Configure
-        run: cmake ${{ matrix.additional-flags }} -S . -B build
+        run: cmake -S . -B build
       - name: Build
         run: cmake --build build --parallel
       - name: Run Tests

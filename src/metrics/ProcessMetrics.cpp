@@ -90,9 +90,9 @@ void ProcessMetrics::update()
 	_pMemory->Set(static_cast<double>(getMemoryUsage()));
 	_pPageFaults->Set(static_cast<double>(getPageFaults()));
 	_pCpuUsage->Set(getCpuUsage());
-	auto diskIO = getDiskIO();
-	_pDiskRead->Set(static_cast<double>(diskIO.first));
-	_pDiskWrite->Set(static_cast<double>(diskIO.second));
+	auto [diskRead, diskWrite] = getDiskIO();
+	_pDiskRead->Set(static_cast<double>(diskRead));
+	_pDiskWrite->Set(static_cast<double>(diskWrite));
 	_pThreadCount->Set(static_cast<double>(getThreadCount()));
 	_pFileDescriptorCount->Set(static_cast<double>(getFileDescriptorCount()));
 }
