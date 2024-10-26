@@ -174,7 +174,6 @@ if(XXX_ENABLE_PACKAGING)
 
   install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.service DESTINATION /lib/systemd/system)
 
-  set(CPACK_GENERATOR "DEB")
   set(CPACK_PACKAGE_CONTACT "Ege Cetin <egecetin@hotmail.com.tr>")
   set(CPACK_PACKAGE_DESCRIPTION "C++ Application Template. It has already integrated a Telnet and ZeroMQ server to \
 receive commands, Crashpad handler to generate minidump, a Prometheus server to broadcast performance metrics. \
@@ -187,12 +186,20 @@ Also, it can send logs to syslog using Spdlog, to a Sentry server and Grafana Lo
   set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
   set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.md")
 
-  set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
+  # Debian package specific parameters
   set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${POST_INSTALL_SCRIPT};${PRE_UNINSTALL_SCRIPT}")
   set(CPACK_DEBIAN_PACKAGE_DEPENDS "libcurl4 (>= 7.0), libspdlog1 (>= 1.8.0), libzmq5 (>= 4.0.0), systemd")
   set(CPACK_DEBIAN_PACKAGE_SECTION "misc")
   set(CPACK_DEBIAN_PACKAGE_GENERATE_SHLIBS ON)
   set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+
+  # RPM package specific parameters
+  set(CPACK_RPM_PACKAGE_LICENSE "MIT")
+  set(CPACK_RPM_PACKAGE_REQUIRES_PREUN "systemd")
+  set(CPACK_RPM_PACKAGE_REQUIRES_POST "systemd")
+  set(CPACK_RPM_PACKAGE_REQUIRES "libcurl >= 7.0, spdlog >= 1.8.0, zeromq >= 4.0.0")
+  set(CPACK_RPM_POST_INSTALL_SCRIPT_FILE ${POST_INSTALL_SCRIPT})
+  set(CPACK_RPM_PRE_UNINSTALL_SCRIPT_FILE ${PRE_UNINSTALL_SCRIPT})
 
   include(CPack)
 
