@@ -29,6 +29,7 @@ jobs:
       - name: Create .nojekyll (ensures pages with underscores work on gh pages)
         run: touch doc/html/.nojekyll
       - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/master'
         uses: JamesIves/github-pages-deploy-action@881db5376404c5c8d621010bcbec0310b58d5e29 # v4.6.8
         with:
           branch: gh-pages
