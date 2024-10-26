@@ -90,5 +90,5 @@ Full dependency graph can be seen [here](doc/XXX-tree.svg)
  - coverage         : Prepares coverage report
  - docs             : Prepares documentation
  - dependency-graph : Prepares graphviz visualization of dependencies
- - package          : Prepares default packages
+ - package          : Prepares default packages which includes deb/rpm package and symbols with a systemd service
  - test             : Prepares gtest target
