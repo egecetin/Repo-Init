@@ -163,7 +163,7 @@ void Tracer::dumpSharedLibraryInfo(const std::string &filePath)
 			// Convert the start address from hexadecimal string to unsigned long
 			const unsigned long addr = std::stoul(start, nullptr, 16);
 
-			ofile << pathname << " " << addr << std::endl;
+			ofile << pathname << " " << addr << '\n';
 		}
 	}
 }
