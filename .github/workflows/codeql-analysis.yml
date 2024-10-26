@@ -13,6 +13,9 @@ on:
 permissions:
   contents: read
 
+env:
+  CCACHE_DIR: ${{ github.workspace }}/.ccache
+
 jobs:
   analyze:
     name: Analyze
