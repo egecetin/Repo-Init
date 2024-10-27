@@ -136,7 +136,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "XXX_info",
+          "expr": "XXX_info{instance=\"$instance\"}",
           "format": "time_series",
           "instant": true,
           "legendFormat": "__auto",
@@ -222,7 +222,7 @@
         {
           "editorMode": "code",
           "exemplar": false,
-          "expr": "cpu_usage",
+          "expr": "cpu_usage{instance=\"$instance\"}",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -292,7 +292,7 @@
         {
           "editorMode": "code",
           "exemplar": false,
-          "expr": "memory_usage",
+          "expr": "memory_usage{instance=\"$instance\"}",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -361,7 +361,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "disk_read",
+          "expr": "disk_read{instance=\"$instance\"}",
           "legendFormat": "Read",
           "range": true,
           "refId": "A",
@@ -376,7 +376,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "disk_write",
+          "expr": "disk_write{instance=\"$instance\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "Write",
@@ -440,7 +440,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "thread_count",
+          "expr": "thread_count{instance=\"$instance\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
@@ -506,7 +506,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "file_descriptor_count",
+          "expr": "file_descriptor_count{instance=\"$instance\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
@@ -575,7 +575,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "rate(page_faults[$__rate_interval])",
+          "expr": "rate(page_faults{instance=\"$instance\"}[$__rate_interval])",
           "legendFormat": "Page faults",
           "range": true,
           "refId": "A",
@@ -643,7 +643,7 @@
         {
           "editorMode": "code",
           "exemplar": false,
-          "expr": "current_time - init_time",
+          "expr": "current_time{instance=\"$instance\"} - init_time{instance=\"$instance\"}",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -722,7 +722,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "zeromq_received_commands",
+          "expr": "zeromq_received_commands{instance=\"$instance\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
@@ -800,7 +800,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "zeromq_failed_commands/zeromq_received_commands",
+          "expr": "zeromq_failed_commands{instance=\"$instance\"}/zeromq_received_commands{instance=\"$instance\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "Failed",
@@ -869,7 +869,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "zeromq_failed_commands",
+          "expr": "zeromq_failed_commands{instance=\"$instance\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
@@ -934,7 +934,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "rate(zeromq_uploaded_bytes[$__rate_interval])",
+          "expr": "rate(zeromq_uploaded_bytes{instance=\"$instance\"}[$__rate_interval])",
           "legendFormat": "Upload",
           "range": true,
           "refId": "A",
@@ -949,7 +949,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "rate(zeromq_downloaded_bytes[$__rate_interval])",
+          "expr": "rate(zeromq_downloaded_bytes{instance=\"$instance\"}[$__rate_interval])",
           "hide": false,
           "instant": false,
           "legendFormat": "Download",
@@ -1079,7 +1079,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "rate(zeromq_processing_time_sum[$__rate_interval])",
+          "expr": "rate(zeromq_processing_time_sum{instance=\"$instance\"}[$__rate_interval])",
           "legendFormat": "Processing",
           "range": true,
           "refId": "A",
@@ -1095,7 +1095,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "zeromq_minimum_processing_time",
+          "expr": "zeromq_minimum_processing_time{instance=\"$instance\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "Minimum",
@@ -1109,7 +1109,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "zeromq_maximum_processing_time",
+          "expr": "zeromq_maximum_processing_time{instance=\"$instance\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "Maximum",
@@ -1122,7 +1122,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "zeromq_processing_time{quantile=\"0.99\"}",
+          "expr": "zeromq_processing_time{instance=\"$instance\", quantile=\"0.99\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "99th Quantile",
@@ -1135,7 +1135,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "zeromq_processing_time{quantile=\"0.5\"}",
+          "expr": "zeromq_processing_time{instance=\"$instance\", quantile=\"0.5\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "50th Quantile",
@@ -1198,7 +1198,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "zeromq_total_command_parts",
+          "expr": "zeromq_total_command_parts{instance=\"$instance\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
@@ -1269,7 +1269,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "zeromq_failed_command_parts",
+          "expr": "zeromq_failed_command_parts{instance=\"$instance\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
@@ -1347,7 +1347,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "telnet_received_commands",
+          "expr": "telnet_received_commands{instance=\"$instance\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
@@ -1415,7 +1415,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "telnet_active_connections",
+          "expr": "telnet_active_connections{instance=\"$instance\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
@@ -1482,7 +1482,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "telnet_received_connections",
+          "expr": "telnet_received_connections{instance=\"$instance\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
@@ -1547,7 +1547,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "rate(telnet_uploaded_bytes[$__rate_interval])",
+          "expr": "rate(telnet_uploaded_bytes{instance=\"$instance\"}[$__rate_interval])",
           "legendFormat": "Upload",
           "range": true,
           "refId": "A",
@@ -1562,7 +1562,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "rate(telnet_downloaded_bytes[$__rate_interval])",
+          "expr": "rate(telnet_downloaded_bytes{instance=\"$instance\"}[$__rate_interval])",
           "hide": false,
           "instant": false,
           "legendFormat": "Download",
@@ -1626,7 +1626,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "telnet_processing_time_sum/telnet_processing_time_count",
+          "expr": "telnet_processing_time_sum{instance=\"$instance\"}/telnet_processing_time_count{instance=\"$instance\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
@@ -1720,7 +1720,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "increase(telnet_session_duration_sum[$__rate_interval])",
+          "expr": "increase(telnet_session_duration_sum{instance=\"$instance\"}[$__rate_interval])",
           "legendFormat": "Duration",
           "range": true,
           "refId": "A",
@@ -1791,7 +1791,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "telnet_failed_commands",
+          "expr": "telnet_failed_commands{instance=\"$instance\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
@@ -1862,7 +1862,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "telnet_refused_connections",
+          "expr": "telnet_refused_connections{instance=\"$instance\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
@@ -1928,7 +1928,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "telnet_session_duration_sum/telnet_session_duration_count",
+          "expr": "telnet_session_duration_sum{instance=\"$instance\"}/telnet_session_duration_count{instance=\"$instance\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
@@ -1946,7 +1946,23 @@
   "schemaVersion": 40,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {},
+        "definition": "label_values(XXX_info,instance)",
+        "label": "Host",
+        "name": "instance",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(XXX_info,instance)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      }
+    ]
   },
   "time": {
     "from": "now-6h",
@@ -1956,6 +1972,6 @@
   "timezone": "browser",
   "title": "XXX Test Dashboard",
   "uid": "ee217hei8lrswa",
-  "version": 12,
+  "version": 13,
   "weekStart": ""
 }
