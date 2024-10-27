@@ -23,7 +23,8 @@ TelnetStats::TelnetStats(const std::shared_ptr<prometheus::Registry> &reg, uint1
 	initBaseStats(reg, name);
 
 	// Basic information
-	_infoFamily = &prometheus::BuildInfo().Name(name.substr(0, name.size() - 1)).Help("Telnet server information").Register(*reg);
+	_infoFamily =
+		&prometheus::BuildInfo().Name(name.substr(0, name.size() - 1)).Help("Telnet server information").Register(*reg);
 
 	_infoFamily->Add({{"server_port", std::to_string(portNumber)}});
 	_infoFamily->Add({{"init_time", date::format("%FT%TZ", date::floor<std::chrono::nanoseconds>(
