@@ -32,6 +32,7 @@ var NAVTREE =
       [ "Scripts", "index.html#autotoc_md3", null ],
       [ "Dependencies", "index.html#autotoc_md4", null ],
       [ "Targets", "index.html#autotoc_md5", null ],
+      [ "Grafana", "index.html#autotoc_md6", null ],
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
@@ -65,7 +66,7 @@ var NAVTREEINDEX =
 [
 "BaseServerStats_8cpp.html",
 "classProcessMetrics.html#a102e67199855a44a2c6418fadb57ecb2",
-"classZeroMQStats.html#a71cc8db861739c93c0b209ec43429506"
+"classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -246,7 +246,7 @@ var NAVTREEINDEX0 =
 "classPerformanceTracker.html#ae638d664c640da9a16e72b8decab4b9e":[1,0,7,5],
 "classPerformanceTracker.html#affcbc6189c2e5b05bea3e272f2ac754b":[1,0,7,3],
 "classProcessMetrics.html":[1,0,8],
-"classProcessMetrics.html#a03917bb66122ce6a87ec96aac35379f8":[1,0,8,24],
+"classProcessMetrics.html#a03917bb66122ce6a87ec96aac35379f8":[1,0,8,26],
 "classProcessMetrics.html#a048562bec48c6b562121a9438c0ba721":[1,0,8,13],
 "classProcessMetrics.html#a07a73f45b18713c8e9f60a0a406c2d8f":[1,0,8,6],
 "classProcessMetrics.html#a0dae89a805461aea0e186edc3ed00f41":[1,0,8,17]

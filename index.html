@@ -140,6 +140,7 @@ Contents</h2>
 <li>Scripts</li>
 <li>Dependencies</li>
 <li>Targets</li>
+<li>Grafana</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md2"></a>
 CMake</h2>
@@ -192,8 +193,12 @@ Targets</h2>
 <li>docs : Prepares documentation</li>
 <li>dependency-graph : Prepares graphviz visualization of dependencies</li>
 <li>package : Prepares default packages which includes deb/rpm package and symbols with a systemd service. You should specify the desired package type with -DCPACK_GENERATOR="DEB" (or "RPM")</li>
-<li>test : Prepares gtest target </li>
+<li>test : Prepares gtest target</li>
 </ul>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Grafana</h2>
+<p>Since there is a Prometheus server integration, also there is a Grafana integration. You can find an example for dashboard <a href="scripts/GrafanaDashboard-1730032129887.json">here</a>. Also you can see screenshot of the dashboard below.</p>
+<p><img src="doc/GrafanaDashboard.png" alt="" class="inline"/> </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"/>
 </div><!-- contents -->
@@ -201,7 +206,7 @@ Targets</h2>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Oct 26 2024 14:53:25 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
+    <li class="footer">Generated on Sun Oct 27 2024 13:30:09 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
   </ul>
 </div>
 </body>

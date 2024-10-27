@@ -21,5 +21,6 @@ var searchData=
   ['getselfexecutabledir_18',['getSelfExecutableDir',['../classTracer.html#ab220e3d1019cb07d311a35b40e1a6163',1,'Tracer']]],
   ['getsocket_19',['getSocket',['../classZeroMQ.html#a642e1995dbbba964de506575711a556a',1,'ZeroMQ']]],
   ['getstats_20',['getStats',['../classHTTP.html#af36f36f547e48a89361cf150aeb177d8',1,'HTTP::getStats()'],['../classRawSocket.html#a1f203ecb915c624a0dadb5e3de38188e',1,'RawSocket::getStats()']]],
-  ['getthreadcount_21',['getThreadCount',['../classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636',1,'ProcessMetrics']]]
+  ['getthreadcount_21',['getThreadCount',['../classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636',1,'ProcessMetrics']]],
+  ['grafana_22',['Grafana',['../index.html#autotoc_md6',1,'']]]
 ];

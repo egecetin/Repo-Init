@@ -230,59 +230,60 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><span class="lineno">   23</span>    <a class="code hl_function" href="classBaseServerStats.html#ab7738ee93e513f10564d0077fbc8fcb9">initBaseStats</a>(reg, name);</div>
 <div class="line"><span class="lineno">   24</span> </div>
 <div class="line"><span class="lineno">   25</span>    <span class="comment">// Basic information</span></div>
-<div class="line"><span class="lineno">   26</span>    <a class="code hl_variable" href="#a4225d5a148829ba344ce36e6394a5f16">_infoFamily</a> = &amp;prometheus::BuildInfo().Name(name).Help(<span class="stringliteral">&quot;Telnet server information&quot;</span>).Register(*reg);</div>
-<div class="line"><span class="lineno">   27</span> </div>
-<div class="line"><span class="lineno">   28</span>    <a class="code hl_variable" href="#a4225d5a148829ba344ce36e6394a5f16">_infoFamily</a>-&gt;Add({{<span class="stringliteral">&quot;server_port&quot;</span>, std::to_string(portNumber)}});</div>
-<div class="line"><span class="lineno">   29</span>    <a class="code hl_variable" href="#a4225d5a148829ba344ce36e6394a5f16">_infoFamily</a>-&gt;Add({{<span class="stringliteral">&quot;init_time&quot;</span>, date::format(<span class="stringliteral">&quot;%FT%TZ&quot;</span>, date::floor&lt;std::chrono::nanoseconds&gt;(</div>
-<div class="line"><span class="lineno">   30</span>                                                               std::chrono::high_resolution_clock::now()))}});</div>
-<div class="line"><span class="lineno">   31</span>    <a class="code hl_variable" href="#a4225d5a148829ba344ce36e6394a5f16">_infoFamily</a>-&gt;Add({{<span class="stringliteral">&quot;performance_unit&quot;</span>, <span class="stringliteral">&quot;nanoseconds&quot;</span>}});</div>
-<div class="line"><span class="lineno">   32</span> </div>
-<div class="line"><span class="lineno">   33</span>    <span class="comment">// Connection stats</span></div>
-<div class="line"><span class="lineno">   34</span>    <a class="code hl_variable" href="#ab418710097b0ea4ff8b1b165abcc4ff9">_activeConnection</a> = &amp;prometheus::BuildGauge()</div>
-<div class="line"><span class="lineno">   35</span>                             .Name(name + <span class="stringliteral">&quot;active_connections&quot;</span>)</div>
-<div class="line"><span class="lineno">   36</span>                             .Help(<span class="stringliteral">&quot;Number of active connections&quot;</span>)</div>
-<div class="line"><span class="lineno">   37</span>                             .Register(*reg)</div>
-<div class="line"><span class="lineno">   38</span>                             .Add({});</div>
-<div class="line"><span class="lineno">   39</span>    <a class="code hl_variable" href="#a8555ceaaa06d13ffb4bdd7df41d775df">_refusedConnection</a> = &amp;prometheus::BuildCounter()</div>
-<div class="line"><span class="lineno">   40</span>                              .Name(name + <span class="stringliteral">&quot;refused_connections&quot;</span>)</div>
-<div class="line"><span class="lineno">   41</span>                              .Help(<span class="stringliteral">&quot;Number of refused connections&quot;</span>)</div>
-<div class="line"><span class="lineno">   42</span>                              .Register(*reg)</div>
-<div class="line"><span class="lineno">   43</span>                              .Add({});</div>
-<div class="line"><span class="lineno">   44</span>    <a class="code hl_variable" href="#a734e2056f1b648195d55022f852ed782">_totalConnection</a> = &amp;prometheus::BuildCounter()</div>
-<div class="line"><span class="lineno">   45</span>                            .Name(name + <span class="stringliteral">&quot;received_connections&quot;</span>)</div>
-<div class="line"><span class="lineno">   46</span>                            .Help(<span class="stringliteral">&quot;Number of received connections&quot;</span>)</div>
-<div class="line"><span class="lineno">   47</span>                            .Register(*reg)</div>
-<div class="line"><span class="lineno">   48</span>                            .Add({});</div>
-<div class="line"><span class="lineno">   49</span> </div>
-<div class="line"><span class="lineno">   50</span>    <span class="comment">// Bandwidth stats</span></div>
-<div class="line"><span class="lineno">   51</span>    <a class="code hl_variable" href="#acc0adc3d7418908bc2a26e4b60434493">_totalUploadBytes</a> =</div>
-<div class="line"><span class="lineno">   52</span>        &amp;prometheus::BuildCounter().Name(name + <span class="stringliteral">&quot;uploaded_bytes&quot;</span>).Help(<span class="stringliteral">&quot;Total uploaded bytes&quot;</span>).Register(*reg).Add({});</div>
-<div class="line"><span class="lineno">   53</span>    <a class="code hl_variable" href="#a4075561e19d288c7f1cd3ff13453224e">_totalDownloadBytes</a> = &amp;prometheus::BuildCounter()</div>
-<div class="line"><span class="lineno">   54</span>                               .Name(name + <span class="stringliteral">&quot;downloaded_bytes&quot;</span>)</div>
-<div class="line"><span class="lineno">   55</span>                               .Help(<span class="stringliteral">&quot;Total downloaded bytes&quot;</span>)</div>
-<div class="line"><span class="lineno">   56</span>                               .Register(*reg)</div>
-<div class="line"><span class="lineno">   57</span>                               .Add({});</div>
-<div class="line"><span class="lineno">   58</span> </div>
-<div class="line"><span class="lineno">   59</span>    <span class="comment">// Session durations</span></div>
-<div class="line"><span class="lineno">   60</span>    <a class="code hl_variable" href="#adcf9f16b43e06d1674e6bad84312ceaa">_sessionDuration</a> = &amp;prometheus::BuildSummary()</div>
-<div class="line"><span class="lineno">   61</span>                            .Name(name + <span class="stringliteral">&quot;session_duration&quot;</span>)</div>
-<div class="line"><span class="lineno">   62</span>                            .Help(<span class="stringliteral">&quot;Duration of sessions&quot;</span>)</div>
-<div class="line"><span class="lineno">   63</span>                            .Register(*reg)</div>
-<div class="line"><span class="lineno">   64</span>                            .Add({}, <a class="code hl_define" href="Performance_8cpp.html#a6c1e8e86b55ecaf45cc433f96a2ac8df">QUANTILE_DEFAULTS</a>);</div>
-<div class="line"><span class="lineno">   65</span>    <a class="code hl_variable" href="#a93d12e3c59f545e3ade025f2d995c4f0">_maxSessionDuration</a> = &amp;prometheus::BuildGauge()</div>
-<div class="line"><span class="lineno">   66</span>                               .Name(name + <span class="stringliteral">&quot;maximum_session_duration&quot;</span>)</div>
-<div class="line"><span class="lineno">   67</span>                               .Help(<span class="stringliteral">&quot;Maximum duration of sessions&quot;</span>)</div>
-<div class="line"><span class="lineno">   68</span>                               .Register(*reg)</div>
-<div class="line"><span class="lineno">   69</span>                               .Add({});</div>
-<div class="line"><span class="lineno">   70</span>    <a class="code hl_variable" href="#ad450e06b53078b04807f3dbd5ea0b41b">_minSessionDuration</a> = &amp;prometheus::BuildGauge()</div>
-<div class="line"><span class="lineno">   71</span>                               .Name(name + <span class="stringliteral">&quot;minimum_session_duration&quot;</span>)</div>
-<div class="line"><span class="lineno">   72</span>                               .Help(<span class="stringliteral">&quot;Minimum duration of sessions&quot;</span>)</div>
-<div class="line"><span class="lineno">   73</span>                               .Register(*reg)</div>
-<div class="line"><span class="lineno">   74</span>                               .Add({});</div>
-<div class="line"><span class="lineno">   75</span> </div>
-<div class="line"><span class="lineno">   76</span>    <span class="comment">// Set defaults</span></div>
-<div class="line"><span class="lineno">   77</span>    <a class="code hl_variable" href="#ad450e06b53078b04807f3dbd5ea0b41b">_minSessionDuration</a>-&gt;Set(std::numeric_limits&lt;double&gt;::max());</div>
-<div class="line"><span class="lineno">   78</span>}</div>
+<div class="line"><span class="lineno">   26</span>    <a class="code hl_variable" href="#a4225d5a148829ba344ce36e6394a5f16">_infoFamily</a> =</div>
+<div class="line"><span class="lineno">   27</span>        &amp;prometheus::BuildInfo().Name(name.substr(0, name.size() - 1)).Help(<span class="stringliteral">&quot;Telnet server information&quot;</span>).Register(*reg);</div>
+<div class="line"><span class="lineno">   28</span> </div>
+<div class="line"><span class="lineno">   29</span>    <a class="code hl_variable" href="#a4225d5a148829ba344ce36e6394a5f16">_infoFamily</a>-&gt;Add({{<span class="stringliteral">&quot;server_port&quot;</span>, std::to_string(portNumber)}});</div>
+<div class="line"><span class="lineno">   30</span>    <a class="code hl_variable" href="#a4225d5a148829ba344ce36e6394a5f16">_infoFamily</a>-&gt;Add({{<span class="stringliteral">&quot;init_time&quot;</span>, date::format(<span class="stringliteral">&quot;%FT%TZ&quot;</span>, date::floor&lt;std::chrono::nanoseconds&gt;(</div>
+<div class="line"><span class="lineno">   31</span>                                                               std::chrono::high_resolution_clock::now()))}});</div>
+<div class="line"><span class="lineno">   32</span>    <a class="code hl_variable" href="#a4225d5a148829ba344ce36e6394a5f16">_infoFamily</a>-&gt;Add({{<span class="stringliteral">&quot;performance_unit&quot;</span>, <span class="stringliteral">&quot;nanoseconds&quot;</span>}});</div>
+<div class="line"><span class="lineno">   33</span> </div>
+<div class="line"><span class="lineno">   34</span>    <span class="comment">// Connection stats</span></div>
+<div class="line"><span class="lineno">   35</span>    <a class="code hl_variable" href="#ab418710097b0ea4ff8b1b165abcc4ff9">_activeConnection</a> = &amp;prometheus::BuildGauge()</div>
+<div class="line"><span class="lineno">   36</span>                             .Name(name + <span class="stringliteral">&quot;active_connections&quot;</span>)</div>
+<div class="line"><span class="lineno">   37</span>                             .Help(<span class="stringliteral">&quot;Number of active connections&quot;</span>)</div>
+<div class="line"><span class="lineno">   38</span>                             .Register(*reg)</div>
+<div class="line"><span class="lineno">   39</span>                             .Add({});</div>
+<div class="line"><span class="lineno">   40</span>    <a class="code hl_variable" href="#a8555ceaaa06d13ffb4bdd7df41d775df">_refusedConnection</a> = &amp;prometheus::BuildCounter()</div>
+<div class="line"><span class="lineno">   41</span>                              .Name(name + <span class="stringliteral">&quot;refused_connections&quot;</span>)</div>
+<div class="line"><span class="lineno">   42</span>                              .Help(<span class="stringliteral">&quot;Number of refused connections&quot;</span>)</div>
+<div class="line"><span class="lineno">   43</span>                              .Register(*reg)</div>
+<div class="line"><span class="lineno">   44</span>                              .Add({});</div>
+<div class="line"><span class="lineno">   45</span>    <a class="code hl_variable" href="#a734e2056f1b648195d55022f852ed782">_totalConnection</a> = &amp;prometheus::BuildCounter()</div>
+<div class="line"><span class="lineno">   46</span>                            .Name(name + <span class="stringliteral">&quot;received_connections&quot;</span>)</div>
+<div class="line"><span class="lineno">   47</span>                            .Help(<span class="stringliteral">&quot;Number of received connections&quot;</span>)</div>
+<div class="line"><span class="lineno">   48</span>                            .Register(*reg)</div>
+<div class="line"><span class="lineno">   49</span>                            .Add({});</div>
+<div class="line"><span class="lineno">   50</span> </div>
+<div class="line"><span class="lineno">   51</span>    <span class="comment">// Bandwidth stats</span></div>
+<div class="line"><span class="lineno">   52</span>    <a class="code hl_variable" href="#acc0adc3d7418908bc2a26e4b60434493">_totalUploadBytes</a> =</div>
+<div class="line"><span class="lineno">   53</span>        &amp;prometheus::BuildCounter().Name(name + <span class="stringliteral">&quot;uploaded_bytes&quot;</span>).Help(<span class="stringliteral">&quot;Total uploaded bytes&quot;</span>).Register(*reg).Add({});</div>
+<div class="line"><span class="lineno">   54</span>    <a class="code hl_variable" href="#a4075561e19d288c7f1cd3ff13453224e">_totalDownloadBytes</a> = &amp;prometheus::BuildCounter()</div>
+<div class="line"><span class="lineno">   55</span>                               .Name(name + <span class="stringliteral">&quot;downloaded_bytes&quot;</span>)</div>
+<div class="line"><span class="lineno">   56</span>                               .Help(<span class="stringliteral">&quot;Total downloaded bytes&quot;</span>)</div>
+<div class="line"><span class="lineno">   57</span>                               .Register(*reg)</div>
+<div class="line"><span class="lineno">   58</span>                               .Add({});</div>
+<div class="line"><span class="lineno">   59</span> </div>
+<div class="line"><span class="lineno">   60</span>    <span class="comment">// Session durations</span></div>
+<div class="line"><span class="lineno">   61</span>    <a class="code hl_variable" href="#adcf9f16b43e06d1674e6bad84312ceaa">_sessionDuration</a> = &amp;prometheus::BuildSummary()</div>
+<div class="line"><span class="lineno">   62</span>                            .Name(name + <span class="stringliteral">&quot;session_duration&quot;</span>)</div>
+<div class="line"><span class="lineno">   63</span>                            .Help(<span class="stringliteral">&quot;Duration of sessions&quot;</span>)</div>
+<div class="line"><span class="lineno">   64</span>                            .Register(*reg)</div>
+<div class="line"><span class="lineno">   65</span>                            .Add({}, <a class="code hl_define" href="Performance_8cpp.html#a6c1e8e86b55ecaf45cc433f96a2ac8df">QUANTILE_DEFAULTS</a>);</div>
+<div class="line"><span class="lineno">   66</span>    <a class="code hl_variable" href="#a93d12e3c59f545e3ade025f2d995c4f0">_maxSessionDuration</a> = &amp;prometheus::BuildGauge()</div>
+<div class="line"><span class="lineno">   67</span>                               .Name(name + <span class="stringliteral">&quot;maximum_session_duration&quot;</span>)</div>
+<div class="line"><span class="lineno">   68</span>                               .Help(<span class="stringliteral">&quot;Maximum duration of sessions&quot;</span>)</div>
+<div class="line"><span class="lineno">   69</span>                               .Register(*reg)</div>
+<div class="line"><span class="lineno">   70</span>                               .Add({});</div>
+<div class="line"><span class="lineno">   71</span>    <a class="code hl_variable" href="#ad450e06b53078b04807f3dbd5ea0b41b">_minSessionDuration</a> = &amp;prometheus::BuildGauge()</div>
+<div class="line"><span class="lineno">   72</span>                               .Name(name + <span class="stringliteral">&quot;minimum_session_duration&quot;</span>)</div>
+<div class="line"><span class="lineno">   73</span>                               .Help(<span class="stringliteral">&quot;Minimum duration of sessions&quot;</span>)</div>
+<div class="line"><span class="lineno">   74</span>                               .Register(*reg)</div>
+<div class="line"><span class="lineno">   75</span>                               .Add({});</div>
+<div class="line"><span class="lineno">   76</span> </div>
+<div class="line"><span class="lineno">   77</span>    <span class="comment">// Set defaults</span></div>
+<div class="line"><span class="lineno">   78</span>    <a class="code hl_variable" href="#ad450e06b53078b04807f3dbd5ea0b41b">_minSessionDuration</a>-&gt;Set(std::numeric_limits&lt;int&gt;::max());</div>
+<div class="line"><span class="lineno">   79</span>}</div>
 <div class="ttc" id="aPerformance_8cpp_html_a6c1e8e86b55ecaf45cc433f96a2ac8df"><div class="ttname"><a href="Performance_8cpp.html#a6c1e8e86b55ecaf45cc433f96a2ac8df">QUANTILE_DEFAULTS</a></div><div class="ttdeci">#define QUANTILE_DEFAULTS</div><div class="ttdef"><b>Definition</b> <a href="Performance_8cpp_source.html#l00006">Performance.cpp:6</a></div></div>
 <div class="ttc" id="aclassBaseServerStats_html"><div class="ttname"><a href="classBaseServerStats.html">BaseServerStats</a></div><div class="ttdef"><b>Definition</b> <a href="BaseServerStats_8hpp_source.html#l00015">BaseServerStats.hpp:15</a></div></div>
 <div class="ttc" id="aclassBaseServerStats_html_ab7738ee93e513f10564d0077fbc8fcb9"><div class="ttname"><a href="classBaseServerStats.html#ab7738ee93e513f10564d0077fbc8fcb9">BaseServerStats::initBaseStats</a></div><div class="ttdeci">void initBaseStats(const std::shared_ptr&lt; prometheus::Registry &gt; &amp;reg, const std::string &amp;name)</div><div class="ttdef"><b>Definition</b> <a href="BaseServerStats_8cpp_source.html#l00006">BaseServerStats.cpp:6</a></div></div>
@@ -330,19 +331,19 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TelnetStats_8cpp_source.html#l00104">104</a> of file <a class="el" href="TelnetStats_8cpp_source.html">TelnetStats.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  105</span>{</div>
-<div class="line"><span class="lineno">  106</span>    <span class="comment">// Connection stats</span></div>
-<div class="line"><span class="lineno">  107</span>    <a class="code hl_variable" href="#ab418710097b0ea4ff8b1b165abcc4ff9">_activeConnection</a>-&gt;Set(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(stat.<a class="code hl_variable" href="structTelnetServerStats.html#a70d746afee691843bd5d1839bb33d3fa">activeConnectionCtr</a>));</div>
-<div class="line"><span class="lineno">  108</span>    <a class="code hl_variable" href="#a8555ceaaa06d13ffb4bdd7df41d775df">_refusedConnection</a>-&gt;Increment(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(stat.<a class="code hl_variable" href="structTelnetServerStats.html#ac4556411d1a1f0f366b029bb8e5e8001">refusedConnectionCtr</a>));</div>
-<div class="line"><span class="lineno">  109</span>    <a class="code hl_variable" href="#a734e2056f1b648195d55022f852ed782">_totalConnection</a>-&gt;Increment(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(stat.<a class="code hl_variable" href="structTelnetServerStats.html#aea51daed077635aebb58e9ea6f18c653">acceptedConnectionCtr</a>));</div>
-<div class="line"><span class="lineno">  110</span> </div>
-<div class="line"><span class="lineno">  111</span>    <span class="comment">// Performance stats if there is an active connection</span></div>
-<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">if</span> (stat.<a class="code hl_variable" href="structTelnetServerStats.html#a70d746afee691843bd5d1839bb33d3fa">activeConnectionCtr</a> &gt; 0)</div>
-<div class="line"><span class="lineno">  113</span>    {</div>
-<div class="line"><span class="lineno">  114</span>        <a class="code hl_function" href="classBaseServerStats.html#a4b718f45d89d7c4a71e93702d02fce31">consumeBaseStats</a>(0, 0, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>((stat.<a class="code hl_variable" href="structTelnetServerStats.html#aaee67b80ed72df8eb7d16395890312c8">processingTimeEnd</a> - stat.<a class="code hl_variable" href="structTelnetServerStats.html#a5c70a71e5e0df2fa15cb756fbc755c07">processingTimeStart</a>).count()));</div>
-<div class="line"><span class="lineno">  115</span>    }</div>
-<div class="line"><span class="lineno">  116</span>}</div>
+<p class="definition">Definition at line <a class="el" href="TelnetStats_8cpp_source.html#l00105">105</a> of file <a class="el" href="TelnetStats_8cpp_source.html">TelnetStats.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  106</span>{</div>
+<div class="line"><span class="lineno">  107</span>    <span class="comment">// Connection stats</span></div>
+<div class="line"><span class="lineno">  108</span>    <a class="code hl_variable" href="#ab418710097b0ea4ff8b1b165abcc4ff9">_activeConnection</a>-&gt;Set(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(stat.<a class="code hl_variable" href="structTelnetServerStats.html#a70d746afee691843bd5d1839bb33d3fa">activeConnectionCtr</a>));</div>
+<div class="line"><span class="lineno">  109</span>    <a class="code hl_variable" href="#a8555ceaaa06d13ffb4bdd7df41d775df">_refusedConnection</a>-&gt;Increment(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(stat.<a class="code hl_variable" href="structTelnetServerStats.html#ac4556411d1a1f0f366b029bb8e5e8001">refusedConnectionCtr</a>));</div>
+<div class="line"><span class="lineno">  110</span>    <a class="code hl_variable" href="#a734e2056f1b648195d55022f852ed782">_totalConnection</a>-&gt;Increment(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(stat.<a class="code hl_variable" href="structTelnetServerStats.html#aea51daed077635aebb58e9ea6f18c653">acceptedConnectionCtr</a>));</div>
+<div class="line"><span class="lineno">  111</span> </div>
+<div class="line"><span class="lineno">  112</span>    <span class="comment">// Performance stats if there is an active connection</span></div>
+<div class="line"><span class="lineno">  113</span>    <span class="keywordflow">if</span> (stat.<a class="code hl_variable" href="structTelnetServerStats.html#a70d746afee691843bd5d1839bb33d3fa">activeConnectionCtr</a> &gt; 0)</div>
+<div class="line"><span class="lineno">  114</span>    {</div>
+<div class="line"><span class="lineno">  115</span>        <a class="code hl_function" href="classBaseServerStats.html#a4b718f45d89d7c4a71e93702d02fce31">consumeBaseStats</a>(0, 0, <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>((stat.<a class="code hl_variable" href="structTelnetServerStats.html#aaee67b80ed72df8eb7d16395890312c8">processingTimeEnd</a> - stat.<a class="code hl_variable" href="structTelnetServerStats.html#a5c70a71e5e0df2fa15cb756fbc755c07">processingTimeStart</a>).count()));</div>
+<div class="line"><span class="lineno">  116</span>    }</div>
+<div class="line"><span class="lineno">  117</span>}</div>
 <div class="ttc" id="aclassBaseServerStats_html_a4b718f45d89d7c4a71e93702d02fce31"><div class="ttname"><a href="classBaseServerStats.html#a4b718f45d89d7c4a71e93702d02fce31">BaseServerStats::consumeBaseStats</a></div><div class="ttdeci">void consumeBaseStats(uint64_t succeeded, uint64_t failed, double processingTime)</div><div class="ttdef"><b>Definition</b> <a href="BaseServerStats_8cpp_source.html#l00046">BaseServerStats.cpp:46</a></div></div>
 <div class="ttc" id="astructTelnetServerStats_html_a5c70a71e5e0df2fa15cb756fbc755c07"><div class="ttname"><a href="structTelnetServerStats.html#a5c70a71e5e0df2fa15cb756fbc755c07">TelnetServerStats::processingTimeStart</a></div><div class="ttdeci">std::chrono::high_resolution_clock::time_point processingTimeStart</div><div class="ttdoc">Processing time start.</div><div class="ttdef"><b>Definition</b> <a href="TelnetStats_8hpp_source.html#l00023">TelnetStats.hpp:23</a></div></div>
 <div class="ttc" id="astructTelnetServerStats_html_a70d746afee691843bd5d1839bb33d3fa"><div class="ttname"><a href="structTelnetServerStats.html#a70d746afee691843bd5d1839bb33d3fa">TelnetServerStats::activeConnectionCtr</a></div><div class="ttdeci">uint64_t activeConnectionCtr</div><div class="ttdoc">Number of active connections.</div><div class="ttdef"><b>Definition</b> <a href="TelnetStats_8hpp_source.html#l00025">TelnetStats.hpp:25</a></div></div>
@@ -388,29 +389,29 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TelnetStats_8cpp_source.html#l00080">80</a> of file <a class="el" href="TelnetStats_8cpp_source.html">TelnetStats.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   81</span>{</div>
-<div class="line"><span class="lineno">   82</span>    <a class="code hl_function" href="classBaseServerStats.html#a4b718f45d89d7c4a71e93702d02fce31">consumeBaseStats</a>(stat.<a class="code hl_variable" href="structTelnetSessionStats.html#a7d6622e1ba83d711d9f1d4d1ae4c8740">successCmdCtr</a>, stat.<a class="code hl_variable" href="structTelnetSessionStats.html#a57bfc50e80600a8060dae059d58b04eb">failCmdCtr</a>, 0);</div>
-<div class="line"><span class="lineno">   83</span> </div>
-<div class="line"><span class="lineno">   84</span>    <a class="code hl_variable" href="#acc0adc3d7418908bc2a26e4b60434493">_totalUploadBytes</a>-&gt;Increment(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(stat.<a class="code hl_variable" href="structTelnetSessionStats.html#ad4dbc1c062235253ee3bc00e642422d9">uploadBytes</a>));</div>
-<div class="line"><span class="lineno">   85</span>    <a class="code hl_variable" href="#a4075561e19d288c7f1cd3ff13453224e">_totalDownloadBytes</a>-&gt;Increment(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(stat.<a class="code hl_variable" href="structTelnetSessionStats.html#a93001f883b7f45d77d43bfd4ba51cdab">downloadBytes</a>));</div>
-<div class="line"><span class="lineno">   86</span> </div>
-<div class="line"><span class="lineno">   87</span>    <span class="keywordflow">if</span> (sessionClosed)</div>
-<div class="line"><span class="lineno">   88</span>    {</div>
-<div class="line"><span class="lineno">   89</span>        <span class="comment">// Session durations</span></div>
-<div class="line"><span class="lineno">   90</span>        <span class="keyword">const</span> <span class="keyword">auto</span> sessionTime = <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(</div>
-<div class="line"><span class="lineno">   91</span>            std::chrono::duration_cast&lt;std::chrono::seconds&gt;(stat.<a class="code hl_variable" href="structTelnetSessionStats.html#a2b44b296364265e460d47212105c11e3">disconnectTime</a> - stat.<a class="code hl_variable" href="structTelnetSessionStats.html#aa38639a98be09499a0c54cdfc8e20632">connectTime</a>).count());</div>
-<div class="line"><span class="lineno">   92</span>        <a class="code hl_variable" href="#adcf9f16b43e06d1674e6bad84312ceaa">_sessionDuration</a>-&gt;Observe(sessionTime);</div>
-<div class="line"><span class="lineno">   93</span>        <span class="keywordflow">if</span> (sessionTime &lt; _minSessionDuration-&gt;Value())</div>
-<div class="line"><span class="lineno">   94</span>        {</div>
-<div class="line"><span class="lineno">   95</span>            <a class="code hl_variable" href="#ad450e06b53078b04807f3dbd5ea0b41b">_minSessionDuration</a>-&gt;Set(sessionTime);</div>
-<div class="line"><span class="lineno">   96</span>        }</div>
-<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">if</span> (sessionTime &gt; <a class="code hl_variable" href="#a93d12e3c59f545e3ade025f2d995c4f0">_maxSessionDuration</a>-&gt;Value())</div>
-<div class="line"><span class="lineno">   98</span>        {</div>
-<div class="line"><span class="lineno">   99</span>            <a class="code hl_variable" href="#a93d12e3c59f545e3ade025f2d995c4f0">_maxSessionDuration</a>-&gt;Set(sessionTime);</div>
-<div class="line"><span class="lineno">  100</span>        }</div>
-<div class="line"><span class="lineno">  101</span>    }</div>
-<div class="line"><span class="lineno">  102</span>}</div>
+<p class="definition">Definition at line <a class="el" href="TelnetStats_8cpp_source.html#l00081">81</a> of file <a class="el" href="TelnetStats_8cpp_source.html">TelnetStats.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   82</span>{</div>
+<div class="line"><span class="lineno">   83</span>    <a class="code hl_function" href="classBaseServerStats.html#a4b718f45d89d7c4a71e93702d02fce31">consumeBaseStats</a>(stat.<a class="code hl_variable" href="structTelnetSessionStats.html#a7d6622e1ba83d711d9f1d4d1ae4c8740">successCmdCtr</a>, stat.<a class="code hl_variable" href="structTelnetSessionStats.html#a57bfc50e80600a8060dae059d58b04eb">failCmdCtr</a>, 0);</div>
+<div class="line"><span class="lineno">   84</span> </div>
+<div class="line"><span class="lineno">   85</span>    <a class="code hl_variable" href="#acc0adc3d7418908bc2a26e4b60434493">_totalUploadBytes</a>-&gt;Increment(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(stat.<a class="code hl_variable" href="structTelnetSessionStats.html#ad4dbc1c062235253ee3bc00e642422d9">uploadBytes</a>));</div>
+<div class="line"><span class="lineno">   86</span>    <a class="code hl_variable" href="#a4075561e19d288c7f1cd3ff13453224e">_totalDownloadBytes</a>-&gt;Increment(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(stat.<a class="code hl_variable" href="structTelnetSessionStats.html#a93001f883b7f45d77d43bfd4ba51cdab">downloadBytes</a>));</div>
+<div class="line"><span class="lineno">   87</span> </div>
+<div class="line"><span class="lineno">   88</span>    <span class="keywordflow">if</span> (sessionClosed)</div>
+<div class="line"><span class="lineno">   89</span>    {</div>
+<div class="line"><span class="lineno">   90</span>        <span class="comment">// Session durations</span></div>
+<div class="line"><span class="lineno">   91</span>        <span class="keyword">const</span> <span class="keyword">auto</span> sessionTime = <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(</div>
+<div class="line"><span class="lineno">   92</span>            std::chrono::duration_cast&lt;std::chrono::seconds&gt;(stat.<a class="code hl_variable" href="structTelnetSessionStats.html#a2b44b296364265e460d47212105c11e3">disconnectTime</a> - stat.<a class="code hl_variable" href="structTelnetSessionStats.html#aa38639a98be09499a0c54cdfc8e20632">connectTime</a>).count());</div>
+<div class="line"><span class="lineno">   93</span>        <a class="code hl_variable" href="#adcf9f16b43e06d1674e6bad84312ceaa">_sessionDuration</a>-&gt;Observe(sessionTime);</div>
+<div class="line"><span class="lineno">   94</span>        <span class="keywordflow">if</span> (sessionTime &lt; _minSessionDuration-&gt;Value())</div>
+<div class="line"><span class="lineno">   95</span>        {</div>
+<div class="line"><span class="lineno">   96</span>            <a class="code hl_variable" href="#ad450e06b53078b04807f3dbd5ea0b41b">_minSessionDuration</a>-&gt;Set(sessionTime);</div>
+<div class="line"><span class="lineno">   97</span>        }</div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">if</span> (sessionTime &gt; <a class="code hl_variable" href="#a93d12e3c59f545e3ade025f2d995c4f0">_maxSessionDuration</a>-&gt;Value())</div>
+<div class="line"><span class="lineno">   99</span>        {</div>
+<div class="line"><span class="lineno">  100</span>            <a class="code hl_variable" href="#a93d12e3c59f545e3ade025f2d995c4f0">_maxSessionDuration</a>-&gt;Set(sessionTime);</div>
+<div class="line"><span class="lineno">  101</span>        }</div>
+<div class="line"><span class="lineno">  102</span>    }</div>
+<div class="line"><span class="lineno">  103</span>}</div>
 <div class="ttc" id="astructTelnetSessionStats_html_a2b44b296364265e460d47212105c11e3"><div class="ttname"><a href="structTelnetSessionStats.html#a2b44b296364265e460d47212105c11e3">TelnetSessionStats::disconnectTime</a></div><div class="ttdeci">std::chrono::high_resolution_clock::time_point disconnectTime</div><div class="ttdoc">Connection end time.</div><div class="ttdef"><b>Definition</b> <a href="TelnetStats_8hpp_source.html#l00012">TelnetStats.hpp:12</a></div></div>
 <div class="ttc" id="astructTelnetSessionStats_html_a57bfc50e80600a8060dae059d58b04eb"><div class="ttname"><a href="structTelnetSessionStats.html#a57bfc50e80600a8060dae059d58b04eb">TelnetSessionStats::failCmdCtr</a></div><div class="ttdeci">uint64_t failCmdCtr</div><div class="ttdoc">Failed commands.</div><div class="ttdef"><b>Definition</b> <a href="TelnetStats_8hpp_source.html#l00016">TelnetStats.hpp:16</a></div></div>
 <div class="ttc" id="astructTelnetSessionStats_html_a7d6622e1ba83d711d9f1d4d1ae4c8740"><div class="ttname"><a href="structTelnetSessionStats.html#a7d6622e1ba83d711d9f1d4d1ae4c8740">TelnetSessionStats::successCmdCtr</a></div><div class="ttdeci">uint64_t successCmdCtr</div><div class="ttdoc">Successful commands.</div><div class="ttdef"><b>Definition</b> <a href="TelnetStats_8hpp_source.html#l00015">TelnetStats.hpp:15</a></div></div>
@@ -675,7 +676,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classTelnetStats.html">TelnetStats</a></li>
-    <li class="footer">Generated on Sat Oct 26 2024 14:53:25 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
+    <li class="footer">Generated on Sun Oct 27 2024 13:30:08 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
   </ul>
 </div>
 </body>
