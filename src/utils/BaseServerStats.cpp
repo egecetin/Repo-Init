@@ -40,7 +40,7 @@ void BaseServerStats::initBaseStats(const std::shared_ptr<prometheus::Registry> 
 							  .Add({});
 
 	// Set defaults
-	_minProcessingTime->Set(std::numeric_limits<double>::max());
+	_minProcessingTime->Set(std::numeric_limits<int>::max());
 }
 
 void BaseServerStats::consumeBaseStats(uint64_t succeeded, uint64_t failed, double processingTime)

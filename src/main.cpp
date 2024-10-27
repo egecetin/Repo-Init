@@ -14,7 +14,7 @@
 #include <csignal>
 
 // SIGALRM interval in seconds
-constexpr uintmax_t alarmInterval = 1;
+constexpr uintmax_t alarmInterval = 30;
 // Interruption flag
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 volatile sig_atomic_t interruptFlag = 0;

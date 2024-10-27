@@ -17,6 +17,8 @@ class ProcessMetrics {
 	std::unique_ptr<std::thread> _thread;		  ///< Thread handler
 	std::shared_ptr<std::atomic_flag> _checkFlag; ///< Runtime check flag
 
+	prometheus::Gauge *_pInitTime;			  ///< Pointer to initialization time gauge
+	prometheus::Gauge *_pCurrentTime;		  ///< Pointer to the current time gauge
 	prometheus::Gauge *_pMemory;			  ///< Pointer to the memory usage gauge
 	prometheus::Gauge *_pPageFaults;		  ///< Pointer to the page faults gauge
 	prometheus::Gauge *_pCpuUsage;			  ///< Pointer to the CPU usage gauge

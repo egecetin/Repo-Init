@@ -41,6 +41,7 @@ Feel free to ask, use and report any bugs you encountered!
 - [Scripts](#scripts)
 - [Dependencies](#dependencies)
 - [Targets](#targets)
+- [Grafana](#grafana)
 
 ## CMake
 
@@ -92,3 +93,9 @@ Full dependency graph can be seen [here](doc/XXX-tree.svg)
  - dependency-graph : Prepares graphviz visualization of dependencies
  - package          : Prepares default packages which includes deb/rpm package and symbols with a systemd service. You should specify the desired package type with -DCPACK_GENERATOR="DEB" (or "RPM")
  - test             : Prepares gtest target
+
+## Grafana
+
+Since there is a Prometheus server integration, also there is a Grafana integration. You can find an example for dashboard [here](scripts/GrafanaDashboard-1730032129887.json). Also you can see screenshot of the dashboard below.
+
+<img src=doc/GrafanaDashboard.png>
