@@ -1,6 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"classProcessMetrics.html#a102e67199855a44a2c6418fadb57ecb2":[1,0,8,1],
 "classProcessMetrics.html#a170e9b763cc2b1557cec7a57ac346179":[1,0,8,25],
 "classProcessMetrics.html#a2438f576f31dfc8a1470215ffe90f4d2":[1,0,8,21],
 "classProcessMetrics.html#a296649916d4acb4c21865a549acdec2b":[1,0,8,19],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1 =
 "classZeroMQServer.html#af9ce6695416370d8bc1bc8e2123f0dc0":[1,0,23,3],
 "classZeroMQStats.html":[1,0,25],
 "classZeroMQStats.html#a02df63cbc78b799980bb73453e2bfee6":[1,0,25,2],
-"classZeroMQStats.html#a3c156f7edf0406470f58b5daafa63a16":[1,0,25,6]
+"classZeroMQStats.html#a3c156f7edf0406470f58b5daafa63a16":[1,0,25,6],
+"classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07":[1,0,25,1]
 };

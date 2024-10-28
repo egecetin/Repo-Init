@@ -1,6 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07":[1,0,25,1],
 "classZeroMQStats.html#a5946126002d5e9b4b401d3c53aa4c36a":[1,0,25,0],
 "classZeroMQStats.html#a71cc8db861739c93c0b209ec43429506":[1,0,25,5],
 "classZeroMQStats.html#ac8a8ef821487251ec3e0bddb356a5c96":[1,0,25,4],
