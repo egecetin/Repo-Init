@@ -205,7 +205,7 @@ $(function(){initNavTree('main_8cpp_source.html',''); initResizable(true); });
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    alarm(<a class="code hl_variable" href="main_8cpp.html#a2b19e9b08a344702039cb07dbab604d8">alarmInterval</a>);</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// Initialize Crashpad handler</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    std::shared_ptr&lt;Tracer&gt; crashpadController(<span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    std::unique_ptr&lt;Tracer&gt; crashpadController(<span class="keyword">nullptr</span>);</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.emplace_back(<span class="stringliteral">&quot;Crashpad Handler&quot;</span>, std::make_shared&lt;std::atomic_flag&gt;(<span class="keyword">false</span>));</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    crashpadController = std::make_unique&lt;Tracer&gt;(</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>[<a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.size() - 1].second, config.get(<span class="stringliteral">&quot;CRASHPAD_REMOTE&quot;</span>), config.get(<span class="stringliteral">&quot;CRASHPAD_PROXY&quot;</span>),</div>
@@ -229,7 +229,7 @@ $(function(){initNavTree('main_8cpp_source.html',''); initResizable(true); });
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    }</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="comment">// Initialize self monitoring</span></div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    std::shared_ptr&lt;ProcessMetrics&gt; selfMonitor(<span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    std::unique_ptr&lt;ProcessMetrics&gt; selfMonitor(<span class="keyword">nullptr</span>);</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.emplace_back(<span class="stringliteral">&quot;Self Monitor&quot;</span>, std::make_shared&lt;std::atomic_flag&gt;(<span class="keyword">false</span>));</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordflow">if</span> (mainPrometheusServer)</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    {</div>
@@ -238,7 +238,7 @@ $(function(){initNavTree('main_8cpp_source.html',''); initResizable(true); });
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">// Initialize ZeroMQ server</span></div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    std::shared_ptr&lt;ZeroMQServer&gt; zmqController(<span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    std::unique_ptr&lt;ZeroMQServer&gt; zmqController(<span class="keyword">nullptr</span>);</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.emplace_back(<span class="stringliteral">&quot;ZeroMQ Server&quot;</span>, std::make_shared&lt;std::atomic_flag&gt;(<span class="keyword">false</span>));</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keyword">const</span> std::string zeromqServerAddr = input.<a class="code hl_function" href="classInputParser.html#a3419884a7b59e5cb5df0fc7588c90e51">getCmdOption</a>(<span class="stringliteral">&quot;--enable-zeromq&quot;</span>);</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordflow">if</span> (!zeromqServerAddr.empty())</div>
@@ -259,7 +259,7 @@ $(function(){initNavTree('main_8cpp_source.html',''); initResizable(true); });
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    }</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">// Initialize Telnet server</span></div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    std::shared_ptr&lt;TelnetServer&gt; telnetController(<span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    std::unique_ptr&lt;TelnetServer&gt; telnetController(<span class="keyword">nullptr</span>);</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.emplace_back(<span class="stringliteral">&quot;Telnet Server&quot;</span>, std::make_shared&lt;std::atomic_flag&gt;(<span class="keyword">false</span>));</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> telnetPort =</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        input.<a class="code hl_function" href="classInputParser.html#aea813a8d6ee9ea6d250ab99333316bdf">cmdOptionExists</a>(<span class="stringliteral">&quot;--enable-telnet&quot;</span>) ? std::stoul(input.<a class="code hl_function" href="classInputParser.html#a3419884a7b59e5cb5df0fc7588c90e51">getCmdOption</a>(<span class="stringliteral">&quot;--enable-telnet&quot;</span>)) : 0;</div>
@@ -342,7 +342,7 @@ $(function(){initNavTree('main_8cpp_source.html',''); initResizable(true); });
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
-    <li class="footer">Generated on Mon Oct 28 2024 15:24:00 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
+    <li class="footer">Generated on Sun Nov 3 2024 08:02:55 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
   </ul>
 </div>
 </body>
