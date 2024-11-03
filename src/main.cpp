@@ -97,7 +97,7 @@ int main(int argc, char **argv)
 	alarm(alarmInterval);
 
 	// Initialize Crashpad handler
-	std::shared_ptr<Tracer> crashpadController(nullptr);
+	std::unique_ptr<Tracer> crashpadController(nullptr);
 	vCheckFlag.emplace_back("Crashpad Handler", std::make_shared<std::atomic_flag>(false));
 	crashpadController = std::make_unique<Tracer>(
 		vCheckFlag[vCheckFlag.size() - 1].second, config.get("CRASHPAD_REMOTE"), config.get("CRASHPAD_PROXY"),
@@ -121,7 +121,7 @@ int main(int argc, char **argv)
 	}
 
 	// Initialize self monitoring
-	std::shared_ptr<ProcessMetrics> selfMonitor(nullptr);
+	std::unique_ptr<ProcessMetrics> selfMonitor(nullptr);
 	vCheckFlag.emplace_back("Self Monitor", std::make_shared<std::atomic_flag>(false));
 	if (mainPrometheusServer)
 	{
@@ -130,7 +130,7 @@ int main(int argc, char **argv)
 	}
 
 	// Initialize ZeroMQ server
-	std::shared_ptr<ZeroMQServer> zmqController(nullptr);
+	std::unique_ptr<ZeroMQServer> zmqController(nullptr);
 	vCheckFlag.emplace_back("ZeroMQ Server", std::make_shared<std::atomic_flag>(false));
 	const std::string zeromqServerAddr = input.getCmdOption("--enable-zeromq");
 	if (!zeromqServerAddr.empty())
@@ -151,7 +151,7 @@ int main(int argc, char **argv)
 	}
 
 	// Initialize Telnet server
-	std::shared_ptr<TelnetServer> telnetController(nullptr);
+	std::unique_ptr<TelnetServer> telnetController(nullptr);
 	vCheckFlag.emplace_back("Telnet Server", std::make_shared<std::atomic_flag>(false));
 	const unsigned long telnetPort =
 		input.cmdOptionExists("--enable-telnet") ? std::stoul(input.getCmdOption("--enable-telnet")) : 0;
