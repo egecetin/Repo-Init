@@ -448,6 +448,7 @@ function(setup_target_for_coverage_gcovr_xml)
       ${Coverage_NAME}-sonar.xml
       --xml
       ${Coverage_NAME}.xml
+      --print-summary
       -r
       ${BASEDIR}
       ${GCOVR_ADDITIONAL_ARGS}
