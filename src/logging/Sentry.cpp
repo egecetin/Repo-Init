@@ -19,6 +19,96 @@ constexpr int MAC_LEN = 18;
 
 namespace spdlog::sinks
 {
+	/// Set version related information to the Sentry context
+	inline void setVersionContext()
+	{
+		std::string versionBuffer;
+		const sentry_value_t versionContext = sentry_value_new_object();
+		versionBuffer = "v" + std::string(PROJECT_FULL_REVISION);
+		sentry_value_set_by_key(versionContext, PROJECT_NAME, sentry_value_new_string(versionBuffer.c_str()));
+		versionBuffer = std::string(PROJECT_BUILD_DATE) + " " + PROJECT_BUILD_TIME;
+		sentry_value_set_by_key(versionContext, "Release Date", sentry_value_new_string(versionBuffer.c_str()));
+		sentry_set_context("Version", versionContext);
+	}
+
+	/// Set host related information to the Sentry context
+	inline void setHostContext()
+	{
+		std::array<char, BUFSIZ> hostBuffer{};
+		gethostname(hostBuffer.data(), BUFSIZ);
+		const sentry_value_t hostContext = sentry_value_new_object();
+		sentry_value_set_by_key(hostContext, "Hostname", sentry_value_new_string(hostBuffer.data()));
+
+		// Parse CPU information
+		const std::string cpuInfoPath = "/proc/cpuinfo";
+		std::string word;
+
+		findFromFile(cpuInfoPath, "^siblings", word);
+		sentry_value_set_by_key(hostContext, "Thread count", sentry_value_new_string(word.c_str()));
+		findFromFile(cpuInfoPath, "^(cpu cores)", word);
+		sentry_value_set_by_key(hostContext, "Core count", sentry_value_new_string(word.c_str()));
+		findFromFile(cpuInfoPath, "^(model name)", word);
+		sentry_value_set_by_key(hostContext, "Model", sentry_value_new_string(word.c_str()));
+		findFromFile(cpuInfoPath, "^vendor_id", word);
+		sentry_value_set_by_key(hostContext, "Vendor ID", sentry_value_new_string(word.c_str()));
+
+		sentry_set_context("Host", hostContext);
+	}
+
+	/// Set network related information to the Sentry context
+	inline void setNetworkContext()
+	{
+		ifaddrs *ifaddr = nullptr;
+		if (getifaddrs(&ifaddr) < 0)
+		{
+			return;
+		}
+
+		// Iterate interfaces
+		const sentry_value_t networkContext = sentry_value_new_object();
+		for (ifaddrs *ifa = ifaddr; ifa != nullptr; ifa = ifa->ifa_next)
+		{
+			if (ifa->ifa_addr == nullptr || ((ifa->ifa_flags & IFF_PROMISC) != 0) || ((ifa->ifa_flags & IFF_UP) != 0))
+			{
+				continue;
+			}
+
+			switch (ifa->ifa_addr->sa_family)
+			{
+			case AF_INET:
+				std::array<char, INET_ADDRSTRLEN> host{};
+				inet_ntop(AF_INET, &(reinterpret_cast<sockaddr_in *>(ifa->ifa_addr))->sin_addr, host.data(),
+						  INET_ADDRSTRLEN);
+				sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".ipv4").c_str(),
+										sentry_value_new_string(host.data()));
+				break;
+			case AF_INET6:
+				std::array<char, INET6_ADDRSTRLEN> host{};
+				inet_ntop(AF_INET6, &(reinterpret_cast<sockaddr_in6 *>(ifa->ifa_addr))->sin6_addr, host.data(),
+						  INET6_ADDRSTRLEN);
+				sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".ipv6").c_str(),
+										sentry_value_new_string(host.data()));
+				break;
+			case AF_PACKET:
+				std::array<char, MAC_LEN> host{};
+				const auto *sock = reinterpret_cast<sockaddr_ll *>(ifa->ifa_addr);
+				if (snprintf(host.data(), MAC_LEN, "%02x:%02x:%02x:%02x:%02x:%02x", sock->sll_addr[0],
+							 sock->sll_addr[1], sock->sll_addr[2], sock->sll_addr[3], sock->sll_addr[4],
+							 sock->sll_addr[5]) > 0)
+				{
+					sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".mac").c_str(),
+											sentry_value_new_string(host.data()));
+				}
+				break;
+			default:
+				break;
+			}
+		}
+		freeifaddrs(ifaddr);
+
+		sentry_set_context("Network", networkContext);
+	}
+
 	template <typename Mutex> sentry_api_sink<Mutex>::sentry_api_sink(const std::string &sentryAddress)
 	{
 		if (sentryAddress.empty())
@@ -40,13 +130,6 @@ namespace spdlog::sinks
 		sentry_set_tag("compiler.version", COMPILER_VERSION);
 		sentry_set_tag("build", BUILD_TYPE);
 
-		// Context: Version
-		std::string versionBuffer;
-		const sentry_value_t versionContext = sentry_value_new_object();
-		versionBuffer = "v" + std::string(PROJECT_FULL_REVISION);
-		sentry_value_set_by_key(versionContext, PROJECT_NAME, sentry_value_new_string(versionBuffer.c_str()));
-		versionBuffer = std::string(PROJECT_BUILD_DATE) + " " + PROJECT_BUILD_TIME;
-		sentry_value_set_by_key(versionContext, "Release Date", sentry_value_new_string(versionBuffer.c_str()));
 		/* ################################################################################### */
 		/* ############################# MAKE MODIFICATIONS HERE ############################# */
 		/* ################################################################################### */
@@ -55,85 +138,9 @@ namespace spdlog::sinks
 		/* ################################ END MODIFICATIONS ################################ */
 		/* ################################################################################### */
 
-		sentry_set_context("Version", versionContext);
-
-		// Context: Host
-		std::array<char, BUFSIZ> hostBuffer{};
-		gethostname(hostBuffer.data(), BUFSIZ);
-		const sentry_value_t hostContext = sentry_value_new_object();
-		sentry_value_set_by_key(hostContext, "Hostname", sentry_value_new_string(hostBuffer.data()));
-
-		// Parse CPU information
-		const std::string cpuInfoPath = "/proc/cpuinfo";
-		std::string word;
-
-		findFromFile(cpuInfoPath, "^siblings", word);
-		sentry_value_set_by_key(hostContext, "Thread count", sentry_value_new_string(word.c_str()));
-		findFromFile(cpuInfoPath, "^(cpu cores)", word);
-		sentry_value_set_by_key(hostContext, "Core count", sentry_value_new_string(word.c_str()));
-		findFromFile(cpuInfoPath, "^(model name)", word);
-		sentry_value_set_by_key(hostContext, "Model", sentry_value_new_string(word.c_str()));
-		findFromFile(cpuInfoPath, "^vendor_id", word);
-		sentry_value_set_by_key(hostContext, "Vendor ID", sentry_value_new_string(word.c_str()));
-
-		sentry_set_context("Host", hostContext);
-
-		// Context: Network
-		const sentry_value_t networkContext = sentry_value_new_object();
-
-		if (ifaddrs *ifaddr = nullptr; getifaddrs(&ifaddr) != -1)
-		{
-			// Iterate interfaces
-			for (ifaddrs *ifa = ifaddr; ifa != nullptr; ifa = ifa->ifa_next)
-			{
-				if (ifa->ifa_addr == nullptr)
-				{
-					continue;
-				}
-
-				switch (ifa->ifa_addr->sa_family)
-				{
-				case AF_INET:
-					if (((ifa->ifa_flags & IFF_PROMISC) != 0) || ((ifa->ifa_flags & IFF_UP) != 0))
-					{
-						std::array<char, INET_ADDRSTRLEN> host{};
-						inet_ntop(AF_INET, &(reinterpret_cast<sockaddr_in *>(ifa->ifa_addr))->sin_addr, host.data(),
-								  INET_ADDRSTRLEN);
-						sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".ipv4").c_str(),
-												sentry_value_new_string(host.data()));
-					}
-					break;
-				case AF_INET6:
-					if (((ifa->ifa_flags & IFF_PROMISC) != 0) || ((ifa->ifa_flags & IFF_UP) != 0))
-					{
-						std::array<char, INET6_ADDRSTRLEN> host{};
-						inet_ntop(AF_INET6, &(reinterpret_cast<sockaddr_in6 *>(ifa->ifa_addr))->sin6_addr, host.data(),
-								  INET6_ADDRSTRLEN);
-						sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".ipv6").c_str(),
-												sentry_value_new_string(host.data()));
-					}
-					break;
-				case AF_PACKET:
-					if (((ifa->ifa_flags & IFF_PROMISC) != 0) || ((ifa->ifa_flags & IFF_UP) != 0))
-					{
-						std::array<char, MAC_LEN> host{};
-						const auto *sock = reinterpret_cast<sockaddr_ll *>(ifa->ifa_addr);
-						if (snprintf(host.data(), MAC_LEN, "%02x:%02x:%02x:%02x:%02x:%02x", sock->sll_addr[0],
-									 sock->sll_addr[1], sock->sll_addr[2], sock->sll_addr[3], sock->sll_addr[4],
-									 sock->sll_addr[5]) > 0)
-						{
-							sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".mac").c_str(),
-													sentry_value_new_string(host.data()));
-						}
-					}
-					break;
-				default:
-					break;
-				}
-			}
-			freeifaddrs(ifaddr);
-		}
-		sentry_set_context("Network", networkContext);
+		setVersionContext();
+		setHostContext();
+		setNetworkContext();
 	}
 
 	template <typename Mutex> sentry_api_sink<Mutex>::~sentry_api_sink() { sentry_close(); }
