@@ -50,10 +50,10 @@ void ConfigParser::writeJson() const
 	rapidjson::Document doc;
 	doc.SetObject();
 
-	for (const auto &entry : _configMap)
+	for (const auto &[keyVal, valueVal] : _configMap)
 	{
-		rapidjson::Value key(entry.first.c_str(), doc.GetAllocator());
-		rapidjson::Value value(entry.second.c_str(), doc.GetAllocator());
+		rapidjson::Value key(keyVal.c_str(), doc.GetAllocator());
+		rapidjson::Value value(valueVal.c_str(), doc.GetAllocator());
 		doc.AddMember(key, value, doc.GetAllocator());
 	}
 
@@ -69,7 +69,7 @@ std::string ConfigParser::get(const std::string &key) const
 	return itr == _configMap.end() ? "" : itr->second;
 }
 
-void ConfigParser::set(const std::string &key, const std::string &value) { _configMap[key] = value; }
+void ConfigParser::set(const std::string &key, const std::string_view &value) { _configMap[key] = value; }
 
 void ConfigParser::remove(const std::string &key) { _configMap.erase(key); }
 
