@@ -121,8 +121,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a29eba7ec75ccd47eb5e70a3b86d72be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa457f33a2b46a6e627514c3ca7dd0667" id="r_aa457f33a2b46a6e627514c3ca7dd0667"><td class="memItemLeft" align="right" valign="top">const std::unordered_map&lt; std::string, std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa457f33a2b46a6e627514c3ca7dd0667">getConfigMap</a> () const</td></tr>
 <tr class="separator:aa457f33a2b46a6e627514c3ca7dd0667"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addf9ff2c36c092ef802f457ad406afaf" id="r_addf9ff2c36c092ef802f457ad406afaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addf9ff2c36c092ef802f457ad406afaf">set</a> (const std::string &amp;key, const std::string &amp;value)</td></tr>
-<tr class="separator:addf9ff2c36c092ef802f457ad406afaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12a6d8ebd5379535ea17eb2b9881c363" id="r_a12a6d8ebd5379535ea17eb2b9881c363"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12a6d8ebd5379535ea17eb2b9881c363">set</a> (const std::string &amp;key, const std::string_view &amp;value)</td></tr>
+<tr class="separator:a12a6d8ebd5379535ea17eb2b9881c363"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a317867fa9bcc23be87dcccc38a22d7a6" id="r_a317867fa9bcc23be87dcccc38a22d7a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a317867fa9bcc23be87dcccc38a22d7a6">remove</a> (const std::string &amp;key)</td></tr>
 <tr class="separator:a317867fa9bcc23be87dcccc38a22d7a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55051ce9cb3eace17f86ac931265aa5f" id="r_a55051ce9cb3eace17f86ac931265aa5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55051ce9cb3eace17f86ac931265aa5f">save</a> () const</td></tr>
@@ -440,8 +440,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="addf9ff2c36c092ef802f457ad406afaf" name="addf9ff2c36c092ef802f457ad406afaf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#addf9ff2c36c092ef802f457ad406afaf">&#9670;&#160;</a></span>set()</h2>
+<a id="a12a6d8ebd5379535ea17eb2b9881c363" name="a12a6d8ebd5379535ea17eb2b9881c363"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12a6d8ebd5379535ea17eb2b9881c363">&#9670;&#160;</a></span>set()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -454,7 +454,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+          <td class="paramtype">const std::string_view &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -502,10 +502,10 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   50</span>    rapidjson::Document doc;</div>
 <div class="line"><span class="lineno">   51</span>    doc.SetObject();</div>
 <div class="line"><span class="lineno">   52</span> </div>
-<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;entry : <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>)</div>
+<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;[keyVal, valueVal] : <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>)</div>
 <div class="line"><span class="lineno">   54</span>    {</div>
-<div class="line"><span class="lineno">   55</span>        rapidjson::Value key(entry.first.c_str(), doc.GetAllocator());</div>
-<div class="line"><span class="lineno">   56</span>        rapidjson::Value value(entry.second.c_str(), doc.GetAllocator());</div>
+<div class="line"><span class="lineno">   55</span>        rapidjson::Value key(keyVal.c_str(), doc.GetAllocator());</div>
+<div class="line"><span class="lineno">   56</span>        rapidjson::Value value(valueVal.c_str(), doc.GetAllocator());</div>
 <div class="line"><span class="lineno">   57</span>        doc.AddMember(key, value, doc.GetAllocator());</div>
 <div class="line"><span class="lineno">   58</span>    }</div>
 <div class="line"><span class="lineno">   59</span> </div>
@@ -584,7 +584,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classConfigParser.html">ConfigParser</a></li>
-    <li class="footer">Generated on Sun Nov 10 2024 08:35:46 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
+    <li class="footer">Generated on Sat Dec 7 2024 19:26:58 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
   </ul>
 </div>
 </body>

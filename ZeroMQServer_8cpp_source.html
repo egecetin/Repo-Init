@@ -113,227 +113,230 @@ $(function(){initNavTree('ZeroMQServer_8cpp_source.html',''); initResizable(true
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;spdlog/spdlog.h&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="ZeroMQServer_8cpp.html#a741f5f05509b2793073f13cc748d362d">    9</a></span><span class="keyword">constexpr</span> uint32_t <a class="code hl_variable" href="ZeroMQServer_8cpp.html#a741f5f05509b2793073f13cc748d362d">LOG_LEVEL_ID</a> = (<span class="charliteral">&#39;L&#39;</span> | (<span class="charliteral">&#39;O&#39;</span> &lt;&lt; 8) | (<span class="charliteral">&#39;G&#39;</span> &lt;&lt; 16) | (<span class="charliteral">&#39;L&#39;</span> &lt;&lt; 24));</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="ZeroMQServer_8cpp.html#a6cb2f6ea8405b0176aacfd74e2e57914">   10</a></span><span class="keyword">constexpr</span> uint32_t <a class="code hl_variable" href="ZeroMQServer_8cpp.html#a6cb2f6ea8405b0176aacfd74e2e57914">VERSION_INFO_ID</a> = (<span class="charliteral">&#39;V&#39;</span> | (<span class="charliteral">&#39;E&#39;</span> &lt;&lt; 8) | (<span class="charliteral">&#39;R&#39;</span> &lt;&lt; 16) | (<span class="charliteral">&#39;I&#39;</span> &lt;&lt; 24));</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="ZeroMQServer_8cpp.html#a25e238546b54dd48df2b8bec16804394">   11</a></span><span class="keyword">constexpr</span> uint32_t <a class="code hl_variable" href="ZeroMQServer_8cpp.html#a25e238546b54dd48df2b8bec16804394">PING_PONG_ID</a> = (<span class="charliteral">&#39;P&#39;</span> | (<span class="charliteral">&#39;I&#39;</span> &lt;&lt; 8) | (<span class="charliteral">&#39;N&#39;</span> &lt;&lt; 16) | (<span class="charliteral">&#39;G&#39;</span> &lt;&lt; 24));</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="ZeroMQServer_8cpp.html#ab462330ee745cd8941b21e96de5f5e17">   12</a></span><span class="keyword">constexpr</span> uint32_t <a class="code hl_variable" href="ZeroMQServer_8cpp.html#ab462330ee745cd8941b21e96de5f5e17">STATUS_CHECK_ID</a> = (<span class="charliteral">&#39;S&#39;</span> | (<span class="charliteral">&#39;C&#39;</span> &lt;&lt; 8) | (<span class="charliteral">&#39;H&#39;</span> &lt;&lt; 16) | (<span class="charliteral">&#39;K&#39;</span> &lt;&lt; 24));</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">/* ############################# MAKE MODIFICATIONS HERE ############################# */</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="ZeroMQServer_8cpp.html#a741f5f05509b2793073f13cc748d362d">    9</a></span><span class="keyword">constexpr</span> uint32_t <a class="code hl_variable" href="ZeroMQServer_8cpp.html#a741f5f05509b2793073f13cc748d362d">LOG_LEVEL_ID</a> = (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;L&#39;</span>) | (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;O&#39;</span>) &lt;&lt; 8) |</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>                                   (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;G&#39;</span>) &lt;&lt; 16) | (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;L&#39;</span>) &lt;&lt; 24));</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="ZeroMQServer_8cpp.html#a6cb2f6ea8405b0176aacfd74e2e57914">   11</a></span><span class="keyword">constexpr</span> uint32_t <a class="code hl_variable" href="ZeroMQServer_8cpp.html#a6cb2f6ea8405b0176aacfd74e2e57914">VERSION_INFO_ID</a> = (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;V&#39;</span>) | (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;E&#39;</span>) &lt;&lt; 8) |</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>                                      (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;R&#39;</span>) &lt;&lt; 16) | (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;I&#39;</span>) &lt;&lt; 24));</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="ZeroMQServer_8cpp.html#a25e238546b54dd48df2b8bec16804394">   13</a></span><span class="keyword">constexpr</span> uint32_t <a class="code hl_variable" href="ZeroMQServer_8cpp.html#a25e238546b54dd48df2b8bec16804394">PING_PONG_ID</a> = (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;P&#39;</span>) | (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;I&#39;</span>) &lt;&lt; 8) |</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>                                   (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;N&#39;</span>) &lt;&lt; 16) | (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;G&#39;</span>) &lt;&lt; 24));</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="ZeroMQServer_8cpp.html#ab462330ee745cd8941b21e96de5f5e17">   15</a></span><span class="keyword">constexpr</span> uint32_t <a class="code hl_variable" href="ZeroMQServer_8cpp.html#ab462330ee745cd8941b21e96de5f5e17">STATUS_CHECK_ID</a> = (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;S&#39;</span>) | (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;C&#39;</span>) &lt;&lt; 8) |</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                                      (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;H&#39;</span>) &lt;&lt; 16) | (<span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(<span class="charliteral">&#39;K&#39;</span>) &lt;&lt; 24));</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">/* ################################ END MODIFICATIONS ################################ */</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">/* ############################# MAKE MODIFICATIONS HERE ############################# */</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">/* ################################################################################### */</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811">   21</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811">ZeroMQServer::update</a>()</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">auto</span> recvMsgs = <a class="code hl_function" href="classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3">recvMessages</a>();</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">/* ################################ END MODIFICATIONS ################################ */</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">/* ################################################################################### */</span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">if</span> (!recvMsgs.empty())</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        std::vector&lt;zmq::message_t&gt; replyMsgs;</div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="}">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811">   25</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811">ZeroMQServer::update</a>()</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">auto</span> recvMsgs = <a class="code hl_function" href="classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3">recvMessages</a>();</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <a class="code hl_struct" href="structZeroMQServerStats.html">ZeroMQServerStats</a> serverStats;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        serverStats.<a class="code hl_variable" href="structZeroMQServerStats.html#a7916aac3b34d3b9d1a2c85292d3b2e7a">processingTimeStart</a> = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        serverStats.<a class="code hl_variable" href="structZeroMQServerStats.html#a0f72b56ee407f90b03badaa34e1727fe">isSuccessful</a> = <a class="code hl_function" href="classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7">messageCallback</a>() &amp;&amp; <a class="code hl_function" href="classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7">messageCallback</a>()(recvMsgs, replyMsgs);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">if</span> (!recvMsgs.empty())</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        std::vector&lt;zmq::message_t&gt; replyMsgs;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keywordtype">size_t</span> nSentMsg = <a class="code hl_function" href="classZeroMQ.html#a67e9a20d56ac8197b16844b5e9955c0c">sendMessages</a>(replyMsgs);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">if</span> (nSentMsg != replyMsgs.size())</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            spdlog::warn(<span class="stringliteral">&quot;Can&#39;t send whole reply: Sent messages {} / {}&quot;</span>, nSentMsg, replyMsgs.size());</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        }</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        serverStats.<a class="code hl_variable" href="structZeroMQServerStats.html#a65e6b457a8538169f5afbdb14b2299f0">processingTimeEnd</a> = std::chrono::high_resolution_clock::now();</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classZeroMQServer.html#a3e9a6ebf998b7edcffa5e31e77d39843">_stats</a>)</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <a class="code hl_variable" href="classZeroMQServer.html#a3e9a6ebf998b7edcffa5e31e77d39843">_stats</a>-&gt;consumeStats(recvMsgs, replyMsgs, serverStats);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        }</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <a class="code hl_struct" href="structZeroMQServerStats.html">ZeroMQServerStats</a> serverStats;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        serverStats.<a class="code hl_variable" href="structZeroMQServerStats.html#a7916aac3b34d3b9d1a2c85292d3b2e7a">processingTimeStart</a> = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        serverStats.<a class="code hl_variable" href="structZeroMQServerStats.html#a0f72b56ee407f90b03badaa34e1727fe">isSuccessful</a> = <a class="code hl_function" href="classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7">messageCallback</a>() &amp;&amp; <a class="code hl_function" href="classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7">messageCallback</a>()(recvMsgs, replyMsgs);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">if</span> (<span class="keywordtype">size_t</span> nSentMsg = <a class="code hl_function" href="classZeroMQ.html#a67e9a20d56ac8197b16844b5e9955c0c">sendMessages</a>(replyMsgs); nSentMsg != replyMsgs.size())</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            spdlog::warn(<span class="stringliteral">&quot;Can&#39;t send whole reply: Sent messages {} / {}&quot;</span>, nSentMsg, replyMsgs.size());</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        serverStats.<a class="code hl_variable" href="structZeroMQServerStats.html#a65e6b457a8538169f5afbdb14b2299f0">processingTimeEnd</a> = std::chrono::high_resolution_clock::now();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classZeroMQServer.html#a3e9a6ebf998b7edcffa5e31e77d39843">_stats</a>)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <a class="code hl_variable" href="classZeroMQServer.html#a3e9a6ebf998b7edcffa5e31e77d39843">_stats</a>-&gt;consumeStats(recvMsgs, replyMsgs, serverStats);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
 </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="foldopen" id="foldopen00047" data-start="{" data-end="}">
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classZeroMQServer.html#a7607b05b014e520debed6914d559da53">   47</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classZeroMQServer.html#a7607b05b014e520debed6914d559da53">ZeroMQServer::threadFunc</a>() noexcept</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>{</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    spdlog::info(<span class="stringliteral">&quot;ZeroMQ server started&quot;</span>);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">while</span> (!<a class="code hl_variable" href="classZeroMQServer.html#a3843671f7c4602e2658465be8a18fcbb">_shouldStop</a>._M_i)</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    {</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">try</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <a class="code hl_function" href="classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811">update</a>();</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="classZeroMQServer.html#a70e7e7c83692da0a3626f23fa9625578">_checkFlag</a>)</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                <a class="code hl_variable" href="classZeroMQServer.html#a70e7e7c83692da0a3626f23fa9625578">_checkFlag</a>-&gt;test_and_set();</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            }</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        }</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e)</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            spdlog::error(<span class="stringliteral">&quot;ZeroMQ server failed: {}&quot;</span>, e.what());</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        }</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    spdlog::info(<span class="stringliteral">&quot;ZeroMQ server stopped&quot;</span>);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="}">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classZeroMQServer.html#a7607b05b014e520debed6914d559da53">   50</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classZeroMQServer.html#a7607b05b014e520debed6914d559da53">ZeroMQServer::threadFunc</a>() noexcept</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>{</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    spdlog::info(<span class="stringliteral">&quot;ZeroMQ server started&quot;</span>);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">while</span> (!<a class="code hl_variable" href="classZeroMQServer.html#a3843671f7c4602e2658465be8a18fcbb">_shouldStop</a>._M_i)</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keywordflow">try</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <a class="code hl_function" href="classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811">update</a>();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="classZeroMQServer.html#a70e7e7c83692da0a3626f23fa9625578">_checkFlag</a>)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                <a class="code hl_variable" href="classZeroMQServer.html#a70e7e7c83692da0a3626f23fa9625578">_checkFlag</a>-&gt;test_and_set();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e)</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            spdlog::error(<span class="stringliteral">&quot;ZeroMQ server failed: {}&quot;</span>, e.what());</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    spdlog::info(<span class="stringliteral">&quot;ZeroMQ server stopped&quot;</span>);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}</div>
 </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="foldopen" id="foldopen00068" data-start="{" data-end="}">
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classZeroMQServer.html#a951b371ad28eba4287ef1ac23ad52f29">   68</a></span><a class="code hl_function" href="classZeroMQServer.html#a951b371ad28eba4287ef1ac23ad52f29">ZeroMQServer::ZeroMQServer</a>(<span class="keyword">const</span> std::string &amp;hostAddr, std::shared_ptr&lt;std::atomic_flag&gt; checkFlag,</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                           <span class="keyword">const</span> std::shared_ptr&lt;prometheus::Registry&gt; &amp;reg, <span class="keyword">const</span> std::string &amp;prependName)</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    : <a class="code hl_class" href="classZeroMQ.html">ZeroMQ</a>(zmq::socket_type::rep, hostAddr, true), _checkFlag(std::move(checkFlag))</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>{</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">if</span> (reg)</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <a class="code hl_variable" href="classZeroMQServer.html#a3e9a6ebf998b7edcffa5e31e77d39843">_stats</a> = std::make_unique&lt;ZeroMQStats&gt;(reg, prependName);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_function" href="classZeroMQMonitor.html#a64401abf922cdd6b41ae331f6fb502c7">startMonitoring</a>(<a class="code hl_function" href="classZeroMQ.html#a642e1995dbbba964de506575711a556a">getSocket</a>().get(), <span class="stringliteral">&quot;inproc://&quot;</span> + std::to_string(<a class="code hl_function" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(hostAddr.c_str())) + <span class="stringliteral">&quot;.rep&quot;</span>);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>}</div>
-</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="foldopen" id="foldopen00071" data-start="{" data-end="}">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classZeroMQServer.html#a951b371ad28eba4287ef1ac23ad52f29">   71</a></span><a class="code hl_function" href="classZeroMQServer.html#a951b371ad28eba4287ef1ac23ad52f29">ZeroMQServer::ZeroMQServer</a>(<span class="keyword">const</span> std::string &amp;hostAddr, std::shared_ptr&lt;std::atomic_flag&gt; checkFlag,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                           <span class="keyword">const</span> std::shared_ptr&lt;prometheus::Registry&gt; &amp;reg, <span class="keyword">const</span> std::string &amp;prependName)</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    : <a class="code hl_class" href="classZeroMQ.html">ZeroMQ</a>(zmq::socket_type::rep, hostAddr, true), _checkFlag(std::move(checkFlag))</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>{</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordflow">if</span> (reg)</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <a class="code hl_variable" href="classZeroMQServer.html#a3e9a6ebf998b7edcffa5e31e77d39843">_stats</a> = std::make_unique&lt;ZeroMQStats&gt;(reg, prependName);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="foldopen" id="foldopen00080" data-start="{" data-end="}">
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classZeroMQServer.html#ad1c5ff929aee9963e4752e238a658b5c">   80</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classZeroMQServer.html#ad1c5ff929aee9963e4752e238a658b5c">ZeroMQServer::initialise</a>()</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>{</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_variable" href="classZeroMQServer.html#a3843671f7c4602e2658465be8a18fcbb">_shouldStop</a>.clear();</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="classZeroMQ.html#aed565a56046d2966f9312a58aaab0c2a">start</a>())</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    {</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <a class="code hl_variable" href="classZeroMQServer.html#aae8edde0390af06e97ea5118795c86f6">_serverThread</a> = std::make_unique&lt;std::thread&gt;(&amp;<a class="code hl_function" href="classZeroMQServer.html#a7607b05b014e520debed6914d559da53">ZeroMQServer::threadFunc</a>, <span class="keyword">this</span>);</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <a class="code hl_function" href="classZeroMQMonitor.html#a64401abf922cdd6b41ae331f6fb502c7">startMonitoring</a>(<a class="code hl_function" href="classZeroMQ.html#a642e1995dbbba964de506575711a556a">getSocket</a>().get(), <span class="stringliteral">&quot;inproc://&quot;</span> + std::to_string(<a class="code hl_function" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a>(hostAddr.c_str())) + <span class="stringliteral">&quot;.rep&quot;</span>);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>}</div>
 </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="foldopen" id="foldopen00092" data-start="{" data-end="}">
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classZeroMQServer.html#ac3515a4b148ad4ce7af202bdc2d0e595">   92</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classZeroMQServer.html#ac3515a4b148ad4ce7af202bdc2d0e595">ZeroMQServer::shutdown</a>()</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>{</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <a class="code hl_variable" href="classZeroMQServer.html#a3843671f7c4602e2658465be8a18fcbb">_shouldStop</a>.test_and_set();</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classZeroMQServer.html#aae8edde0390af06e97ea5118795c86f6">_serverThread</a> &amp;&amp; <a class="code hl_variable" href="classZeroMQServer.html#aae8edde0390af06e97ea5118795c86f6">_serverThread</a>-&gt;joinable())</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    {</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <a class="code hl_variable" href="classZeroMQServer.html#aae8edde0390af06e97ea5118795c86f6">_serverThread</a>-&gt;join();</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <a class="code hl_variable" href="classZeroMQServer.html#aae8edde0390af06e97ea5118795c86f6">_serverThread</a>.reset();</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_function" href="classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9">stop</a>();</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="}">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classZeroMQServer.html#ad1c5ff929aee9963e4752e238a658b5c">   83</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classZeroMQServer.html#ad1c5ff929aee9963e4752e238a658b5c">ZeroMQServer::initialise</a>()</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>{</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <a class="code hl_variable" href="classZeroMQServer.html#a3843671f7c4602e2658465be8a18fcbb">_shouldStop</a>.clear();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="classZeroMQ.html#aed565a56046d2966f9312a58aaab0c2a">start</a>())</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <a class="code hl_variable" href="classZeroMQServer.html#aae8edde0390af06e97ea5118795c86f6">_serverThread</a> = std::make_unique&lt;std::thread&gt;(&amp;<a class="code hl_function" href="classZeroMQServer.html#a7607b05b014e520debed6914d559da53">ZeroMQServer::threadFunc</a>, <span class="keyword">this</span>);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>}</div>
 </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="foldopen" id="foldopen00095" data-start="{" data-end="}">
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classZeroMQServer.html#ac3515a4b148ad4ce7af202bdc2d0e595">   95</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classZeroMQServer.html#ac3515a4b148ad4ce7af202bdc2d0e595">ZeroMQServer::shutdown</a>()</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>{</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <a class="code hl_variable" href="classZeroMQServer.html#a3843671f7c4602e2658465be8a18fcbb">_shouldStop</a>.test_and_set();</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classZeroMQServer.html#aae8edde0390af06e97ea5118795c86f6">_serverThread</a> &amp;&amp; <a class="code hl_variable" href="classZeroMQServer.html#aae8edde0390af06e97ea5118795c86f6">_serverThread</a>-&gt;joinable())</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <a class="code hl_variable" href="classZeroMQServer.html#aae8edde0390af06e97ea5118795c86f6">_serverThread</a>-&gt;join();</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <a class="code hl_variable" href="classZeroMQServer.html#aae8edde0390af06e97ea5118795c86f6">_serverThread</a>.reset();</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="foldopen" id="foldopen00104" data-start="{" data-end="}">
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26">  104</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26">ZeroMQServerMessageCallback</a>(<span class="keyword">const</span> std::vector&lt;zmq::message_t&gt; &amp;recvMsgs, std::vector&lt;zmq::message_t&gt; &amp;replyMsgs)</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>{</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    spdlog::trace(<span class="stringliteral">&quot;Received {} messages&quot;</span>, recvMsgs.size());</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    replyMsgs.clear();</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    std::string replyBody;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">int</span> reply = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordflow">switch</span> (*(<span class="keyword">static_cast&lt;</span><span class="keyword">const </span>uint64_t *<span class="keyword">&gt;</span>(recvMsgs[0].data())))</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    {</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordflow">case</span> <a class="code hl_variable" href="ZeroMQServer_8cpp.html#a741f5f05509b2793073f13cc748d362d">LOG_LEVEL_ID</a>: {</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordflow">if</span> (recvMsgs.size() != 2)</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        {</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            spdlog::error(<span class="stringliteral">&quot;Received unknown number of messages for log level change&quot;</span>);</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        }</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        spdlog::warn(<span class="stringliteral">&quot;Log level change request received&quot;</span>);</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <span class="keyword">const</span> <span class="keyword">auto</span> receivedMsg = std::string(<span class="keyword">static_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span> *<span class="keyword">&gt;</span>(recvMsgs[1].data()), recvMsgs[1].size());</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <a class="code hl_function" href="classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9">stop</a>();</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>}</div>
+</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="foldopen" id="foldopen00107" data-start="{" data-end="}">
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26">  107</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26">ZeroMQServerMessageCallback</a>(<span class="keyword">const</span> std::vector&lt;zmq::message_t&gt; &amp;recvMsgs, std::vector&lt;zmq::message_t&gt; &amp;replyMsgs)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>{</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    spdlog::trace(<span class="stringliteral">&quot;Received {} messages&quot;</span>, recvMsgs.size());</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    replyMsgs.clear();</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    std::string replyBody;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordtype">int</span> reply = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordflow">switch</span> (*(<span class="keyword">static_cast&lt;</span><span class="keyword">const </span>uint64_t *<span class="keyword">&gt;</span>(recvMsgs[0].data())))</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordflow">case</span> <a class="code hl_variable" href="ZeroMQServer_8cpp.html#a741f5f05509b2793073f13cc748d362d">LOG_LEVEL_ID</a>: {</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keywordflow">if</span> (recvMsgs.size() != 2)</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            spdlog::error(<span class="stringliteral">&quot;Received unknown number of messages for log level change&quot;</span>);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        }</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keywordflow">if</span> (receivedMsg == <span class="stringliteral">&quot;v&quot;</span>)</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        {</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            spdlog::set_level(spdlog::level::info);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        }</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="keywordflow">if</span> (receivedMsg == <span class="stringliteral">&quot;vv&quot;</span>)</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        {</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>            spdlog::set_level(spdlog::level::debug);</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        }</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">if</span> (receivedMsg == <span class="stringliteral">&quot;vvv&quot;</span>)</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        {</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>            spdlog::set_level(spdlog::level::trace);</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        }</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    }</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordflow">case</span> <a class="code hl_variable" href="ZeroMQServer_8cpp.html#a6cb2f6ea8405b0176aacfd74e2e57914">VERSION_INFO_ID</a>: {</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="keywordflow">if</span> (recvMsgs.size() != 1)</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        {</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>            spdlog::error(<span class="stringliteral">&quot;Received unknown number of messages for version information&quot;</span>);</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        }</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        replyBody = PROJECT_FULL_VERSION_STRING;</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    }</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordflow">case</span> <a class="code hl_variable" href="ZeroMQServer_8cpp.html#a25e238546b54dd48df2b8bec16804394">PING_PONG_ID</a>: {</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="keywordflow">if</span> (recvMsgs.size() != 1)</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        {</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            spdlog::error(<span class="stringliteral">&quot;Received unknown number of messages for ping&quot;</span>);</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        }</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        replyBody = <span class="stringliteral">&quot;PONG&quot;</span>;</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    }</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordflow">case</span> <a class="code hl_variable" href="ZeroMQServer_8cpp.html#ab462330ee745cd8941b21e96de5f5e17">STATUS_CHECK_ID</a>: {</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keywordflow">if</span> (recvMsgs.size() != 1)</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        {</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            spdlog::error(<span class="stringliteral">&quot;Received unknown number of messages for status check&quot;</span>);</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        }</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        std::ostringstream oss;</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        oss &lt;&lt; <span class="stringliteral">&quot;{&quot;</span>;</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;entry : <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>)</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        {</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>            oss &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span> &lt;&lt; entry.first &lt;&lt; <span class="stringliteral">&quot;\&quot;:&quot;</span> &lt;&lt; (entry.second-&gt;_M_i ? <span class="stringliteral">&quot;1,&quot;</span> : <span class="stringliteral">&quot;0,&quot;</span>);</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        }</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        replyBody = oss.str();</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        replyBody.replace(replyBody.size() - 1, 1, <span class="stringliteral">&quot;}&quot;</span>);</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    }</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="comment">/* ############################# MAKE MODIFICATIONS HERE ############################# */</span></div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="comment">/* ################################ END MODIFICATIONS ################################ */</span></div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        spdlog::error(<span class="stringliteral">&quot;Unknown command received from control&quot;</span>);</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    }</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="comment">// Prepare reply</span></div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    replyMsgs.emplace_back(&amp;reply, <span class="keyword">sizeof</span>(reply));</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    replyMsgs.emplace_back(replyBody.c_str(), replyBody.size());</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordflow">return</span> reply == ZMQ_EVENT_HANDSHAKE_SUCCEEDED;</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>}</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        spdlog::warn(<span class="stringliteral">&quot;Log level change request received&quot;</span>);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keyword">const</span> <span class="keyword">auto</span> receivedMsg = std::string(<span class="keyword">static_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span> *<span class="keyword">&gt;</span>(recvMsgs[1].data()), recvMsgs[1].size());</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordflow">if</span> (receivedMsg == <span class="stringliteral">&quot;v&quot;</span>)</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            spdlog::set_level(spdlog::level::info);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        }</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keywordflow">if</span> (receivedMsg == <span class="stringliteral">&quot;vv&quot;</span>)</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            spdlog::set_level(spdlog::level::debug);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keywordflow">if</span> (receivedMsg == <span class="stringliteral">&quot;vvv&quot;</span>)</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        {</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            spdlog::set_level(spdlog::level::trace);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    }</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordflow">case</span> <a class="code hl_variable" href="ZeroMQServer_8cpp.html#a6cb2f6ea8405b0176aacfd74e2e57914">VERSION_INFO_ID</a>: {</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <span class="keywordflow">if</span> (recvMsgs.size() != 1)</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        {</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            spdlog::error(<span class="stringliteral">&quot;Received unknown number of messages for version information&quot;</span>);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        }</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        replyBody = PROJECT_FULL_VERSION_STRING;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    }</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordflow">case</span> <a class="code hl_variable" href="ZeroMQServer_8cpp.html#a25e238546b54dd48df2b8bec16804394">PING_PONG_ID</a>: {</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="keywordflow">if</span> (recvMsgs.size() != 1)</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        {</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            spdlog::error(<span class="stringliteral">&quot;Received unknown number of messages for ping&quot;</span>);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        }</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        replyBody = <span class="stringliteral">&quot;PONG&quot;</span>;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    }</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordflow">case</span> <a class="code hl_variable" href="ZeroMQServer_8cpp.html#ab462330ee745cd8941b21e96de5f5e17">STATUS_CHECK_ID</a>: {</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <span class="keywordflow">if</span> (recvMsgs.size() != 1)</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        {</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>            spdlog::error(<span class="stringliteral">&quot;Received unknown number of messages for status check&quot;</span>);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        }</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        std::ostringstream oss;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        oss &lt;&lt; <span class="stringliteral">&quot;{&quot;</span>;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;[process, statusFlag] : <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>)</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        {</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>            oss &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span> &lt;&lt; process &lt;&lt; <span class="stringliteral">&quot;\&quot;:&quot;</span> &lt;&lt; (statusFlag-&gt;_M_i ? <span class="stringliteral">&quot;1,&quot;</span> : <span class="stringliteral">&quot;0,&quot;</span>);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        }</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        replyBody = oss.str();</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        replyBody.replace(replyBody.size() - 1, 1, <span class="stringliteral">&quot;}&quot;</span>);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    }</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="comment">/* ############################# MAKE MODIFICATIONS HERE ############################# */</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="comment">/* ################################ END MODIFICATIONS ################################ */</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        spdlog::error(<span class="stringliteral">&quot;Unknown command received from control&quot;</span>);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    }</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="comment">// Prepare reply</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    replyMsgs.emplace_back(&amp;reply, <span class="keyword">sizeof</span>(reply));</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    replyMsgs.emplace_back(replyBody.c_str(), replyBody.size());</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keywordflow">return</span> reply == ZMQ_EVENT_HANDSHAKE_SUCCEEDED;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>}</div>
 </div>
 <div class="ttc" id="aErrorHelpers_8cpp_html_abd1b95cce1437a885ce56e859099ddd8"><div class="ttname"><a href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; std::string, std::shared_ptr&lt; std::atomic_flag &gt; &gt; &gt; vCheckFlag</div><div class="ttdoc">Global variable to check if the servers are running.</div><div class="ttdef"><b>Definition</b> <a href="ErrorHelpers_8cpp_source.html#l00004">ErrorHelpers.cpp:4</a></div></div>
 <div class="ttc" id="aErrorHelpers_8hpp_html"><div class="ttname"><a href="ErrorHelpers_8hpp.html">ErrorHelpers.hpp</a></div></div>
 <div class="ttc" id="aHasher_8hpp_html"><div class="ttname"><a href="Hasher_8hpp.html">Hasher.hpp</a></div></div>
 <div class="ttc" id="aHasher_8hpp_html_a69c2bf176d386d2413b9ae6d8346588b"><div class="ttname"><a href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b">constHasher</a></div><div class="ttdeci">constexpr size_t constHasher(const char *s)</div><div class="ttdef"><b>Definition</b> <a href="Hasher_8hpp_source.html#l00013">Hasher.hpp:13</a></div></div>
-<div class="ttc" id="aZeroMQServer_8cpp_html_a25e238546b54dd48df2b8bec16804394"><div class="ttname"><a href="ZeroMQServer_8cpp.html#a25e238546b54dd48df2b8bec16804394">PING_PONG_ID</a></div><div class="ttdeci">constexpr uint32_t PING_PONG_ID</div><div class="ttdef"><b>Definition</b> <a href="#l00011">ZeroMQServer.cpp:11</a></div></div>
-<div class="ttc" id="aZeroMQServer_8cpp_html_a6cb2f6ea8405b0176aacfd74e2e57914"><div class="ttname"><a href="ZeroMQServer_8cpp.html#a6cb2f6ea8405b0176aacfd74e2e57914">VERSION_INFO_ID</a></div><div class="ttdeci">constexpr uint32_t VERSION_INFO_ID</div><div class="ttdef"><b>Definition</b> <a href="#l00010">ZeroMQServer.cpp:10</a></div></div>
+<div class="ttc" id="aZeroMQServer_8cpp_html_a25e238546b54dd48df2b8bec16804394"><div class="ttname"><a href="ZeroMQServer_8cpp.html#a25e238546b54dd48df2b8bec16804394">PING_PONG_ID</a></div><div class="ttdeci">constexpr uint32_t PING_PONG_ID</div><div class="ttdef"><b>Definition</b> <a href="#l00013">ZeroMQServer.cpp:13</a></div></div>
+<div class="ttc" id="aZeroMQServer_8cpp_html_a6cb2f6ea8405b0176aacfd74e2e57914"><div class="ttname"><a href="ZeroMQServer_8cpp.html#a6cb2f6ea8405b0176aacfd74e2e57914">VERSION_INFO_ID</a></div><div class="ttdeci">constexpr uint32_t VERSION_INFO_ID</div><div class="ttdef"><b>Definition</b> <a href="#l00011">ZeroMQServer.cpp:11</a></div></div>
 <div class="ttc" id="aZeroMQServer_8cpp_html_a741f5f05509b2793073f13cc748d362d"><div class="ttname"><a href="ZeroMQServer_8cpp.html#a741f5f05509b2793073f13cc748d362d">LOG_LEVEL_ID</a></div><div class="ttdeci">constexpr uint32_t LOG_LEVEL_ID</div><div class="ttdef"><b>Definition</b> <a href="#l00009">ZeroMQServer.cpp:9</a></div></div>
-<div class="ttc" id="aZeroMQServer_8cpp_html_ab462330ee745cd8941b21e96de5f5e17"><div class="ttname"><a href="ZeroMQServer_8cpp.html#ab462330ee745cd8941b21e96de5f5e17">STATUS_CHECK_ID</a></div><div class="ttdeci">constexpr uint32_t STATUS_CHECK_ID</div><div class="ttdef"><b>Definition</b> <a href="#l00012">ZeroMQServer.cpp:12</a></div></div>
-<div class="ttc" id="aZeroMQServer_8cpp_html_af33b7d1864db8b5c7879aa48fd440b26"><div class="ttname"><a href="ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26">ZeroMQServerMessageCallback</a></div><div class="ttdeci">bool ZeroMQServerMessageCallback(const std::vector&lt; zmq::message_t &gt; &amp;recvMsgs, std::vector&lt; zmq::message_t &gt; &amp;replyMsgs)</div><div class="ttdef"><b>Definition</b> <a href="#l00104">ZeroMQServer.cpp:104</a></div></div>
+<div class="ttc" id="aZeroMQServer_8cpp_html_ab462330ee745cd8941b21e96de5f5e17"><div class="ttname"><a href="ZeroMQServer_8cpp.html#ab462330ee745cd8941b21e96de5f5e17">STATUS_CHECK_ID</a></div><div class="ttdeci">constexpr uint32_t STATUS_CHECK_ID</div><div class="ttdef"><b>Definition</b> <a href="#l00015">ZeroMQServer.cpp:15</a></div></div>
+<div class="ttc" id="aZeroMQServer_8cpp_html_af33b7d1864db8b5c7879aa48fd440b26"><div class="ttname"><a href="ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26">ZeroMQServerMessageCallback</a></div><div class="ttdeci">bool ZeroMQServerMessageCallback(const std::vector&lt; zmq::message_t &gt; &amp;recvMsgs, std::vector&lt; zmq::message_t &gt; &amp;replyMsgs)</div><div class="ttdef"><b>Definition</b> <a href="#l00107">ZeroMQServer.cpp:107</a></div></div>
 <div class="ttc" id="aZeroMQServer_8hpp_html"><div class="ttname"><a href="ZeroMQServer_8hpp.html">ZeroMQServer.hpp</a></div></div>
 <div class="ttc" id="aclassZeroMQMonitor_html_a64401abf922cdd6b41ae331f6fb502c7"><div class="ttname"><a href="classZeroMQMonitor.html#a64401abf922cdd6b41ae331f6fb502c7">ZeroMQMonitor::startMonitoring</a></div><div class="ttdeci">void startMonitoring(zmq::socket_t *socket, const std::string &amp;monitorAddress)</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00134">ZeroMQMonitor.cpp:134</a></div></div>
 <div class="ttc" id="aclassZeroMQServer_html_a3843671f7c4602e2658465be8a18fcbb"><div class="ttname"><a href="classZeroMQServer.html#a3843671f7c4602e2658465be8a18fcbb">ZeroMQServer::_shouldStop</a></div><div class="ttdeci">std::atomic_flag _shouldStop</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQServer_8hpp_source.html#l00016">ZeroMQServer.hpp:16</a></div></div>
-<div class="ttc" id="aclassZeroMQServer_html_a3a4558d2caca6350276fe4c417c75811"><div class="ttname"><a href="classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811">ZeroMQServer::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Processes new messages.</div><div class="ttdef"><b>Definition</b> <a href="#l00021">ZeroMQServer.cpp:21</a></div></div>
+<div class="ttc" id="aclassZeroMQServer_html_a3a4558d2caca6350276fe4c417c75811"><div class="ttname"><a href="classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811">ZeroMQServer::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Processes new messages.</div><div class="ttdef"><b>Definition</b> <a href="#l00025">ZeroMQServer.cpp:25</a></div></div>
 <div class="ttc" id="aclassZeroMQServer_html_a3e9a6ebf998b7edcffa5e31e77d39843"><div class="ttname"><a href="classZeroMQServer.html#a3e9a6ebf998b7edcffa5e31e77d39843">ZeroMQServer::_stats</a></div><div class="ttdeci">std::unique_ptr&lt; ZeroMQStats &gt; _stats</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQServer_8hpp_source.html#l00020">ZeroMQServer.hpp:20</a></div></div>
 <div class="ttc" id="aclassZeroMQServer_html_a70e7e7c83692da0a3626f23fa9625578"><div class="ttname"><a href="classZeroMQServer.html#a70e7e7c83692da0a3626f23fa9625578">ZeroMQServer::_checkFlag</a></div><div class="ttdeci">std::shared_ptr&lt; std::atomic_flag &gt; _checkFlag</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQServer_8hpp_source.html#l00018">ZeroMQServer.hpp:18</a></div></div>
-<div class="ttc" id="aclassZeroMQServer_html_a7607b05b014e520debed6914d559da53"><div class="ttname"><a href="classZeroMQServer.html#a7607b05b014e520debed6914d559da53">ZeroMQServer::threadFunc</a></div><div class="ttdeci">void threadFunc() noexcept</div><div class="ttdoc">Main thread function.</div><div class="ttdef"><b>Definition</b> <a href="#l00047">ZeroMQServer.cpp:47</a></div></div>
+<div class="ttc" id="aclassZeroMQServer_html_a7607b05b014e520debed6914d559da53"><div class="ttname"><a href="classZeroMQServer.html#a7607b05b014e520debed6914d559da53">ZeroMQServer::threadFunc</a></div><div class="ttdeci">void threadFunc() noexcept</div><div class="ttdoc">Main thread function.</div><div class="ttdef"><b>Definition</b> <a href="#l00050">ZeroMQServer.cpp:50</a></div></div>
 <div class="ttc" id="aclassZeroMQServer_html_a79c7d0ac78cd0d70a91b1c5c4afe58b7"><div class="ttname"><a href="classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7">ZeroMQServer::messageCallback</a></div><div class="ttdeci">FPTR_MessageCallback messageCallback() const</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQServer_8hpp_source.html#l00078">ZeroMQServer.hpp:78</a></div></div>
-<div class="ttc" id="aclassZeroMQServer_html_a951b371ad28eba4287ef1ac23ad52f29"><div class="ttname"><a href="classZeroMQServer.html#a951b371ad28eba4287ef1ac23ad52f29">ZeroMQServer::ZeroMQServer</a></div><div class="ttdeci">ZeroMQServer(const std::string &amp;hostAddr, std::shared_ptr&lt; std::atomic_flag &gt; checkFlag, const std::shared_ptr&lt; prometheus::Registry &gt; &amp;reg=nullptr, const std::string &amp;prependName=&quot;&quot;)</div><div class="ttdef"><b>Definition</b> <a href="#l00068">ZeroMQServer.cpp:68</a></div></div>
+<div class="ttc" id="aclassZeroMQServer_html_a951b371ad28eba4287ef1ac23ad52f29"><div class="ttname"><a href="classZeroMQServer.html#a951b371ad28eba4287ef1ac23ad52f29">ZeroMQServer::ZeroMQServer</a></div><div class="ttdeci">ZeroMQServer(const std::string &amp;hostAddr, std::shared_ptr&lt; std::atomic_flag &gt; checkFlag, const std::shared_ptr&lt; prometheus::Registry &gt; &amp;reg=nullptr, const std::string &amp;prependName=&quot;&quot;)</div><div class="ttdef"><b>Definition</b> <a href="#l00071">ZeroMQServer.cpp:71</a></div></div>
 <div class="ttc" id="aclassZeroMQServer_html_aae8edde0390af06e97ea5118795c86f6"><div class="ttname"><a href="classZeroMQServer.html#aae8edde0390af06e97ea5118795c86f6">ZeroMQServer::_serverThread</a></div><div class="ttdeci">std::unique_ptr&lt; std::thread &gt; _serverThread</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQServer_8hpp_source.html#l00014">ZeroMQServer.hpp:14</a></div></div>
-<div class="ttc" id="aclassZeroMQServer_html_ac3515a4b148ad4ce7af202bdc2d0e595"><div class="ttname"><a href="classZeroMQServer.html#ac3515a4b148ad4ce7af202bdc2d0e595">ZeroMQServer::shutdown</a></div><div class="ttdeci">void shutdown()</div><div class="ttdoc">Closes the ZeroMQ Server.</div><div class="ttdef"><b>Definition</b> <a href="#l00092">ZeroMQServer.cpp:92</a></div></div>
-<div class="ttc" id="aclassZeroMQServer_html_ad1c5ff929aee9963e4752e238a658b5c"><div class="ttname"><a href="classZeroMQServer.html#ad1c5ff929aee9963e4752e238a658b5c">ZeroMQServer::initialise</a></div><div class="ttdeci">bool initialise()</div><div class="ttdef"><b>Definition</b> <a href="#l00080">ZeroMQServer.cpp:80</a></div></div>
+<div class="ttc" id="aclassZeroMQServer_html_ac3515a4b148ad4ce7af202bdc2d0e595"><div class="ttname"><a href="classZeroMQServer.html#ac3515a4b148ad4ce7af202bdc2d0e595">ZeroMQServer::shutdown</a></div><div class="ttdeci">void shutdown()</div><div class="ttdoc">Closes the ZeroMQ Server.</div><div class="ttdef"><b>Definition</b> <a href="#l00095">ZeroMQServer.cpp:95</a></div></div>
+<div class="ttc" id="aclassZeroMQServer_html_ad1c5ff929aee9963e4752e238a658b5c"><div class="ttname"><a href="classZeroMQServer.html#ad1c5ff929aee9963e4752e238a658b5c">ZeroMQServer::initialise</a></div><div class="ttdeci">bool initialise()</div><div class="ttdef"><b>Definition</b> <a href="#l00083">ZeroMQServer.cpp:83</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html"><div class="ttname"><a href="classZeroMQ.html">ZeroMQ</a></div><div class="ttdef"><b>Definition</b> <a href="ZeroMQ_8hpp_source.html#l00013">ZeroMQ.hpp:13</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_a1db454a94cec6d462e3f686fe156e5a9"><div class="ttname"><a href="classZeroMQ.html#a1db454a94cec6d462e3f686fe156e5a9">ZeroMQ::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQ_8cpp_source.html#l00063">ZeroMQ.cpp:63</a></div></div>
 <div class="ttc" id="aclassZeroMQ_html_a325eaa87b401739d540d4fd2ecd01ca3"><div class="ttname"><a href="classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3">ZeroMQ::recvMessages</a></div><div class="ttdeci">std::vector&lt; zmq::message_t &gt; recvMessages()</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQ_8cpp_source.html#l00081">ZeroMQ.cpp:81</a></div></div>
@@ -350,7 +353,7 @@ $(function(){initNavTree('ZeroMQServer_8cpp_source.html',''); initResizable(true
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d88ff245824df7df97e108605ade0712.html">zeromq</a></li><li class="navelem"><a class="el" href="ZeroMQServer_8cpp.html">ZeroMQServer.cpp</a></li>
-    <li class="footer">Generated on Sun Nov 10 2024 08:35:45 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
+    <li class="footer">Generated on Sat Dec 7 2024 19:26:58 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0 </li>
   </ul>
 </div>
 </body>
