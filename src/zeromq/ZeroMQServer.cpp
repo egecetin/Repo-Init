@@ -6,10 +6,14 @@
 
 #include <spdlog/spdlog.h>
 
-constexpr uint32_t LOG_LEVEL_ID = ('L' | ('O' << 8) | ('G' << 16) | ('L' << 24));
-constexpr uint32_t VERSION_INFO_ID = ('V' | ('E' << 8) | ('R' << 16) | ('I' << 24));
-constexpr uint32_t PING_PONG_ID = ('P' | ('I' << 8) | ('N' << 16) | ('G' << 24));
-constexpr uint32_t STATUS_CHECK_ID = ('S' | ('C' << 8) | ('H' << 16) | ('K' << 24));
+constexpr uint32_t LOG_LEVEL_ID = (static_cast<uint32_t>('L') | (static_cast<uint32_t>('O') << 8) |
+								   (static_cast<uint32_t>('G') << 16) | (static_cast<uint32_t>('L') << 24));
+constexpr uint32_t VERSION_INFO_ID = (static_cast<uint32_t>('V') | (static_cast<uint32_t>('E') << 8) |
+									  (static_cast<uint32_t>('R') << 16) | (static_cast<uint32_t>('I') << 24));
+constexpr uint32_t PING_PONG_ID = (static_cast<uint32_t>('P') | (static_cast<uint32_t>('I') << 8) |
+								   (static_cast<uint32_t>('N') << 16) | (static_cast<uint32_t>('G') << 24));
+constexpr uint32_t STATUS_CHECK_ID = (static_cast<uint32_t>('S') | (static_cast<uint32_t>('C') << 8) |
+									  (static_cast<uint32_t>('H') << 16) | (static_cast<uint32_t>('K') << 24));
 /* ################################################################################### */
 /* ############################# MAKE MODIFICATIONS HERE ############################# */
 /* ################################################################################### */
@@ -30,8 +34,7 @@ void ZeroMQServer::update()
 		serverStats.processingTimeStart = std::chrono::high_resolution_clock::now();
 		serverStats.isSuccessful = messageCallback() && messageCallback()(recvMsgs, replyMsgs);
 
-		size_t nSentMsg = sendMessages(replyMsgs);
-		if (nSentMsg != replyMsgs.size())
+		if (size_t nSentMsg = sendMessages(replyMsgs); nSentMsg != replyMsgs.size())
 		{
 			spdlog::warn("Can't send whole reply: Sent messages {} / {}", nSentMsg, replyMsgs.size());
 		}
@@ -168,9 +171,9 @@ bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, st
 
 		std::ostringstream oss;
 		oss << "{";
-		for (const auto &entry : vCheckFlag)
+		for (const auto &[process, statusFlag] : vCheckFlag)
 		{
-			oss << "\"" << entry.first << "\":" << (entry.second->_M_i ? "1," : "0,");
+			oss << "\"" << process << "\":" << (statusFlag->_M_i ? "1," : "0,");
 		}
 		replyBody = oss.str();
 		replyBody.replace(replyBody.size() - 1, 1, "}");

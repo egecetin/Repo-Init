@@ -44,7 +44,7 @@ class ConfigParser {
 	 * @param[in] key Key to set
 	 * @param[in] value Value to set
 	 */
-	void set(const std::string &key, const std::string &value);
+	void set(const std::string &key, const std::string_view &value);
 
 	/**
 	 * Remove a key from the configuration file. If the key does not exist, nothing will happen
