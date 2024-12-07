@@ -93,8 +93,8 @@ namespace spdlog::sinks
 			}
 			case AF_PACKET: {
 				std::array<char, MAC_LEN> host{};
-				const auto *sock = reinterpret_cast<sockaddr_ll *>(ifa->ifa_addr);
-				if (snprintf(host.data(), MAC_LEN, "%02x:%02x:%02x:%02x:%02x:%02x", sock->sll_addr[0],
+				if (const auto *sock = reinterpret_cast<sockaddr_ll *>(ifa->ifa_addr);
+					snprintf(host.data(), MAC_LEN, "%02x:%02x:%02x:%02x:%02x:%02x", sock->sll_addr[0],
 							 sock->sll_addr[1], sock->sll_addr[2], sock->sll_addr[3], sock->sll_addr[4],
 							 sock->sll_addr[5]) > 0)
 				{
