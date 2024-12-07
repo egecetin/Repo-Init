@@ -1,0 +1,5 @@
+<map id="spdlog::sinks::setVersionContext" name="spdlog::sinks::setVersionContext">
+<area shape="rect" id="Node000001" title="Set version related information to the Sentry context." alt="" coords="230,5,398,50"/>
+<area shape="rect" id="Node000002" href="$classspdlog_1_1sinks_1_1sentry__api__sink.html#a005dd6dd72151bf12eceed15c5ec8db3" title=" " alt="" coords="5,5,182,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,30,182,30,182,25,215,25"/>
+</map>

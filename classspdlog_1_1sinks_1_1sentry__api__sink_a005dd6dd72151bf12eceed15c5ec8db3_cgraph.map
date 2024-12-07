@@ -1,5 +1,11 @@
 <map id="spdlog::sinks::sentry_api_sink::sentry_api_sink" name="spdlog::sinks::sentry_api_sink::sentry_api_sink">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,182,50"/>
-<area shape="rect" id="Node000002" href="$FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86" title=" " alt="" coords="230,14,330,42"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,25,214,25,214,30,182,30"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,57,182,102"/>
+<area shape="rect" id="Node000002" href="$namespacespdlog_1_1sinks.html#ae7e4b387492eeaf34f8a0467ea810733" title="Set host related information to the Sentry context." alt="" coords="230,5,430,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,54,229,42,257,35,258,40,230,47,183,59"/>
+<area shape="rect" id="Node000004" href="$namespacespdlog_1_1sinks.html#a1b625f2fe56d040d0f86d5a8c2e555f0" title="Set network related information to the Sentry context." alt="" coords="242,57,418,102"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="182,77,226,77,226,82,182,82"/>
+<area shape="rect" id="Node000005" href="$namespacespdlog_1_1sinks.html#af557d73ec754621937f8f8df2d3f4fa1" title="Set version related information to the Sentry context." alt="" coords="246,126,414,171"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="173,100,237,119,236,124,171,105"/>
+<area shape="rect" id="Node000003" href="$FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86" title=" " alt="" coords="478,5,578,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="430,17,462,17,462,22,430,22"/>
 </map>

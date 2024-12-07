@@ -67,7 +67,10 @@ var NAVTREEINDEX0 =
 "RawSocket_8hpp.html":[2,0,0,0,1],
 "RawSocket_8hpp_source.html":[2,0,0,0,1],
 "Sentry_8cpp.html":[2,0,1,1,2],
-"Sentry_8cpp.html#ad7a90ea7fa751e405090d5fdab582d05":[2,0,1,1,2,0],
+"Sentry_8cpp.html#a1b625f2fe56d040d0f86d5a8c2e555f0":[2,0,1,1,2,1],
+"Sentry_8cpp.html#ad7a90ea7fa751e405090d5fdab582d05":[2,0,1,1,2,3],
+"Sentry_8cpp.html#ae7e4b387492eeaf34f8a0467ea810733":[2,0,1,1,2,0],
+"Sentry_8cpp.html#af557d73ec754621937f8f8df2d3f4fa1":[2,0,1,1,2,2],
 "Sentry_8cpp_source.html":[2,0,1,1,2],
 "Sentry_8hpp.html":[2,0,0,1,2],
 "Sentry_8hpp.html#a7e5a92d080c7489e5a5c78e735632793":[2,0,0,1,2,1],
@@ -246,8 +249,5 @@ var NAVTREEINDEX0 =
 "classPerformanceTracker.html#affcbc6189c2e5b05bea3e272f2ac754b":[1,0,7,3],
 "classProcessMetrics.html":[1,0,8],
 "classProcessMetrics.html#a03917bb66122ce6a87ec96aac35379f8":[1,0,8,26],
-"classProcessMetrics.html#a048562bec48c6b562121a9438c0ba721":[1,0,8,13],
-"classProcessMetrics.html#a07a73f45b18713c8e9f60a0a406c2d8f":[1,0,8,6],
-"classProcessMetrics.html#a0dae89a805461aea0e186edc3ed00f41":[1,0,8,17],
-"classProcessMetrics.html#a102e67199855a44a2c6418fadb57ecb2":[1,0,8,1]
+"classProcessMetrics.html#a048562bec48c6b562121a9438c0ba721":[1,0,8,13]
 };
