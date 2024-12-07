@@ -75,21 +75,23 @@ namespace spdlog::sinks
 
 			switch (ifa->ifa_addr->sa_family)
 			{
-			case AF_INET:
+			case AF_INET: {
 				std::array<char, INET_ADDRSTRLEN> host{};
 				inet_ntop(AF_INET, &(reinterpret_cast<sockaddr_in *>(ifa->ifa_addr))->sin_addr, host.data(),
 						  INET_ADDRSTRLEN);
 				sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".ipv4").c_str(),
 										sentry_value_new_string(host.data()));
 				break;
-			case AF_INET6:
+			}
+			case AF_INET6: {
 				std::array<char, INET6_ADDRSTRLEN> host{};
 				inet_ntop(AF_INET6, &(reinterpret_cast<sockaddr_in6 *>(ifa->ifa_addr))->sin6_addr, host.data(),
 						  INET6_ADDRSTRLEN);
 				sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".ipv6").c_str(),
 										sentry_value_new_string(host.data()));
 				break;
-			case AF_PACKET:
+			}
+			case AF_PACKET: {
 				std::array<char, MAC_LEN> host{};
 				const auto *sock = reinterpret_cast<sockaddr_ll *>(ifa->ifa_addr);
 				if (snprintf(host.data(), MAC_LEN, "%02x:%02x:%02x:%02x:%02x:%02x", sock->sll_addr[0],
@@ -100,6 +102,7 @@ namespace spdlog::sinks
 											sentry_value_new_string(host.data()));
 				}
 				break;
+			}
 			default:
 				break;
 			}
