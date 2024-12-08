@@ -475,7 +475,8 @@ void TelnetSession::update()
 
 		// we've got to be careful here. Telnet client might send null characters for New Lines mid-data block. We need
 		// to swap these out. recv is not null terminated, so its cool
-		std::replace_if(recvbuf.begin(), recvbuf.begin() + readBytes, [](char c) { return c == ASCII_NULL; }, ASCII_LF);
+		std::replace_if(
+			recvbuf.begin(), recvbuf.begin() + readBytes, [](char chr) { return chr == ASCII_NULL; }, ASCII_LF);
 
 		// Add it to the received buffer
 		m_buffer.append(recvbuf.data(), static_cast<unsigned int>(readBytes));
