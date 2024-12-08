@@ -61,6 +61,8 @@ void Tracer::threadFunc() noexcept
 		{
 			if (!isRunning())
 			{
+				// NOTICE: Worked before but currently restarting the handler raises an error
+				// due to changes in the crashpad library
 				restart();
 				spdlog::warn("Crashpad handler restarted");
 			}
