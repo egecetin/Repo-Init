@@ -150,6 +150,7 @@ if(XXX_ENABLE_SYMBOL_GENERATION)
 endif()
 
 add_dependencies(${PROJECT_NAME} crashpad::handler)
+set_target_properties(crashpad_handler PROPERTIES OUTPUT_NAME ${PROJECT_NAME}-crashpad)
 
 install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}-lib crashpad_handler)
 
