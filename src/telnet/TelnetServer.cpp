@@ -130,7 +130,7 @@ void TelnetSession::sendPromptAndBuffer()
 	}
 
 	// Resend the buffer
-	if (m_buffer.length() > 0)
+	if (!m_buffer.empty())
 	{
 		sendBytes = send(m_socket, m_buffer.c_str(), m_buffer.length(), 0);
 		if (sendBytes > 0)
@@ -751,7 +751,7 @@ void TelnetServer::shutdown()
 	}
 }
 
-void TelnetPrintAvailableCommands(const SP_TelnetSession &session)
+static void TelnetPrintAvailableCommands(const SP_TelnetSession &session)
 {
 	// Print available commands
 	session->sendLine("");

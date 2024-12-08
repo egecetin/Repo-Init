@@ -99,7 +99,7 @@ std::string Tracer::getSelfExecutableDir()
 	return (lastDelimPos == std::string::npos) ? "" : path.substr(0, lastDelimPos);
 }
 
-bool Tracer::isRunning() const
+bool Tracer::isRunning()
 {
 	int sockId{-1};
 	pid_t processId{-1};

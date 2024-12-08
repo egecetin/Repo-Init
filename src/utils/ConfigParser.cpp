@@ -7,7 +7,7 @@
 
 #include <fstream>
 
-template <typename T> std::string stringifyRapidjson(const T &obj)
+template <typename T> static std::string stringifyRapidjson(const T &obj)
 {
 	rapidjson::StringBuffer sbuffer;
 	rapidjson::Writer<rapidjson::StringBuffer> writer(sbuffer);
