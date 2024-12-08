@@ -349,8 +349,7 @@ bool TelnetSession::processTab(std::string &buffer)
 		// Process
 		if (m_telnetServer->tabCallback())
 		{
-			const std::string retCommand =
-				m_telnetServer->tabCallback()(shared_from_this(), buffer.substr(0, found));
+			const std::string retCommand = m_telnetServer->tabCallback()(shared_from_this(), buffer.substr(0, found));
 			if (!retCommand.empty())
 			{
 				buffer.erase(0, found);
@@ -475,14 +474,7 @@ void TelnetSession::update()
 
 		// we've got to be careful here. Telnet client might send null characters for New Lines mid-data block. We need
 		// to swap these out. recv is not null terminated, so its cool
-		for (size_t i = 0; i < static_cast<size_t>(readBytes); i++)
-		{
-			if (recvbuf[i] == ASCII_NULL) // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
-			{
-				// New Line constant
-				recvbuf[i] = ASCII_LF; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
-			}
-		}
+		std::replace_if(recvbuf.begin(), recvbuf.begin() + readBytes, [](char c) { return c == ASCII_NULL; }, ASCII_LF);
 
 		// Add it to the received buffer
 		m_buffer.append(recvbuf.data(), static_cast<unsigned int>(readBytes));
@@ -515,21 +507,16 @@ void TelnetSession::update()
 		auto lines = getCompleteLines(m_buffer);
 		for (const auto &line : lines)
 		{
-			if (m_telnetServer->newLineCallBack())
+			if (!m_telnetServer->newLineCallBack())
 			{
-				if (m_telnetServer->newLineCallBack()(shared_from_this(), line))
-				{
-					++stats.successCmdCtr;
-				}
-				else
-				{
-					++stats.failCmdCtr;
-				}
-				addToHistory(line);
+				break;
 			}
+
+			m_telnetServer->newLineCallBack()(shared_from_this(), line) ? ++stats.successCmdCtr : ++stats.failCmdCtr;
+			addToHistory(line);
 		}
 
-		if (m_telnetServer->interactivePrompt() && requirePromptReprint)
+		if (requirePromptReprint && m_telnetServer->interactivePrompt())
 		{
 			eraseLine();
 			sendPromptAndBuffer();
