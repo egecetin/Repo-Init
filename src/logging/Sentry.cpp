@@ -173,12 +173,16 @@ namespace spdlog::sinks
 		case spdlog::level::info:
 		case spdlog::level::off:
 			// For lower levels, do nothing for now. But you can easily handle them here.
+			break;
 		default:
 			break;
 		}
 	}
 
-	template <typename Mutex> void sentry_api_sink<Mutex>::flush_() {}
+	template <typename Mutex> void sentry_api_sink<Mutex>::flush_()
+	{
+		// Sentry library handles all operations, so no need to flush
+	}
 
 	template class sentry_api_sink<std::mutex>;
 	template class sentry_api_sink<details::null_mutex>;
