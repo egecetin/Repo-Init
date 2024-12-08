@@ -61,6 +61,8 @@ void Tracer::threadFunc() noexcept
 		{
 			if (!isRunning())
 			{
+				// NOTICE: Worked before but currently restarting the handler raises an error
+				// due to changes in the crashpad library
 				restart();
 				spdlog::warn("Crashpad handler restarted");
 			}
@@ -99,12 +101,12 @@ std::string Tracer::getSelfExecutableDir()
 	return (lastDelimPos == std::string::npos) ? "" : path.substr(0, lastDelimPos);
 }
 
-bool Tracer::isRunning() const
+bool Tracer::isRunning()
 {
 	int sockId{-1};
 	pid_t processId{-1};
 
-	if (!_clientHandler->GetHandlerSocket(&sockId, &processId))
+	if (!crashpad::CrashpadClient::GetHandlerSocket(&sockId, &processId))
 	{
 		return false;
 	}

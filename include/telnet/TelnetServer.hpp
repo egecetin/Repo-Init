@@ -174,7 +174,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 
 	const VEC_SP_TelnetSession &sessions() const { return m_sessions; }
 
-	bool interactivePrompt() const { return m_promptString.length() > 0; }
+	bool interactivePrompt() const { return !m_promptString.empty(); }
 	void promptString(const std::string_view &prompt) { m_promptString = prompt; }
 	const std::string &promptString() const { return m_promptString; }
 
@@ -206,6 +206,12 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	std::unique_ptr<std::thread> m_serverThread;   /**< Thread handler */
 	std::shared_ptr<std::atomic_flag> m_checkFlag; /**< Runtime check flag */
 };
+
+/**
+ * Print available commands to the session
+ * @param[in] session Handle to session
+ */
+void TelnetPrintAvailableCommands(const SP_TelnetSession &session);
 
 /**
  * Telnet session connection start callback

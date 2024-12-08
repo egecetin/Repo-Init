@@ -92,7 +92,7 @@ class Tracer {
 	 * Check if the crashpad_handler process is running
 	 * @return true if the crashpad_handler is running, false otherwise
 	 */
-	[[nodiscard]] bool isRunning() const;
+	[[nodiscard]] static bool isRunning();
 
 	/**
 	 * Check and restart the crashpad_handler process if it is not running

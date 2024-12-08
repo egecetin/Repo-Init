@@ -17,10 +17,10 @@
 // MAC address length for character string
 constexpr int MAC_LEN = 18;
 
-namespace spdlog::sinks
+namespace
 {
 	/// Set version related information to the Sentry context
-	inline void setVersionContext()
+	void setVersionContext()
 	{
 		std::string versionBuffer;
 		const sentry_value_t versionContext = sentry_value_new_object();
@@ -32,7 +32,7 @@ namespace spdlog::sinks
 	}
 
 	/// Set host related information to the Sentry context
-	inline void setHostContext()
+	void setHostContext()
 	{
 		std::array<char, BUFSIZ> hostBuffer{};
 		gethostname(hostBuffer.data(), BUFSIZ);
@@ -56,7 +56,7 @@ namespace spdlog::sinks
 	}
 
 	/// Set network related information to the Sentry context
-	inline void setNetworkContext()
+	void setNetworkContext()
 	{
 		ifaddrs *ifaddr = nullptr;
 		if (getifaddrs(&ifaddr) < 0)
@@ -111,7 +111,10 @@ namespace spdlog::sinks
 
 		sentry_set_context("Network", networkContext);
 	}
+} // namespace
 
+namespace spdlog::sinks
+{
 	template <typename Mutex> sentry_api_sink<Mutex>::sentry_api_sink(const std::string &sentryAddress)
 	{
 		if (sentryAddress.empty())
@@ -173,12 +176,16 @@ namespace spdlog::sinks
 		case spdlog::level::info:
 		case spdlog::level::off:
 			// For lower levels, do nothing for now. But you can easily handle them here.
+			break;
 		default:
 			break;
 		}
 	}
 
-	template <typename Mutex> void sentry_api_sink<Mutex>::flush_() {}
+	template <typename Mutex> void sentry_api_sink<Mutex>::flush_()
+	{
+		// Sentry library handles all operations, so no need to flush
+	}
 
 	template class sentry_api_sink<std::mutex>;
 	template class sentry_api_sink<details::null_mutex>;

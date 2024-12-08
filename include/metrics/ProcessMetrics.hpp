@@ -30,10 +30,8 @@ class ProcessMetrics {
 	size_t _oldReadBytes{0};  ///< Variable to store the old read bytes
 	size_t _oldWriteBytes{0}; ///< Variable to store the old write bytes
 
-	clock_t _oldCpuTime{0}; ///< Variable to store the old CPU time
-	struct tms _oldCpu {
-		0, 0, 0, 0
-	}; ///< Structure to store the old CPU times
+	clock_t _oldCpuTime{0};			///< Variable to store the old CPU time
+	struct tms _oldCpu{0, 0, 0, 0}; ///< Structure to store the old CPU times
 
 	/**
 	 * Counts the number of entries in a directory.
