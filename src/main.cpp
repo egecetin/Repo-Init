@@ -102,7 +102,7 @@ int main(int argc, char **argv)
 	vCheckFlag.emplace_back("Crashpad Handler", std::make_shared<std::atomic_flag>(false));
 	crashpadController = std::make_unique<Tracer>(
 		vCheckFlag[vCheckFlag.size() - 1].second, config.get("CRASHPAD_REMOTE"), config.get("CRASHPAD_PROXY"),
-		config.get("CRASHPAD_EXECUTABLE_DIR"), config.get("CRASHPAD_REPORT_DIR"));
+		config.get("CRASHPAD_EXECUTABLE_PATH"), config.get("CRASHPAD_REPORT_DIR"));
 
 	// Initialize Prometheus server
 	std::unique_ptr<PrometheusServer> mainPrometheusServer(nullptr);
