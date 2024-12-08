@@ -1,5 +1,0 @@
-<map id="spdlog::sinks::setHostContext" name="spdlog::sinks::setHostContext">
-<area shape="rect" id="Node000001" title="Set host related information to the Sentry context." alt="" coords="230,14,430,42"/>
-<area shape="rect" id="Node000002" href="$classspdlog_1_1sinks_1_1sentry__api__sink.html#a005dd6dd72151bf12eceed15c5ec8db3" title=" " alt="" coords="5,5,182,50"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,30,182,30,182,25,214,25"/>
-</map>

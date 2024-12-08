@@ -2,10 +2,10 @@
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,32,158,60"/>
 <area shape="rect" id="Node000002" href="$classTelnetServer.html#ab1aaaf1c839e8f8fc76dd3fd6934961f" title=" " alt="" coords="206,5,391,33"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,34,190,30,191,35,158,39"/>
-<area shape="rect" id="Node000003" href="$classTelnetServer.html#a8c9df79dede3e2a03f043e70606287df" title=" " alt="" coords="212,57,385,85"/>
+<area shape="rect" id="Node000003" href="$classTelnetServer.html#a8c9df79dede3e2a03f043e70606287df" title=" " alt="" coords="212,57,384,85"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="158,52,197,57,196,62,157,57"/>
 <area shape="rect" id="Node000004" href="$classTelnetServer.html#acd6b4cead01d745646ba4538093aa11d" title="Process new connections and messages." alt="" coords="439,57,584,85"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="385,69,423,69,423,74,385,74"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="385,68,423,68,423,74,385,74"/>
 <area shape="rect" id="Node000005" href="$classTelnetServer.html#a14a98513c8caf58a0bc5f78fc3f1b141" title=" " alt="" coords="632,57,845,85"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="585,69,617,69,617,74,585,74"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="585,68,617,68,617,74,585,74"/>
 </map>

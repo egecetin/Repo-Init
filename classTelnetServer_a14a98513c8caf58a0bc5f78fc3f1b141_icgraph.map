@@ -1,9 +1,9 @@
 <map id="TelnetServer::acceptConnection" name="TelnetServer::acceptConnection">
 <area shape="rect" id="Node000001" title=" " alt="" coords="619,5,832,33"/>
 <area shape="rect" id="Node000002" href="$classTelnetServer.html#acd6b4cead01d745646ba4538093aa11d" title="Process new connections and messages." alt="" coords="426,5,571,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="604,22,572,22,572,17,604,17"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="604,22,572,22,572,16,604,16"/>
 <area shape="rect" id="Node000003" href="$classTelnetServer.html#a8c9df79dede3e2a03f043e70606287df" title=" " alt="" coords="206,5,378,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="410,22,378,22,378,17,410,17"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="410,22,378,22,378,16,410,16"/>
 <area shape="rect" id="Node000004" href="$classTelnetServer.html#a671d41ea2e1ba0cbee6908922bc2202b" title=" " alt="" coords="5,5,158,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="190,22,158,22,158,17,190,17"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="190,22,158,22,158,16,190,16"/>
 </map>

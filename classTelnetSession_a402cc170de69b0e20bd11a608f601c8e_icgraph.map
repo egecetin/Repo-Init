@@ -1,5 +1,5 @@
 <map id="TelnetSession::processBackspace" name="TelnetSession::processBackspace">
 <area shape="rect" id="Node000001" title=" " alt="" coords="207,5,426,33"/>
 <area shape="rect" id="Node000002" href="$classTelnetSession.html#a0348872a381dd52fbf0e5529aa173ff4" title="Called every frame/loop by the Terminal Server." alt="" coords="5,5,159,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,22,159,22,159,17,191,17"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,22,159,22,159,16,191,16"/>
 </map>

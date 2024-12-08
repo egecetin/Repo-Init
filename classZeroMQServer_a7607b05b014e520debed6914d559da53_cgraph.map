@@ -1,11 +1,11 @@
 <map id="ZeroMQServer::threadFunc" name="ZeroMQServer::threadFunc">
 <area shape="rect" id="Node000001" title="Main thread function." alt="" coords="5,57,188,85"/>
 <area shape="rect" id="Node000002" href="$classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811" title="Processes new messages." alt="" coords="236,57,391,85"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,69,220,69,220,74,188,74"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,68,220,68,220,74,188,74"/>
 <area shape="rect" id="Node000003" href="$classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7" title=" " alt="" coords="439,5,657,33"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="379,54,467,34,468,40,380,59"/>
 <area shape="rect" id="Node000004" href="$classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3" title=" " alt="" coords="469,57,627,85"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="391,69,454,69,454,74,391,74"/>
-<area shape="rect" id="Node000005" href="$classZeroMQ.html#a67e9a20d56ac8197b16844b5e9955c0c" title=" " alt="" coords="467,109,630,137"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="391,68,454,68,454,74,391,74"/>
+<area shape="rect" id="Node000005" href="$classZeroMQ.html#a67e9a20d56ac8197b16844b5e9955c0c" title=" " alt="" coords="466,109,630,137"/>
 <area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="380,83,468,103,467,108,379,88"/>
 </map>

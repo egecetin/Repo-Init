@@ -1,5 +1,5 @@
 <map id="TelnetServer::shutdown" name="TelnetServer::shutdown">
 <area shape="rect" id="Node000001" title="Closes the Telnet Server." alt="" coords="241,5,404,33"/>
 <area shape="rect" id="Node000002" href="$classTelnetServer.html#acb5b0343dba0125c083159d59a8d2553" title="Destructor for server." alt="" coords="5,5,193,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,22,193,22,193,17,225,17"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,22,193,22,193,16,225,16"/>
 </map>

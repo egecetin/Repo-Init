@@ -1,6 +1,6 @@
 <map id="HTTP::sendPOSTRequest" name="HTTP::sendPOSTRequest">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,32,177,60"/>
-<area shape="rect" id="Node000002" href="$classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title=" " alt="" coords="231,5,391,33"/>
+<area shape="rect" id="Node000002" href="$classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title=" " alt="" coords="231,5,390,33"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,33,215,28,216,33,177,38"/>
 <area shape="rect" id="Node000003" href="$classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title=" " alt="" coords="225,57,397,85"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="177,53,209,57,209,62,177,58"/>

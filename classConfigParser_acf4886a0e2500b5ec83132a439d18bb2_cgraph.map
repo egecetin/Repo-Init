@@ -1,9 +1,7 @@
 <map id="ConfigParser::ConfigParser" name="ConfigParser::ConfigParser">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,5,191,33"/>
 <area shape="rect" id="Node000002" href="$classConfigParser.html#ad646c0cf5c0b0ca090b6b0ac176c6b97" title=" " alt="" coords="239,5,372,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,17,223,17,223,22,191,22"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,16,223,16,223,22,191,22"/>
 <area shape="rect" id="Node000003" href="$classConfigParser.html#aca170271d8fe1a36f905c971f807e8db" title=" " alt="" coords="420,5,580,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="372,17,404,17,404,22,372,22"/>
-<area shape="rect" id="Node000004" href="$ConfigParser_8cpp.html#adb12669ebe3ee12c3e5ecf4e07caa602" title=" " alt="" coords="628,5,758,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="580,17,612,17,612,22,580,22"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="372,16,404,16,404,22,372,22"/>
 </map>

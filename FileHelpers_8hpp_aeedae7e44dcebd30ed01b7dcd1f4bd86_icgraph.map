@@ -1,19 +1,15 @@
 <map id="findFromFile" name="findFromFile">
-<area shape="rect" id="Node000001" title=" " alt="" coords="979,88,1079,116"/>
-<area shape="rect" id="Node000002" href="$FileHelpers_8hpp.html#a578a5ee34e1934c52de5c02eff554b08" title=" " alt="" coords="780,5,881,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="992,82,930,48,880,32,882,27,932,43,995,77"/>
-<area shape="rect" id="Node000003" href="$classProcessMetrics.html#a595002ef00c4903650405590569de19d" title=" " alt="" coords="743,57,918,85"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="963,94,918,87,919,82,964,89"/>
-<area shape="rect" id="Node000007" href="$classspdlog_1_1sinks_1_1loki__api__sink.html#ad41002727c3101c6069dbbe333456b11" title=" " alt="" coords="750,109,911,154"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="964,114,912,122,911,117,963,109"/>
-<area shape="rect" id="Node000008" href="$namespacespdlog_1_1sinks.html#ae7e4b387492eeaf34f8a0467ea810733" title="Set host related information to the Sentry context." alt="" coords="730,177,931,205"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="999,128,967,149,932,168,901,179,899,174,930,163,965,144,996,123"/>
-<area shape="rect" id="Node000004" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title=" " alt="" coords="515,57,673,85"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="728,74,674,74,674,69,728,69"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="936,57,1036,85"/>
+<area shape="rect" id="Node000002" href="$FileHelpers_8hpp.html#a578a5ee34e1934c52de5c02eff554b08" title=" " alt="" coords="750,5,850,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="920,56,850,36,851,31,921,50"/>
+<area shape="rect" id="Node000003" href="$classProcessMetrics.html#a595002ef00c4903650405590569de19d" title=" " alt="" coords="712,57,888,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="920,74,888,74,888,68,920,68"/>
+<area shape="rect" id="Node000007" href="$classspdlog_1_1sinks_1_1loki__api__sink.html#ad41002727c3101c6069dbbe333456b11" title=" " alt="" coords="719,109,881,154"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="927,93,872,111,870,106,926,88"/>
+<area shape="rect" id="Node000004" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title=" " alt="" coords="506,57,664,85"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="697,74,665,74,665,68,697,68"/>
 <area shape="rect" id="Node000005" href="$classProcessMetrics.html#a48996912e89faa15ddb289ec1c6c46a0" title=" " alt="" coords="259,57,458,85"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="500,74,458,74,458,69,500,69"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="490,74,459,74,459,68,490,68"/>
 <area shape="rect" id="Node000006" href="$classProcessMetrics.html#a102e67199855a44a2c6418fadb57ecb2" title=" " alt="" coords="5,57,211,85"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="243,74,211,74,211,69,243,69"/>
-<area shape="rect" id="Node000009" href="$classspdlog_1_1sinks_1_1sentry__api__sink.html#a005dd6dd72151bf12eceed15c5ec8db3" title=" " alt="" coords="506,169,682,214"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="715,194,683,194,683,189,715,189"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="243,74,211,74,211,68,243,68"/>
 </map>

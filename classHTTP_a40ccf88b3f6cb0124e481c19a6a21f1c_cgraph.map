@@ -1,6 +1,6 @@
 <map id="HTTP::sendHEADRequest" name="HTTP::sendHEADRequest">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,32,179,60"/>
-<area shape="rect" id="Node000002" href="$classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title=" " alt="" coords="233,5,393,33"/>
+<area shape="rect" id="Node000002" href="$classHTTP.html#a64327e6367eabafdcc15b7548cf87f03" title=" " alt="" coords="233,5,392,33"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,33,217,28,218,33,179,38"/>
 <area shape="rect" id="Node000003" href="$classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4" title=" " alt="" coords="227,57,399,85"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,53,211,57,211,62,179,58"/>

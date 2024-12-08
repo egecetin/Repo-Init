@@ -1,7 +1,7 @@
 <map id="RawSocket::init" name="RawSocket::init">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,5,117,33"/>
 <area shape="rect" id="Node000002" href="$ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title=" " alt="" coords="165,5,276,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,17,149,17,149,22,117,22"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,16,149,16,149,22,117,22"/>
 <area shape="rect" id="Node000003" href="$ErrorHelpers_8cpp.html#a21f59d386bf0b5e382221c9add0e2327" title=" " alt="" coords="324,5,410,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="277,17,309,17,309,22,277,22"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="277,16,309,16,309,22,277,22"/>
 </map>

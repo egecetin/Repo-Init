@@ -8,7 +8,7 @@ var classTracer =
     [ "checkSocketIsRunning", "classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14", null ],
     [ "dumpSharedLibraryInfo", "classTracer.html#a45e5efd9d9aa56696931411cd7e0c47e", null ],
     [ "getSelfExecutableDir", "classTracer.html#ab220e3d1019cb07d311a35b40e1a6163", null ],
-    [ "isRunning", "classTracer.html#a76387f2c032a70fe1fd871218617ed06", null ],
+    [ "isRunning", "classTracer.html#a4e3975043a2fc94d307d511012706770", null ],
     [ "operator=", "classTracer.html#a1438f66422a2685b45bbc63486aa49d5", null ],
     [ "operator=", "classTracer.html#a261738e71561597c1c685306d045b3d1", null ],
     [ "restart", "classTracer.html#a4755dbacab3e82bed9e7eaedd8a025ab", null ],

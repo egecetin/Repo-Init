@@ -1,7 +1,7 @@
 <map id="ZeroMQServer::update" name="ZeroMQServer::update">
 <area shape="rect" id="Node000001" title="Processes new messages." alt="" coords="446,5,601,33"/>
 <area shape="rect" id="Node000002" href="$classZeroMQServer.html#a7607b05b014e520debed6914d559da53" title="Main thread function." alt="" coords="216,5,398,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="430,22,399,22,399,17,430,17"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="430,22,399,22,399,16,430,16"/>
 <area shape="rect" id="Node000003" href="$classZeroMQServer.html#ad1c5ff929aee9963e4752e238a658b5c" title=" " alt="" coords="5,5,168,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="200,22,168,22,168,17,200,17"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="200,22,168,22,168,16,200,16"/>
 </map>

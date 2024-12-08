@@ -1,7 +1,7 @@
 <map id="checkError" name="checkError">
 <area shape="rect" id="Node000001" title=" " alt="" coords="529,56,616,84"/>
 <area shape="rect" id="Node000002" href="$ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title=" " alt="" coords="370,56,481,84"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="514,73,481,73,481,67,514,67"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="514,72,481,72,481,67,514,67"/>
 <area shape="rect" id="Node000003" href="$classRawSocket.html#a7a92440dda76b4d383fc6fb488e436af" title=" " alt="" coords="211,5,322,33"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="365,53,311,36,313,31,366,48"/>
 <area shape="rect" id="Node000004" href="$classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d" title=" " alt="" coords="5,31,163,58"/>
