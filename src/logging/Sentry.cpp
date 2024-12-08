@@ -20,7 +20,7 @@ constexpr int MAC_LEN = 18;
 namespace
 {
 	/// Set version related information to the Sentry context
-	static void setVersionContext()
+	void setVersionContext()
 	{
 		std::string versionBuffer;
 		const sentry_value_t versionContext = sentry_value_new_object();
@@ -32,7 +32,7 @@ namespace
 	}
 
 	/// Set host related information to the Sentry context
-	static void setHostContext()
+	void setHostContext()
 	{
 		std::array<char, BUFSIZ> hostBuffer{};
 		gethostname(hostBuffer.data(), BUFSIZ);
@@ -56,7 +56,7 @@ namespace
 	}
 
 	/// Set network related information to the Sentry context
-	static void setNetworkContext()
+	void setNetworkContext()
 	{
 		ifaddrs *ifaddr = nullptr;
 		if (getifaddrs(&ifaddr) < 0)

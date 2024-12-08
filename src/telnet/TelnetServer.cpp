@@ -751,7 +751,7 @@ void TelnetServer::shutdown()
 	}
 }
 
-static void TelnetPrintAvailableCommands(const SP_TelnetSession &session)
+void TelnetPrintAvailableCommands(const SP_TelnetSession &session)
 {
 	// Print available commands
 	session->sendLine("");

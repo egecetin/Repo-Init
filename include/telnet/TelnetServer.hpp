@@ -208,6 +208,12 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 };
 
 /**
+ * Print available commands to the session
+ * @param[in] session Handle to session
+ */
+void TelnetPrintAvailableCommands(const SP_TelnetSession &session);
+
+/**
  * Telnet session connection start callback
  * @param[in] session Handle to session
  */

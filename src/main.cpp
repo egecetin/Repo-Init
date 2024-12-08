@@ -20,7 +20,7 @@ namespace
 {
 	// Interruption flag
 	// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-	volatile static sig_atomic_t interruptFlag = 0;
+	volatile sig_atomic_t interruptFlag = 0;
 
 	// Default SIGALRM function
 	void alarmFunc(int /*unused*/)
