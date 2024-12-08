@@ -104,7 +104,7 @@ bool Tracer::isRunning() const
 	int sockId{-1};
 	pid_t processId{-1};
 
-	if (!_clientHandler->GetHandlerSocket(&sockId, &processId))
+	if (!crashpad::CrashpadClient::GetHandlerSocket(&sockId, &processId))
 	{
 		return false;
 	}
