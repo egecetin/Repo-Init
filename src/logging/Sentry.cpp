@@ -17,7 +17,7 @@
 // MAC address length for character string
 constexpr int MAC_LEN = 18;
 
-namespace spdlog::sinks
+namespace
 {
 	/// Set version related information to the Sentry context
 	static void setVersionContext()
@@ -111,7 +111,10 @@ namespace spdlog::sinks
 
 		sentry_set_context("Network", networkContext);
 	}
+} // namespace
 
+namespace spdlog::sinks
+{
 	template <typename Mutex> sentry_api_sink<Mutex>::sentry_api_sink(const std::string &sentryAddress)
 	{
 		if (sentryAddress.empty())
