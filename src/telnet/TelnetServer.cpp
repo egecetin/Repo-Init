@@ -6,6 +6,7 @@
 
 #include <spdlog/spdlog.h>
 
+#include <algorithm>
 #include <array>
 #include <ctime>
 #include <iomanip>
@@ -160,7 +161,7 @@ void TelnetSession::eraseLine()
 void TelnetSession::sendLine(std::string data)
 {
 	// If is something is on the prompt, wipe it off
-	if (m_telnetServer->interactivePrompt() || m_buffer.length() > 0)
+	if (m_telnetServer->interactivePrompt() || !m_buffer.empty())
 	{
 		eraseLine();
 	}
@@ -340,7 +341,7 @@ bool TelnetSession::processTab(std::string &buffer)
 		}
 
 		// Remove single tab
-		if (buffer.length() > 0)
+		if (!buffer.empty())
 		{
 			buffer.erase(found, 1);
 		}

@@ -20,7 +20,7 @@ constexpr int MAC_LEN = 18;
 namespace spdlog::sinks
 {
 	/// Set version related information to the Sentry context
-	inline void setVersionContext()
+	static void setVersionContext()
 	{
 		std::string versionBuffer;
 		const sentry_value_t versionContext = sentry_value_new_object();
@@ -32,7 +32,7 @@ namespace spdlog::sinks
 	}
 
 	/// Set host related information to the Sentry context
-	inline void setHostContext()
+	static void setHostContext()
 	{
 		std::array<char, BUFSIZ> hostBuffer{};
 		gethostname(hostBuffer.data(), BUFSIZ);
@@ -56,7 +56,7 @@ namespace spdlog::sinks
 	}
 
 	/// Set network related information to the Sentry context
-	inline void setNetworkContext()
+	static void setNetworkContext()
 	{
 		ifaddrs *ifaddr = nullptr;
 		if (getifaddrs(&ifaddr) < 0)
