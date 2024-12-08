@@ -334,25 +334,27 @@ bool TelnetSession::processTab(std::string &buffer)
 	do
 	{
 		found = buffer.find_first_of('\t');
-		if (found != std::string::npos)
+		if (found == std::string::npos)
 		{
-			// Remove single tab
-			if (buffer.length() > 0)
-			{
-				buffer.erase(found, 1);
-			}
-			foundTabs = true;
+			continue;
+		}
 
-			// Process
-			if (m_telnetServer->tabCallback())
+		// Remove single tab
+		if (buffer.length() > 0)
+		{
+			buffer.erase(found, 1);
+		}
+		foundTabs = true;
+
+		// Process
+		if (m_telnetServer->tabCallback())
+		{
+			const std::string retCommand =
+				m_telnetServer->tabCallback()(shared_from_this(), buffer.substr(0, found));
+			if (!retCommand.empty())
 			{
-				const std::string retCommand =
-					m_telnetServer->tabCallback()(shared_from_this(), buffer.substr(0, found));
-				if (!retCommand.empty())
-				{
-					buffer.erase(0, found);
-					buffer.insert(0, retCommand);
-				}
+				buffer.erase(0, found);
+				buffer.insert(0, retCommand);
 			}
 		}
 	} while (found != std::string::npos);
