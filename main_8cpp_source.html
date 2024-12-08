@@ -210,7 +210,7 @@ $(function(){initNavTree('main_8cpp_source.html',''); initResizable(true); });
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.emplace_back(<span class="stringliteral">&quot;Crashpad Handler&quot;</span>, std::make_shared&lt;std::atomic_flag&gt;(<span class="keyword">false</span>));</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    crashpadController = std::make_unique&lt;Tracer&gt;(</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>[<a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.size() - 1].second, config.<a class="code hl_function" href="classConfigParser.html#a29eba7ec75ccd47eb5e70a3b86d72be0">get</a>(<span class="stringliteral">&quot;CRASHPAD_REMOTE&quot;</span>), config.<a class="code hl_function" href="classConfigParser.html#a29eba7ec75ccd47eb5e70a3b86d72be0">get</a>(<span class="stringliteral">&quot;CRASHPAD_PROXY&quot;</span>),</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        config.<a class="code hl_function" href="classConfigParser.html#a29eba7ec75ccd47eb5e70a3b86d72be0">get</a>(<span class="stringliteral">&quot;CRASHPAD_EXECUTABLE_DIR&quot;</span>), config.<a class="code hl_function" href="classConfigParser.html#a29eba7ec75ccd47eb5e70a3b86d72be0">get</a>(<span class="stringliteral">&quot;CRASHPAD_REPORT_DIR&quot;</span>));</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        config.<a class="code hl_function" href="classConfigParser.html#a29eba7ec75ccd47eb5e70a3b86d72be0">get</a>(<span class="stringliteral">&quot;CRASHPAD_EXECUTABLE_PATH&quot;</span>), config.<a class="code hl_function" href="classConfigParser.html#a29eba7ec75ccd47eb5e70a3b86d72be0">get</a>(<span class="stringliteral">&quot;CRASHPAD_REPORT_DIR&quot;</span>));</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="comment">// Initialize Prometheus server</span></div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    std::unique_ptr&lt;PrometheusServer&gt; mainPrometheusServer(<span class="keyword">nullptr</span>);</div>
@@ -344,7 +344,7 @@ $(function(){initNavTree('main_8cpp_source.html',''); initResizable(true); });
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
-    <li class="footer">Generated on Sun Dec 8 2024 09:46:16 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Sun Dec 8 2024 15:15:45 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>
