@@ -18,7 +18,7 @@ FileLocker::FileLocker(const std::filesystem::path &path) : _filePath(path)
 	_fd = open(path.c_str(), O_RDWR, 0666);
 	if (_fd < 0)
 	{
-		throw std::runtime_error("Can't open file " + _filePath.string() + ": " + getErrnoString(errno));
+		throw std::ios_base::failure("Can't open file " + _filePath.string() + ": " + getErrnoString(errno));
 	}
 
 	// Acquire lock
@@ -26,10 +26,10 @@ FileLocker::FileLocker(const std::filesystem::path &path) : _filePath(path)
 	{
 		if (close(_fd) != 0)
 		{
-			throw std::runtime_error("Can't get lock and also can't close file " + _filePath.string() + ": " +
-									 getErrnoString(errno));
+			throw std::ios_base::failure("Can't get lock and also can't close file " + _filePath.string() + ": " +
+										 getErrnoString(errno));
 		}
-		throw std::runtime_error("Can't get lock for file " + _filePath.string() + ": " + getErrnoString(errno));
+		throw std::ios_base::failure("Can't get lock for file " + _filePath.string() + ": " + getErrnoString(errno));
 	}
 }
 
@@ -91,14 +91,14 @@ FileMonitor::FileMonitor(const std::filesystem::path &filePath, int notifyEvents
 	_fDescriptor = inotify_init();
 	if (_fDescriptor < 0)
 	{
-		throw std::runtime_error("Failed to initialize inotify");
+		throw std::ios_base::failure("Failed to initialize inotify");
 	}
 
 	_wDescriptor = inotify_add_watch(_fDescriptor, _filePath.c_str(), notifyEvents);
 	if (_wDescriptor < 0)
 	{
 		close(_fDescriptor);
-		throw std::runtime_error("Failed to add watch descriptor");
+		throw std::ios_base::failure("Failed to add watch descriptor");
 	}
 
 	_thread = std::make_unique<std::thread>(&FileMonitor::threadFunction, this);
