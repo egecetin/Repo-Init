@@ -1,8 +1,11 @@
 #pragma once
 
+#include <filesystem>
 #include <fstream>
 #include <regex>
 #include <string>
+#include <sys/inotify.h>
+#include <thread>
 #include <vector>
 
 /**
@@ -51,3 +54,44 @@ inline std::vector<std::string> findFromFile(const std::string &filePath, const 
 	std::string lastWord;
 	return findFromFile(filePath, pattern, lastWord);
 }
+
+/// Callback function for file notifications
+using FNotifyCallback = std::function<void(const void *)>;
+
+/**
+ * Invokes functions for a file for given notify events
+ */
+class FileMonitor {
+  private:
+	/// File descriptor
+	int _fDescriptor;
+	/// Watch descriptor
+	int _wDecsriptor;
+	/// File path
+	std::filesystem::path _filePath;
+	/// Callback function
+	FNotifyCallback _notifyCallback;
+
+	/// Thread
+	std::unique_ptr<std::thread> _thread;
+	/// Flag to stop monitoring
+	std::atomic_flag _shouldStop{false};
+
+	void threadFunction() noexcept;
+
+  public:
+	/**
+	 * Constructor
+	 * @param[in] filePath Path to the file
+	 * @param[in] notifyEvents Events to notify
+	 */
+	FileMonitor(const std::filesystem::path &filePath, const int notifyEvents = IN_MODIFY);
+
+	FNotifyCallback notifyCallback() const { return _notifyCallback; }
+	void notifyCallback(FNotifyCallback func) { _notifyCallback = std::move(func); }
+
+	/**
+	 * Destructor
+	 */
+	~FileMonitor();
+};
