@@ -55,6 +55,56 @@ inline std::vector<std::string> findFromFile(const std::string &filePath, const 
 	return findFromFile(filePath, pattern, lastWord);
 }
 
+/**
+ * Locks a file in constructor and unlocks in destructor
+ */
+class FileLocker {
+  private:
+	/// File descriptor
+	int _fd;
+	/// Path to file
+	std::string _filePath;
+
+  public:
+	/**
+	 * Constructor
+	 * @param[in] path Path to the file
+	 */
+	explicit FileLocker(const std::string &path) : _filePath(path)
+	{
+		// Open file to get descriptor
+		_fd = open(path.c_str(), O_RDWR, 0666);
+		if (_fd < 0)
+		{
+			throw std::runtime_error("Can't open file " + _filePath + ": " + getErrnoString(errno));
+		}
+
+		// Acquire lock
+		if (flock(_fd, LOCK_SH | LOCK_NB) != 0)
+		{
+			if (close(_fd) != 0)
+			{
+				throw std::runtime_error("Can't get lock and also can't close file " + _filePath + ": " +
+										 getErrnoString(errno));
+			}
+			throw std::runtime_error("Can't get lock for file " + _filePath + ": " + getErrnoString(errno));
+		}
+	}
+
+	/**
+	 * Destructor
+	 */
+	~FileLocker()
+	{
+		// Unlock and close
+		if (_fd >= 0)
+		{
+			flock(_fd, LOCK_UN);
+			close(_fd);
+		}
+	}
+};
+
 /// Callback function for file notifications
 using FNotifyCallback = std::function<void(const void *)>;
 
