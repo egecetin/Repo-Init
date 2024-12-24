@@ -81,7 +81,7 @@ void FileMonitor::threadFunction() noexcept
 			idx += sizeof(inotify_event) + event->len;
 		}
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_INTERVAL_MS));
+		std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_INTERVAL_MS));
 	}
 }
 
