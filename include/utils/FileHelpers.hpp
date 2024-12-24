@@ -89,7 +89,7 @@ class FileMonitor {
 	/// File descriptor
 	int _fDescriptor;
 	/// Watch descriptor
-	int _wDecsriptor;
+	int _wDescriptor;
 	/// File path
 	std::filesystem::path _filePath;
 	/// Callback function
