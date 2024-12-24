@@ -43,7 +43,7 @@ FileLocker::~FileLocker()
 	}
 }
 
-void FileMonitor::threadFunction()
+void FileMonitor::threadFunction() noexcept
 {
 
 	while (!_shouldStop._M_i)
