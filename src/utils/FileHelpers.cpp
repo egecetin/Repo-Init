@@ -45,7 +45,6 @@ FileLocker::~FileLocker()
 
 void FileMonitor::threadFunction() noexcept
 {
-
 	while (!_shouldStop._M_i)
 	{
 		// Buffer for reading events
@@ -63,18 +62,14 @@ void FileMonitor::threadFunction() noexcept
 		}
 
 		ssize_t idx = 0;
-		while (idx < nRead)
+		while (_notifyCallback && idx < nRead)
 		{
-			auto *event = reinterpret_cast<inotify_event *>(&buffer[idx]);
+			const auto *event = reinterpret_cast<inotify_event *>(&buffer[idx]);
 
 			// Check if file notify type matches
 			if (event->mask & _notifyEvents)
 			{
-				// Notify if callback assigned
-				if (_notifyCallback)
-				{
-					_notifyCallback(_userPtr);
-				}
+				_notifyCallback(_userPtr);
 				break;
 			}
 
