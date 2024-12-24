@@ -113,7 +113,7 @@ class FileMonitor {
 	 * @param[in] filePath Path to the file
 	 * @param[in] notifyEvents Events to notify
 	 */
-	FileMonitor(const std::filesystem::path &filePath, int notifyEvents = IN_MODIFY);
+	explicit FileMonitor(const std::filesystem::path &filePath, int notifyEvents = IN_MODIFY);
 
 	FNotifyCallback notifyCallback() const { return _notifyCallback; }
 	void notifyCallback(FNotifyCallback func) { _notifyCallback = std::move(func); }
