@@ -10,7 +10,8 @@ if(GIT_FOUND)
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     RESULT_VARIABLE res_var
     OUTPUT_VARIABLE GIT_COM_ID
-    ERROR_QUIET)
+    ERROR_QUIET
+  )
   if(NOT ${res_var} EQUAL 0)
     message(AUTHOR_WARNING " Git failed (not a repo). Build will not contain git revision info.")
   else()

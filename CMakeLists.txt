@@ -60,7 +60,8 @@ set(SENTRY_BACKEND none) # Disable backend to manually use crashpad
 configure_file(Version.h.in "Version.h")
 
 # Define sources
-file(GLOB ProjectSources
+file(
+  GLOB ProjectSources
   ${PROJECT_SOURCE_DIR}/src/connection/Http.cpp
   ${PROJECT_SOURCE_DIR}/src/connection/RawSocket.cpp
   ${PROJECT_SOURCE_DIR}/src/logging/Logger.cpp
@@ -105,34 +106,37 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/crashpad/th
 
 # Add breakpad to compile dump_syms and minidump_stackwalk
 if(XXX_ENABLE_SYMBOL_GENERATION)
-  file(COPY ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/third_party
-    DESTINATION ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/breakpad/src/)
+  file(
+    COPY ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/third_party
+    DESTINATION ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/breakpad/src/
+  )
 
-  ExternalProject_Add(breakpad
+  ExternalProject_Add(
+    breakpad
     SOURCE_DIR ${PROJECT_SOURCE_DIR}/thirdparty/sentry/external/breakpad
     BINARY_DIR ${CMAKE_BINARY_DIR}/breakpad_bin
     CONFIGURE_COMMAND "<SOURCE_DIR>/configure"
-    BUILD_COMMAND make -j2 # Prevent OOM for the virtual machines when parallel compilation invoked
-    INSTALL_COMMAND "")
+    BUILD_COMMAND
+      make -j2 # Prevent OOM for the virtual machines when parallel compilation invoked
+    INSTALL_COMMAND ""
+  )
 endif()
 
 # Set Targets
 add_library(${PROJECT_NAME}-lib SHARED ${ProjectSources})
 set_target_properties(
   ${PROJECT_NAME}-lib
-  PROPERTIES OUTPUT_NAME ${PROJECT_NAME}
-  VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
-  SOVERSION ${PROJECT_VERSION_MAJOR})
+  PROPERTIES
+    OUTPUT_NAME ${PROJECT_NAME}
+    VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
+    SOVERSION ${PROJECT_VERSION_MAJOR}
+)
 target_compile_options(${PROJECT_NAME}-lib PRIVATE -Wall -Wextra -g -Wl,--build-id)
 target_include_directories(${PROJECT_NAME}-lib PRIVATE ${PROJECT_BINARY_DIR})
 target_link_libraries(
-  ${PROJECT_NAME}-lib PUBLIC
-  cppzmq
-  crashpad::client
-  CURL::libcurl
-  prometheus-cpp::pull
-  sentry::sentry
-  spdlog::spdlog)
+  ${PROJECT_NAME}-lib
+  PUBLIC cppzmq crashpad::client CURL::libcurl prometheus-cpp::pull sentry::sentry spdlog::spdlog
+)
 enable_security_flags_for_target(${PROJECT_NAME}-lib)
 
 if(XXX_ENABLE_SYMBOL_GENERATION)
@@ -176,9 +180,12 @@ if(XXX_ENABLE_PACKAGING)
   install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.service DESTINATION /etc/systemd/system)
 
   set(CPACK_PACKAGE_CONTACT "Ege Cetin <egecetin@hotmail.com.tr>")
-  set(CPACK_PACKAGE_DESCRIPTION "C++ Application Template. It has already integrated a Telnet and ZeroMQ server to \
+  set(
+    CPACK_PACKAGE_DESCRIPTION
+    "C++ Application Template. It has already integrated a Telnet and ZeroMQ server to \
 receive commands, Crashpad handler to generate minidump, a Prometheus server to broadcast performance metrics. \
-Also, it can send logs to syslog using Spdlog, to a Sentry server and Grafana Loki instance")
+Also, it can send logs to syslog using Spdlog, to a Sentry server and Grafana Loki instance"
+  )
   set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Repository template for C++ applications")
   set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
   set(CPACK_PACKAGE_RELEASE 1)
@@ -209,8 +216,9 @@ Also, it can send logs to syslog using Spdlog, to a Sentry server and Grafana Lo
     add_custom_command(
       TARGET ${PROJECT_NAME}
       POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E tar cfvz ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-${PROJECT_VERSION}-syms.tar.gz
-      --format=gnutar ${CMAKE_BINARY_DIR}/syms
+      COMMAND
+        ${CMAKE_COMMAND} -E tar cfvz ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-${PROJECT_VERSION}-syms.tar.gz --format=gnutar
+        ${CMAKE_BINARY_DIR}/syms
       COMMENT "Creating tar gz archive from ${CMAKE_BINARY_DIR}/syms"
     )
   endif()
@@ -232,33 +240,35 @@ if(XXX_BUILD_TESTS)
 
   if(XXX_ENABLE_COVERAGE)
     setup_target_for_coverage_gcovr_html(
-      NAME
-      coverage
-      EXECUTABLE
-      ${TestExecutables}
-      DEPENDENCIES
-      ${TestExecutables}
-      EXCLUDE
-      "${PROJECT_SOURCE_DIR}/src/main.cpp"
-      "${PROJECT_SOURCE_DIR}/thirdparty/*"
-      "${PROJECT_SOURCE_DIR}/build/*"
-      "${PROJECT_SOURCE_DIR}/tests/gtest/*"
-      "${PROJECT_SOURCE_DIR}/tests/unittests/*"
-      "${PROJECT_SOURCE_DIR}/tests/fuzztests/*")
+          NAME
+          coverage
+          EXECUTABLE
+          ${TestExecutables}
+          DEPENDENCIES
+          ${TestExecutables}
+          EXCLUDE
+          "${PROJECT_SOURCE_DIR}/src/main.cpp"
+          "${PROJECT_SOURCE_DIR}/thirdparty/*"
+          "${PROJECT_SOURCE_DIR}/build/*"
+          "${PROJECT_SOURCE_DIR}/tests/gtest/*"
+          "${PROJECT_SOURCE_DIR}/tests/unittests/*"
+          "${PROJECT_SOURCE_DIR}/tests/fuzztests/*"
+    )
 
     setup_target_for_coverage_gcovr_xml(
-      NAME
-      coverage-xml
-      EXECUTABLE
-      ${TestExecutables}
-      DEPENDENCIES
-      ${TestExecutables}
-      EXCLUDE
-      "${PROJECT_SOURCE_DIR}/src/main.cpp"
-      "${PROJECT_SOURCE_DIR}/thirdparty/*"
-      "${PROJECT_SOURCE_DIR}/build/*"
-      "${PROJECT_SOURCE_DIR}/tests/gtest/*"
-      "${PROJECT_SOURCE_DIR}/tests/unittests/*"
-      "${PROJECT_SOURCE_DIR}/tests/fuzztests/*")
+          NAME
+          coverage-xml
+          EXECUTABLE
+          ${TestExecutables}
+          DEPENDENCIES
+          ${TestExecutables}
+          EXCLUDE
+          "${PROJECT_SOURCE_DIR}/src/main.cpp"
+          "${PROJECT_SOURCE_DIR}/thirdparty/*"
+          "${PROJECT_SOURCE_DIR}/build/*"
+          "${PROJECT_SOURCE_DIR}/tests/gtest/*"
+          "${PROJECT_SOURCE_DIR}/tests/unittests/*"
+          "${PROJECT_SOURCE_DIR}/tests/fuzztests/*"
+    )
   endif()
 endif()
