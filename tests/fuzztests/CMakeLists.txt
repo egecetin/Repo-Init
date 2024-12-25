@@ -7,10 +7,13 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_BINARY_DIR}/tests)
 
 # Fuzz sources
-set(ProjectFuzzTestSources "\
+set(
+  ProjectFuzzTestSources
+  "\
 Hasher_FuzzTests;\
 Http_FuzzTests;\
-Telnet_FuzzTests;")
+Telnet_FuzzTests;"
+)
 
 # Create fuzz targets
 foreach(SourceEntry ${ProjectFuzzTestSources})
