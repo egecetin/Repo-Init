@@ -29,6 +29,10 @@ void FileMonitor::threadFunc() noexcept
 		{
 			spdlog::error("Failed to read events for file monitoring: {}", getErrnoString(errno));
 		}
+		else if (nRead == 0)
+		{
+			spdlog::debug("No events read for file monitoring");
+		}
 
 		ssize_t idx = 0;
 		while (_notifyCallback && idx < nRead)
@@ -63,6 +67,13 @@ FileMonitor::FileMonitor(const std::filesystem::path &filePath, int notifyEvents
 	{
 		close(_fDescriptor);
 		throw std::ios_base::failure("Failed to add watch descriptor");
+	}
+
+	int flags = fcntl(_fDescriptor, F_GETFL);
+    if (fcntl(_fDescriptor, F_SETFL, flags | O_NONBLOCK) < 0)
+	{
+		close(_fDescriptor);
+		throw std::ios_base::failure("Failed to set file descriptor to non-blocking mode");
 	}
 
 	_thread = std::make_unique<std::thread>(&FileMonitor::threadFunc, this);
