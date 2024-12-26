@@ -133,7 +133,8 @@ target_link_libraries(
   CURL::libcurl
   prometheus-cpp::pull
   sentry::sentry
-  spdlog::spdlog)
+  spdlog::spdlog
+  stdc++fs)
 enable_security_flags_for_target(${PROJECT_NAME}-lib)
 
 if(XXX_ENABLE_SYMBOL_GENERATION)
