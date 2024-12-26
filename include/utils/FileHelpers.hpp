@@ -56,29 +56,6 @@ inline std::vector<std::string> findFromFile(const std::string &filePath, const 
 	return findFromFile(filePath, pattern, lastWord);
 }
 
-/**
- * Locks a file in constructor and unlocks in destructor
- */
-class FileLocker {
-  private:
-	/// File descriptor
-	int _fd;
-	/// Path to file
-	std::filesystem::path _filePath;
-
-  public:
-	/**
-	 * Constructor
-	 * @param[in] path Path to the file
-	 */
-	explicit FileLocker(const std::filesystem::path &path);
-
-	/**
-	 * Destructor
-	 */
-	~FileLocker();
-};
-
 /// Callback function for file notifications
 using FNotifyCallback = std::function<void(const void *)>;
 
@@ -88,9 +65,9 @@ using FNotifyCallback = std::function<void(const void *)>;
 class FileMonitor {
   private:
 	/// File descriptor
-	int _fDescriptor;
+	int _fDescriptor{-1};
 	/// Watch descriptor
-	int _wDescriptor;
+	int _wDescriptor{-1};
 	/// File path
 	std::filesystem::path _filePath;
 	/// Callback function

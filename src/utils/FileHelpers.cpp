@@ -12,37 +12,6 @@
 /// Sleep interval for the file monitor
 constexpr int SLEEP_INTERVAL_MS = 50;
 
-FileLocker::FileLocker(const std::filesystem::path &path) : _filePath(path)
-{
-	// Open file to get descriptor
-	_fd = open(path.c_str(), O_RDWR, 0666);
-	if (_fd < 0)
-	{
-		throw std::ios_base::failure("Can't open file " + _filePath.string() + ": " + getErrnoString(errno));
-	}
-
-	// Acquire lock
-	if (flock(_fd, LOCK_SH | LOCK_NB) != 0)
-	{
-		if (close(_fd) != 0)
-		{
-			throw std::ios_base::failure("Can't get lock and also can't close file " + _filePath.string() + ": " +
-										 getErrnoString(errno));
-		}
-		throw std::ios_base::failure("Can't get lock for file " + _filePath.string() + ": " + getErrnoString(errno));
-	}
-}
-
-FileLocker::~FileLocker()
-{
-	// Unlock and close
-	if (_fd >= 0)
-	{
-		flock(_fd, LOCK_UN);
-		close(_fd);
-	}
-}
-
 void FileMonitor::threadFunc() noexcept
 {
 	while (!_shouldStop._M_i)
@@ -96,5 +65,33 @@ FileMonitor::FileMonitor(const std::filesystem::path &filePath, int notifyEvents
 		throw std::ios_base::failure("Failed to add watch descriptor");
 	}
 
-	_thread = std::make_unique<std::thread>(&FileMonitor::threadFunction, this);
+	_thread = std::make_unique<std::thread>(&FileMonitor::threadFunc, this);
+}
+
+FileMonitor::~FileMonitor()
+{
+	_shouldStop.test_and_set();
+	if (_thread && _thread->joinable())
+	{
+		_thread->join();
+		_thread.reset();
+	}
+
+	// Remove watch descriptor first
+    if (_wDescriptor >= 0)
+    {
+        if (inotify_rm_watch(_fDescriptor, _wDescriptor) < 0) {
+            spdlog::error("Failed to remove watch descriptor: {}", getErrnoString(errno));
+        }
+        _wDescriptor = -1;
+    }
+
+    // Then close the file descriptor
+    if (_fDescriptor >= 0)
+    {
+        if (close(_fDescriptor) < 0) {
+			spdlog::error("Failed to close file descriptor: {}", getErrnoString(errno));
+        }
+        _fDescriptor = -1;
+    }
 }
