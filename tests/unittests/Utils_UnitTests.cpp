@@ -73,16 +73,25 @@ TEST(Utils_Tests, FileHelpersUnitTests)
 	ASSERT_TRUE(readLines.empty());
 
 	FileMonitor monitor(TEST_DATA_READ_PATH, IN_OPEN);
-	monitor.userPtr(nullptr);
+	int val = 0xFF;
+	monitor.userPtr(&val);
 
 	bool isInvoked = false;
-	monitor.notifyCallback([&isInvoked](const void *) { isInvoked = true; });
+	bool isAccessed = false;
+	monitor.notifyCallback([&isInvoked, &isAccessed](const void *ptr) {
+		isInvoked = true;
+		if (ptr)
+		{
+			isAccessed = *(static_cast<const int *>(ptr)) == 0xFF;
+		}
+	});
 
 	std::ifstream file(TEST_DATA_READ_PATH);
 	ASSERT_TRUE(file.is_open());
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(300));
 	ASSERT_TRUE(isInvoked);
+	ASSERT_TRUE(isAccessed);
 }
 
 TEST(Utils_Tests, InputParserUnitTests)
