@@ -82,7 +82,7 @@ class FileMonitor {
 	/// Flag to stop monitoring
 	std::atomic_flag _shouldStop{false};
 
-	void threadFunc() noexcept;
+	void threadFunc() const noexcept;
 
   public:
 	/**

@@ -3,6 +3,7 @@
 #include "utils/ErrorHelpers.hpp"
 
 #include <fcntl.h>
+#include <iostream>
 #include <sys/file.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
@@ -12,7 +13,7 @@
 /// Sleep interval for the file monitor
 constexpr int SLEEP_INTERVAL_MS = 50;
 
-void FileMonitor::threadFunc() noexcept
+void FileMonitor::threadFunc() const noexcept
 {
 	while (!_shouldStop._M_i)
 	{
@@ -69,8 +70,7 @@ FileMonitor::FileMonitor(const std::filesystem::path &filePath, int notifyEvents
 		throw std::ios_base::failure("Failed to add watch descriptor");
 	}
 
-	int flags = fcntl(_fDescriptor, F_GETFL);
-    if (fcntl(_fDescriptor, F_SETFL, flags | O_NONBLOCK) < 0)
+	if (fcntl(_fDescriptor, F_SETFL, fcntl(_fDescriptor, F_GETFL) | O_NONBLOCK) < 0)
 	{
 		close(_fDescriptor);
 		throw std::ios_base::failure("Failed to set file descriptor to non-blocking mode");
@@ -89,20 +89,38 @@ FileMonitor::~FileMonitor()
 	}
 
 	// Remove watch descriptor first
-    if (_wDescriptor >= 0)
-    {
-        if (inotify_rm_watch(_fDescriptor, _wDescriptor) < 0) {
-            spdlog::error("Failed to remove watch descriptor: {}", getErrnoString(errno));
-        }
-        _wDescriptor = -1;
-    }
+	if (_wDescriptor >= 0)
+	{
+		if (inotify_rm_watch(_fDescriptor, _wDescriptor) < 0)
+		{
+			try
+			{
+				spdlog::error("Failed to remove watch descriptor: {}", getErrnoString(errno));
+			}
+			catch (const std::exception &e)
+			{
+				std::cerr << "Failed to remove watch descriptor and also logger thrown an exception: "
+						  << getErrnoString(errno) << " " << e.what() << '\n';
+			}
+		}
+		_wDescriptor = -1;
+	}
 
-    // Then close the file descriptor
-    if (_fDescriptor >= 0)
-    {
-        if (close(_fDescriptor) < 0) {
-			spdlog::error("Failed to close file descriptor: {}", getErrnoString(errno));
-        }
-        _fDescriptor = -1;
-    }
+	// Then close the file descriptor
+	if (_fDescriptor >= 0)
+	{
+		if (close(_fDescriptor) < 0)
+		{
+			try
+			{
+				spdlog::error("Failed to close file descriptor: {}", getErrnoString(errno));
+			}
+			catch (const std::exception &e)
+			{
+				std::cerr << "Failed to close file descriptor and also logger thrown an exception: "
+						  << getErrnoString(errno) << " " << e.what() << '\n';
+			}
+		}
+		_fDescriptor = -1;
+	}
 }
