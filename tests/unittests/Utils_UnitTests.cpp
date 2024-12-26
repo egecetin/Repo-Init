@@ -71,6 +71,18 @@ TEST(Utils_Tests, FileHelpersUnitTests)
 
 	readLines = findFromFile(TEST_DATA_READ_PATH, "^dummy", word);
 	ASSERT_TRUE(readLines.empty());
+
+	FileMonitor monitor(TEST_DATA_READ_PATH, IN_OPEN);
+	monitor.userPtr(nullptr);
+
+	bool isInvoked = false;
+	monitor.notifyCallback([&isInvoked](const void *) { isInvoked = true; });
+
+	std::ifstream file(TEST_DATA_READ_PATH);
+	ASSERT_TRUE(file.is_open());
+
+	std::this_thread::sleep_for(std::chrono::milliseconds(100));
+	ASSERT_TRUE(isInvoked);
 }
 
 TEST(Utils_Tests, InputParserUnitTests)
