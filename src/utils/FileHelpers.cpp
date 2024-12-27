@@ -47,14 +47,14 @@ void FileMonitor::threadFunc() const noexcept
 				break;
 			}
 
-			idx += sizeof(inotify_event) + event->len;
+			idx += static_cast<ssize_t>(sizeof(inotify_event) + event->len);
 		}
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(SLEEP_INTERVAL_MS));
 	}
 }
 
-FileMonitor::FileMonitor(std::filesystem::path filePath, int notifyEvents)
+FileMonitor::FileMonitor(std::filesystem::path filePath, uint32_t notifyEvents)
 	: _fDescriptor(inotify_init()), _filePath(std::move(filePath)), _notifyEvents(notifyEvents)
 {
 	if (_fDescriptor < 0)

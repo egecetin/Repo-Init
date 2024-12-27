@@ -90,7 +90,7 @@ class FileMonitor {
 	 * @param[in] filePath Path to the file
 	 * @param[in] notifyEvents Events to notify
 	 */
-	explicit FileMonitor(std::filesystem::path filePath, int notifyEvents = IN_MODIFY);
+	explicit FileMonitor(std::filesystem::path filePath, uint32_t notifyEvents = IN_MODIFY);
 
 	/// @brief Copy constructor
 	FileMonitor(const FileMonitor & /*unused*/) = delete;
