@@ -18,14 +18,14 @@ void FileMonitor::threadFunc() const noexcept
 	while (!_shouldStop._M_i)
 	{
 		// Buffer for reading events
-		unsigned int nBytes;
+		unsigned int nBytes = 0;
 		if (ioctl(_fDescriptor, FIONREAD, &nBytes) < 0)
 		{
 			spdlog::error("Failed to get available events for file monitoring: {}", getErrnoString(errno));
 		}
 
-		auto buffer = std::make_unique<char[]>(nBytes);
-		auto nRead = read(_fDescriptor, buffer.get(), nBytes);
+		auto buffer = std::vector<char>(nBytes + 1, '\0');
+		auto nRead = read(_fDescriptor, buffer.data(), nBytes);
 		if (nRead < 0)
 		{
 			spdlog::error("Failed to read events for file monitoring: {}", getErrnoString(errno));
@@ -38,10 +38,10 @@ void FileMonitor::threadFunc() const noexcept
 		ssize_t idx = 0;
 		while (_notifyCallback && idx < nRead)
 		{
-			const auto *event = reinterpret_cast<inotify_event *>(&buffer[idx]);
+			const auto *event = reinterpret_cast<inotify_event *>(&buffer[static_cast<size_t>(idx)]);
 
 			// Check if file notify type matches
-			if (event->mask & _notifyEvents)
+			if ((event->mask & _notifyEvents) != 0)
 			{
 				_notifyCallback(_userPtr);
 				break;
@@ -54,10 +54,9 @@ void FileMonitor::threadFunc() const noexcept
 	}
 }
 
-FileMonitor::FileMonitor(const std::filesystem::path &filePath, int notifyEvents)
-	: _filePath(filePath), _notifyEvents(notifyEvents)
+FileMonitor::FileMonitor(std::filesystem::path filePath, int notifyEvents)
+	: _fDescriptor(inotify_init()), _filePath(std::move(filePath)), _notifyEvents(notifyEvents)
 {
-	_fDescriptor = inotify_init();
 	if (_fDescriptor < 0)
 	{
 		throw std::ios_base::failure("Failed to initialize inotify");

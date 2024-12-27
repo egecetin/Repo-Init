@@ -73,7 +73,7 @@ class FileMonitor {
 	/// Callback function
 	FNotifyCallback _notifyCallback;
 	/// Notify types
-	int _notifyEvents;
+	uint32_t _notifyEvents;
 	/// User pointer
 	const void *_userPtr = nullptr;
 
@@ -90,9 +90,15 @@ class FileMonitor {
 	 * @param[in] filePath Path to the file
 	 * @param[in] notifyEvents Events to notify
 	 */
-	explicit FileMonitor(const std::filesystem::path &filePath, int notifyEvents = IN_MODIFY);
+	explicit FileMonitor(std::filesystem::path filePath, int notifyEvents = IN_MODIFY);
 
-	FNotifyCallback notifyCallback() const { return _notifyCallback; }
+	/// @brief Copy constructor
+	FileMonitor(const FileMonitor & /*unused*/) = delete;
+
+	/// @brief Copy assignment operator
+	FileMonitor &operator=(FileMonitor /*unused*/) = delete;
+
+	[[nodiscard]] FNotifyCallback notifyCallback() const { return _notifyCallback; }
 	void notifyCallback(FNotifyCallback func) { _notifyCallback = std::move(func); }
 
 	/**
