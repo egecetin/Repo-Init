@@ -277,7 +277,12 @@ Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno">   49</span>{</div>
 <div class="line"><span class="lineno">   50</span>    spdlog::info(<span class="stringliteral">&quot;Goodbye!&quot;</span>);</div>
 <div class="line"><span class="lineno">   51</span>    <a class="code hl_variable" href="#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a>-&gt;flush();</div>
-<div class="line"><span class="lineno">   52</span>}</div>
+<div class="line"><span class="lineno">   52</span>    spdlog::drop(<a class="code hl_variable" href="#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a>-&gt;name());</div>
+<div class="line"><span class="lineno">   53</span> </div>
+<div class="line"><span class="lineno">   54</span>    <span class="comment">// Set default logger</span></div>
+<div class="line"><span class="lineno">   55</span>    spdlog::set_default_logger(</div>
+<div class="line"><span class="lineno">   56</span>        std::make_shared&lt;spdlog::logger&gt;(<span class="stringliteral">&quot;default&quot;</span>, std::make_shared&lt;spdlog::sinks::stdout_color_sink_mt&gt;()));</div>
+<div class="line"><span class="lineno">   57</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -400,7 +405,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classMainLogger.html">MainLogger</a></li>
-    <li class="footer">Generated on Sat Dec 28 2024 09:53:47 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Sat Dec 28 2024 10:45:08 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>
