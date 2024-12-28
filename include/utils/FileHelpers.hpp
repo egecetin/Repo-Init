@@ -95,8 +95,14 @@ class FileMonitor {
 	/// @brief Copy constructor
 	FileMonitor(const FileMonitor & /*unused*/) = delete;
 
+	/// @brief Move constructor
+	FileMonitor(FileMonitor && /*unused*/) = delete;
+
 	/// @brief Copy assignment operator
 	FileMonitor &operator=(FileMonitor /*unused*/) = delete;
+
+	/// @brief Move assignment operator
+	FileMonitor &operator=(FileMonitor && /*unused*/) = delete;
 
 	[[nodiscard]] FNotifyCallback notifyCallback() const { return _notifyCallback; }
 	void notifyCallback(FNotifyCallback func) { _notifyCallback = std::move(func); }
