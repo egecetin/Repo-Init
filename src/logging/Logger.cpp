@@ -49,4 +49,9 @@ MainLogger::~MainLogger()
 {
 	spdlog::info("Goodbye!");
 	_mainLogger->flush();
+	spdlog::drop(_mainLogger->name());
+
+	// Set default logger
+	spdlog::set_default_logger(
+		std::make_shared<spdlog::logger>("default", std::make_shared<spdlog::sinks::stdout_color_sink_mt>()));
 }
