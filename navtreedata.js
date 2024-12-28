@@ -65,8 +65,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "BaseServerStats_8cpp.html",
-"classProcessMetrics.html#a170e9b763cc2b1557cec7a57ac346179",
-"classZeroMQStats.html#a5946126002d5e9b4b401d3c53aa4c36a"
+"classMainLogger.html",
+"classZeroMQMonitor.html#afb8e523f553fcdf1e4c1cf7b14db68ac"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

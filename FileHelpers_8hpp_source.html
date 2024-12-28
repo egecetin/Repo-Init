@@ -107,56 +107,112 @@ $(function(){initNavTree('FileHelpers_8hpp_source.html',''); initResizable(true)
 <div class="contents">
 <a href="FileHelpers_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;regex&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">   15</a></span><span class="keyword">inline</span> std::vector&lt;std::string&gt; <a class="code hl_function" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(<span class="keyword">const</span> std::string &amp;filePath, <span class="keyword">const</span> std::string &amp;pattern,</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                                             std::string &amp;lastWord)</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">const</span> std::regex regExp(pattern);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    std::ifstream inFile(filePath);</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    std::vector&lt;std::string&gt; matchedLines;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    std::string readLine;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordflow">while</span> (getline(inFile, readLine))</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keywordflow">if</span> (std::regex_search(readLine, regExp))</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            matchedLines.push_back(readLine);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        }</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    }</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">if</span> (!matchedLines.empty())</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keyword">auto</span> pos = matchedLines.front().find_last_of(<span class="charliteral">&#39; &#39;</span>);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">if</span> (pos != std::string::npos &amp;&amp; pos != matchedLines.front().size())</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            lastWord = matchedLines.front().substr(pos + 1);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        }</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">return</span> matchedLines;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;filesystem&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;regex&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;sys/inotify.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">   19</a></span><span class="keyword">inline</span> std::vector&lt;std::string&gt; <a class="code hl_function" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(<span class="keyword">const</span> std::string &amp;filePath, <span class="keyword">const</span> std::string &amp;pattern,</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>                                             std::string &amp;lastWord)</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">const</span> std::regex regExp(pattern);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    std::ifstream inFile(filePath);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    std::vector&lt;std::string&gt; matchedLines;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    std::string readLine;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordflow">while</span> (getline(inFile, readLine))</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordflow">if</span> (std::regex_search(readLine, regExp))</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            matchedLines.push_back(readLine);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">if</span> (!matchedLines.empty())</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keyword">auto</span> pos = matchedLines.front().find_last_of(<span class="charliteral">&#39; &#39;</span>);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordflow">if</span> (pos != std::string::npos &amp;&amp; pos != matchedLines.front().size())</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            lastWord = matchedLines.front().substr(pos + 1);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">return</span> matchedLines;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
 </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="FileHelpers_8hpp.html#a578a5ee34e1934c52de5c02eff554b08">   49</a></span><span class="keyword">inline</span> std::vector&lt;std::string&gt; <a class="code hl_function" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(<span class="keyword">const</span> std::string &amp;filePath, <span class="keyword">const</span> std::string &amp;pattern)</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    std::string lastWord;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(filePath, pattern, lastWord);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00053" data-start="{" data-end="}">
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="FileHelpers_8hpp.html#a578a5ee34e1934c52de5c02eff554b08">   53</a></span><span class="keyword">inline</span> std::vector&lt;std::string&gt; <a class="code hl_function" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(<span class="keyword">const</span> std::string &amp;filePath, <span class="keyword">const</span> std::string &amp;pattern)</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>{</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    std::string lastWord;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(filePath, pattern, lastWord);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>}</div>
 </div>
-<div class="ttc" id="aFileHelpers_8hpp_html_aeedae7e44dcebd30ed01b7dcd1f4bd86"><div class="ttname"><a href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a></div><div class="ttdeci">std::vector&lt; std::string &gt; findFromFile(const std::string &amp;filePath, const std::string &amp;pattern, std::string &amp;lastWord)</div><div class="ttdef"><b>Definition</b> <a href="#l00015">FileHelpers.hpp:15</a></div></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="FileHelpers_8hpp.html#a653f3744a12689492ab0ac63fb28a002">   60</a></span><span class="keyword">using </span><a class="code hl_typedef" href="FileHelpers_8hpp.html#a653f3744a12689492ab0ac63fb28a002">FNotifyCallback</a> = std::function&lt;void(<span class="keyword">const</span> <span class="keywordtype">void</span> *)&gt;;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="};">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classFileMonitor.html">   65</a></span><span class="keyword">class </span><a class="code hl_class" href="classFileMonitor.html">FileMonitor</a> {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classFileMonitor.html#a5148e4dea56cd7617e366e25353f3868">   68</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classFileMonitor.html#a5148e4dea56cd7617e366e25353f3868">_fDescriptor</a>{-1};</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classFileMonitor.html#aa225498810baeba723e58b732c3daff5">   70</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classFileMonitor.html#aa225498810baeba723e58b732c3daff5">_wDescriptor</a>{-1};</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classFileMonitor.html#abed15a9d6ab8af0bb5676f769ba38615">   72</a></span>    std::filesystem::path <a class="code hl_variable" href="classFileMonitor.html#abed15a9d6ab8af0bb5676f769ba38615">_filePath</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classFileMonitor.html#a329aafa33e08701b5419a002ee9fb1e8">   74</a></span>    <a class="code hl_typedef" href="FileHelpers_8hpp.html#a653f3744a12689492ab0ac63fb28a002">FNotifyCallback</a> <a class="code hl_variable" href="classFileMonitor.html#a329aafa33e08701b5419a002ee9fb1e8">_notifyCallback</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classFileMonitor.html#ab0ffa5e4a300fe41f30dd417d84741e2">   76</a></span>    uint32_t <a class="code hl_variable" href="classFileMonitor.html#ab0ffa5e4a300fe41f30dd417d84741e2">_notifyEvents</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classFileMonitor.html#a06a4b35b1dfcee26bc8e0ef0d7e49bc9">   78</a></span>    <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code hl_variable" href="classFileMonitor.html#a06a4b35b1dfcee26bc8e0ef0d7e49bc9">_userPtr</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classFileMonitor.html#a6c426b3e24b92022b860aec1d74758dd">   81</a></span>    std::unique_ptr&lt;std::thread&gt; <a class="code hl_variable" href="classFileMonitor.html#a6c426b3e24b92022b860aec1d74758dd">_thread</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classFileMonitor.html#a67a024e258860299d4caeb42e45f61b6">   83</a></span>    std::atomic_flag <a class="code hl_variable" href="classFileMonitor.html#a67a024e258860299d4caeb42e45f61b6">_shouldStop</a>{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFileMonitor.html#a57d321f895055ac4f0dd63784994d4d4">threadFunc</a>() const noexcept;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  public:</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    explicit <a class="code hl_class" href="classFileMonitor.html">FileMonitor</a>(std::filesystem::path filePath, uint32_t notifyEvents = IN_MODIFY);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classFileMonitor.html#a0779b7ddf8cdb69b5b863b94646951fe">   96</a></span>    <a class="code hl_class" href="classFileMonitor.html">FileMonitor</a>(const <a class="code hl_class" href="classFileMonitor.html">FileMonitor</a> &amp; <span class="comment">/*unused*/</span>) = delete;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classFileMonitor.html#a945e293309f5bc1599fc08f00c3c8321">   99</a></span>    <a class="code hl_class" href="classFileMonitor.html">FileMonitor</a>(<a class="code hl_class" href="classFileMonitor.html">FileMonitor</a> &amp;&amp; <span class="comment">/*unused*/</span>) = delete;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classFileMonitor.html#abd57637370a63ae283b9e08b10dd51a1">  102</a></span>    <a class="code hl_class" href="classFileMonitor.html">FileMonitor</a> &amp;operator=(<a class="code hl_class" href="classFileMonitor.html">FileMonitor</a> <span class="comment">/*unused*/</span>) = delete;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classFileMonitor.html#ada000e36ede40313c51beaea74bde032">  105</a></span>    <a class="code hl_class" href="classFileMonitor.html">FileMonitor</a> &amp;operator=(<a class="code hl_class" href="classFileMonitor.html">FileMonitor</a> &amp;&amp; <span class="comment">/*unused*/</span>) = delete;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classFileMonitor.html#aa00c4d6ca3a6221032d4e562b7e22670">  107</a></span>    [[nodiscard]] <a class="code hl_typedef" href="FileHelpers_8hpp.html#a653f3744a12689492ab0ac63fb28a002">FNotifyCallback</a> <a class="code hl_function" href="classFileMonitor.html#aa00c4d6ca3a6221032d4e562b7e22670">notifyCallback</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFileMonitor.html#a329aafa33e08701b5419a002ee9fb1e8">_notifyCallback</a>; }</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classFileMonitor.html#a585b4a9c1afd5c9dcd3e89965e580df9">  108</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFileMonitor.html#a585b4a9c1afd5c9dcd3e89965e580df9">notifyCallback</a>(<a class="code hl_typedef" href="FileHelpers_8hpp.html#a653f3744a12689492ab0ac63fb28a002">FNotifyCallback</a> func) { <a class="code hl_variable" href="classFileMonitor.html#a329aafa33e08701b5419a002ee9fb1e8">_notifyCallback</a> = std::move(func); }</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classFileMonitor.html#a6d8bdf3ae7cada8b879303e3c722e9eb">  114</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFileMonitor.html#a6d8bdf3ae7cada8b879303e3c722e9eb">userPtr</a>(<span class="keyword">const</span> <span class="keywordtype">void</span> *ptr) { <a class="code hl_variable" href="classFileMonitor.html#a06a4b35b1dfcee26bc8e0ef0d7e49bc9">_userPtr</a> = ptr; }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <a class="code hl_function" href="classFileMonitor.html#a9c8609a4e2fe6851b0770e8791d68dba">~FileMonitor</a>();</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>};</div>
+</div>
+<div class="ttc" id="aFileHelpers_8hpp_html_a653f3744a12689492ab0ac63fb28a002"><div class="ttname"><a href="FileHelpers_8hpp.html#a653f3744a12689492ab0ac63fb28a002">FNotifyCallback</a></div><div class="ttdeci">std::function&lt; void(const void *)&gt; FNotifyCallback</div><div class="ttdoc">Callback function for file notifications.</div><div class="ttdef"><b>Definition</b> <a href="#l00060">FileHelpers.hpp:60</a></div></div>
+<div class="ttc" id="aFileHelpers_8hpp_html_aeedae7e44dcebd30ed01b7dcd1f4bd86"><div class="ttname"><a href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a></div><div class="ttdeci">std::vector&lt; std::string &gt; findFromFile(const std::string &amp;filePath, const std::string &amp;pattern, std::string &amp;lastWord)</div><div class="ttdef"><b>Definition</b> <a href="#l00019">FileHelpers.hpp:19</a></div></div>
+<div class="ttc" id="aclassFileMonitor_html"><div class="ttname"><a href="classFileMonitor.html">FileMonitor</a></div><div class="ttdef"><b>Definition</b> <a href="#l00065">FileHelpers.hpp:65</a></div></div>
+<div class="ttc" id="aclassFileMonitor_html_a06a4b35b1dfcee26bc8e0ef0d7e49bc9"><div class="ttname"><a href="classFileMonitor.html#a06a4b35b1dfcee26bc8e0ef0d7e49bc9">FileMonitor::_userPtr</a></div><div class="ttdeci">const void * _userPtr</div><div class="ttdoc">User pointer.</div><div class="ttdef"><b>Definition</b> <a href="#l00078">FileHelpers.hpp:78</a></div></div>
+<div class="ttc" id="aclassFileMonitor_html_a329aafa33e08701b5419a002ee9fb1e8"><div class="ttname"><a href="classFileMonitor.html#a329aafa33e08701b5419a002ee9fb1e8">FileMonitor::_notifyCallback</a></div><div class="ttdeci">FNotifyCallback _notifyCallback</div><div class="ttdoc">Callback function.</div><div class="ttdef"><b>Definition</b> <a href="#l00074">FileHelpers.hpp:74</a></div></div>
+<div class="ttc" id="aclassFileMonitor_html_a5148e4dea56cd7617e366e25353f3868"><div class="ttname"><a href="classFileMonitor.html#a5148e4dea56cd7617e366e25353f3868">FileMonitor::_fDescriptor</a></div><div class="ttdeci">int _fDescriptor</div><div class="ttdoc">File descriptor.</div><div class="ttdef"><b>Definition</b> <a href="#l00068">FileHelpers.hpp:68</a></div></div>
+<div class="ttc" id="aclassFileMonitor_html_a57d321f895055ac4f0dd63784994d4d4"><div class="ttname"><a href="classFileMonitor.html#a57d321f895055ac4f0dd63784994d4d4">FileMonitor::threadFunc</a></div><div class="ttdeci">void threadFunc() const noexcept</div><div class="ttdef"><b>Definition</b> <a href="FileHelpers_8cpp_source.html#l00016">FileHelpers.cpp:16</a></div></div>
+<div class="ttc" id="aclassFileMonitor_html_a585b4a9c1afd5c9dcd3e89965e580df9"><div class="ttname"><a href="classFileMonitor.html#a585b4a9c1afd5c9dcd3e89965e580df9">FileMonitor::notifyCallback</a></div><div class="ttdeci">void notifyCallback(FNotifyCallback func)</div><div class="ttdef"><b>Definition</b> <a href="#l00108">FileHelpers.hpp:108</a></div></div>
+<div class="ttc" id="aclassFileMonitor_html_a67a024e258860299d4caeb42e45f61b6"><div class="ttname"><a href="classFileMonitor.html#a67a024e258860299d4caeb42e45f61b6">FileMonitor::_shouldStop</a></div><div class="ttdeci">std::atomic_flag _shouldStop</div><div class="ttdoc">Flag to stop monitoring.</div><div class="ttdef"><b>Definition</b> <a href="#l00083">FileHelpers.hpp:83</a></div></div>
+<div class="ttc" id="aclassFileMonitor_html_a6c426b3e24b92022b860aec1d74758dd"><div class="ttname"><a href="classFileMonitor.html#a6c426b3e24b92022b860aec1d74758dd">FileMonitor::_thread</a></div><div class="ttdeci">std::unique_ptr&lt; std::thread &gt; _thread</div><div class="ttdoc">Thread.</div><div class="ttdef"><b>Definition</b> <a href="#l00081">FileHelpers.hpp:81</a></div></div>
+<div class="ttc" id="aclassFileMonitor_html_a6d8bdf3ae7cada8b879303e3c722e9eb"><div class="ttname"><a href="classFileMonitor.html#a6d8bdf3ae7cada8b879303e3c722e9eb">FileMonitor::userPtr</a></div><div class="ttdeci">void userPtr(const void *ptr)</div><div class="ttdef"><b>Definition</b> <a href="#l00114">FileHelpers.hpp:114</a></div></div>
+<div class="ttc" id="aclassFileMonitor_html_a9c8609a4e2fe6851b0770e8791d68dba"><div class="ttname"><a href="classFileMonitor.html#a9c8609a4e2fe6851b0770e8791d68dba">FileMonitor::~FileMonitor</a></div><div class="ttdeci">~FileMonitor()</div><div class="ttdef"><b>Definition</b> <a href="FileHelpers_8cpp_source.html#l00081">FileHelpers.cpp:81</a></div></div>
+<div class="ttc" id="aclassFileMonitor_html_aa00c4d6ca3a6221032d4e562b7e22670"><div class="ttname"><a href="classFileMonitor.html#aa00c4d6ca3a6221032d4e562b7e22670">FileMonitor::notifyCallback</a></div><div class="ttdeci">FNotifyCallback notifyCallback() const</div><div class="ttdef"><b>Definition</b> <a href="#l00107">FileHelpers.hpp:107</a></div></div>
+<div class="ttc" id="aclassFileMonitor_html_aa225498810baeba723e58b732c3daff5"><div class="ttname"><a href="classFileMonitor.html#aa225498810baeba723e58b732c3daff5">FileMonitor::_wDescriptor</a></div><div class="ttdeci">int _wDescriptor</div><div class="ttdoc">Watch descriptor.</div><div class="ttdef"><b>Definition</b> <a href="#l00070">FileHelpers.hpp:70</a></div></div>
+<div class="ttc" id="aclassFileMonitor_html_ab0ffa5e4a300fe41f30dd417d84741e2"><div class="ttname"><a href="classFileMonitor.html#ab0ffa5e4a300fe41f30dd417d84741e2">FileMonitor::_notifyEvents</a></div><div class="ttdeci">uint32_t _notifyEvents</div><div class="ttdoc">Notify types.</div><div class="ttdef"><b>Definition</b> <a href="#l00076">FileHelpers.hpp:76</a></div></div>
+<div class="ttc" id="aclassFileMonitor_html_abed15a9d6ab8af0bb5676f769ba38615"><div class="ttname"><a href="classFileMonitor.html#abed15a9d6ab8af0bb5676f769ba38615">FileMonitor::_filePath</a></div><div class="ttdeci">std::filesystem::path _filePath</div><div class="ttdoc">File path.</div><div class="ttdef"><b>Definition</b> <a href="#l00072">FileHelpers.hpp:72</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_821002d4f10779a80d4fb17bc32f21f1.html">utils</a></li><li class="navelem"><a class="el" href="FileHelpers_8hpp.html">FileHelpers.hpp</a></li>
-    <li class="footer">Generated on Wed Dec 25 2024 14:54:45 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Sat Dec 28 2024 09:53:46 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>

@@ -103,28 +103,42 @@ $(function(){initNavTree('FileHelpers_8hpp.html',''); initResizable(true); });
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">FileHelpers.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;fstream&gt;</code><br />
+<div class="textblock"><code>#include &lt;atomic&gt;</code><br />
+<code>#include &lt;filesystem&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;regex&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
+<code>#include &lt;sys/inotify.h&gt;</code><br />
+<code>#include &lt;thread&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for FileHelpers.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="FileHelpers_8hpp__incl.png" border="0" usemap="#a_2____w_2Repo-Init_2Repo-Init_2include_2utils_2FileHelpers_8hpp" alt=""/></div>
 <map name="a_2____w_2Repo-Init_2Repo-Init_2include_2utils_2FileHelpers_8hpp" id="a_2____w_2Repo-Init_2Repo-Init_2include_2utils_2FileHelpers_8hpp">
-<area shape="rect" title=" " alt="" coords="91,5,239,67"/>
-<area shape="rect" title=" " alt="" coords="5,115,74,143"/>
-<area shape="poly" title=" " alt="" coords="125,70,72,108,68,103,122,65"/>
-<area shape="rect" title=" " alt="" coords="98,115,152,143"/>
-<area shape="poly" title=" " alt="" coords="154,69,139,102,134,100,149,66"/>
-<area shape="rect" title=" " alt="" coords="177,115,233,143"/>
-<area shape="poly" title=" " alt="" coords="181,66,195,100,190,102,176,69"/>
-<area shape="rect" title=" " alt="" coords="257,115,315,143"/>
-<area shape="poly" title=" " alt="" coords="207,65,258,103,255,108,204,70"/>
+<area shape="rect" title=" " alt="" coords="284,5,432,67"/>
+<area shape="rect" title=" " alt="" coords="5,115,68,143"/>
+<area shape="poly" title=" " alt="" coords="284,61,83,117,82,111,283,55"/>
+<area shape="rect" title=" " alt="" coords="91,115,174,143"/>
+<area shape="poly" title=" " alt="" coords="284,70,180,111,178,106,282,65"/>
+<area shape="rect" title=" " alt="" coords="198,115,267,143"/>
+<area shape="poly" title=" " alt="" coords="318,70,265,108,261,103,315,65"/>
+<area shape="rect" title=" " alt="" coords="291,115,345,143"/>
+<area shape="poly" title=" " alt="" coords="347,69,332,102,327,100,342,66"/>
+<area shape="rect" title=" " alt="" coords="370,115,426,143"/>
+<area shape="poly" title=" " alt="" coords="374,66,388,100,383,102,369,69"/>
+<area shape="rect" title=" " alt="" coords="450,115,543,143"/>
+<area shape="poly" title=" " alt="" coords="405,65,465,104,462,109,403,70"/>
+<area shape="rect" title=" " alt="" coords="567,115,628,143"/>
+<area shape="poly" title=" " alt="" coords="433,63,553,108,552,113,432,68"/>
+<area shape="rect" title=" " alt="" coords="653,115,711,143"/>
+<area shape="poly" title=" " alt="" coords="433,55,638,112,637,117,432,60"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -132,18 +146,31 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="FileHelpers_8hpp__dep__incl.png" border="0" usemap="#a_2____w_2Repo-Init_2Repo-Init_2include_2utils_2FileHelpers_8hppdep" alt=""/></div>
 <map name="a_2____w_2Repo-Init_2Repo-Init_2include_2utils_2FileHelpers_8hppdep" id="a_2____w_2Repo-Init_2Repo-Init_2include_2utils_2FileHelpers_8hppdep">
-<area shape="rect" title=" " alt="" coords="226,5,374,67"/>
+<area shape="rect" title=" " alt="" coords="345,5,493,67"/>
 <area shape="rect" href="Loki_8cpp.html" title=" " alt="" coords="5,115,182,160"/>
-<area shape="poly" title=" " alt="" coords="224,77,140,117,137,112,222,72"/>
+<area shape="poly" title=" " alt="" coords="331,67,166,117,164,112,329,62"/>
 <area shape="rect" href="Sentry_8cpp.html" title=" " alt="" coords="206,115,395,160"/>
-<area shape="poly" title=" " alt="" coords="303,83,303,115,298,115,298,83"/>
+<area shape="poly" title=" " alt="" coords="373,79,328,117,324,112,369,75"/>
 <area shape="rect" href="ProcessMetrics_8cpp.html" title=" " alt="" coords="419,115,656,160"/>
-<area shape="poly" title=" " alt="" coords="388,71,486,112,484,117,386,76"/>
+<area shape="poly" title=" " alt="" coords="468,75,513,112,510,117,465,79"/>
+<area shape="rect" href="FileHelpers_8cpp.html" title=" " alt="" coords="680,115,878,160"/>
+<area shape="poly" title=" " alt="" coords="509,59,701,112,699,117,507,64"/>
 </map>
 </div>
 </div>
 <p><a href="FileHelpers_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFileMonitor.html">FileMonitor</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a653f3744a12689492ab0ac63fb28a002" id="r_a653f3744a12689492ab0ac63fb28a002"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a653f3744a12689492ab0ac63fb28a002">FNotifyCallback</a> = std::function&lt;void(const void *)&gt;</td></tr>
+<tr class="memdesc:a653f3744a12689492ab0ac63fb28a002"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback function for file notifications.  <br /></td></tr>
+<tr class="separator:a653f3744a12689492ab0ac63fb28a002"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aeedae7e44dcebd30ed01b7dcd1f4bd86" id="r_aeedae7e44dcebd30ed01b7dcd1f4bd86"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a> (const std::string &amp;filePath, const std::string &amp;pattern, std::string &amp;lastWord)</td></tr>
@@ -151,6 +178,25 @@ Functions</h2></td></tr>
 <tr class="memitem:a578a5ee34e1934c52de5c02eff554b08" id="r_a578a5ee34e1934c52de5c02eff554b08"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a578a5ee34e1934c52de5c02eff554b08">findFromFile</a> (const std::string &amp;filePath, const std::string &amp;pattern)</td></tr>
 <tr class="separator:a578a5ee34e1934c52de5c02eff554b08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a653f3744a12689492ab0ac63fb28a002" name="a653f3744a12689492ab0ac63fb28a002"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a653f3744a12689492ab0ac63fb28a002">&#9670;&#160;</a></span>FNotifyCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a653f3744a12689492ab0ac63fb28a002">FNotifyCallback</a> = std::function&lt;void(const void *)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback function for file notifications. </p>
+
+<p class="definition">Definition at line <a class="el" href="FileHelpers_8hpp_source.html#l00060">60</a> of file <a class="el" href="FileHelpers_8hpp_source.html">FileHelpers.hpp</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a578a5ee34e1934c52de5c02eff554b08" name="a578a5ee34e1934c52de5c02eff554b08"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a578a5ee34e1934c52de5c02eff554b08">&#9670;&#160;</a></span>findFromFile() <span class="overload">[1/2]</span></h2>
@@ -187,12 +233,12 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::string&gt; Matched lines </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="FileHelpers_8hpp_source.html#l00049">49</a> of file <a class="el" href="FileHelpers_8hpp_source.html">FileHelpers.hpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   50</span>{</div>
-<div class="line"><span class="lineno">   51</span>    std::string lastWord;</div>
-<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(filePath, pattern, lastWord);</div>
-<div class="line"><span class="lineno">   53</span>}</div>
-<div class="ttc" id="aFileHelpers_8hpp_html_aeedae7e44dcebd30ed01b7dcd1f4bd86"><div class="ttname"><a href="#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a></div><div class="ttdeci">std::vector&lt; std::string &gt; findFromFile(const std::string &amp;filePath, const std::string &amp;pattern, std::string &amp;lastWord)</div><div class="ttdef"><b>Definition</b> <a href="FileHelpers_8hpp_source.html#l00015">FileHelpers.hpp:15</a></div></div>
+<p class="definition">Definition at line <a class="el" href="FileHelpers_8hpp_source.html#l00053">53</a> of file <a class="el" href="FileHelpers_8hpp_source.html">FileHelpers.hpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   54</span>{</div>
+<div class="line"><span class="lineno">   55</span>    std::string lastWord;</div>
+<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(filePath, pattern, lastWord);</div>
+<div class="line"><span class="lineno">   57</span>}</div>
+<div class="ttc" id="aFileHelpers_8hpp_html_aeedae7e44dcebd30ed01b7dcd1f4bd86"><div class="ttname"><a href="#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a></div><div class="ttdeci">std::vector&lt; std::string &gt; findFromFile(const std::string &amp;filePath, const std::string &amp;pattern, std::string &amp;lastWord)</div><div class="ttdef"><b>Definition</b> <a href="FileHelpers_8hpp_source.html#l00019">FileHelpers.hpp:19</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -247,32 +293,32 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::string&gt; Matched lines </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="FileHelpers_8hpp_source.html#l00015">15</a> of file <a class="el" href="FileHelpers_8hpp_source.html">FileHelpers.hpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   17</span>{</div>
-<div class="line"><span class="lineno">   18</span>    <span class="keyword">const</span> std::regex regExp(pattern);</div>
-<div class="line"><span class="lineno">   19</span>    std::ifstream inFile(filePath);</div>
-<div class="line"><span class="lineno">   20</span>    std::vector&lt;std::string&gt; matchedLines;</div>
-<div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>    std::string readLine;</div>
-<div class="line"><span class="lineno">   23</span>    <span class="keywordflow">while</span> (getline(inFile, readLine))</div>
-<div class="line"><span class="lineno">   24</span>    {</div>
-<div class="line"><span class="lineno">   25</span>        <span class="keywordflow">if</span> (std::regex_search(readLine, regExp))</div>
-<div class="line"><span class="lineno">   26</span>        {</div>
-<div class="line"><span class="lineno">   27</span>            matchedLines.push_back(readLine);</div>
-<div class="line"><span class="lineno">   28</span>        }</div>
-<div class="line"><span class="lineno">   29</span>    }</div>
-<div class="line"><span class="lineno">   30</span> </div>
-<div class="line"><span class="lineno">   31</span>    <span class="keywordflow">if</span> (!matchedLines.empty())</div>
-<div class="line"><span class="lineno">   32</span>    {</div>
-<div class="line"><span class="lineno">   33</span>        <span class="keyword">auto</span> pos = matchedLines.front().find_last_of(<span class="charliteral">&#39; &#39;</span>);</div>
-<div class="line"><span class="lineno">   34</span>        <span class="keywordflow">if</span> (pos != std::string::npos &amp;&amp; pos != matchedLines.front().size())</div>
-<div class="line"><span class="lineno">   35</span>        {</div>
-<div class="line"><span class="lineno">   36</span>            lastWord = matchedLines.front().substr(pos + 1);</div>
-<div class="line"><span class="lineno">   37</span>        }</div>
-<div class="line"><span class="lineno">   38</span>    }</div>
-<div class="line"><span class="lineno">   39</span> </div>
-<div class="line"><span class="lineno">   40</span>    <span class="keywordflow">return</span> matchedLines;</div>
-<div class="line"><span class="lineno">   41</span>}</div>
+<p class="definition">Definition at line <a class="el" href="FileHelpers_8hpp_source.html#l00019">19</a> of file <a class="el" href="FileHelpers_8hpp_source.html">FileHelpers.hpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   21</span>{</div>
+<div class="line"><span class="lineno">   22</span>    <span class="keyword">const</span> std::regex regExp(pattern);</div>
+<div class="line"><span class="lineno">   23</span>    std::ifstream inFile(filePath);</div>
+<div class="line"><span class="lineno">   24</span>    std::vector&lt;std::string&gt; matchedLines;</div>
+<div class="line"><span class="lineno">   25</span> </div>
+<div class="line"><span class="lineno">   26</span>    std::string readLine;</div>
+<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">while</span> (getline(inFile, readLine))</div>
+<div class="line"><span class="lineno">   28</span>    {</div>
+<div class="line"><span class="lineno">   29</span>        <span class="keywordflow">if</span> (std::regex_search(readLine, regExp))</div>
+<div class="line"><span class="lineno">   30</span>        {</div>
+<div class="line"><span class="lineno">   31</span>            matchedLines.push_back(readLine);</div>
+<div class="line"><span class="lineno">   32</span>        }</div>
+<div class="line"><span class="lineno">   33</span>    }</div>
+<div class="line"><span class="lineno">   34</span> </div>
+<div class="line"><span class="lineno">   35</span>    <span class="keywordflow">if</span> (!matchedLines.empty())</div>
+<div class="line"><span class="lineno">   36</span>    {</div>
+<div class="line"><span class="lineno">   37</span>        <span class="keyword">auto</span> pos = matchedLines.front().find_last_of(<span class="charliteral">&#39; &#39;</span>);</div>
+<div class="line"><span class="lineno">   38</span>        <span class="keywordflow">if</span> (pos != std::string::npos &amp;&amp; pos != matchedLines.front().size())</div>
+<div class="line"><span class="lineno">   39</span>        {</div>
+<div class="line"><span class="lineno">   40</span>            lastWord = matchedLines.front().substr(pos + 1);</div>
+<div class="line"><span class="lineno">   41</span>        }</div>
+<div class="line"><span class="lineno">   42</span>    }</div>
+<div class="line"><span class="lineno">   43</span> </div>
+<div class="line"><span class="lineno">   44</span>    <span class="keywordflow">return</span> matchedLines;</div>
+<div class="line"><span class="lineno">   45</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -302,7 +348,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_821002d4f10779a80d4fb17bc32f21f1.html">utils</a></li><li class="navelem"><a class="el" href="FileHelpers_8hpp.html">FileHelpers.hpp</a></li>
-    <li class="footer">Generated on Wed Dec 25 2024 14:54:45 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Sat Dec 28 2024 09:53:47 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>

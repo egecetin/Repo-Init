@@ -8,6 +8,7 @@ var annotated_dup =
     ] ],
     [ "BaseServerStats", "classBaseServerStats.html", "classBaseServerStats" ],
     [ "ConfigParser", "classConfigParser.html", "classConfigParser" ],
+    [ "FileMonitor", "classFileMonitor.html", "classFileMonitor" ],
     [ "HTTP", "classHTTP.html", "classHTTP" ],
     [ "HTTPStats", "structHTTPStats.html", "structHTTPStats" ],
     [ "InputParser", "classInputParser.html", "classInputParser" ],

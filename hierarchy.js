@@ -14,6 +14,7 @@ var hierarchy =
       [ "TelnetServer", "classTelnetServer.html", null ],
       [ "TelnetSession", "classTelnetSession.html", null ]
     ] ],
+    [ "FileMonitor", "classFileMonitor.html", null ],
     [ "HTTP", "classHTTP.html", null ],
     [ "HTTPStats", "structHTTPStats.html", null ],
     [ "InputParser", "classInputParser.html", null ],
