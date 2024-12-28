@@ -76,6 +76,7 @@ file(
   ${PROJECT_SOURCE_DIR}/src/utils/BaseServerStats.cpp
   ${PROJECT_SOURCE_DIR}/src/utils/ConfigParser.cpp
   ${PROJECT_SOURCE_DIR}/src/utils/ErrorHelpers.cpp
+  ${PROJECT_SOURCE_DIR}/src/utils/FileHelpers.cpp
   ${PROJECT_SOURCE_DIR}/src/utils/Tracer.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQ.cpp
   ${PROJECT_SOURCE_DIR}/src/zeromq/ZeroMQMonitor.cpp
@@ -135,7 +136,7 @@ target_compile_options(${PROJECT_NAME}-lib PRIVATE -Wall -Wextra -g -Wl,--build-
 target_include_directories(${PROJECT_NAME}-lib PRIVATE ${PROJECT_BINARY_DIR})
 target_link_libraries(
   ${PROJECT_NAME}-lib
-  PUBLIC cppzmq crashpad::client CURL::libcurl prometheus-cpp::pull sentry::sentry spdlog::spdlog
+  PUBLIC cppzmq crashpad::client CURL::libcurl prometheus-cpp::pull sentry::sentry spdlog::spdlog stdc++fs
 )
 enable_security_flags_for_target(${PROJECT_NAME}-lib)
 

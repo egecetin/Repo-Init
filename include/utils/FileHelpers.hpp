@@ -1,8 +1,12 @@
 #pragma once
 
+#include <atomic>
+#include <filesystem>
 #include <fstream>
 #include <regex>
 #include <string>
+#include <sys/inotify.h>
+#include <thread>
 #include <vector>
 
 /**
@@ -51,3 +55,66 @@ inline std::vector<std::string> findFromFile(const std::string &filePath, const 
 	std::string lastWord;
 	return findFromFile(filePath, pattern, lastWord);
 }
+
+/// Callback function for file notifications
+using FNotifyCallback = std::function<void(const void *)>;
+
+/**
+ * Invokes functions for a file for given notify events
+ */
+class FileMonitor {
+  private:
+	/// File descriptor
+	int _fDescriptor{-1};
+	/// Watch descriptor
+	int _wDescriptor{-1};
+	/// File path
+	std::filesystem::path _filePath;
+	/// Callback function
+	FNotifyCallback _notifyCallback;
+	/// Notify types
+	uint32_t _notifyEvents;
+	/// User pointer
+	const void *_userPtr = nullptr;
+
+	/// Thread
+	std::unique_ptr<std::thread> _thread;
+	/// Flag to stop monitoring
+	std::atomic_flag _shouldStop{false};
+
+	void threadFunc() const noexcept;
+
+  public:
+	/**
+	 * Constructor
+	 * @param[in] filePath Path to the file
+	 * @param[in] notifyEvents Events to notify
+	 */
+	explicit FileMonitor(std::filesystem::path filePath, uint32_t notifyEvents = IN_MODIFY);
+
+	/// @brief Copy constructor
+	FileMonitor(const FileMonitor & /*unused*/) = delete;
+
+	/// @brief Move constructor
+	FileMonitor(FileMonitor && /*unused*/) = delete;
+
+	/// @brief Copy assignment operator
+	FileMonitor &operator=(FileMonitor /*unused*/) = delete;
+
+	/// @brief Move assignment operator
+	FileMonitor &operator=(FileMonitor && /*unused*/) = delete;
+
+	[[nodiscard]] FNotifyCallback notifyCallback() const { return _notifyCallback; }
+	void notifyCallback(FNotifyCallback func) { _notifyCallback = std::move(func); }
+
+	/**
+	 * Sets user pointer
+	 * @param[in] ptr User pointer
+	 */
+	void userPtr(const void *ptr) { _userPtr = ptr; }
+
+	/**
+	 * Destructor
+	 */
+	~FileMonitor();
+};
