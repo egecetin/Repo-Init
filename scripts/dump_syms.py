@@ -2,8 +2,25 @@
 
 import errno
 import os
+import re
 import sys
 from optparse import OptionParser
+
+
+def generateVersions(string):
+    pattern = r"(\d+)\.(\d+)\.(\d+)$"
+    match = re.search(pattern, string)
+
+    if match:
+        number1, number2, number3 = match.groups()
+        base_string = string[: match.start()]
+        return [
+            f"{base_string}{number1}",
+            f"{base_string}{number1}.{number2}",
+            f"{base_string}{number1}.{number2}.{number3}",
+        ]
+    else:
+        return [string]
 
 
 if __name__ == "__main__":
@@ -33,6 +50,10 @@ if __name__ == "__main__":
             if os.path.isfile(os.path.join(binaryDir, filePath))
             and not os.path.islink(os.path.join(binaryDir, filePath))
         ]
+
+    extendedBinaryPaths = []
+    for binaryPath in binaryPaths:
+        extendedBinaryPaths.extend(generateVersions(binaryPath))
 
     for binaryPath in binaryPaths:
         # Prepare command to dump symbols
