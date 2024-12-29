@@ -2,25 +2,8 @@
 
 import errno
 import os
-import re
 import sys
 from optparse import OptionParser
-
-
-def generateVersions(string):
-    pattern = r"(\d+)\.(\d+)\.(\d+)$"
-    match = re.search(pattern, string)
-
-    if match:
-        number1, number2, number3 = match.groups()
-        base_string = string[: match.start()]
-        return [
-            f"{base_string}{number1}",
-            f"{base_string}{number1}.{number2}",
-            f"{base_string}{number1}.{number2}.{number3}",
-        ]
-    else:
-        return [string]
 
 
 if __name__ == "__main__":
@@ -51,10 +34,6 @@ if __name__ == "__main__":
             and not os.path.islink(os.path.join(binaryDir, filePath))
         ]
 
-    extendedBinaryPaths = []
-    for binaryPath in binaryPaths:
-        extendedBinaryPaths.extend(generateVersions(binaryPath))
-
     for binaryPath in binaryPaths:
         # Prepare command to dump symbols
         outFilePath = outputDir + os.path.basename(binaryPath) + ".sym"
@@ -66,14 +45,12 @@ if __name__ == "__main__":
         symFile = open(outFilePath, "r")
         firstLine = symFile.readline().split(" ")
 
-        symbolsDir = (
-            outputDir + "/" + os.path.basename(binaryPath) + "/" + firstLine[-2] + "/"
-        )
+        symbolsDir = outputDir + "/" + firstLine[-1].strip() + "/" + firstLine[-2] + "/"
 
         try:
             os.makedirs(symbolsDir)
         except OSError as exception:
             if exception.errno != errno.EEXIST:
                 raise
-        os.rename(outFilePath, symbolsDir + os.path.basename(binaryPath) + ".sym")
+        os.rename(outFilePath, symbolsDir + firstLine[-1].strip() + ".sym")
         os.system(f"strip {binaryPath}")
