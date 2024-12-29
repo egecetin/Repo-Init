@@ -45,14 +45,12 @@ if __name__ == "__main__":
         symFile = open(outFilePath, "r")
         firstLine = symFile.readline().split(" ")
 
-        symbolsDir = (
-            outputDir + "/" + os.path.basename(binaryPath) + "/" + firstLine[-2] + "/"
-        )
+        symbolsDir = outputDir + "/" + firstLine[-1].strip() + "/" + firstLine[-2] + "/"
 
         try:
             os.makedirs(symbolsDir)
         except OSError as exception:
             if exception.errno != errno.EEXIST:
                 raise
-        os.rename(outFilePath, symbolsDir + os.path.basename(binaryPath) + ".sym")
+        os.rename(outFilePath, symbolsDir + firstLine[-1].strip() + ".sym")
         os.system(f"strip {binaryPath}")
