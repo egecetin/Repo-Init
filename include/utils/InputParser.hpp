@@ -44,7 +44,7 @@ class InputParser {
 	}
 
 	/**
-	 * Gets all command line options
+	 * Gets all command line options. All options should start with '-'
 	 * @return std::vector<std::pair<std::string, std::string>> All command line options
 	 */
 	[[nodiscard]] std::vector<std::pair<std::string, std::string>> getCmdOptions() const
