@@ -115,6 +115,6 @@ TEST(Utils_Tests, InputParserUnitTests)
 
 	auto options = parser.getCmdOptions();
 	ASSERT_EQ(options.size(), 1);
-	ASSERT_EQ(options[1].first, "--argument2");
-	ASSERT_EQ(options[1].second, "");
+	ASSERT_EQ(options[0].first, "--argument2");
+	ASSERT_EQ(options[0].second, "");
 }
