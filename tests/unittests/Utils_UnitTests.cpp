@@ -112,4 +112,9 @@ TEST(Utils_Tests, InputParserUnitTests)
 
 	ASSERT_EQ("", parser.getCmdOption("--argument2"));
 	ASSERT_TRUE(parser.cmdOptionExists("--argument2"));
+
+	auto options = parser.getCmdOptions();
+	ASSERT_EQ(options.size(), 1);
+	ASSERT_EQ(options[0].first, "--argument2");
+	ASSERT_EQ(options[0].second, "");
 }
