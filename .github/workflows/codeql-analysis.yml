@@ -35,7 +35,7 @@ jobs:
         submodules: recursive
     - name: Restore ccache
       id: ccache-restore
-      uses: actions/cache/restore@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
+      uses: actions/cache/restore@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
       with:
         path: |
           ${{ env.CCACHE_DIR }}
@@ -43,7 +43,7 @@ jobs:
         restore-keys: |
           codeql-ccache
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@f09c1c0a94de965c15400f5634aa42fac8fb8f88 # v3.27.5
+      uses: github/codeql-action/init@48ab28a6f5dbc2a99bf1e0131198dd8f1df78169 # v3.28.0
       with:
         languages: ${{ matrix.language }}
     - name: Configure
@@ -51,9 +51,9 @@ jobs:
     - name: Build
       run: cmake --build build --parallel
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@f09c1c0a94de965c15400f5634aa42fac8fb8f88 # v3.27.5
+      uses: github/codeql-action/analyze@48ab28a6f5dbc2a99bf1e0131198dd8f1df78169 # v3.28.0
     - name: Save ccache
-      uses: actions/cache/save@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
+      uses: actions/cache/save@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
       with:
         path: ${{ env.CCACHE_DIR }}
         key: ${{ steps.ccache-restore.outputs.cache-primary-key }}
