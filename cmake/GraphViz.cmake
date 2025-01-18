@@ -32,6 +32,8 @@ if(DOT_EXE)
   add_custom_command(
     TARGET dependency-graph
     POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E echo "Dependency graph generated and located at ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-tree.${DOT_OUTPUT_TYPE}";
+    COMMAND
+      ${CMAKE_COMMAND} -E echo
+      "Dependency graph generated and located at ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-tree.${DOT_OUTPUT_TYPE}" ;
   )
 endif()
