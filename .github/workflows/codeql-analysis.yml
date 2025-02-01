@@ -43,7 +43,7 @@ jobs:
         restore-keys: |
           codeql-ccache
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@48ab28a6f5dbc2a99bf1e0131198dd8f1df78169 # v3.28.0
+      uses: github/codeql-action/init@dd746615b3b9d728a6a37ca2045b68ca76d4841a # v3.28.8
       with:
         languages: ${{ matrix.language }}
     - name: Configure
@@ -51,7 +51,7 @@ jobs:
     - name: Build
       run: cmake --build build --parallel
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@48ab28a6f5dbc2a99bf1e0131198dd8f1df78169 # v3.28.0
+      uses: github/codeql-action/analyze@dd746615b3b9d728a6a37ca2045b68ca76d4841a # v3.28.8
     - name: Save ccache
       uses: actions/cache/save@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
       with:
