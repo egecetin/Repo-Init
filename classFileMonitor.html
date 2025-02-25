@@ -535,7 +535,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   26</span> </div>
 <div class="line"><span class="lineno">   27</span>        <span class="keyword">auto</span> buffer = std::vector&lt;char&gt;(nBytes + 1, <span class="charliteral">&#39;\0&#39;</span>);</div>
 <div class="line"><span class="lineno">   28</span>        <span class="keyword">auto</span> nRead = read(<a class="code hl_variable" href="#a5148e4dea56cd7617e366e25353f3868">_fDescriptor</a>, buffer.data(), nBytes);</div>
-<div class="line"><span class="lineno">   29</span>        <span class="keywordflow">if</span> (nRead &lt; 0)</div>
+<div class="line"><span class="lineno">   29</span>        <span class="keywordflow">if</span> (nRead &lt; 0 &amp;&amp; errno != EAGAIN)</div>
 <div class="line"><span class="lineno">   30</span>        {</div>
 <div class="line"><span class="lineno">   31</span>            spdlog::error(<span class="stringliteral">&quot;Failed to read events for file monitoring: {}&quot;</span>, <a class="code hl_function" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
 <div class="line"><span class="lineno">   32</span>        }</div>
@@ -845,7 +845,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classFileMonitor.html">FileMonitor</a></li>
-    <li class="footer">Generated on Sat Jan 18 2025 11:46:09 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Tue Feb 25 2025 11:58:57 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>
