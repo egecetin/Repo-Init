@@ -26,7 +26,7 @@ void FileMonitor::threadFunc() const noexcept
 
 		auto buffer = std::vector<char>(nBytes + 1, '\0');
 		auto nRead = read(_fDescriptor, buffer.data(), nBytes);
-		if (nRead < 0)
+		if (nRead < 0 && errno != EAGAIN)
 		{
 			spdlog::error("Failed to read events for file monitoring: {}", getErrnoString(errno));
 		}
