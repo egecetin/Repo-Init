@@ -174,29 +174,30 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">   21</span>    spdlog::set_level(spdlog::level::off);</div>
 <div class="line"><span class="lineno">   22</span> </div>
 <div class="line"><span class="lineno">   23</span>    <span class="comment">// Prepare spdlog loggers</span></div>
-<div class="line"><span class="lineno">   24</span>    <span class="keyword">auto</span> dupFilter = std::make_shared&lt;spdlog::sinks::dup_filter_sink_mt&gt;(std::chrono::seconds(<a class="code hl_variable" href="Logger_8cpp.html#a2ef4a7f5319495a657d254a5e5ead3bf">LOG_FILTER_SECS</a>));</div>
-<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">if</span> (getppid() != 1) <span class="comment">// Disable stdout output for systemd</span></div>
-<div class="line"><span class="lineno">   26</span>    {</div>
-<div class="line"><span class="lineno">   27</span>        dupFilter-&gt;add_sink(std::make_shared&lt;spdlog::sinks::stdout_color_sink_mt&gt;());</div>
-<div class="line"><span class="lineno">   28</span>    }</div>
-<div class="line"><span class="lineno">   29</span>    dupFilter-&gt;add_sink(std::make_shared&lt;spdlog::sinks::syslog_sink_mt&gt;(PROJECT_NAME, LOG_USER, 0, <span class="keyword">false</span>));</div>
-<div class="line"><span class="lineno">   30</span>    dupFilter-&gt;add_sink(std::make_shared&lt;spdlog::sinks::loki_api_sink_mt&gt;(lokiAddr));</div>
-<div class="line"><span class="lineno">   31</span>    dupFilter-&gt;add_sink(std::make_shared&lt;spdlog::sinks::sentry_api_sink_mt&gt;(sentryAddr));</div>
-<div class="line"><span class="lineno">   32</span> </div>
-<div class="line"><span class="lineno">   33</span>    <span class="comment">// Register main logger</span></div>
-<div class="line"><span class="lineno">   34</span>    <a class="code hl_variable" href="#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a> = std::make_shared&lt;spdlog::logger&gt;(PROJECT_NAME, dupFilter);</div>
-<div class="line"><span class="lineno">   35</span> </div>
-<div class="line"><span class="lineno">   36</span>    spdlog::set_default_logger(<a class="code hl_variable" href="#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a>);</div>
-<div class="line"><span class="lineno">   37</span>    spdlog::flush_every(std::chrono::seconds(<a class="code hl_variable" href="Logger_8cpp.html#ae48a51b4c20e7277e6f72ef20d17426d">LOG_FLUSH_SECS</a>));</div>
-<div class="line"><span class="lineno">   38</span> </div>
-<div class="line"><span class="lineno">   39</span><span class="preprocessor">#ifdef NDEBUG</span></div>
-<div class="line"><span class="lineno">   40</span>    spdlog::set_level(spdlog::level::warn);</div>
-<div class="line"><span class="lineno">   41</span><span class="preprocessor">#else</span></div>
-<div class="line"><span class="lineno">   42</span>    spdlog::set_level(spdlog::level::info);</div>
-<div class="line"><span class="lineno">   43</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">   44</span> </div>
-<div class="line"><span class="lineno">   45</span>    PRINT_VERSION();</div>
-<div class="line"><span class="lineno">   46</span>}</div>
+<div class="line"><span class="lineno">   24</span>    <span class="keyword">auto</span> dupFilter =</div>
+<div class="line"><span class="lineno">   25</span>        std::make_shared&lt;spdlog::sinks::dup_filter_sink_mt&gt;(std::chrono::seconds(<a class="code hl_variable" href="Logger_8cpp.html#a2ef4a7f5319495a657d254a5e5ead3bf">LOG_FILTER_SECS</a>), spdlog::level::info);</div>
+<div class="line"><span class="lineno">   26</span>    <span class="keywordflow">if</span> (getppid() != 1) <span class="comment">// Disable stdout output for systemd</span></div>
+<div class="line"><span class="lineno">   27</span>    {</div>
+<div class="line"><span class="lineno">   28</span>        dupFilter-&gt;add_sink(std::make_shared&lt;spdlog::sinks::stdout_color_sink_mt&gt;());</div>
+<div class="line"><span class="lineno">   29</span>    }</div>
+<div class="line"><span class="lineno">   30</span>    dupFilter-&gt;add_sink(std::make_shared&lt;spdlog::sinks::syslog_sink_mt&gt;(PROJECT_NAME, LOG_USER, 0, <span class="keyword">false</span>));</div>
+<div class="line"><span class="lineno">   31</span>    dupFilter-&gt;add_sink(std::make_shared&lt;spdlog::sinks::loki_api_sink_mt&gt;(lokiAddr));</div>
+<div class="line"><span class="lineno">   32</span>    dupFilter-&gt;add_sink(std::make_shared&lt;spdlog::sinks::sentry_api_sink_mt&gt;(sentryAddr));</div>
+<div class="line"><span class="lineno">   33</span> </div>
+<div class="line"><span class="lineno">   34</span>    <span class="comment">// Register main logger</span></div>
+<div class="line"><span class="lineno">   35</span>    <a class="code hl_variable" href="#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a> = std::make_shared&lt;spdlog::logger&gt;(PROJECT_NAME, dupFilter);</div>
+<div class="line"><span class="lineno">   36</span> </div>
+<div class="line"><span class="lineno">   37</span>    spdlog::set_default_logger(<a class="code hl_variable" href="#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a>);</div>
+<div class="line"><span class="lineno">   38</span>    spdlog::flush_every(std::chrono::seconds(<a class="code hl_variable" href="Logger_8cpp.html#ae48a51b4c20e7277e6f72ef20d17426d">LOG_FLUSH_SECS</a>));</div>
+<div class="line"><span class="lineno">   39</span> </div>
+<div class="line"><span class="lineno">   40</span><span class="preprocessor">#ifdef NDEBUG</span></div>
+<div class="line"><span class="lineno">   41</span>    spdlog::set_level(spdlog::level::warn);</div>
+<div class="line"><span class="lineno">   42</span><span class="preprocessor">#else</span></div>
+<div class="line"><span class="lineno">   43</span>    spdlog::set_level(spdlog::level::info);</div>
+<div class="line"><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">   45</span> </div>
+<div class="line"><span class="lineno">   46</span>    PRINT_VERSION();</div>
+<div class="line"><span class="lineno">   47</span>}</div>
 <div class="ttc" id="aLogger_8cpp_html_a2ef4a7f5319495a657d254a5e5ead3bf"><div class="ttname"><a href="Logger_8cpp.html#a2ef4a7f5319495a657d254a5e5ead3bf">LOG_FILTER_SECS</a></div><div class="ttdeci">constexpr int LOG_FILTER_SECS</div><div class="ttdef"><b>Definition</b> <a href="Logger_8cpp_source.html#l00015">Logger.cpp:15</a></div></div>
 <div class="ttc" id="aLogger_8cpp_html_ae48a51b4c20e7277e6f72ef20d17426d"><div class="ttname"><a href="Logger_8cpp.html#ae48a51b4c20e7277e6f72ef20d17426d">LOG_FLUSH_SECS</a></div><div class="ttdeci">constexpr int LOG_FLUSH_SECS</div><div class="ttdef"><b>Definition</b> <a href="Logger_8cpp_source.html#l00017">Logger.cpp:17</a></div></div>
 <div class="ttc" id="aclassMainLogger_html_a73f0b65ba5e4e61e70b5eb82b5353305"><div class="ttname"><a href="#a73f0b65ba5e4e61e70b5eb82b5353305">MainLogger::_mainLogger</a></div><div class="ttdeci">std::shared_ptr&lt; spdlog::logger &gt; _mainLogger</div><div class="ttdef"><b>Definition</b> <a href="Logger_8hpp_source.html#l00010">Logger.hpp:10</a></div></div>
@@ -273,16 +274,16 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Deconstructs the main logger </p>
 
-<p class="definition">Definition at line <a class="el" href="Logger_8cpp_source.html#l00048">48</a> of file <a class="el" href="Logger_8cpp_source.html">Logger.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   49</span>{</div>
-<div class="line"><span class="lineno">   50</span>    spdlog::info(<span class="stringliteral">&quot;Goodbye!&quot;</span>);</div>
-<div class="line"><span class="lineno">   51</span>    <a class="code hl_variable" href="#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a>-&gt;flush();</div>
-<div class="line"><span class="lineno">   52</span>    spdlog::drop(<a class="code hl_variable" href="#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a>-&gt;name());</div>
-<div class="line"><span class="lineno">   53</span> </div>
-<div class="line"><span class="lineno">   54</span>    <span class="comment">// Set default logger</span></div>
-<div class="line"><span class="lineno">   55</span>    spdlog::set_default_logger(</div>
-<div class="line"><span class="lineno">   56</span>        std::make_shared&lt;spdlog::logger&gt;(<span class="stringliteral">&quot;default&quot;</span>, std::make_shared&lt;spdlog::sinks::stdout_color_sink_mt&gt;()));</div>
-<div class="line"><span class="lineno">   57</span>}</div>
+<p class="definition">Definition at line <a class="el" href="Logger_8cpp_source.html#l00049">49</a> of file <a class="el" href="Logger_8cpp_source.html">Logger.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   50</span>{</div>
+<div class="line"><span class="lineno">   51</span>    spdlog::info(<span class="stringliteral">&quot;Goodbye!&quot;</span>);</div>
+<div class="line"><span class="lineno">   52</span>    <a class="code hl_variable" href="#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a>-&gt;flush();</div>
+<div class="line"><span class="lineno">   53</span>    spdlog::drop(<a class="code hl_variable" href="#a73f0b65ba5e4e61e70b5eb82b5353305">_mainLogger</a>-&gt;name());</div>
+<div class="line"><span class="lineno">   54</span> </div>
+<div class="line"><span class="lineno">   55</span>    <span class="comment">// Set default logger</span></div>
+<div class="line"><span class="lineno">   56</span>    spdlog::set_default_logger(</div>
+<div class="line"><span class="lineno">   57</span>        std::make_shared&lt;spdlog::logger&gt;(<span class="stringliteral">&quot;default&quot;</span>, std::make_shared&lt;spdlog::sinks::stdout_color_sink_mt&gt;()));</div>
+<div class="line"><span class="lineno">   58</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -405,7 +406,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classMainLogger.html">MainLogger</a></li>
-    <li class="footer">Generated on Tue Feb 25 2025 11:58:57 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Mon Mar 3 2025 11:26:20 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>
