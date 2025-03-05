@@ -95,7 +95,7 @@ class ZeroMQMonitor : private zmq::monitor_t {
 	 * Get the number of peers connected.
 	 * @return Number of peers connected.
 	 */
-	int getPeerCount() const { return _peerCount; }
+	[[nodiscard]] int getPeerCount() const { return _peerCount; }
 
 	/**
 	 * Stop monitoring events on the socket.
