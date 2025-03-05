@@ -16,11 +16,12 @@ var searchData=
   ['getlogger_13',['getLogger',['../classMainLogger.html#a42eca219d4e6aa6bb93fb22a55f86a3f',1,'MainLogger']]],
   ['getmemoryusage_14',['getMemoryUsage',['../classProcessMetrics.html#aba88c51d8a0ceff8d27a36ad7993e019',1,'ProcessMetrics']]],
   ['getpagefaults_15',['getPageFaults',['../classProcessMetrics.html#aec36472b19556dcd0fbc4c2164c8653c',1,'ProcessMetrics']]],
-  ['getpeerip_16',['getPeerIP',['../classTelnetSession.html#af4c695d1caa6e0efb98be2279c694666',1,'TelnetSession']]],
-  ['getregistry_17',['getRegistry',['../classPrometheusServer.html#a2f2b852d15c1feaffe2ed8a2160fe1d0',1,'PrometheusServer']]],
-  ['getselfexecutabledir_18',['getSelfExecutableDir',['../classTracer.html#ab220e3d1019cb07d311a35b40e1a6163',1,'Tracer']]],
-  ['getsocket_19',['getSocket',['../classZeroMQ.html#a642e1995dbbba964de506575711a556a',1,'ZeroMQ']]],
-  ['getstats_20',['getStats',['../classHTTP.html#af36f36f547e48a89361cf150aeb177d8',1,'HTTP::getStats()'],['../classRawSocket.html#a1f203ecb915c624a0dadb5e3de38188e',1,'RawSocket::getStats()']]],
-  ['getthreadcount_21',['getThreadCount',['../classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636',1,'ProcessMetrics']]],
-  ['grafana_22',['Grafana',['../index.html#autotoc_md6',1,'']]]
+  ['getpeercount_16',['getPeerCount',['../classZeroMQMonitor.html#a91a74a94d4c37b938573a05133e57056',1,'ZeroMQMonitor']]],
+  ['getpeerip_17',['getPeerIP',['../classTelnetSession.html#af4c695d1caa6e0efb98be2279c694666',1,'TelnetSession']]],
+  ['getregistry_18',['getRegistry',['../classPrometheusServer.html#a2f2b852d15c1feaffe2ed8a2160fe1d0',1,'PrometheusServer']]],
+  ['getselfexecutabledir_19',['getSelfExecutableDir',['../classTracer.html#ab220e3d1019cb07d311a35b40e1a6163',1,'Tracer']]],
+  ['getsocket_20',['getSocket',['../classZeroMQ.html#a642e1995dbbba964de506575711a556a',1,'ZeroMQ']]],
+  ['getstats_21',['getStats',['../classHTTP.html#af36f36f547e48a89361cf150aeb177d8',1,'HTTP::getStats()'],['../classRawSocket.html#a1f203ecb915c624a0dadb5e3de38188e',1,'RawSocket::getStats()']]],
+  ['getthreadcount_22',['getThreadCount',['../classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636',1,'ProcessMetrics']]],
+  ['grafana_23',['Grafana',['../index.html#autotoc_md6',1,'']]]
 ];

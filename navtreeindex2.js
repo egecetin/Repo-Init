@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"classZeroMQMonitor.html#ae22769b10d963387f91608df0c82a688":[1,0,23,23],
+"classZeroMQMonitor.html#af87af122def750e0fca640c992672021":[1,0,23,9],
 "classZeroMQMonitor.html#afb8e523f553fcdf1e4c1cf7b14db68ac":[1,0,23,2],
 "classZeroMQServer.html":[1,0,24],
 "classZeroMQServer.html#a2fd1a2cc1f77ec7a6ce5ae47ac4a7de3":[1,0,24,8],
