@@ -44,6 +44,7 @@ void ZeroMQMonitor::on_monitor_started() { on_event("Monitor started", spdlog::l
 
 void ZeroMQMonitor::on_event_connected(const zmq_event_t & /*unused*/, const char *addr_)
 {
+	_peerCount.fetch_add(1);
 	on_event("Connected", spdlog::level::info, addr_);
 }
 
@@ -89,6 +90,7 @@ void ZeroMQMonitor::on_event_close_failed(const zmq_event_t & /*unused*/, const 
 
 void ZeroMQMonitor::on_event_disconnected(const zmq_event_t & /*unused*/, const char *addr_)
 {
+	_peerCount.fetch_sub(1);
 	on_event("Disconnected", spdlog::level::info, addr_);
 }
 
