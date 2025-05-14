@@ -53,19 +53,16 @@ TEST(Connection_Tests, HttpUnitTests)
 	ASSERT_NE(stats.totalTime, 0);
 
 	statusCode = HttpStatus::Code::xxx_max;
-	recvData.clear();
 	ASSERT_EQ(handler.sendPUTRequest("", "Test PUT Message", recvData, statusCode), CURLE_OK);
 	ASSERT_EQ("", recvData);
 	ASSERT_EQ(HttpStatus::Code::OK, statusCode);
 
 	statusCode = HttpStatus::Code::xxx_max;
-	recvData.clear();
 	ASSERT_EQ(handler.sendGETRequest("", recvData, statusCode), CURLE_OK);
 	ASSERT_EQ("", recvData);
 	ASSERT_EQ(HttpStatus::Code::OK, statusCode);
 
 	statusCode = HttpStatus::Code::xxx_max;
-	recvData.clear();
 	ASSERT_EQ(handler.sendHEADRequest("", recvData, statusCode), CURLE_OK);
 	ASSERT_EQ("", recvData);
 	ASSERT_EQ(HttpStatus::Code::OK, statusCode);
@@ -75,7 +72,6 @@ TEST(Connection_Tests, HttpUnitTests)
 
 	// Send requests to closed server
 	statusCode = HttpStatus::Code::xxx_max;
-	recvData.clear();
 	ASSERT_EQ(handler.sendPOSTRequest("", "Test POST Message", recvData, statusCode), CURLE_COULDNT_CONNECT);
 	ASSERT_EQ("", recvData);
 	ASSERT_EQ(HttpStatus::Code::xxx_max, statusCode);

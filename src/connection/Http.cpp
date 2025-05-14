@@ -5,6 +5,8 @@
 
 void HTTP::setCommonFields(const std::string &fullURL, std::string &receivedData, CURLoption method)
 {
+	receivedData.clear();
+
 	curl_easy_setopt(_curl, CURLOPT_URL, fullURL.c_str());
 	curl_easy_setopt(_curl, CURLOPT_WRITEDATA, static_cast<void *>(&receivedData)); // Register user-supplied memory
 	curl_easy_setopt(_curl, method, 1L);
@@ -13,6 +15,8 @@ void HTTP::setCommonFields(const std::string &fullURL, std::string &receivedData
 void HTTP::setCommonFields(const std::string &fullURL, std::string &receivedData, CURLoption method,
 						   const std::string &payload)
 {
+	receivedData.clear();
+
 	curl_easy_setopt(_curl, CURLOPT_POSTFIELDS, payload.c_str());
 	curl_easy_setopt(_curl, CURLOPT_POSTFIELDSIZE_LARGE, payload.size());
 	curl_easy_setopt(_curl, CURLOPT_URL, fullURL.c_str());
@@ -38,7 +42,7 @@ size_t HTTP::writeDataCallback(const char *contents, size_t size, size_t nmemb, 
 {
 	const size_t recvSize = size * nmemb;
 	// Userp always referenced, there is no possibility of userp is nullptr. Directly use without checking
-	userp->assign(contents, contents + recvSize);
+	userp->append(contents, recvSize);
 
 	return recvSize;
 }
