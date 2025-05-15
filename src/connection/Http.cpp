@@ -40,8 +40,12 @@ CURLcode HTTP::performRequest(HttpStatus::Code &statusCode)
 
 size_t HTTP::writeDataCallback(const char *contents, size_t size, size_t nmemb, std::string *userp)
 {
+	if (userp == nullptr)
+	{
+		return 0;
+	}
+
 	const size_t recvSize = size * nmemb;
-	// Userp always referenced, there is no possibility of userp is nullptr. Directly use without checking
 	userp->append(contents, recvSize);
 
 	return recvSize;
