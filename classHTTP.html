@@ -210,23 +210,23 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00050">50</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   50</span>                                          : <a class="code hl_variable" href="#af7da86b2af737f7ee06e074f504f6cce">_hostAddr</a>(std::move(addr))</div>
-<div class="line"><span class="lineno">   51</span>{</div>
-<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a> == <span class="keyword">nullptr</span>)</div>
-<div class="line"><span class="lineno">   53</span>    {</div>
-<div class="line"><span class="lineno">   54</span>        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Can&#39;t init curl context&quot;</span>);</div>
-<div class="line"><span class="lineno">   55</span>    }</div>
-<div class="line"><span class="lineno">   56</span> </div>
-<div class="line"><span class="lineno">   57</span>    curl_easy_setopt(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_VERBOSE, 0L);</div>
-<div class="line"><span class="lineno">   58</span>    curl_easy_setopt(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_FOLLOWLOCATION, 1L);</div>
-<div class="line"><span class="lineno">   59</span>    curl_easy_setopt(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_TIMEOUT_MS, timeoutInMs);</div>
-<div class="line"><span class="lineno">   60</span>    curl_easy_setopt(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_CONNECTTIMEOUT_MS, timeoutInMs);</div>
-<div class="line"><span class="lineno">   61</span>    curl_easy_setopt(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_WRITEFUNCTION, <a class="code hl_function" href="#adb8716401ed18ad3c9eb2c2839c81b05">writeDataCallback</a>);</div>
-<div class="line"><span class="lineno">   62</span> </div>
-<div class="line"><span class="lineno">   63</span>    curl_easy_setopt(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_SSLENGINE_DEFAULT, 1L);</div>
-<div class="line"><span class="lineno">   64</span>    curl_easy_setopt(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2); <span class="comment">// At least TLSv1.2</span></div>
-<div class="line"><span class="lineno">   65</span>}</div>
+<p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00054">54</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   54</span>                                          : <a class="code hl_variable" href="#af7da86b2af737f7ee06e074f504f6cce">_hostAddr</a>(std::move(addr))</div>
+<div class="line"><span class="lineno">   55</span>{</div>
+<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a> == <span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">   57</span>    {</div>
+<div class="line"><span class="lineno">   58</span>        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Can&#39;t init curl context&quot;</span>);</div>
+<div class="line"><span class="lineno">   59</span>    }</div>
+<div class="line"><span class="lineno">   60</span> </div>
+<div class="line"><span class="lineno">   61</span>    curl_easy_setopt(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_VERBOSE, 0L);</div>
+<div class="line"><span class="lineno">   62</span>    curl_easy_setopt(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_FOLLOWLOCATION, 1L);</div>
+<div class="line"><span class="lineno">   63</span>    curl_easy_setopt(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_TIMEOUT_MS, timeoutInMs);</div>
+<div class="line"><span class="lineno">   64</span>    curl_easy_setopt(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_CONNECTTIMEOUT_MS, timeoutInMs);</div>
+<div class="line"><span class="lineno">   65</span>    curl_easy_setopt(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_WRITEFUNCTION, <a class="code hl_function" href="#adb8716401ed18ad3c9eb2c2839c81b05">writeDataCallback</a>);</div>
+<div class="line"><span class="lineno">   66</span> </div>
+<div class="line"><span class="lineno">   67</span>    curl_easy_setopt(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_SSLENGINE_DEFAULT, 1L);</div>
+<div class="line"><span class="lineno">   68</span>    curl_easy_setopt(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2); <span class="comment">// At least TLSv1.2</span></div>
+<div class="line"><span class="lineno">   69</span>}</div>
 <div class="ttc" id="aclassHTTP_html_ad3b75a5d46f308b5186b36bc7dff9ff5"><div class="ttname"><a href="#ad3b75a5d46f308b5186b36bc7dff9ff5">HTTP::_curl</a></div><div class="ttdeci">CURL * _curl</div><div class="ttdoc">CURL handler.</div><div class="ttdef"><b>Definition</b> <a href="Http_8hpp_source.html#l00046">Http.hpp:46</a></div></div>
 <div class="ttc" id="aclassHTTP_html_adb8716401ed18ad3c9eb2c2839c81b05"><div class="ttname"><a href="#adb8716401ed18ad3c9eb2c2839c81b05">HTTP::writeDataCallback</a></div><div class="ttdeci">static size_t writeDataCallback(const char *contents, size_t size, size_t nmemb, std::string *userp)</div><div class="ttdef"><b>Definition</b> <a href="Http_8cpp_source.html#l00041">Http.cpp:41</a></div></div>
 <div class="ttc" id="aclassHTTP_html_af7da86b2af737f7ee06e074f504f6cce"><div class="ttname"><a href="#af7da86b2af737f7ee06e074f504f6cce">HTTP::_hostAddr</a></div><div class="ttdeci">std::string _hostAddr</div><div class="ttdoc">Full path of server.</div><div class="ttdef"><b>Definition</b> <a href="Http_8hpp_source.html#l00048">Http.hpp:48</a></div></div>
@@ -313,8 +313,8 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <p>Destroys the <a class="el" href="classHTTP.html">HTTP</a> object </p>
 
-<p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00130">130</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  130</span>{ curl_easy_cleanup(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>); }</div>
+<p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00134">134</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  134</span>{ curl_easy_cleanup(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -364,38 +364,38 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <p>Gets the statistics of the <a class="el" href="classHTTP.html">HTTP</a> object </p><dl class="section return"><dt>Returns</dt><dd>The produced statistics </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00097">97</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   98</span>{</div>
-<div class="line"><span class="lineno">   99</span>    <a class="code hl_struct" href="structHTTPStats.html">HTTPStats</a> stats{};</div>
-<div class="line"><span class="lineno">  100</span> </div>
-<div class="line"><span class="lineno">  101</span>    curl_off_t value = 0;</div>
-<div class="line"><span class="lineno">  102</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_SIZE_UPLOAD_T, &amp;value);</div>
-<div class="line"><span class="lineno">  103</span>    stats.uploadBytes = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(value);</div>
-<div class="line"><span class="lineno">  104</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_SIZE_DOWNLOAD_T, &amp;value);</div>
-<div class="line"><span class="lineno">  105</span>    stats.downloadBytes = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(value);</div>
-<div class="line"><span class="lineno">  106</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_HEADER_SIZE, &amp;value);</div>
-<div class="line"><span class="lineno">  107</span>    stats.headerBytes = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(value);</div>
-<div class="line"><span class="lineno">  108</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_REQUEST_SIZE, &amp;value);</div>
-<div class="line"><span class="lineno">  109</span>    stats.requestBytes = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(value);</div>
-<div class="line"><span class="lineno">  110</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_SPEED_UPLOAD_T, &amp;value);</div>
-<div class="line"><span class="lineno">  111</span>    stats.uploadSpeed = value;</div>
-<div class="line"><span class="lineno">  112</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_SPEED_DOWNLOAD_T, &amp;value);</div>
-<div class="line"><span class="lineno">  113</span>    stats.downloadSpeed = value;</div>
-<div class="line"><span class="lineno">  114</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_CONNECT_TIME_T, &amp;value);</div>
-<div class="line"><span class="lineno">  115</span>    stats.connectionTime = value;</div>
-<div class="line"><span class="lineno">  116</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_NAMELOOKUP_TIME_T, &amp;value);</div>
-<div class="line"><span class="lineno">  117</span>    stats.nameLookupTime = value;</div>
-<div class="line"><span class="lineno">  118</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_PRETRANSFER_TIME_T, &amp;value);</div>
-<div class="line"><span class="lineno">  119</span>    stats.preTransferTime = value;</div>
-<div class="line"><span class="lineno">  120</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_REDIRECT_TIME_T, &amp;value);</div>
-<div class="line"><span class="lineno">  121</span>    stats.redirectTime = value;</div>
-<div class="line"><span class="lineno">  122</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_STARTTRANSFER_TIME_T, &amp;value);</div>
-<div class="line"><span class="lineno">  123</span>    stats.startTransferTime = value;</div>
-<div class="line"><span class="lineno">  124</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_TOTAL_TIME_T, &amp;value);</div>
-<div class="line"><span class="lineno">  125</span>    stats.totalTime = value;</div>
-<div class="line"><span class="lineno">  126</span> </div>
-<div class="line"><span class="lineno">  127</span>    <span class="keywordflow">return</span> stats;</div>
-<div class="line"><span class="lineno">  128</span>}</div>
+<p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00101">101</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  102</span>{</div>
+<div class="line"><span class="lineno">  103</span>    <a class="code hl_struct" href="structHTTPStats.html">HTTPStats</a> stats{};</div>
+<div class="line"><span class="lineno">  104</span> </div>
+<div class="line"><span class="lineno">  105</span>    curl_off_t value = 0;</div>
+<div class="line"><span class="lineno">  106</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_SIZE_UPLOAD_T, &amp;value);</div>
+<div class="line"><span class="lineno">  107</span>    stats.uploadBytes = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(value);</div>
+<div class="line"><span class="lineno">  108</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_SIZE_DOWNLOAD_T, &amp;value);</div>
+<div class="line"><span class="lineno">  109</span>    stats.downloadBytes = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(value);</div>
+<div class="line"><span class="lineno">  110</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_HEADER_SIZE, &amp;value);</div>
+<div class="line"><span class="lineno">  111</span>    stats.headerBytes = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(value);</div>
+<div class="line"><span class="lineno">  112</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_REQUEST_SIZE, &amp;value);</div>
+<div class="line"><span class="lineno">  113</span>    stats.requestBytes = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(value);</div>
+<div class="line"><span class="lineno">  114</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_SPEED_UPLOAD_T, &amp;value);</div>
+<div class="line"><span class="lineno">  115</span>    stats.uploadSpeed = value;</div>
+<div class="line"><span class="lineno">  116</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_SPEED_DOWNLOAD_T, &amp;value);</div>
+<div class="line"><span class="lineno">  117</span>    stats.downloadSpeed = value;</div>
+<div class="line"><span class="lineno">  118</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_CONNECT_TIME_T, &amp;value);</div>
+<div class="line"><span class="lineno">  119</span>    stats.connectionTime = value;</div>
+<div class="line"><span class="lineno">  120</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_NAMELOOKUP_TIME_T, &amp;value);</div>
+<div class="line"><span class="lineno">  121</span>    stats.nameLookupTime = value;</div>
+<div class="line"><span class="lineno">  122</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_PRETRANSFER_TIME_T, &amp;value);</div>
+<div class="line"><span class="lineno">  123</span>    stats.preTransferTime = value;</div>
+<div class="line"><span class="lineno">  124</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_REDIRECT_TIME_T, &amp;value);</div>
+<div class="line"><span class="lineno">  125</span>    stats.redirectTime = value;</div>
+<div class="line"><span class="lineno">  126</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_STARTTRANSFER_TIME_T, &amp;value);</div>
+<div class="line"><span class="lineno">  127</span>    stats.startTransferTime = value;</div>
+<div class="line"><span class="lineno">  128</span>    curl_easy_getinfo(<a class="code hl_variable" href="#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLINFO_TOTAL_TIME_T, &amp;value);</div>
+<div class="line"><span class="lineno">  129</span>    stats.totalTime = value;</div>
+<div class="line"><span class="lineno">  130</span> </div>
+<div class="line"><span class="lineno">  131</span>    <span class="keywordflow">return</span> stats;</div>
+<div class="line"><span class="lineno">  132</span>}</div>
 <div class="ttc" id="astructHTTPStats_html"><div class="ttname"><a href="structHTTPStats.html">HTTPStats</a></div><div class="ttdef"><b>Definition</b> <a href="Http_8hpp_source.html#l00012">Http.hpp:12</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -549,12 +549,12 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The status of the operation. CURLE_OK if successful. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00067">67</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   68</span>{</div>
-<div class="line"><span class="lineno">   69</span>    <span class="comment">// Prepare request specific options</span></div>
-<div class="line"><span class="lineno">   70</span>    <a class="code hl_function" href="#ae85e4d4d18e5fdfea708fe5bbd0f80b4">setCommonFields</a>(<a class="code hl_variable" href="#af7da86b2af737f7ee06e074f504f6cce">_hostAddr</a> + index, receivedData, CURLOPT_HTTPGET);</div>
-<div class="line"><span class="lineno">   71</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a64327e6367eabafdcc15b7548cf87f03">performRequest</a>(statusCode);</div>
-<div class="line"><span class="lineno">   72</span>}</div>
+<p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00071">71</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   72</span>{</div>
+<div class="line"><span class="lineno">   73</span>    <span class="comment">// Prepare request specific options</span></div>
+<div class="line"><span class="lineno">   74</span>    <a class="code hl_function" href="#ae85e4d4d18e5fdfea708fe5bbd0f80b4">setCommonFields</a>(<a class="code hl_variable" href="#af7da86b2af737f7ee06e074f504f6cce">_hostAddr</a> + index, receivedData, CURLOPT_HTTPGET);</div>
+<div class="line"><span class="lineno">   75</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a64327e6367eabafdcc15b7548cf87f03">performRequest</a>(statusCode);</div>
+<div class="line"><span class="lineno">   76</span>}</div>
 <div class="ttc" id="aclassHTTP_html_a64327e6367eabafdcc15b7548cf87f03"><div class="ttname"><a href="#a64327e6367eabafdcc15b7548cf87f03">HTTP::performRequest</a></div><div class="ttdeci">CURLcode performRequest(HttpStatus::Code &amp;statusCode)</div><div class="ttdef"><b>Definition</b> <a href="Http_8cpp_source.html#l00027">Http.cpp:27</a></div></div>
 <div class="ttc" id="aclassHTTP_html_ae85e4d4d18e5fdfea708fe5bbd0f80b4"><div class="ttname"><a href="#ae85e4d4d18e5fdfea708fe5bbd0f80b4">HTTP::setCommonFields</a></div><div class="ttdeci">void setCommonFields(const std::string &amp;fullURL, std::string &amp;receivedData, CURLoption method)</div><div class="ttdef"><b>Definition</b> <a href="Http_8cpp_source.html#l00006">Http.cpp:6</a></div></div>
 </div><!-- fragment --><div class="dynheader">
@@ -605,12 +605,12 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The status of the operation. CURLE_OK if successful. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00074">74</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   75</span>{</div>
-<div class="line"><span class="lineno">   76</span>    <span class="comment">// Prepare request specific options</span></div>
-<div class="line"><span class="lineno">   77</span>    <a class="code hl_function" href="#ae85e4d4d18e5fdfea708fe5bbd0f80b4">setCommonFields</a>(<a class="code hl_variable" href="#af7da86b2af737f7ee06e074f504f6cce">_hostAddr</a> + index, receivedData, CURLOPT_NOBODY);</div>
-<div class="line"><span class="lineno">   78</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a64327e6367eabafdcc15b7548cf87f03">performRequest</a>(statusCode);</div>
-<div class="line"><span class="lineno">   79</span>}</div>
+<p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00078">78</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   79</span>{</div>
+<div class="line"><span class="lineno">   80</span>    <span class="comment">// Prepare request specific options</span></div>
+<div class="line"><span class="lineno">   81</span>    <a class="code hl_function" href="#ae85e4d4d18e5fdfea708fe5bbd0f80b4">setCommonFields</a>(<a class="code hl_variable" href="#af7da86b2af737f7ee06e074f504f6cce">_hostAddr</a> + index, receivedData, CURLOPT_NOBODY);</div>
+<div class="line"><span class="lineno">   82</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a64327e6367eabafdcc15b7548cf87f03">performRequest</a>(statusCode);</div>
+<div class="line"><span class="lineno">   83</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -665,12 +665,12 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The status of the operation. CURLE_OK if successful. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00081">81</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   83</span>{</div>
-<div class="line"><span class="lineno">   84</span>    <span class="comment">// Prepare request specific options</span></div>
-<div class="line"><span class="lineno">   85</span>    <a class="code hl_function" href="#ae85e4d4d18e5fdfea708fe5bbd0f80b4">setCommonFields</a>(<a class="code hl_variable" href="#af7da86b2af737f7ee06e074f504f6cce">_hostAddr</a> + index, receivedData, CURLOPT_POST, payload);</div>
-<div class="line"><span class="lineno">   86</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a64327e6367eabafdcc15b7548cf87f03">performRequest</a>(statusCode);</div>
-<div class="line"><span class="lineno">   87</span>}</div>
+<p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00085">85</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   87</span>{</div>
+<div class="line"><span class="lineno">   88</span>    <span class="comment">// Prepare request specific options</span></div>
+<div class="line"><span class="lineno">   89</span>    <a class="code hl_function" href="#ae85e4d4d18e5fdfea708fe5bbd0f80b4">setCommonFields</a>(<a class="code hl_variable" href="#af7da86b2af737f7ee06e074f504f6cce">_hostAddr</a> + index, receivedData, CURLOPT_POST, payload);</div>
+<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a64327e6367eabafdcc15b7548cf87f03">performRequest</a>(statusCode);</div>
+<div class="line"><span class="lineno">   91</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -725,12 +725,12 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The status of the operation. CURLE_OK if successful. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00089">89</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   91</span>{</div>
-<div class="line"><span class="lineno">   92</span>    <span class="comment">// Prepare request specific options</span></div>
-<div class="line"><span class="lineno">   93</span>    <a class="code hl_function" href="#ae85e4d4d18e5fdfea708fe5bbd0f80b4">setCommonFields</a>(<a class="code hl_variable" href="#af7da86b2af737f7ee06e074f504f6cce">_hostAddr</a> + index, receivedData, CURLOPT_UPLOAD, payload);</div>
-<div class="line"><span class="lineno">   94</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a64327e6367eabafdcc15b7548cf87f03">performRequest</a>(statusCode);</div>
-<div class="line"><span class="lineno">   95</span>}</div>
+<p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00093">93</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   95</span>{</div>
+<div class="line"><span class="lineno">   96</span>    <span class="comment">// Prepare request specific options</span></div>
+<div class="line"><span class="lineno">   97</span>    <a class="code hl_function" href="#ae85e4d4d18e5fdfea708fe5bbd0f80b4">setCommonFields</a>(<a class="code hl_variable" href="#af7da86b2af737f7ee06e074f504f6cce">_hostAddr</a> + index, receivedData, CURLOPT_UPLOAD, payload);</div>
+<div class="line"><span class="lineno">   98</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a64327e6367eabafdcc15b7548cf87f03">performRequest</a>(statusCode);</div>
+<div class="line"><span class="lineno">   99</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -965,12 +965,16 @@ template&lt;typename T &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="Http_8cpp_source.html#l00041">41</a> of file <a class="el" href="Http_8cpp_source.html">Http.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   42</span>{</div>
-<div class="line"><span class="lineno">   43</span>    <span class="keyword">const</span> <span class="keywordtype">size_t</span> recvSize = size * nmemb;</div>
-<div class="line"><span class="lineno">   44</span>    <span class="comment">// Userp always referenced, there is no possibility of userp is nullptr. Directly use without checking</span></div>
-<div class="line"><span class="lineno">   45</span>    userp-&gt;append(contents, recvSize);</div>
-<div class="line"><span class="lineno">   46</span> </div>
-<div class="line"><span class="lineno">   47</span>    <span class="keywordflow">return</span> recvSize;</div>
-<div class="line"><span class="lineno">   48</span>}</div>
+<div class="line"><span class="lineno">   43</span>    <span class="keywordflow">if</span> (userp == <span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">   44</span>    {</div>
+<div class="line"><span class="lineno">   45</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   46</span>    }</div>
+<div class="line"><span class="lineno">   47</span> </div>
+<div class="line"><span class="lineno">   48</span>    <span class="keyword">const</span> <span class="keywordtype">size_t</span> recvSize = size * nmemb;</div>
+<div class="line"><span class="lineno">   49</span>    userp-&gt;append(contents, recvSize);</div>
+<div class="line"><span class="lineno">   50</span> </div>
+<div class="line"><span class="lineno">   51</span>    <span class="keywordflow">return</span> recvSize;</div>
+<div class="line"><span class="lineno">   52</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1047,7 +1051,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classHTTP.html">HTTP</a></li>
-    <li class="footer">Generated on Wed May 14 2025 11:30:34 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Thu May 15 2025 10:54:59 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>
