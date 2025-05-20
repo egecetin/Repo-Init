@@ -3,28 +3,25 @@
 #include <cstring>
 #include <stdexcept>
 
-void HTTP::setCommonFields(const std::string &fullURL, std::string &receivedData, CURLoption method)
+void HTTP::setCommonFields(const std::string &fullURL, CURLoption method)
 {
-	receivedData.clear();
-
+	_data->data.clear();
 	curl_easy_setopt(_curl, CURLOPT_URL, fullURL.c_str());
-	curl_easy_setopt(_curl, CURLOPT_WRITEDATA, static_cast<void *>(&receivedData)); // Register user-supplied memory
+	curl_easy_setopt(_curl, CURLOPT_WRITEDATA, static_cast<void *>(_data.get())); // Register user-supplied memory
 	curl_easy_setopt(_curl, method, 1L);
 }
 
-void HTTP::setCommonFields(const std::string &fullURL, std::string &receivedData, CURLoption method,
-						   const std::string &payload)
+void HTTP::setCommonFields(const std::string &fullURL, CURLoption method, const std::string &payload)
 {
-	receivedData.clear();
-
+	_data->data.clear();
 	curl_easy_setopt(_curl, CURLOPT_POSTFIELDS, payload.c_str());
 	curl_easy_setopt(_curl, CURLOPT_POSTFIELDSIZE_LARGE, payload.size());
 	curl_easy_setopt(_curl, CURLOPT_URL, fullURL.c_str());
-	curl_easy_setopt(_curl, CURLOPT_WRITEDATA, static_cast<void *>(&receivedData)); // Register user-supplied memory
+	curl_easy_setopt(_curl, CURLOPT_WRITEDATA, static_cast<void *>(_data.get())); // Register user-supplied memory
 	curl_easy_setopt(_curl, method, 1L);
 }
 
-CURLcode HTTP::performRequest(HttpStatus::Code &statusCode)
+CURLcode HTTP::performRequest(HttpStatus::Code &statusCode, std::string &receivedData)
 {
 	// Perform request
 	auto status = static_cast<long>(HttpStatus::Code::xxx_max);
@@ -34,6 +31,7 @@ CURLcode HTTP::performRequest(HttpStatus::Code &statusCode)
 		curl_easy_getinfo(_curl, CURLINFO_RESPONSE_CODE, &status);
 	}
 	statusCode = static_cast<HttpStatus::Code>(status);
+	receivedData = _data->data;
 
 	return retval;
 }
@@ -71,31 +69,31 @@ HTTP::HTTP(std::string addr, int timeoutInMs) : _hostAddr(std::move(addr))
 CURLcode HTTP::sendGETRequest(const std::string &index, std::string &receivedData, HttpStatus::Code &statusCode)
 {
 	// Prepare request specific options
-	setCommonFields(_hostAddr + index, receivedData, CURLOPT_HTTPGET);
-	return performRequest(statusCode);
+	setCommonFields(_hostAddr + index, CURLOPT_HTTPGET);
+	return performRequest(statusCode, receivedData);
 }
 
 CURLcode HTTP::sendHEADRequest(const std::string &index, std::string &receivedData, HttpStatus::Code &statusCode)
 {
 	// Prepare request specific options
-	setCommonFields(_hostAddr + index, receivedData, CURLOPT_NOBODY);
-	return performRequest(statusCode);
+	setCommonFields(_hostAddr + index, CURLOPT_NOBODY);
+	return performRequest(statusCode, receivedData);
 }
 
 CURLcode HTTP::sendPOSTRequest(const std::string &index, const std::string &payload, std::string &receivedData,
 							   HttpStatus::Code &statusCode)
 {
 	// Prepare request specific options
-	setCommonFields(_hostAddr + index, receivedData, CURLOPT_POST, payload);
-	return performRequest(statusCode);
+	setCommonFields(_hostAddr + index, CURLOPT_POST, payload);
+	return performRequest(statusCode, receivedData);
 }
 
 CURLcode HTTP::sendPUTRequest(const std::string &index, const std::string &payload, std::string &receivedData,
 							  HttpStatus::Code &statusCode)
 {
 	// Prepare request specific options
-	setCommonFields(_hostAddr + index, receivedData, CURLOPT_UPLOAD, payload);
-	return performRequest(statusCode);
+	setCommonFields(_hostAddr + index, CURLOPT_UPLOAD, payload);
+	return performRequest(statusCode, receivedData);
 }
 
 HTTPStats HTTP::getStats()
