@@ -19,5 +19,6 @@ var searchData=
   ['consumestats_16',['consumeStats',['../classTelnetStats.html#a29b90c320dd788ae9045e27a180e7b73',1,'TelnetStats::consumeStats(const TelnetSessionStats &amp;stat, bool sessionClosed)'],['../classTelnetStats.html#a910010aa6bd7d54a3ceae40b3c3fed14',1,'TelnetStats::consumeStats(const TelnetServerStats &amp;stat)'],['../classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07',1,'ZeroMQStats::consumeStats()']]],
   ['contents_17',['Contents',['../index.html#autotoc_md1',1,'']]],
   ['countdirectoryentries_18',['countDirectoryEntries',['../classProcessMetrics.html#aab60bd68d5a49dae6bd6d5f4364d1f9a',1,'ProcessMetrics']]],
-  ['createnewregistry_19',['createNewRegistry',['../classPrometheusServer.html#a04e7b010c6227c4cf076d619b66cf6df',1,'PrometheusServer::createNewRegistry()'],['../classPrometheusServer.html#a1238fb991b79e91fa01e7f24ca1950c5',1,'PrometheusServer::createNewRegistry(uint64_t &amp;regId)']]]
+  ['createnewregistry_19',['createNewRegistry',['../classPrometheusServer.html#a04e7b010c6227c4cf076d619b66cf6df',1,'PrometheusServer::createNewRegistry()'],['../classPrometheusServer.html#a1238fb991b79e91fa01e7f24ca1950c5',1,'PrometheusServer::createNewRegistry(uint64_t &amp;regId)']]],
+  ['curlmemory_20',['curlMemory',['../structcurlMemory.html',1,'']]]
 ];

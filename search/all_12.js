@@ -17,7 +17,7 @@ var searchData=
   ['sentry_5fapi_5fsink_5fst_14',['sentry_api_sink_st',['../namespacespdlog_1_1sinks.html#aa7e26ffe0cb3248ad758f4b59d8a11f2',1,'spdlog::sinks']]],
   ['sessions_15',['sessions',['../classTelnetServer.html#a518f7fac5459bd0534e08157058e69f7',1,'TelnetServer']]],
   ['set_16',['set',['../classConfigParser.html#a12a6d8ebd5379535ea17eb2b9881c363',1,'ConfigParser']]],
-  ['setcommonfields_17',['setCommonFields',['../classHTTP.html#ae85e4d4d18e5fdfea708fe5bbd0f80b4',1,'HTTP::setCommonFields(const std::string &amp;fullURL, std::string &amp;receivedData, CURLoption method)'],['../classHTTP.html#a52873c0f6ed977ff287fbe38ad8f7c03',1,'HTTP::setCommonFields(const std::string &amp;fullURL, std::string &amp;receivedData, CURLoption method, const std::string &amp;payload)']]],
+  ['setcommonfields_17',['setCommonFields',['../classHTTP.html#ae80b6b750c7ad1e444d8deee972e2bd2',1,'HTTP::setCommonFields(const std::string &amp;fullURL, CURLoption method)'],['../classHTTP.html#a44a68676a3931bf79274b0d03b2577f9',1,'HTTP::setCommonFields(const std::string &amp;fullURL, CURLoption method, const std::string &amp;payload)']]],
   ['setoption_18',['setOption',['../classHTTP.html#accbda406014dffb5e3b144acd5e0f3d5',1,'HTTP']]],
   ['shutdown_19',['shutdown',['../classTelnetServer.html#a7291fc5b8d95236951fac1d9a094c39a',1,'TelnetServer::shutdown()'],['../classZeroMQServer.html#ac3515a4b148ad4ce7af202bdc2d0e595',1,'ZeroMQServer::shutdown()']]],
   ['sink_5fit_5f_20',['sink_it_',['../classspdlog_1_1sinks_1_1loki__api__sink.html#a76afe17cd0e88f26ca49a3cd4cae37bf',1,'spdlog::sinks::loki_api_sink::sink_it_()'],['../classspdlog_1_1sinks_1_1sentry__api__sink.html#af79e71e949f84ccbf99f68059dc8b5bc',1,'spdlog::sinks::sentry_api_sink::sink_it_()']]],

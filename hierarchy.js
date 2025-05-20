@@ -10,6 +10,7 @@ var hierarchy =
       [ "ZeroMQStats", "classZeroMQStats.html", null ]
     ] ],
     [ "ConfigParser", "classConfigParser.html", null ],
+    [ "curlMemory", "structcurlMemory.html", null ],
     [ "std::enable_shared_from_this", null, [
       [ "TelnetServer", "classTelnetServer.html", null ],
       [ "TelnetSession", "classTelnetSession.html", null ]

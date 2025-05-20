@@ -8,6 +8,7 @@ var annotated_dup =
     ] ],
     [ "BaseServerStats", "classBaseServerStats.html", "classBaseServerStats" ],
     [ "ConfigParser", "classConfigParser.html", "classConfigParser" ],
+    [ "curlMemory", "structcurlMemory.html", "structcurlMemory" ],
     [ "FileMonitor", "classFileMonitor.html", "classFileMonitor" ],
     [ "HTTP", "classHTTP.html", "classHTTP" ],
     [ "HTTPStats", "structHTTPStats.html", "structHTTPStats" ],
