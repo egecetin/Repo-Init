@@ -1,10 +1,20 @@
 #pragma once
 
+#include <memory>
+
 #include <HttpStatusCodes_C++11.h>
 #include <curl/curl.h>
 
 /// HTTP connection timeout in milliseconds
 constexpr int HTTP_TIMEOUT_MS = 1000;
+
+/**
+ * Memory structure for CURL
+ * Used to store the received data
+ */
+struct curlMemory {
+	std::string data;
+};
 
 /**
  * Stats produced by HTTP
@@ -44,26 +54,25 @@ class HTTP {
   private:
 	/// CURL handler
 	CURL *_curl = curl_easy_init();
+	/// Memory structure for CURL
+	std::unique_ptr<curlMemory> _data = std::make_unique<curlMemory>();
 	/// Full path of server
 	std::string _hostAddr;
 
 	/**
 	 * Sets common fields for HTTP requests
 	 * @param[in] fullURL The full URL of the request
-	 * @param[out] receivedData The received data from the server
 	 * @param[in] method The HTTP method to use
 	 */
-	void setCommonFields(const std::string &fullURL, std::string &receivedData, CURLoption method);
+	void setCommonFields(const std::string &fullURL, CURLoption method);
 
 	/**
 	 * Sets common fields for HTTP requests with payload
 	 * @param[in] fullURL The full URL of the request
-	 * @param[out] receivedData The received data from the server
 	 * @param[in] method The HTTP method to use
 	 * @param[in] payload The payload to send to the server
 	 */
-	void setCommonFields(const std::string &fullURL, std::string &receivedData, CURLoption method,
-						 const std::string &payload);
+	void setCommonFields(const std::string &fullURL, CURLoption method, const std::string &payload);
 
 	/**
 	 * Callback function for writing received data
@@ -77,10 +86,11 @@ class HTTP {
 
 	/**
 	 * Performs the request
-	 * @param[out] statusCode The HTTP status code (set if CURLE_OK, otherwise unchanged)
+	 * @param[out] statusCode The HTTP status code
+	 * @param[out] receivedData The received reply from the server
 	 * @return The status of the operation. CURLE_OK if successful.
 	 */
-	CURLcode performRequest(HttpStatus::Code &statusCode);
+	CURLcode performRequest(HttpStatus::Code &statusCode, std::string &receivedData);
 
   public:
 	/**
