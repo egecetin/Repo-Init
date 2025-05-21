@@ -29,7 +29,7 @@ class Tracer {
 	/**
 	 * Thread function to check and restart the crashpad handler process
 	 */
-	void threadFunc() noexcept;
+	void threadFunc() const noexcept;
 
 	/**
 	 * Check if the given process ID is running
