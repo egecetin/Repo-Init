@@ -61,10 +61,8 @@ void Tracer::threadFunc() noexcept
 		{
 			if (!isRunning())
 			{
-				// NOTICE: Worked before but currently restarting the handler raises an error
-				// due to changes in the crashpad library
-				restart();
-				spdlog::warn("Crashpad handler restarted");
+				spdlog::warn("Crashpad handler failed");
+				return;
 			}
 			if (_checkFlag)
 			{
@@ -120,14 +118,6 @@ bool Tracer::isRunning()
 		return false;
 	}
 	return true;
-}
-
-void Tracer::restart()
-{
-	if (!isRunning())
-	{
-		startHandler();
-	}
 }
 
 void Tracer::dumpSharedLibraryInfo(const std::string &filePath)
