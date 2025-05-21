@@ -53,7 +53,7 @@ void Tracer::startHandler()
 	_thread = std::make_unique<std::thread>(&Tracer::threadFunc, this);
 }
 
-void Tracer::threadFunc() noexcept
+void Tracer::threadFunc() const noexcept
 {
 	while (!_shouldStop._M_i)
 	{
