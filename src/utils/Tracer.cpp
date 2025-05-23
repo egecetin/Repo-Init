@@ -61,7 +61,7 @@ void Tracer::threadFunc() const noexcept
 		{
 			if (!isRunning())
 			{
-				spdlog::warn("Crashpad handler failed");
+				spdlog::info("Crashpad handler closed");
 				return;
 			}
 			if (_checkFlag)
