@@ -103,6 +103,11 @@ class ZeroMQMonitor : private zmq::monitor_t {
 	void stopMonitoring();
 
 	/**
+	 * Test internals of the ZeroMQMonitor class.
+	 */
+	void testInternals();
+
+	/**
 	 * Destructor.
 	 */
 	~ZeroMQMonitor() override { stopMonitoring(); }
