@@ -32,4 +32,13 @@ TEST(Logger_Tests, LoggingUnitTests)
 
 	shResult.wait();
 	ASSERT_EQ(0, shResult.get());
+
+	const MainLogger logger2("", "");
+	ASSERT_NE(logger2.getLogger(), nullptr);
+
+	ASSERT_NO_THROW(spdlog::trace("Trace message"));
+	ASSERT_NO_THROW(spdlog::debug("Debug message"));
+	ASSERT_NO_THROW(spdlog::warn("Warning message"));
+	ASSERT_NO_THROW(spdlog::error("Error message"));
+	ASSERT_NO_THROW(spdlog::critical("Critical message"));
 }
