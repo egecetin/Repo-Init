@@ -93,9 +93,4 @@ class Tracer {
 	 * @return true if the crashpad_handler is running, false otherwise
 	 */
 	[[nodiscard]] static bool isRunning();
-
-	/**
-	 * Check and restart the crashpad_handler process if it is not running
-	 */
-	void restart();
 };
