@@ -26,6 +26,7 @@ var classZeroMQMonitor =
     [ "operator=", "classZeroMQMonitor.html#ae22769b10d963387f91608df0c82a688", null ],
     [ "startMonitoring", "classZeroMQMonitor.html#a64401abf922cdd6b41ae331f6fb502c7", null ],
     [ "stopMonitoring", "classZeroMQMonitor.html#a83ffe6f50cab52994f05fa68db78c8df", null ],
+    [ "testInternals", "classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be", null ],
     [ "threadFunc", "classZeroMQMonitor.html#a822fbf3c0f167e77abdcc0cdc4f31545", null ],
     [ "_monitorThread", "classZeroMQMonitor.html#a777d8155790bec800f1bce9ac52f3508", null ],
     [ "_peerCount", "classZeroMQMonitor.html#a894a734962b375c29e304ec1e1de91d3", null ],

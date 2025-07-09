@@ -11,7 +11,6 @@ var classTracer =
     [ "isRunning", "classTracer.html#a4e3975043a2fc94d307d511012706770", null ],
     [ "operator=", "classTracer.html#a1438f66422a2685b45bbc63486aa49d5", null ],
     [ "operator=", "classTracer.html#a261738e71561597c1c685306d045b3d1", null ],
-    [ "restart", "classTracer.html#a4755dbacab3e82bed9e7eaedd8a025ab", null ],
     [ "startHandler", "classTracer.html#a5e733e7676276b3640d8e44eb7865aac", null ],
     [ "threadFunc", "classTracer.html#ab462323c296d709db1107ccd26df9d27", null ],
     [ "_annotations", "classTracer.html#ab66fe7b82f20fbd67a6122bce49e06b0", null ],

@@ -4,6 +4,5 @@ var searchData=
   ['readdata_1',['readData',['../classRawSocket.html#aa0c5a1d1cd751525ca77642a16928a24',1,'RawSocket']]],
   ['readjson_2',['readJson',['../classConfigParser.html#aca170271d8fe1a36f905c971f807e8db',1,'ConfigParser']]],
   ['recvmessages_3',['recvMessages',['../classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3',1,'ZeroMQ']]],
-  ['remove_4',['remove',['../classConfigParser.html#a317867fa9bcc23be87dcccc38a22d7a6',1,'ConfigParser']]],
-  ['restart_5',['restart',['../classTracer.html#a4755dbacab3e82bed9e7eaedd8a025ab',1,'Tracer']]]
+  ['remove_4',['remove',['../classConfigParser.html#a317867fa9bcc23be87dcccc38a22d7a6',1,'ConfigParser']]]
 ];

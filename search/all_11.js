@@ -13,6 +13,5 @@ var searchData=
   ['refusedconnectionctr_10',['refusedConnectionCtr',['../structTelnetServerStats.html#ac4556411d1a1f0f366b029bb8e5e8001',1,'TelnetServerStats']]],
   ['remove_11',['remove',['../classConfigParser.html#a317867fa9bcc23be87dcccc38a22d7a6',1,'ConfigParser']]],
   ['repo_20init_12',['Repo-Init',['../index.html',1,'']]],
-  ['requestbytes_13',['requestBytes',['../structHTTPStats.html#a28e77c97dbcb01973f51feac53743535',1,'HTTPStats']]],
-  ['restart_14',['restart',['../classTracer.html#a4755dbacab3e82bed9e7eaedd8a025ab',1,'Tracer']]]
+  ['requestbytes_13',['requestBytes',['../structHTTPStats.html#a28e77c97dbcb01973f51feac53743535',1,'HTTPStats']]]
 ];

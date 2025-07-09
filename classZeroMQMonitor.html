@@ -159,6 +159,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a91a74a94d4c37b938573a05133e57056"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83ffe6f50cab52994f05fa68db78c8df" id="r_a83ffe6f50cab52994f05fa68db78c8df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83ffe6f50cab52994f05fa68db78c8df">stopMonitoring</a> ()</td></tr>
 <tr class="separator:a83ffe6f50cab52994f05fa68db78c8df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c305f95d96217af42dd4a2cd56535be" id="r_a4c305f95d96217af42dd4a2cd56535be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c305f95d96217af42dd4a2cd56535be">testInternals</a> ()</td></tr>
+<tr class="separator:a4c305f95d96217af42dd4a2cd56535be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac27d04233bec52ba0d0554c47d1fe921" id="r_ac27d04233bec52ba0d0554c47d1fe921"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac27d04233bec52ba0d0554c47d1fe921">~ZeroMQMonitor</a> () override</td></tr>
 <tr class="separator:ac27d04233bec52ba0d0554c47d1fe921"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -324,9 +326,9 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Destructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8hpp_source.html#l00108">108</a> of file <a class="el" href="ZeroMQMonitor_8hpp_source.html">ZeroMQMonitor.hpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  108</span>{ <a class="code hl_function" href="#a83ffe6f50cab52994f05fa68db78c8df">stopMonitoring</a>(); }</div>
-<div class="ttc" id="aclassZeroMQMonitor_html_a83ffe6f50cab52994f05fa68db78c8df"><div class="ttname"><a href="#a83ffe6f50cab52994f05fa68db78c8df">ZeroMQMonitor::stopMonitoring</a></div><div class="ttdeci">void stopMonitoring()</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00147">ZeroMQMonitor.cpp:147</a></div></div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8hpp_source.html#l00113">113</a> of file <a class="el" href="ZeroMQMonitor_8hpp_source.html">ZeroMQMonitor.hpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  113</span>{ <a class="code hl_function" href="#a83ffe6f50cab52994f05fa68db78c8df">stopMonitoring</a>(); }</div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a83ffe6f50cab52994f05fa68db78c8df"><div class="ttname"><a href="#a83ffe6f50cab52994f05fa68db78c8df">ZeroMQMonitor::stopMonitoring</a></div><div class="ttdeci">void stopMonitoring()</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00168">ZeroMQMonitor.cpp:168</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -407,67 +409,73 @@ Here is the call graph for this function:</div>
 <div class="fragment"><div class="line"><span class="lineno">   16</span>{</div>
 <div class="line"><span class="lineno">   17</span>    <span class="keywordflow">switch</span> (level)</div>
 <div class="line"><span class="lineno">   18</span>    {</div>
-<div class="line"><span class="lineno">   19</span>    <span class="keywordflow">case</span> spdlog::level::trace:</div>
-<div class="line"><span class="lineno">   20</span>        spdlog::trace(<span class="stringliteral">&quot;{} {}&quot;</span>, messageStr, addr == <span class="keyword">nullptr</span> ? <span class="stringliteral">&quot;&quot;</span> : addr);</div>
+<div class="line"><span class="lineno">   19</span>    <span class="keywordflow">case</span> spdlog::level::debug:</div>
+<div class="line"><span class="lineno">   20</span>        spdlog::debug(<span class="stringliteral">&quot;{} {}&quot;</span>, messageStr, addr == <span class="keyword">nullptr</span> ? <span class="stringliteral">&quot;&quot;</span> : addr);</div>
 <div class="line"><span class="lineno">   21</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   22</span>    <span class="keywordflow">case</span> spdlog::level::debug:</div>
-<div class="line"><span class="lineno">   23</span>        spdlog::debug(<span class="stringliteral">&quot;{} {}&quot;</span>, messageStr, addr == <span class="keyword">nullptr</span> ? <span class="stringliteral">&quot;&quot;</span> : addr);</div>
+<div class="line"><span class="lineno">   22</span>    <span class="keywordflow">case</span> spdlog::level::info:</div>
+<div class="line"><span class="lineno">   23</span>        spdlog::info(<span class="stringliteral">&quot;{} {}&quot;</span>, messageStr, addr == <span class="keyword">nullptr</span> ? <span class="stringliteral">&quot;&quot;</span> : addr);</div>
 <div class="line"><span class="lineno">   24</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">case</span> spdlog::level::info:</div>
-<div class="line"><span class="lineno">   26</span>        spdlog::info(<span class="stringliteral">&quot;{} {}&quot;</span>, messageStr, addr == <span class="keyword">nullptr</span> ? <span class="stringliteral">&quot;&quot;</span> : addr);</div>
+<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">case</span> spdlog::level::warn:</div>
+<div class="line"><span class="lineno">   26</span>        spdlog::warn(<span class="stringliteral">&quot;{} {}&quot;</span>, messageStr, addr == <span class="keyword">nullptr</span> ? <span class="stringliteral">&quot;&quot;</span> : addr);</div>
 <div class="line"><span class="lineno">   27</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   28</span>    <span class="keywordflow">case</span> spdlog::level::warn:</div>
-<div class="line"><span class="lineno">   29</span>        spdlog::warn(<span class="stringliteral">&quot;{} {}&quot;</span>, messageStr, addr == <span class="keyword">nullptr</span> ? <span class="stringliteral">&quot;&quot;</span> : addr);</div>
-<div class="line"><span class="lineno">   30</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   31</span>    <span class="keywordflow">case</span> spdlog::level::err:</div>
-<div class="line"><span class="lineno">   32</span>        spdlog::error(<span class="stringliteral">&quot;{} {}&quot;</span>, messageStr, addr == <span class="keyword">nullptr</span> ? <span class="stringliteral">&quot;&quot;</span> : addr);</div>
-<div class="line"><span class="lineno">   33</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   34</span>    <span class="keywordflow">case</span> spdlog::level::critical:</div>
-<div class="line"><span class="lineno">   35</span>        spdlog::critical(<span class="stringliteral">&quot;{} {}&quot;</span>, messageStr, addr == <span class="keyword">nullptr</span> ? <span class="stringliteral">&quot;&quot;</span> : addr);</div>
-<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   37</span>    <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">   38</span>        spdlog::warn(<span class="stringliteral">&quot;Unknown log level {} {} {}&quot;</span>, messageStr, addr == <span class="keyword">nullptr</span> ? <span class="stringliteral">&quot;&quot;</span> : addr, level);</div>
-<div class="line"><span class="lineno">   39</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   40</span>    }</div>
-<div class="line"><span class="lineno">   41</span>}</div>
+<div class="line"><span class="lineno">   28</span>    <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">   29</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   30</span>    }</div>
+<div class="line"><span class="lineno">   31</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classZeroMQMonitor_ab313df820ff9cca337672b28e79343f8_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_ab313df820ff9cca337672b28e79343f8_icgraph" alt=""/></div>
 <map name="aclassZeroMQMonitor_ab313df820ff9cca337672b28e79343f8_icgraph" id="aclassZeroMQMonitor_ab313df820ff9cca337672b28e79343f8_icgraph">
-<area shape="rect" title=" " alt="" coords="253,534,433,562"/>
-<area shape="rect" href="classZeroMQMonitor.html#a9f519fb64bf98b4caf1041a614693745" title=" " alt="" coords="15,5,195,50"/>
-<area shape="poly" title=" " alt="" coords="339,518,335,431,329,373,318,310,301,244,277,179,244,118,203,64,189,53,192,48,207,60,249,115,281,177,306,243,323,309,334,372,341,431,345,518"/>
-<area shape="rect" href="classZeroMQMonitor.html#a72da5c7cc53b7cdcf0959bbaffeda614" title=" " alt="" coords="15,75,195,119"/>
-<area shape="poly" title=" " alt="" coords="338,518,330,442,309,339,292,284,269,230,239,179,203,134,188,122,191,118,207,130,244,176,274,227,297,282,314,338,335,441,343,518"/>
-<area shape="rect" href="classZeroMQMonitor.html#a3c8512cd036926ebcf950669046398f1" title=" " alt="" coords="15,144,195,189"/>
-<area shape="poly" title=" " alt="" coords="336,519,324,454,301,370,283,325,261,281,235,239,203,203,187,191,191,187,206,199,239,236,266,278,288,323,306,368,329,453,341,518"/>
-<area shape="rect" href="classZeroMQMonitor.html#af87af122def750e0fca640c992672021" title=" " alt="" coords="15,213,195,258"/>
-<area shape="poly" title=" " alt="" coords="332,519,317,467,291,400,254,332,230,300,203,272,187,261,190,256,206,268,234,297,258,329,296,398,322,465,337,518"/>
-<area shape="rect" href="classZeroMQMonitor.html#a6087fafa16996578ed1586c48c826e88" title=" " alt="" coords="15,283,195,327"/>
-<area shape="poly" title=" " alt="" coords="328,521,309,481,281,433,246,384,203,342,185,330,187,326,206,338,250,380,286,430,313,478,332,518"/>
-<area shape="rect" href="classZeroMQMonitor.html#a5634d710110bb78ed7cff8c96aa4e956" title=" " alt="" coords="15,352,195,397"/>
-<area shape="poly" title=" " alt="" coords="320,523,270,467,238,437,203,411,181,400,184,395,206,407,242,433,274,463,324,520"/>
-<area shape="rect" href="classZeroMQMonitor.html#a081d06f1f1d4e99eadea54a121d06236" title=" " alt="" coords="15,421,195,466"/>
-<area shape="poly" title=" " alt="" coords="301,529,204,481,174,469,176,464,206,476,304,524"/>
-<area shape="rect" href="classZeroMQMonitor.html#a674db0ed1653be0b9c04cb6cb1507e54" title=" " alt="" coords="15,491,195,535"/>
-<area shape="poly" title=" " alt="" coords="237,535,195,529,196,524,238,530"/>
-<area shape="rect" href="classZeroMQMonitor.html#a2ec4f6d96451aa94ab6b7fe987657b51" title=" " alt="" coords="15,560,195,605"/>
-<area shape="poly" title=" " alt="" coords="238,566,196,572,195,567,237,560"/>
-<area shape="rect" href="classZeroMQMonitor.html#a94b9b6f7fca227c721be7179306b7e5d" title=" " alt="" coords="15,629,195,674"/>
-<area shape="poly" title=" " alt="" coords="304,571,206,619,176,631,174,626,204,615,301,567"/>
-<area shape="rect" href="classZeroMQMonitor.html#ab76fbcd342b9a7ed4c49d2b42c308c3c" title=" " alt="" coords="5,699,205,743"/>
-<area shape="poly" title=" " alt="" coords="324,576,274,632,242,662,206,689,184,700,181,696,203,684,238,658,270,628,320,572"/>
-<area shape="rect" href="classZeroMQMonitor.html#ab878aa9c35e112b98d0e1c36b990e861" title=" " alt="" coords="8,768,202,813"/>
-<area shape="poly" title=" " alt="" coords="332,577,313,617,286,666,250,715,206,758,187,770,185,765,203,754,246,711,281,663,309,615,328,575"/>
-<area shape="rect" href="classZeroMQMonitor.html#a71655e5af8f53e9268ba77320c2f24c2" title=" " alt="" coords="15,837,195,882"/>
-<area shape="poly" title=" " alt="" coords="337,578,322,630,296,697,258,766,234,799,206,827,190,839,187,835,203,823,230,795,254,764,291,695,317,629,332,576"/>
-<area shape="rect" href="classZeroMQMonitor.html#a5c26ec0e8d3ee17d0f0d83b822e953c6" title=" " alt="" coords="15,907,195,951"/>
-<area shape="poly" title=" " alt="" coords="341,577,329,642,306,727,288,773,266,817,239,859,206,896,191,908,187,904,203,892,235,856,261,815,283,771,301,726,324,641,336,576"/>
-<area shape="rect" href="classZeroMQMonitor.html#a03f3615764ad459ee6b8ea95731a0294" title=" " alt="" coords="15,976,195,1021"/>
-<area shape="poly" title=" " alt="" coords="343,578,335,654,314,758,297,813,274,868,244,920,207,966,191,978,188,973,203,962,239,917,269,866,292,811,309,756,330,653,338,577"/>
-<area shape="rect" href="classZeroMQMonitor.html#ab4212ec2e297f4f934ed7cadebd5e329" title=" " alt="" coords="7,1045,203,1090"/>
-<area shape="poly" title=" " alt="" coords="345,577,341,665,334,723,323,787,306,853,281,918,249,980,207,1035,192,1047,189,1043,203,1031,244,977,277,916,301,851,318,786,329,722,335,664,339,577"/>
+<area shape="rect" title=" " alt="" coords="502,534,682,562"/>
+<area shape="rect" href="classZeroMQMonitor.html#a9f519fb64bf98b4caf1041a614693745" title=" " alt="" coords="264,5,444,50"/>
+<area shape="poly" title=" " alt="" coords="589,518,585,431,578,373,567,310,550,244,526,179,494,118,452,64,438,53,441,48,456,60,498,115,531,177,555,243,572,309,583,372,590,431,594,518"/>
+<area shape="rect" href="classZeroMQMonitor.html#a72da5c7cc53b7cdcf0959bbaffeda614" title=" " alt="" coords="264,75,444,119"/>
+<area shape="poly" title=" " alt="" coords="587,518,579,442,558,339,541,284,518,230,489,179,452,134,437,122,441,118,456,130,493,176,523,227,546,282,564,338,585,441,592,518"/>
+<area shape="rect" href="classZeroMQMonitor.html#a3c8512cd036926ebcf950669046398f1" title=" " alt="" coords="264,144,444,189"/>
+<area shape="poly" title=" " alt="" coords="585,519,573,454,550,370,532,325,511,281,484,239,452,203,437,191,440,187,456,199,488,236,515,278,537,323,555,368,579,453,590,518"/>
+<area shape="rect" href="classZeroMQMonitor.html#af87af122def750e0fca640c992672021" title=" " alt="" coords="264,213,444,258"/>
+<area shape="poly" title=" " alt="" coords="582,519,566,467,541,400,503,332,479,300,452,272,436,261,439,256,456,268,483,297,507,329,545,398,571,465,587,518"/>
+<area shape="rect" href="classZeroMQMonitor.html#a6087fafa16996578ed1586c48c826e88" title=" " alt="" coords="264,283,444,327"/>
+<area shape="poly" title=" " alt="" coords="577,521,558,481,531,433,495,384,452,342,434,330,437,326,456,338,499,380,535,430,563,478,582,518"/>
+<area shape="rect" href="classZeroMQMonitor.html#a5634d710110bb78ed7cff8c96aa4e956" title=" " alt="" coords="264,352,444,397"/>
+<area shape="poly" title=" " alt="" coords="569,523,520,467,488,437,453,411,431,400,433,395,455,407,491,433,524,463,573,520"/>
+<area shape="rect" href="classZeroMQMonitor.html#a081d06f1f1d4e99eadea54a121d06236" title=" " alt="" coords="264,421,444,466"/>
+<area shape="poly" title=" " alt="" coords="551,529,453,481,423,469,425,464,455,476,553,524"/>
+<area shape="rect" href="classZeroMQMonitor.html#a674db0ed1653be0b9c04cb6cb1507e54" title=" " alt="" coords="264,491,444,535"/>
+<area shape="poly" title=" " alt="" coords="486,535,444,529,445,524,487,530"/>
+<area shape="rect" href="classZeroMQMonitor.html#a2ec4f6d96451aa94ab6b7fe987657b51" title=" " alt="" coords="264,560,444,605"/>
+<area shape="poly" title=" " alt="" coords="487,566,445,572,444,567,486,560"/>
+<area shape="rect" href="classZeroMQMonitor.html#a94b9b6f7fca227c721be7179306b7e5d" title=" " alt="" coords="264,629,444,674"/>
+<area shape="poly" title=" " alt="" coords="553,571,455,619,425,631,423,626,453,615,551,567"/>
+<area shape="rect" href="classZeroMQMonitor.html#ab76fbcd342b9a7ed4c49d2b42c308c3c" title=" " alt="" coords="255,699,454,743"/>
+<area shape="poly" title=" " alt="" coords="573,576,524,632,491,662,455,689,433,700,431,696,453,684,488,658,520,628,569,572"/>
+<area shape="rect" href="classZeroMQMonitor.html#ab878aa9c35e112b98d0e1c36b990e861" title=" " alt="" coords="257,768,452,813"/>
+<area shape="poly" title=" " alt="" coords="582,577,563,617,535,666,499,715,456,758,437,770,434,765,452,754,495,711,531,663,558,615,577,575"/>
+<area shape="rect" href="classZeroMQMonitor.html#a71655e5af8f53e9268ba77320c2f24c2" title=" " alt="" coords="264,837,444,882"/>
+<area shape="poly" title=" " alt="" coords="587,578,571,630,545,697,507,766,483,799,456,827,439,839,436,835,452,823,479,795,503,764,541,695,566,629,582,576"/>
+<area shape="rect" href="classZeroMQMonitor.html#a5c26ec0e8d3ee17d0f0d83b822e953c6" title=" " alt="" coords="264,907,444,951"/>
+<area shape="poly" title=" " alt="" coords="590,577,579,642,555,727,537,773,515,817,488,859,456,896,440,908,437,904,452,892,484,856,511,815,532,771,550,726,573,641,585,576"/>
+<area shape="rect" href="classZeroMQMonitor.html#a03f3615764ad459ee6b8ea95731a0294" title=" " alt="" coords="264,976,444,1021"/>
+<area shape="poly" title=" " alt="" coords="592,578,585,654,564,758,546,813,523,868,493,920,456,966,441,978,437,973,452,962,489,917,518,866,541,811,558,756,579,653,587,577"/>
+<area shape="rect" href="classZeroMQMonitor.html#ab4212ec2e297f4f934ed7cadebd5e329" title=" " alt="" coords="256,1045,452,1090"/>
+<area shape="poly" title=" " alt="" coords="594,577,590,665,583,723,572,787,555,853,531,918,498,980,456,1035,441,1047,438,1043,452,1031,494,977,526,916,550,851,567,786,578,722,585,664,589,577"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,499,207,527"/>
+<area shape="poly" title=" " alt="" coords="260,61,257,64,214,118,180,178,155,243,137,307,124,369,116,423,110,499,105,498,111,423,119,368,131,306,150,241,176,176,209,115,253,61,256,58"/>
+<area shape="poly" title=" " alt="" coords="260,130,257,134,219,178,188,228,163,282,144,336,121,434,111,499,106,498,116,433,139,334,158,280,183,226,214,175,253,130,256,126"/>
+<area shape="poly" title=" " alt="" coords="260,200,257,203,223,238,195,278,172,321,153,365,126,444,113,499,107,498,121,443,148,363,167,319,191,276,219,235,253,199,257,196"/>
+<area shape="poly" title=" " alt="" coords="262,268,256,272,228,299,203,329,161,395,132,456,115,500,110,498,127,454,156,392,198,326,224,295,253,268,258,264"/>
+<area shape="poly" title=" " alt="" coords="264,337,256,342,210,381,170,425,118,500,114,497,166,422,206,377,253,338,261,333"/>
+<area shape="poly" title=" " alt="" coords="268,406,256,411,182,458,126,501,123,496,179,453,253,407,265,401"/>
+<area shape="poly" title=" " alt="" coords="258,473,159,501,158,496,256,468"/>
+<area shape="poly" title=" " alt="" coords="248,516,207,516,207,510,248,510"/>
+<area shape="poly" title=" " alt="" coords="256,558,158,530,159,525,258,553"/>
+<area shape="poly" title=" " alt="" coords="265,625,253,619,179,573,123,530,126,525,182,568,256,615,268,620"/>
+<area shape="poly" title=" " alt="" coords="261,693,253,688,206,649,166,604,114,529,118,526,170,601,210,645,256,684,264,689"/>
+<area shape="poly" title=" " alt="" coords="258,762,253,758,224,731,198,700,156,634,127,572,110,528,115,526,132,570,161,631,203,697,228,727,256,754,262,758"/>
+<area shape="poly" title=" " alt="" coords="257,830,253,827,219,791,191,750,167,707,148,663,121,583,107,528,113,527,126,582,153,661,172,705,195,748,223,788,257,823,260,826"/>
+<area shape="poly" title=" " alt="" coords="256,900,253,896,214,851,183,800,158,746,139,692,116,593,106,528,111,527,121,592,144,690,163,744,188,798,219,848,257,892,260,896"/>
+<area shape="poly" title=" " alt="" coords="256,968,253,965,209,911,176,850,150,785,131,720,119,658,111,603,105,528,110,527,116,603,124,657,137,719,155,783,180,848,214,908,257,962,260,965"/>
 </map>
 </div>
 
@@ -500,10 +508,10 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00076">76</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   77</span>{</div>
-<div class="line"><span class="lineno">   78</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Accept failed&quot;</span>, spdlog::level::warn, addr_);</div>
-<div class="line"><span class="lineno">   79</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00066">66</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   67</span>{</div>
+<div class="line"><span class="lineno">   68</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Accept failed&quot;</span>, spdlog::level::warn, addr_);</div>
+<div class="line"><span class="lineno">   69</span>}</div>
 <div class="ttc" id="aclassZeroMQMonitor_html_ab313df820ff9cca337672b28e79343f8"><div class="ttname"><a href="#ab313df820ff9cca337672b28e79343f8">ZeroMQMonitor::on_event</a></div><div class="ttdeci">static void on_event(const std::string &amp;messageStr, int level, const char *addr=nullptr)</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00015">ZeroMQMonitor.cpp:15</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -513,6 +521,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,186,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="234,14,414,42"/>
 <area shape="poly" title=" " alt="" coords="186,25,218,25,218,30,186,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_a9f519fb64bf98b4caf1041a614693745_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_a9f519fb64bf98b4caf1041a614693745_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_a9f519fb64bf98b4caf1041a614693745_icgraph" id="aclassZeroMQMonitor_a9f519fb64bf98b4caf1041a614693745_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,435,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -545,10 +563,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00071">71</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   72</span>{</div>
-<div class="line"><span class="lineno">   73</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Accepted&quot;</span>, spdlog::level::info, addr_);</div>
-<div class="line"><span class="lineno">   74</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00061">61</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   62</span>{</div>
+<div class="line"><span class="lineno">   63</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Accepted&quot;</span>, spdlog::level::info, addr_);</div>
+<div class="line"><span class="lineno">   64</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -557,6 +575,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,186,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="234,14,414,42"/>
 <area shape="poly" title=" " alt="" coords="186,25,218,25,218,30,186,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_a72da5c7cc53b7cdcf0959bbaffeda614_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_a72da5c7cc53b7cdcf0959bbaffeda614_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_a72da5c7cc53b7cdcf0959bbaffeda614_icgraph" id="aclassZeroMQMonitor_a72da5c7cc53b7cdcf0959bbaffeda614_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,435,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -589,10 +617,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00066">66</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   67</span>{</div>
-<div class="line"><span class="lineno">   68</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Bind failed&quot;</span>, spdlog::level::warn, addr_);</div>
-<div class="line"><span class="lineno">   69</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00056">56</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   57</span>{</div>
+<div class="line"><span class="lineno">   58</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Bind failed&quot;</span>, spdlog::level::warn, addr_);</div>
+<div class="line"><span class="lineno">   59</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -601,6 +629,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,186,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="234,14,414,42"/>
 <area shape="poly" title=" " alt="" coords="186,25,218,25,218,30,186,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_a3c8512cd036926ebcf950669046398f1_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_a3c8512cd036926ebcf950669046398f1_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_a3c8512cd036926ebcf950669046398f1_icgraph" id="aclassZeroMQMonitor_a3c8512cd036926ebcf950669046398f1_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,435,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -633,10 +671,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00086">86</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   87</span>{</div>
-<div class="line"><span class="lineno">   88</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Close failed&quot;</span>, spdlog::level::warn, addr_);</div>
-<div class="line"><span class="lineno">   89</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00076">76</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   77</span>{</div>
+<div class="line"><span class="lineno">   78</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Close failed&quot;</span>, spdlog::level::warn, addr_);</div>
+<div class="line"><span class="lineno">   79</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -645,6 +683,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,186,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="234,14,414,42"/>
 <area shape="poly" title=" " alt="" coords="186,25,218,25,218,30,186,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_af87af122def750e0fca640c992672021_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_af87af122def750e0fca640c992672021_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_af87af122def750e0fca640c992672021_icgraph" id="aclassZeroMQMonitor_af87af122def750e0fca640c992672021_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,435,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -677,10 +725,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00081">81</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   82</span>{</div>
-<div class="line"><span class="lineno">   83</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Closed&quot;</span>, spdlog::level::debug, addr_);</div>
-<div class="line"><span class="lineno">   84</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00071">71</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   72</span>{</div>
+<div class="line"><span class="lineno">   73</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Closed&quot;</span>, spdlog::level::debug, addr_);</div>
+<div class="line"><span class="lineno">   74</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -689,6 +737,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,186,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="234,14,414,42"/>
 <area shape="poly" title=" " alt="" coords="186,25,218,25,218,30,186,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_a6087fafa16996578ed1586c48c826e88_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_a6087fafa16996578ed1586c48c826e88_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_a6087fafa16996578ed1586c48c826e88_icgraph" id="aclassZeroMQMonitor_a6087fafa16996578ed1586c48c826e88_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,435,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -721,10 +779,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00051">51</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   52</span>{</div>
-<div class="line"><span class="lineno">   53</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Connect delayed&quot;</span>, spdlog::level::debug, addr_);</div>
-<div class="line"><span class="lineno">   54</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00041">41</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   42</span>{</div>
+<div class="line"><span class="lineno">   43</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Connect delayed&quot;</span>, spdlog::level::debug, addr_);</div>
+<div class="line"><span class="lineno">   44</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -733,6 +791,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,186,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="234,14,414,42"/>
 <area shape="poly" title=" " alt="" coords="186,25,218,25,218,30,186,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_a5634d710110bb78ed7cff8c96aa4e956_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_a5634d710110bb78ed7cff8c96aa4e956_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_a5634d710110bb78ed7cff8c96aa4e956_icgraph" id="aclassZeroMQMonitor_a5634d710110bb78ed7cff8c96aa4e956_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,435,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -765,10 +833,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00056">56</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   57</span>{</div>
-<div class="line"><span class="lineno">   58</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Connect retried&quot;</span>, spdlog::level::debug, addr_);</div>
-<div class="line"><span class="lineno">   59</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00046">46</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   47</span>{</div>
+<div class="line"><span class="lineno">   48</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Connect retried&quot;</span>, spdlog::level::debug, addr_);</div>
+<div class="line"><span class="lineno">   49</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -777,6 +845,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,186,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="234,14,414,42"/>
 <area shape="poly" title=" " alt="" coords="186,25,218,25,218,30,186,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_a081d06f1f1d4e99eadea54a121d06236_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_a081d06f1f1d4e99eadea54a121d06236_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_a081d06f1f1d4e99eadea54a121d06236_icgraph" id="aclassZeroMQMonitor_a081d06f1f1d4e99eadea54a121d06236_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,435,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -809,11 +887,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00045">45</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   46</span>{</div>
-<div class="line"><span class="lineno">   47</span>    <a class="code hl_variable" href="#a894a734962b375c29e304ec1e1de91d3">_peerCount</a>.fetch_add(1);</div>
-<div class="line"><span class="lineno">   48</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Connected&quot;</span>, spdlog::level::info, addr_);</div>
-<div class="line"><span class="lineno">   49</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00035">35</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   36</span>{</div>
+<div class="line"><span class="lineno">   37</span>    <a class="code hl_variable" href="#a894a734962b375c29e304ec1e1de91d3">_peerCount</a>.fetch_add(1);</div>
+<div class="line"><span class="lineno">   38</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Connected&quot;</span>, spdlog::level::info, addr_);</div>
+<div class="line"><span class="lineno">   39</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -822,6 +900,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,186,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="234,14,414,42"/>
 <area shape="poly" title=" " alt="" coords="186,25,218,25,218,30,186,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_a674db0ed1653be0b9c04cb6cb1507e54_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_a674db0ed1653be0b9c04cb6cb1507e54_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_a674db0ed1653be0b9c04cb6cb1507e54_icgraph" id="aclassZeroMQMonitor_a674db0ed1653be0b9c04cb6cb1507e54_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,435,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -854,11 +942,11 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00091">91</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   92</span>{</div>
-<div class="line"><span class="lineno">   93</span>    <a class="code hl_variable" href="#a894a734962b375c29e304ec1e1de91d3">_peerCount</a>.fetch_sub(1);</div>
-<div class="line"><span class="lineno">   94</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Disconnected&quot;</span>, spdlog::level::info, addr_);</div>
-<div class="line"><span class="lineno">   95</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00081">81</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   82</span>{</div>
+<div class="line"><span class="lineno">   83</span>    <a class="code hl_variable" href="#a894a734962b375c29e304ec1e1de91d3">_peerCount</a>.fetch_sub(1);</div>
+<div class="line"><span class="lineno">   84</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Disconnected&quot;</span>, spdlog::level::info, addr_);</div>
+<div class="line"><span class="lineno">   85</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -867,6 +955,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,186,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="234,14,414,42"/>
 <area shape="poly" title=" " alt="" coords="186,25,218,25,218,30,186,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_a2ec4f6d96451aa94ab6b7fe987657b51_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_a2ec4f6d96451aa94ab6b7fe987657b51_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_a2ec4f6d96451aa94ab6b7fe987657b51_icgraph" id="aclassZeroMQMonitor_a2ec4f6d96451aa94ab6b7fe987657b51_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,435,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -899,10 +997,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00109">109</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  110</span>{</div>
-<div class="line"><span class="lineno">  111</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Handshake failed (auth)&quot;</span>, spdlog::level::warn, addr_);</div>
-<div class="line"><span class="lineno">  112</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00099">99</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  100</span>{</div>
+<div class="line"><span class="lineno">  101</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Handshake failed (auth)&quot;</span>, spdlog::level::warn, addr_);</div>
+<div class="line"><span class="lineno">  102</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -911,6 +1009,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,186,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="234,14,414,42"/>
 <area shape="poly" title=" " alt="" coords="186,25,218,25,218,30,186,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_a94b9b6f7fca227c721be7179306b7e5d_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_a94b9b6f7fca227c721be7179306b7e5d_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_a94b9b6f7fca227c721be7179306b7e5d_icgraph" id="aclassZeroMQMonitor_a94b9b6f7fca227c721be7179306b7e5d_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,435,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -943,10 +1051,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00099">99</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  100</span>{</div>
-<div class="line"><span class="lineno">  101</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Handshake failed (no detail)&quot;</span>, spdlog::level::warn, addr_);</div>
-<div class="line"><span class="lineno">  102</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00089">89</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   90</span>{</div>
+<div class="line"><span class="lineno">   91</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Handshake failed (no detail)&quot;</span>, spdlog::level::warn, addr_);</div>
+<div class="line"><span class="lineno">   92</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -955,6 +1063,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,205,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="253,14,433,42"/>
 <area shape="poly" title=" " alt="" coords="205,25,237,25,237,30,205,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_ab76fbcd342b9a7ed4c49d2b42c308c3c_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_ab76fbcd342b9a7ed4c49d2b42c308c3c_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_ab76fbcd342b9a7ed4c49d2b42c308c3c_icgraph" id="aclassZeroMQMonitor_ab76fbcd342b9a7ed4c49d2b42c308c3c_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,454,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -987,10 +1105,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00104">104</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  105</span>{</div>
-<div class="line"><span class="lineno">  106</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Handshake failed (protocol)&quot;</span>, spdlog::level::warn, addr_);</div>
-<div class="line"><span class="lineno">  107</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00094">94</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   95</span>{</div>
+<div class="line"><span class="lineno">   96</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Handshake failed (protocol)&quot;</span>, spdlog::level::warn, addr_);</div>
+<div class="line"><span class="lineno">   97</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -999,6 +1117,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,200,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="248,14,428,42"/>
 <area shape="poly" title=" " alt="" coords="200,25,232,25,232,30,200,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_ab878aa9c35e112b98d0e1c36b990e861_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_ab878aa9c35e112b98d0e1c36b990e861_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_ab878aa9c35e112b98d0e1c36b990e861_icgraph" id="aclassZeroMQMonitor_ab878aa9c35e112b98d0e1c36b990e861_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,449,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -1031,10 +1159,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00114">114</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  115</span>{</div>
-<div class="line"><span class="lineno">  116</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Handshake succeeded&quot;</span>, spdlog::level::info, addr_);</div>
-<div class="line"><span class="lineno">  117</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00104">104</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  105</span>{</div>
+<div class="line"><span class="lineno">  106</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Handshake succeeded&quot;</span>, spdlog::level::info, addr_);</div>
+<div class="line"><span class="lineno">  107</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1043,6 +1171,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,186,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="234,14,414,42"/>
 <area shape="poly" title=" " alt="" coords="186,25,218,25,218,30,186,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_a71655e5af8f53e9268ba77320c2f24c2_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_a71655e5af8f53e9268ba77320c2f24c2_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_a71655e5af8f53e9268ba77320c2f24c2_icgraph" id="aclassZeroMQMonitor_a71655e5af8f53e9268ba77320c2f24c2_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,435,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -1075,10 +1213,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00061">61</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   62</span>{</div>
-<div class="line"><span class="lineno">   63</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Listening&quot;</span>, spdlog::level::debug, addr_);</div>
-<div class="line"><span class="lineno">   64</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00051">51</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   52</span>{</div>
+<div class="line"><span class="lineno">   53</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Listening&quot;</span>, spdlog::level::debug, addr_);</div>
+<div class="line"><span class="lineno">   54</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1087,6 +1225,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,186,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="234,14,414,42"/>
 <area shape="poly" title=" " alt="" coords="186,25,218,25,218,30,186,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_a5c26ec0e8d3ee17d0f0d83b822e953c6_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_a5c26ec0e8d3ee17d0f0d83b822e953c6_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_a5c26ec0e8d3ee17d0f0d83b822e953c6_icgraph" id="aclassZeroMQMonitor_a5c26ec0e8d3ee17d0f0d83b822e953c6_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,435,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -1119,10 +1267,10 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00131">131</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  132</span>{</div>
-<div class="line"><span class="lineno">  133</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Unknown event&quot;</span>, spdlog::level::warn, addr_);</div>
-<div class="line"><span class="lineno">  134</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00121">121</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  122</span>{</div>
+<div class="line"><span class="lineno">  123</span>    <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Unknown event&quot;</span>, spdlog::level::warn, addr_);</div>
+<div class="line"><span class="lineno">  124</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1131,6 +1279,16 @@ Here is the call graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="5,5,186,50"/>
 <area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="234,14,414,42"/>
 <area shape="poly" title=" " alt="" coords="186,25,218,25,218,30,186,30"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_a03f3615764ad459ee6b8ea95731a0294_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_a03f3615764ad459ee6b8ea95731a0294_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_a03f3615764ad459ee6b8ea95731a0294_icgraph" id="aclassZeroMQMonitor_a03f3615764ad459ee6b8ea95731a0294_icgraph">
+<area shape="rect" title=" " alt="" coords="255,5,435,50"/>
+<area shape="rect" href="classZeroMQMonitor.html#a4c305f95d96217af42dd4a2cd56535be" title=" " alt="" coords="5,14,207,42"/>
+<area shape="poly" title=" " alt="" coords="239,30,207,30,207,25,239,25"/>
 </map>
 </div>
 
@@ -1159,8 +1317,8 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00043">43</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   43</span>{ <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Monitor started&quot;</span>, spdlog::level::info); }</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00033">33</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>{ <a class="code hl_function" href="#ab313df820ff9cca337672b28e79343f8">on_event</a>(<span class="stringliteral">&quot;Monitor started&quot;</span>, spdlog::level::info); }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1256,16 +1414,16 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00136">136</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  137</span>{</div>
-<div class="line"><span class="lineno">  138</span>    <span class="keywordflow">if</span> (socket == <span class="keyword">nullptr</span>)</div>
-<div class="line"><span class="lineno">  139</span>    {</div>
-<div class="line"><span class="lineno">  140</span>        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;ZeroMQ socket to monitor is nullptr&quot;</span>);</div>
-<div class="line"><span class="lineno">  141</span>    }</div>
-<div class="line"><span class="lineno">  142</span> </div>
-<div class="line"><span class="lineno">  143</span>    init(*socket, monitorAddress);</div>
-<div class="line"><span class="lineno">  144</span>    <a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a> = std::make_unique&lt;std::thread&gt;(&amp;<a class="code hl_function" href="#a822fbf3c0f167e77abdcc0cdc4f31545">ZeroMQMonitor::threadFunc</a>, <span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">  145</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00126">126</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  127</span>{</div>
+<div class="line"><span class="lineno">  128</span>    <span class="keywordflow">if</span> (socket == <span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">  129</span>    {</div>
+<div class="line"><span class="lineno">  130</span>        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;ZeroMQ socket to monitor is nullptr&quot;</span>);</div>
+<div class="line"><span class="lineno">  131</span>    }</div>
+<div class="line"><span class="lineno">  132</span> </div>
+<div class="line"><span class="lineno">  133</span>    init(*socket, monitorAddress);</div>
+<div class="line"><span class="lineno">  134</span>    <a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a> = std::make_unique&lt;std::thread&gt;(&amp;<a class="code hl_function" href="#a822fbf3c0f167e77abdcc0cdc4f31545">ZeroMQMonitor::threadFunc</a>, <span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">  135</span>}</div>
 <div class="ttc" id="aclassZeroMQMonitor_html_a777d8155790bec800f1bce9ac52f3508"><div class="ttname"><a href="#a777d8155790bec800f1bce9ac52f3508">ZeroMQMonitor::_monitorThread</a></div><div class="ttdeci">std::unique_ptr&lt; std::thread &gt; _monitorThread</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8hpp_source.html#l00019">ZeroMQMonitor.hpp:19</a></div></div>
 <div class="ttc" id="aclassZeroMQMonitor_html_a822fbf3c0f167e77abdcc0cdc4f31545"><div class="ttname"><a href="#a822fbf3c0f167e77abdcc0cdc4f31545">ZeroMQMonitor::threadFunc</a></div><div class="ttdeci">void threadFunc()</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00007">ZeroMQMonitor.cpp:7</a></div></div>
 </div><!-- fragment --><div class="dynheader">
@@ -1307,22 +1465,22 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Stop monitoring events on the socket. </p>
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00147">147</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  148</span>{</div>
-<div class="line"><span class="lineno">  149</span>    <a class="code hl_variable" href="#ad14ab2dbbc1efa846c429fb7538774f9">_shouldStop</a>.test_and_set();</div>
-<div class="line"><span class="lineno">  150</span><span class="preprocessor">#ifdef ZMQ_EVENT_MONITOR_STOPPED</span></div>
-<div class="line"><span class="lineno">  151</span>    abort();</div>
-<div class="line"><span class="lineno">  152</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">  153</span> </div>
-<div class="line"><span class="lineno">  154</span>    <span class="comment">// Join the thread</span></div>
-<div class="line"><span class="lineno">  155</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a> &amp;&amp; <a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a>-&gt;joinable())</div>
-<div class="line"><span class="lineno">  156</span>    {</div>
-<div class="line"><span class="lineno">  157</span>        <a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a>-&gt;join();</div>
-<div class="line"><span class="lineno">  158</span>        <a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a>.reset();</div>
-<div class="line"><span class="lineno">  159</span>    }</div>
-<div class="line"><span class="lineno">  160</span> </div>
-<div class="line"><span class="lineno">  161</span>    spdlog::info(<span class="stringliteral">&quot;Monitor stopped&quot;</span>);</div>
-<div class="line"><span class="lineno">  162</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00168">168</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  169</span>{</div>
+<div class="line"><span class="lineno">  170</span>    <a class="code hl_variable" href="#ad14ab2dbbc1efa846c429fb7538774f9">_shouldStop</a>.test_and_set();</div>
+<div class="line"><span class="lineno">  171</span><span class="preprocessor">#ifdef ZMQ_EVENT_MONITOR_STOPPED</span></div>
+<div class="line"><span class="lineno">  172</span>    abort();</div>
+<div class="line"><span class="lineno">  173</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">  174</span> </div>
+<div class="line"><span class="lineno">  175</span>    <span class="comment">// Join the thread</span></div>
+<div class="line"><span class="lineno">  176</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a> &amp;&amp; <a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a>-&gt;joinable())</div>
+<div class="line"><span class="lineno">  177</span>    {</div>
+<div class="line"><span class="lineno">  178</span>        <a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a>-&gt;join();</div>
+<div class="line"><span class="lineno">  179</span>        <a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a>.reset();</div>
+<div class="line"><span class="lineno">  180</span>    }</div>
+<div class="line"><span class="lineno">  181</span> </div>
+<div class="line"><span class="lineno">  182</span>    spdlog::info(<span class="stringliteral">&quot;Monitor stopped&quot;</span>);</div>
+<div class="line"><span class="lineno">  183</span>}</div>
 <div class="ttc" id="aclassZeroMQMonitor_html_ad14ab2dbbc1efa846c429fb7538774f9"><div class="ttname"><a href="#ad14ab2dbbc1efa846c429fb7538774f9">ZeroMQMonitor::_shouldStop</a></div><div class="ttdeci">std::atomic_flag _shouldStop</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8hpp_source.html#l00020">ZeroMQMonitor.hpp:20</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1332,6 +1490,124 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="283,5,501,33"/>
 <area shape="rect" href="classZeroMQMonitor.html#ac27d04233bec52ba0d0554c47d1fe921" title=" " alt="" coords="5,5,235,33"/>
 <area shape="poly" title=" " alt="" coords="267,22,235,22,235,16,267,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4c305f95d96217af42dd4a2cd56535be" name="a4c305f95d96217af42dd4a2cd56535be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c305f95d96217af42dd4a2cd56535be">&#9670;&#160;</a></span>testInternals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ZeroMQMonitor::testInternals </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Test internals of the <a class="el" href="classZeroMQMonitor.html">ZeroMQMonitor</a> class. </p>
+
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00137">137</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  138</span>{</div>
+<div class="line"><span class="lineno">  139</span>    <span class="keyword">const</span> std::vector&lt;std::function&lt;void()&gt;&gt; testFunctions = {</div>
+<div class="line"><span class="lineno">  140</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#a674db0ed1653be0b9c04cb6cb1507e54">on_event_connected</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  141</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#a5634d710110bb78ed7cff8c96aa4e956">on_event_connect_delayed</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  142</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#a081d06f1f1d4e99eadea54a121d06236">on_event_connect_retried</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  143</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#a5c26ec0e8d3ee17d0f0d83b822e953c6">on_event_listening</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  144</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#a3c8512cd036926ebcf950669046398f1">on_event_bind_failed</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  145</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#a72da5c7cc53b7cdcf0959bbaffeda614">on_event_accepted</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  146</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#a9f519fb64bf98b4caf1041a614693745">on_event_accept_failed</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  147</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#a6087fafa16996578ed1586c48c826e88">on_event_closed</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  148</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#af87af122def750e0fca640c992672021">on_event_close_failed</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  149</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#a2ec4f6d96451aa94ab6b7fe987657b51">on_event_disconnected</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  150</span><span class="preprocessor">#if ZMQ_VERSION &gt;= ZMQ_MAKE_VERSION(4, 3, 0) ||                                                                        \</span></div>
+<div class="line"><span class="lineno">  151</span><span class="preprocessor">    (defined(ZMQ_BUILD_DRAFT_API) &amp;&amp; ZMQ_VERSION &gt;= ZMQ_MAKE_VERSION(4, 2, 3))</span></div>
+<div class="line"><span class="lineno">  152</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#ab76fbcd342b9a7ed4c49d2b42c308c3c">on_event_handshake_failed_no_detail</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  153</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#ab878aa9c35e112b98d0e1c36b990e861">on_event_handshake_failed_protocol</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  154</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#a94b9b6f7fca227c721be7179306b7e5d">on_event_handshake_failed_auth</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  155</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#a71655e5af8f53e9268ba77320c2f24c2">on_event_handshake_succeeded</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  156</span><span class="preprocessor">#elif defined(ZMQ_BUILD_DRAFT_API) &amp;&amp; ZMQ_VERSION &gt;= ZMQ_MAKE_VERSION(4, 2, 1)</span></div>
+<div class="line"><span class="lineno">  157</span>        [<span class="keyword">this</span>]() { on_event_handshake_failed(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  158</span>        [<span class="keyword">this</span>]() { on_event_handshake_succeed(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); },</div>
+<div class="line"><span class="lineno">  159</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">  160</span>        [<span class="keyword">this</span>]() { <a class="code hl_function" href="#a03f3615764ad459ee6b8ea95731a0294">on_event_unknown</a>(zmq_event_t{}, <span class="stringliteral">&quot;test_address&quot;</span>); }};</div>
+<div class="line"><span class="lineno">  161</span> </div>
+<div class="line"><span class="lineno">  162</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;testFunc : testFunctions)</div>
+<div class="line"><span class="lineno">  163</span>    {</div>
+<div class="line"><span class="lineno">  164</span>        testFunc();</div>
+<div class="line"><span class="lineno">  165</span>    }</div>
+<div class="line"><span class="lineno">  166</span>}</div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a03f3615764ad459ee6b8ea95731a0294"><div class="ttname"><a href="#a03f3615764ad459ee6b8ea95731a0294">ZeroMQMonitor::on_event_unknown</a></div><div class="ttdeci">void on_event_unknown(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00121">ZeroMQMonitor.cpp:121</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a081d06f1f1d4e99eadea54a121d06236"><div class="ttname"><a href="#a081d06f1f1d4e99eadea54a121d06236">ZeroMQMonitor::on_event_connect_retried</a></div><div class="ttdeci">void on_event_connect_retried(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00046">ZeroMQMonitor.cpp:46</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a2ec4f6d96451aa94ab6b7fe987657b51"><div class="ttname"><a href="#a2ec4f6d96451aa94ab6b7fe987657b51">ZeroMQMonitor::on_event_disconnected</a></div><div class="ttdeci">void on_event_disconnected(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00081">ZeroMQMonitor.cpp:81</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a3c8512cd036926ebcf950669046398f1"><div class="ttname"><a href="#a3c8512cd036926ebcf950669046398f1">ZeroMQMonitor::on_event_bind_failed</a></div><div class="ttdeci">void on_event_bind_failed(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00056">ZeroMQMonitor.cpp:56</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a5634d710110bb78ed7cff8c96aa4e956"><div class="ttname"><a href="#a5634d710110bb78ed7cff8c96aa4e956">ZeroMQMonitor::on_event_connect_delayed</a></div><div class="ttdeci">void on_event_connect_delayed(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00041">ZeroMQMonitor.cpp:41</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a5c26ec0e8d3ee17d0f0d83b822e953c6"><div class="ttname"><a href="#a5c26ec0e8d3ee17d0f0d83b822e953c6">ZeroMQMonitor::on_event_listening</a></div><div class="ttdeci">void on_event_listening(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00051">ZeroMQMonitor.cpp:51</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a6087fafa16996578ed1586c48c826e88"><div class="ttname"><a href="#a6087fafa16996578ed1586c48c826e88">ZeroMQMonitor::on_event_closed</a></div><div class="ttdeci">void on_event_closed(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00071">ZeroMQMonitor.cpp:71</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a674db0ed1653be0b9c04cb6cb1507e54"><div class="ttname"><a href="#a674db0ed1653be0b9c04cb6cb1507e54">ZeroMQMonitor::on_event_connected</a></div><div class="ttdeci">void on_event_connected(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00035">ZeroMQMonitor.cpp:35</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a71655e5af8f53e9268ba77320c2f24c2"><div class="ttname"><a href="#a71655e5af8f53e9268ba77320c2f24c2">ZeroMQMonitor::on_event_handshake_succeeded</a></div><div class="ttdeci">void on_event_handshake_succeeded(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00104">ZeroMQMonitor.cpp:104</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a72da5c7cc53b7cdcf0959bbaffeda614"><div class="ttname"><a href="#a72da5c7cc53b7cdcf0959bbaffeda614">ZeroMQMonitor::on_event_accepted</a></div><div class="ttdeci">void on_event_accepted(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00061">ZeroMQMonitor.cpp:61</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a94b9b6f7fca227c721be7179306b7e5d"><div class="ttname"><a href="#a94b9b6f7fca227c721be7179306b7e5d">ZeroMQMonitor::on_event_handshake_failed_auth</a></div><div class="ttdeci">void on_event_handshake_failed_auth(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00099">ZeroMQMonitor.cpp:99</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a9f519fb64bf98b4caf1041a614693745"><div class="ttname"><a href="#a9f519fb64bf98b4caf1041a614693745">ZeroMQMonitor::on_event_accept_failed</a></div><div class="ttdeci">void on_event_accept_failed(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00066">ZeroMQMonitor.cpp:66</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_ab76fbcd342b9a7ed4c49d2b42c308c3c"><div class="ttname"><a href="#ab76fbcd342b9a7ed4c49d2b42c308c3c">ZeroMQMonitor::on_event_handshake_failed_no_detail</a></div><div class="ttdeci">void on_event_handshake_failed_no_detail(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00089">ZeroMQMonitor.cpp:89</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_ab878aa9c35e112b98d0e1c36b990e861"><div class="ttname"><a href="#ab878aa9c35e112b98d0e1c36b990e861">ZeroMQMonitor::on_event_handshake_failed_protocol</a></div><div class="ttdeci">void on_event_handshake_failed_protocol(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00094">ZeroMQMonitor.cpp:94</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_af87af122def750e0fca640c992672021"><div class="ttname"><a href="#af87af122def750e0fca640c992672021">ZeroMQMonitor::on_event_close_failed</a></div><div class="ttdeci">void on_event_close_failed(const zmq_event_t &amp;, const char *addr_) override</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00076">ZeroMQMonitor.cpp:76</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classZeroMQMonitor_a4c305f95d96217af42dd4a2cd56535be_cgraph.png" border="0" usemap="#aclassZeroMQMonitor_a4c305f95d96217af42dd4a2cd56535be_cgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_a4c305f95d96217af42dd4a2cd56535be_cgraph" id="aclassZeroMQMonitor_a4c305f95d96217af42dd4a2cd56535be_cgraph">
+<area shape="rect" title=" " alt="" coords="5,499,207,527"/>
+<area shape="rect" href="classZeroMQMonitor.html#a9f519fb64bf98b4caf1041a614693745" title=" " alt="" coords="264,5,444,50"/>
+<area shape="poly" title=" " alt="" coords="105,498,111,423,119,368,131,306,150,241,176,176,209,115,253,61,256,58,260,61,257,64,214,118,180,178,155,243,137,307,124,369,116,423,110,499"/>
+<area shape="rect" href="classZeroMQMonitor.html#a72da5c7cc53b7cdcf0959bbaffeda614" title=" " alt="" coords="264,75,444,119"/>
+<area shape="poly" title=" " alt="" coords="106,498,116,433,139,334,158,280,183,226,214,175,253,130,256,126,260,130,257,134,219,178,188,228,163,282,144,336,121,434,111,499"/>
+<area shape="rect" href="classZeroMQMonitor.html#a3c8512cd036926ebcf950669046398f1" title=" " alt="" coords="264,144,444,189"/>
+<area shape="poly" title=" " alt="" coords="107,498,121,443,148,363,167,319,191,276,219,235,253,199,257,196,260,200,257,203,223,238,195,278,172,321,153,365,126,444,113,499"/>
+<area shape="rect" href="classZeroMQMonitor.html#af87af122def750e0fca640c992672021" title=" " alt="" coords="264,213,444,258"/>
+<area shape="poly" title=" " alt="" coords="110,498,127,454,156,392,198,326,224,295,253,268,258,264,262,268,256,272,228,299,203,329,161,395,132,456,115,500"/>
+<area shape="rect" href="classZeroMQMonitor.html#a6087fafa16996578ed1586c48c826e88" title=" " alt="" coords="264,283,444,327"/>
+<area shape="poly" title=" " alt="" coords="114,497,166,422,206,377,253,338,261,333,264,337,256,342,210,381,170,425,118,500"/>
+<area shape="rect" href="classZeroMQMonitor.html#a5634d710110bb78ed7cff8c96aa4e956" title=" " alt="" coords="264,352,444,397"/>
+<area shape="poly" title=" " alt="" coords="123,496,179,453,253,407,265,401,268,406,256,411,182,458,126,501"/>
+<area shape="rect" href="classZeroMQMonitor.html#a081d06f1f1d4e99eadea54a121d06236" title=" " alt="" coords="264,421,444,466"/>
+<area shape="poly" title=" " alt="" coords="158,496,256,468,258,473,159,501"/>
+<area shape="rect" href="classZeroMQMonitor.html#a674db0ed1653be0b9c04cb6cb1507e54" title=" " alt="" coords="264,491,444,535"/>
+<area shape="poly" title=" " alt="" coords="207,510,249,510,249,516,207,516"/>
+<area shape="rect" href="classZeroMQMonitor.html#a2ec4f6d96451aa94ab6b7fe987657b51" title=" " alt="" coords="264,560,444,605"/>
+<area shape="poly" title=" " alt="" coords="159,525,258,553,256,558,158,530"/>
+<area shape="rect" href="classZeroMQMonitor.html#a94b9b6f7fca227c721be7179306b7e5d" title=" " alt="" coords="264,629,444,674"/>
+<area shape="poly" title=" " alt="" coords="126,525,182,568,256,615,268,620,265,625,253,619,179,573,123,530"/>
+<area shape="rect" href="classZeroMQMonitor.html#ab76fbcd342b9a7ed4c49d2b42c308c3c" title=" " alt="" coords="255,699,454,743"/>
+<area shape="poly" title=" " alt="" coords="118,526,170,601,210,645,256,684,264,689,261,693,253,688,206,649,166,604,114,529"/>
+<area shape="rect" href="classZeroMQMonitor.html#ab878aa9c35e112b98d0e1c36b990e861" title=" " alt="" coords="257,768,452,813"/>
+<area shape="poly" title=" " alt="" coords="115,526,132,570,161,631,203,697,228,727,256,754,262,758,258,762,253,758,224,731,198,700,156,634,127,572,110,528"/>
+<area shape="rect" href="classZeroMQMonitor.html#a71655e5af8f53e9268ba77320c2f24c2" title=" " alt="" coords="264,837,444,882"/>
+<area shape="poly" title=" " alt="" coords="113,527,126,582,153,661,172,705,195,748,223,788,257,823,260,826,257,830,253,827,219,791,191,750,167,707,148,663,121,583,107,528"/>
+<area shape="rect" href="classZeroMQMonitor.html#a5c26ec0e8d3ee17d0f0d83b822e953c6" title=" " alt="" coords="264,907,444,951"/>
+<area shape="poly" title=" " alt="" coords="111,527,121,592,144,690,163,744,188,798,219,848,257,892,260,896,256,900,253,896,214,851,183,800,158,746,139,692,116,593,106,528"/>
+<area shape="rect" href="classZeroMQMonitor.html#a03f3615764ad459ee6b8ea95731a0294" title=" " alt="" coords="264,976,444,1021"/>
+<area shape="poly" title=" " alt="" coords="110,527,116,603,124,657,137,719,155,783,180,848,214,908,257,962,260,965,256,968,253,965,209,911,176,850,150,785,131,720,119,658,111,603,105,528"/>
+<area shape="rect" href="classZeroMQMonitor.html#ab313df820ff9cca337672b28e79343f8" title=" " alt="" coords="502,499,682,527"/>
+<area shape="poly" title=" " alt="" coords="441,49,456,60,496,111,527,168,551,228,568,289,587,401,593,483,588,484,582,402,563,290,546,229,522,170,491,114,452,64,438,53"/>
+<area shape="poly" title=" " alt="" coords="441,118,456,130,491,171,519,218,542,268,559,318,582,412,591,483,586,484,576,413,554,320,537,270,514,220,486,174,452,134,437,122"/>
+<area shape="poly" title=" " alt="" coords="440,187,456,199,486,232,511,269,533,308,550,348,575,424,589,483,583,484,570,425,545,350,528,310,507,271,482,235,452,203,437,191"/>
+<area shape="poly" title=" " alt="" coords="438,256,456,268,481,293,503,320,540,379,567,437,585,483,580,485,562,439,536,382,499,323,477,296,452,272,435,261"/>
+<area shape="poly" title=" " alt="" coords="435,326,456,338,495,372,530,412,578,484,574,487,526,415,492,376,452,342,433,330"/>
+<area shape="poly" title=" " alt="" coords="430,395,455,407,516,446,566,487,563,491,513,451,453,411,428,400"/>
+<area shape="poly" title=" " alt="" coords="434,464,528,492,526,497,433,469"/>
+<area shape="poly" title=" " alt="" coords="445,510,487,510,487,516,445,516"/>
+<area shape="poly" title=" " alt="" coords="433,557,526,529,528,534,434,562"/>
+<area shape="poly" title=" " alt="" coords="428,626,453,615,513,575,563,535,566,539,516,580,455,619,430,631"/>
+<area shape="poly" title=" " alt="" coords="433,696,452,684,492,650,526,611,574,539,578,542,530,614,495,654,456,688,435,700"/>
+<area shape="poly" title=" " alt="" coords="435,765,452,754,477,730,499,703,536,644,562,587,580,541,585,543,567,589,540,647,503,706,481,733,456,758,438,770"/>
+<area shape="poly" title=" " alt="" coords="437,835,452,823,482,791,507,755,528,716,545,676,570,601,583,542,589,543,575,602,550,678,533,718,511,757,486,794,456,827,440,839"/>
+<area shape="poly" title=" " alt="" coords="437,904,452,892,486,852,514,806,537,756,554,706,576,613,586,542,591,543,582,614,559,708,542,758,519,808,491,855,456,896,441,908"/>
+<area shape="poly" title=" " alt="" coords="438,973,452,962,491,912,522,856,546,797,563,736,582,624,588,542,593,543,587,625,568,737,551,798,527,858,496,915,456,966,441,977"/>
 </map>
 </div>
 
@@ -1471,7 +1747,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classZeroMQMonitor.html">ZeroMQMonitor</a></li>
-    <li class="footer">Generated on Wed Jul 9 2025 08:08:11 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Wed Jul 9 2025 08:45:39 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>
