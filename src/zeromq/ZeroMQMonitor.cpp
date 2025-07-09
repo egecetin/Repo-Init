@@ -136,7 +136,7 @@ void ZeroMQMonitor::startMonitoring(zmq::socket_t *socket, const std::string &mo
 
 void ZeroMQMonitor::testInternals()
 {
-	std::vector<std::function<void()>> testFunctions = {
+	const std::vector<std::function<void()>> testFunctions = {
 		[this]() { on_event_connected(zmq_event_t{}, "test_address"); },
 		[this]() { on_event_connect_delayed(zmq_event_t{}, "test_address"); },
 		[this]() { on_event_connect_retried(zmq_event_t{}, "test_address"); },
