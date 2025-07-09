@@ -2,6 +2,7 @@
 #include "utils/ErrorHelpers.hpp"
 #include "utils/FileHelpers.hpp"
 #include "utils/InputParser.hpp"
+#include "utils/Tracer.hpp"
 
 #include "test-static-definitions.h"
 
@@ -118,3 +119,19 @@ TEST(Utils_Tests, InputParserUnitTests)
 	ASSERT_EQ(options[0].first, "--argument2");
 	ASSERT_EQ(options[0].second, "");
 }
+
+#ifndef XXX_ENABLE_MEMLEAK_CHECK
+// Google tracer client does not support destroying tracer completely
+// This is a workaround to avoid memory leak detection issues with the Google tracer client.
+// The tracer client is not designed to be destroyed, so we skip this test when memory leak
+// detection is enabled.
+TEST(Utils_Tests, TracerUnitTests)
+{
+	{
+		Tracer tracer(std::make_shared<std::atomic_flag>(false), "", "", TEST_CRASHPAD_EXECUTABLE_PATH,
+					  TEST_CRASHPAD_REPORT_DIR);
+
+		ASSERT_TRUE(tracer.isRunning());
+	}
+}
+#endif // XXX_ENABLE_MEMLEAK_CHECK

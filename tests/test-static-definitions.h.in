@@ -8,6 +8,8 @@
 #define TEST_CONFIG_PATH_COPY "@PROJECT_SOURCE_DIR@/tests/data/config_copy.json"
 #define TEST_CONFIG_EMPTY_PATH "@PROJECT_SOURCE_DIR@/tests/data/config_empty.json"
 #define TEST_DATA_READ_PATH "@PROJECT_SOURCE_DIR@/tests/data/readText.txt"
+#define TEST_CRASHPAD_EXECUTABLE_PATH "@CMAKE_RUNTIME_OUTPUT_DIRECTORY@/@PROJECT_NAME@-crashpad"
+#define TEST_CRASHPAD_REPORT_DIR "@PROJECT_BINARY_DIR@"
 
 // Connection_UnitTests
 #define TEST_RAWSOCKET_INTERFACE "eth0"

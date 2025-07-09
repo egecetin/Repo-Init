@@ -106,3 +106,10 @@ TEST(ZeroMQ_Tests, ZeroMQServerUnitTests)
 	ASSERT_NO_THROW(zeromqServerPtr->shutdown());
 	ASSERT_EQ(0, shResult.get());
 }
+
+TEST(ZeroMQ_Tests, ZeroMQMonitorUnitTests)
+{
+	ZeroMQMonitor monitor;
+	ASSERT_THROW(monitor.startMonitoring(nullptr, ""), std::invalid_argument);
+	ASSERT_NO_THROW(monitor.testInternals());
+}

@@ -238,6 +238,7 @@ if(XXX_BUILD_TESTS)
   enable_testing()
 
   add_subdirectory(tests)
+  add_dependencies(${TestExecutables} crashpad::handler)
 
   if(XXX_ENABLE_COVERAGE)
     setup_target_for_coverage_gcovr_html(

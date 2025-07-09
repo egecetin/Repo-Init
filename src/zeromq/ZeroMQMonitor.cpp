@@ -16,9 +16,6 @@ void ZeroMQMonitor::on_event(const std::string &messageStr, int level, const cha
 {
 	switch (level)
 	{
-	case spdlog::level::trace:
-		spdlog::trace("{} {}", messageStr, addr == nullptr ? "" : addr);
-		break;
 	case spdlog::level::debug:
 		spdlog::debug("{} {}", messageStr, addr == nullptr ? "" : addr);
 		break;
@@ -28,14 +25,7 @@ void ZeroMQMonitor::on_event(const std::string &messageStr, int level, const cha
 	case spdlog::level::warn:
 		spdlog::warn("{} {}", messageStr, addr == nullptr ? "" : addr);
 		break;
-	case spdlog::level::err:
-		spdlog::error("{} {}", messageStr, addr == nullptr ? "" : addr);
-		break;
-	case spdlog::level::critical:
-		spdlog::critical("{} {}", messageStr, addr == nullptr ? "" : addr);
-		break;
 	default:
-		spdlog::warn("Unknown log level {} {} {}", messageStr, addr == nullptr ? "" : addr, level);
 		break;
 	}
 }
@@ -142,6 +132,37 @@ void ZeroMQMonitor::startMonitoring(zmq::socket_t *socket, const std::string &mo
 
 	init(*socket, monitorAddress);
 	_monitorThread = std::make_unique<std::thread>(&ZeroMQMonitor::threadFunc, this);
+}
+
+void ZeroMQMonitor::testInternals()
+{
+	const std::vector<std::function<void()>> testFunctions = {
+		[this]() { on_event_connected(zmq_event_t{}, "test_address"); },
+		[this]() { on_event_connect_delayed(zmq_event_t{}, "test_address"); },
+		[this]() { on_event_connect_retried(zmq_event_t{}, "test_address"); },
+		[this]() { on_event_listening(zmq_event_t{}, "test_address"); },
+		[this]() { on_event_bind_failed(zmq_event_t{}, "test_address"); },
+		[this]() { on_event_accepted(zmq_event_t{}, "test_address"); },
+		[this]() { on_event_accept_failed(zmq_event_t{}, "test_address"); },
+		[this]() { on_event_closed(zmq_event_t{}, "test_address"); },
+		[this]() { on_event_close_failed(zmq_event_t{}, "test_address"); },
+		[this]() { on_event_disconnected(zmq_event_t{}, "test_address"); },
+#if ZMQ_VERSION >= ZMQ_MAKE_VERSION(4, 3, 0) ||                                                                        \
+	(defined(ZMQ_BUILD_DRAFT_API) && ZMQ_VERSION >= ZMQ_MAKE_VERSION(4, 2, 3))
+		[this]() { on_event_handshake_failed_no_detail(zmq_event_t{}, "test_address"); },
+		[this]() { on_event_handshake_failed_protocol(zmq_event_t{}, "test_address"); },
+		[this]() { on_event_handshake_failed_auth(zmq_event_t{}, "test_address"); },
+		[this]() { on_event_handshake_succeeded(zmq_event_t{}, "test_address"); },
+#elif defined(ZMQ_BUILD_DRAFT_API) && ZMQ_VERSION >= ZMQ_MAKE_VERSION(4, 2, 1)
+		[this]() { on_event_handshake_failed(zmq_event_t{}, "test_address"); },
+		[this]() { on_event_handshake_succeed(zmq_event_t{}, "test_address"); },
+#endif
+		[this]() { on_event_unknown(zmq_event_t{}, "test_address"); }};
+
+	for (const auto &testFunc : testFunctions)
+	{
+		testFunc();
+	}
 }
 
 void ZeroMQMonitor::stopMonitoring()
