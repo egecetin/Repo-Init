@@ -68,7 +68,8 @@ namespace
 		const sentry_value_t networkContext = sentry_value_new_object();
 		for (ifaddrs *ifa = ifaddr; ifa != nullptr; ifa = ifa->ifa_next)
 		{
-			if (ifa->ifa_addr == nullptr || ((ifa->ifa_flags & IFF_PROMISC) != 0) || ((ifa->ifa_flags & IFF_UP) != 0))
+			if (ifa->ifa_addr == nullptr || ((ifa->ifa_flags & IFF_RUNNING) == 0) ||
+				(ifa->ifa_flags & IFF_LOOPBACK) != 0)
 			{
 				continue;
 			}
