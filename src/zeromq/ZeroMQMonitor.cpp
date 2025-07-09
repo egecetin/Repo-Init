@@ -157,8 +157,7 @@ void ZeroMQMonitor::testInternals()
 		[this]() { on_event_handshake_failed(zmq_event_t{}, "test_address"); },
 		[this]() { on_event_handshake_succeed(zmq_event_t{}, "test_address"); },
 #endif
-		[this]() { on_event_unknown(zmq_event_t{}, "test_address"); }
-	};
+		[this]() { on_event_unknown(zmq_event_t{}, "test_address"); }};
 
 	for (const auto &testFunc : testFunctions)
 	{
