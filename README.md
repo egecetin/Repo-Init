@@ -10,7 +10,7 @@
 </div>
 
 ## Project
-CMake template to create new C++ applications with basic codes/interfaces are already defined. Requires a C++17 supported compiler.
+CMake template to create new C++ applications with basic codes/interfaces are already defined. Requires a C++20 (due to crashpad) supported compiler.
 
 It provides the following features
   - Tracing
