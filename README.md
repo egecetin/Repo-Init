@@ -31,7 +31,7 @@
 
 **Repo-Init** is a powerful, production-ready CMake template designed to kickstart your C++ applications with enterprise-grade features built-in. Say goodbye to boilerplate code and hello to modern, robust software development!
 
-> 🔧 **Requires**: C++17 supported compiler  
+> 🔧 **Requires**: C++17 supported compiler
 > 💡 **Perfect for**: Microservices, CLI tools, system applications, and performance-critical software
 
 <div align="center">
@@ -69,7 +69,7 @@ Multi-output logging with **Spdlog**
 
 ### ⚡ **Performance Metrics**
 - ✅ Success/failure counters
-- ⏱️ Min/max timing analysis  
+- ⏱️ Min/max timing analysis
 - 📈 Quantile-based bottleneck detection
 
 </td>
@@ -94,7 +94,7 @@ Multi-output logging with **Spdlog**
 
 ---
 
-> 💬 **Questions? Issues? Contributions?**  
+> 💬 **Questions? Issues? Contributions?**
 > Feel free to ask, use, and report any bugs you encounter! We ❤️ community feedback.
 
 <div align="center">
@@ -173,7 +173,7 @@ Our carefully crafted CMake modules provide powerful build automation:
 *For building and testing only*
 
 - 🔧 [**Breakpad**](https://chromium.googlesource.com/breakpad/breakpad/) - Symbol dumping
-- ✅ [**GoogleTest**](https://github.com/google/googletest.git) - Unit testing framework  
+- ✅ [**GoogleTest**](https://github.com/google/googletest.git) - Unit testing framework
 - 🔍 [**MemPlumber**](https://github.com/seladb/MemPlumber.git) - Memory leak detection
 - 📦 **ZLIB** - Compression (required by Breakpad)
 
@@ -263,7 +263,7 @@ pip install -r tests/data/requirements.txt
 
 <div align="center">
 
-> 💡 **Pro Tips**: 
+> 💡 **Pro Tips**:
 > - For packages, specify your preferred format with `-DCPACK_GENERATOR="DEB"` or `"RPM"`
 > - Ensure Python virtual environment is activated before running tests!
 
@@ -288,7 +288,7 @@ Thanks to our integrated **Prometheus server**, monitoring your application has 
 #### 🚀 **Quick Setup**
 
 1. 📥 **Import Dashboard**: Use our pre-built [**Grafana template**](scripts/GrafanaDashboard-1730032129887.json)
-2. 🔗 **Connect Prometheus**: Point to your app's metrics endpoint  
+2. 🔗 **Connect Prometheus**: Point to your app's metrics endpoint
 3. 📊 **Monitor**: Watch real-time metrics flow in!
 
 #### ✨ **What You Get**
