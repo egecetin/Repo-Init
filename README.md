@@ -206,14 +206,15 @@ Our test suite requires some Python dependencies for comprehensive testing. Here
 <tr>
 <td width="50%">
 <h4>🚀 <strong>Quick Setup</strong></h4>
-<pre><code class="bash"># Create virtual environment
+<pre><code class="bash">
+# Create virtual environment
 python3 -m venv .venv
-
+<br>
 # Activate virtual environment
 source .venv/bin/activate  # Linux/macOS
 # OR
 .venv\Scripts\activate     # Windows
-
+<br>
 # Install test dependencies
 pip install -r tests/data/requirements.txt</code></pre>
 </td>
@@ -295,16 +296,16 @@ pip install -r tests/data/requirements.txt</code></pre>
 <pre><code class="bash"># Development build with all tests
 cmake -B build -DXXX_BUILD_TESTS=ON \
                 -DXXX_ENABLE_COVERAGE=ON
-
+<br>
 # Production build with packaging
 cmake -B build -DXXX_BUILD_TESTS=OFF \
                 -DXXX_ENABLE_PACKAGING=ON \
                 -DXXX_ENABLE_SYMBOL_GENERATION=ON
-
+<br>
 # Security testing build
 cmake -B build -DXXX_BUILD_FUZZTESTS=ON \
                 -DXXX_ENABLE_MEMLEAK_CHECK=ON
-
+<br>
 # Minimal build (fastest)
 cmake -B build -DXXX_BUILD_TESTS=OFF</code></pre>
 <h4>⚡ <strong>Pro Tips</strong></h4>
