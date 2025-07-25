@@ -45,55 +45,52 @@
 </div>
 
 <table align="center">
-<tr>
-<td align="center" width="33%">
-
-### 🛡️ **Crash Protection**
-Automatic minidump generation with [**Crashpad**](https://chromium.googlesource.com/crashpad/crashpad/)
-*Never lose critical debugging information*
-
-</td>
-<td align="center" width="33%">
-
-### 📊 **Advanced Logging**
-Multi-output logging with **Spdlog**
-*File rotation • Syslog • Colorized console*
-
-</td>
-<td align="center" width="33%">
-
-### 🔗 **Service Integration**
-[**Sentry**](https://sentry.io/) • [**Grafana Loki**](https://grafana.com/oss/loki/) • [**Prometheus**](https://prometheus.io/)
-*Real-time monitoring & alerting*
-
-</td>
-</tr>
-<tr>
-<td align="center">
-
-### ⚡ **Performance Metrics**
-- ✅ Success/failure counters
-- ⏱️ Min/max timing analysis
-- 📈 Quantile-based bottleneck detection
-
-</td>
-<td align="center">
-
-### 🌐 **Network Ready**
-- 🖥️ Built-in Telnet server
-- ⚡ [**ZeroMQ**](https://zeromq.org/) messaging
-- 🔌 HTTP connectivity
-
-</td>
-<td align="center">
-
-### 🚀 **Developer Experience**
-- 📦 One-command setup
-- 🧪 Comprehensive testing
-- 📋 Auto-generated docs
-
-</td>
-</tr>
+    <tr>
+        <td align="center" width="33%">
+            <h3>🛡️ <strong>Crash Protection</strong></h3>
+            <p>Automatic minidump generation with <a
+                    href="https://chromium.googlesource.com/crashpad/crashpad/"><strong>Crashpad</strong></a></p>
+            <p><em>Never lose critical debugging information</em></p>
+        </td>
+        <td align="center" width="33%">
+            <h3>📊 <strong>Advanced Logging</strong></h3>
+            <p>Multi-output logging with <strong>Spdlog</strong></p>
+            <p><em>File rotation • Syslog • Colorized console</em></p>
+        </td>
+        <td align="center" width="33%">
+            <h3>🔗 <strong>Service Integration</strong></h3>
+            <p><a href="https://sentry.io/"><strong>Sentry</strong></a> • <a
+                    href="https://grafana.com/oss/loki/"><strong>Grafana Loki</strong></a> • <a
+                    href="https://prometheus.io/"><strong>Prometheus</strong></a></p>
+            <p><em>Real-time monitoring & alerting</em></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <h3>⚡ <strong>Performance Metrics</strong></h3>
+            <ul>
+                <li>✅ Success/failure counters</li>
+                <li>⏱️ Min/max timing analysis</li>
+                <li>📈 Quantile-based bottleneck detection</li>
+            </ul>
+        </td>
+        <td align="center">
+            <h3>🌐 <strong>Network Ready</strong></h3>
+            <ul>
+                <li>🖥️ Built-in Telnet server</li>
+                <li>⚡ <a href="https://zeromq.org/"><strong>ZeroMQ</strong></a> messaging</li>
+                <li>🔌 HTTP connectivity</li>
+            </ul>
+        </td>
+        <td align="center">
+            <h3>🚀 <strong>Developer Experience</strong></h3>
+            <ul>
+                <li>📦 One-command setup</li>
+                <li>🧪 Comprehensive testing</li>
+                <li>📋 Auto-generated docs</li>
+            </ul>
+        </td>
+    </tr>
 </table>
 
 ---
@@ -155,46 +152,58 @@ Our carefully crafted CMake modules provide powerful build automation:
 </div>
 
 <table>
-<tr>
-<td width="50%">
-
-#### 🔥 **Integrated Dependencies**
-*Built and bundled automatically*
-
-- 🔌 [**CppZMQ**](https://github.com/zeromq/cppzmq.git) - Modern C++ ZeroMQ bindings
-- 💥 [**Crashpad**](https://chromium.googlesource.com/crashpad/crashpad/) - Crash reporting system
-- 📅 [**Date**](https://github.com/HowardHinnant/date.git) - C++ date/time library
-- 🌐 [**Http-status-codes**](https://github.com/j-ulrich/http-status-codes-cpp.git) - HTTP utilities
-- 📊 [**Prometheus-cpp**](https://github.com/jupp0r/prometheus-cpp.git) - Metrics collection
-- ⚡ [**RapidJSON**](https://github.com/Tencent/rapidjson.git) - Ultra-fast JSON parser
-- 🔐 [**Sentry**](https://github.com/getsentry/sentry-native.git) - Error monitoring
-- 🖥️ [**TelnetServLib**](https://github.com/lukemalcolm/TelnetServLib.git) - *Modified & embedded*
-
-</td>
-<td width="50%">
-
-#### 🛠️ **Development Dependencies**
-*For building and testing only*
-
-- 🔧 [**Breakpad**](https://chromium.googlesource.com/breakpad/breakpad/) - Symbol dumping
-- ✅ [**GoogleTest**](https://github.com/google/googletest.git) - Unit testing framework
-- 🔍 [**MemPlumber**](https://github.com/seladb/MemPlumber.git) - Memory leak detection
-- 📦 **ZLIB** - Compression (required by Breakpad)
-
-#### 🌐 **System Dependencies**
-*Install via package manager (apt/dnf/brew)*
-
-- 🌍 [**cURL**](https://github.com/curl/curl) - HTTP client library
-- 📝 [**Spdlog**](https://github.com/gabime/spdlog.git) - Fast logging library
-- ⚡ [**ZeroMQ**](https://github.com/zeromq/libzmq.git) - High-performance messaging
-
-</td>
-</tr>
+    <tr>
+        <td width="50%">
+            <h4>🔥 <strong>Integrated Dependencies</strong></h4>
+            <p><em>Built and bundled automatically</em></p>
+            <ul>
+                <li>🔌 <a href="https://github.com/zeromq/cppzmq.git"><strong>CppZMQ</strong></a> - Modern C++ ZeroMQ
+                    bindings</li>
+                <li>💥 <a href="https://chromium.googlesource.com/crashpad/crashpad/"><strong>Crashpad</strong></a> -
+                    Crash reporting system</li>
+                <li>📅 <a href="https://github.com/HowardHinnant/date.git"><strong>Date</strong></a> - C++ date/time
+                    library</li>
+                <li>🌐 <a
+                        href="https://github.com/j-ulrich/http-status-codes-cpp.git"><strong>Http-status-codes</strong></a>
+                    - HTTP utilities</li>
+                <li>📊 <a href="https://github.com/jupp0r/prometheus-cpp.git"><strong>Prometheus-cpp</strong></a> -
+                    Metrics collection</li>
+                <li>⚡ <a href="https://github.com/Tencent/rapidjson.git"><strong>RapidJSON</strong></a> - Ultra-fast
+                    JSON parser</li>
+                <li>🔐 <a href="https://github.com/getsentry/sentry-native.git"><strong>Sentry</strong></a> - Error
+                    monitoring</li>
+                <li>🖥️ <a href="https://github.com/lukemalcolm/TelnetServLib.git"><strong>TelnetServLib</strong></a> -
+                    <em>Modified & embedded</em></li>
+            </ul>
+        </td>
+        <td width="50%">
+            <h4>🛠️ <strong>Development Dependencies</strong></h4>
+            <p><em>For building and testing only</em></p>
+            <ul>
+                <li>🔧 <a href="https://chromium.googlesource.com/breakpad/breakpad/"><strong>Breakpad</strong></a> -
+                    Symbol dumping</li>
+                <li>✅ <a href="https://github.com/google/googletest.git"><strong>GoogleTest</strong></a> - Unit testing
+                    framework</li>
+                <li>🔍 <a href="https://github.com/seladb/MemPlumber.git"><strong>MemPlumber</strong></a> - Memory leak
+                    detection</li>
+                <li>📦 <strong>ZLIB</strong> - Compression (required by Breakpad)</li>
+            </ul>
+            <h4>🌐 <strong>System Dependencies</strong></h4>
+            <p><em>Install via package manager (apt/dnf/brew)</em></p>
+            <ul>
+                <li>🌍 <a href="https://github.com/curl/curl"><strong>cURL</strong></a> - HTTP client library</li>
+                <li>📝 <a href="https://github.com/gabime/spdlog.git"><strong>Spdlog</strong></a> - Fast logging library
+                </li>
+                <li>⚡ <a href="https://github.com/zeromq/libzmq.git"><strong>ZeroMQ</strong></a> - High-performance
+                    messaging</li>
+            </ul>
+        </td>
+    </tr>
 </table>
 
 <div align="center">
 
-> 📊 **Want to see the full picture?** Check out our complete [**dependency graph**](doc/XXX-tree.svg)!
+> 📊 **Want to see the full picture?** Check out our complete [**dependency graph**](doc/dependency-tree.svg)!
 
 ---
 
@@ -211,39 +220,34 @@ Our carefully crafted CMake modules provide powerful build automation:
 Our test suite requires some Python dependencies for comprehensive testing. Here's how to set them up:
 
 <table>
-<tr>
-<td width="50%">
-
-#### 🚀 **Quick Setup**
-
-```bash
-# Create virtual environment
-python3 -m venv .venv
-
-# Activate virtual environment
-source .venv/bin/activate  # Linux/macOS
-# OR
-.venv\Scripts\activate     # Windows
-
-# Install test dependencies
-pip install -r tests/data/requirements.txt
-```
-
-</td>
-<td width="50%">
-
-#### 📋 **Required Dependencies**
-
-- 🔌 **pyzmq** - Python ZeroMQ bindings for testing messaging functionality
-
-#### ⚠️ **Important Notes**
-
-- Virtual environment **must be activated** before running tests
-- Dependencies are automatically detected by the test suite
-- Deactivate with `deactivate` when done
-
-</td>
-</tr>
+    <tr>
+        <td width="50%">
+            <h4>🚀 <strong>Quick Setup</strong></h4>
+            <pre><code class="bash">
+    # Create virtual environment
+    python3 -m venv .venv
+    <br>
+    # Activate virtual environment
+    source .venv/bin/activate  # Linux/macOS
+    # OR
+    .venv\Scripts\activate     # Windows
+    <br>
+    # Install test dependencies
+    pip install -r tests/data/requirements.txt</code></pre>
+        </td>
+        <td width="50%">
+            <h4>📋 <strong>Required Dependencies</strong></h4>
+            <ul>
+                <li>🔌 <strong>pyzmq</strong> - Python ZeroMQ bindings for testing messaging functionality</li>
+            </ul>
+            <h4>⚠️ <strong>Important Notes</strong></h4>
+            <ul>
+                <li>Virtual environment <strong>must be activated</strong> before running tests</li>
+                <li>Dependencies are automatically detected by the test suite</li>
+                <li>Deactivate with <code>deactivate</code> when done</li>
+            </ul>
+        </td>
+    </tr>
 </table>
 
 ---
@@ -286,58 +290,95 @@ pip install -r tests/data/requirements.txt
 > 💡 **Important**: Re-run CMake configuration (`cmake -B build`) after changing any options
 
 <table>
-<tr>
-<td width="60%">
-
-#### 🧪 **Testing & Quality Assurance**
-
-| Option | Description | Default | 🎯 Use Case |
-|--------|-------------|---------|-------------|
-| `XXX_BUILD_TESTS` | 🔧 Build all test suites | `ON` | Complete testing pipeline |
-| `XXX_BUILD_UNITTESTS` | ✅ Build unit tests only | `ON` | Fast development feedback |
-| `XXX_BUILD_FUZZTESTS` | 🎲 Build fuzz testing suite | `OFF` | Security & robustness testing |
-| `XXX_ENABLE_COVERAGE` | 📊 Generate test coverage reports | `OFF` | Code quality metrics |
-| `XXX_ENABLE_MEMLEAK_CHECK` | 🔍 Memory leak detection with MemPlumber | `OFF` | Debug memory issues |
-
-#### 🚀 **Release & Distribution**
-
-| Option | Description | Default | 🎯 Use Case |
-|--------|-------------|---------|-------------|
-| `XXX_ENABLE_SYMBOL_GENERATION` | 🔧 Generate debug symbols for crash dumps | `OFF` | Production debugging |
-| `XXX_ENABLE_PACKAGING` | 📦 Enable DEB/RPM packaging with systemd | `OFF` | Distribution & deployment |
-
-</td>
-<td width="40%">
-
-#### 💡 **Quick Examples**
-
-```bash
-# Development build with all tests
+    <tr>
+        <td width="60%">
+            <h4>🧪 <strong>Testing & Quality Assurance</strong></h4>
+            <table>
+                <tr>
+                    <th>Option</th>
+                    <th>Description</th>
+                    <th>Default</th>
+                    <th>🎯 Use Case</th>
+                </tr>
+                <tr>
+                    <td><code>XXX_BUILD_TESTS</code></td>
+                    <td>🔧 Build all test suites</td>
+                    <td><code>ON</code></td>
+                    <td>Complete testing pipeline</td>
+                </tr>
+                <tr>
+                    <td><code>XXX_BUILD_UNITTESTS</code></td>
+                    <td>✅ Build unit tests only</td>
+                    <td><code>ON</code></td>
+                    <td>Fast development feedback</td>
+                </tr>
+                <tr>
+                    <td><code>XXX_BUILD_FUZZTESTS</code></td>
+                    <td>🎲 Build fuzz testing suite</td>
+                    <td><code>OFF</code></td>
+                    <td>Security & robustness testing</td>
+                </tr>
+                <tr>
+                    <td><code>XXX_ENABLE_COVERAGE</code></td>
+                    <td>📊 Generate test coverage reports</td>
+                    <td><code>OFF</code></td>
+                    <td>Code quality metrics</td>
+                </tr>
+                <tr>
+                    <td><code>XXX_ENABLE_MEMLEAK_CHECK</code></td>
+                    <td>🔍 Memory leak detection with MemPlumber</td>
+                    <td><code>OFF</code></td>
+                    <td>Debug memory issues</td>
+                </tr>
+            </table>
+            <h4>🚀 <strong>Release & Distribution</strong></h4>
+            <table>
+                <tr>
+                    <th>Option</th>
+                    <th>Description</th>
+                    <th>Default</th>
+                    <th>🎯 Use Case</th>
+                </tr>
+                <tr>
+                    <td><code>XXX_ENABLE_SYMBOL_GENERATION</code></td>
+                    <td>🔧 Generate debug symbols for crash dumps</td>
+                    <td><code>OFF</code></td>
+                    <td>Production debugging</td>
+                </tr>
+                <tr>
+                    <td><code>XXX_ENABLE_PACKAGING</code></td>
+                    <td>📦 Enable DEB/RPM packaging with systemd</td>
+                    <td><code>OFF</code></td>
+                    <td>Distribution & deployment</td>
+                </tr>
+            </table>
+        </td>
+        <td width="40%">
+            <h4>💡 <strong>Quick Examples</strong></h4>
+            <pre><code class="bash"># Development build with all tests
 cmake -B build -DXXX_BUILD_TESTS=ON \
                 -DXXX_ENABLE_COVERAGE=ON
-
+<br>
 # Production build with packaging
 cmake -B build -DXXX_BUILD_TESTS=OFF \
                 -DXXX_ENABLE_PACKAGING=ON \
                 -DXXX_ENABLE_SYMBOL_GENERATION=ON
-
+<br>
 # Security testing build
 cmake -B build -DXXX_BUILD_FUZZTESTS=ON \
                 -DXXX_ENABLE_MEMLEAK_CHECK=ON
-
+<br>
 # Minimal build (fastest)
-cmake -B build -DXXX_BUILD_TESTS=OFF
-```
-
-#### ⚡ **Pro Tips**
-
-- 🏃 **Fast Iteration**: Disable tests for quick builds during development
-- 🔒 **Security Focus**: Enable fuzz tests and memory checks for critical code
-- 📈 **CI/CD**: Use coverage reports in your automated pipelines
-- 🚀 **Production**: Always enable symbol generation for crash analysis
-
-</td>
-</tr>
+cmake -B build -DXXX_BUILD_TESTS=OFF</code></pre>
+            <h4>⚡ <strong>Pro Tips</strong></h4>
+            <ul>
+                <li>🏃 <strong>Fast Iteration</strong>: Disable tests for quick builds during development</li>
+                <li>🔒 <strong>Security Focus</strong>: Enable fuzz tests and memory checks for critical code</li>
+                <li>📈 <strong>CI/CD</strong>: Use coverage reports in your automated pipelines</li>
+                <li>🚀 <strong>Production</strong>: Always enable symbol generation for crash analysis</li>
+            </ul>
+        </td>
+    </tr>
 </table>
 
 
@@ -352,37 +393,31 @@ Thanks to our integrated **Prometheus server**, monitoring your application has 
 </div>
 
 <table>
-<tr>
-<td width="50%">
-
-#### 🚀 **Quick Setup**
-
-1. 📥 **Import Dashboard**: Use our pre-built [**Grafana template**](scripts/GrafanaDashboard-1730032129887.json)
-2. 🔗 **Connect Prometheus**: Point to your app's metrics endpoint
-3. 📊 **Monitor**: Watch real-time metrics flow in!
-
-#### ✨ **What You Get**
-
-- 📈 **Performance Metrics**: Response times, throughput, resource usage
-- 🚨 **Error Tracking**: Real-time error rates and alerting
-- 💾 **Resource Monitoring**: CPU, memory, and system metrics
-- 🔍 **Custom Metrics**: Track your application-specific KPIs
-
-</td>
-<td width="50%">
-
-<div align="center">
-
-#### 📸 **Live Dashboard Preview**
-
-<img src="doc/GrafanaDashboard.png" alt="Grafana Dashboard" width="100%">
-
-*Beautiful, responsive, and information-rich monitoring*
-
-</div>
-
-</td>
-</tr>
+    <tr>
+        <td width="50%">
+            <h4>🚀 <strong>Quick Setup</strong></h4>
+            <ol>
+                <li>📥 <strong>Import Dashboard</strong>: Use our pre-built <a
+                        href="scripts/GrafanaDashboard-1730032129887.json"><strong>Grafana template</strong></a></li>
+                <li>🔗 <strong>Connect Prometheus</strong>: Point to your app's metrics endpoint</li>
+                <li>📊 <strong>Monitor</strong>: Watch real-time metrics flow in!</li>
+            </ol>
+            <h4>✨ <strong>What You Get</strong></h4>
+            <ul>
+                <li>📈 <strong>Performance Metrics</strong>: Response times, throughput, resource usage</li>
+                <li>🚨 <strong>Error Tracking</strong>: Real-time error rates and alerting</li>
+                <li>💾 <strong>Resource Monitoring</strong>: CPU, memory, and system metrics</li>
+                <li>🔍 <strong>Custom Metrics</strong>: Track your application-specific KPIs</li>
+            </ul>
+        </td>
+        <td width="50%">
+            <div align="center">
+                <h4>📸 <strong>Live Dashboard Preview</strong></h4>
+                <img src="doc/GrafanaDashboard.png" alt="Grafana Dashboard" width="100%">
+                <p><em>Beautiful, responsive, and information-rich monitoring</em></p>
+            </div>
+        </td>
+    </tr>
 </table>
 
 <div align="center">
