@@ -7,11 +7,16 @@ var searchData=
   ['readdata_4',['readData',['../classRawSocket.html#aa0c5a1d1cd751525ca77642a16928a24',1,'RawSocket']]],
   ['readjson_5',['readJson',['../classConfigParser.html#aca170271d8fe1a36f905c971f807e8db',1,'ConfigParser']]],
   ['readme_2emd_6',['README.md',['../README_8md.html',1,'']]],
-  ['receivedbytes_7',['receivedBytes',['../structRawSocketStats.html#a37839e418b67b9c5a5aab1d0d4517bb2',1,'RawSocketStats']]],
-  ['recvmessages_8',['recvMessages',['../classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3',1,'ZeroMQ']]],
-  ['redirecttime_9',['redirectTime',['../structHTTPStats.html#a99bcce4e603afe6c2a53e9ff501d90b1',1,'HTTPStats']]],
-  ['refusedconnectionctr_10',['refusedConnectionCtr',['../structTelnetServerStats.html#ac4556411d1a1f0f366b029bb8e5e8001',1,'TelnetServerStats']]],
-  ['remove_11',['remove',['../classConfigParser.html#a317867fa9bcc23be87dcccc38a22d7a6',1,'ConfigParser']]],
-  ['repo_20init_12',['Repo-Init',['../index.html',1,'']]],
-  ['requestbytes_13',['requestBytes',['../structHTTPStats.html#a28e77c97dbcb01973f51feac53743535',1,'HTTPStats']]]
+  ['ready_20strong_7',['🌐 &lt;strong&gt;Network Ready&lt;/strong&gt;',['../index.html#autotoc_md9',1,'']]],
+  ['real_20time_20monitoring_20made_20beautiful_20strong_20🎯_8',['🎯 &lt;strong&gt;Real-Time Monitoring Made Beautiful&lt;/strong&gt; 🎯',['../index.html#autotoc_md39',1,'']]],
+  ['receivedbytes_9',['receivedBytes',['../structRawSocketStats.html#a37839e418b67b9c5a5aab1d0d4517bb2',1,'RawSocketStats']]],
+  ['recvmessages_10',['recvMessages',['../classZeroMQ.html#a325eaa87b401739d540d4fd2ecd01ca3',1,'ZeroMQ']]],
+  ['redirecttime_11',['redirectTime',['../structHTTPStats.html#a99bcce4e603afe6c2a53e9ff501d90b1',1,'HTTPStats']]],
+  ['refusedconnectionctr_12',['refusedConnectionCtr',['../structTelnetServerStats.html#ac4556411d1a1f0f366b029bb8e5e8001',1,'TelnetServerStats']]],
+  ['release_20distribution_20strong_13',['🚀 &lt;strong&gt;Release &amp; Distribution&lt;/strong&gt;',['../index.html#autotoc_md35',1,'']]],
+  ['remove_14',['remove',['../classConfigParser.html#a317867fa9bcc23be87dcccc38a22d7a6',1,'ConfigParser']]],
+  ['repo_20init_15',['Repo Init',['../index.html#autotoc_md3',1,'🎯 What is Repo-Init?'],['../index.html#autotoc_md0',1,'🚀 Repo-Init'],['../index.html',1,'Repo-Init']]],
+  ['requestbytes_16',['requestBytes',['../structHTTPStats.html#a28e77c97dbcb01973f51feac53743535',1,'HTTPStats']]],
+  ['required_20dependencies_20strong_17',['📋 &lt;strong&gt;Required Dependencies&lt;/strong&gt;',['../index.html#autotoc_md27',1,'']]],
+  ['runtime_20libraries_20strong_18',['🏗️ &lt;strong&gt;Core Runtime Libraries&lt;/strong&gt;',['../index.html#autotoc_md19',1,'']]]
 ];
