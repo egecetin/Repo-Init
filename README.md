@@ -32,6 +32,7 @@
 **Repo-Init** is a powerful, production-ready CMake template designed to kickstart your C++ applications with enterprise-grade features built-in. Say goodbye to boilerplate code and hello to modern, robust software development!
 
 > 🔧 **Requires**: C++17 supported compiler
+
 > 💡 **Perfect for**: Microservices, CLI tools, system applications, and performance-critical software
 
 <div align="center">
