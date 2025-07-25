@@ -112,6 +112,7 @@ Multi-output logging with **Spdlog**
 - [🔧 CMake Modules](#-cmake-modules)
 - [📜 Utility Scripts](#-utility-scripts)
 - [📦 Dependencies](#-dependencies)
+- [🧪 Testing Setup](#-testing-setup)
 - [🎯 Build Targets](#-build-targets)
 - [📊 Grafana Integration](#-grafana-integration)
 
@@ -195,6 +196,54 @@ Our carefully crafted CMake modules provide powerful build automation:
 
 </div>
 
+## 🧪 Testing Setup
+
+<div align="center">
+
+### 🐍 **Python Test Dependencies** 🐍
+
+</div>
+
+Our test suite requires some Python dependencies for comprehensive testing. Here's how to set them up:
+
+<table>
+<tr>
+<td width="50%">
+
+#### 🚀 **Quick Setup**
+
+```bash
+# Create virtual environment
+python3 -m venv .venv
+
+# Activate virtual environment
+source .venv/bin/activate  # Linux/macOS
+# OR
+.venv\Scripts\activate     # Windows
+
+# Install test dependencies
+pip install -r tests/data/requirements.txt
+```
+
+</td>
+<td width="50%">
+
+#### 📋 **Required Dependencies**
+
+- 🔌 **pyzmq** - Python ZeroMQ bindings for testing messaging functionality
+
+#### ⚠️ **Important Notes**
+
+- Virtual environment **must be activated** before running tests
+- Dependencies are automatically detected by the test suite
+- Deactivate with `deactivate` when done
+
+</td>
+</tr>
+</table>
+
+---
+
 ## 🎯 Build Targets
 
 <div align="center">
@@ -214,7 +263,9 @@ Our carefully crafted CMake modules provide powerful build automation:
 
 <div align="center">
 
-> 💡 **Pro Tip**: For packages, specify your preferred format with `-DCPACK_GENERATOR="DEB"` or `"RPM"`
+> 💡 **Pro Tips**: 
+> - For packages, specify your preferred format with `-DCPACK_GENERATOR="DEB"` or `"RPM"`
+> - Ensure Python virtual environment is activated before running tests!
 
 ---
 
