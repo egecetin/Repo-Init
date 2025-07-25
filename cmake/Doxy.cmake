@@ -25,7 +25,7 @@ if(DOXYGEN_FOUND)
     COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/doc/html/doc
     COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/doc/logo.png ${PROJECT_SOURCE_DIR}/doc/html/doc
     COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/doc/GrafanaDashboard.png ${PROJECT_SOURCE_DIR}/doc/html/doc
-    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/doc/XXX-tree.svg ${PROJECT_SOURCE_DIR}/doc/html/doc
+    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/doc/dependency-tree.svg ${PROJECT_SOURCE_DIR}/doc/html/doc
     COMMENT "Organizing HTML extra files into subfolders"
   )
 else()

@@ -186,7 +186,7 @@ Our carefully crafted CMake modules provide powerful build automation:
 
 <div align="center">
 
-> 📊 **Want to see the full picture?** Check out our complete [**dependency graph**](doc/XXX-tree.svg)!
+> 📊 **Want to see the full picture?** Check out our complete [**dependency graph**](doc/dependency-tree.svg)!
 
 ---
 
