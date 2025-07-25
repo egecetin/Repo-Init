@@ -272,6 +272,72 @@ pip install -r tests/data/requirements.txt
 
 </div>
 
+### 🎛️ **Build Options**
+
+<div align="center">
+
+**Customize your build with powerful CMake configuration options**
+
+</div>
+
+> 💡 **Important**: Re-run CMake configuration (`cmake -B build`) after changing any options
+
+<table>
+<tr>
+<td width="60%">
+
+#### 🧪 **Testing & Quality Assurance**
+
+| Option | Description | Default | 🎯 Use Case |
+|--------|-------------|---------|-------------|
+| `XXX_BUILD_TESTS` | 🔧 Build all test suites | `ON` | Complete testing pipeline |
+| `XXX_BUILD_UNITTESTS` | ✅ Build unit tests only | `ON` | Fast development feedback |
+| `XXX_BUILD_FUZZTESTS` | 🎲 Build fuzz testing suite | `OFF` | Security & robustness testing |
+| `XXX_ENABLE_COVERAGE` | 📊 Generate test coverage reports | `OFF` | Code quality metrics |
+| `XXX_ENABLE_MEMLEAK_CHECK` | 🔍 Memory leak detection with MemPlumber | `OFF` | Debug memory issues |
+
+#### 🚀 **Release & Distribution**
+
+| Option | Description | Default | 🎯 Use Case |
+|--------|-------------|---------|-------------|
+| `XXX_ENABLE_SYMBOL_GENERATION` | 🔧 Generate debug symbols for crash dumps | `OFF` | Production debugging |
+| `XXX_ENABLE_PACKAGING` | 📦 Enable DEB/RPM packaging with systemd | `OFF` | Distribution & deployment |
+
+</td>
+<td width="40%">
+
+#### 💡 **Quick Examples**
+
+```bash
+# Development build with all tests
+cmake -B build -DXXX_BUILD_TESTS=ON \
+                -DXXX_ENABLE_COVERAGE=ON
+
+# Production build with packaging
+cmake -B build -DXXX_BUILD_TESTS=OFF \
+                -DXXX_ENABLE_PACKAGING=ON \
+                -DXXX_ENABLE_SYMBOL_GENERATION=ON
+
+# Security testing build
+cmake -B build -DXXX_BUILD_FUZZTESTS=ON \
+                -DXXX_ENABLE_MEMLEAK_CHECK=ON
+
+# Minimal build (fastest)
+cmake -B build -DXXX_BUILD_TESTS=OFF
+```
+
+#### ⚡ **Pro Tips**
+
+- 🏃 **Fast Iteration**: Disable tests for quick builds during development
+- 🔒 **Security Focus**: Enable fuzz tests and memory checks for critical code
+- 📈 **CI/CD**: Use coverage reports in your automated pipelines
+- 🚀 **Production**: Always enable symbol generation for crash analysis
+
+</td>
+</tr>
+</table>
+
+
 ## 📊 Grafana Integration
 
 <div align="center">
