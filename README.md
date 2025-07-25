@@ -16,10 +16,10 @@
     <img src="https://img.shields.io/github/actions/workflow/status/egecetin/Repo-Init/build_and_test.yml?label=Build%20%26%20Test&branch=master&logo=github&style=for-the-badge" alt="Build Status">
   </a>
   <a href="https://sonarcloud.io/summary/new_code?id=egecetin_Repo-Init">
-    <img src="https://img.shields.io/sonar/coverage/egecetin_Repo-Init?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge&logo=sonarcloud" alt="Coverage">
+    <img src="https://img.shields.io/sonar/coverage/egecetin_Repo-Init?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge&logo=sonarqubecloud" alt="Coverage">
   </a>
   <a href="https://scorecard.dev/viewer/?uri=github.com/egecetin/Repo-Init">
-    <img src="https://img.shields.io/ossf-scorecard/github.com/egecetin/Repo-Init?label=Security%20Score&style=for-the-badge&logo=openbadges" alt="Security Score">
+    <img src="https://img.shields.io/ossf-scorecard/github.com/egecetin/Repo-Init?label=Security%20Score&style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHJlY3QgeD0iMyIgeT0iMTEiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxMSIgcng9IjIiIHJ5PSIyIj48L3JlY3Q+PHBhdGggZD0ibTcgMTFWN0E1IDUgMCAwIDEgMTcgN3Y0Ij48L3BhdGg+PC9zdmc+" alt="Security Score">
   </a>
 </p>
 
