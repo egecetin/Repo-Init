@@ -17,6 +17,15 @@ if(DOXYGEN_FOUND)
     COMMENT "Generating API documentation with Doxygen"
     VERBATIM
   )
+
+  # Add this to your CMakeLists.txt after the doxygen target
+  add_custom_command(TARGET docs POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/doc/html/doc
+    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/doc/logo.png ${PROJECT_SOURCE_DIR}/doc/html/doc
+    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/doc/GrafanaDashboard.png ${PROJECT_SOURCE_DIR}/doc/html/doc
+    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/doc/XXX-tree.svg ${PROJECT_SOURCE_DIR}/doc/html/doc
+    COMMENT "Organizing HTML extra files into subfolders"
+)
 else()
   message(WARNING "Doxygen need to be installed to generate the doxygen documentation!")
 endif()

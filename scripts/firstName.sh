@@ -13,6 +13,7 @@ done
 
 sed -i "s/XXX/${ARGUMENT_NAME}/" CMakeLists.txt
 sed -i "s/XXX/${ARGUMENT_NAME}/" CMakeLists.txt
+sed -i "s/XXX/${ARGUMENT_NAME}/" cmake/Doxy.cmake
 sed -i "s/XXX/${ARGUMENT_NAME}/" scripts/GrafanaDashboard-1730032129887.json
 sed -i "s/XXX/${ARGUMENT_NAME}/" tests/CMakeLists.txt
 sed -i "s/XXX/${ARGUMENT_NAME}/" tests/CMakeLists.txt
