@@ -6,9 +6,9 @@ var searchData=
   ['checksocketisrunning_3',['checkSocketIsRunning',['../classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14',1,'Tracer']]],
   ['checktimeout_4',['checkTimeout',['../classTelnetSession.html#a89a34200c3a07dfe78d4d82ab53fb10f',1,'TelnetSession']]],
   ['closeclient_5',['closeClient',['../classTelnetSession.html#acd4fae03ff70b3d19551d4c7f5083b2f',1,'TelnetSession']]],
-  ['cmake_20modules_6',['🔧 CMake Modules',['../index.html#autotoc_md14',1,'']]],
+  ['cmake_20modules_6',['🔧 CMake Modules',['../index.html#autotoc_md8',1,'']]],
   ['cmdoptionexists_7',['cmdOptionExists',['../classInputParser.html#aea813a8d6ee9ea6d250ab99333316bdf',1,'InputParser']]],
-  ['command_20multiple_20possibilities_20strong_20⚡_8',['⚡ &lt;strong&gt;One Command, Multiple Possibilities&lt;/strong&gt; ⚡',['../index.html#autotoc_md31',1,'']]],
+  ['command_20multiple_20possibilities_20strong_20⚡_8',['⚡ &lt;strong&gt;One Command, Multiple Possibilities&lt;/strong&gt; ⚡',['../index.html#autotoc_md19',1,'']]],
   ['configparser_9',['ConfigParser',['../classConfigParser.html',1,'ConfigParser'],['../classConfigParser.html#acf4886a0e2500b5ec83132a439d18bb2',1,'ConfigParser::ConfigParser()']]],
   ['configparser_2ecpp_10',['ConfigParser.cpp',['../ConfigParser_8cpp.html',1,'']]],
   ['configparser_2ehpp_11',['ConfigParser.hpp',['../ConfigParser_8hpp.html',1,'']]],
@@ -19,11 +19,10 @@ var searchData=
   ['constseeder_16',['constSeeder',['../Hasher_8hpp.html#a19de363e44f82446f890dc47a27d101c',1,'Hasher.hpp']]],
   ['consumebasestats_17',['consumeBaseStats',['../classBaseServerStats.html#a4b718f45d89d7c4a71e93702d02fce31',1,'BaseServerStats']]],
   ['consumestats_18',['consumeStats',['../classTelnetStats.html#a29b90c320dd788ae9045e27a180e7b73',1,'TelnetStats::consumeStats(const TelnetSessionStats &amp;stat, bool sessionClosed)'],['../classTelnetStats.html#a910010aa6bd7d54a3ceae40b3c3fed14',1,'TelnetStats::consumeStats(const TelnetServerStats &amp;stat)'],['../classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07',1,'ZeroMQStats::consumeStats()']]],
-  ['contents_19',['📋 Table of Contents',['../index.html#autotoc_md13',1,'']]],
-  ['contributing_20support_20strong_20',['🤝 &lt;strong&gt;Contributing &amp; Support&lt;/strong&gt;',['../index.html#autotoc_md44',1,'']]],
-  ['core_20runtime_20libraries_20strong_21',['🏗️ &lt;strong&gt;Core Runtime Libraries&lt;/strong&gt;',['../index.html#autotoc_md19',1,'']]],
+  ['contents_19',['📋 Table of Contents',['../index.html#autotoc_md7',1,'']]],
+  ['contributing_20support_20strong_20',['🤝 &lt;strong&gt;Contributing &amp; Support&lt;/strong&gt;',['../index.html#autotoc_md25',1,'']]],
+  ['core_20runtime_20libraries_20strong_21',['🏗️ &lt;strong&gt;Core Runtime Libraries&lt;/strong&gt;',['../index.html#autotoc_md13',1,'']]],
   ['countdirectoryentries_22',['countDirectoryEntries',['../classProcessMetrics.html#aab60bd68d5a49dae6bd6d5f4364d1f9a',1,'ProcessMetrics']]],
-  ['crash_20protection_20strong_23',['🛡️ &lt;strong&gt;Crash Protection&lt;/strong&gt;',['../index.html#autotoc_md5',1,'']]],
-  ['createnewregistry_24',['createNewRegistry',['../classPrometheusServer.html#a04e7b010c6227c4cf076d619b66cf6df',1,'PrometheusServer::createNewRegistry()'],['../classPrometheusServer.html#a1238fb991b79e91fa01e7f24ca1950c5',1,'PrometheusServer::createNewRegistry(uint64_t &amp;regId)']]],
-  ['curlmemory_25',['curlMemory',['../structcurlMemory.html',1,'']]]
+  ['createnewregistry_23',['createNewRegistry',['../classPrometheusServer.html#a04e7b010c6227c4cf076d619b66cf6df',1,'PrometheusServer::createNewRegistry()'],['../classPrometheusServer.html#a1238fb991b79e91fa01e7f24ca1950c5',1,'PrometheusServer::createNewRegistry(uint64_t &amp;regId)']]],
+  ['curlmemory_24',['curlMemory',['../structcurlMemory.html',1,'']]]
 ];

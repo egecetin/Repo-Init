@@ -28,51 +28,28 @@ var NAVTREE =
     [ "🚀 Repo-Init", "index.html#autotoc_md0", [
       [ "🎯 What is Repo-Init?", "index.html#autotoc_md3", [
         [ "⚡ Modern C++ Application Template with Enterprise-Grade Features ⚡", "index.html#autotoc_md1", null ],
-        [ "🌟 Key Features at a Glance 🌟", "index.html#autotoc_md4", null ],
-        [ "🛡️ Crash Protection", "index.html#autotoc_md5", null ],
-        [ "📊 Advanced Logging", "index.html#autotoc_md6", null ],
-        [ "🔗 Service Integration", "index.html#autotoc_md7", null ],
-        [ "⚡ Performance Metrics", "index.html#autotoc_md8", null ],
-        [ "🌐 Network Ready", "index.html#autotoc_md9", null ],
-        [ "🚀 Developer Experience", "index.html#autotoc_md10", null ]
+        [ "🌟 Key Features at a Glance 🌟", "index.html#autotoc_md4", null ]
       ] ],
-      [ "📋 Table of Contents", "index.html#autotoc_md13", null ],
-      [ "🔧 CMake Modules", "index.html#autotoc_md14", null ],
-      [ "📜 Utility Scripts", "index.html#autotoc_md16", null ],
-      [ "📦 Dependencies", "index.html#autotoc_md18", [
-        [ "🏗️ Core Runtime Libraries", "index.html#autotoc_md19", [
-          [ "🔥 Integrated Dependencies", "index.html#autotoc_md20", null ],
-          [ "🛠️ Development Dependencies", "index.html#autotoc_md21", null ],
-          [ "🌐 System Dependencies", "index.html#autotoc_md22", null ]
-        ] ]
+      [ "📋 Table of Contents", "index.html#autotoc_md7", null ],
+      [ "🔧 CMake Modules", "index.html#autotoc_md8", null ],
+      [ "📜 Utility Scripts", "index.html#autotoc_md10", null ],
+      [ "📦 Dependencies", "index.html#autotoc_md12", [
+        [ "🏗️ Core Runtime Libraries", "index.html#autotoc_md13", null ]
       ] ],
-      [ "", "index.html#autotoc_md23", null ],
-      [ "🧪 Testing Setup", "index.html#autotoc_md24", [
-        [ "🐍 Python Test Dependencies 🐍", "index.html#autotoc_md25", [
-          [ "🚀 Quick Setup", "index.html#autotoc_md26", null ],
-          [ "📋 Required Dependencies", "index.html#autotoc_md27", null ],
-          [ "⚠️ Important Notes", "index.html#autotoc_md28", null ]
-        ] ]
+      [ "", "index.html#autotoc_md14", null ],
+      [ "🧪 Testing Setup", "index.html#autotoc_md15", [
+        [ "🐍 Python Test Dependencies 🐍", "index.html#autotoc_md16", null ]
       ] ],
-      [ "🎯 Build Targets", "index.html#autotoc_md30", [
-        [ "⚡ One Command, Multiple Possibilities ⚡", "index.html#autotoc_md31", null ]
+      [ "🎯 Build Targets", "index.html#autotoc_md18", [
+        [ "⚡ One Command, Multiple Possibilities ⚡", "index.html#autotoc_md19", null ]
       ] ],
-      [ "", "index.html#autotoc_md32", [
-        [ "🎛️ Build Options", "index.html#autotoc_md33", [
-          [ "🧪 Testing & Quality Assurance", "index.html#autotoc_md34", null ],
-          [ "🚀 Release & Distribution", "index.html#autotoc_md35", null ],
-          [ "💡 Quick Examples", "index.html#autotoc_md36", null ],
-          [ "⚡ Pro Tips", "index.html#autotoc_md37", null ]
-        ] ]
+      [ "", "index.html#autotoc_md20", [
+        [ "🎛️ Build Options", "index.html#autotoc_md21", null ]
       ] ],
-      [ "📊 Grafana Integration", "index.html#autotoc_md38", [
-        [ "🎯 Real-Time Monitoring Made Beautiful 🎯", "index.html#autotoc_md39", [
-          [ "🚀 Quick Setup", "index.html#autotoc_md40", null ],
-          [ "✨ What You Get", "index.html#autotoc_md41", null ],
-          [ "📸 Live Dashboard Preview", "index.html#autotoc_md42", null ]
-        ] ]
+      [ "📊 Grafana Integration", "index.html#autotoc_md22", [
+        [ "🎯 Real-Time Monitoring Made Beautiful 🎯", "index.html#autotoc_md23", null ]
       ] ],
-      [ "🤝 Contributing & Support", "index.html#autotoc_md44", null ]
+      [ "🤝 Contributing & Support", "index.html#autotoc_md25", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],

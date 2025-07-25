@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🎛️_20strong_20build_20options_20strong_0',['🎛️ &lt;strong&gt;Build Options&lt;/strong&gt;',['../index.html#autotoc_md33',1,'']]]
+  ['📊_20grafana_20integration_0',['📊 Grafana Integration',['../index.html#autotoc_md22',1,'']]]
 ];

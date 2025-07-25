@@ -123,46 +123,61 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 <div align="center">🌟 <b>Key Features at a Glance</b> 🌟</div></h3>
 <div align="center"></div><div align="center"></div><table align="center">
 <tr>
-<td align="center" width="33%"><p class="starttd"></p>
+<td align="center" width="33%"><h3>🛡️ <b>Crash Protection</b></h3>
+<p class="intertd"></p>
+<p class="intertd">Automatic minidump generation with <a href="https://chromium.googlesource.com/crashpad/crashpad/"><b>Crashpad</b></a></p>
+<p class="intertd"></p>
+<p class="intertd"><em>Never lose critical debugging information</em></p>
+<p class="endtd"></p>
+</td><td align="center" width="33%"><h3>📊 <b>Advanced Logging</b></h3>
+<p class="intertd"></p>
+<p class="intertd">Multi-output logging with <b>Spdlog</b></p>
+<p class="intertd"></p>
+<p class="intertd"><em>File rotation • Syslog • Colorized console</em></p>
+<p class="endtd"></p>
+</td><td align="center" width="33%"><h3>🔗 <b>Service Integration</b></h3>
+<p class="intertd"></p>
+<p class="intertd"><a href="https://sentry.io/"><b>Sentry</b></a> • <a href="https://grafana.com/oss/loki/"><b>Grafana Loki</b></a> • <a href="https://prometheus.io/"><b>Prometheus</b></a></p>
+<p class="intertd"></p>
+<p class="intertd"><em>Real-time monitoring &amp; alerting</em></p>
 <p class="endtd"></p>
 </td></tr>
+<tr>
+<td align="center"><h3>⚡ <b>Performance Metrics</b></h3>
+<ul>
+<li>
+✅ Success/failure counters </li>
+<li>
+⏱️ Min/max timing analysis </li>
+<li>
+📈 Quantile-based bottleneck detection </li>
+</ul>
+</td><td align="center"><h3>🌐 <b>Network Ready</b></h3>
+<ul>
+<li>
+🖥️ Built-in Telnet server </li>
+<li>
+⚡ <a href="https://zeromq.org/"><b>ZeroMQ</b></a> messaging </li>
+<li>
+🔌 <a class="el" href="classHTTP.html">HTTP</a> connectivity </li>
+</ul>
+</td><td align="center"><h3>🚀 <b>Developer Experience</b></h3>
+<ul>
+<li>
+📦 One-command setup </li>
+<li>
+🧪 Comprehensive testing </li>
+<li>
+📋 Auto-generated docs </li>
+</ul>
+</td></tr>
 </table>
-<h3><a class="anchor" id="autotoc_md5"></a>
-🛡️ <b>Crash Protection</b></h3>
-<p>Automatic minidump generation with <a href="https://chromium.googlesource.com/crashpad/crashpad/"><b>Crashpad</b></a> <em>Never lose critical debugging information</em></p>
-<h3><a class="anchor" id="autotoc_md6"></a>
-📊 <b>Advanced Logging</b></h3>
-<p>Multi-output logging with <b>Spdlog</b> <em>File rotation • Syslog • Colorized console</em></p>
-<h3><a class="anchor" id="autotoc_md7"></a>
-🔗 <b>Service Integration</b></h3>
-<p><a href="https://sentry.io/"><b>Sentry</b></a> • <a href="https://grafana.com/oss/loki/"><b>Grafana Loki</b></a> • <a href="https://prometheus.io/"><b>Prometheus</b></a> <em>Real-time monitoring &amp; alerting</em></p>
-<h3><a class="anchor" id="autotoc_md8"></a>
-⚡ <b>Performance Metrics</b></h3>
-<ul>
-<li>✅ Success/failure counters</li>
-<li>⏱️ Min/max timing analysis</li>
-<li>📈 Quantile-based bottleneck detection</li>
-</ul>
-<h3><a class="anchor" id="autotoc_md9"></a>
-🌐 <b>Network Ready</b></h3>
-<ul>
-<li>🖥️ Built-in Telnet server</li>
-<li>⚡ <a href="https://zeromq.org/"><b>ZeroMQ</b></a> messaging</li>
-<li>🔌 <a class="el" href="classHTTP.html">HTTP</a> connectivity</li>
-</ul>
-<h3><a class="anchor" id="autotoc_md10"></a>
-🚀 <b>Developer Experience</b></h3>
-<ul>
-<li>📦 One-command setup</li>
-<li>🧪 Comprehensive testing</li>
-<li>📋 Auto-generated docs</li>
-</ul>
 <hr  />
 <blockquote class="doxtable">
 <p>&zwj;💬 <b>Questions? Issues? Contributions?</b> Feel free to ask, use, and report any bugs you encounter! We ❤️ community feedback. </p>
 </blockquote>
 <div align="center"></div><div align="center"><a href="https://sonarcloud.io/summary/new_code?id=egecetin_Repo-Init"><img src="https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg" alt="SonarCloud" style="pointer-events: none;" class="inline"/></a></div><div align="center"><hr  />
-</div><div align="center"></div><h2><a class="anchor" id="autotoc_md13"></a>
+</div><div align="center"></div><h2><a class="anchor" id="autotoc_md7"></a>
 📋 Table of Contents</h2>
 <ul>
 <li>🎯 What is Repo-Init?</li>
@@ -174,7 +189,7 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 <li>🎯 Build Targets</li>
 <li>📊 Grafana Integration</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 🔧 CMake Modules</h2>
 <p>Our carefully crafted CMake modules provide powerful build automation:</p>
 <table class="markdownTable">
@@ -194,7 +209,7 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 <td class="markdownTableBodyNone"><b>GraphViz</b>   </td><td class="markdownTableBodyNone">Finds GraphViz and dot executable   </td><td class="markdownTableBodyNone">🎨 Visual dependency graphs   </td></tr>
 </table>
 <hr  />
-<h2><a class="anchor" id="autotoc_md16"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 📜 Utility Scripts</h2>
 <blockquote class="doxtable">
 <p>&zwj;💡 <b>Tip</b>: All scripts should be executed from the top-level directory </p>
@@ -208,90 +223,107 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 <td class="markdownTableBodyNone"><code>dump_syms.py</code>   </td><td class="markdownTableBodyNone">🔧 <b>Symbol Dumper</b>   </td><td class="markdownTableBodyNone">Generates symbol files for crash analysis   </td></tr>
 </table>
 <hr  />
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2><a class="anchor" id="autotoc_md12"></a>
 📦 Dependencies</h2>
-<div align="center"></div><div align="center"></div><h3><a class="anchor" id="autotoc_md19"></a>
+<div align="center"></div><div align="center"></div><h3><a class="anchor" id="autotoc_md13"></a>
 <div align="center">🏗️ <b>Core Runtime Libraries</b></div></h3>
 <div align="center"></div><div align="center"></div><table class="doxtable">
 <tr>
-<td width="50%"><p class="starttd"></p>
-<p class="endtd"></p>
+<td width="50%"><h4>🔥 <b>Integrated Dependencies</b></h4>
+<p class="intertd"></p>
+<p class="intertd"><em>Built and bundled automatically</em></p>
+<ul>
+<li>
+🔌 <a href="https://github.com/zeromq/cppzmq.git"><b>CppZMQ</b></a> - Modern C++ <a class="el" href="classZeroMQ.html">ZeroMQ</a> bindings </li>
+<li>
+💥 <a href="https://chromium.googlesource.com/crashpad/crashpad/"><b>Crashpad</b></a> - Crash reporting system </li>
+<li>
+📅 <a href="https://github.com/HowardHinnant/date.git"><b>Date</b></a> - C++ date/time library </li>
+<li>
+🌐 <a href="https://github.com/j-ulrich/http-status-codes-cpp.git"><b>Http-status-codes</b></a><ul>
+<li><a class="el" href="classHTTP.html">HTTP</a> utilities</li>
+</ul>
+</li>
+<li>
+📊 <a href="https://github.com/jupp0r/prometheus-cpp.git"><b>Prometheus-cpp</b></a> - Metrics collection </li>
+<li>
+⚡ <a href="https://github.com/Tencent/rapidjson.git"><b>RapidJSON</b></a> - Ultra-fast JSON parser </li>
+<li>
+🔐 <a href="https://github.com/getsentry/sentry-native.git"><b>Sentry</b></a> - Error monitoring </li>
+<li>
+🖥️ <a href="https://github.com/lukemalcolm/TelnetServLib.git"><b>TelnetServLib</b></a> - <em>Modified &amp; embedded</em> </li>
+</ul>
+</td><td width="50%"><h4>🛠️ <b>Development Dependencies</b></h4>
+<p class="intertd"></p>
+<p class="intertd"><em>For building and testing only</em></p>
+<ul>
+<li>
+🔧 <a href="https://chromium.googlesource.com/breakpad/breakpad/"><b>Breakpad</b></a> - Symbol dumping </li>
+<li>
+✅ <a href="https://github.com/google/googletest.git"><b>GoogleTest</b></a> - Unit testing framework </li>
+<li>
+🔍 <a href="https://github.com/seladb/MemPlumber.git"><b>MemPlumber</b></a> - Memory leak detection </li>
+<li>
+📦 <b>ZLIB</b> - Compression (required by Breakpad) </li>
+</ul>
+<h4>🌐 <b>System Dependencies</b></h4>
+<p class="intertd"></p>
+<p class="intertd"><em>Install via package manager (apt/dnf/brew)</em></p>
+<ul>
+<li>
+🌍 <a href="https://github.com/curl/curl"><b>cURL</b></a> - <a class="el" href="classHTTP.html">HTTP</a> client library </li>
+<li>
+📝 <a href="https://github.com/gabime/spdlog.git"><b>Spdlog</b></a> - Fast logging library  </li>
+<li>
+⚡ <a href="https://github.com/zeromq/libzmq.git"><b>ZeroMQ</b></a> - High-performance messaging </li>
+</ul>
 </td></tr>
 </table>
-<h4><a class="anchor" id="autotoc_md20"></a>
-🔥 <b>Integrated Dependencies</b></h4>
-<p><em>Built and bundled automatically</em></p>
-<ul>
-<li>🔌 <a href="https://github.com/zeromq/cppzmq.git"><b>CppZMQ</b></a> - Modern C++ <a class="el" href="classZeroMQ.html">ZeroMQ</a> bindings</li>
-<li>💥 <a href="https://chromium.googlesource.com/crashpad/crashpad/"><b>Crashpad</b></a> - Crash reporting system</li>
-<li>📅 <a href="https://github.com/HowardHinnant/date.git"><b>Date</b></a> - C++ date/time library</li>
-<li>🌐 <a href="https://github.com/j-ulrich/http-status-codes-cpp.git"><b>Http-status-codes</b></a> - <a class="el" href="classHTTP.html">HTTP</a> utilities</li>
-<li>📊 <a href="https://github.com/jupp0r/prometheus-cpp.git"><b>Prometheus-cpp</b></a> - Metrics collection</li>
-<li>⚡ <a href="https://github.com/Tencent/rapidjson.git"><b>RapidJSON</b></a> - Ultra-fast JSON parser</li>
-<li>🔐 <a href="https://github.com/getsentry/sentry-native.git"><b>Sentry</b></a> - Error monitoring</li>
-<li>🖥️ <a href="https://github.com/lukemalcolm/TelnetServLib.git"><b>TelnetServLib</b></a> - <em>Modified &amp; embedded</em></li>
-</ul>
-<h4><a class="anchor" id="autotoc_md21"></a>
-🛠️ <b>Development Dependencies</b></h4>
-<p><em>For building and testing only</em></p>
-<ul>
-<li>🔧 <a href="https://chromium.googlesource.com/breakpad/breakpad/"><b>Breakpad</b></a> - Symbol dumping</li>
-<li>✅ <a href="https://github.com/google/googletest.git"><b>GoogleTest</b></a> - Unit testing framework</li>
-<li>🔍 <a href="https://github.com/seladb/MemPlumber.git"><b>MemPlumber</b></a> - Memory leak detection</li>
-<li>📦 <b>ZLIB</b> - Compression (required by Breakpad)</li>
-</ul>
-<h4><a class="anchor" id="autotoc_md22"></a>
-🌐 <b>System Dependencies</b></h4>
-<p><em>Install via package manager (apt/dnf/brew)</em></p>
-<ul>
-<li>🌍 <a href="https://github.com/curl/curl"><b>cURL</b></a> - <a class="el" href="classHTTP.html">HTTP</a> client library</li>
-<li>📝 <a href="https://github.com/gabime/spdlog.git"><b>Spdlog</b></a> - Fast logging library</li>
-<li>⚡ <a href="https://github.com/zeromq/libzmq.git"><b>ZeroMQ</b></a> - High-performance messaging</li>
-</ul>
 <div align="center"></div><div align="center"><blockquote class="doxtable">
-<p>&zwj;📊 <b>Want to see the full picture?</b> Check out our complete <a href="doc/XXX-tree.svg"><b>dependency graph</b></a>! </p>
+<p>&zwj;📊 <b>Want to see the full picture?</b> Check out our complete <a href="doc/dependency-tree.svg"><b>dependency graph</b></a>! </p>
 </blockquote>
-</div><h2><a class="anchor" id="autotoc_md23"></a>
+</div><h2><a class="anchor" id="autotoc_md14"></a>
 <div align="center"></div></h2>
-<div align="center"></div><div align="center"></div><h2><a class="anchor" id="autotoc_md24"></a>
+<div align="center"></div><div align="center"></div><h2><a class="anchor" id="autotoc_md15"></a>
 🧪 Testing Setup</h2>
-<div align="center"></div><div align="center"></div><h3><a class="anchor" id="autotoc_md25"></a>
+<div align="center"></div><div align="center"></div><h3><a class="anchor" id="autotoc_md16"></a>
 <div align="center">🐍 <b>Python Test Dependencies</b> 🐍</div></h3>
 <div align="center"></div><div align="center"></div><p>Our test suite requires some Python dependencies for comprehensive testing. Here's how to set them up:</p>
 <table class="doxtable">
 <tr>
-<td width="50%"><p class="starttd"></p>
-<p class="endtd"></p>
+<td width="50%"><h4>🚀 <b>Quick Setup</b></h4>
+<pre><code class="bash">
+    # Create virtual environment
+    python3 -m venv .venv
+    <br  />
+
+    # Activate virtual environment
+    source .venv/bin/activate  # Linux/macOS
+    # OR
+    .venv\Scripts\activate     # Windows
+    <br  />
+
+    # Install test dependencies
+    pip install -r tests/data/requirements.txt</code></pre>  </td><td width="50%"><h4>📋 <b>Required Dependencies</b></h4>
+<ul>
+<li>
+🔌 <b>pyzmq</b> - Python <a class="el" href="classZeroMQ.html">ZeroMQ</a> bindings for testing messaging functionality </li>
+</ul>
+<h4>⚠️ <b>Important Notes</b></h4>
+<ul>
+<li>
+Virtual environment <b>must be activated</b> before running tests </li>
+<li>
+Dependencies are automatically detected by the test suite </li>
+<li>
+Deactivate with <code>deactivate</code> when done </li>
+</ul>
 </td></tr>
 </table>
-<h4><a class="anchor" id="autotoc_md26"></a>
-🚀 <b>Quick Setup</b></h4>
-<div class="fragment"><div class="line"># Create virtual environment</div>
-<div class="line">python3 -m venv .venv</div>
-<div class="line"> </div>
-<div class="line"># Activate virtual environment</div>
-<div class="line">source .venv/bin/activate  # Linux/macOS</div>
-<div class="line"># OR</div>
-<div class="line">.venv\Scripts\activate     # Windows</div>
-<div class="line"> </div>
-<div class="line"># Install test dependencies</div>
-<div class="line">pip install -r tests/data/requirements.txt</div>
-</div><!-- fragment --><h4><a class="anchor" id="autotoc_md27"></a>
-📋 <b>Required Dependencies</b></h4>
-<ul>
-<li>🔌 <b>pyzmq</b> - Python <a class="el" href="classZeroMQ.html">ZeroMQ</a> bindings for testing messaging functionality</li>
-</ul>
-<h4><a class="anchor" id="autotoc_md28"></a>
-⚠️ <b>Important Notes</b></h4>
-<ul>
-<li>Virtual environment <b>must be activated</b> before running tests</li>
-<li>Dependencies are automatically detected by the test suite</li>
-<li>Deactivate with <code>deactivate</code> when done</li>
-</ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md30"></a>
+<h2><a class="anchor" id="autotoc_md18"></a>
 🎯 Build Targets</h2>
-<div align="center"></div><div align="center"></div><h3><a class="anchor" id="autotoc_md31"></a>
+<div align="center"></div><div align="center"></div><h3><a class="anchor" id="autotoc_md19"></a>
 <div align="center">⚡ <b>One Command, Multiple Possibilities</b> ⚡</div></h3>
 <div align="center"></div><div align="center"></div><table class="markdownTable">
 <tr class="markdownTableHead">
@@ -315,99 +347,101 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 <li>Ensure Python virtual environment is activated before running tests! </li>
 </ul>
 </blockquote>
-</div><h2><a class="anchor" id="autotoc_md32"></a>
+</div><h2><a class="anchor" id="autotoc_md20"></a>
 <div align="center"></div></h2>
-<div align="center"></div><div align="center"></div><h3><a class="anchor" id="autotoc_md33"></a>
+<div align="center"></div><div align="center"></div><h3><a class="anchor" id="autotoc_md21"></a>
 🎛️ <b>Build Options</b></h3>
 <div align="center"></div><div align="center"><b>Customize your build with powerful CMake configuration options</b></div><div align="center"></div><blockquote class="doxtable">
 <p>&zwj;💡 <b>Important</b>: Re-run CMake configuration (<code>cmake -B build</code>) after changing any options </p>
 </blockquote>
 <table class="doxtable">
 <tr>
-<td width="60%"><p class="starttd"></p>
-<p class="endtd"></p>
+<td width="60%"><h4>🧪 <b>Testing &amp; Quality Assurance</b></h4>
+<table class="doxtable">
+<tr>
+<th>Option </th><th>Description </th><th>Default </th><th>🎯 Use Case  </th></tr>
+<tr>
+<td><code>XXX_BUILD_TESTS</code> </td><td>🔧 Build all test suites </td><td><code>ON</code> </td><td>Complete testing pipeline  </td></tr>
+<tr>
+<td><code>XXX_BUILD_UNITTESTS</code> </td><td>✅ Build unit tests only </td><td><code>ON</code> </td><td>Fast development feedback  </td></tr>
+<tr>
+<td><code>XXX_BUILD_FUZZTESTS</code> </td><td>🎲 Build fuzz testing suite </td><td><code>OFF</code> </td><td>Security &amp; robustness testing  </td></tr>
+<tr>
+<td><code>XXX_ENABLE_COVERAGE</code> </td><td>📊 Generate test coverage reports </td><td><code>OFF</code> </td><td>Code quality metrics  </td></tr>
+<tr>
+<td><code>XXX_ENABLE_MEMLEAK_CHECK</code> </td><td>🔍 Memory leak detection with MemPlumber </td><td><code>OFF</code> </td><td>Debug memory issues  </td></tr>
+</table>
+<h4>🚀 <b>Release &amp; Distribution</b></h4>
+<table class="doxtable">
+<tr>
+<th>Option </th><th>Description </th><th>Default </th><th>🎯 Use Case  </th></tr>
+<tr>
+<td><code>XXX_ENABLE_SYMBOL_GENERATION</code> </td><td>🔧 Generate debug symbols for crash dumps </td><td><code>OFF</code> </td><td>Production debugging  </td></tr>
+<tr>
+<td><code>XXX_ENABLE_PACKAGING</code> </td><td>📦 Enable DEB/RPM packaging with systemd </td><td><code>OFF</code> </td><td>Distribution &amp; deployment  </td></tr>
+</table>
+</td><td width="40%"><h4>💡 <b>Quick Examples</b></h4>
+<pre><code class="bash"># Development build with all tests
+cmake -B build -DXXX_BUILD_TESTS=ON \
+                -DXXX_ENABLE_COVERAGE=ON
+<br  />
+
+# Production build with packaging
+cmake -B build -DXXX_BUILD_TESTS=OFF \
+                -DXXX_ENABLE_PACKAGING=ON \
+                -DXXX_ENABLE_SYMBOL_GENERATION=ON
+<br  />
+
+# Security testing build
+cmake -B build -DXXX_BUILD_FUZZTESTS=ON \
+                -DXXX_ENABLE_MEMLEAK_CHECK=ON
+<br  />
+
+# Minimal build (fastest)
+cmake -B build -DXXX_BUILD_TESTS=OFF</code></pre> <h4>⚡ <b>Pro Tips</b></h4>
+<ul>
+<li>
+🏃 <b>Fast Iteration</b>: Disable tests for quick builds during development </li>
+<li>
+🔒 <b>Security Focus</b>: Enable fuzz tests and memory checks for critical code </li>
+<li>
+📈 <b>CI/CD</b>: Use coverage reports in your automated pipelines </li>
+<li>
+🚀 <b>Production</b>: Always enable symbol generation for crash analysis </li>
+</ul>
 </td></tr>
 </table>
-<h4><a class="anchor" id="autotoc_md34"></a>
-🧪 <b>Testing &amp; Quality Assurance</b></h4>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Option   </th><th class="markdownTableHeadNone">Description   </th><th class="markdownTableHeadNone">Default   </th><th class="markdownTableHeadNone">🎯 Use Case    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>XXX_BUILD_TESTS</code>   </td><td class="markdownTableBodyNone">🔧 Build all test suites   </td><td class="markdownTableBodyNone"><code>ON</code>   </td><td class="markdownTableBodyNone">Complete testing pipeline    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>XXX_BUILD_UNITTESTS</code>   </td><td class="markdownTableBodyNone">✅ Build unit tests only   </td><td class="markdownTableBodyNone"><code>ON</code>   </td><td class="markdownTableBodyNone">Fast development feedback    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>XXX_BUILD_FUZZTESTS</code>   </td><td class="markdownTableBodyNone">🎲 Build fuzz testing suite   </td><td class="markdownTableBodyNone"><code>OFF</code>   </td><td class="markdownTableBodyNone">Security &amp; robustness testing    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>XXX_ENABLE_COVERAGE</code>   </td><td class="markdownTableBodyNone">📊 Generate test coverage reports   </td><td class="markdownTableBodyNone"><code>OFF</code>   </td><td class="markdownTableBodyNone">Code quality metrics    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>XXX_ENABLE_MEMLEAK_CHECK</code>   </td><td class="markdownTableBodyNone">🔍 Memory leak detection with MemPlumber   </td><td class="markdownTableBodyNone"><code>OFF</code>   </td><td class="markdownTableBodyNone">Debug memory issues   </td></tr>
-</table>
-<h4><a class="anchor" id="autotoc_md35"></a>
-🚀 <b>Release &amp; Distribution</b></h4>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Option   </th><th class="markdownTableHeadNone">Description   </th><th class="markdownTableHeadNone">Default   </th><th class="markdownTableHeadNone">🎯 Use Case    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>XXX_ENABLE_SYMBOL_GENERATION</code>   </td><td class="markdownTableBodyNone">🔧 Generate debug symbols for crash dumps   </td><td class="markdownTableBodyNone"><code>OFF</code>   </td><td class="markdownTableBodyNone">Production debugging    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>XXX_ENABLE_PACKAGING</code>   </td><td class="markdownTableBodyNone">📦 Enable DEB/RPM packaging with systemd   </td><td class="markdownTableBodyNone"><code>OFF</code>   </td><td class="markdownTableBodyNone">Distribution &amp; deployment   </td></tr>
-</table>
-<h4><a class="anchor" id="autotoc_md36"></a>
-💡 <b>Quick Examples</b></h4>
-<div class="fragment"><div class="line"># Development build with all tests</div>
-<div class="line">cmake -B build -DXXX_BUILD_TESTS=ON \</div>
-<div class="line">                -DXXX_ENABLE_COVERAGE=ON</div>
-<div class="line"> </div>
-<div class="line"># Production build with packaging</div>
-<div class="line">cmake -B build -DXXX_BUILD_TESTS=OFF \</div>
-<div class="line">                -DXXX_ENABLE_PACKAGING=ON \</div>
-<div class="line">                -DXXX_ENABLE_SYMBOL_GENERATION=ON</div>
-<div class="line"> </div>
-<div class="line"># Security testing build</div>
-<div class="line">cmake -B build -DXXX_BUILD_FUZZTESTS=ON \</div>
-<div class="line">                -DXXX_ENABLE_MEMLEAK_CHECK=ON</div>
-<div class="line"> </div>
-<div class="line"># Minimal build (fastest)</div>
-<div class="line">cmake -B build -DXXX_BUILD_TESTS=OFF</div>
-</div><!-- fragment --><h4><a class="anchor" id="autotoc_md37"></a>
-⚡ <b>Pro Tips</b></h4>
-<ul>
-<li>🏃 <b>Fast Iteration</b>: Disable tests for quick builds during development</li>
-<li>🔒 <b>Security Focus</b>: Enable fuzz tests and memory checks for critical code</li>
-<li>📈 <b>CI/CD</b>: Use coverage reports in your automated pipelines</li>
-<li>🚀 <b>Production</b>: Always enable symbol generation for crash analysis</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md38"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
 📊 Grafana Integration</h2>
-<div align="center"></div><div align="center"></div><h3><a class="anchor" id="autotoc_md39"></a>
+<div align="center"></div><div align="center"></div><h3><a class="anchor" id="autotoc_md23"></a>
 <div align="center">🎯 <b>Real-Time Monitoring Made Beautiful</b> 🎯</div></h3>
 <div align="center"></div><div align="center">Thanks to our integrated <b>Prometheus server</b>, monitoring your application has never been easier! Get instant insights into your application's performance, health, and behavior.</div><div align="center"></div><table class="doxtable">
 <tr>
-<td width="50%"><p class="starttd"></p>
-<p class="endtd"></p>
-</td></tr>
-</table>
-<h4><a class="anchor" id="autotoc_md40"></a>
-🚀 <b>Quick Setup</b></h4>
-<ol type="1">
-<li>📥 <b>Import Dashboard</b>: Use our pre-built <a href="scripts/GrafanaDashboard-1730032129887.json"><b>Grafana template</b></a></li>
-<li>🔗 <b>Connect Prometheus</b>: Point to your app's metrics endpoint</li>
-<li>📊 <b>Monitor</b>: Watch real-time metrics flow in!</li>
+<td width="50%"><h4>🚀 <b>Quick Setup</b></h4>
+<ol>
+<li>
+📥 <b>Import Dashboard</b>: Use our pre-built <a href="scripts/GrafanaDashboard-1730032129887.json"><b>Grafana template</b></a> </li>
+<li>
+🔗 <b>Connect Prometheus</b>: Point to your app's metrics endpoint </li>
+<li>
+📊 <b>Monitor</b>: Watch real-time metrics flow in! </li>
 </ol>
-<h4><a class="anchor" id="autotoc_md41"></a>
-✨ <b>What You Get</b></h4>
+<h4>✨ <b>What You Get</b></h4>
 <ul>
-<li>📈 <b>Performance Metrics</b>: Response times, throughput, resource usage</li>
-<li>🚨 <b>Error Tracking</b>: Real-time error rates and alerting</li>
-<li>💾 <b>Resource Monitoring</b>: CPU, memory, and system metrics</li>
-<li>🔍 <b>Custom Metrics</b>: Track your application-specific KPIs</li>
+<li>
+📈 <b>Performance Metrics</b>: Response times, throughput, resource usage </li>
+<li>
+🚨 <b>Error Tracking</b>: Real-time error rates and alerting </li>
+<li>
+💾 <b>Resource Monitoring</b>: CPU, memory, and system metrics </li>
+<li>
+🔍 <b>Custom Metrics</b>: Track your application-specific KPIs </li>
 </ul>
-<div align="center"></div><div align="center"></div><h4><a class="anchor" id="autotoc_md42"></a>
-<div align="center">📸 <b>Live Dashboard Preview</b></div></h4>
-<div align="center"></div><div align="center"><img src="doc/GrafanaDashboard.png" alt="Grafana Dashboard" width="100%" class="inline"/></div><div align="center"><em>Beautiful, responsive, and information-rich monitoring</em></div><div align="center"></div><div align="center"></div><div align="center"><hr  />
-</div><div align="center"></div><h2><a class="anchor" id="autotoc_md44"></a>
+</td><td width="50%"><div align="center"> <h4>📸 <b>Live Dashboard Preview</b></h4>
+</div><div align="center"> <img src="doc/GrafanaDashboard.png" alt="Grafana Dashboard" width="100%" class="inline"/> </div><div align="center"><em>Beautiful, responsive, and information-rich monitoring</em></div><div align="center"> </div>   </td></tr>
+</table>
+<div align="center"></div><div align="center"><hr  />
+</div><div align="center"></div><h2><a class="anchor" id="autotoc_md25"></a>
 <div align="center">🤝 <b>Contributing &amp; Support</b></div></h2>
 <div align="center"></div><div align="center"></div><div align="center"> <a href="https://github.com/egecetin/Repo-Init/issues">🐛 Report Issues</a> • <a href="https://github.com/egecetin/Repo-Init/discussions">💬 Discussions</a> • <a href="https://github.com/egecetin/Repo-Init/pulls">🔧 Pull Requests</a> </div><div align="center"></div><div align="center"><b>Made with ❤️ for the C++ community</b></div><div align="center"><em>Star ⭐ this repo if you find it useful!</em></div><div align="center"><hr  />
 </div><div align="center"></div> </div></div><!-- PageDoc -->
@@ -417,7 +451,7 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Jul 25 2025 08:13:59 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Fri Jul 25 2025 09:24:54 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>
