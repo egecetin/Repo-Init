@@ -424,7 +424,7 @@ Thanks to our integrated **Prometheus server**, monitoring your application has 
 
 ---
 
-## 🤝 **Contributing & Support**
+## **Contributing & Support**
 
 <p>
   <a href="https://github.com/egecetin/Repo-Init/issues">🐛 Report Issues</a> •
