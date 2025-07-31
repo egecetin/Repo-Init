@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 Repo-Init
+# Repo-Init
 
 <img src="doc/logo.png" alt="Repo-Init Logo" width="200">
 
@@ -30,7 +30,7 @@
 
 </div>
 
-## 🎯 What is Repo-Init?
+## What is Repo-Init?
 
 **Repo-Init** is a powerful, production-ready CMake template designed to kickstart your C++ applications with enterprise-grade features built-in. Say goodbye to boilerplate code and hello to modern, robust software development!
 
@@ -40,7 +40,7 @@
 
 <div align="center">
 
-### 🌟 **Key Features at a Glance** 🌟
+### **Key Features at a Glance**
 
 </div>
 
@@ -69,25 +69,25 @@
         <td align="center">
             <h3>⚡ <strong>Performance Metrics</strong></h3>
             <ul>
-                <li>✅ Success/failure counters</li>
-                <li>⏱️ Min/max timing analysis</li>
-                <li>📈 Quantile-based bottleneck detection</li>
+                <li>Success/failure counters</li>
+                <li>Min/max timing analysis</li>
+                <li>Quantile-based bottleneck detection</li>
             </ul>
         </td>
         <td align="center">
             <h3>🌐 <strong>Network Ready</strong></h3>
             <ul>
-                <li>🖥️ Built-in Telnet server</li>
-                <li>⚡ <a href="https://zeromq.org/"><strong>ZeroMQ</strong></a> messaging</li>
-                <li>🔌 HTTP connectivity</li>
+                <li>Built-in Telnet server</li>
+                <li><a href="https://zeromq.org/"><strong>ZeroMQ</strong></a> messaging</li>
+                <li>HTTP connectivity</li>
             </ul>
         </td>
         <td align="center">
             <h3>🚀 <strong>Developer Experience</strong></h3>
             <ul>
-                <li>📦 One-command setup</li>
-                <li>🧪 Comprehensive testing</li>
-                <li>📋 Auto-generated docs</li>
+                <li>One-command setup</li>
+                <li>Comprehensive testing</li>
+                <li>Auto-generated docs</li>
             </ul>
         </td>
     </tr>
@@ -106,18 +106,18 @@
 
 </div>
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [🎯 What is Repo-Init?](#-what-is-repo-init)
-- [📋 Table of Contents](#-table-of-contents)
-- [🔧 CMake Modules](#-cmake-modules)
-- [📜 Utility Scripts](#-utility-scripts)
-- [📦 Dependencies](#-dependencies)
-- [🧪 Testing Setup](#-testing-setup)
-- [🎯 Build Targets](#-build-targets)
-- [📊 Grafana Integration](#-grafana-integration)
+- [What is Repo-Init?](#-what-is-repo-init)
+- [Table of Contents](#-table-of-contents)
+- [CMake Modules](#-cmake-modules)
+- [Utility Scripts](#-utility-scripts)
+- [Dependencies](#-dependencies)
+- [Testing Setup](#-testing-setup)
+- [Build Targets](#-build-targets)
+- [Grafana Integration](#-grafana-integration)
 
-## 🔧 CMake Modules
+## CMake Modules
 
 Our carefully crafted CMake modules provide powerful build automation:
 
@@ -132,22 +132,22 @@ Our carefully crafted CMake modules provide powerful build automation:
 
 ---
 
-## 📜 Utility Scripts
+## Utility Scripts
 
 > 💡 **Tip**: All scripts should be executed from the top-level directory
 
 | Script | 🚀 Function | 📝 Description |
 |--------|-------------|----------------|
-| `firstName.sh` | 🏷️ **Name Changer** | Replaces placeholder names throughout the project |
-| `dump_syms.py` | 🔧 **Symbol Dumper** | Generates symbol files for crash analysis |
+| `firstName.sh` | **Name Changer** | Replaces placeholder names throughout the project |
+| `dump_syms.py` | **Symbol Dumper** | Generates symbol files for crash analysis |
 
 ---
 
-## 📦 Dependencies
+## Dependencies
 
 <div align="center">
 
-### 🏗️ **Core Runtime Libraries**
+### **Core Runtime Libraries**
 
 </div>
 
@@ -209,11 +209,11 @@ Our carefully crafted CMake modules provide powerful build automation:
 
 </div>
 
-## 🧪 Testing Setup
+## Testing Setup
 
 <div align="center">
 
-### 🐍 **Python Test Dependencies** 🐍
+### **Python Test Dependencies**
 
 </div>
 
@@ -238,7 +238,7 @@ Our test suite requires some Python dependencies for comprehensive testing. Here
         <td width="50%">
             <h4>📋 <strong>Required Dependencies</strong></h4>
             <ul>
-                <li>🔌 <strong>pyzmq</strong> - Python ZeroMQ bindings for testing messaging functionality</li>
+                <li><strong>pyzmq</strong> - Python ZeroMQ bindings for testing messaging functionality</li>
             </ul>
             <h4>⚠️ <strong>Important Notes</strong></h4>
             <ul>
@@ -252,22 +252,22 @@ Our test suite requires some Python dependencies for comprehensive testing. Here
 
 ---
 
-## 🎯 Build Targets
+## Build Targets
 
 <div align="center">
 
-### ⚡ **One Command, Multiple Possibilities** ⚡
+### **One Command, Multiple Possibilities**
 
 </div>
 
 | Target | 🚀 Command | 📋 Description |
 |--------|------------|----------------|
-| **🏗️ all** | `cmake --build .` | Builds the complete project with all components |
-| **📊 coverage** | `cmake --build . --target coverage` | Generates comprehensive test coverage reports |
-| **📖 docs** | `cmake --build . --target docs` | Creates beautiful documentation with Doxygen |
-| **🎨 dependency-graph** | `cmake --build . --target dependency-graph` | Visualizes project dependencies with GraphViz |
-| **📦 package** | `cmake --build . --target package` | Creates distribution packages (DEB/RPM + systemd service) |
-| **✅ test** | `ctest . --parallel` | Runs the complete test suite with GoogleTest |
+| **all** | `cmake --build .` | Builds the complete project with all components |
+| **coverage** | `cmake --build . --target coverage` | Generates comprehensive test coverage reports |
+| **docs** | `cmake --build . --target docs` | Creates beautiful documentation with Doxygen |
+| **dependency-graph** | `cmake --build . --target dependency-graph` | Visualizes project dependencies with GraphViz |
+| **package** | `cmake --build . --target package` | Creates distribution packages (DEB/RPM + systemd service) |
+| **test** | `ctest . --parallel` | Runs the complete test suite with GoogleTest |
 
 <div align="center">
 
@@ -279,7 +279,7 @@ Our test suite requires some Python dependencies for comprehensive testing. Here
 
 </div>
 
-### 🎛️ **Build Options**
+### **Build Options**
 
 <div align="center">
 
@@ -382,11 +382,11 @@ cmake -B build -DXXX_BUILD_TESTS=OFF</code></pre>
 </table>
 
 
-## 📊 Grafana Integration
+## Grafana Integration
 
 <div align="center">
 
-### 🎯 **Real-Time Monitoring Made Beautiful** 🎯
+### **Real-Time Monitoring Made Beautiful**
 
 Thanks to our integrated **Prometheus server**, monitoring your application has never been easier! Get instant insights into your application's performance, health, and behavior.
 
@@ -397,17 +397,17 @@ Thanks to our integrated **Prometheus server**, monitoring your application has 
         <td width="50%">
             <h4>🚀 <strong>Quick Setup</strong></h4>
             <ol>
-                <li>📥 <strong>Import Dashboard</strong>: Use our pre-built <a
+                <li><strong>Import Dashboard</strong>: Use our pre-built <a
                         href="scripts/GrafanaDashboard-1730032129887.json"><strong>Grafana template</strong></a></li>
-                <li>🔗 <strong>Connect Prometheus</strong>: Point to your app's metrics endpoint</li>
-                <li>📊 <strong>Monitor</strong>: Watch real-time metrics flow in!</li>
+                <li><strong>Connect Prometheus</strong>: Point to your app's metrics endpoint</li>
+                <li><strong>Monitor</strong>: Watch real-time metrics flow in!</li>
             </ol>
             <h4>✨ <strong>What You Get</strong></h4>
             <ul>
-                <li>📈 <strong>Performance Metrics</strong>: Response times, throughput, resource usage</li>
-                <li>🚨 <strong>Error Tracking</strong>: Real-time error rates and alerting</li>
-                <li>💾 <strong>Resource Monitoring</strong>: CPU, memory, and system metrics</li>
-                <li>🔍 <strong>Custom Metrics</strong>: Track your application-specific KPIs</li>
+                <li><strong>Performance Metrics</strong>: Response times, throughput, resource usage</li>
+                <li><strong>Error Tracking</strong>: Real-time error rates and alerting</li>
+                <li><strong>Resource Monitoring</strong>: CPU, memory, and system metrics</li>
+                <li><strong>Custom Metrics</strong>: Track your application-specific KPIs</li>
             </ul>
         </td>
         <td width="50%">
