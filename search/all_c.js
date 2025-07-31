@@ -18,7 +18,7 @@ var searchData=
   ['m_5ftabcallback_15',['m_tabCallback',['../classTelnetServer.html#a4247f1191491ac0327dc08a6eabcfd86',1,'TelnetServer']]],
   ['m_5ftelnetserver_16',['m_telnetServer',['../classTelnetSession.html#aa304a9fe6a7a032a5d506a95d4cb69a2',1,'TelnetSession']]],
   ['mac_5flen_17',['MAC_LEN',['../Sentry_8cpp.html#ad7a90ea7fa751e405090d5fdab582d05',1,'Sentry.cpp']]],
-  ['made_20beautiful_20strong_20🎯_18',['🎯 &lt;strong&gt;Real-Time Monitoring Made Beautiful&lt;/strong&gt; 🎯',['../index.html#autotoc_md23',1,'']]],
+  ['made_20beautiful_20strong_18',['&lt;strong&gt;Real-Time Monitoring Made Beautiful&lt;/strong&gt;',['../index.html#autotoc_md23',1,'']]],
   ['main_19',['main',['../main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main.cpp']]],
   ['main_2ecpp_20',['main.cpp',['../main_8cpp.html',1,'']]],
   ['mainlogger_21',['MainLogger',['../classMainLogger.html',1,'MainLogger'],['../classMainLogger.html#a506bfbe12b372a46871bac31ae56a0c8',1,'MainLogger::MainLogger(const std::string &amp;lokiAddr, const std::string &amp;sentryAddr)'],['../classMainLogger.html#acdedc3e6472dc7cc9974ff7b24e31e4e',1,'MainLogger::MainLogger(const MainLogger &amp;)=delete'],['../classMainLogger.html#ade0742356012fad4e40c3c6379601a18',1,'MainLogger::MainLogger(MainLogger &amp;&amp;)=delete']]],
@@ -26,7 +26,7 @@ var searchData=
   ['max_5favailable_5fsession_23',['MAX_AVAILABLE_SESSION',['../TelnetServer_8cpp.html#aa889c32b6b03dd684f7754eebe2b609c',1,'TelnetServer.cpp']]],
   ['messagecallback_24',['messageCallback',['../classZeroMQServer.html#a6713f1444845f7e471e616d5ffb78a8e',1,'ZeroMQServer::messageCallback(FPTR_MessageCallback func)'],['../classZeroMQServer.html#a79c7d0ac78cd0d70a91b1c5c4afe58b7',1,'ZeroMQServer::messageCallback() const']]],
   ['modern_20c_20application_20template_20with_20enterprise_20grade_20features_20strong_20⚡_25',['⚡ &lt;strong&gt;Modern C++ Application Template with Enterprise-Grade Features&lt;/strong&gt; ⚡',['../index.html#autotoc_md1',1,'']]],
-  ['modules_26',['🔧 CMake Modules',['../index.html#autotoc_md8',1,'']]],
-  ['monitoring_20made_20beautiful_20strong_20🎯_27',['🎯 &lt;strong&gt;Real-Time Monitoring Made Beautiful&lt;/strong&gt; 🎯',['../index.html#autotoc_md23',1,'']]],
-  ['multiple_20possibilities_20strong_20⚡_28',['⚡ &lt;strong&gt;One Command, Multiple Possibilities&lt;/strong&gt; ⚡',['../index.html#autotoc_md19',1,'']]]
+  ['modules_26',['CMake Modules',['../index.html#autotoc_md8',1,'']]],
+  ['monitoring_20made_20beautiful_20strong_27',['&lt;strong&gt;Real-Time Monitoring Made Beautiful&lt;/strong&gt;',['../index.html#autotoc_md23',1,'']]],
+  ['multiple_20possibilities_20strong_28',['&lt;strong&gt;One Command, Multiple Possibilities&lt;/strong&gt;',['../index.html#autotoc_md19',1,'']]]
 ];

@@ -25,29 +25,29 @@
 var NAVTREE =
 [
   [ "Repo-Init", "index.html", [
-    [ "🚀 Repo-Init", "index.html#autotoc_md0", [
-      [ "🎯 What is Repo-Init?", "index.html#autotoc_md3", [
+    [ "Repo-Init", "index.html#autotoc_md0", [
+      [ "What is Repo-Init?", "index.html#autotoc_md3", [
         [ "⚡ Modern C++ Application Template with Enterprise-Grade Features ⚡", "index.html#autotoc_md1", null ],
-        [ "🌟 Key Features at a Glance 🌟", "index.html#autotoc_md4", null ]
+        [ "Key Features at a Glance", "index.html#autotoc_md4", null ]
       ] ],
-      [ "📋 Table of Contents", "index.html#autotoc_md7", null ],
-      [ "🔧 CMake Modules", "index.html#autotoc_md8", null ],
-      [ "📜 Utility Scripts", "index.html#autotoc_md10", null ],
-      [ "📦 Dependencies", "index.html#autotoc_md12", [
-        [ "🏗️ Core Runtime Libraries", "index.html#autotoc_md13", null ]
+      [ "Table of Contents", "index.html#autotoc_md7", null ],
+      [ "CMake Modules", "index.html#autotoc_md8", null ],
+      [ "Utility Scripts", "index.html#autotoc_md10", null ],
+      [ "Dependencies", "index.html#autotoc_md12", [
+        [ "Core Runtime Libraries", "index.html#autotoc_md13", null ]
       ] ],
       [ "", "index.html#autotoc_md14", null ],
-      [ "🧪 Testing Setup", "index.html#autotoc_md15", [
-        [ "🐍 Python Test Dependencies 🐍", "index.html#autotoc_md16", null ]
+      [ "Testing Setup", "index.html#autotoc_md15", [
+        [ "Python Test Dependencies", "index.html#autotoc_md16", null ]
       ] ],
-      [ "🎯 Build Targets", "index.html#autotoc_md18", [
-        [ "⚡ One Command, Multiple Possibilities ⚡", "index.html#autotoc_md19", null ]
+      [ "Build Targets", "index.html#autotoc_md18", [
+        [ "One Command, Multiple Possibilities", "index.html#autotoc_md19", null ]
       ] ],
       [ "", "index.html#autotoc_md20", [
-        [ "🎛️ Build Options", "index.html#autotoc_md21", null ]
+        [ "Build Options", "index.html#autotoc_md21", null ]
       ] ],
-      [ "📊 Grafana Integration", "index.html#autotoc_md22", [
-        [ "🎯 Real-Time Monitoring Made Beautiful 🎯", "index.html#autotoc_md23", null ]
+      [ "Grafana Integration", "index.html#autotoc_md22", [
+        [ "Real-Time Monitoring Made Beautiful", "index.html#autotoc_md23", null ]
       ] ],
       [ "🤝 Contributing & Support", "index.html#autotoc_md25", null ]
     ] ],

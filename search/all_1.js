@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['a_20glance_20strong_20🌟_0',['🌟 &lt;strong&gt;Key Features at a Glance&lt;/strong&gt; 🌟',['../index.html#autotoc_md4',1,'']]],
+  ['a_20glance_20strong_0',['&lt;strong&gt;Key Features at a Glance&lt;/strong&gt;',['../index.html#autotoc_md4',1,'']]],
   ['acceptconnection_1',['acceptConnection',['../classTelnetServer.html#a14a98513c8caf58a0bc5f78fc3f1b141',1,'TelnetServer']]],
   ['acceptedconnectionctr_2',['acceptedConnectionCtr',['../structTelnetServerStats.html#aea51daed077635aebb58e9ea6f18c653',1,'TelnetServerStats']]],
   ['activeconnectionctr_3',['activeConnectionCtr',['../structTelnetServerStats.html#a70d746afee691843bd5d1839bb33d3fa',1,'TelnetServerStats']]],
@@ -46,5 +46,5 @@ var searchData=
   ['ascii_5flf_43',['ASCII_LF',['../TelnetServer_8cpp.html#ac90f88961d4c101d6e0bde4569b3fc33',1,'TelnetServer.cpp']]],
   ['ascii_5fnbsp_44',['ASCII_NBSP',['../TelnetServer_8cpp.html#ae9c933e10aca3082b149138f019718bc',1,'TelnetServer.cpp']]],
   ['ascii_5fnull_45',['ASCII_NULL',['../TelnetServer_8cpp.html#a50977d3230b68dc02c70063d5db25753',1,'TelnetServer.cpp']]],
-  ['at_20a_20glance_20strong_20🌟_46',['🌟 &lt;strong&gt;Key Features at a Glance&lt;/strong&gt; 🌟',['../index.html#autotoc_md4',1,'']]]
+  ['at_20a_20glance_20strong_46',['&lt;strong&gt;Key Features at a Glance&lt;/strong&gt;',['../index.html#autotoc_md4',1,'']]]
 ];

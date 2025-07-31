@@ -23,7 +23,7 @@ var searchData=
   ['getsocket_20',['getSocket',['../classZeroMQ.html#a642e1995dbbba964de506575711a556a',1,'ZeroMQ']]],
   ['getstats_21',['getStats',['../classHTTP.html#af36f36f547e48a89361cf150aeb177d8',1,'HTTP::getStats()'],['../classRawSocket.html#a1f203ecb915c624a0dadb5e3de38188e',1,'RawSocket::getStats()']]],
   ['getthreadcount_22',['getThreadCount',['../classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636',1,'ProcessMetrics']]],
-  ['glance_20strong_20🌟_23',['🌟 &lt;strong&gt;Key Features at a Glance&lt;/strong&gt; 🌟',['../index.html#autotoc_md4',1,'']]],
+  ['glance_20strong_23',['&lt;strong&gt;Key Features at a Glance&lt;/strong&gt;',['../index.html#autotoc_md4',1,'']]],
   ['grade_20features_20strong_20⚡_24',['⚡ &lt;strong&gt;Modern C++ Application Template with Enterprise-Grade Features&lt;/strong&gt; ⚡',['../index.html#autotoc_md1',1,'']]],
-  ['grafana_20integration_25',['📊 Grafana Integration',['../index.html#autotoc_md22',1,'']]]
+  ['grafana_20integration_25',['Grafana Integration',['../index.html#autotoc_md22',1,'']]]
 ];
