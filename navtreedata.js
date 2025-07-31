@@ -49,7 +49,7 @@ var NAVTREE =
       [ "Grafana Integration", "index.html#autotoc_md22", [
         [ "Real-Time Monitoring Made Beautiful", "index.html#autotoc_md23", null ]
       ] ],
-      [ "🤝 Contributing & Support", "index.html#autotoc_md25", null ]
+      [ "Contributing & Support", "index.html#autotoc_md25", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
