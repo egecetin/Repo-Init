@@ -196,6 +196,7 @@ Also, it can send logs to syslog using Spdlog, to a Sentry server and Grafana Lo
   set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.md")
 
   # Debian package specific parameters
+  set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
   set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${POST_INSTALL_SCRIPT};${PRE_UNINSTALL_SCRIPT}")
   set(CPACK_DEBIAN_PACKAGE_DEPENDS "libcurl4 (>= 7.0), libspdlog1 (>= 1.5.0), libzmq5 (>= 4.0.0), systemd")
   set(CPACK_DEBIAN_PACKAGE_SECTION "misc")
@@ -203,6 +204,7 @@ Also, it can send logs to syslog using Spdlog, to a Sentry server and Grafana Lo
   set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
 
   # RPM package specific parameters
+  set(CPACK_RPM_FILE_NAME RPM-DEFAULT)
   set(CPACK_RPM_PACKAGE_LICENSE "MIT")
   set(CPACK_RPM_PACKAGE_REQUIRES_PREUN "systemd")
   set(CPACK_RPM_PACKAGE_REQUIRES_POST "systemd")
