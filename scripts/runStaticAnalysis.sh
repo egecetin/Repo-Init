@@ -12,4 +12,4 @@ echo "Running cppcheck"
 cppcheck -Iinclude/ src --verbose --enable=all --error-exitcode=1 --std=c++17 --language=c++ --suppressions-list=cppcheckSuppressions.txt --inline-suppr
 
 echo "Running clang-tidy"
-run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/*.cpp src/**/*.cpp
+run-clang-tidy -j$(nproc) -p=build -header-filter=$(pwd)/include/ src/*.cpp src/**/*.cpp
