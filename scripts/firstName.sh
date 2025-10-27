@@ -8,8 +8,8 @@ do
     esac
 done
 
-[ -z "${ARGUMENT_NAME}" ] && echo "$0: Missing argument: [-n name]" >&2
-[ -z "${ARGUMENT_NAME}" ] && exit 1
+[[ -z "${ARGUMENT_NAME}" ]] && echo "$0: Missing argument: [-n name]" >&2
+[[ -z "${ARGUMENT_NAME}" ]] && exit 1
 
 sed -i "s/XXX/${ARGUMENT_NAME}/" CMakeLists.txt
 sed -i "s/XXX/${ARGUMENT_NAME}/" CMakeLists.txt
