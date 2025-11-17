@@ -800,8 +800,7 @@ function(setup_target_for_coverage_fastcov)
   set(INFO_MSG "fastcov code coverage info report saved in ${Coverage_NAME}.info and ${Coverage_NAME}.json.")
   if(NOT Coverage_SKIP_HTML)
     string(
-      APPEND
-      INFO_MSG
+      APPEND INFO_MSG
       " Open ${PROJECT_BINARY_DIR}/${Coverage_NAME}/index.html in your browser to view the coverage report."
     )
   endif()
