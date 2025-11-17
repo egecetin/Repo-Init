@@ -8,20 +8,26 @@ for information"
 
 set(
   COMPILER_SECURE_FLAGS_ENABLED
+  -Wformat
+  -Wformat=2
   -Wconversion
+  -Wsign-conversion
   -Wtrampolines
   -Wimplicit-fallthrough
+  -Wbidi-chars=any
   -U_FORTIFY_SOURCE
   -D_FORTIFY_SOURCE=3
   -D_GLIBCXX_ASSERTIONS
   -fstrict-flex-arrays=3
   -fstack-clash-protection
   -fstack-protector-strong
+  -fcf-protection=full
   -Wl,-z,nodlopen
   -Wl,-z,noexecstack
   -Wl,-z,relro
   -Wl,-z,now
-  -fcf-protection=full
+  -Wl,--as-needed
+  -Wl,--no-copy-dt-needed-entries
 )
 set(COMPILER_SECURE_FLAGS_DISABLED "")
 
@@ -29,7 +35,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
   if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "13.0")
     list(APPEND COMPILER_SECURE_FLAGS_DISABLED -fstrict-flex-arrays=3)
     if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "12.0")
-      list(APPEND COMPILER_SECURE_FLAGS_DISABLED -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3)
+      list(APPEND COMPILER_SECURE_FLAGS_DISABLED -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=3 -Wbidi-chars=any)
       if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "8.0")
         message(WARNING "GNU compiler version less than 8.0. Security flags are not supported")
       endif() # Version 8.0

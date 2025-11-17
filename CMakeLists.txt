@@ -132,7 +132,10 @@ set_target_properties(
     VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
     SOVERSION ${PROJECT_VERSION_MAJOR}
 )
-target_compile_options(${PROJECT_NAME}-lib PRIVATE -Wall -Wextra -g -Wl,--build-id)
+target_compile_options(
+  ${PROJECT_NAME}-lib
+  PRIVATE -Wall -Wextra -g -Wl,--build-id -fPIC -shared
+)
 target_include_directories(${PROJECT_NAME}-lib PRIVATE ${PROJECT_BINARY_DIR})
 target_link_libraries(
   ${PROJECT_NAME}-lib
@@ -145,7 +148,10 @@ if(XXX_ENABLE_SYMBOL_GENERATION)
 endif()
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp)
-target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -g -Wl,--build-id)
+target_compile_options(
+  ${PROJECT_NAME}
+  PRIVATE -Wall -Wextra -g -Wl,--build-id -fPIE -pie
+)
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_BINARY_DIR})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}-lib)
 enable_security_flags_for_target(${PROJECT_NAME})
