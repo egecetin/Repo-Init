@@ -290,97 +290,53 @@ Our test suite requires some Python dependencies for comprehensive testing. Here
 
 > 💡 **Important**: Re-run CMake configuration (`cmake -B build`) after changing any options
 
-<table>
-    <tr>
-        <td width="60%">
-            <h4>🧪 <strong>Testing & Quality Assurance</strong></h4>
-            <table>
-                <tr>
-                    <th>Option</th>
-                    <th>Description</th>
-                    <th>Default</th>
-                    <th>🎯 Use Case</th>
-                </tr>
-                <tr>
-                    <td><code>XXX_BUILD_TESTS</code></td>
-                    <td>Build all test suites</td>
-                    <td><code>ON</code></td>
-                    <td>Complete testing pipeline</td>
-                </tr>
-                <tr>
-                    <td><code>XXX_BUILD_UNITTESTS</code></td>
-                    <td>Build unit tests only</td>
-                    <td><code>ON</code></td>
-                    <td>Fast development feedback</td>
-                </tr>
-                <tr>
-                    <td><code>XXX_BUILD_FUZZTESTS</code></td>
-                    <td>Build fuzz testing suite</td>
-                    <td><code>OFF</code></td>
-                    <td>Security & robustness testing</td>
-                </tr>
-                <tr>
-                    <td><code>XXX_ENABLE_COVERAGE</code></td>
-                    <td>Generate test coverage reports</td>
-                    <td><code>OFF</code></td>
-                    <td>Code quality metrics</td>
-                </tr>
-                <tr>
-                    <td><code>XXX_ENABLE_MEMLEAK_CHECK</code></td>
-                    <td>Memory leak detection with MemPlumber</td>
-                    <td><code>OFF</code></td>
-                    <td>Debug memory issues</td>
-                </tr>
-            </table>
-            <h4>🚀 <strong>Release & Distribution</strong></h4>
-            <table>
-                <tr>
-                    <th>Option</th>
-                    <th>Description</th>
-                    <th>Default</th>
-                    <th>Use Case</th>
-                </tr>
-                <tr>
-                    <td><code>XXX_ENABLE_SYMBOL_GENERATION</code></td>
-                    <td>Generate debug symbols for crash dumps</td>
-                    <td><code>OFF</code></td>
-                    <td>Production debugging</td>
-                </tr>
-                <tr>
-                    <td><code>XXX_ENABLE_PACKAGING</code></td>
-                    <td>Enable DEB/RPM packaging with systemd</td>
-                    <td><code>OFF</code></td>
-                    <td>Distribution & deployment</td>
-                </tr>
-            </table>
-        </td>
-        <td width="40%">
-            <h4>💡 <strong>Quick Examples</strong></h4>
-            <pre><code class="bash"># Development build with all tests
+#### 🧪 **Testing & Quality Assurance**
+
+| Option | Description | Default | 🎯 Use Case |
+|--------|-------------|---------|-------------|
+| `XXX_BUILD_TESTS` | Build all test suites | `ON` | Complete testing pipeline |
+| `XXX_BUILD_UNITTESTS` | Build unit tests only | `ON` | Fast development feedback |
+| `XXX_BUILD_FUZZTESTS` | Build fuzz testing suite | `OFF` | Security & robustness testing |
+| `XXX_ENABLE_COVERAGE` | Generate test coverage reports | `OFF` | Code quality metrics |
+| `XXX_ENABLE_MEMLEAK_CHECK` | Memory leak detection with MemPlumber | `OFF` | Debug memory issues |
+
+#### 🚀 **Release & Distribution**
+
+| Option | Description | Default | Use Case |
+|--------|-------------|---------|----------|
+| `XXX_ENABLE_SYMBOL_GENERATION` | Generate debug symbols for crash dumps | `OFF` | Production debugging |
+| `XXX_ENABLE_PACKAGING` | Enable DEB/RPM packaging with systemd | `OFF` | Distribution & deployment |
+
+---
+
+### **💡 Quick Examples**
+
+```bash
+# Development build with all tests
 cmake -B build -DXXX_BUILD_TESTS=ON \
                 -DXXX_ENABLE_COVERAGE=ON
-<br>
+
 # Production build with packaging
 cmake -B build -DXXX_BUILD_TESTS=OFF \
                 -DXXX_ENABLE_PACKAGING=ON \
                 -DXXX_ENABLE_SYMBOL_GENERATION=ON
-<br>
+
 # Security testing build
 cmake -B build -DXXX_BUILD_FUZZTESTS=ON \
                 -DXXX_ENABLE_MEMLEAK_CHECK=ON
-<br>
+
 # Minimal build (fastest)
-cmake -B build -DXXX_BUILD_TESTS=OFF</code></pre>
-            <h4>⚡ <strong>Pro Tips</strong></h4>
-            <ul>
-                <li>🏃 <strong>Fast Iteration</strong>: Disable tests for quick builds during development</li>
-                <li>🔒 <strong>Security Focus</strong>: Enable fuzz tests and memory checks for critical code</li>
-                <li>📈 <strong>CI/CD</strong>: Use coverage reports in your automated pipelines</li>
-                <li>🚀 <strong>Production</strong>: Always enable symbol generation for crash analysis</li>
-            </ul>
-        </td>
-    </tr>
-</table>
+cmake -B build -DXXX_BUILD_TESTS=OFF
+```
+
+### **⚡ Pro Tips**
+
+- **Fast Iteration**: Disable tests for quick builds during development
+- **Security Focus**: Enable fuzz tests and memory checks for critical code
+- **CI/CD**: Use coverage reports in your automated pipelines
+- **Production**: Always enable symbol generation for crash analysis
+
+---
 
 
 ## Grafana Integration
