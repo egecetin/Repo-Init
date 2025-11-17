@@ -20,7 +20,7 @@ var searchData=
   ['consumebasestats_17',['consumeBaseStats',['../classBaseServerStats.html#a4b718f45d89d7c4a71e93702d02fce31',1,'BaseServerStats']]],
   ['consumestats_18',['consumeStats',['../classTelnetStats.html#a29b90c320dd788ae9045e27a180e7b73',1,'TelnetStats::consumeStats(const TelnetSessionStats &amp;stat, bool sessionClosed)'],['../classTelnetStats.html#a910010aa6bd7d54a3ceae40b3c3fed14',1,'TelnetStats::consumeStats(const TelnetServerStats &amp;stat)'],['../classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07',1,'ZeroMQStats::consumeStats()']]],
   ['contents_19',['Table of Contents',['../index.html#autotoc_md7',1,'']]],
-  ['contributing_20support_20strong_20',['&lt;strong&gt;Contributing &amp; Support&lt;/strong&gt;',['../index.html#autotoc_md25',1,'']]],
+  ['contributing_20support_20strong_20',['&lt;strong&gt;Contributing &amp; Support&lt;/strong&gt;',['../index.html#autotoc_md31',1,'']]],
   ['core_20runtime_20libraries_20strong_21',['&lt;strong&gt;Core Runtime Libraries&lt;/strong&gt;',['../index.html#autotoc_md13',1,'']]],
   ['countdirectoryentries_22',['countDirectoryEntries',['../classProcessMetrics.html#aab60bd68d5a49dae6bd6d5f4364d1f9a',1,'ProcessMetrics']]],
   ['createnewregistry_23',['createNewRegistry',['../classPrometheusServer.html#a04e7b010c6227c4cf076d619b66cf6df',1,'PrometheusServer::createNewRegistry()'],['../classPrometheusServer.html#a1238fb991b79e91fa01e7f24ca1950c5',1,'PrometheusServer::createNewRegistry(uint64_t &amp;regId)']]],

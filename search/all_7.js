@@ -25,5 +25,5 @@ var searchData=
   ['getthreadcount_22',['getThreadCount',['../classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636',1,'ProcessMetrics']]],
   ['glance_20strong_23',['&lt;strong&gt;Key Features at a Glance&lt;/strong&gt;',['../index.html#autotoc_md4',1,'']]],
   ['grade_20features_20strong_20⚡_24',['⚡ &lt;strong&gt;Modern C++ Application Template with Enterprise-Grade Features&lt;/strong&gt; ⚡',['../index.html#autotoc_md1',1,'']]],
-  ['grafana_20integration_25',['Grafana Integration',['../index.html#autotoc_md22',1,'']]]
+  ['grafana_20integration_25',['Grafana Integration',['../index.html#autotoc_md28',1,'']]]
 ];

@@ -46,5 +46,6 @@ var searchData=
   ['ascii_5flf_43',['ASCII_LF',['../TelnetServer_8cpp.html#ac90f88961d4c101d6e0bde4569b3fc33',1,'TelnetServer.cpp']]],
   ['ascii_5fnbsp_44',['ASCII_NBSP',['../TelnetServer_8cpp.html#ae9c933e10aca3082b149138f019718bc',1,'TelnetServer.cpp']]],
   ['ascii_5fnull_45',['ASCII_NULL',['../TelnetServer_8cpp.html#a50977d3230b68dc02c70063d5db25753',1,'TelnetServer.cpp']]],
-  ['at_20a_20glance_20strong_46',['&lt;strong&gt;Key Features at a Glance&lt;/strong&gt;',['../index.html#autotoc_md4',1,'']]]
+  ['assurance_20strong_46',['🧪 &lt;strong&gt;Testing &amp; Quality Assurance&lt;/strong&gt;',['../index.html#autotoc_md22',1,'']]],
+  ['at_20a_20glance_20strong_47',['&lt;strong&gt;Key Features at a Glance&lt;/strong&gt;',['../index.html#autotoc_md4',1,'']]]
 ];

@@ -44,12 +44,17 @@ var NAVTREE =
         [ "One Command, Multiple Possibilities", "index.html#autotoc_md19", null ]
       ] ],
       [ "", "index.html#autotoc_md20", [
-        [ "Build Options", "index.html#autotoc_md21", null ]
+        [ "Build Options", "index.html#autotoc_md21", [
+          [ "🧪 Testing & Quality Assurance", "index.html#autotoc_md22", null ],
+          [ "🚀 Release & Distribution", "index.html#autotoc_md23", null ]
+        ] ],
+        [ "💡 Quick Examples", "index.html#autotoc_md25", null ],
+        [ "⚡ Pro Tips", "index.html#autotoc_md26", null ]
       ] ],
-      [ "Grafana Integration", "index.html#autotoc_md22", [
-        [ "Real-Time Monitoring Made Beautiful", "index.html#autotoc_md23", null ]
+      [ "Grafana Integration", "index.html#autotoc_md28", [
+        [ "Real-Time Monitoring Made Beautiful", "index.html#autotoc_md29", null ]
       ] ],
-      [ "Contributing & Support", "index.html#autotoc_md25", null ]
+      [ "Contributing & Support", "index.html#autotoc_md31", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
