@@ -21,7 +21,7 @@ jobs:
     container: egecetinn/alpine@sha256:1d671460d4426539c5de6df0580a9ca055d3c6043610c3ff1f78ce008e86ac26
     steps:
       - name: Checkout Code
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
         with:
           submodules: recursive
       - name: Run clang-format
@@ -38,7 +38,7 @@ jobs:
     container: egecetinn/ubuntu2204@sha256:591139098db2f60e191b64a8b832668b8eb8ae9980819d5d05d1c2acf39a126f
     steps:
       - name: Checkout Code
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
         with:
           submodules: recursive
       - name: Prepare
@@ -79,7 +79,7 @@ jobs:
         sanitizer: [ASAN, USAN]
     steps:
       - name: Checkout Code
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
         with:
           submodules: recursive
       - name: Prepare
@@ -131,7 +131,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
         with:
           submodules: recursive
       - name: Prepare
