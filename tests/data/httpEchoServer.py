@@ -63,7 +63,7 @@ if __name__ == "__main__":
     parser.usage = "Creates an http-server that will echo out"
     parser.add_option("-p", "--port", default=8080)
     parser.add_option("-c", "--count", default=1)
-    (options, args) = parser.parse_args()
+    options, args = parser.parse_args()
 
     port = int(options.port)
     count = int(options.count)
