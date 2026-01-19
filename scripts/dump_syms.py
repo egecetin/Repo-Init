@@ -5,7 +5,6 @@ import os
 import sys
 from optparse import OptionParser
 
-
 if __name__ == "__main__":
     # Parse inputs
     parser = OptionParser()
@@ -13,7 +12,7 @@ if __name__ == "__main__":
     parser.add_option("", "--dump-syms")
     parser.add_option("", "--binary-dir")
     parser.add_option("", "--output-dir")
-    (options, args) = parser.parse_args()
+    options, args = parser.parse_args()
 
     dumpSymsExe = options.dump_syms
     binaryDir = options.binary_dir

@@ -24,7 +24,7 @@ if __name__ == "__main__":
     parser.usage = "Creates an zeromq-server that will echo out"
     parser.add_option("-a", "--address")
     parser.add_option("-c", "--count", default=1)
-    (options, args) = parser.parse_args()
+    options, args = parser.parse_args()
 
     address = options.address
     count = int(options.count)
