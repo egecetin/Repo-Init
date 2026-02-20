@@ -16,3 +16,6 @@
 [submodule "tests/gtest"]
 	path = tests/gtest
 	url = https://github.com/google/googletest.git
+[submodule "thirdparty/sentry"]
+	path = thirdparty/sentry
+	url = https://github.com/getsentry/sentry-native
