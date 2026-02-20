@@ -1,5 +1,6 @@
 #pragma once
 
+#include <filesystem>
 #include <string>
 #include <unordered_map>
 
@@ -9,7 +10,7 @@
  */
 class ConfigParser {
   private:
-	std::string _configPath;
+	std::filesystem::path _configPath;
 	std::unordered_map<std::string, std::string> _configMap;
 
 	// JSON helpers
@@ -21,7 +22,7 @@ class ConfigParser {
 	 * Construct a new Config Parser object from config file. Currently only json files are supported
 	 * @param[in] configPath Path to the configuration file
 	 */
-	explicit ConfigParser(std::string configPath);
+	explicit ConfigParser(std::filesystem::path configPath);
 
 	/**
 	 * Get the value of a key from the configuration file. If the configuration file modified from outside

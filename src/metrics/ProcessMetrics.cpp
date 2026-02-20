@@ -9,7 +9,7 @@
 
 constexpr int SLEEP_INTERVAL_SEC = 1;
 
-size_t ProcessMetrics::countDirectoryEntries(const std::string &path)
+size_t ProcessMetrics::countDirectoryEntries(const std::filesystem::path &path)
 {
 	DIR *dir = nullptr;
 	size_t count = 0;

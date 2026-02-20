@@ -40,7 +40,7 @@ namespace
 		sentry_value_set_by_key(hostContext, "Hostname", sentry_value_new_string(hostBuffer.data()));
 
 		// Parse CPU information
-		const std::string cpuInfoPath = "/proc/cpuinfo";
+		const std::filesystem::path cpuInfoPath = "/proc/cpuinfo";
 		std::string word;
 
 		findFromFile(cpuInfoPath, "^siblings", word);
