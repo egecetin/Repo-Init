@@ -64,7 +64,7 @@ void ConfigParser::writeJson() const
 	doc.Accept(writer);
 }
 
-ConfigParser::ConfigParser(std::string configPath) : _configPath(std::move(configPath)) { load(); }
+ConfigParser::ConfigParser(std::filesystem::path configPath) : _configPath(std::move(configPath)) { load(); }
 
 std::string ConfigParser::get(const std::string &key) const
 {

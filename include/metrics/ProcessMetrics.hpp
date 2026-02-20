@@ -3,6 +3,7 @@
 #include <prometheus/gauge.h>
 #include <prometheus/registry.h>
 
+#include <filesystem>
 #include <thread>
 
 #include <sys/times.h>
@@ -38,7 +39,7 @@ class ProcessMetrics {
 	 * @param[in] path The path of the directory.
 	 * @return The number of entries in the directory.
 	 */
-	static size_t countDirectoryEntries(const std::string &path);
+	static size_t countDirectoryEntries(const std::filesystem::path &path);
 
   protected:
 	/**
