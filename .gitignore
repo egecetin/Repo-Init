@@ -1,20 +1,12 @@
 # Directories
 build
-dist
 doc
 tests/data
-Testing
 .git
 .venv
 .vscode
 .sentry-native
+__pycache__
 
 # Files
-cmake/CMakeCacheForScript.cmake
-BuildNumberCache.txt
 Doxyfile
-error.log
-config-private.json
-shared_libs.txt
-/.vs
-/CMakeSettings.json
