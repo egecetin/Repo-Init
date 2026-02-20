@@ -128,7 +128,7 @@ $(function(){initNavTree('ConfigParser_8cpp_source.html',''); initResizable(true
 <div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classConfigParser.html#aca170271d8fe1a36f905c971f807e8db">   21</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classConfigParser.html#aca170271d8fe1a36f905c971f807e8db">ConfigParser::readJson</a>()</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    std::ifstream inFile(<a class="code hl_variable" href="classConfigParser.html#a888ca616f0978247aff4136823e5737d">_configPath</a>);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    std::ifstream inFile(<a class="code hl_variable" href="classConfigParser.html#a8f3bae3769c2bcff73c22c7977efc87c">_configPath</a>);</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordflow">if</span> (!inFile.is_open())</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    {</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Can&#39;t open config file&quot;</span>);</div>
@@ -157,7 +157,7 @@ $(function(){initNavTree('ConfigParser_8cpp_source.html',''); initResizable(true
 <div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classConfigParser.html#a2e7cd06bfeb1ceacf9e65711bb0ccd08">   48</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classConfigParser.html#a2e7cd06bfeb1ceacf9e65711bb0ccd08">ConfigParser::writeJson</a>()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    std::ofstream outFile(<a class="code hl_variable" href="classConfigParser.html#a888ca616f0978247aff4136823e5737d">_configPath</a>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    std::ofstream outFile(<a class="code hl_variable" href="classConfigParser.html#a8f3bae3769c2bcff73c22c7977efc87c">_configPath</a>);</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    rapidjson::OStreamWrapper fStreamWrapper(outFile);</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    rapidjson::Document doc;</div>
@@ -175,7 +175,7 @@ $(function(){initNavTree('ConfigParser_8cpp_source.html',''); initResizable(true
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
 </div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classConfigParser.html#acf4886a0e2500b5ec83132a439d18bb2">   67</a></span><a class="code hl_function" href="classConfigParser.html#acf4886a0e2500b5ec83132a439d18bb2">ConfigParser::ConfigParser</a>(std::string configPath) : _configPath(std::move(configPath)) { <a class="code hl_function" href="classConfigParser.html#ad646c0cf5c0b0ca090b6b0ac176c6b97">load</a>(); }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classConfigParser.html#a7c131b3763f1b3b1c4bbfe52530e14d4">   67</a></span><a class="code hl_function" href="classConfigParser.html#a7c131b3763f1b3b1c4bbfe52530e14d4">ConfigParser::ConfigParser</a>(std::filesystem::path configPath) : _configPath(std::move(configPath)) { <a class="code hl_function" href="classConfigParser.html#ad646c0cf5c0b0ca090b6b0ac176c6b97">load</a>(); }</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
 <div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classConfigParser.html#a29eba7ec75ccd47eb5e70a3b86d72be0">   69</a></span>std::string <a class="code hl_function" href="classConfigParser.html#a29eba7ec75ccd47eb5e70a3b86d72be0">ConfigParser::get</a>(<span class="keyword">const</span> std::string &amp;key)<span class="keyword"> const</span></div>
@@ -199,15 +199,15 @@ $(function(){initNavTree('ConfigParser_8cpp_source.html',''); initResizable(true
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
 </div>
 <div class="ttc" id="aConfigParser_8hpp_html"><div class="ttname"><a href="ConfigParser_8hpp.html">ConfigParser.hpp</a></div></div>
-<div class="ttc" id="aclassConfigParser_html_a0122e029204b215bcf5c6b287a440ae5"><div class="ttname"><a href="classConfigParser.html#a0122e029204b215bcf5c6b287a440ae5">ConfigParser::_configMap</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::string &gt; _configMap</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8hpp_source.html#l00013">ConfigParser.hpp:13</a></div></div>
+<div class="ttc" id="aclassConfigParser_html_a0122e029204b215bcf5c6b287a440ae5"><div class="ttname"><a href="classConfigParser.html#a0122e029204b215bcf5c6b287a440ae5">ConfigParser::_configMap</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::string &gt; _configMap</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8hpp_source.html#l00014">ConfigParser.hpp:14</a></div></div>
 <div class="ttc" id="aclassConfigParser_html_a12a6d8ebd5379535ea17eb2b9881c363"><div class="ttname"><a href="classConfigParser.html#a12a6d8ebd5379535ea17eb2b9881c363">ConfigParser::set</a></div><div class="ttdeci">void set(const std::string &amp;key, const std::string_view &amp;value)</div><div class="ttdef"><b>Definition</b> <a href="#l00075">ConfigParser.cpp:75</a></div></div>
 <div class="ttc" id="aclassConfigParser_html_a29eba7ec75ccd47eb5e70a3b86d72be0"><div class="ttname"><a href="classConfigParser.html#a29eba7ec75ccd47eb5e70a3b86d72be0">ConfigParser::get</a></div><div class="ttdeci">std::string get(const std::string &amp;key) const</div><div class="ttdef"><b>Definition</b> <a href="#l00069">ConfigParser.cpp:69</a></div></div>
 <div class="ttc" id="aclassConfigParser_html_a2e7cd06bfeb1ceacf9e65711bb0ccd08"><div class="ttname"><a href="classConfigParser.html#a2e7cd06bfeb1ceacf9e65711bb0ccd08">ConfigParser::writeJson</a></div><div class="ttdeci">void writeJson() const</div><div class="ttdef"><b>Definition</b> <a href="#l00048">ConfigParser.cpp:48</a></div></div>
 <div class="ttc" id="aclassConfigParser_html_a317867fa9bcc23be87dcccc38a22d7a6"><div class="ttname"><a href="classConfigParser.html#a317867fa9bcc23be87dcccc38a22d7a6">ConfigParser::remove</a></div><div class="ttdeci">void remove(const std::string &amp;key)</div><div class="ttdef"><b>Definition</b> <a href="#l00077">ConfigParser.cpp:77</a></div></div>
 <div class="ttc" id="aclassConfigParser_html_a55051ce9cb3eace17f86ac931265aa5f"><div class="ttname"><a href="classConfigParser.html#a55051ce9cb3eace17f86ac931265aa5f">ConfigParser::save</a></div><div class="ttdeci">void save() const</div><div class="ttdef"><b>Definition</b> <a href="#l00079">ConfigParser.cpp:79</a></div></div>
-<div class="ttc" id="aclassConfigParser_html_a888ca616f0978247aff4136823e5737d"><div class="ttname"><a href="classConfigParser.html#a888ca616f0978247aff4136823e5737d">ConfigParser::_configPath</a></div><div class="ttdeci">std::string _configPath</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8hpp_source.html#l00012">ConfigParser.hpp:12</a></div></div>
+<div class="ttc" id="aclassConfigParser_html_a7c131b3763f1b3b1c4bbfe52530e14d4"><div class="ttname"><a href="classConfigParser.html#a7c131b3763f1b3b1c4bbfe52530e14d4">ConfigParser::ConfigParser</a></div><div class="ttdeci">ConfigParser(std::filesystem::path configPath)</div><div class="ttdef"><b>Definition</b> <a href="#l00067">ConfigParser.cpp:67</a></div></div>
+<div class="ttc" id="aclassConfigParser_html_a8f3bae3769c2bcff73c22c7977efc87c"><div class="ttname"><a href="classConfigParser.html#a8f3bae3769c2bcff73c22c7977efc87c">ConfigParser::_configPath</a></div><div class="ttdeci">std::filesystem::path _configPath</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8hpp_source.html#l00013">ConfigParser.hpp:13</a></div></div>
 <div class="ttc" id="aclassConfigParser_html_aca170271d8fe1a36f905c971f807e8db"><div class="ttname"><a href="classConfigParser.html#aca170271d8fe1a36f905c971f807e8db">ConfigParser::readJson</a></div><div class="ttdeci">void readJson()</div><div class="ttdef"><b>Definition</b> <a href="#l00021">ConfigParser.cpp:21</a></div></div>
-<div class="ttc" id="aclassConfigParser_html_acf4886a0e2500b5ec83132a439d18bb2"><div class="ttname"><a href="classConfigParser.html#acf4886a0e2500b5ec83132a439d18bb2">ConfigParser::ConfigParser</a></div><div class="ttdeci">ConfigParser(std::string configPath)</div><div class="ttdef"><b>Definition</b> <a href="#l00067">ConfigParser.cpp:67</a></div></div>
 <div class="ttc" id="aclassConfigParser_html_ad646c0cf5c0b0ca090b6b0ac176c6b97"><div class="ttname"><a href="classConfigParser.html#ad646c0cf5c0b0ca090b6b0ac176c6b97">ConfigParser::load</a></div><div class="ttdeci">void load()</div><div class="ttdef"><b>Definition</b> <a href="#l00081">ConfigParser.cpp:81</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -215,7 +215,7 @@ $(function(){initNavTree('ConfigParser_8cpp_source.html',''); initResizable(true
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_313caf1132e152dd9b58bea13a4052ca.html">utils</a></li><li class="navelem"><a class="el" href="ConfigParser_8cpp.html">ConfigParser.cpp</a></li>
-    <li class="footer">Generated on Thu Jan 8 2026 08:13:20 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Fri Feb 20 2026 08:07:17 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>

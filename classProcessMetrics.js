@@ -5,7 +5,7 @@ var classProcessMetrics =
     [ "ProcessMetrics", "classProcessMetrics.html#acb0cc057fee8a6bca21e26def5be8893", null ],
     [ "ProcessMetrics", "classProcessMetrics.html#a33b5e093762bf4c635b33f212b224121", null ],
     [ "~ProcessMetrics", "classProcessMetrics.html#a492a780be5d756da145a3c7ba57aca50", null ],
-    [ "countDirectoryEntries", "classProcessMetrics.html#aab60bd68d5a49dae6bd6d5f4364d1f9a", null ],
+    [ "countDirectoryEntries", "classProcessMetrics.html#a3e3aa374808b5efd32f709a0747332df", null ],
     [ "getCpuUsage", "classProcessMetrics.html#a07a73f45b18713c8e9f60a0a406c2d8f", null ],
     [ "getDiskIO", "classProcessMetrics.html#a595002ef00c4903650405590569de19d", null ],
     [ "getFileDescriptorCount", "classProcessMetrics.html#afc464f41490e92722af1d5e0f0c57d85", null ],

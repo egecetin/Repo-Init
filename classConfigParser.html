@@ -115,8 +115,8 @@ $(function(){initNavTree('classConfigParser.html',''); initResizable(true); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acf4886a0e2500b5ec83132a439d18bb2" id="r_acf4886a0e2500b5ec83132a439d18bb2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf4886a0e2500b5ec83132a439d18bb2">ConfigParser</a> (std::string configPath)</td></tr>
-<tr class="separator:acf4886a0e2500b5ec83132a439d18bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c131b3763f1b3b1c4bbfe52530e14d4" id="r_a7c131b3763f1b3b1c4bbfe52530e14d4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c131b3763f1b3b1c4bbfe52530e14d4">ConfigParser</a> (std::filesystem::path configPath)</td></tr>
+<tr class="separator:a7c131b3763f1b3b1c4bbfe52530e14d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29eba7ec75ccd47eb5e70a3b86d72be0" id="r_a29eba7ec75ccd47eb5e70a3b86d72be0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29eba7ec75ccd47eb5e70a3b86d72be0">get</a> (const std::string &amp;key) const</td></tr>
 <tr class="separator:a29eba7ec75ccd47eb5e70a3b86d72be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa457f33a2b46a6e627514c3ca7dd0667" id="r_aa457f33a2b46a6e627514c3ca7dd0667"><td class="memItemLeft" align="right" valign="top">const std::unordered_map&lt; std::string, std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa457f33a2b46a6e627514c3ca7dd0667">getConfigMap</a> () const</td></tr>
@@ -139,18 +139,18 @@ Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a888ca616f0978247aff4136823e5737d" id="r_a888ca616f0978247aff4136823e5737d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a888ca616f0978247aff4136823e5737d">_configPath</a></td></tr>
-<tr class="separator:a888ca616f0978247aff4136823e5737d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f3bae3769c2bcff73c22c7977efc87c" id="r_a8f3bae3769c2bcff73c22c7977efc87c"><td class="memItemLeft" align="right" valign="top">std::filesystem::path&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f3bae3769c2bcff73c22c7977efc87c">_configPath</a></td></tr>
+<tr class="separator:a8f3bae3769c2bcff73c22c7977efc87c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0122e029204b215bcf5c6b287a440ae5" id="r_a0122e029204b215bcf5c6b287a440ae5"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a></td></tr>
 <tr class="separator:a0122e029204b215bcf5c6b287a440ae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Parses configuration files </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParser_8hpp_source.html#l00010">10</a> of file <a class="el" href="ConfigParser_8hpp_source.html">ConfigParser.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParser_8hpp_source.html#l00011">11</a> of file <a class="el" href="ConfigParser_8hpp_source.html">ConfigParser.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="acf4886a0e2500b5ec83132a439d18bb2" name="acf4886a0e2500b5ec83132a439d18bb2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf4886a0e2500b5ec83132a439d18bb2">&#9670;&#160;</a></span>ConfigParser()</h2>
+<a id="a7c131b3763f1b3b1c4bbfe52530e14d4" name="a7c131b3763f1b3b1c4bbfe52530e14d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c131b3763f1b3b1c4bbfe52530e14d4">&#9670;&#160;</a></span>ConfigParser()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -161,7 +161,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">ConfigParser::ConfigParser </td>
           <td>(</td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>configPath</em></span></td><td>)</td>
+          <td class="paramtype">std::filesystem::path</td>          <td class="paramname"><span class="paramname"><em>configPath</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -179,14 +179,14 @@ Private Attributes</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00067">67</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   67</span>: <a class="code hl_variable" href="#a888ca616f0978247aff4136823e5737d">_configPath</a>(std::move(configPath)) { <a class="code hl_function" href="#ad646c0cf5c0b0ca090b6b0ac176c6b97">load</a>(); }</div>
-<div class="ttc" id="aclassConfigParser_html_a888ca616f0978247aff4136823e5737d"><div class="ttname"><a href="#a888ca616f0978247aff4136823e5737d">ConfigParser::_configPath</a></div><div class="ttdeci">std::string _configPath</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8hpp_source.html#l00012">ConfigParser.hpp:12</a></div></div>
+<div class="fragment"><div class="line"><span class="lineno">   67</span>: <a class="code hl_variable" href="#a8f3bae3769c2bcff73c22c7977efc87c">_configPath</a>(std::move(configPath)) { <a class="code hl_function" href="#ad646c0cf5c0b0ca090b6b0ac176c6b97">load</a>(); }</div>
+<div class="ttc" id="aclassConfigParser_html_a8f3bae3769c2bcff73c22c7977efc87c"><div class="ttname"><a href="#a8f3bae3769c2bcff73c22c7977efc87c">ConfigParser::_configPath</a></div><div class="ttdeci">std::filesystem::path _configPath</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8hpp_source.html#l00013">ConfigParser.hpp:13</a></div></div>
 <div class="ttc" id="aclassConfigParser_html_ad646c0cf5c0b0ca090b6b0ac176c6b97"><div class="ttname"><a href="#ad646c0cf5c0b0ca090b6b0ac176c6b97">ConfigParser::load</a></div><div class="ttdeci">void load()</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8cpp_source.html#l00081">ConfigParser.cpp:81</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classConfigParser_acf4886a0e2500b5ec83132a439d18bb2_cgraph.png" border="0" usemap="#aclassConfigParser_acf4886a0e2500b5ec83132a439d18bb2_cgraph" alt=""/></div>
-<map name="aclassConfigParser_acf4886a0e2500b5ec83132a439d18bb2_cgraph" id="aclassConfigParser_acf4886a0e2500b5ec83132a439d18bb2_cgraph">
+<div class="center"><img src="classConfigParser_a7c131b3763f1b3b1c4bbfe52530e14d4_cgraph.png" border="0" usemap="#aclassConfigParser_a7c131b3763f1b3b1c4bbfe52530e14d4_cgraph" alt=""/></div>
+<map name="aclassConfigParser_a7c131b3763f1b3b1c4bbfe52530e14d4_cgraph" id="aclassConfigParser_a7c131b3763f1b3b1c4bbfe52530e14d4_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,191,33"/>
 <area shape="rect" href="classConfigParser.html#ad646c0cf5c0b0ca090b6b0ac176c6b97" title=" " alt="" coords="239,5,372,33"/>
 <area shape="poly" title=" " alt="" coords="191,16,223,16,223,22,191,22"/>
@@ -225,7 +225,7 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">   71</span>    <span class="keyword">auto</span> itr = <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>.find(key);</div>
 <div class="line"><span class="lineno">   72</span>    <span class="keywordflow">return</span> itr == <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>.end() ? <span class="stringliteral">&quot;&quot;</span> : itr-&gt;second;</div>
 <div class="line"><span class="lineno">   73</span>}</div>
-<div class="ttc" id="aclassConfigParser_html_a0122e029204b215bcf5c6b287a440ae5"><div class="ttname"><a href="#a0122e029204b215bcf5c6b287a440ae5">ConfigParser::_configMap</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::string &gt; _configMap</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8hpp_source.html#l00013">ConfigParser.hpp:13</a></div></div>
+<div class="ttc" id="aclassConfigParser_html_a0122e029204b215bcf5c6b287a440ae5"><div class="ttname"><a href="#a0122e029204b215bcf5c6b287a440ae5">ConfigParser::_configMap</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::string &gt; _configMap</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8hpp_source.html#l00014">ConfigParser.hpp:14</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -263,8 +263,8 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Get the configuration map </p><dl class="section return"><dt>Returns</dt><dd>std::unordered_map&lt;std::string, std::string&gt; Configuration map </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParser_8hpp_source.html#l00039">39</a> of file <a class="el" href="ConfigParser_8hpp_source.html">ConfigParser.hpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   39</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>; }</div>
+<p class="definition">Definition at line <a class="el" href="ConfigParser_8hpp_source.html#l00040">40</a> of file <a class="el" href="ConfigParser_8hpp_source.html">ConfigParser.hpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   40</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>; }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -316,7 +316,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classConfigParser_ad646c0cf5c0b0ca090b6b0ac176c6b97_icgraph.png" border="0" usemap="#aclassConfigParser_ad646c0cf5c0b0ca090b6b0ac176c6b97_icgraph" alt=""/></div>
 <map name="aclassConfigParser_ad646c0cf5c0b0ca090b6b0ac176c6b97_icgraph" id="aclassConfigParser_ad646c0cf5c0b0ca090b6b0ac176c6b97_icgraph">
 <area shape="rect" title=" " alt="" coords="239,5,372,33"/>
-<area shape="rect" href="classConfigParser.html#acf4886a0e2500b5ec83132a439d18bb2" title=" " alt="" coords="5,5,191,33"/>
+<area shape="rect" href="classConfigParser.html#a7c131b3763f1b3b1c4bbfe52530e14d4" title=" " alt="" coords="5,5,191,33"/>
 <area shape="poly" title=" " alt="" coords="223,22,191,22,191,16,223,16"/>
 </map>
 </div>
@@ -348,7 +348,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00021">21</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   22</span>{</div>
-<div class="line"><span class="lineno">   23</span>    std::ifstream inFile(<a class="code hl_variable" href="#a888ca616f0978247aff4136823e5737d">_configPath</a>);</div>
+<div class="line"><span class="lineno">   23</span>    std::ifstream inFile(<a class="code hl_variable" href="#a8f3bae3769c2bcff73c22c7977efc87c">_configPath</a>);</div>
 <div class="line"><span class="lineno">   24</span>    <span class="keywordflow">if</span> (!inFile.is_open())</div>
 <div class="line"><span class="lineno">   25</span>    {</div>
 <div class="line"><span class="lineno">   26</span>        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Can&#39;t open config file&quot;</span>);</div>
@@ -380,7 +380,7 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="420,5,580,33"/>
 <area shape="rect" href="classConfigParser.html#ad646c0cf5c0b0ca090b6b0ac176c6b97" title=" " alt="" coords="239,5,372,33"/>
 <area shape="poly" title=" " alt="" coords="404,22,372,22,372,16,404,16"/>
-<area shape="rect" href="classConfigParser.html#acf4886a0e2500b5ec83132a439d18bb2" title=" " alt="" coords="5,5,191,33"/>
+<area shape="rect" href="classConfigParser.html#a7c131b3763f1b3b1c4bbfe52530e14d4" title=" " alt="" coords="5,5,191,33"/>
 <area shape="poly" title=" " alt="" coords="223,22,191,22,191,16,223,16"/>
 </map>
 </div>
@@ -501,7 +501,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00048">48</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   49</span>{</div>
-<div class="line"><span class="lineno">   50</span>    std::ofstream outFile(<a class="code hl_variable" href="#a888ca616f0978247aff4136823e5737d">_configPath</a>);</div>
+<div class="line"><span class="lineno">   50</span>    std::ofstream outFile(<a class="code hl_variable" href="#a8f3bae3769c2bcff73c22c7977efc87c">_configPath</a>);</div>
 <div class="line"><span class="lineno">   51</span>    rapidjson::OStreamWrapper fStreamWrapper(outFile);</div>
 <div class="line"><span class="lineno">   52</span> </div>
 <div class="line"><span class="lineno">   53</span>    rapidjson::Document doc;</div>
@@ -551,12 +551,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParser_8hpp_source.html#l00013">13</a> of file <a class="el" href="ConfigParser_8hpp_source.html">ConfigParser.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParser_8hpp_source.html#l00014">14</a> of file <a class="el" href="ConfigParser_8hpp_source.html">ConfigParser.hpp</a>.</p>
 
 </div>
 </div>
-<a id="a888ca616f0978247aff4136823e5737d" name="a888ca616f0978247aff4136823e5737d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a888ca616f0978247aff4136823e5737d">&#9670;&#160;</a></span>_configPath</h2>
+<a id="a8f3bae3769c2bcff73c22c7977efc87c" name="a8f3bae3769c2bcff73c22c7977efc87c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f3bae3769c2bcff73c22c7977efc87c">&#9670;&#160;</a></span>_configPath</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -565,7 +565,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string ConfigParser::_configPath</td>
+          <td class="memname">std::filesystem::path ConfigParser::_configPath</td>
         </tr>
       </table>
   </td>
@@ -575,7 +575,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParser_8hpp_source.html#l00012">12</a> of file <a class="el" href="ConfigParser_8hpp_source.html">ConfigParser.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParser_8hpp_source.html#l00013">13</a> of file <a class="el" href="ConfigParser_8hpp_source.html">ConfigParser.hpp</a>.</p>
 
 </div>
 </div>
@@ -589,7 +589,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classConfigParser.html">ConfigParser</a></li>
-    <li class="footer">Generated on Thu Jan 8 2026 08:13:20 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Fri Feb 20 2026 08:07:17 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>

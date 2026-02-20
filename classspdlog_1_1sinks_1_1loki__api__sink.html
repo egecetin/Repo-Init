@@ -209,51 +209,51 @@ template&lt;typename Mutex &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Loki_8cpp_source.html#l00019">19</a> of file <a class="el" href="Loki_8cpp_source.html">Loki.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   20</span>    {</div>
-<div class="line"><span class="lineno">   21</span>        <span class="keywordflow">if</span> (lokiAddress.empty())</div>
-<div class="line"><span class="lineno">   22</span>        {</div>
-<div class="line"><span class="lineno">   23</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   24</span>        }</div>
-<div class="line"><span class="lineno">   25</span> </div>
-<div class="line"><span class="lineno">   26</span>        <a class="code hl_variable" href="#a10ccb5f3467c9e47e4d9ac1829b1a9dc">_connHandler</a> = std::make_unique&lt;HTTP&gt;(lokiAddress);</div>
-<div class="line"><span class="lineno">   27</span> </div>
-<div class="line"><span class="lineno">   28</span>        <span class="comment">// Pre-allocate buffers</span></div>
-<div class="line"><span class="lineno">   29</span>        <a class="code hl_variable" href="#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;debug&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
-<div class="line"><span class="lineno">   30</span>        <a class="code hl_variable" href="#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;info&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
-<div class="line"><span class="lineno">   31</span>        <a class="code hl_variable" href="#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;warn&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
-<div class="line"><span class="lineno">   32</span>        <a class="code hl_variable" href="#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;error&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
-<div class="line"><span class="lineno">   33</span>        <a class="code hl_variable" href="#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;critical&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
-<div class="line"><span class="lineno">   34</span> </div>
-<div class="line"><span class="lineno">   35</span>        <span class="comment">// Prepare information (Loki limits maximum number of labels with 15)</span></div>
-<div class="line"><span class="lineno">   36</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><span class="lineno">   37</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;release_version&quot;:&quot;v)&quot;) + PROJECT_FULL_REVISION + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">   38</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;release_date&quot;:&quot;)&quot;) + PROJECT_BUILD_DATE + </span><span class="stringliteral">&quot; &quot;</span> + PROJECT_BUILD_TIME + <span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">   39</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;compiler_name&quot;:&quot;)&quot;) + COMPILER_NAME + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">   40</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;compiler_version&quot;:&quot;)&quot;) + COMPILER_VERSION + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">   41</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;build&quot;:&quot;)&quot;) + BUILD_TYPE + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">   42</span> </div>
-<div class="line"><span class="lineno">   43</span>        <span class="comment">// Parse hostname</span></div>
-<div class="line"><span class="lineno">   44</span>        std::array&lt;char, BUFSIZ&gt; hostBuffer{};</div>
-<div class="line"><span class="lineno">   45</span>        gethostname(hostBuffer.data(), BUFSIZ);</div>
-<div class="line"><span class="lineno">   46</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;hostname&quot;:&quot;)&quot;) + hostBuffer.data() + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">   47</span> </div>
-<div class="line"><span class="lineno">   48</span>        <span class="comment">// Parse CPU information</span></div>
-<div class="line"><span class="lineno">   49</span>        <span class="keyword">const</span> std::string cpuInfoPath = <span class="stringliteral">&quot;/proc/cpuinfo&quot;</span>;</div>
-<div class="line"><span class="lineno">   50</span>        std::string word;</div>
-<div class="line"><span class="lineno">   51</span> </div>
-<div class="line"><span class="lineno">   52</span>        <a class="code hl_function" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(cpuInfoPath, <span class="stringliteral">&quot;^siblings&quot;</span>, word);</div>
-<div class="line"><span class="lineno">   53</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_threadcount&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">   54</span>        <a class="code hl_function" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(cpuInfoPath, <span class="stringliteral">&quot;^(cpu cores)&quot;</span>, word);</div>
-<div class="line"><span class="lineno">   55</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_corecount&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">   56</span>        <a class="code hl_function" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(cpuInfoPath, <span class="stringliteral">&quot;^(model name)&quot;</span>, word);</div>
-<div class="line"><span class="lineno">   57</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_model&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">   58</span>        <a class="code hl_function" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(cpuInfoPath, <span class="stringliteral">&quot;^vendor_id&quot;</span>, word);</div>
-<div class="line"><span class="lineno">   59</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_vendorid&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">   60</span> </div>
-<div class="line"><span class="lineno">   61</span>        <a class="code hl_variable" href="#a22d013f6a68e406828f06eb5cc278bc4">_lokiAvailable</a> = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   62</span>    }</div>
-<div class="ttc" id="aFileHelpers_8hpp_html_aeedae7e44dcebd30ed01b7dcd1f4bd86"><div class="ttname"><a href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a></div><div class="ttdeci">std::vector&lt; std::string &gt; findFromFile(const std::string &amp;filePath, const std::string &amp;pattern, std::string &amp;lastWord)</div><div class="ttdef"><b>Definition</b> <a href="FileHelpers_8hpp_source.html#l00019">FileHelpers.hpp:19</a></div></div>
+<p class="definition">Definition at line <a class="el" href="Loki_8cpp_source.html#l00020">20</a> of file <a class="el" href="Loki_8cpp_source.html">Loki.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   21</span>    {</div>
+<div class="line"><span class="lineno">   22</span>        <span class="keywordflow">if</span> (lokiAddress.empty())</div>
+<div class="line"><span class="lineno">   23</span>        {</div>
+<div class="line"><span class="lineno">   24</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   25</span>        }</div>
+<div class="line"><span class="lineno">   26</span> </div>
+<div class="line"><span class="lineno">   27</span>        <a class="code hl_variable" href="#a10ccb5f3467c9e47e4d9ac1829b1a9dc">_connHandler</a> = std::make_unique&lt;HTTP&gt;(lokiAddress);</div>
+<div class="line"><span class="lineno">   28</span> </div>
+<div class="line"><span class="lineno">   29</span>        <span class="comment">// Pre-allocate buffers</span></div>
+<div class="line"><span class="lineno">   30</span>        <a class="code hl_variable" href="#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;debug&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
+<div class="line"><span class="lineno">   31</span>        <a class="code hl_variable" href="#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;info&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
+<div class="line"><span class="lineno">   32</span>        <a class="code hl_variable" href="#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;warn&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
+<div class="line"><span class="lineno">   33</span>        <a class="code hl_variable" href="#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;error&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
+<div class="line"><span class="lineno">   34</span>        <a class="code hl_variable" href="#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>.push_back({<span class="stringliteral">&quot;critical&quot;</span>, std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt;()});</div>
+<div class="line"><span class="lineno">   35</span> </div>
+<div class="line"><span class="lineno">   36</span>        <span class="comment">// Prepare information (Loki limits maximum number of labels with 15)</span></div>
+<div class="line"><span class="lineno">   37</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><span class="lineno">   38</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;release_version&quot;:&quot;v)&quot;) + PROJECT_FULL_REVISION + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">   39</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;release_date&quot;:&quot;)&quot;) + PROJECT_BUILD_DATE + </span><span class="stringliteral">&quot; &quot;</span> + PROJECT_BUILD_TIME + <span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">   40</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;compiler_name&quot;:&quot;)&quot;) + COMPILER_NAME + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">   41</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;compiler_version&quot;:&quot;)&quot;) + COMPILER_VERSION + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">   42</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;build&quot;:&quot;)&quot;) + BUILD_TYPE + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">   43</span> </div>
+<div class="line"><span class="lineno">   44</span>        <span class="comment">// Parse hostname</span></div>
+<div class="line"><span class="lineno">   45</span>        std::array&lt;char, BUFSIZ&gt; hostBuffer{};</div>
+<div class="line"><span class="lineno">   46</span>        gethostname(hostBuffer.data(), BUFSIZ);</div>
+<div class="line"><span class="lineno">   47</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;hostname&quot;:&quot;)&quot;) + hostBuffer.data() + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>        <span class="comment">// Parse CPU information</span></div>
+<div class="line"><span class="lineno">   50</span>        <span class="keyword">const</span> std::filesystem::path cpuInfoPath = <span class="stringliteral">&quot;/proc/cpuinfo&quot;</span>;</div>
+<div class="line"><span class="lineno">   51</span>        std::string word;</div>
+<div class="line"><span class="lineno">   52</span> </div>
+<div class="line"><span class="lineno">   53</span>        <a class="code hl_function" href="FileHelpers_8hpp.html#ab3b0f152267ebbbaf5cb486e306c3cff">findFromFile</a>(cpuInfoPath, <span class="stringliteral">&quot;^siblings&quot;</span>, word);</div>
+<div class="line"><span class="lineno">   54</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_threadcount&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">   55</span>        <a class="code hl_function" href="FileHelpers_8hpp.html#ab3b0f152267ebbbaf5cb486e306c3cff">findFromFile</a>(cpuInfoPath, <span class="stringliteral">&quot;^(cpu cores)&quot;</span>, word);</div>
+<div class="line"><span class="lineno">   56</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_corecount&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">   57</span>        <a class="code hl_function" href="FileHelpers_8hpp.html#ab3b0f152267ebbbaf5cb486e306c3cff">findFromFile</a>(cpuInfoPath, <span class="stringliteral">&quot;^(model name)&quot;</span>, word);</div>
+<div class="line"><span class="lineno">   58</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_model&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">   59</span>        <a class="code hl_function" href="FileHelpers_8hpp.html#ab3b0f152267ebbbaf5cb486e306c3cff">findFromFile</a>(cpuInfoPath, <span class="stringliteral">&quot;^vendor_id&quot;</span>, word);</div>
+<div class="line"><span class="lineno">   60</span>        <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> += std::string(R<span class="stringliteral">&quot;(&quot;cpu_vendorid&quot;:&quot;)&quot;) + word + </span><span class="stringliteral">&quot;\&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">   61</span> </div>
+<div class="line"><span class="lineno">   62</span>        <a class="code hl_variable" href="#a22d013f6a68e406828f06eb5cc278bc4">_lokiAvailable</a> = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   63</span>    }</div>
+<div class="ttc" id="aFileHelpers_8hpp_html_ab3b0f152267ebbbaf5cb486e306c3cff"><div class="ttname"><a href="FileHelpers_8hpp.html#ab3b0f152267ebbbaf5cb486e306c3cff">findFromFile</a></div><div class="ttdeci">std::vector&lt; std::string &gt; findFromFile(const std::filesystem::path &amp;filePath, const std::string &amp;pattern, std::string &amp;lastWord)</div><div class="ttdef"><b>Definition</b> <a href="FileHelpers_8hpp_source.html#l00019">FileHelpers.hpp:19</a></div></div>
 <div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a10ccb5f3467c9e47e4d9ac1829b1a9dc"><div class="ttname"><a href="#a10ccb5f3467c9e47e4d9ac1829b1a9dc">spdlog::sinks::loki_api_sink::_connHandler</a></div><div class="ttdeci">std::unique_ptr&lt; HTTP &gt; _connHandler</div><div class="ttdef"><b>Definition</b> <a href="Loki_8hpp_source.html#l00059">Loki.hpp:59</a></div></div>
 <div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a22d013f6a68e406828f06eb5cc278bc4"><div class="ttname"><a href="#a22d013f6a68e406828f06eb5cc278bc4">spdlog::sinks::loki_api_sink::_lokiAvailable</a></div><div class="ttdeci">bool _lokiAvailable</div><div class="ttdef"><b>Definition</b> <a href="Loki_8hpp_source.html#l00058">Loki.hpp:58</a></div></div>
 <div class="ttc" id="aclassspdlog_1_1sinks_1_1loki__api__sink_html_a5c1a4cc429a237373f78b7ead26d8718"><div class="ttname"><a href="#a5c1a4cc429a237373f78b7ead26d8718">spdlog::sinks::loki_api_sink::_internalLogBuffer</a></div><div class="ttdeci">std::vector&lt; struct logInfo_t &gt; _internalLogBuffer</div><div class="ttdef"><b>Definition</b> <a href="Loki_8hpp_source.html#l00066">Loki.hpp:66</a></div></div>
@@ -264,7 +264,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="classspdlog_1_1sinks_1_1loki__api__sink_ad41002727c3101c6069dbbe333456b11_cgraph.png" border="0" usemap="#aclassspdlog_1_1sinks_1_1loki__api__sink_ad41002727c3101c6069dbbe333456b11_cgraph" alt=""/></div>
 <map name="aclassspdlog_1_1sinks_1_1loki__api__sink_ad41002727c3101c6069dbbe333456b11_cgraph" id="aclassspdlog_1_1sinks_1_1loki__api__sink_ad41002727c3101c6069dbbe333456b11_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,167,50"/>
-<area shape="rect" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86" title=" " alt="" coords="215,14,315,42"/>
+<area shape="rect" href="FileHelpers_8hpp.html#ab3b0f152267ebbbaf5cb486e306c3cff" title=" " alt="" coords="215,14,315,42"/>
 <area shape="poly" title=" " alt="" coords="167,25,199,25,199,30,167,30"/>
 </map>
 </div>
@@ -327,52 +327,52 @@ template&lt;typename Mutex &gt; </div>
 <p>Flushes any buffered log messages.</p>
 <p>This function is called by spdlog to flush any buffered log messages. It is overridden from the base_sink class. </p>
 
-<p class="definition">Definition at line <a class="el" href="Loki_8cpp_source.html#l00081">81</a> of file <a class="el" href="Loki_8cpp_source.html">Loki.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   82</span>    {</div>
-<div class="line"><span class="lineno">   83</span>        <span class="keywordtype">bool</span> flag = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   84</span> </div>
-<div class="line"><span class="lineno">   85</span>        <span class="comment">// Prepare JSON</span></div>
-<div class="line"><span class="lineno">   86</span>        std::ostringstream sStream;</div>
-<div class="line"><span class="lineno">   87</span> </div>
-<div class="line"><span class="lineno">   88</span>        sStream &lt;&lt; <span class="stringliteral">&quot;{\&quot;streams\&quot;:[&quot;</span>;</div>
-<div class="line"><span class="lineno">   89</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;entry : <a class="code hl_variable" href="#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>)</div>
-<div class="line"><span class="lineno">   90</span>        {</div>
-<div class="line"><span class="lineno">   91</span>            <span class="keywordflow">if</span> (entry.logs.empty())</div>
-<div class="line"><span class="lineno">   92</span>            {</div>
-<div class="line"><span class="lineno">   93</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">   94</span>            }</div>
-<div class="line"><span class="lineno">   95</span> </div>
-<div class="line"><span class="lineno">   96</span>            <span class="keywordflow">if</span> (flag)</div>
-<div class="line"><span class="lineno">   97</span>            {</div>
-<div class="line"><span class="lineno">   98</span>                sStream &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">   99</span>            }</div>
-<div class="line"><span class="lineno">  100</span>            flag = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  101</span>            sStream &lt;&lt; <span class="stringliteral">&quot;{\&quot;stream\&quot;:{&quot;</span> &lt;&lt; <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> + R<span class="stringliteral">&quot;(&quot;level&quot;:&quot;)&quot; &lt;&lt; entry.level &lt;&lt; R</span><span class="stringliteral">&quot;(&quot;},&quot;values&quot;:[)&quot;;</span></div>
-<div class="line"><span class="lineno">  102</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  103</span><span class="stringliteral">            </span><span class="keywordtype">bool</span> subflag = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  104</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;subentry : entry.logs)</div>
-<div class="line"><span class="lineno">  105</span>            {</div>
-<div class="line"><span class="lineno">  106</span>                <span class="keywordflow">if</span> (subflag)</div>
-<div class="line"><span class="lineno">  107</span>                {</div>
-<div class="line"><span class="lineno">  108</span>                    sStream &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
-<div class="line"><span class="lineno">  109</span>                }</div>
-<div class="line"><span class="lineno">  110</span>                subflag = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  111</span>                sStream &lt;&lt; <span class="stringliteral">&quot;[\&quot;&quot;</span> &lt;&lt; subentry.first &lt;&lt; <span class="stringliteral">&quot;\&quot;,\&quot;&quot;</span> &lt;&lt; subentry.second &lt;&lt; <span class="stringliteral">&quot;\&quot;]&quot;</span>;</div>
-<div class="line"><span class="lineno">  112</span>            }</div>
-<div class="line"><span class="lineno">  113</span>            sStream &lt;&lt; <span class="stringliteral">&quot;]}&quot;</span>;</div>
-<div class="line"><span class="lineno">  114</span> </div>
-<div class="line"><span class="lineno">  115</span>            entry.logs.clear();</div>
-<div class="line"><span class="lineno">  116</span>        }</div>
-<div class="line"><span class="lineno">  117</span>        sStream &lt;&lt; <span class="stringliteral">&quot;]}&quot;</span>;</div>
-<div class="line"><span class="lineno">  118</span> </div>
-<div class="line"><span class="lineno">  119</span>        <span class="keywordflow">if</span> (flag)</div>
-<div class="line"><span class="lineno">  120</span>        {</div>
-<div class="line"><span class="lineno">  121</span>            <span class="comment">// Send request</span></div>
-<div class="line"><span class="lineno">  122</span>            std::string recvData;</div>
-<div class="line"><span class="lineno">  123</span>            HttpStatus::Code replyCode = HttpStatus::Code::xxx_max;</div>
-<div class="line"><span class="lineno">  124</span>            <a class="code hl_variable" href="#a10ccb5f3467c9e47e4d9ac1829b1a9dc">_connHandler</a>-&gt;sendPOSTRequest(<span class="stringliteral">&quot;/loki/api/v1/push&quot;</span>, sStream.str(), recvData, replyCode);</div>
-<div class="line"><span class="lineno">  125</span>        }</div>
-<div class="line"><span class="lineno">  126</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Loki_8cpp_source.html#l00082">82</a> of file <a class="el" href="Loki_8cpp_source.html">Loki.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   83</span>    {</div>
+<div class="line"><span class="lineno">   84</span>        <span class="keywordtype">bool</span> flag = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   85</span> </div>
+<div class="line"><span class="lineno">   86</span>        <span class="comment">// Prepare JSON</span></div>
+<div class="line"><span class="lineno">   87</span>        std::ostringstream sStream;</div>
+<div class="line"><span class="lineno">   88</span> </div>
+<div class="line"><span class="lineno">   89</span>        sStream &lt;&lt; <span class="stringliteral">&quot;{\&quot;streams\&quot;:[&quot;</span>;</div>
+<div class="line"><span class="lineno">   90</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;entry : <a class="code hl_variable" href="#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>)</div>
+<div class="line"><span class="lineno">   91</span>        {</div>
+<div class="line"><span class="lineno">   92</span>            <span class="keywordflow">if</span> (entry.logs.empty())</div>
+<div class="line"><span class="lineno">   93</span>            {</div>
+<div class="line"><span class="lineno">   94</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">   95</span>            }</div>
+<div class="line"><span class="lineno">   96</span> </div>
+<div class="line"><span class="lineno">   97</span>            <span class="keywordflow">if</span> (flag)</div>
+<div class="line"><span class="lineno">   98</span>            {</div>
+<div class="line"><span class="lineno">   99</span>                sStream &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">  100</span>            }</div>
+<div class="line"><span class="lineno">  101</span>            flag = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  102</span>            sStream &lt;&lt; <span class="stringliteral">&quot;{\&quot;stream\&quot;:{&quot;</span> &lt;&lt; <a class="code hl_variable" href="#ab7a647423898ad9c4d90277e0010319d">_basicInformation</a> + R<span class="stringliteral">&quot;(&quot;level&quot;:&quot;)&quot; &lt;&lt; entry.level &lt;&lt; R</span><span class="stringliteral">&quot;(&quot;},&quot;values&quot;:[)&quot;;</span></div>
+<div class="line"><span class="lineno">  103</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  104</span><span class="stringliteral">            </span><span class="keywordtype">bool</span> subflag = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  105</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;subentry : entry.logs)</div>
+<div class="line"><span class="lineno">  106</span>            {</div>
+<div class="line"><span class="lineno">  107</span>                <span class="keywordflow">if</span> (subflag)</div>
+<div class="line"><span class="lineno">  108</span>                {</div>
+<div class="line"><span class="lineno">  109</span>                    sStream &lt;&lt; <span class="stringliteral">&quot;,&quot;</span>;</div>
+<div class="line"><span class="lineno">  110</span>                }</div>
+<div class="line"><span class="lineno">  111</span>                subflag = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  112</span>                sStream &lt;&lt; <span class="stringliteral">&quot;[\&quot;&quot;</span> &lt;&lt; subentry.first &lt;&lt; <span class="stringliteral">&quot;\&quot;,\&quot;&quot;</span> &lt;&lt; subentry.second &lt;&lt; <span class="stringliteral">&quot;\&quot;]&quot;</span>;</div>
+<div class="line"><span class="lineno">  113</span>            }</div>
+<div class="line"><span class="lineno">  114</span>            sStream &lt;&lt; <span class="stringliteral">&quot;]}&quot;</span>;</div>
+<div class="line"><span class="lineno">  115</span> </div>
+<div class="line"><span class="lineno">  116</span>            entry.logs.clear();</div>
+<div class="line"><span class="lineno">  117</span>        }</div>
+<div class="line"><span class="lineno">  118</span>        sStream &lt;&lt; <span class="stringliteral">&quot;]}&quot;</span>;</div>
+<div class="line"><span class="lineno">  119</span> </div>
+<div class="line"><span class="lineno">  120</span>        <span class="keywordflow">if</span> (flag)</div>
+<div class="line"><span class="lineno">  121</span>        {</div>
+<div class="line"><span class="lineno">  122</span>            <span class="comment">// Send request</span></div>
+<div class="line"><span class="lineno">  123</span>            std::string recvData;</div>
+<div class="line"><span class="lineno">  124</span>            HttpStatus::Code replyCode = HttpStatus::Code::xxx_max;</div>
+<div class="line"><span class="lineno">  125</span>            <a class="code hl_variable" href="#a10ccb5f3467c9e47e4d9ac1829b1a9dc">_connHandler</a>-&gt;sendPOSTRequest(<span class="stringliteral">&quot;/loki/api/v1/push&quot;</span>, sStream.str(), recvData, replyCode);</div>
+<div class="line"><span class="lineno">  126</span>        }</div>
+<div class="line"><span class="lineno">  127</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -409,20 +409,20 @@ template&lt;typename Mutex &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Loki_8cpp_source.html#l00066">66</a> of file <a class="el" href="Loki_8cpp_source.html">Loki.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   67</span>    {</div>
-<div class="line"><span class="lineno">   68</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="#a22d013f6a68e406828f06eb5cc278bc4">_lokiAvailable</a>)</div>
-<div class="line"><span class="lineno">   69</span>        {</div>
-<div class="line"><span class="lineno">   70</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   71</span>        }</div>
-<div class="line"><span class="lineno">   72</span> </div>
-<div class="line"><span class="lineno">   73</span>        <span class="keywordflow">if</span> (msg.level &gt;= spdlog::level::debug &amp;&amp; msg.level &lt;= spdlog::level::critical)</div>
-<div class="line"><span class="lineno">   74</span>        {</div>
-<div class="line"><span class="lineno">   75</span>            <a class="code hl_variable" href="#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>[<span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(msg.level) - 1].logs.push_back(</div>
-<div class="line"><span class="lineno">   76</span>                {std::to_string(msg.time.time_since_epoch().count()),</div>
-<div class="line"><span class="lineno">   77</span>                 std::string(msg.payload.data(), msg.payload.size())});</div>
-<div class="line"><span class="lineno">   78</span>        }</div>
-<div class="line"><span class="lineno">   79</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Loki_8cpp_source.html#l00067">67</a> of file <a class="el" href="Loki_8cpp_source.html">Loki.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   68</span>    {</div>
+<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="#a22d013f6a68e406828f06eb5cc278bc4">_lokiAvailable</a>)</div>
+<div class="line"><span class="lineno">   70</span>        {</div>
+<div class="line"><span class="lineno">   71</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   72</span>        }</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>        <span class="keywordflow">if</span> (msg.level &gt;= spdlog::level::debug &amp;&amp; msg.level &lt;= spdlog::level::critical)</div>
+<div class="line"><span class="lineno">   75</span>        {</div>
+<div class="line"><span class="lineno">   76</span>            <a class="code hl_variable" href="#a5c1a4cc429a237373f78b7ead26d8718">_internalLogBuffer</a>[<span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(msg.level) - 1].logs.push_back(</div>
+<div class="line"><span class="lineno">   77</span>                {std::to_string(msg.time.time_since_epoch().count()),</div>
+<div class="line"><span class="lineno">   78</span>                 std::string(msg.payload.data(), msg.payload.size())});</div>
+<div class="line"><span class="lineno">   79</span>        }</div>
+<div class="line"><span class="lineno">   80</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -542,7 +542,7 @@ template&lt;typename Mutex &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacespdlog.html">spdlog</a></li><li class="navelem"><a class="el" href="namespacespdlog_1_1sinks.html">sinks</a></li><li class="navelem"><a class="el" href="classspdlog_1_1sinks_1_1loki__api__sink.html">loki_api_sink</a></li>
-    <li class="footer">Generated on Thu Jan 8 2026 08:13:20 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Fri Feb 20 2026 08:07:17 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>

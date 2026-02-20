@@ -117,7 +117,7 @@ $(function(){initNavTree('FileHelpers_8hpp_source.html',''); initResizable(true)
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">   19</a></span><span class="keyword">inline</span> std::vector&lt;std::string&gt; <a class="code hl_function" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(<span class="keyword">const</span> std::string &amp;filePath, <span class="keyword">const</span> std::string &amp;pattern,</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="FileHelpers_8hpp.html#ab3b0f152267ebbbaf5cb486e306c3cff">   19</a></span><span class="keyword">inline</span> std::vector&lt;std::string&gt; <a class="code hl_function" href="FileHelpers_8hpp.html#ab3b0f152267ebbbaf5cb486e306c3cff">findFromFile</a>(<span class="keyword">const</span> std::filesystem::path &amp;filePath, <span class="keyword">const</span> std::string &amp;pattern,</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>                                             std::string &amp;lastWord)</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">const</span> std::regex regExp(pattern);</div>
@@ -147,10 +147,10 @@ $(function(){initNavTree('FileHelpers_8hpp_source.html',''); initResizable(true)
 </div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
 <div class="foldopen" id="foldopen00053" data-start="{" data-end="}">
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="FileHelpers_8hpp.html#a578a5ee34e1934c52de5c02eff554b08">   53</a></span><span class="keyword">inline</span> std::vector&lt;std::string&gt; <a class="code hl_function" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(<span class="keyword">const</span> std::string &amp;filePath, <span class="keyword">const</span> std::string &amp;pattern)</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="FileHelpers_8hpp.html#a28c8c54fa68f1cbea3b3d84d24dedc47">   53</a></span><span class="keyword">inline</span> std::vector&lt;std::string&gt; <a class="code hl_function" href="FileHelpers_8hpp.html#ab3b0f152267ebbbaf5cb486e306c3cff">findFromFile</a>(<span class="keyword">const</span> std::filesystem::path &amp;filePath, <span class="keyword">const</span> std::string &amp;pattern)</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>{</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    std::string lastWord;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a>(filePath, pattern, lastWord);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="FileHelpers_8hpp.html#ab3b0f152267ebbbaf5cb486e306c3cff">findFromFile</a>(filePath, pattern, lastWord);</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>}</div>
 </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
@@ -191,7 +191,7 @@ $(function(){initNavTree('FileHelpers_8hpp_source.html',''); initResizable(true)
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>};</div>
 </div>
 <div class="ttc" id="aFileHelpers_8hpp_html_a653f3744a12689492ab0ac63fb28a002"><div class="ttname"><a href="FileHelpers_8hpp.html#a653f3744a12689492ab0ac63fb28a002">FNotifyCallback</a></div><div class="ttdeci">std::function&lt; void(const void *)&gt; FNotifyCallback</div><div class="ttdoc">Callback function for file notifications.</div><div class="ttdef"><b>Definition</b> <a href="#l00060">FileHelpers.hpp:60</a></div></div>
-<div class="ttc" id="aFileHelpers_8hpp_html_aeedae7e44dcebd30ed01b7dcd1f4bd86"><div class="ttname"><a href="FileHelpers_8hpp.html#aeedae7e44dcebd30ed01b7dcd1f4bd86">findFromFile</a></div><div class="ttdeci">std::vector&lt; std::string &gt; findFromFile(const std::string &amp;filePath, const std::string &amp;pattern, std::string &amp;lastWord)</div><div class="ttdef"><b>Definition</b> <a href="#l00019">FileHelpers.hpp:19</a></div></div>
+<div class="ttc" id="aFileHelpers_8hpp_html_ab3b0f152267ebbbaf5cb486e306c3cff"><div class="ttname"><a href="FileHelpers_8hpp.html#ab3b0f152267ebbbaf5cb486e306c3cff">findFromFile</a></div><div class="ttdeci">std::vector&lt; std::string &gt; findFromFile(const std::filesystem::path &amp;filePath, const std::string &amp;pattern, std::string &amp;lastWord)</div><div class="ttdef"><b>Definition</b> <a href="#l00019">FileHelpers.hpp:19</a></div></div>
 <div class="ttc" id="aclassFileMonitor_html"><div class="ttname"><a href="classFileMonitor.html">FileMonitor</a></div><div class="ttdef"><b>Definition</b> <a href="#l00065">FileHelpers.hpp:65</a></div></div>
 <div class="ttc" id="aclassFileMonitor_html_a06a4b35b1dfcee26bc8e0ef0d7e49bc9"><div class="ttname"><a href="classFileMonitor.html#a06a4b35b1dfcee26bc8e0ef0d7e49bc9">FileMonitor::_userPtr</a></div><div class="ttdeci">const void * _userPtr</div><div class="ttdoc">User pointer.</div><div class="ttdef"><b>Definition</b> <a href="#l00078">FileHelpers.hpp:78</a></div></div>
 <div class="ttc" id="aclassFileMonitor_html_a329aafa33e08701b5419a002ee9fb1e8"><div class="ttname"><a href="classFileMonitor.html#a329aafa33e08701b5419a002ee9fb1e8">FileMonitor::_notifyCallback</a></div><div class="ttdeci">FNotifyCallback _notifyCallback</div><div class="ttdoc">Callback function.</div><div class="ttdef"><b>Definition</b> <a href="#l00074">FileHelpers.hpp:74</a></div></div>
@@ -212,7 +212,7 @@ $(function(){initNavTree('FileHelpers_8hpp_source.html',''); initResizable(true)
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_821002d4f10779a80d4fb17bc32f21f1.html">utils</a></li><li class="navelem"><a class="el" href="FileHelpers_8hpp.html">FileHelpers.hpp</a></li>
-    <li class="footer">Generated on Thu Jan 8 2026 08:13:20 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Fri Feb 20 2026 08:07:17 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>
