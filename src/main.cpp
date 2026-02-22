@@ -28,7 +28,7 @@ namespace
 		alarm(alarmInterval);
 
 		// Clear all flags
-		std::for_each(vCheckFlag.begin(), vCheckFlag.end(), [](auto &entry) { entry.second->clear(); });
+		std::ranges::for_each(vCheckFlag, [](auto &entry) { entry.second->clear(); });
 	}
 
 	void interruptFunc(int /*unused*/) { interruptFlag = 1; }

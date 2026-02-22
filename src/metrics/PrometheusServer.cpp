@@ -28,7 +28,8 @@ std::shared_ptr<prometheus::Registry> PrometheusServer::getRegistry(uint64_t reg
 {
 	const std::scoped_lock guard(_guardLock);
 
-	if (auto iter = std::find_if(_vRegister.begin(), _vRegister.end(),
+	if (auto iter =
+			std::ranges::find_if(_vRegister,
 								 [regId](const std::pair<uint64_t, std::shared_ptr<prometheus::Registry>> &val) {
 									 return regId == val.first;
 								 });
