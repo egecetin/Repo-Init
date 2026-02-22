@@ -124,7 +124,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: rockylinux8@sha256:894398a08aff95f31adeaa6bd1567a16212a2e3cce5d5246a43362bc60322589
           - image: rockylinux9@sha256:be19ccbdbb16b0baec05f0816156c822da13417fe15b99f2dd9e317f1afb85e5
           - image: ubuntu2204@sha256:591139098db2f60e191b64a8b832668b8eb8ae9980819d5d05d1c2acf39a126f
           - image: ubuntu2404@sha256:57cb9f268c8a4870c40e88be6b9e86d7f4250ee4ceca4bc6084dd47e7a7f2623
