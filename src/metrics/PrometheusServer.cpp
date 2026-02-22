@@ -69,9 +69,13 @@ bool PrometheusServer::deleteRegistry(uint64_t regId)
 
 	const std::scoped_lock guard(_guardLock);
 
-	_vRegister.erase(std::remove_if(
-		_vRegister.begin(), _vRegister.end(),
-		[regId](const std::pair<uint64_t, std::shared_ptr<prometheus::Registry>> &val) { return regId == val.first; }));
+	_vRegister.erase(
+		std::ranges::remove_if(_vRegister,
+							   [regId](const std::pair<uint64_t, std::shared_ptr<prometheus::Registry>> &val) {
+								   return regId == val.first;
+							   })
+			.begin(),
+		_vRegister.end());
 
 	return true;
 }
