@@ -2,6 +2,7 @@
 
 #include "Version.h"
 
+#include <algorithm>
 #include <date/date.h>
 #include <prometheus/info.h>
 
