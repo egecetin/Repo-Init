@@ -102,7 +102,7 @@ RawSocketStats RawSocket::getStats(bool resetInternalStats)
 	if (resetInternalStats)
 	{
 		RawSocketStats buffer = _stats;
-		_stats = {0, 0, 0.0};
+		_stats = {.sentBytes = 0, .receivedBytes = 0, .processingTime = 0.0};
 		return buffer;
 	}
 	return _stats;

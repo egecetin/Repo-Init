@@ -34,7 +34,7 @@ class InputParser {
 	[[nodiscard]] const std::string &getCmdOption(const std::string &option) const
 	{
 		std::vector<std::string>::const_iterator itr;
-		itr = std::find(_tokens.begin(), _tokens.end(), option);
+		itr = std::ranges::find(_tokens, option);
 		if (itr != _tokens.end() && ++itr != _tokens.end())
 		{
 			return *itr;
@@ -76,6 +76,6 @@ class InputParser {
 	 */
 	[[nodiscard]] bool cmdOptionExists(const std::string &option) const
 	{
-		return std::find(_tokens.begin(), _tokens.end(), option) != _tokens.end();
+		return std::ranges::find(_tokens, option) != _tokens.end();
 	}
 };
