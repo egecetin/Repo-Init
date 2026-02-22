@@ -4,9 +4,6 @@
 [submodule "tests/MemPlumber"]
 	path = tests/MemPlumber
 	url = https://github.com/seladb/MemPlumber.git
-[submodule "thirdparty/sentry"]
-	path = thirdparty/sentry
-	url = https://github.com/getsentry/sentry-native.git
 [submodule "thirdparty/prometheus-cpp"]
 	path = thirdparty/prometheus-cpp
 	url = https://github.com/jupp0r/prometheus-cpp.git
@@ -19,3 +16,6 @@
 [submodule "tests/gtest"]
 	path = tests/gtest
 	url = https://github.com/google/googletest.git
+[submodule "thirdparty/sentry"]
+	path = thirdparty/sentry
+	url = https://github.com/getsentry/sentry-native.git

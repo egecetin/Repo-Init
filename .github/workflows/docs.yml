@@ -15,7 +15,7 @@ jobs:
     permissions:
       contents: write  # for JamesIves/github-pages-deploy-action to push changes in repo
     runs-on: ubuntu-latest
-    container: egecetinn/alpine@sha256:1d671460d4426539c5de6df0580a9ca055d3c6043610c3ff1f78ce008e86ac26
+    container: egecetinn/alpine@sha256:e433025a16e47831c2714ecc17cd7bc3884cd892d10621cfe30b68ddea9b0d9b
     steps:
       - name: Checkout repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2

@@ -18,7 +18,7 @@ concurrency:
 jobs:
   static-analysis:
     runs-on: ubuntu-latest
-    container: egecetinn/alpine@sha256:1d671460d4426539c5de6df0580a9ca055d3c6043610c3ff1f78ce008e86ac26
+    container: egecetinn/alpine@sha256:e433025a16e47831c2714ecc17cd7bc3884cd892d10621cfe30b68ddea9b0d9b
     steps:
       - name: Checkout Code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -27,7 +27,7 @@ jobs:
       - name: Run clang-format
         run: clang-format include/**/*.hpp src/*.cpp src/**/*.cpp --verbose --dry-run --Werror
       - name: Run cppcheck
-        run: cppcheck -Iinclude/ src --verbose --enable=all --error-exitcode=1 --std=c++17 --language=c++ --suppressions-list=cppcheckSuppressions.txt --inline-suppr --check-level=exhaustive
+        run: cppcheck -Iinclude/ src --verbose --enable=all --error-exitcode=1 --std=c++20 --language=c++ --suppressions-list=cppcheckSuppressions.txt --inline-suppr --check-level=exhaustive
       - name: Configure for clang-tidy
         run: cmake -S . -B build
       - name: Clang-tidy
@@ -35,7 +35,7 @@ jobs:
 
   memleak:
     runs-on: ubuntu-latest
-    container: egecetinn/ubuntu2204@sha256:591139098db2f60e191b64a8b832668b8eb8ae9980819d5d05d1c2acf39a126f
+    container: egecetinn/ubuntu2604@sha256:19ae75c87eac9ea388662f3fe4bcf89e401af843211085101815ba79a0350e41
     steps:
       - name: Checkout Code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -73,7 +73,7 @@ jobs:
 
   fuzztests:
     runs-on: ubuntu-latest
-    container: egecetinn/ubuntu2204@sha256:591139098db2f60e191b64a8b832668b8eb8ae9980819d5d05d1c2acf39a126f
+    container: egecetinn/ubuntu2604@sha256:19ae75c87eac9ea388662f3fe4bcf89e401af843211085101815ba79a0350e41
     strategy:
       matrix:
         sanitizer: [ASAN, USAN]
@@ -124,10 +124,10 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: rockylinux8@sha256:894398a08aff95f31adeaa6bd1567a16212a2e3cce5d5246a43362bc60322589
-          - image: rockylinux9@sha256:be19ccbdbb16b0baec05f0816156c822da13417fe15b99f2dd9e317f1afb85e5
-          - image: ubuntu2204@sha256:591139098db2f60e191b64a8b832668b8eb8ae9980819d5d05d1c2acf39a126f
-          - image: ubuntu2404@sha256:57cb9f268c8a4870c40e88be6b9e86d7f4250ee4ceca4bc6084dd47e7a7f2623
+          - image: rockylinux9@sha256:4f9d0d80875950f1c3953d00cc421d696a56b749b3c062372af929b4207c55f6
+          - image: rockylinux10@sha256:910d5b4a27f0b79f3700f9ab9cda3b2e1c5fe1f83db1027a30e2a5eb697114f8
+          - image: ubuntu2604@sha256:19ae75c87eac9ea388662f3fe4bcf89e401af843211085101815ba79a0350e41
+          - image: ubuntu2404@sha256:ba7f3bec8dc9772d16de9d7d44229b9c13eb21a4c472171a7c144253c54c1056
 
     steps:
       - name: Checkout Code
