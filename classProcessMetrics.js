@@ -1,6 +1,6 @@
 var classProcessMetrics =
 [
-    [ "_oldCpu", "structProcessMetrics_1_1__oldCpu.html", null ],
+    [ "_oldCpu", "structProcessMetrics_1_1__oldCpu.html", "structProcessMetrics_1_1__oldCpu" ],
     [ "ProcessMetrics", "classProcessMetrics.html#a102e67199855a44a2c6418fadb57ecb2", null ],
     [ "ProcessMetrics", "classProcessMetrics.html#acb0cc057fee8a6bca21e26def5be8893", null ],
     [ "ProcessMetrics", "classProcessMetrics.html#a33b5e093762bf4c635b33f212b224121", null ],

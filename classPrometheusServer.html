@@ -174,22 +174,22 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="PrometheusServer_8cpp_source.html#l00010">10</a> of file <a class="el" href="PrometheusServer_8cpp_source.html">PrometheusServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   11</span>    : <a class="code hl_variable" href="#a846773b0ed65d899f49002ac12b41cd2">_mainExposer</a>(std::make_unique&lt;prometheus::Exposer&gt;(serverAddr, 1))</div>
-<div class="line"><span class="lineno">   12</span>{</div>
-<div class="line"><span class="lineno">   13</span>    <span class="keyword">auto</span> reg = std::make_shared&lt;prometheus::Registry&gt;();</div>
-<div class="line"><span class="lineno">   14</span> </div>
-<div class="line"><span class="lineno">   15</span>    <span class="comment">// Basic information</span></div>
-<div class="line"><span class="lineno">   16</span>    <a class="code hl_variable" href="#a9a50f3af23a4b4a71e24aff627f708f3">_infoFamily</a> =</div>
-<div class="line"><span class="lineno">   17</span>        &amp;prometheus::BuildInfo().Name(PROJECT_NAME).Help(std::string(PROJECT_NAME) + <span class="stringliteral">&quot; information&quot;</span>).Register(*reg);</div>
-<div class="line"><span class="lineno">   18</span> </div>
-<div class="line"><span class="lineno">   19</span>    <a class="code hl_variable" href="#a9a50f3af23a4b4a71e24aff627f708f3">_infoFamily</a>-&gt;Add({{<span class="stringliteral">&quot;init_time&quot;</span>, date::format(<span class="stringliteral">&quot;%FT%TZ&quot;</span>, date::floor&lt;std::chrono::nanoseconds&gt;(</div>
-<div class="line"><span class="lineno">   20</span>                                                               std::chrono::high_resolution_clock::now()))}});</div>
-<div class="line"><span class="lineno">   21</span>    <a class="code hl_variable" href="#a9a50f3af23a4b4a71e24aff627f708f3">_infoFamily</a>-&gt;Add({{<span class="stringliteral">&quot;version&quot;</span>, PROJECT_FULL_REVISION}});</div>
-<div class="line"><span class="lineno">   22</span> </div>
-<div class="line"><span class="lineno">   23</span>    <a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.emplace_back(std::numeric_limits&lt;uint64_t&gt;::max(), reg);</div>
-<div class="line"><span class="lineno">   24</span>    <a class="code hl_variable" href="#a846773b0ed65d899f49002ac12b41cd2">_mainExposer</a>-&gt;RegisterCollectable(reg);</div>
-<div class="line"><span class="lineno">   25</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PrometheusServer_8cpp_source.html#l00012">12</a> of file <a class="el" href="PrometheusServer_8cpp_source.html">PrometheusServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   13</span>    : <a class="code hl_variable" href="#a846773b0ed65d899f49002ac12b41cd2">_mainExposer</a>(std::make_unique&lt;prometheus::Exposer&gt;(serverAddr, 1))</div>
+<div class="line"><span class="lineno">   14</span>{</div>
+<div class="line"><span class="lineno">   15</span>    <span class="keyword">auto</span> reg = std::make_shared&lt;prometheus::Registry&gt;();</div>
+<div class="line"><span class="lineno">   16</span> </div>
+<div class="line"><span class="lineno">   17</span>    <span class="comment">// Basic information</span></div>
+<div class="line"><span class="lineno">   18</span>    <a class="code hl_variable" href="#a9a50f3af23a4b4a71e24aff627f708f3">_infoFamily</a> =</div>
+<div class="line"><span class="lineno">   19</span>        &amp;prometheus::BuildInfo().Name(PROJECT_NAME).Help(std::string(PROJECT_NAME) + <span class="stringliteral">&quot; information&quot;</span>).Register(*reg);</div>
+<div class="line"><span class="lineno">   20</span> </div>
+<div class="line"><span class="lineno">   21</span>    <a class="code hl_variable" href="#a9a50f3af23a4b4a71e24aff627f708f3">_infoFamily</a>-&gt;Add({{<span class="stringliteral">&quot;init_time&quot;</span>, date::format(<span class="stringliteral">&quot;%FT%TZ&quot;</span>, date::floor&lt;std::chrono::nanoseconds&gt;(</div>
+<div class="line"><span class="lineno">   22</span>                                                               std::chrono::high_resolution_clock::now()))}});</div>
+<div class="line"><span class="lineno">   23</span>    <a class="code hl_variable" href="#a9a50f3af23a4b4a71e24aff627f708f3">_infoFamily</a>-&gt;Add({{<span class="stringliteral">&quot;version&quot;</span>, PROJECT_FULL_REVISION}});</div>
+<div class="line"><span class="lineno">   24</span> </div>
+<div class="line"><span class="lineno">   25</span>    <a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.emplace_back(std::numeric_limits&lt;uint64_t&gt;::max(), reg);</div>
+<div class="line"><span class="lineno">   26</span>    <a class="code hl_variable" href="#a846773b0ed65d899f49002ac12b41cd2">_mainExposer</a>-&gt;RegisterCollectable(reg);</div>
+<div class="line"><span class="lineno">   27</span>}</div>
 <div class="ttc" id="aclassPrometheusServer_html_a0db25b2906a10fd04d29f71041de95cf"><div class="ttname"><a href="#a0db25b2906a10fd04d29f71041de95cf">PrometheusServer::_vRegister</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; uint64_t, std::shared_ptr&lt; prometheus::Registry &gt; &gt; &gt; _vRegister</div><div class="ttdoc">All tracker registries.</div><div class="ttdef"><b>Definition</b> <a href="PrometheusServer_8hpp_source.html#l00017">PrometheusServer.hpp:17</a></div></div>
 <div class="ttc" id="aclassPrometheusServer_html_a846773b0ed65d899f49002ac12b41cd2"><div class="ttname"><a href="#a846773b0ed65d899f49002ac12b41cd2">PrometheusServer::_mainExposer</a></div><div class="ttdeci">std::unique_ptr&lt; prometheus::Exposer &gt; _mainExposer</div><div class="ttdoc">Main HTTP Server.</div><div class="ttdef"><b>Definition</b> <a href="PrometheusServer_8hpp_source.html#l00015">PrometheusServer.hpp:15</a></div></div>
 <div class="ttc" id="aclassPrometheusServer_html_a9a50f3af23a4b4a71e24aff627f708f3"><div class="ttname"><a href="#a9a50f3af23a4b4a71e24aff627f708f3">PrometheusServer::_infoFamily</a></div><div class="ttdeci">prometheus::Family&lt; prometheus::Info &gt; * _infoFamily</div><div class="ttdoc">General application information.</div><div class="ttdef"><b>Definition</b> <a href="PrometheusServer_8hpp_source.html#l00020">PrometheusServer.hpp:20</a></div></div>
@@ -213,12 +213,12 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Create a registry for prometheus </p><dl class="section return"><dt>Returns</dt><dd>std::shared_ptr&lt;prometheus::Registry&gt; Registry pointer </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="PrometheusServer_8cpp_source.html#l00042">42</a> of file <a class="el" href="PrometheusServer_8cpp_source.html">PrometheusServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   43</span>{</div>
-<div class="line"><span class="lineno">   44</span>    uint64_t regId = 0;</div>
-<div class="line"><span class="lineno">   45</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a04e7b010c6227c4cf076d619b66cf6df">createNewRegistry</a>(regId);</div>
-<div class="line"><span class="lineno">   46</span>}</div>
-<div class="ttc" id="aclassPrometheusServer_html_a04e7b010c6227c4cf076d619b66cf6df"><div class="ttname"><a href="#a04e7b010c6227c4cf076d619b66cf6df">PrometheusServer::createNewRegistry</a></div><div class="ttdeci">std::shared_ptr&lt; prometheus::Registry &gt; createNewRegistry()</div><div class="ttdef"><b>Definition</b> <a href="PrometheusServer_8cpp_source.html#l00042">PrometheusServer.cpp:42</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PrometheusServer_8cpp_source.html#l00045">45</a> of file <a class="el" href="PrometheusServer_8cpp_source.html">PrometheusServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   46</span>{</div>
+<div class="line"><span class="lineno">   47</span>    uint64_t regId = 0;</div>
+<div class="line"><span class="lineno">   48</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="#a04e7b010c6227c4cf076d619b66cf6df">createNewRegistry</a>(regId);</div>
+<div class="line"><span class="lineno">   49</span>}</div>
+<div class="ttc" id="aclassPrometheusServer_html_a04e7b010c6227c4cf076d619b66cf6df"><div class="ttname"><a href="#a04e7b010c6227c4cf076d619b66cf6df">PrometheusServer::createNewRegistry</a></div><div class="ttdeci">std::shared_ptr&lt; prometheus::Registry &gt; createNewRegistry()</div><div class="ttdef"><b>Definition</b> <a href="PrometheusServer_8cpp_source.html#l00045">PrometheusServer.cpp:45</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -262,19 +262,19 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::shared_ptr&lt;prometheus::Registry&gt; Registry pointer </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="PrometheusServer_8cpp_source.html#l00048">48</a> of file <a class="el" href="PrometheusServer_8cpp_source.html">PrometheusServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   49</span>{</div>
-<div class="line"><span class="lineno">   50</span>    <span class="keyword">const</span> std::scoped_lock guard(<a class="code hl_variable" href="#a87353b11906b640643ddd0cb84a660df">_guardLock</a>);</div>
-<div class="line"><span class="lineno">   51</span> </div>
-<div class="line"><span class="lineno">   52</span>    <span class="comment">// Create registry</span></div>
-<div class="line"><span class="lineno">   53</span>    <span class="keyword">auto</span> reg = std::make_shared&lt;prometheus::Registry&gt;();</div>
-<div class="line"><span class="lineno">   54</span>    <a class="code hl_variable" href="#a846773b0ed65d899f49002ac12b41cd2">_mainExposer</a>-&gt;RegisterCollectable(reg);</div>
-<div class="line"><span class="lineno">   55</span> </div>
-<div class="line"><span class="lineno">   56</span>    <span class="comment">// Push to vector (At least information registry always exist so back is valid)</span></div>
-<div class="line"><span class="lineno">   57</span>    regId = <a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.back().first + 1;</div>
-<div class="line"><span class="lineno">   58</span>    <a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.emplace_back(<a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.back().first + 1, reg);</div>
-<div class="line"><span class="lineno">   59</span>    <span class="keywordflow">return</span> reg;</div>
-<div class="line"><span class="lineno">   60</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PrometheusServer_8cpp_source.html#l00051">51</a> of file <a class="el" href="PrometheusServer_8cpp_source.html">PrometheusServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   52</span>{</div>
+<div class="line"><span class="lineno">   53</span>    <span class="keyword">const</span> std::scoped_lock guard(<a class="code hl_variable" href="#a87353b11906b640643ddd0cb84a660df">_guardLock</a>);</div>
+<div class="line"><span class="lineno">   54</span> </div>
+<div class="line"><span class="lineno">   55</span>    <span class="comment">// Create registry</span></div>
+<div class="line"><span class="lineno">   56</span>    <span class="keyword">auto</span> reg = std::make_shared&lt;prometheus::Registry&gt;();</div>
+<div class="line"><span class="lineno">   57</span>    <a class="code hl_variable" href="#a846773b0ed65d899f49002ac12b41cd2">_mainExposer</a>-&gt;RegisterCollectable(reg);</div>
+<div class="line"><span class="lineno">   58</span> </div>
+<div class="line"><span class="lineno">   59</span>    <span class="comment">// Push to vector (At least information registry always exist so back is valid)</span></div>
+<div class="line"><span class="lineno">   60</span>    regId = <a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.back().first + 1;</div>
+<div class="line"><span class="lineno">   61</span>    <a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.emplace_back(<a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.back().first + 1, reg);</div>
+<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">return</span> reg;</div>
+<div class="line"><span class="lineno">   63</span>}</div>
 <div class="ttc" id="aclassPrometheusServer_html_a87353b11906b640643ddd0cb84a660df"><div class="ttname"><a href="#a87353b11906b640643ddd0cb84a660df">PrometheusServer::_guardLock</a></div><div class="ttdeci">std::mutex _guardLock</div><div class="ttdoc">Mutex for concurrent add tracker calls.</div><div class="ttdef"><b>Definition</b> <a href="PrometheusServer_8hpp_source.html#l00013">PrometheusServer.hpp:13</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -303,21 +303,20 @@ Here is the caller graph for this function:</div>
 <dd>
 false otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="PrometheusServer_8cpp_source.html#l00062">62</a> of file <a class="el" href="PrometheusServer_8cpp_source.html">PrometheusServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   63</span>{</div>
-<div class="line"><span class="lineno">   64</span>    <span class="keywordflow">if</span> (regId == std::numeric_limits&lt;uint64_t&gt;::max())</div>
-<div class="line"><span class="lineno">   65</span>    {</div>
-<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   67</span>    }</div>
-<div class="line"><span class="lineno">   68</span> </div>
-<div class="line"><span class="lineno">   69</span>    <span class="keyword">const</span> std::scoped_lock guard(<a class="code hl_variable" href="#a87353b11906b640643ddd0cb84a660df">_guardLock</a>);</div>
-<div class="line"><span class="lineno">   70</span> </div>
-<div class="line"><span class="lineno">   71</span>    <a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.erase(std::remove_if(</div>
-<div class="line"><span class="lineno">   72</span>        <a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.begin(), <a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.end(),</div>
-<div class="line"><span class="lineno">   73</span>        [regId](<span class="keyword">const</span> std::pair&lt;uint64_t, std::shared_ptr&lt;prometheus::Registry&gt;&gt; &amp;val) { return regId == val.first; }));</div>
-<div class="line"><span class="lineno">   74</span> </div>
-<div class="line"><span class="lineno">   75</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   76</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PrometheusServer_8cpp_source.html#l00065">65</a> of file <a class="el" href="PrometheusServer_8cpp_source.html">PrometheusServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   66</span>{</div>
+<div class="line"><span class="lineno">   67</span>    <span class="keywordflow">if</span> (regId == std::numeric_limits&lt;uint64_t&gt;::max())</div>
+<div class="line"><span class="lineno">   68</span>    {</div>
+<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   70</span>    }</div>
+<div class="line"><span class="lineno">   71</span> </div>
+<div class="line"><span class="lineno">   72</span>    <span class="keyword">const</span> std::scoped_lock guard(<a class="code hl_variable" href="#a87353b11906b640643ddd0cb84a660df">_guardLock</a>);</div>
+<div class="line"><span class="lineno">   73</span>    std::erase_if(<a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>, [regId](<span class="keyword">const</span> std::pair&lt;uint64_t, std::shared_ptr&lt;prometheus::Registry&gt;&gt; &amp;val) {</div>
+<div class="line"><span class="lineno">   74</span>        <span class="keywordflow">return</span> regId == val.first;</div>
+<div class="line"><span class="lineno">   75</span>    });</div>
+<div class="line"><span class="lineno">   76</span> </div>
+<div class="line"><span class="lineno">   77</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   78</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -343,20 +342,21 @@ false otherwise </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::shared_ptr&lt;prometheus::Registry&gt; Registry pointer if found, nullptr otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="PrometheusServer_8cpp_source.html#l00027">27</a> of file <a class="el" href="PrometheusServer_8cpp_source.html">PrometheusServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   28</span>{</div>
-<div class="line"><span class="lineno">   29</span>    <span class="keyword">const</span> std::scoped_lock guard(<a class="code hl_variable" href="#a87353b11906b640643ddd0cb84a660df">_guardLock</a>);</div>
-<div class="line"><span class="lineno">   30</span> </div>
-<div class="line"><span class="lineno">   31</span>    <span class="keywordflow">if</span> (<span class="keyword">auto</span> iter = std::find_if(<a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.begin(), <a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.end(),</div>
-<div class="line"><span class="lineno">   32</span>                                 [regId](<span class="keyword">const</span> std::pair&lt;uint64_t, std::shared_ptr&lt;prometheus::Registry&gt;&gt; &amp;val) {</div>
-<div class="line"><span class="lineno">   33</span>                                     return regId == val.first;</div>
-<div class="line"><span class="lineno">   34</span>                                 });</div>
-<div class="line"><span class="lineno">   35</span>        iter != <a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.end())</div>
-<div class="line"><span class="lineno">   36</span>    {</div>
-<div class="line"><span class="lineno">   37</span>        <span class="keywordflow">return</span> iter-&gt;second;</div>
-<div class="line"><span class="lineno">   38</span>    }</div>
-<div class="line"><span class="lineno">   39</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">   40</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PrometheusServer_8cpp_source.html#l00029">29</a> of file <a class="el" href="PrometheusServer_8cpp_source.html">PrometheusServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   30</span>{</div>
+<div class="line"><span class="lineno">   31</span>    <span class="keyword">const</span> std::scoped_lock guard(<a class="code hl_variable" href="#a87353b11906b640643ddd0cb84a660df">_guardLock</a>);</div>
+<div class="line"><span class="lineno">   32</span> </div>
+<div class="line"><span class="lineno">   33</span>    <span class="keywordflow">if</span> (<span class="keyword">auto</span> iter =</div>
+<div class="line"><span class="lineno">   34</span>            std::ranges::find_if(<a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>,</div>
+<div class="line"><span class="lineno">   35</span>                                 [regId](<span class="keyword">const</span> std::pair&lt;uint64_t, std::shared_ptr&lt;prometheus::Registry&gt;&gt; &amp;val) {</div>
+<div class="line"><span class="lineno">   36</span>                                     <span class="keywordflow">return</span> regId == val.first;</div>
+<div class="line"><span class="lineno">   37</span>                                 });</div>
+<div class="line"><span class="lineno">   38</span>        iter != <a class="code hl_variable" href="#a0db25b2906a10fd04d29f71041de95cf">_vRegister</a>.end())</div>
+<div class="line"><span class="lineno">   39</span>    {</div>
+<div class="line"><span class="lineno">   40</span>        <span class="keywordflow">return</span> iter-&gt;second;</div>
+<div class="line"><span class="lineno">   41</span>    }</div>
+<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">   43</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -475,7 +475,7 @@ false otherwise </dd></dl>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classPrometheusServer.html">PrometheusServer</a></li>
-    <li class="footer">Generated on Fri Feb 20 2026 08:49:06 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Sun Feb 22 2026 15:02:14 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>

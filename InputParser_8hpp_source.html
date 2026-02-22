@@ -131,7 +131,7 @@ $(function(){initNavTree('InputParser_8hpp_source.html',''); initResizable(true)
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classInputParser.html#a3419884a7b59e5cb5df0fc7588c90e51">   34</a></span>    [[nodiscard]] <span class="keyword">const</span> std::string &amp;<a class="code hl_function" href="classInputParser.html#a3419884a7b59e5cb5df0fc7588c90e51">getCmdOption</a>(<span class="keyword">const</span> std::string &amp;option)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        std::vector&lt;std::string&gt;::const_iterator itr;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        itr = std::find(<a class="code hl_variable" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.begin(), <a class="code hl_variable" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end(), option);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        itr = std::ranges::find(<a class="code hl_variable" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>, option);</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordflow">if</span> (itr != <a class="code hl_variable" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end() &amp;&amp; ++itr != <a class="code hl_variable" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end())</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        {</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            <span class="keywordflow">return</span> *itr;</div>
@@ -167,7 +167,7 @@ $(function(){initNavTree('InputParser_8hpp_source.html',''); initResizable(true)
 <div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classInputParser.html#aea813a8d6ee9ea6d250ab99333316bdf">   77</a></span>    [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classInputParser.html#aea813a8d6ee9ea6d250ab99333316bdf">cmdOptionExists</a>(<span class="keyword">const</span> std::string &amp;option)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordflow">return</span> std::find(<a class="code hl_variable" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.begin(), <a class="code hl_variable" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end(), option) != <a class="code hl_variable" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordflow">return</span> std::ranges::find(<a class="code hl_variable" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>, option) != <a class="code hl_variable" href="classInputParser.html#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end();</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
 </div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>};</div>
@@ -184,7 +184,7 @@ $(function(){initNavTree('InputParser_8hpp_source.html',''); initResizable(true)
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_821002d4f10779a80d4fb17bc32f21f1.html">utils</a></li><li class="navelem"><a class="el" href="InputParser_8hpp.html">InputParser.hpp</a></li>
-    <li class="footer">Generated on Fri Feb 20 2026 08:49:06 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Sun Feb 22 2026 15:02:14 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>

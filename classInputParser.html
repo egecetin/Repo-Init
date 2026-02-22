@@ -213,7 +213,7 @@ false If the provided option is not found </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="InputParser_8hpp_source.html#l00077">77</a> of file <a class="el" href="InputParser_8hpp_source.html">InputParser.hpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   78</span>    {</div>
-<div class="line"><span class="lineno">   79</span>        <span class="keywordflow">return</span> std::find(<a class="code hl_variable" href="#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.begin(), <a class="code hl_variable" href="#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end(), option) != <a class="code hl_variable" href="#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end();</div>
+<div class="line"><span class="lineno">   79</span>        <span class="keywordflow">return</span> std::ranges::find(<a class="code hl_variable" href="#a5fc6fe6b2674296649394a8777a82349">_tokens</a>, option) != <a class="code hl_variable" href="#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end();</div>
 <div class="line"><span class="lineno">   80</span>    }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -261,7 +261,7 @@ Here is the caller graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="InputParser_8hpp_source.html#l00034">34</a> of file <a class="el" href="InputParser_8hpp_source.html">InputParser.hpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   35</span>    {</div>
 <div class="line"><span class="lineno">   36</span>        std::vector&lt;std::string&gt;::const_iterator itr;</div>
-<div class="line"><span class="lineno">   37</span>        itr = std::find(<a class="code hl_variable" href="#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.begin(), <a class="code hl_variable" href="#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end(), option);</div>
+<div class="line"><span class="lineno">   37</span>        itr = std::ranges::find(<a class="code hl_variable" href="#a5fc6fe6b2674296649394a8777a82349">_tokens</a>, option);</div>
 <div class="line"><span class="lineno">   38</span>        <span class="keywordflow">if</span> (itr != <a class="code hl_variable" href="#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end() &amp;&amp; ++itr != <a class="code hl_variable" href="#a5fc6fe6b2674296649394a8777a82349">_tokens</a>.end())</div>
 <div class="line"><span class="lineno">   39</span>        {</div>
 <div class="line"><span class="lineno">   40</span>            <span class="keywordflow">return</span> *itr;</div>
@@ -373,7 +373,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classInputParser.html">InputParser</a></li>
-    <li class="footer">Generated on Fri Feb 20 2026 08:49:06 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Sun Feb 22 2026 15:02:14 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>
