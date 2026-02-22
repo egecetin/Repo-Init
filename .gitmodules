@@ -19,6 +19,3 @@
 [submodule "thirdparty/sentry"]
 	path = thirdparty/sentry
 	url = https://github.com/getsentry/sentry-native.git
-[submodule "thirdparty/rapidjson"]
-	path = thirdparty/rapidjson
-	url = https://github.com/Tencent/rapidjson.git
