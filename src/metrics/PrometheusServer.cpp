@@ -3,6 +3,7 @@
 #include "Version.h"
 
 #include <algorithm>
+
 #include <date/date.h>
 #include <prometheus/info.h>
 
@@ -69,7 +70,7 @@ bool PrometheusServer::deleteRegistry(uint64_t regId)
 	}
 
 	const std::scoped_lock guard(_guardLock);
-	std::ranges::erase_if(_vRegister, [regId](const std::pair<uint64_t, std::shared_ptr<prometheus::Registry>> &val) {
+	std::erase_if(_vRegister, [regId](const std::pair<uint64_t, std::shared_ptr<prometheus::Registry>> &val) {
 		return regId == val.first;
 	});
 
