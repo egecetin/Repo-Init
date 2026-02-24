@@ -126,6 +126,7 @@ jobs:
         include:
           - image: rockylinux10@sha256:3e7fb793635d9ca1e0475f749e4543ba13ec61670d98ff95eec87a934b83c8d2
           - image: ubuntu2404@sha256:0f63b02fe3dcd1a03d299000466713596df974a657005e27cda42155f652134d
+          - image: ubuntu2604@sha256:6d99a760f3d9b222c837cccffe7cc9e8513285dd25e8cc8e00255d4d8575440e
 
     steps:
       - name: Checkout Code
