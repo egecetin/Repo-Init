@@ -10,22 +10,20 @@ using FPTR_MessageCallback = std::function<bool(const std::vector<zmq::message_t
 
 class ZeroMQServer : private ZeroMQ, private ZeroMQMonitor {
   private:
-	// Thread for processing messages
-	std::unique_ptr<std::thread> _serverThread;
-	// Flag to stop processing messages
-	std::atomic_flag _shouldStop{false};
 	// Flag to check if the server is running
 	std::shared_ptr<std::atomic_flag> _checkFlag;
 	// Statistics
 	std::unique_ptr<ZeroMQStats> _stats;
 	// Called after every message function(std::vector<zmq::message_t>) {}
 	FPTR_MessageCallback _m_messageCallback;
+	// Thread for processing messages
+	std::unique_ptr<std::jthread> _serverThread;
 
 	/// Processes new messages
 	void update();
 
 	/// Main thread function
-	void threadFunc() noexcept;
+	void threadFunc(const std::stop_token &stopToken) noexcept;
 
   public:
 	/**

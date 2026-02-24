@@ -613,8 +613,7 @@ bool TelnetServer::initialise(unsigned long listenPort, const std::shared_ptr<st
 		m_stats = std::make_unique<TelnetStats>(reg, listenPort, prependName);
 	}
 
-	m_shouldStop.clear();
-	m_serverThread = std::make_unique<std::thread>(&TelnetServer::threadFunc, this);
+	m_serverThread = std::make_unique<std::jthread>([this](const std::stop_token &sToken) { threadFunc(sToken); });
 
 	m_initialised = true;
 	return true;
@@ -644,10 +643,10 @@ bool TelnetServer::acceptConnection()
 	return true;
 }
 
-void TelnetServer::threadFunc() noexcept
+void TelnetServer::threadFunc(const std::stop_token &stopToken) noexcept
 {
 	spdlog::info("Telnet server started");
-	while (!m_shouldStop._M_i)
+	while (!stopToken.stop_requested())
 	{
 		try
 		{
@@ -745,10 +744,8 @@ void TelnetServer::shutdown()
 	m_listenSocket = INVALID_SOCKET;
 	m_initialised = false;
 
-	m_shouldStop.test_and_set();
-	if (m_serverThread && m_serverThread->joinable())
+	if (m_serverThread)
 	{
-		m_serverThread->join();
 		m_serverThread.reset();
 	}
 }

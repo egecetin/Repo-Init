@@ -14,8 +14,6 @@
  */
 class ProcessMetrics {
   private:
-	std::atomic_flag _shouldStop{false};		  ///< Flag to stop monitoring.
-	std::unique_ptr<std::thread> _thread;		  ///< Thread handler
 	std::shared_ptr<std::atomic_flag> _checkFlag; ///< Runtime check flag
 
 	prometheus::Gauge *_pInitTime;			  ///< Pointer to initialization time gauge
@@ -34,6 +32,8 @@ class ProcessMetrics {
 	clock_t _oldCpuTime{0}; ///< Variable to store the old CPU time
 	struct tms _oldCpu{
 		.tms_utime = 0, .tms_stime = 0, .tms_cutime = 0, .tms_cstime = 0}; ///< Structure to store the old CPU times
+
+	std::unique_ptr<std::jthread> _thread; ///< Thread handler
 
 	/**
 	 * Counts the number of entries in a directory.
@@ -86,8 +86,9 @@ class ProcessMetrics {
 
 	/**
 	 * Main thread function
+	 * @param[in] stopToken jthread stop token
 	 */
-	void threadRunner() noexcept;
+	void threadRunner(const std::stop_token &stopToken) noexcept;
 
   public:
 	/**

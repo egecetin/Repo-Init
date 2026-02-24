@@ -9,8 +9,6 @@
  */
 class Tracer {
   private:
-	std::unique_ptr<std::thread> _thread;
-	std::atomic_flag _shouldStop{false};
 	std::shared_ptr<std::atomic_flag> _checkFlag;
 
 	std::string _serverPath;
@@ -21,6 +19,8 @@ class Tracer {
 	std::string _reportPath;
 	std::unique_ptr<crashpad::CrashpadClient> _clientHandler;
 
+	std::unique_ptr<std::jthread> _thread;
+
 	/**
 	 * Start the crashpad handler process
 	 */
@@ -28,8 +28,9 @@ class Tracer {
 
 	/**
 	 * Thread function to check and restart the crashpad handler process
+	 * @param[in] stopToken jthread stop token
 	 */
-	void threadFunc() const noexcept;
+	void threadFunc(const std::stop_token &stopToken) const noexcept;
 
 	/**
 	 * Check if the given process ID is running

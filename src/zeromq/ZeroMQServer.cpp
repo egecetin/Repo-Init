@@ -47,10 +47,10 @@ void ZeroMQServer::update()
 	}
 }
 
-void ZeroMQServer::threadFunc() noexcept
+void ZeroMQServer::threadFunc(const std::stop_token &stopToken) noexcept
 {
 	spdlog::info("ZeroMQ server started");
-	while (!_shouldStop._M_i)
+	while (!stopToken.stop_requested())
 	{
 		try
 		{
@@ -82,11 +82,9 @@ ZeroMQServer::ZeroMQServer(const std::string &hostAddr, std::shared_ptr<std::ato
 
 bool ZeroMQServer::initialise()
 {
-	_shouldStop.clear();
-
 	if (start())
 	{
-		_serverThread = std::make_unique<std::thread>(&ZeroMQServer::threadFunc, this);
+		_serverThread = std::make_unique<std::jthread>([this](const std::stop_token &sToken) { threadFunc(sToken); });
 		return true;
 	}
 	return false;
@@ -94,10 +92,8 @@ bool ZeroMQServer::initialise()
 
 void ZeroMQServer::shutdown()
 {
-	_shouldStop.test_and_set();
-	if (_serverThread && _serverThread->joinable())
+	if (_serverThread)
 	{
-		_serverThread->join();
 		_serverThread.reset();
 	}
 

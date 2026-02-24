@@ -50,12 +50,12 @@ void Tracer::startHandler()
 		throw std::ios_base::failure("Can't start crash handler");
 	}
 
-	_thread = std::make_unique<std::thread>(&Tracer::threadFunc, this);
+	_thread = std::make_unique<std::jthread>([this](const std::stop_token &sToken) { threadFunc(sToken); });
 }
 
-void Tracer::threadFunc() const noexcept
+void Tracer::threadFunc(const std::stop_token &stopToken) const noexcept
 {
-	while (!_shouldStop._M_i)
+	while (!stopToken.stop_requested())
 	{
 		try
 		{
@@ -185,11 +185,4 @@ Tracer::Tracer(std::shared_ptr<std::atomic_flag> checkFlag, std::string serverPa
 	startHandler();
 }
 
-Tracer::~Tracer()
-{
-	_shouldStop._M_i = true;
-	if (_thread && _thread->joinable())
-	{
-		_thread->join();
-	}
-}
+Tracer::~Tracer() = default;

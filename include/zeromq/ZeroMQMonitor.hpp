@@ -16,11 +16,10 @@
  */
 class ZeroMQMonitor : private zmq::monitor_t {
   private:
-	std::unique_ptr<std::thread> _monitorThread; /**< Thread for monitoring events. */
-	std::atomic_flag _shouldStop{false};		 /**< Flag to stop monitoring. */
-	std::atomic_int _peerCount{0};				 /**< Number of peers connected. */
+	std::atomic_int _peerCount{0};				  /**< Number of peers connected. */
+	std::unique_ptr<std::jthread> _monitorThread; /**< Thread for monitoring events. */
 
-	void threadFunc();
+	void threadFunc(const std::stop_token &stopToken);
 
 	static void on_event(const std::string &messageStr, int level, const char *addr = nullptr);
 
