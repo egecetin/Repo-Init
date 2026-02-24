@@ -78,11 +78,9 @@ class FileMonitor {
 	const void *_userPtr = nullptr;
 
 	/// Thread
-	std::unique_ptr<std::thread> _thread;
-	/// Flag to stop monitoring
-	std::atomic_flag _shouldStop{false};
+	std::unique_ptr<std::jthread> _thread;
 
-	void threadFunc() const noexcept;
+	void threadFunc(const std::stop_token &stopToken) const noexcept;
 
   public:
 	/**
