@@ -1,5 +1,7 @@
 #include "metrics/Status.hpp"
 
+#include <format>
+
 #include <prometheus/counter.h>
 #include <prometheus/gauge.h>
 
@@ -8,22 +10,22 @@ StatusTracker::StatusTracker(const std::shared_ptr<prometheus::Registry> &reg, c
 {
 	// Register values
 	_activeCtr = &prometheus::BuildGauge()
-					  .Name(name + "_active_event_ctr_" + std::to_string(metricID))
+					  .Name(std::format("{}{}{}", name, "_active_event_ctr_", metricID))
 					  .Help("Currently active number of events of " + name)
 					  .Register(*reg)
 					  .Add({});
 	_totalCtr = &prometheus::BuildCounter()
-					 .Name(name + "_total_event_ctr_" + std::to_string(metricID))
+					 .Name(std::format("{}{}{}", name, "_total_event_ctr_", metricID))
 					 .Help("Total occurrences of " + name)
 					 .Register(*reg)
 					 .Add({});
 	_successCtr = &prometheus::BuildCounter()
-					   .Name(name + "_success_event_ctr_" + std::to_string(metricID))
+					   .Name(std::format("{}{}{}", name, "_success_event_ctr_", metricID))
 					   .Help("Successful events of " + name)
 					   .Register(*reg)
 					   .Add({});
 	_failedCtr = &prometheus::BuildCounter()
-					  .Name(name + "_fail_event_ctr_" + std::to_string(metricID))
+					  .Name(std::format("{}{}{}", name, "_fail_event_ctr_", metricID))
 					  .Help("Failed events of " + name)
 					  .Register(*reg)
 					  .Add({});

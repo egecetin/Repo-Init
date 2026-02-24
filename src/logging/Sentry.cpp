@@ -94,10 +94,11 @@ namespace
 			}
 			case AF_PACKET: {
 				std::array<char, MAC_LEN> host{};
-				if (const auto *sock = std::bit_cast<sockaddr_ll *>(ifa->ifa_addr);
-					snprintf(host.data(), MAC_LEN, "%02x:%02x:%02x:%02x:%02x:%02x", sock->sll_addr[0],
-							 sock->sll_addr[1], sock->sll_addr[2], sock->sll_addr[3], sock->sll_addr[4],
-							 sock->sll_addr[5]) > 0)
+				const auto *sock = std::bit_cast<sockaddr_ll *>(ifa->ifa_addr);
+				if (std::format_to_n(host.data(), MAC_LEN, "%02x:%02x:%02x:%02x:%02x:%02x", sock->sll_addr[0],
+									 sock->sll_addr[1], sock->sll_addr[2], sock->sll_addr[3], sock->sll_addr[4],
+									 sock->sll_addr[5])
+						.size > 0)
 				{
 					sentry_value_set_by_key(networkContext, (std::string(ifa->ifa_name) + ".mac").c_str(),
 											sentry_value_new_string(host.data()));

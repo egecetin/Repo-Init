@@ -77,7 +77,7 @@ ZeroMQServer::ZeroMQServer(const std::string &hostAddr, std::shared_ptr<std::ato
 		_stats = std::make_unique<ZeroMQStats>(reg, prependName);
 	}
 
-	startMonitoring(getSocket().get(), "inproc://" + std::to_string(constHasher(hostAddr.c_str())) + ".rep");
+	startMonitoring(getSocket().get(), std::format("{}{}{}", "inproc://", constHasher(hostAddr.c_str()), ".rep"));
 }
 
 bool ZeroMQServer::initialise()
