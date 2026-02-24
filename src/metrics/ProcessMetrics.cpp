@@ -98,9 +98,9 @@ void ProcessMetrics::update()
 	_pFileDescriptorCount->Set(static_cast<double>(getFileDescriptorCount()));
 }
 
-void ProcessMetrics::threadRunner() noexcept
+void ProcessMetrics::threadRunner(std::stop_token stopToken) noexcept
 {
-	while (!_shouldStop._M_i)
+	while (!stopToken.stop_requested())
 	{
 		try
 		{
@@ -149,14 +149,7 @@ ProcessMetrics::ProcessMetrics(std::shared_ptr<std::atomic_flag> checkFlag,
 
 	_pInitTime->SetToCurrentTime();
 
-	_thread = std::make_unique<std::thread>(&ProcessMetrics::threadRunner, this);
+	_thread = std::make_unique<std::jthread>(&ProcessMetrics::threadRunner, this);
 }
 
-ProcessMetrics::~ProcessMetrics()
-{
-	_shouldStop.test_and_set();
-	if (_thread && _thread->joinable())
-	{
-		_thread->join();
-	}
-}
+ProcessMetrics::~ProcessMetrics() = default;

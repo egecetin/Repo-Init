@@ -187,7 +187,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	FPTR_TabCallback m_tabCallback;
 
 	bool acceptConnection();
-	void threadFunc() noexcept;
+	void threadFunc(std::stop_token stopToken) noexcept;
 
 	/// Process new connections and messages
 	void update();
@@ -202,9 +202,8 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	// Statistics
 	std::unique_ptr<TelnetStats> m_stats;
 
-	std::atomic_flag m_shouldStop{false};		   /**< Flag to stop monitoring. */
-	std::unique_ptr<std::thread> m_serverThread;   /**< Thread handler */
 	std::shared_ptr<std::atomic_flag> m_checkFlag; /**< Runtime check flag */
+	std::unique_ptr<std::jthread> m_serverThread;   /**< Thread handler */
 };
 
 /**
