@@ -4,6 +4,7 @@
 
 #include <chrono>
 #include <cstring>
+#include <format>
 #include <ios>
 #include <stdexcept>
 #include <utility>

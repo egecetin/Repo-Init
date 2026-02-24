@@ -1,5 +1,7 @@
 #include "metrics/Performance.hpp"
 
+#include <format>
+
 #include <prometheus/gauge.h>
 #include <prometheus/summary.h>
 

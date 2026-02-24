@@ -2,8 +2,10 @@
 
 #include "utils/ErrorHelpers.hpp"
 
-#include <fcntl.h>
+#include <format>
 #include <iostream>
+
+#include <fcntl.h>
 #include <sys/file.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
