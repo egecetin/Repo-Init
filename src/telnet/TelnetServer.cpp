@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <array>
 #include <ctime>
+#include <format>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
@@ -112,7 +113,7 @@ std::string TelnetSession::getPeerIP() const
 	sockaddr_in client_info{};
 	memset(&client_info, 0, sizeof(client_info));
 	socklen_t addrsize = sizeof(client_info);
-	getpeername(m_socket, reinterpret_cast<sockaddr *>(&client_info), &addrsize);
+	getpeername(m_socket, std::bit_cast<sockaddr *>(&client_info), &addrsize);
 
 	std::array<char, INET_ADDRSTRLEN> ipAddr{};
 	inet_ntop(AF_INET, &client_info.sin_addr, ipAddr.data(), INET_ADDRSTRLEN);
@@ -759,7 +760,7 @@ void TelnetPrintAvailableCommands(const SP_TelnetSession &session)
 	for (const auto &[command, info] : telnetCommands)
 	{
 		std::array<char, BUFSIZ> buffer{'\0'};
-		if (snprintf(buffer.data(), BUFSIZ, "%-25s : %s", command.c_str(), info.c_str()) > 0)
+		if (std::format_to_n(buffer.data(), BUFSIZ, "{:<25} : {}", command, info).size > 0)
 		{
 			session->sendLine(buffer.data());
 		}
@@ -828,10 +829,8 @@ bool TelnetMessageCallback(const SP_TelnetSession &session, const std::string &l
 	case constHasher("status"):
 		for (const auto &[service, statusFlag] : vCheckFlag)
 		{
-			std::ostringstream oss;
-			oss << std::left << std::setfill('.') << std::setw(KEY_WIDTH) << service + " " << std::setw(VAL_WIDTH)
-				<< std::right << (statusFlag->_M_i ? " OK" : " Not Active");
-			session->sendLine(oss.str());
+			session->sendLine(std::format("{:.<{}}{:.>{}} ", service + " ", KEY_WIDTH,
+										  (statusFlag->_M_i ? " OK" : " Not Active"), VAL_WIDTH));
 		}
 		return true;
 	/* ################################################################################### */

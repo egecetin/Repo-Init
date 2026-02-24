@@ -35,7 +35,7 @@ jobs:
 
   memleak:
     runs-on: ubuntu-latest
-    container: egecetinn/ubuntu2204@sha256:591139098db2f60e191b64a8b832668b8eb8ae9980819d5d05d1c2acf39a126f
+    container: egecetinn/ubuntu2404@sha256:0f63b02fe3dcd1a03d299000466713596df974a657005e27cda42155f652134d
     steps:
       - name: Checkout Code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -73,7 +73,7 @@ jobs:
 
   fuzztests:
     runs-on: ubuntu-latest
-    container: egecetinn/ubuntu2204@sha256:591139098db2f60e191b64a8b832668b8eb8ae9980819d5d05d1c2acf39a126f
+    container: egecetinn/ubuntu2404@sha256:0f63b02fe3dcd1a03d299000466713596df974a657005e27cda42155f652134d
     strategy:
       matrix:
         sanitizer: [ASAN, USAN]
@@ -124,9 +124,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: rockylinux9@sha256:be19ccbdbb16b0baec05f0816156c822da13417fe15b99f2dd9e317f1afb85e5
-          - image: ubuntu2204@sha256:591139098db2f60e191b64a8b832668b8eb8ae9980819d5d05d1c2acf39a126f
-          - image: ubuntu2404@sha256:57cb9f268c8a4870c40e88be6b9e86d7f4250ee4ceca4bc6084dd47e7a7f2623
+          - image: rockylinux10@sha256:3e7fb793635d9ca1e0475f749e4543ba13ec61670d98ff95eec87a934b83c8d2
+          - image: ubuntu2404@sha256:0f63b02fe3dcd1a03d299000466713596df974a657005e27cda42155f652134d
 
     steps:
       - name: Checkout Code

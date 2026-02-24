@@ -1,5 +1,7 @@
 #include "metrics/Performance.hpp"
 
+#include <format>
+
 #include <prometheus/gauge.h>
 #include <prometheus/summary.h>
 
@@ -10,17 +12,17 @@ PerformanceTracker::PerformanceTracker(const std::shared_ptr<prometheus::Registr
 									   uint64_t metricID)
 {
 	_perfTiming = &prometheus::BuildSummary()
-					   .Name(name + "_processing_time_" + std::to_string(metricID))
+					   .Name(std::format("{}{}{}", name, "_processing_time_", metricID))
 					   .Help(name + " processing performance")
 					   .Register(*reg)
 					   .Add({}, QUANTILE_DEFAULTS);
 	_maxTiming = &prometheus::BuildGauge()
-					  .Name(name + "_maximum_processing_time_" + std::to_string(metricID))
+					  .Name(std::format("{}{}{}", name, "_maximum_processing_time_", metricID))
 					  .Help("Maximum value of the " + name + " processing performance")
 					  .Register(*reg)
 					  .Add({});
 	_minTiming = &prometheus::BuildGauge()
-					  .Name(name + "_minimum_processing_time_" + std::to_string(metricID))
+					  .Name(std::format("{}{}{}", name, "_minimum_processing_time_", metricID))
 					  .Help("Minimum value of the " + name + " processing performance")
 					  .Register(*reg)
 					  .Add({});

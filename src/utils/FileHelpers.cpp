@@ -2,8 +2,10 @@
 
 #include "utils/ErrorHelpers.hpp"
 
-#include <fcntl.h>
+#include <format>
 #include <iostream>
+
+#include <fcntl.h>
 #include <sys/file.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
@@ -38,7 +40,7 @@ void FileMonitor::threadFunc(const std::stop_token &stopToken) const noexcept
 		ssize_t idx = 0;
 		while (_notifyCallback && idx < nRead)
 		{
-			const auto *event = reinterpret_cast<inotify_event *>(&buffer[static_cast<size_t>(idx)]);
+			const auto *event = std::bit_cast<inotify_event *>(&buffer[static_cast<size_t>(idx)]);
 
 			// Check if file notify type matches
 			if ((event->mask & _notifyEvents) != 0)
