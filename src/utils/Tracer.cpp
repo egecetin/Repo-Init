@@ -53,7 +53,7 @@ void Tracer::startHandler()
 	_thread = std::make_unique<std::jthread>(&Tracer::threadFunc, this);
 }
 
-void Tracer::threadFunc(std::stop_token stopToken) const noexcept
+void Tracer::threadFunc(const std::stop_token &stopToken) const noexcept
 {
 	while (!stopToken.stop_requested())
 	{

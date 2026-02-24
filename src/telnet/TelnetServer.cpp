@@ -643,7 +643,7 @@ bool TelnetServer::acceptConnection()
 	return true;
 }
 
-void TelnetServer::threadFunc(std::stop_token stopToken) noexcept
+void TelnetServer::threadFunc(const std::stop_token &stopToken) noexcept
 {
 	spdlog::info("Telnet server started");
 	while (!stopToken.stop_requested())

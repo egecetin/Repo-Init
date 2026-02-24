@@ -30,7 +30,7 @@ class Tracer {
 	 * Thread function to check and restart the crashpad handler process
 	 * @param[in] stopToken jthread stop token
 	 */
-	void threadFunc(std::stop_token stopToken) const noexcept;
+	void threadFunc(const std::stop_token &stopToken) const noexcept;
 
 	/**
 	 * Check if the given process ID is running
