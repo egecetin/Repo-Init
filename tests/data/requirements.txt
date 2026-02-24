@@ -1,1 +1,2 @@
-pyzmq==25.1.2
+pyzmq==25.1.2 \
+    --hash=sha256:f8429b17cbb746c3e043cb986328da023657e79d5ed258b711c06a70c2ea7537
