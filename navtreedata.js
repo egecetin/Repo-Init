@@ -25,37 +25,6 @@
 var NAVTREE =
 [
   [ "Repo-Init", "index.html", [
-    [ "Repo-Init", "index.html#autotoc_md0", [
-      [ "What is Repo-Init?", "index.html#autotoc_md3", [
-        [ "⚡ Modern C++ Application Template with Enterprise-Grade Features ⚡", "index.html#autotoc_md1", null ],
-        [ "Key Features at a Glance", "index.html#autotoc_md4", null ]
-      ] ],
-      [ "Table of Contents", "index.html#autotoc_md7", null ],
-      [ "CMake Modules", "index.html#autotoc_md8", null ],
-      [ "Utility Scripts", "index.html#autotoc_md10", null ],
-      [ "Dependencies", "index.html#autotoc_md12", [
-        [ "Core Runtime Libraries", "index.html#autotoc_md13", null ]
-      ] ],
-      [ "", "index.html#autotoc_md14", null ],
-      [ "Testing Setup", "index.html#autotoc_md15", [
-        [ "Python Test Dependencies", "index.html#autotoc_md16", null ]
-      ] ],
-      [ "Build Targets", "index.html#autotoc_md18", [
-        [ "One Command, Multiple Possibilities", "index.html#autotoc_md19", null ]
-      ] ],
-      [ "", "index.html#autotoc_md20", [
-        [ "Build Options", "index.html#autotoc_md21", [
-          [ "🧪 Testing & Quality Assurance", "index.html#autotoc_md22", null ],
-          [ "🚀 Release & Distribution", "index.html#autotoc_md23", null ]
-        ] ],
-        [ "💡 Quick Examples", "index.html#autotoc_md25", null ],
-        [ "⚡ Pro Tips", "index.html#autotoc_md26", null ]
-      ] ],
-      [ "Grafana Integration", "index.html#autotoc_md28", [
-        [ "Real-Time Monitoring Made Beautiful", "index.html#autotoc_md29", null ]
-      ] ],
-      [ "Contributing & Support", "index.html#autotoc_md31", null ]
-    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -89,9 +58,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "BaseServerStats_8cpp.html",
-"classMainLogger.html",
-"classZeroMQServer.html#a2fd1a2cc1f77ec7a6ce5ae47ac4a7de3"
+"classMainLogger.html#a42eca219d4e6aa6bb93fb22a55f86a3f",
+"classZeroMQServer.html#a70e7e7c83692da0a3626f23fa9625578"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'click to disable panel synchronization';
+var SYNCOFFMSG = 'click to enable panel synchronization';

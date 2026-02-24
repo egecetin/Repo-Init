@@ -1,0 +1,11 @@
+<map id="FileMonitor::FileMonitor" name="FileMonitor::FileMonitor">
+<area shape="rect" id="Node000001" title="Move constructor." alt="" coords="5,5,173,33"/>
+<area shape="rect" id="Node000002" href="$classFileMonitor.html#a74365c025f84c14d946dac925b46fb7a" title=" " alt="" coords="221,5,388,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,16,205,16,205,22,173,22"/>
+<area shape="rect" id="Node000003" href="$classFileMonitor.html#a2e96b1420a6286a5e025d028fe149e07" title=" " alt="" coords="436,5,602,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="388,16,420,16,420,22,388,22"/>
+<area shape="rect" id="Node000004" href="$ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title=" " alt="" coords="650,5,762,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="603,16,635,16,635,22,603,22"/>
+<area shape="rect" id="Node000005" href="$ErrorHelpers_8cpp.html#a21f59d386bf0b5e382221c9add0e2327" title=" " alt="" coords="810,5,896,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="762,16,794,16,794,22,762,22"/>
+</map>

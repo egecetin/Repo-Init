@@ -1,5 +1,13 @@
 <map id="ZeroMQMonitor::startMonitoring" name="ZeroMQMonitor::startMonitoring">
-<area shape="rect" id="Node000001" title=" " alt="" coords="253,5,472,33"/>
-<area shape="rect" id="Node000002" href="$classZeroMQServer.html#a951b371ad28eba4287ef1ac23ad52f29" title=" " alt="" coords="5,5,205,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="237,22,205,22,205,16,237,16"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="500,84,719,112"/>
+<area shape="rect" id="Node000002" href="$classZeroMQServer.html#a951b371ad28eba4287ef1ac23ad52f29" title=" " alt="" coords="253,84,452,112"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="484,100,452,100,452,95,484,95"/>
+<area shape="rect" id="Node000003" href="$classZeroMQServer.html#af0a9c49f0f78935e4a31d05fd350ea8c" title="Move assignment operator." alt="" coords="18,5,192,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="298,81,204,48,162,36,163,31,205,43,299,76"/>
+<area shape="rect" id="Node000004" href="$classZeroMQServer.html#a2fd1a2cc1f77ec7a6ce5ae47ac4a7de3" title="Copy assignment operator." alt="" coords="18,57,192,85"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="237,88,192,83,193,78,238,83"/>
+<area shape="rect" id="Node000005" href="$classZeroMQServer.html#a75efe2568ba31f7ab243e107be22d10f" title="Copy constructor." alt="" coords="5,109,205,137"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="237,112,205,116,205,110,237,107"/>
+<area shape="rect" id="Node000006" href="$classZeroMQServer.html#a95b71dda61f87e67fa1c1309bddf00b3" title="Move constructor." alt="" coords="5,161,205,189"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="299,120,205,151,163,163,161,158,204,146,297,115"/>
 </map>

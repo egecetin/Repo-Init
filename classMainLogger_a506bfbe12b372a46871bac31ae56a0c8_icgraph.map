@@ -1,0 +1,11 @@
+<map id="MainLogger::MainLogger" name="MainLogger::MainLogger">
+<area shape="rect" id="Node000001" title=" " alt="" coords="225,84,396,112"/>
+<area shape="rect" id="Node000002" href="$classMainLogger.html#acdedc3e6472dc7cc9974ff7b24e31e4e" title="Copy constructor." alt="" coords="5,5,177,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="260,80,176,48,139,36,141,31,178,43,261,75"/>
+<area shape="rect" id="Node000003" href="$classMainLogger.html#ade0742356012fad4e40c3c6379601a18" title="Move constructor." alt="" coords="5,57,177,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="209,88,177,84,178,79,210,83"/>
+<area shape="rect" id="Node000004" href="$classMainLogger.html#a1b1a5afe10760a6d57f19d9febccb5a1" title="Move assignment operator." alt="" coords="11,109,171,137"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="210,112,172,117,171,111,209,107"/>
+<area shape="rect" id="Node000005" href="$classMainLogger.html#a20738dd01a446bea4e117192ced87224" title="Copy assignment operator." alt="" coords="11,161,171,189"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="260,120,178,151,141,163,139,158,176,146,258,115"/>
+</map>

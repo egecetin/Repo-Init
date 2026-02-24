@@ -1,5 +1,13 @@
 <map id="HTTP::writeDataCallback" name="HTTP::writeDataCallback">
-<area shape="rect" id="Node000001" title=" " alt="" coords="149,5,320,33"/>
-<area shape="rect" id="Node000002" href="$classHTTP.html#a3e1bb11afeeb54bc5e9221a270172a14" title=" " alt="" coords="5,5,101,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,22,101,22,101,16,133,16"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="319,84,490,112"/>
+<area shape="rect" id="Node000002" href="$classHTTP.html#a3e1bb11afeeb54bc5e9221a270172a14" title=" " alt="" coords="176,84,271,112"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="303,100,272,100,272,95,303,95"/>
+<area shape="rect" id="Node000003" href="$classHTTP.html#a516781f109229d6652dbdda339ef45fe" title="Copy constructor." alt="" coords="19,5,114,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="183,78,126,48,100,36,103,31,129,43,185,74"/>
+<area shape="rect" id="Node000004" href="$classHTTP.html#a9294eff1b6f07d7b0e6b5de47fe87770" title="Move constructor." alt="" coords="19,57,114,85"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="160,90,114,82,115,77,161,85"/>
+<area shape="rect" id="Node000005" href="$classHTTP.html#aada29c3dba1d71d0cafb61e3a2a15813" title="Move assignment operator." alt="" coords="5,109,128,137"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="161,111,128,116,128,111,160,105"/>
+<area shape="rect" id="Node000006" href="$classHTTP.html#a41e8482427a90301a00aee3b085b653e" title="Copy assignment operator." alt="" coords="5,161,128,189"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="184,122,129,151,102,163,100,159,126,146,182,117"/>
 </map>

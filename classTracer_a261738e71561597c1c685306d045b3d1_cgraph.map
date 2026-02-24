@@ -1,0 +1,19 @@
+<map id="Tracer::operator=" name="Tracer::operator=">
+<area shape="rect" id="Node000001" title="Copy assignment operator." alt="" coords="5,57,132,85"/>
+<area shape="rect" id="Node000002" href="$classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="180,57,283,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,68,164,68,164,74,132,74"/>
+<area shape="rect" id="Node000003" href="$classTracer.html#a45e5efd9d9aa56696931411cd7e0c47e" title=" " alt="" coords="331,5,539,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="283,55,362,35,364,40,284,61"/>
+<area shape="rect" id="Node000004" href="$classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title=" " alt="" coords="340,57,530,85"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="283,68,325,68,325,74,283,74"/>
+<area shape="rect" id="Node000005" href="$classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="364,109,506,137"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="284,82,364,102,362,107,283,87"/>
+<area shape="rect" id="Node000006" href="$classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="587,109,722,137"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="507,120,572,120,572,126,507,126"/>
+<area shape="rect" id="Node000007" href="$classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="770,109,894,137"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="722,120,754,120,754,126,722,126"/>
+<area shape="rect" id="Node000008" href="$classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="952,83,1131,110"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="894,113,937,107,937,112,895,118"/>
+<area shape="rect" id="Node000009" href="$classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="942,135,1141,162"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="895,128,927,132,926,137,894,133"/>
+</map>

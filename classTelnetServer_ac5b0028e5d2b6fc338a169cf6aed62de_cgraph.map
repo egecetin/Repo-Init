@@ -1,0 +1,7 @@
+<map id="TelnetServer::operator=" name="TelnetServer::operator=">
+<area shape="rect" id="Node000001" title="Move assignment operator." alt="" coords="5,32,170,60"/>
+<area shape="rect" id="Node000002" href="$classTelnetServer.html#a05d05e5edd6eb1aa8de3a798ec9fb6fc" title=" " alt="" coords="218,5,403,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,33,202,29,202,35,171,39"/>
+<area shape="rect" id="Node000003" href="$classTelnetServer.html#a10b690736e1502269a547af26d0aa07b" title="Constructor for server." alt="" coords="221,57,400,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="170,53,205,57,205,62,170,58"/>
+</map>

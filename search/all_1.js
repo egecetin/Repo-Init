@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['a_20glance_20strong_0',['&lt;strong&gt;Key Features at a Glance&lt;/strong&gt;',['../index.html#autotoc_md4',1,'']]],
+  ['a_20glance_20strong_0',['&lt;strong&gt;Key Features at a Glance&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md4',1,'']]],
   ['acceptconnection_1',['acceptConnection',['../classTelnetServer.html#a14a98513c8caf58a0bc5f78fc3f1b141',1,'TelnetServer']]],
   ['acceptedconnectionctr_2',['acceptedConnectionCtr',['../structTelnetServerStats.html#aea51daed077635aebb58e9ea6f18c653',1,'TelnetServerStats']]],
   ['activeconnectionctr_3',['activeConnectionCtr',['../structTelnetServerStats.html#a70d746afee691843bd5d1839bb33d3fa',1,'TelnetServerStats']]],
@@ -42,10 +42,10 @@ var searchData=
   ['ansi_5fstrikethrough_5fon_39',['ANSI_STRIKETHROUGH_ON',['../TelnetServer_8cpp.html#a516b7711fa333271d7e06cd3f3083b29',1,'TelnetServer.cpp']]],
   ['ansi_5funderline_5foff_40',['ANSI_UNDERLINE_OFF',['../TelnetServer_8cpp.html#a022d2f36d9280f394aafba17cb817349',1,'TelnetServer.cpp']]],
   ['ansi_5funderline_5fon_41',['ANSI_UNDERLINE_ON',['../TelnetServer_8cpp.html#a715f10d384078acee39f74c4bd0ef6f9',1,'TelnetServer.cpp']]],
-  ['application_20template_20with_20enterprise_20grade_20features_20strong_20⚡_42',['⚡ &lt;strong&gt;Modern C++ Application Template with Enterprise-Grade Features&lt;/strong&gt; ⚡',['../index.html#autotoc_md1',1,'']]],
+  ['application_20template_20with_20enterprise_20grade_20features_20strong_20⚡_42',['⚡ &lt;strong&gt;Modern C++ Application Template with Enterprise-Grade Features&lt;/strong&gt; ⚡',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md1',1,'']]],
   ['ascii_5flf_43',['ASCII_LF',['../TelnetServer_8cpp.html#ac90f88961d4c101d6e0bde4569b3fc33',1,'TelnetServer.cpp']]],
   ['ascii_5fnbsp_44',['ASCII_NBSP',['../TelnetServer_8cpp.html#ae9c933e10aca3082b149138f019718bc',1,'TelnetServer.cpp']]],
   ['ascii_5fnull_45',['ASCII_NULL',['../TelnetServer_8cpp.html#a50977d3230b68dc02c70063d5db25753',1,'TelnetServer.cpp']]],
-  ['assurance_20strong_46',['🧪 &lt;strong&gt;Testing &amp; Quality Assurance&lt;/strong&gt;',['../index.html#autotoc_md22',1,'']]],
-  ['at_20a_20glance_20strong_47',['&lt;strong&gt;Key Features at a Glance&lt;/strong&gt;',['../index.html#autotoc_md4',1,'']]]
+  ['assurance_20strong_46',['🧪 &lt;strong&gt;Testing &amp; Quality Assurance&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md22',1,'']]],
+  ['at_20a_20glance_20strong_47',['&lt;strong&gt;Key Features at a Glance&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md4',1,'']]]
 ];

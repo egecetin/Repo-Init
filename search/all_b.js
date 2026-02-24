@@ -2,7 +2,7 @@ var searchData=
 [
   ['lastseentime_0',['lastSeenTime',['../classTelnetSession.html#a3d4d56c64527b1f3320f1d0ca754845c',1,'TelnetSession']]],
   ['level_1',['level',['../structspdlog_1_1sinks_1_1loki__api__sink_1_1logInfo__t.html#a57437b6c9d659c12b99a62ae7b371a10',1,'spdlog::sinks::loki_api_sink::logInfo_t']]],
-  ['libraries_20strong_2',['&lt;strong&gt;Core Runtime Libraries&lt;/strong&gt;',['../index.html#autotoc_md13',1,'']]],
+  ['libraries_20strong_2',['&lt;strong&gt;Core Runtime Libraries&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md13',1,'']]],
   ['load_3',['load',['../classConfigParser.html#ad646c0cf5c0b0ca090b6b0ac176c6b97',1,'ConfigParser']]],
   ['log_5ffilter_5fsecs_4',['LOG_FILTER_SECS',['../Logger_8cpp.html#a2ef4a7f5319495a657d254a5e5ead3bf',1,'Logger.cpp']]],
   ['log_5fflush_5fsecs_5',['LOG_FLUSH_SECS',['../Logger_8cpp.html#ae48a51b4c20e7277e6f72ef20d17426d',1,'Logger.cpp']]],
@@ -14,6 +14,8 @@ var searchData=
   ['loki_2ecpp_11',['Loki.cpp',['../Loki_8cpp.html',1,'']]],
   ['loki_2ehpp_12',['Loki.hpp',['../Loki_8hpp.html',1,'']]],
   ['loki_5fapi_5fsink_13',['loki_api_sink',['../classspdlog_1_1sinks_1_1loki__api__sink.html',1,'spdlog::sinks::loki_api_sink&lt; Mutex &gt;'],['../classspdlog_1_1sinks_1_1loki__api__sink.html#ad41002727c3101c6069dbbe333456b11',1,'spdlog::sinks::loki_api_sink::loki_api_sink()']]],
-  ['loki_5fapi_5fsink_5fmt_14',['loki_api_sink_mt',['../namespacespdlog_1_1sinks.html#a36c6cddc6f7084ea0572907631323a58',1,'spdlog::sinks']]],
-  ['loki_5fapi_5fsink_5fst_15',['loki_api_sink_st',['../namespacespdlog_1_1sinks.html#a7ec7bcb8b8b8d148a2d8f1b75017288a',1,'spdlog::sinks']]]
+  ['loki_5fapi_5fsink_3c_20details_3a_3anull_5fmutex_20_3e_14',['loki_api_sink&lt; details::null_mutex &gt;',['../classspdlog_1_1sinks_1_1loki__api__sink.html',1,'spdlog::sinks']]],
+  ['loki_5fapi_5fsink_3c_20std_3a_3amutex_20_3e_15',['loki_api_sink&lt; std::mutex &gt;',['../classspdlog_1_1sinks_1_1loki__api__sink.html',1,'spdlog::sinks']]],
+  ['loki_5fapi_5fsink_5fmt_16',['loki_api_sink_mt',['../namespacespdlog_1_1sinks.html#a36c6cddc6f7084ea0572907631323a58',1,'spdlog::sinks']]],
+  ['loki_5fapi_5fsink_5fst_17',['loki_api_sink_st',['../namespacespdlog_1_1sinks.html#a7ec7bcb8b8b8d148a2d8f1b75017288a',1,'spdlog::sinks']]]
 ];

@@ -1,0 +1,19 @@
+<map id="Tracer::Tracer" name="Tracer::Tracer">
+<area shape="rect" id="Node000001" title="Move constructor." alt="" coords="5,57,109,85"/>
+<area shape="rect" id="Node000002" href="$classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="157,57,260,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,68,141,68,141,74,109,74"/>
+<area shape="rect" id="Node000003" href="$classTracer.html#a45e5efd9d9aa56696931411cd7e0c47e" title=" " alt="" coords="308,5,516,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="260,55,339,35,341,40,261,61"/>
+<area shape="rect" id="Node000004" href="$classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title=" " alt="" coords="317,57,507,85"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="260,68,302,68,302,74,260,74"/>
+<area shape="rect" id="Node000005" href="$classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="341,109,483,137"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="261,82,341,102,339,107,260,87"/>
+<area shape="rect" id="Node000006" href="$classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="564,109,699,137"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="484,120,549,120,549,126,484,126"/>
+<area shape="rect" id="Node000007" href="$classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="747,109,871,137"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="699,120,731,120,731,126,699,126"/>
+<area shape="rect" id="Node000008" href="$classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="930,83,1108,110"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="871,113,914,107,914,112,872,118"/>
+<area shape="rect" id="Node000009" href="$classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="919,135,1118,162"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="872,128,904,132,903,137,871,133"/>
+</map>

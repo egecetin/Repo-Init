@@ -1,0 +1,21 @@
+<map id="ZeroMQ::ZeroMQ" name="ZeroMQ::ZeroMQ">
+<area shape="rect" id="Node000001" title=" " alt="" coords="500,109,625,137"/>
+<area shape="rect" id="Node000002" href="$classZeroMQ.html#a30cd70998c9580649a0713b16f32994b" title="Move assignment operator." alt="" coords="284,5,421,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="532,102,495,74,451,48,418,36,420,31,453,43,498,69,535,97"/>
+<area shape="rect" id="Node000003" href="$classZeroMQ.html#a64e95c904c238a4f5ca1ba15e3f3e804" title="Copy assignment operator." alt="" coords="284,57,421,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="488,108,411,88,412,83,490,102"/>
+<area shape="rect" id="Node000004" href="$classZeroMQ.html#a03886245e5bd9bff77a35bc5fa1254f7" title="Copy constructor." alt="" coords="290,109,415,137"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="484,126,416,126,416,120,484,120"/>
+<area shape="rect" id="Node000005" href="$classZeroMQ.html#a9a0f3a644b2578e9ba0a36bf1923f904" title="Move constructor." alt="" coords="290,161,415,189"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="490,144,412,163,411,158,488,139"/>
+<area shape="rect" id="Node000006" href="$classZeroMQServer.html#a951b371ad28eba4287ef1ac23ad52f29" title=" " alt="" coords="253,213,452,241"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="535,149,498,177,453,203,420,215,418,210,451,198,495,173,532,145"/>
+<area shape="rect" id="Node000007" href="$classZeroMQServer.html#af0a9c49f0f78935e4a31d05fd350ea8c" title="Move assignment operator." alt="" coords="18,135,192,162"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="274,211,252,203,204,178,167,165,169,160,206,173,254,198,276,206"/>
+<area shape="rect" id="Node000008" href="$classZeroMQServer.html#a2fd1a2cc1f77ec7a6ce5ae47ac4a7de3" title="Copy assignment operator." alt="" coords="18,187,192,214"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="237,217,192,213,193,207,238,212"/>
+<area shape="rect" id="Node000009" href="$classZeroMQServer.html#a75efe2568ba31f7ab243e107be22d10f" title="Copy constructor." alt="" coords="5,239,205,266"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="237,242,205,245,205,240,237,236"/>
+<area shape="rect" id="Node000010" href="$classZeroMQServer.html#a95b71dda61f87e67fa1c1309bddf00b3" title="Move constructor." alt="" coords="5,291,205,318"/>
+<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="299,249,205,280,163,293,161,288,204,275,297,244"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="RawSocket::RawSocket" name="RawSocket::RawSocket">
+<area shape="rect" id="Node000001" title="Move constructor." alt="" coords="5,5,163,33"/>
+<area shape="rect" id="Node000002" href="$classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d" title=" " alt="" coords="211,5,368,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,16,195,16,195,22,163,22"/>
+<area shape="rect" id="Node000003" href="$ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title=" " alt="" coords="575,5,687,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="368,16,560,16,560,22,368,22"/>
+<area shape="rect" id="Node000005" href="$classRawSocket.html#a7a92440dda76b4d383fc6fb488e436af" title=" " alt="" coords="416,31,527,58"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="369,27,401,32,400,37,368,33"/>
+<area shape="rect" id="Node000004" href="$ErrorHelpers_8cpp.html#a21f59d386bf0b5e382221c9add0e2327" title=" " alt="" coords="735,5,821,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="687,16,719,16,719,22,687,22"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="527,33,560,28,561,33,528,38"/>
+</map>

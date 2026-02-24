@@ -1,5 +1,19 @@
 <map id="Tracer::checkPidIsRunning" name="Tracer::checkPidIsRunning">
-<area shape="rect" id="Node000001" title=" " alt="" coords="178,5,356,33"/>
-<area shape="rect" id="Node000002" href="$classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="5,5,130,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,22,130,22,130,16,163,16"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="876,84,1054,112"/>
+<area shape="rect" id="Node000002" href="$classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="704,84,828,112"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="861,100,829,100,829,95,861,95"/>
+<area shape="rect" id="Node000003" href="$classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="521,84,656,112"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="688,100,656,100,656,95,688,95"/>
+<area shape="rect" id="Node000004" href="$classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="331,84,473,112"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="506,100,473,100,473,95,506,95"/>
+<area shape="rect" id="Node000005" href="$classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="180,84,283,112"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="315,100,283,100,283,95,315,95"/>
+<area shape="rect" id="Node000006" href="$classTracer.html#a1438f66422a2685b45bbc63486aa49d5" title="Move assignment operator." alt="" coords="5,5,132,33"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="189,78,131,48,104,36,106,31,133,43,192,74"/>
+<area shape="rect" id="Node000007" href="$classTracer.html#a261738e71561597c1c685306d045b3d1" title="Copy assignment operator." alt="" coords="5,57,132,85"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="164,90,132,84,132,79,165,84"/>
+<area shape="rect" id="Node000008" href="$classTracer.html#a566dddc062ed6e9cce4dfc7c71eebe97" title="Copy constructor." alt="" coords="17,109,120,137"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="165,111,121,118,120,112,164,106"/>
+<area shape="rect" id="Node000009" href="$classTracer.html#a4b0800fcb9fbe6a1379a203ed57e88d9" title="Move constructor." alt="" coords="17,161,120,189"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="191,122,133,151,105,163,103,158,131,146,189,117"/>
 </map>

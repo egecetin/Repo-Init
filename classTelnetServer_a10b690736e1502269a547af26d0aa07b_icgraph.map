@@ -1,0 +1,11 @@
+<map id="TelnetServer::TelnetServer" name="TelnetServer::TelnetServer">
+<area shape="rect" id="Node000001" title="Constructor for server." alt="" coords="233,84,412,112"/>
+<area shape="rect" id="Node000002" href="$classTelnetServer.html#ac5b0028e5d2b6fc338a169cf6aed62de" title="Move assignment operator." alt="" coords="13,5,177,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="270,80,184,48,146,36,147,31,186,43,272,75"/>
+<area shape="rect" id="Node000003" href="$classTelnetServer.html#aec4ee309d7b3a942590fd20a0460c6ac" title="Copy assignment operator." alt="" coords="13,57,177,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="217,88,177,83,178,78,218,83"/>
+<area shape="rect" id="Node000004" href="$classTelnetServer.html#ad07652132cb9c57a2c82ebb7deeb5053" title="Copy constructor." alt="" coords="5,109,185,137"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="218,112,186,116,185,110,217,107"/>
+<area shape="rect" id="Node000005" href="$classTelnetServer.html#a9ee56e57df9ac1b0b891944f4f2296fc" title="Move constructor." alt="" coords="5,161,185,189"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="271,120,186,151,147,163,145,158,184,146,269,115"/>
+</map>

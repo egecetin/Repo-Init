@@ -1,0 +1,11 @@
+<map id="FileMonitor::operator=" name="FileMonitor::operator=">
+<area shape="rect" id="Node000001" title="Copy assignment operator." alt="" coords="5,5,164,33"/>
+<area shape="rect" id="Node000002" href="$classFileMonitor.html#a74365c025f84c14d946dac925b46fb7a" title=" " alt="" coords="212,5,379,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,16,196,16,196,22,164,22"/>
+<area shape="rect" id="Node000003" href="$classFileMonitor.html#a2e96b1420a6286a5e025d028fe149e07" title=" " alt="" coords="427,5,593,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="379,16,411,16,411,22,379,22"/>
+<area shape="rect" id="Node000004" href="$ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title=" " alt="" coords="641,5,753,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="594,16,626,16,626,22,594,22"/>
+<area shape="rect" id="Node000005" href="$ErrorHelpers_8cpp.html#a21f59d386bf0b5e382221c9add0e2327" title=" " alt="" coords="801,5,887,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="753,16,785,16,785,22,753,22"/>
+</map>

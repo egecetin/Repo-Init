@@ -2,6 +2,10 @@ var hierarchy =
 [
     [ "ProcessMetrics::_oldCpu", "structProcessMetrics_1_1__oldCpu.html", null ],
     [ "base_sink", null, [
+      [ "spdlog::sinks::loki_api_sink< std::mutex >", "classspdlog_1_1sinks_1_1loki__api__sink.html", null ],
+      [ "spdlog::sinks::loki_api_sink< details::null_mutex >", "classspdlog_1_1sinks_1_1loki__api__sink.html", null ],
+      [ "spdlog::sinks::sentry_api_sink< std::mutex >", "classspdlog_1_1sinks_1_1sentry__api__sink.html", null ],
+      [ "spdlog::sinks::sentry_api_sink< details::null_mutex >", "classspdlog_1_1sinks_1_1sentry__api__sink.html", null ],
       [ "spdlog::sinks::loki_api_sink< Mutex >", "classspdlog_1_1sinks_1_1loki__api__sink.html", null ],
       [ "spdlog::sinks::sentry_api_sink< Mutex >", "classspdlog_1_1sinks_1_1sentry__api__sink.html", null ]
     ] ],

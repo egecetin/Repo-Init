@@ -1,18 +1,34 @@
 <map id="checkError" name="checkError">
-<area shape="rect" id="Node000001" title=" " alt="" coords="603,107,690,134"/>
-<area shape="rect" id="Node000002" href="$ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title=" " alt="" coords="444,107,555,134"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="588,123,555,123,555,118,588,118"/>
-<area shape="rect" id="Node000003" href="$classRawSocket.html#a7a92440dda76b4d383fc6fb488e436af" title=" " alt="" coords="253,5,364,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="467,99,395,54,354,36,356,31,397,49,469,95"/>
-<area shape="rect" id="Node000004" href="$classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d" title=" " alt="" coords="10,31,168,58"/>
-<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="428,105,395,98,167,58,168,53,397,93,430,100"/>
-<area shape="rect" id="Node000005" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="283,107,334,134"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="428,123,334,123,334,118,428,118"/>
-<area shape="rect" id="Node000006" href="$classFileMonitor.html#a2e96b1420a6286a5e025d028fe149e07" title=" " alt="" coords="225,159,392,186"/>
-<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="432,142,363,161,361,156,431,136"/>
-<area shape="rect" id="Node000008" href="$classFileMonitor.html#a9c8609a4e2fe6851b0770e8791d68dba" title=" " alt="" coords="221,211,396,238"/>
-<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="473,147,438,174,397,200,368,213,365,208,395,195,435,170,470,143"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="238,30,169,38,168,33,237,25"/>
-<area shape="rect" id="Node000007" href="$classFileMonitor.html#a74365c025f84c14d946dac925b46fb7a" title=" " alt="" coords="5,159,173,186"/>
-<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="210,175,173,175,173,170,210,170"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="819,211,905,238"/>
+<area shape="rect" id="Node000002" href="$ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title=" " alt="" coords="659,211,771,238"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="803,227,771,227,771,222,803,222"/>
+<area shape="rect" id="Node000003" href="$classRawSocket.html#a7a92440dda76b4d383fc6fb488e436af" title=" " alt="" coords="468,109,579,137"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="682,203,610,158,569,140,571,135,613,153,685,199"/>
+<area shape="rect" id="Node000004" href="$classRawSocket.html#a1a1f22c977bf55bd27b329646ef1840d" title=" " alt="" coords="226,109,383,137"/>
+<area shape="poly" id="edge9_Node000002_Node000004" title=" " alt="" coords="644,210,363,140,365,135,645,205"/>
+<area shape="rect" id="Node000009" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="498,211,549,238"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="644,227,550,227,550,222,644,222"/>
+<area shape="rect" id="Node000010" href="$classFileMonitor.html#a2e96b1420a6286a5e025d028fe149e07" title=" " alt="" coords="440,263,607,290"/>
+<area shape="poly" id="edge10_Node000002_Node000010" title=" " alt="" coords="647,246,578,265,577,260,646,240"/>
+<area shape="rect" id="Node000016" href="$classFileMonitor.html#a9c8609a4e2fe6851b0770e8791d68dba" title=" " alt="" coords="436,315,611,342"/>
+<area shape="poly" id="edge16_Node000002_Node000016" title=" " alt="" coords="689,251,654,278,613,304,583,317,581,312,610,299,651,274,685,247"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="453,126,384,126,384,120,453,120"/>
+<area shape="rect" id="Node000005" href="$classRawSocket.html#a8bc7a48bb2e23752573befda9a8f82e3" title="Move assignment operator." alt="" coords="12,5,166,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="268,103,223,75,172,48,140,36,142,31,174,43,226,70,271,98"/>
+<area shape="rect" id="Node000006" href="$classRawSocket.html#a1ccabe45066fade230c52805e65a151f" title="Copy assignment operator." alt="" coords="12,57,166,85"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="228,108,149,88,150,83,230,102"/>
+<area shape="rect" id="Node000007" href="$classRawSocket.html#aedb0c47dc4c6f83606b8960698d26b0a" title="Copy constructor." alt="" coords="10,109,168,137"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="210,126,168,126,168,120,210,120"/>
+<area shape="rect" id="Node000008" href="$classRawSocket.html#a67beb6975831cc836a11c75629bc04ff" title="Move constructor." alt="" coords="10,161,168,189"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="230,144,150,163,149,158,228,139"/>
+<area shape="rect" id="Node000011" href="$classFileMonitor.html#a74365c025f84c14d946dac925b46fb7a" title=" " alt="" coords="221,265,388,293"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="426,280,388,281,388,275,425,275"/>
+<area shape="rect" id="Node000012" href="$classFileMonitor.html#a0779b7ddf8cdb69b5b863b94646951fe" title="Copy constructor." alt="" coords="5,213,173,241"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="228,264,149,244,150,239,230,258"/>
+<area shape="rect" id="Node000013" href="$classFileMonitor.html#a945e293309f5bc1599fc08f00c3c8321" title="Move constructor." alt="" coords="5,265,173,293"/>
+<area shape="poly" id="edge13_Node000011_Node000013" title=" " alt="" coords="205,282,173,282,173,276,205,276"/>
+<area shape="rect" id="Node000014" href="$classFileMonitor.html#ada000e36ede40313c51beaea74bde032" title="Move assignment operator." alt="" coords="10,317,168,345"/>
+<area shape="poly" id="edge14_Node000011_Node000014" title=" " alt="" coords="230,300,150,319,149,314,228,295"/>
+<area shape="rect" id="Node000015" href="$classFileMonitor.html#abd57637370a63ae283b9e08b10dd51a1" title="Copy assignment operator." alt="" coords="10,369,168,397"/>
+<area shape="poly" id="edge15_Node000011_Node000015" title=" " alt="" coords="271,304,226,332,174,359,142,371,140,366,172,354,223,327,268,300"/>
 </map>

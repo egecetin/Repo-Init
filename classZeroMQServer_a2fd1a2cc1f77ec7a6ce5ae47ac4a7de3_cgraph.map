@@ -1,0 +1,18 @@
+<map id="ZeroMQServer::operator=" name="ZeroMQServer::operator=">
+<area shape="rect" id="Node000001" title="Copy assignment operator." alt="" coords="5,108,180,136"/>
+<area shape="rect" id="Node000002" href="$classZeroMQServer.html#a951b371ad28eba4287ef1ac23ad52f29" title=" " alt="" coords="228,108,427,136"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,119,212,119,212,124,180,124"/>
+<area shape="rect" id="Node000003" href="$Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b" title=" " alt="" coords="536,29,633,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="365,105,474,67,520,55,522,60,476,72,366,110"/>
+<area shape="rect" id="Node000004" href="$classZeroMQ.html#a642e1995dbbba964de506575711a556a" title=" " alt="" coords="516,81,653,109"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="427,109,501,101,501,106,428,114"/>
+<area shape="rect" id="Node000005" href="$classZeroMQMonitor.html#a64401abf922cdd6b41ae331f6fb502c7" title=" " alt="" coords="475,133,694,161"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="428,129,460,132,459,137,427,134"/>
+<area shape="rect" id="Node000007" href="$classZeroMQ.html#afa401b962662f92b156a5707c7cf84ad" title=" " alt="" coords="522,185,647,213"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="368,134,476,170,508,179,506,184,474,175,366,139"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="542,30,534,20,540,11,557,5,585,3,614,5,630,12,628,16,613,10,585,8,558,10,543,15,540,20,546,27"/>
+<area shape="rect" id="Node000006" href="$classZeroMQMonitor.html#af55de9c3dbe10313153ff9ed8b0e479c" title=" " alt="" coords="742,133,936,161"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="695,144,727,144,727,150,695,150"/>
+<area shape="rect" id="Node000008" href="$classZeroMQ.html#a4587229a8393d7c1c763018afe164d65" title=" " alt="" coords="791,185,887,213"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="648,196,776,196,776,202,648,202"/>
+</map>
