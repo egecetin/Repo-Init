@@ -148,8 +148,10 @@ jobs:
           python3 -m venv .venv
           . .venv/bin/activate
           pip3 install -r tests/data/requirements.txt
-      - name: Configure
-        run: cmake -S . -B build
+      - name: Configure # Rockylinux 9 uses GCC 11 which does not support std::format
+        run: |
+          scl enable gcc-toolset-13 bash || true 
+          cmake -S . -B build
       - name: Build
         run: cmake --build build --parallel
       - name: Run Tests
