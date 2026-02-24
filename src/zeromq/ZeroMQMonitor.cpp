@@ -131,7 +131,7 @@ void ZeroMQMonitor::startMonitoring(zmq::socket_t *socket, const std::string &mo
 	}
 
 	init(*socket, monitorAddress);
-	_monitorThread = std::make_unique<std::jthread>([this](std::stop_token sToken) { threadFunc(sToken); });
+	_monitorThread = std::make_unique<std::jthread>([this](const std::stop_token &sToken) { threadFunc(sToken); });
 }
 
 void ZeroMQMonitor::testInternals()

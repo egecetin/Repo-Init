@@ -149,7 +149,7 @@ ProcessMetrics::ProcessMetrics(std::shared_ptr<std::atomic_flag> checkFlag,
 
 	_pInitTime->SetToCurrentTime();
 
-	_thread = std::make_unique<std::jthread>([this](std::stop_token sToken) { threadRunner(sToken); });
+	_thread = std::make_unique<std::jthread>([this](const std::stop_token &sToken) { threadRunner(sToken); });
 }
 
 ProcessMetrics::~ProcessMetrics() = default;

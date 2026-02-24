@@ -50,7 +50,7 @@ void Tracer::startHandler()
 		throw std::ios_base::failure("Can't start crash handler");
 	}
 
-	_thread = std::make_unique<std::jthread>([this](std::stop_token sToken) { threadFunc(sToken); });
+	_thread = std::make_unique<std::jthread>([this](const std::stop_token &sToken) { threadFunc(sToken); });
 }
 
 void Tracer::threadFunc(const std::stop_token &stopToken) const noexcept
