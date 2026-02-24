@@ -1,5 +1,7 @@
 #include "zeromq/ZeroMQServer.hpp"
 
+#include <format>
+
 #include "Version.h"
 #include "utils/ErrorHelpers.hpp"
 #include "utils/Hasher.hpp"

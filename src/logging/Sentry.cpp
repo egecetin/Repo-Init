@@ -4,6 +4,7 @@
 #include "utils/FileHelpers.hpp"
 
 #include <array>
+#include <format>
 
 #include <arpa/inet.h>
 #include <ifaddrs.h>
