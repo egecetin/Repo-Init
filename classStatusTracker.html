@@ -177,30 +177,30 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Status_8cpp_source.html#l00006">6</a> of file <a class="el" href="Status_8cpp_source.html">Status.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">    8</span>{</div>
-<div class="line"><span class="lineno">    9</span>    <span class="comment">// Register values</span></div>
-<div class="line"><span class="lineno">   10</span>    <a class="code hl_variable" href="#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a> = &amp;prometheus::BuildGauge()</div>
-<div class="line"><span class="lineno">   11</span>                      .Name(name + <span class="stringliteral">&quot;_active_event_ctr_&quot;</span> + std::to_string(metricID))</div>
-<div class="line"><span class="lineno">   12</span>                      .Help(<span class="stringliteral">&quot;Currently active number of events of &quot;</span> + name)</div>
-<div class="line"><span class="lineno">   13</span>                      .Register(*reg)</div>
-<div class="line"><span class="lineno">   14</span>                      .Add({});</div>
-<div class="line"><span class="lineno">   15</span>    <a class="code hl_variable" href="#af6ec50a9bd799335568abad69be60f2e">_totalCtr</a> = &amp;prometheus::BuildCounter()</div>
-<div class="line"><span class="lineno">   16</span>                     .Name(name + <span class="stringliteral">&quot;_total_event_ctr_&quot;</span> + std::to_string(metricID))</div>
-<div class="line"><span class="lineno">   17</span>                     .Help(<span class="stringliteral">&quot;Total occurrences of &quot;</span> + name)</div>
-<div class="line"><span class="lineno">   18</span>                     .Register(*reg)</div>
-<div class="line"><span class="lineno">   19</span>                     .Add({});</div>
-<div class="line"><span class="lineno">   20</span>    <a class="code hl_variable" href="#adfe977979812224d225c888d355d4ae3">_successCtr</a> = &amp;prometheus::BuildCounter()</div>
-<div class="line"><span class="lineno">   21</span>                       .Name(name + <span class="stringliteral">&quot;_success_event_ctr_&quot;</span> + std::to_string(metricID))</div>
-<div class="line"><span class="lineno">   22</span>                       .Help(<span class="stringliteral">&quot;Successful events of &quot;</span> + name)</div>
-<div class="line"><span class="lineno">   23</span>                       .Register(*reg)</div>
-<div class="line"><span class="lineno">   24</span>                       .Add({});</div>
-<div class="line"><span class="lineno">   25</span>    <a class="code hl_variable" href="#ad3369f49b5e9482f2816ccffd80eb15c">_failedCtr</a> = &amp;prometheus::BuildCounter()</div>
-<div class="line"><span class="lineno">   26</span>                      .Name(name + <span class="stringliteral">&quot;_fail_event_ctr_&quot;</span> + std::to_string(metricID))</div>
-<div class="line"><span class="lineno">   27</span>                      .Help(<span class="stringliteral">&quot;Failed events of &quot;</span> + name)</div>
-<div class="line"><span class="lineno">   28</span>                      .Register(*reg)</div>
-<div class="line"><span class="lineno">   29</span>                      .Add({});</div>
-<div class="line"><span class="lineno">   30</span>}</div>
+<p class="definition">Definition at line <a class="el" href="Status_8cpp_source.html#l00008">8</a> of file <a class="el" href="Status_8cpp_source.html">Status.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   10</span>{</div>
+<div class="line"><span class="lineno">   11</span>    <span class="comment">// Register values</span></div>
+<div class="line"><span class="lineno">   12</span>    <a class="code hl_variable" href="#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a> = &amp;prometheus::BuildGauge()</div>
+<div class="line"><span class="lineno">   13</span>                      .Name(std::format(<span class="stringliteral">&quot;{}{}{}&quot;</span>, name, <span class="stringliteral">&quot;_active_event_ctr_&quot;</span>, metricID))</div>
+<div class="line"><span class="lineno">   14</span>                      .Help(<span class="stringliteral">&quot;Currently active number of events of &quot;</span> + name)</div>
+<div class="line"><span class="lineno">   15</span>                      .Register(*reg)</div>
+<div class="line"><span class="lineno">   16</span>                      .Add({});</div>
+<div class="line"><span class="lineno">   17</span>    <a class="code hl_variable" href="#af6ec50a9bd799335568abad69be60f2e">_totalCtr</a> = &amp;prometheus::BuildCounter()</div>
+<div class="line"><span class="lineno">   18</span>                     .Name(std::format(<span class="stringliteral">&quot;{}{}{}&quot;</span>, name, <span class="stringliteral">&quot;_total_event_ctr_&quot;</span>, metricID))</div>
+<div class="line"><span class="lineno">   19</span>                     .Help(<span class="stringliteral">&quot;Total occurrences of &quot;</span> + name)</div>
+<div class="line"><span class="lineno">   20</span>                     .Register(*reg)</div>
+<div class="line"><span class="lineno">   21</span>                     .Add({});</div>
+<div class="line"><span class="lineno">   22</span>    <a class="code hl_variable" href="#adfe977979812224d225c888d355d4ae3">_successCtr</a> = &amp;prometheus::BuildCounter()</div>
+<div class="line"><span class="lineno">   23</span>                       .Name(std::format(<span class="stringliteral">&quot;{}{}{}&quot;</span>, name, <span class="stringliteral">&quot;_success_event_ctr_&quot;</span>, metricID))</div>
+<div class="line"><span class="lineno">   24</span>                       .Help(<span class="stringliteral">&quot;Successful events of &quot;</span> + name)</div>
+<div class="line"><span class="lineno">   25</span>                       .Register(*reg)</div>
+<div class="line"><span class="lineno">   26</span>                       .Add({});</div>
+<div class="line"><span class="lineno">   27</span>    <a class="code hl_variable" href="#ad3369f49b5e9482f2816ccffd80eb15c">_failedCtr</a> = &amp;prometheus::BuildCounter()</div>
+<div class="line"><span class="lineno">   28</span>                      .Name(std::format(<span class="stringliteral">&quot;{}{}{}&quot;</span>, name, <span class="stringliteral">&quot;_fail_event_ctr_&quot;</span>, metricID))</div>
+<div class="line"><span class="lineno">   29</span>                      .Help(<span class="stringliteral">&quot;Failed events of &quot;</span> + name)</div>
+<div class="line"><span class="lineno">   30</span>                      .Register(*reg)</div>
+<div class="line"><span class="lineno">   31</span>                      .Add({});</div>
+<div class="line"><span class="lineno">   32</span>}</div>
 <div class="ttc" id="aclassStatusTracker_html_a46425ecd37b53a0aed20b273d34e171c"><div class="ttname"><a href="#a46425ecd37b53a0aed20b273d34e171c">StatusTracker::_activeCtr</a></div><div class="ttdeci">prometheus::Gauge * _activeCtr</div><div class="ttdoc">Active number of events.</div><div class="ttdef"><b>Definition</b> <a href="Status_8hpp_source.html#l00011">Status.hpp:11</a></div></div>
 <div class="ttc" id="aclassStatusTracker_html_ad3369f49b5e9482f2816ccffd80eb15c"><div class="ttname"><a href="#ad3369f49b5e9482f2816ccffd80eb15c">StatusTracker::_failedCtr</a></div><div class="ttdeci">prometheus::Counter * _failedCtr</div><div class="ttdoc">Number of fail.</div><div class="ttdef"><b>Definition</b> <a href="Status_8hpp_source.html#l00014">Status.hpp:14</a></div></div>
 <div class="ttc" id="aclassStatusTracker_html_adfe977979812224d225c888d355d4ae3"><div class="ttname"><a href="#adfe977979812224d225c888d355d4ae3">StatusTracker::_successCtr</a></div><div class="ttdeci">prometheus::Counter * _successCtr</div><div class="ttdoc">Number of success.</div><div class="ttdef"><b>Definition</b> <a href="Status_8hpp_source.html#l00013">Status.hpp:13</a></div></div>
@@ -225,8 +225,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Decrement number of current events </p>
 
-<p class="definition">Definition at line <a class="el" href="Status_8cpp_source.html#l00034">34</a> of file <a class="el" href="Status_8cpp_source.html">Status.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   34</span>{ <a class="code hl_variable" href="#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Decrement(); }</div>
+<p class="definition">Definition at line <a class="el" href="Status_8cpp_source.html#l00036">36</a> of file <a class="el" href="Status_8cpp_source.html">Status.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   36</span>{ <a class="code hl_variable" href="#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Decrement(); }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -256,8 +256,8 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Increment number of current events </p>
 
-<p class="definition">Definition at line <a class="el" href="Status_8cpp_source.html#l00032">32</a> of file <a class="el" href="Status_8cpp_source.html">Status.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   32</span>{ <a class="code hl_variable" href="#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Increment(); }</div>
+<p class="definition">Definition at line <a class="el" href="Status_8cpp_source.html#l00034">34</a> of file <a class="el" href="Status_8cpp_source.html">Status.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   34</span>{ <a class="code hl_variable" href="#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Increment(); }</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -287,15 +287,15 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Increment number of fail </p>
 
-<p class="definition">Definition at line <a class="el" href="Status_8cpp_source.html#l00046">46</a> of file <a class="el" href="Status_8cpp_source.html">Status.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   47</span>{</div>
-<div class="line"><span class="lineno">   48</span>    <a class="code hl_variable" href="#ad3369f49b5e9482f2816ccffd80eb15c">_failedCtr</a>-&gt;Increment();</div>
-<div class="line"><span class="lineno">   49</span>    <a class="code hl_variable" href="#af6ec50a9bd799335568abad69be60f2e">_totalCtr</a>-&gt;Increment();</div>
-<div class="line"><span class="lineno">   50</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Value() &gt; 0)</div>
-<div class="line"><span class="lineno">   51</span>    {</div>
-<div class="line"><span class="lineno">   52</span>        <a class="code hl_variable" href="#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Decrement();</div>
-<div class="line"><span class="lineno">   53</span>    }</div>
-<div class="line"><span class="lineno">   54</span>}</div>
+<p class="definition">Definition at line <a class="el" href="Status_8cpp_source.html#l00048">48</a> of file <a class="el" href="Status_8cpp_source.html">Status.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   49</span>{</div>
+<div class="line"><span class="lineno">   50</span>    <a class="code hl_variable" href="#ad3369f49b5e9482f2816ccffd80eb15c">_failedCtr</a>-&gt;Increment();</div>
+<div class="line"><span class="lineno">   51</span>    <a class="code hl_variable" href="#af6ec50a9bd799335568abad69be60f2e">_totalCtr</a>-&gt;Increment();</div>
+<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Value() &gt; 0)</div>
+<div class="line"><span class="lineno">   53</span>    {</div>
+<div class="line"><span class="lineno">   54</span>        <a class="code hl_variable" href="#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Decrement();</div>
+<div class="line"><span class="lineno">   55</span>    }</div>
+<div class="line"><span class="lineno">   56</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -315,15 +315,15 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Increment number of success </p>
 
-<p class="definition">Definition at line <a class="el" href="Status_8cpp_source.html#l00036">36</a> of file <a class="el" href="Status_8cpp_source.html">Status.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   37</span>{</div>
-<div class="line"><span class="lineno">   38</span>    <a class="code hl_variable" href="#adfe977979812224d225c888d355d4ae3">_successCtr</a>-&gt;Increment();</div>
-<div class="line"><span class="lineno">   39</span>    <a class="code hl_variable" href="#af6ec50a9bd799335568abad69be60f2e">_totalCtr</a>-&gt;Increment();</div>
-<div class="line"><span class="lineno">   40</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Value() &gt; 0)</div>
-<div class="line"><span class="lineno">   41</span>    {</div>
-<div class="line"><span class="lineno">   42</span>        <a class="code hl_variable" href="#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Decrement();</div>
-<div class="line"><span class="lineno">   43</span>    }</div>
-<div class="line"><span class="lineno">   44</span>}</div>
+<p class="definition">Definition at line <a class="el" href="Status_8cpp_source.html#l00038">38</a> of file <a class="el" href="Status_8cpp_source.html">Status.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   39</span>{</div>
+<div class="line"><span class="lineno">   40</span>    <a class="code hl_variable" href="#adfe977979812224d225c888d355d4ae3">_successCtr</a>-&gt;Increment();</div>
+<div class="line"><span class="lineno">   41</span>    <a class="code hl_variable" href="#af6ec50a9bd799335568abad69be60f2e">_totalCtr</a>-&gt;Increment();</div>
+<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Value() &gt; 0)</div>
+<div class="line"><span class="lineno">   43</span>    {</div>
+<div class="line"><span class="lineno">   44</span>        <a class="code hl_variable" href="#a46425ecd37b53a0aed20b273d34e171c">_activeCtr</a>-&gt;Decrement();</div>
+<div class="line"><span class="lineno">   45</span>    }</div>
+<div class="line"><span class="lineno">   46</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -442,7 +442,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classStatusTracker.html">StatusTracker</a></li>
-    <li class="footer">Generated on Tue Feb 24 2026 09:53:33 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Tue Feb 24 2026 12:41:35 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>
