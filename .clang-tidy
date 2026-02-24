@@ -15,6 +15,7 @@ readability-*,
 -modernize-use-trailing-return-type,
 -misc-include-cleaner,
 -portability-avoid-pragma-once,
+-portability-template-virtual-member-function,
 -readability-function-cognitive-complexity,
 -readability-magic-numbers'
 
