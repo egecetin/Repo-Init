@@ -613,7 +613,7 @@ bool TelnetServer::initialise(unsigned long listenPort, const std::shared_ptr<st
 		m_stats = std::make_unique<TelnetStats>(reg, listenPort, prependName);
 	}
 
-	m_serverThread = std::make_unique<std::jthread>(&TelnetServer::threadFunc, this);
+	m_serverThread = std::make_unique<std::jthread>([this](std::stop_token sToken) { threadFunc(sToken); });
 
 	m_initialised = true;
 	return true;

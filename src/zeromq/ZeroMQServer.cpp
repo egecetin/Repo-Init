@@ -84,7 +84,7 @@ bool ZeroMQServer::initialise()
 {
 	if (start())
 	{
-		_serverThread = std::make_unique<std::jthread>(&ZeroMQServer::threadFunc, this);
+		_serverThread = std::make_unique<std::jthread>([this](std::stop_token sToken) { threadFunc(sToken); });
 		return true;
 	}
 	return false;
