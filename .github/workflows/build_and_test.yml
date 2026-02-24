@@ -124,8 +124,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: rockylinux9@sha256:b6b2ee5ef09d0af5927d1a6346093180035f535ca0474fd2eef739b831cf0340
-          # - image: ubuntu2404@sha256:0f63b02fe3dcd1a03d299000466713596df974a657005e27cda42155f652134d
+          - image: rockylinux10@sha256:3e7fb793635d9ca1e0475f749e4543ba13ec61670d98ff95eec87a934b83c8d2
+          - image: ubuntu2404@sha256:0f63b02fe3dcd1a03d299000466713596df974a657005e27cda42155f652134d
 
     steps:
       - name: Checkout Code
@@ -148,10 +148,8 @@ jobs:
           python3 -m venv .venv
           . .venv/bin/activate
           pip3 install -r tests/data/requirements.txt
-      - name: Configure # Rockylinux 9 uses GCC 11 which does not support std::format
-        run: |
-          scl enable gcc-toolset-13 bash
-          cmake -S . -B build
+      - name: Configure
+        run: cmake -S . -B build
       - name: Build
         run: cmake --build build --parallel
       - name: Run Tests
