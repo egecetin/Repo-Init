@@ -4,7 +4,7 @@
 
 constexpr int EVENT_CHECK_TIMEOUT_MS = 100;
 
-void ZeroMQMonitor::threadFunc(std::stop_token stopToken)
+void ZeroMQMonitor::threadFunc(const std::stop_token &stopToken)
 {
 	while (!stopToken.stop_requested())
 	{

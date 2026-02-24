@@ -47,7 +47,7 @@ void ZeroMQServer::update()
 	}
 }
 
-void ZeroMQServer::threadFunc(std::stop_token stopToken) noexcept
+void ZeroMQServer::threadFunc(const std::stop_token &stopToken) noexcept
 {
 	spdlog::info("ZeroMQ server started");
 	while (!stopToken.stop_requested())
