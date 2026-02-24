@@ -88,7 +88,7 @@ class ProcessMetrics {
 	 * Main thread function
 	 * @param[in] stopToken jthread stop token
 	 */
-	void threadRunner(const std::stop_token &stopToken) noexcept;
+	void threadRunner(std::stop_token stopToken) noexcept;
 
   public:
 	/**

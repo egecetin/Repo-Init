@@ -98,7 +98,7 @@ void ProcessMetrics::update()
 	_pFileDescriptorCount->Set(static_cast<double>(getFileDescriptorCount()));
 }
 
-void ProcessMetrics::threadRunner(const std::stop_token &stopToken) noexcept
+void ProcessMetrics::threadRunner(std::stop_token stopToken) noexcept
 {
 	while (!stopToken.stop_requested())
 	{

@@ -23,7 +23,7 @@ class ZeroMQServer : private ZeroMQ, private ZeroMQMonitor {
 	void update();
 
 	/// Main thread function
-	void threadFunc(const std::stop_token &stopToken) noexcept;
+	void threadFunc(std::stop_token stopToken) noexcept;
 
   public:
 	/**
