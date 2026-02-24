@@ -18,7 +18,7 @@ concurrency:
 jobs:
   static-analysis:
     runs-on: ubuntu-latest
-    container: egecetinn/alpine@sha256:1d671460d4426539c5de6df0580a9ca055d3c6043610c3ff1f78ce008e86ac26
+    container: egecetinn/alpine@sha256:9e2b9bedd5f930f7b03a459976f72eb329efb01995569e72a270ead4d07200d6
     steps:
       - name: Checkout Code
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
