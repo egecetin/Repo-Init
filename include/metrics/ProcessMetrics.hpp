@@ -33,7 +33,7 @@ class ProcessMetrics {
 	struct tms _oldCpu{
 		.tms_utime = 0, .tms_stime = 0, .tms_cutime = 0, .tms_cstime = 0}; ///< Structure to store the old CPU times
 
-	std::unique_ptr<std::jthread> _thread;		  ///< Thread handler
+	std::unique_ptr<std::jthread> _thread; ///< Thread handler
 
 	/**
 	 * Counts the number of entries in a directory.

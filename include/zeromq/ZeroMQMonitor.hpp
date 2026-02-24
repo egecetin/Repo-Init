@@ -16,7 +16,7 @@
  */
 class ZeroMQMonitor : private zmq::monitor_t {
   private:
-	std::atomic_int _peerCount{0};				 /**< Number of peers connected. */
+	std::atomic_int _peerCount{0};				  /**< Number of peers connected. */
 	std::unique_ptr<std::jthread> _monitorThread; /**< Thread for monitoring events. */
 
 	void threadFunc(std::stop_token stopToken);

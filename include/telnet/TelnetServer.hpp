@@ -203,7 +203,7 @@ class TelnetServer : public std::enable_shared_from_this<TelnetServer> {
 	std::unique_ptr<TelnetStats> m_stats;
 
 	std::shared_ptr<std::atomic_flag> m_checkFlag; /**< Runtime check flag */
-	std::unique_ptr<std::jthread> m_serverThread;   /**< Thread handler */
+	std::unique_ptr<std::jthread> m_serverThread;  /**< Thread handler */
 };
 
 /**
