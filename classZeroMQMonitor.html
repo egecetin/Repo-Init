@@ -166,8 +166,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a822fbf3c0f167e77abdcc0cdc4f31545" id="r_a822fbf3c0f167e77abdcc0cdc4f31545"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a822fbf3c0f167e77abdcc0cdc4f31545">threadFunc</a> ()</td></tr>
-<tr class="separator:a822fbf3c0f167e77abdcc0cdc4f31545"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af55de9c3dbe10313153ff9ed8b0e479c" id="r_af55de9c3dbe10313153ff9ed8b0e479c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af55de9c3dbe10313153ff9ed8b0e479c">threadFunc</a> (const std::stop_token &amp;stopToken)</td></tr>
+<tr class="separator:af55de9c3dbe10313153ff9ed8b0e479c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4212ec2e297f4f934ed7cadebd5e329" id="r_ab4212ec2e297f4f934ed7cadebd5e329"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4212ec2e297f4f934ed7cadebd5e329">on_monitor_started</a> () override</td></tr>
 <tr class="separator:ab4212ec2e297f4f934ed7cadebd5e329"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a674db0ed1653be0b9c04cb6cb1507e54" id="r_a674db0ed1653be0b9c04cb6cb1507e54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a674db0ed1653be0b9c04cb6cb1507e54">on_event_connected</a> (const zmq_event_t &amp;, const char *addr_) override</td></tr>
@@ -208,12 +208,10 @@ Static Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a777d8155790bec800f1bce9ac52f3508" id="r_a777d8155790bec800f1bce9ac52f3508"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; std::thread &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a></td></tr>
-<tr class="separator:a777d8155790bec800f1bce9ac52f3508"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad14ab2dbbc1efa846c429fb7538774f9" id="r_ad14ab2dbbc1efa846c429fb7538774f9"><td class="memItemLeft" align="right" valign="top">std::atomic_flag&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad14ab2dbbc1efa846c429fb7538774f9">_shouldStop</a> {false}</td></tr>
-<tr class="separator:ad14ab2dbbc1efa846c429fb7538774f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a894a734962b375c29e304ec1e1de91d3" id="r_a894a734962b375c29e304ec1e1de91d3"><td class="memItemLeft" align="right" valign="top">std::atomic_int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a894a734962b375c29e304ec1e1de91d3">_peerCount</a> {0}</td></tr>
 <tr class="separator:a894a734962b375c29e304ec1e1de91d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b648bdc9b3f64c66290635a5507eb4f" id="r_a1b648bdc9b3f64c66290635a5507eb4f"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; std::jthread &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b648bdc9b3f64c66290635a5507eb4f">_monitorThread</a></td></tr>
+<tr class="separator:a1b648bdc9b3f64c66290635a5507eb4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for monitoring <a class="el" href="classZeroMQ.html">ZeroMQ</a> events on a socket.</p>
@@ -326,8 +324,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Destructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8hpp_source.html#l00113">113</a> of file <a class="el" href="ZeroMQMonitor_8hpp_source.html">ZeroMQMonitor.hpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  113</span>{ <a class="code hl_function" href="#a83ffe6f50cab52994f05fa68db78c8df">stopMonitoring</a>(); }</div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8hpp_source.html#l00112">112</a> of file <a class="el" href="ZeroMQMonitor_8hpp_source.html">ZeroMQMonitor.hpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  112</span>{ <a class="code hl_function" href="#a83ffe6f50cab52994f05fa68db78c8df">stopMonitoring</a>(); }</div>
 <div class="ttc" id="aclassZeroMQMonitor_html_a83ffe6f50cab52994f05fa68db78c8df"><div class="ttname"><a href="#a83ffe6f50cab52994f05fa68db78c8df">ZeroMQMonitor::stopMonitoring</a></div><div class="ttdeci">void stopMonitoring()</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00168">ZeroMQMonitor.cpp:168</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -367,9 +365,9 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <p>Get the number of peers connected. </p><dl class="section return"><dt>Returns</dt><dd>Number of peers connected. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8hpp_source.html#l00098">98</a> of file <a class="el" href="ZeroMQMonitor_8hpp_source.html">ZeroMQMonitor.hpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   98</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="#a894a734962b375c29e304ec1e1de91d3">_peerCount</a>; }</div>
-<div class="ttc" id="aclassZeroMQMonitor_html_a894a734962b375c29e304ec1e1de91d3"><div class="ttname"><a href="#a894a734962b375c29e304ec1e1de91d3">ZeroMQMonitor::_peerCount</a></div><div class="ttdeci">std::atomic_int _peerCount</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8hpp_source.html#l00021">ZeroMQMonitor.hpp:21</a></div></div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8hpp_source.html#l00097">97</a> of file <a class="el" href="ZeroMQMonitor_8hpp_source.html">ZeroMQMonitor.hpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   97</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="#a894a734962b375c29e304ec1e1de91d3">_peerCount</a>; }</div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a894a734962b375c29e304ec1e1de91d3"><div class="ttname"><a href="#a894a734962b375c29e304ec1e1de91d3">ZeroMQMonitor::_peerCount</a></div><div class="ttdeci">std::atomic_int _peerCount</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8hpp_source.html#l00019">ZeroMQMonitor.hpp:19</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1422,17 +1420,17 @@ Here is the call graph for this function:</div>
 <div class="line"><span class="lineno">  131</span>    }</div>
 <div class="line"><span class="lineno">  132</span> </div>
 <div class="line"><span class="lineno">  133</span>    init(*socket, monitorAddress);</div>
-<div class="line"><span class="lineno">  134</span>    <a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a> = std::make_unique&lt;std::thread&gt;(&amp;<a class="code hl_function" href="#a822fbf3c0f167e77abdcc0cdc4f31545">ZeroMQMonitor::threadFunc</a>, <span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">  134</span>    <a class="code hl_variable" href="#a1b648bdc9b3f64c66290635a5507eb4f">_monitorThread</a> = std::make_unique&lt;std::jthread&gt;([<span class="keyword">this</span>](<span class="keyword">const</span> std::stop_token &amp;sToken) { <a class="code hl_function" href="#af55de9c3dbe10313153ff9ed8b0e479c">threadFunc</a>(sToken); });</div>
 <div class="line"><span class="lineno">  135</span>}</div>
-<div class="ttc" id="aclassZeroMQMonitor_html_a777d8155790bec800f1bce9ac52f3508"><div class="ttname"><a href="#a777d8155790bec800f1bce9ac52f3508">ZeroMQMonitor::_monitorThread</a></div><div class="ttdeci">std::unique_ptr&lt; std::thread &gt; _monitorThread</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8hpp_source.html#l00019">ZeroMQMonitor.hpp:19</a></div></div>
-<div class="ttc" id="aclassZeroMQMonitor_html_a822fbf3c0f167e77abdcc0cdc4f31545"><div class="ttname"><a href="#a822fbf3c0f167e77abdcc0cdc4f31545">ZeroMQMonitor::threadFunc</a></div><div class="ttdeci">void threadFunc()</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00007">ZeroMQMonitor.cpp:7</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_a1b648bdc9b3f64c66290635a5507eb4f"><div class="ttname"><a href="#a1b648bdc9b3f64c66290635a5507eb4f">ZeroMQMonitor::_monitorThread</a></div><div class="ttdeci">std::unique_ptr&lt; std::jthread &gt; _monitorThread</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8hpp_source.html#l00020">ZeroMQMonitor.hpp:20</a></div></div>
+<div class="ttc" id="aclassZeroMQMonitor_html_af55de9c3dbe10313153ff9ed8b0e479c"><div class="ttname"><a href="#af55de9c3dbe10313153ff9ed8b0e479c">ZeroMQMonitor::threadFunc</a></div><div class="ttdeci">void threadFunc(const std::stop_token &amp;stopToken)</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8cpp_source.html#l00007">ZeroMQMonitor.cpp:7</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classZeroMQMonitor_a64401abf922cdd6b41ae331f6fb502c7_cgraph.png" border="0" usemap="#aclassZeroMQMonitor_a64401abf922cdd6b41ae331f6fb502c7_cgraph" alt=""/></div>
 <map name="aclassZeroMQMonitor_a64401abf922cdd6b41ae331f6fb502c7_cgraph" id="aclassZeroMQMonitor_a64401abf922cdd6b41ae331f6fb502c7_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,225,33"/>
-<area shape="rect" href="classZeroMQMonitor.html#a822fbf3c0f167e77abdcc0cdc4f31545" title=" " alt="" coords="273,5,466,33"/>
+<area shape="rect" href="classZeroMQMonitor.html#af55de9c3dbe10313153ff9ed8b0e479c" title=" " alt="" coords="273,5,466,33"/>
 <area shape="poly" title=" " alt="" coords="225,16,257,16,257,22,225,22"/>
 </map>
 </div>
@@ -1467,21 +1465,12 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00168">168</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  169</span>{</div>
-<div class="line"><span class="lineno">  170</span>    <a class="code hl_variable" href="#ad14ab2dbbc1efa846c429fb7538774f9">_shouldStop</a>.test_and_set();</div>
-<div class="line"><span class="lineno">  171</span><span class="preprocessor">#ifdef ZMQ_EVENT_MONITOR_STOPPED</span></div>
-<div class="line"><span class="lineno">  172</span>    abort();</div>
-<div class="line"><span class="lineno">  173</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">  174</span> </div>
-<div class="line"><span class="lineno">  175</span>    <span class="comment">// Join the thread</span></div>
-<div class="line"><span class="lineno">  176</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a> &amp;&amp; <a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a>-&gt;joinable())</div>
-<div class="line"><span class="lineno">  177</span>    {</div>
-<div class="line"><span class="lineno">  178</span>        <a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a>-&gt;join();</div>
-<div class="line"><span class="lineno">  179</span>        <a class="code hl_variable" href="#a777d8155790bec800f1bce9ac52f3508">_monitorThread</a>.reset();</div>
-<div class="line"><span class="lineno">  180</span>    }</div>
-<div class="line"><span class="lineno">  181</span> </div>
-<div class="line"><span class="lineno">  182</span>    spdlog::info(<span class="stringliteral">&quot;Monitor stopped&quot;</span>);</div>
-<div class="line"><span class="lineno">  183</span>}</div>
-<div class="ttc" id="aclassZeroMQMonitor_html_ad14ab2dbbc1efa846c429fb7538774f9"><div class="ttname"><a href="#ad14ab2dbbc1efa846c429fb7538774f9">ZeroMQMonitor::_shouldStop</a></div><div class="ttdeci">std::atomic_flag _shouldStop</div><div class="ttdef"><b>Definition</b> <a href="ZeroMQMonitor_8hpp_source.html#l00020">ZeroMQMonitor.hpp:20</a></div></div>
+<div class="line"><span class="lineno">  170</span><span class="preprocessor">#ifdef ZMQ_EVENT_MONITOR_STOPPED</span></div>
+<div class="line"><span class="lineno">  171</span>    abort();</div>
+<div class="line"><span class="lineno">  172</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">  173</span> </div>
+<div class="line"><span class="lineno">  174</span>    spdlog::info(<span class="stringliteral">&quot;Monitor stopped&quot;</span>);</div>
+<div class="line"><span class="lineno">  175</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1613,8 +1602,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a822fbf3c0f167e77abdcc0cdc4f31545" name="a822fbf3c0f167e77abdcc0cdc4f31545"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a822fbf3c0f167e77abdcc0cdc4f31545">&#9670;&#160;</a></span>threadFunc()</h2>
+<a id="af55de9c3dbe10313153ff9ed8b0e479c" name="af55de9c3dbe10313153ff9ed8b0e479c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af55de9c3dbe10313153ff9ed8b0e479c">&#9670;&#160;</a></span>threadFunc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1625,7 +1614,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void ZeroMQMonitor::threadFunc </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const std::stop_token &amp;</td>          <td class="paramname"><span class="paramname"><em>stopToken</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1638,7 +1627,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8cpp_source.html#l00007">7</a> of file <a class="el" href="ZeroMQMonitor_8cpp_source.html">ZeroMQMonitor.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">    8</span>{</div>
-<div class="line"><span class="lineno">    9</span>    <span class="keywordflow">while</span> (!<a class="code hl_variable" href="#ad14ab2dbbc1efa846c429fb7538774f9">_shouldStop</a>._M_i)</div>
+<div class="line"><span class="lineno">    9</span>    <span class="keywordflow">while</span> (!stopToken.stop_requested())</div>
 <div class="line"><span class="lineno">   10</span>    {</div>
 <div class="line"><span class="lineno">   11</span>        check_event(<a class="code hl_variable" href="ZeroMQMonitor_8cpp.html#af51d7fee89249cab8bb83de9e3c8a1d7">EVENT_CHECK_TIMEOUT_MS</a>);</div>
 <div class="line"><span class="lineno">   12</span>    }</div>
@@ -1647,8 +1636,8 @@ Here is the call graph for this function:</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classZeroMQMonitor_a822fbf3c0f167e77abdcc0cdc4f31545_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_a822fbf3c0f167e77abdcc0cdc4f31545_icgraph" alt=""/></div>
-<map name="aclassZeroMQMonitor_a822fbf3c0f167e77abdcc0cdc4f31545_icgraph" id="aclassZeroMQMonitor_a822fbf3c0f167e77abdcc0cdc4f31545_icgraph">
+<div class="center"><img src="classZeroMQMonitor_af55de9c3dbe10313153ff9ed8b0e479c_icgraph.png" border="0" usemap="#aclassZeroMQMonitor_af55de9c3dbe10313153ff9ed8b0e479c_icgraph" alt=""/></div>
+<map name="aclassZeroMQMonitor_af55de9c3dbe10313153ff9ed8b0e479c_icgraph" id="aclassZeroMQMonitor_af55de9c3dbe10313153ff9ed8b0e479c_icgraph">
 <area shape="rect" title=" " alt="" coords="520,5,713,33"/>
 <area shape="rect" href="classZeroMQMonitor.html#a64401abf922cdd6b41ae331f6fb502c7" title=" " alt="" coords="253,5,472,33"/>
 <area shape="poly" title=" " alt="" coords="504,22,472,22,472,16,504,16"/>
@@ -1660,8 +1649,8 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a777d8155790bec800f1bce9ac52f3508" name="a777d8155790bec800f1bce9ac52f3508"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a777d8155790bec800f1bce9ac52f3508">&#9670;&#160;</a></span>_monitorThread</h2>
+<a id="a1b648bdc9b3f64c66290635a5507eb4f" name="a1b648bdc9b3f64c66290635a5507eb4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b648bdc9b3f64c66290635a5507eb4f">&#9670;&#160;</a></span>_monitorThread</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1670,7 +1659,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unique_ptr&lt;std::thread&gt; ZeroMQMonitor::_monitorThread</td>
+          <td class="memname">std::unique_ptr&lt;std::jthread&gt; ZeroMQMonitor::_monitorThread</td>
         </tr>
       </table>
   </td>
@@ -1681,7 +1670,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Thread for monitoring events. </p>
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8hpp_source.html#l00019">19</a> of file <a class="el" href="ZeroMQMonitor_8hpp_source.html">ZeroMQMonitor.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8hpp_source.html#l00020">20</a> of file <a class="el" href="ZeroMQMonitor_8hpp_source.html">ZeroMQMonitor.hpp</a>.</p>
 
 </div>
 </div>
@@ -1706,34 +1695,8 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Number of peers connected. </p>
 
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8hpp_source.html#l00021">21</a> of file <a class="el" href="ZeroMQMonitor_8hpp_source.html">ZeroMQMonitor.hpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   21</span>{0};                 </div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="ad14ab2dbbc1efa846c429fb7538774f9" name="ad14ab2dbbc1efa846c429fb7538774f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad14ab2dbbc1efa846c429fb7538774f9">&#9670;&#160;</a></span>_shouldStop</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::atomic_flag ZeroMQMonitor::_shouldStop {false}</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Flag to stop monitoring. </p>
-
-<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8hpp_source.html#l00020">20</a> of file <a class="el" href="ZeroMQMonitor_8hpp_source.html">ZeroMQMonitor.hpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   20</span>{<span class="keyword">false</span>};         </div>
+<p class="definition">Definition at line <a class="el" href="ZeroMQMonitor_8hpp_source.html#l00019">19</a> of file <a class="el" href="ZeroMQMonitor_8hpp_source.html">ZeroMQMonitor.hpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   19</span>{0};                  </div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1747,7 +1710,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classZeroMQMonitor.html">ZeroMQMonitor</a></li>
-    <li class="footer">Generated on Sun Feb 22 2026 15:09:25 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Tue Feb 24 2026 09:05:21 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>

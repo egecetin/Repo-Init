@@ -143,8 +143,8 @@ Static Public Member Functions</h2></td></tr>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a5e733e7676276b3640d8e44eb7865aac" id="r_a5e733e7676276b3640d8e44eb7865aac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e733e7676276b3640d8e44eb7865aac">startHandler</a> ()</td></tr>
 <tr class="separator:a5e733e7676276b3640d8e44eb7865aac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab462323c296d709db1107ccd26df9d27" id="r_ab462323c296d709db1107ccd26df9d27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab462323c296d709db1107ccd26df9d27">threadFunc</a> () const noexcept</td></tr>
-<tr class="separator:ab462323c296d709db1107ccd26df9d27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5c0ad1b1a86dd3e489ed162d5b7b8fc" id="r_ac5c0ad1b1a86dd3e489ed162d5b7b8fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5c0ad1b1a86dd3e489ed162d5b7b8fc">threadFunc</a> (const std::stop_token &amp;stopToken) const noexcept</td></tr>
+<tr class="separator:ac5c0ad1b1a86dd3e489ed162d5b7b8fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -159,10 +159,6 @@ Static Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:ad59f9a059abac4e1bf66d2a6c2e1d1e5" id="r_ad59f9a059abac4e1bf66d2a6c2e1d1e5"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; std::thread &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad59f9a059abac4e1bf66d2a6c2e1d1e5">_thread</a></td></tr>
-<tr class="separator:ad59f9a059abac4e1bf66d2a6c2e1d1e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f76ebde0e5514a4b6015465944ffb8b" id="r_a0f76ebde0e5514a4b6015465944ffb8b"><td class="memItemLeft" align="right" valign="top">std::atomic_flag&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f76ebde0e5514a4b6015465944ffb8b">_shouldStop</a> {false}</td></tr>
-<tr class="separator:a0f76ebde0e5514a4b6015465944ffb8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5890fbf36b84d0eb0eb7a21e5334b37" id="r_aa5890fbf36b84d0eb0eb7a21e5334b37"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; std::atomic_flag &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5890fbf36b84d0eb0eb7a21e5334b37">_checkFlag</a></td></tr>
 <tr class="separator:aa5890fbf36b84d0eb0eb7a21e5334b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a630fd0665579e85532205c49261a44b3" id="r_a630fd0665579e85532205c49261a44b3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a630fd0665579e85532205c49261a44b3">_serverPath</a></td></tr>
@@ -179,6 +175,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a20b67711375fe47fc9f881a599077ddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f6a4054b44156656a529c3fa1cf6dbb" id="r_a5f6a4054b44156656a529c3fa1cf6dbb"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; crashpad::CrashpadClient &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f6a4054b44156656a529c3fa1cf6dbb">_clientHandler</a></td></tr>
 <tr class="separator:a5f6a4054b44156656a529c3fa1cf6dbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95cf0b2ab3fa72f2da2eb48628deb76f" id="r_a95cf0b2ab3fa72f2da2eb48628deb76f"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; std::jthread &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95cf0b2ab3fa72f2da2eb48628deb76f">_thread</a></td></tr>
+<tr class="separator:a95cf0b2ab3fa72f2da2eb48628deb76f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classTracer.html">Tracer</a> class to handle operations of Crashpad </p>
@@ -265,17 +263,17 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  184</span> </div>
 <div class="line"><span class="lineno">  185</span>    <a class="code hl_function" href="#a5e733e7676276b3640d8e44eb7865aac">startHandler</a>();</div>
 <div class="line"><span class="lineno">  186</span>}</div>
-<div class="ttc" id="aclassTracer_html_a20b67711375fe47fc9f881a599077ddc"><div class="ttname"><a href="#a20b67711375fe47fc9f881a599077ddc">Tracer::_reportPath</a></div><div class="ttdeci">std::string _reportPath</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00021">Tracer.hpp:21</a></div></div>
+<div class="ttc" id="aclassTracer_html_a20b67711375fe47fc9f881a599077ddc"><div class="ttname"><a href="#a20b67711375fe47fc9f881a599077ddc">Tracer::_reportPath</a></div><div class="ttdeci">std::string _reportPath</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00019">Tracer.hpp:19</a></div></div>
 <div class="ttc" id="aclassTracer_html_a45e5efd9d9aa56696931411cd7e0c47e"><div class="ttname"><a href="#a45e5efd9d9aa56696931411cd7e0c47e">Tracer::dumpSharedLibraryInfo</a></div><div class="ttdeci">static void dumpSharedLibraryInfo(const std::string &amp;filePath)</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8cpp_source.html#l00123">Tracer.cpp:123</a></div></div>
 <div class="ttc" id="aclassTracer_html_a5e733e7676276b3640d8e44eb7865aac"><div class="ttname"><a href="#a5e733e7676276b3640d8e44eb7865aac">Tracer::startHandler</a></div><div class="ttdeci">void startHandler()</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8cpp_source.html#l00022">Tracer.cpp:22</a></div></div>
-<div class="ttc" id="aclassTracer_html_a5f6a4054b44156656a529c3fa1cf6dbb"><div class="ttname"><a href="#a5f6a4054b44156656a529c3fa1cf6dbb">Tracer::_clientHandler</a></div><div class="ttdeci">std::unique_ptr&lt; crashpad::CrashpadClient &gt; _clientHandler</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00022">Tracer.hpp:22</a></div></div>
-<div class="ttc" id="aclassTracer_html_a630fd0665579e85532205c49261a44b3"><div class="ttname"><a href="#a630fd0665579e85532205c49261a44b3">Tracer::_serverPath</a></div><div class="ttdeci">std::string _serverPath</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00016">Tracer.hpp:16</a></div></div>
-<div class="ttc" id="aclassTracer_html_a83b60f1d681607d0ac7ddeb47ae52dac"><div class="ttname"><a href="#a83b60f1d681607d0ac7ddeb47ae52dac">Tracer::_serverProxy</a></div><div class="ttdeci">std::string _serverProxy</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00017">Tracer.hpp:17</a></div></div>
-<div class="ttc" id="aclassTracer_html_aa44dba799c31108166f8d33b1ebf516f"><div class="ttname"><a href="#aa44dba799c31108166f8d33b1ebf516f">Tracer::_attachments</a></div><div class="ttdeci">std::vector&lt; base::FilePath &gt; _attachments</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00020">Tracer.hpp:20</a></div></div>
-<div class="ttc" id="aclassTracer_html_aa5890fbf36b84d0eb0eb7a21e5334b37"><div class="ttname"><a href="#aa5890fbf36b84d0eb0eb7a21e5334b37">Tracer::_checkFlag</a></div><div class="ttdeci">std::shared_ptr&lt; std::atomic_flag &gt; _checkFlag</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00014">Tracer.hpp:14</a></div></div>
+<div class="ttc" id="aclassTracer_html_a5f6a4054b44156656a529c3fa1cf6dbb"><div class="ttname"><a href="#a5f6a4054b44156656a529c3fa1cf6dbb">Tracer::_clientHandler</a></div><div class="ttdeci">std::unique_ptr&lt; crashpad::CrashpadClient &gt; _clientHandler</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00020">Tracer.hpp:20</a></div></div>
+<div class="ttc" id="aclassTracer_html_a630fd0665579e85532205c49261a44b3"><div class="ttname"><a href="#a630fd0665579e85532205c49261a44b3">Tracer::_serverPath</a></div><div class="ttdeci">std::string _serverPath</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00014">Tracer.hpp:14</a></div></div>
+<div class="ttc" id="aclassTracer_html_a83b60f1d681607d0ac7ddeb47ae52dac"><div class="ttname"><a href="#a83b60f1d681607d0ac7ddeb47ae52dac">Tracer::_serverProxy</a></div><div class="ttdeci">std::string _serverProxy</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00015">Tracer.hpp:15</a></div></div>
+<div class="ttc" id="aclassTracer_html_aa44dba799c31108166f8d33b1ebf516f"><div class="ttname"><a href="#aa44dba799c31108166f8d33b1ebf516f">Tracer::_attachments</a></div><div class="ttdeci">std::vector&lt; base::FilePath &gt; _attachments</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00018">Tracer.hpp:18</a></div></div>
+<div class="ttc" id="aclassTracer_html_aa5890fbf36b84d0eb0eb7a21e5334b37"><div class="ttname"><a href="#aa5890fbf36b84d0eb0eb7a21e5334b37">Tracer::_checkFlag</a></div><div class="ttdeci">std::shared_ptr&lt; std::atomic_flag &gt; _checkFlag</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00012">Tracer.hpp:12</a></div></div>
 <div class="ttc" id="aclassTracer_html_ab220e3d1019cb07d311a35b40e1a6163"><div class="ttname"><a href="#ab220e3d1019cb07d311a35b40e1a6163">Tracer::getSelfExecutableDir</a></div><div class="ttdeci">static std::string getSelfExecutableDir()</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8cpp_source.html#l00092">Tracer.cpp:92</a></div></div>
-<div class="ttc" id="aclassTracer_html_ab66fe7b82f20fbd67a6122bce49e06b0"><div class="ttname"><a href="#ab66fe7b82f20fbd67a6122bce49e06b0">Tracer::_annotations</a></div><div class="ttdeci">std::map&lt; std::string, std::string &gt; _annotations</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00019">Tracer.hpp:19</a></div></div>
-<div class="ttc" id="aclassTracer_html_ac8182e8d14799e97e3306d463cf589a9"><div class="ttname"><a href="#ac8182e8d14799e97e3306d463cf589a9">Tracer::_handlerPath</a></div><div class="ttdeci">std::string _handlerPath</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00018">Tracer.hpp:18</a></div></div>
+<div class="ttc" id="aclassTracer_html_ab66fe7b82f20fbd67a6122bce49e06b0"><div class="ttname"><a href="#ab66fe7b82f20fbd67a6122bce49e06b0">Tracer::_annotations</a></div><div class="ttdeci">std::map&lt; std::string, std::string &gt; _annotations</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00017">Tracer.hpp:17</a></div></div>
+<div class="ttc" id="aclassTracer_html_ac8182e8d14799e97e3306d463cf589a9"><div class="ttname"><a href="#ac8182e8d14799e97e3306d463cf589a9">Tracer::_handlerPath</a></div><div class="ttdeci">std::string _handlerPath</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00016">Tracer.hpp:16</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -288,14 +286,8 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="109,68,150,68,150,74,109,74"/>
 <area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="190,109,332,137"/>
 <area shape="poly" title=" " alt="" coords="110,82,189,102,188,107,108,87"/>
-<area shape="rect" href="classTracer.html#ab462323c296d709db1107ccd26df9d27" title=" " alt="" coords="413,109,547,137"/>
+<area shape="rect" href="classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="413,109,547,137"/>
 <area shape="poly" title=" " alt="" coords="333,120,397,120,397,126,333,126"/>
-<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="595,109,720,137"/>
-<area shape="poly" title=" " alt="" coords="548,120,580,120,580,126,548,126"/>
-<area shape="rect" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="778,83,956,110"/>
-<area shape="poly" title=" " alt="" coords="720,113,762,107,763,112,720,118"/>
-<area shape="rect" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="768,135,967,162"/>
-<area shape="poly" title=" " alt="" coords="720,128,752,132,752,137,720,133"/>
 </map>
 </div>
 
@@ -360,6 +352,9 @@ Here is the call graph for this function:</div>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Tracer::~Tracer </td>
@@ -368,20 +363,14 @@ Here is the call graph for this function:</div>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Destroy the <a class="el" href="classTracer.html">Tracer</a> object </p>
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00188">188</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  189</span>{</div>
-<div class="line"><span class="lineno">  190</span>    <a class="code hl_variable" href="#a0f76ebde0e5514a4b6015465944ffb8b">_shouldStop</a>._M_i = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  191</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#ad59f9a059abac4e1bf66d2a6c2e1d1e5">_thread</a> &amp;&amp; <a class="code hl_variable" href="#ad59f9a059abac4e1bf66d2a6c2e1d1e5">_thread</a>-&gt;joinable())</div>
-<div class="line"><span class="lineno">  192</span>    {</div>
-<div class="line"><span class="lineno">  193</span>        <a class="code hl_variable" href="#ad59f9a059abac4e1bf66d2a6c2e1d1e5">_thread</a>-&gt;join();</div>
-<div class="line"><span class="lineno">  194</span>    }</div>
-<div class="line"><span class="lineno">  195</span>}</div>
-<div class="ttc" id="aclassTracer_html_a0f76ebde0e5514a4b6015465944ffb8b"><div class="ttname"><a href="#a0f76ebde0e5514a4b6015465944ffb8b">Tracer::_shouldStop</a></div><div class="ttdeci">std::atomic_flag _shouldStop</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00013">Tracer.hpp:13</a></div></div>
-<div class="ttc" id="aclassTracer_html_ad59f9a059abac4e1bf66d2a6c2e1d1e5"><div class="ttname"><a href="#ad59f9a059abac4e1bf66d2a6c2e1d1e5">Tracer::_thread</a></div><div class="ttdeci">std::unique_ptr&lt; std::thread &gt; _thread</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00012">Tracer.hpp:12</a></div></div>
-</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -422,15 +411,9 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTracer_afb3ac495395576ba791fd471bc7d4bda_icgraph.png" border="0" usemap="#aclassTracer_afb3ac495395576ba791fd471bc7d4bda_icgraph" alt=""/></div>
 <map name="aclassTracer_afb3ac495395576ba791fd471bc7d4bda_icgraph" id="aclassTracer_afb3ac495395576ba791fd471bc7d4bda_icgraph">
-<area shape="rect" title=" " alt="" coords="702,5,880,33"/>
-<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="529,5,654,33"/>
-<area shape="poly" title=" " alt="" coords="687,22,654,22,654,16,687,16"/>
-<area shape="rect" href="classTracer.html#ab462323c296d709db1107ccd26df9d27" title=" " alt="" coords="347,5,481,33"/>
-<area shape="poly" title=" " alt="" coords="514,22,482,22,482,16,514,16"/>
-<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="157,5,299,33"/>
-<area shape="poly" title=" " alt="" coords="331,22,299,22,299,16,331,16"/>
-<area shape="rect" href="classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="5,5,109,33"/>
-<area shape="poly" title=" " alt="" coords="141,22,109,22,109,16,141,16"/>
+<area shape="rect" title=" " alt="" coords="178,5,356,33"/>
+<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="5,5,130,33"/>
+<area shape="poly" title=" " alt="" coords="163,22,130,22,130,16,163,16"/>
 </map>
 </div>
 
@@ -480,15 +463,9 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTracer_a006a1ba1dd8fade9e80f1fe96aef0c14_icgraph.png" border="0" usemap="#aclassTracer_a006a1ba1dd8fade9e80f1fe96aef0c14_icgraph" alt=""/></div>
 <map name="aclassTracer_a006a1ba1dd8fade9e80f1fe96aef0c14_icgraph" id="aclassTracer_a006a1ba1dd8fade9e80f1fe96aef0c14_icgraph">
-<area shape="rect" title=" " alt="" coords="702,5,901,33"/>
-<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="529,5,654,33"/>
-<area shape="poly" title=" " alt="" coords="686,22,654,22,654,16,686,16"/>
-<area shape="rect" href="classTracer.html#ab462323c296d709db1107ccd26df9d27" title=" " alt="" coords="347,5,481,33"/>
-<area shape="poly" title=" " alt="" coords="514,22,482,22,482,16,514,16"/>
-<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="157,5,299,33"/>
-<area shape="poly" title=" " alt="" coords="331,22,299,22,299,16,331,16"/>
-<area shape="rect" href="classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="5,5,109,33"/>
-<area shape="poly" title=" " alt="" coords="141,22,109,22,109,16,141,16"/>
+<area shape="rect" title=" " alt="" coords="178,5,377,33"/>
+<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="5,5,130,33"/>
+<area shape="poly" title=" " alt="" coords="162,22,130,22,130,16,162,16"/>
 </map>
 </div>
 
@@ -679,20 +656,6 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="130,51,162,55,162,60,130,56"/>
 </map>
 </div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classTracer_a4e3975043a2fc94d307d511012706770_icgraph.png" border="0" usemap="#aclassTracer_a4e3975043a2fc94d307d511012706770_icgraph" alt=""/></div>
-<map name="aclassTracer_a4e3975043a2fc94d307d511012706770_icgraph" id="aclassTracer_a4e3975043a2fc94d307d511012706770_icgraph">
-<area shape="rect" title=" " alt="" coords="529,5,654,33"/>
-<area shape="rect" href="classTracer.html#ab462323c296d709db1107ccd26df9d27" title=" " alt="" coords="347,5,481,33"/>
-<area shape="poly" title=" " alt="" coords="514,22,482,22,482,16,514,16"/>
-<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="157,5,299,33"/>
-<area shape="poly" title=" " alt="" coords="331,22,299,22,299,16,331,16"/>
-<area shape="rect" href="classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="5,5,109,33"/>
-<area shape="poly" title=" " alt="" coords="141,22,109,22,109,16,141,16"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -805,23 +768,18 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">   50</span>        <span class="keywordflow">throw</span> std::ios_base::failure(<span class="stringliteral">&quot;Can&#39;t start crash handler&quot;</span>);</div>
 <div class="line"><span class="lineno">   51</span>    }</div>
 <div class="line"><span class="lineno">   52</span> </div>
-<div class="line"><span class="lineno">   53</span>    <a class="code hl_variable" href="#ad59f9a059abac4e1bf66d2a6c2e1d1e5">_thread</a> = std::make_unique&lt;std::thread&gt;(&amp;<a class="code hl_function" href="#ab462323c296d709db1107ccd26df9d27">Tracer::threadFunc</a>, <span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">   53</span>    <a class="code hl_variable" href="#a95cf0b2ab3fa72f2da2eb48628deb76f">_thread</a> = std::make_unique&lt;std::jthread&gt;([<span class="keyword">this</span>](<span class="keyword">const</span> std::stop_token &amp;sToken) { <a class="code hl_function" href="#ac5c0ad1b1a86dd3e489ed162d5b7b8fc">threadFunc</a>(sToken); });</div>
 <div class="line"><span class="lineno">   54</span>}</div>
-<div class="ttc" id="aclassTracer_html_ab462323c296d709db1107ccd26df9d27"><div class="ttname"><a href="#ab462323c296d709db1107ccd26df9d27">Tracer::threadFunc</a></div><div class="ttdeci">void threadFunc() const noexcept</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8cpp_source.html#l00056">Tracer.cpp:56</a></div></div>
+<div class="ttc" id="aclassTracer_html_a95cf0b2ab3fa72f2da2eb48628deb76f"><div class="ttname"><a href="#a95cf0b2ab3fa72f2da2eb48628deb76f">Tracer::_thread</a></div><div class="ttdeci">std::unique_ptr&lt; std::jthread &gt; _thread</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00022">Tracer.hpp:22</a></div></div>
+<div class="ttc" id="aclassTracer_html_ac5c0ad1b1a86dd3e489ed162d5b7b8fc"><div class="ttname"><a href="#ac5c0ad1b1a86dd3e489ed162d5b7b8fc">Tracer::threadFunc</a></div><div class="ttdeci">void threadFunc(const std::stop_token &amp;stopToken) const noexcept</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8cpp_source.html#l00056">Tracer.cpp:56</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTracer_a5e733e7676276b3640d8e44eb7865aac_cgraph.png" border="0" usemap="#aclassTracer_a5e733e7676276b3640d8e44eb7865aac_cgraph" alt=""/></div>
 <map name="aclassTracer_a5e733e7676276b3640d8e44eb7865aac_cgraph" id="aclassTracer_a5e733e7676276b3640d8e44eb7865aac_cgraph">
-<area shape="rect" title=" " alt="" coords="5,32,148,60"/>
-<area shape="rect" href="classTracer.html#ab462323c296d709db1107ccd26df9d27" title=" " alt="" coords="196,32,330,60"/>
-<area shape="poly" title=" " alt="" coords="148,43,180,43,180,48,148,48"/>
-<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="378,32,502,60"/>
-<area shape="poly" title=" " alt="" coords="330,43,363,43,363,48,330,48"/>
-<area shape="rect" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="561,5,739,33"/>
-<area shape="poly" title=" " alt="" coords="502,35,545,30,546,35,503,41"/>
-<area shape="rect" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="550,57,750,85"/>
-<area shape="poly" title=" " alt="" coords="503,51,535,55,534,60,502,56"/>
+<area shape="rect" title=" " alt="" coords="5,5,148,33"/>
+<area shape="rect" href="classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="196,5,330,33"/>
+<area shape="poly" title=" " alt="" coords="148,16,180,16,180,22,148,22"/>
 </map>
 </div>
 <div class="dynheader">
@@ -837,8 +795,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ab462323c296d709db1107ccd26df9d27" name="ab462323c296d709db1107ccd26df9d27"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab462323c296d709db1107ccd26df9d27">&#9670;&#160;</a></span>threadFunc()</h2>
+<a id="ac5c0ad1b1a86dd3e489ed162d5b7b8fc" name="ac5c0ad1b1a86dd3e489ed162d5b7b8fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5c0ad1b1a86dd3e489ed162d5b7b8fc">&#9670;&#160;</a></span>threadFunc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -849,7 +807,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">void Tracer::threadFunc </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const std::stop_token &amp;</td>          <td class="paramname"><span class="paramname"><em>stopToken</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -859,11 +817,16 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Thread function to check and restart the crashpad handler process </p>
+<p>Thread function to check and restart the crashpad handler process </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">stopToken</td><td>jthread stop token </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00056">56</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   57</span>{</div>
-<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">while</span> (!<a class="code hl_variable" href="#a0f76ebde0e5514a4b6015465944ffb8b">_shouldStop</a>._M_i)</div>
+<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">while</span> (!stopToken.stop_requested())</div>
 <div class="line"><span class="lineno">   59</span>    {</div>
 <div class="line"><span class="lineno">   60</span>        <span class="keywordflow">try</span></div>
 <div class="line"><span class="lineno">   61</span>        {</div>
@@ -887,24 +850,10 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="aTelnetServer_8cpp_html_a7aff6e199c410c193f673d13f5f0b31d"><div class="ttname"><a href="TelnetServer_8cpp.html#a7aff6e199c410c193f673d13f5f0b31d">SLEEP_INTERVAL_MS</a></div><div class="ttdeci">constexpr int SLEEP_INTERVAL_MS</div><div class="ttdef"><b>Definition</b> <a href="TelnetServer_8cpp_source.html#l00031">TelnetServer.cpp:31</a></div></div>
 <div class="ttc" id="aclassTracer_html_a4e3975043a2fc94d307d511012706770"><div class="ttname"><a href="#a4e3975043a2fc94d307d511012706770">Tracer::isRunning</a></div><div class="ttdeci">static bool isRunning()</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8cpp_source.html#l00102">Tracer.cpp:102</a></div></div>
 </div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classTracer_ab462323c296d709db1107ccd26df9d27_cgraph.png" border="0" usemap="#aclassTracer_ab462323c296d709db1107ccd26df9d27_cgraph" alt=""/></div>
-<map name="aclassTracer_ab462323c296d709db1107ccd26df9d27_cgraph" id="aclassTracer_ab462323c296d709db1107ccd26df9d27_cgraph">
-<area shape="rect" title=" " alt="" coords="5,32,140,60"/>
-<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="188,32,312,60"/>
-<area shape="poly" title=" " alt="" coords="140,43,172,43,172,48,140,48"/>
-<area shape="rect" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="370,5,549,33"/>
-<area shape="poly" title=" " alt="" coords="312,35,355,30,355,35,313,41"/>
-<area shape="rect" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="360,57,559,85"/>
-<area shape="poly" title=" " alt="" coords="313,51,345,55,344,60,312,56"/>
-</map>
-</div>
-<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classTracer_ab462323c296d709db1107ccd26df9d27_icgraph.png" border="0" usemap="#aclassTracer_ab462323c296d709db1107ccd26df9d27_icgraph" alt=""/></div>
-<map name="aclassTracer_ab462323c296d709db1107ccd26df9d27_icgraph" id="aclassTracer_ab462323c296d709db1107ccd26df9d27_icgraph">
+<div class="center"><img src="classTracer_ac5c0ad1b1a86dd3e489ed162d5b7b8fc_icgraph.png" border="0" usemap="#aclassTracer_ac5c0ad1b1a86dd3e489ed162d5b7b8fc_icgraph" alt=""/></div>
+<map name="aclassTracer_ac5c0ad1b1a86dd3e489ed162d5b7b8fc_icgraph" id="aclassTracer_ac5c0ad1b1a86dd3e489ed162d5b7b8fc_icgraph">
 <area shape="rect" title=" " alt="" coords="347,5,481,33"/>
 <area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="157,5,299,33"/>
 <area shape="poly" title=" " alt="" coords="331,22,299,22,299,16,331,16"/>
@@ -936,7 +885,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00019">19</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00017">17</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
 
 </div>
 </div>
@@ -960,7 +909,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00020">20</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00018">18</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
 
 </div>
 </div>
@@ -984,7 +933,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00014">14</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00012">12</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
 
 </div>
 </div>
@@ -1008,7 +957,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00022">22</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00020">20</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
 
 </div>
 </div>
@@ -1032,7 +981,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00018">18</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00016">16</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
 
 </div>
 </div>
@@ -1056,7 +1005,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00021">21</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00019">19</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
 
 </div>
 </div>
@@ -1080,7 +1029,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00016">16</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00014">14</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
 
 </div>
 </div>
@@ -1104,12 +1053,12 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00017">17</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00015">15</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
 
 </div>
 </div>
-<a id="a0f76ebde0e5514a4b6015465944ffb8b" name="a0f76ebde0e5514a4b6015465944ffb8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f76ebde0e5514a4b6015465944ffb8b">&#9670;&#160;</a></span>_shouldStop</h2>
+<a id="a95cf0b2ab3fa72f2da2eb48628deb76f" name="a95cf0b2ab3fa72f2da2eb48628deb76f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95cf0b2ab3fa72f2da2eb48628deb76f">&#9670;&#160;</a></span>_thread</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1118,7 +1067,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::atomic_flag Tracer::_shouldStop {false}</td>
+          <td class="memname">std::unique_ptr&lt;std::jthread&gt; Tracer::_thread</td>
         </tr>
       </table>
   </td>
@@ -1128,32 +1077,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00013">13</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   13</span>{<span class="keyword">false</span>};</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="ad59f9a059abac4e1bf66d2a6c2e1d1e5" name="ad59f9a059abac4e1bf66d2a6c2e1d1e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad59f9a059abac4e1bf66d2a6c2e1d1e5">&#9670;&#160;</a></span>_thread</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::unique_ptr&lt;std::thread&gt; Tracer::_thread</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00012">12</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Tracer_8hpp_source.html#l00022">22</a> of file <a class="el" href="Tracer_8hpp_source.html">Tracer.hpp</a>.</p>
 
 </div>
 </div>
@@ -1167,7 +1091,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classTracer.html">Tracer</a></li>
-    <li class="footer">Generated on Sun Feb 22 2026 15:09:25 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated on Tue Feb 24 2026 09:05:21 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
   </ul>
 </div>
 </body>

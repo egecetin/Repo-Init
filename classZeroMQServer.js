@@ -10,11 +10,10 @@ var classZeroMQServer =
     [ "operator=", "classZeroMQServer.html#af0a9c49f0f78935e4a31d05fd350ea8c", null ],
     [ "operator=", "classZeroMQServer.html#a2fd1a2cc1f77ec7a6ce5ae47ac4a7de3", null ],
     [ "shutdown", "classZeroMQServer.html#ac3515a4b148ad4ce7af202bdc2d0e595", null ],
-    [ "threadFunc", "classZeroMQServer.html#a7607b05b014e520debed6914d559da53", null ],
+    [ "threadFunc", "classZeroMQServer.html#a7944af6973494593bc2055f8da12f096", null ],
     [ "update", "classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811", null ],
     [ "_checkFlag", "classZeroMQServer.html#a70e7e7c83692da0a3626f23fa9625578", null ],
     [ "_m_messageCallback", "classZeroMQServer.html#a95ea23c2ea95c386e6415065f940ef2e", null ],
-    [ "_serverThread", "classZeroMQServer.html#aae8edde0390af06e97ea5118795c86f6", null ],
-    [ "_shouldStop", "classZeroMQServer.html#a3843671f7c4602e2658465be8a18fcbb", null ],
+    [ "_serverThread", "classZeroMQServer.html#a920e3f0f9479ba874fa11fd446a9bb12", null ],
     [ "_stats", "classZeroMQServer.html#a3e9a6ebf998b7edcffa5e31e77d39843", null ]
 ];

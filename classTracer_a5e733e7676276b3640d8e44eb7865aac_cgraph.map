@@ -1,11 +1,5 @@
 <map id="Tracer::startHandler" name="Tracer::startHandler">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,32,148,60"/>
-<area shape="rect" id="Node000002" href="$classTracer.html#ab462323c296d709db1107ccd26df9d27" title=" " alt="" coords="196,32,330,60"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,43,180,43,180,48,148,48"/>
-<area shape="rect" id="Node000003" href="$classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="378,32,502,60"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="330,43,363,43,363,48,330,48"/>
-<area shape="rect" id="Node000004" href="$classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="561,5,739,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="502,35,545,30,546,35,503,41"/>
-<area shape="rect" id="Node000005" href="$classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="550,57,750,85"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="503,51,535,55,534,60,502,56"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,148,33"/>
+<area shape="rect" id="Node000002" href="$classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="196,5,330,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,16,180,16,180,22,148,22"/>
 </map>

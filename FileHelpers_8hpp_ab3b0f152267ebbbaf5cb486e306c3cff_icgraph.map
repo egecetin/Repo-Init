@@ -1,15 +1,11 @@
 <map id="findFromFile" name="findFromFile">
-<area shape="rect" id="Node000001" title=" " alt="" coords="936,57,1036,85"/>
-<area shape="rect" id="Node000002" href="$FileHelpers_8hpp.html#a28c8c54fa68f1cbea3b3d84d24dedc47" title=" " alt="" coords="750,5,850,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="920,56,850,36,851,31,921,50"/>
-<area shape="rect" id="Node000003" href="$classProcessMetrics.html#a595002ef00c4903650405590569de19d" title=" " alt="" coords="712,57,888,85"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="920,74,888,74,888,68,920,68"/>
-<area shape="rect" id="Node000007" href="$classspdlog_1_1sinks_1_1loki__api__sink.html#ad41002727c3101c6069dbbe333456b11" title=" " alt="" coords="719,109,881,154"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="927,93,872,111,870,106,926,88"/>
-<area shape="rect" id="Node000004" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title=" " alt="" coords="506,57,664,85"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="697,74,665,74,665,68,697,68"/>
-<area shape="rect" id="Node000005" href="$classProcessMetrics.html#a48996912e89faa15ddb289ec1c6c46a0" title=" " alt="" coords="259,57,458,85"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="490,74,459,74,459,68,490,68"/>
-<area shape="rect" id="Node000006" href="$classProcessMetrics.html#a102e67199855a44a2c6418fadb57ecb2" title=" " alt="" coords="5,57,211,85"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="243,74,211,74,211,68,243,68"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="435,57,535,85"/>
+<area shape="rect" id="Node000002" href="$FileHelpers_8hpp.html#a28c8c54fa68f1cbea3b3d84d24dedc47" title=" " alt="" coords="249,5,350,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="419,56,349,36,351,31,421,50"/>
+<area shape="rect" id="Node000003" href="$classProcessMetrics.html#a595002ef00c4903650405590569de19d" title=" " alt="" coords="212,57,387,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="419,74,387,74,387,68,419,68"/>
+<area shape="rect" id="Node000005" href="$classspdlog_1_1sinks_1_1loki__api__sink.html#ad41002727c3101c6069dbbe333456b11" title=" " alt="" coords="219,109,380,154"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="427,93,371,111,370,106,425,88"/>
+<area shape="rect" id="Node000004" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title=" " alt="" coords="5,57,164,85"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="196,74,164,74,164,68,196,68"/>
 </map>

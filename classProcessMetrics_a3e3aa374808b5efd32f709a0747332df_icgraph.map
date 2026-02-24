@@ -1,14 +1,10 @@
 <map id="ProcessMetrics::countDirectoryEntries" name="ProcessMetrics::countDirectoryEntries">
-<area shape="rect" id="Node000001" title=" " alt="" coords="981,40,1185,85"/>
-<area shape="rect" id="Node000002" href="$classProcessMetrics.html#afc464f41490e92722af1d5e0f0c57d85" title=" " alt="" coords="712,5,933,50"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="965,49,933,45,934,40,966,44"/>
-<area shape="rect" id="Node000006" href="$classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636" title=" " alt="" coords="733,75,912,119"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="966,81,913,88,912,82,965,75"/>
-<area shape="rect" id="Node000003" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title=" " alt="" coords="506,48,664,76"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="697,49,665,53,665,48,696,43"/>
-<area shape="rect" id="Node000004" href="$classProcessMetrics.html#a48996912e89faa15ddb289ec1c6c46a0" title=" " alt="" coords="259,48,458,76"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="490,65,459,65,459,60,490,60"/>
-<area shape="rect" id="Node000005" href="$classProcessMetrics.html#a102e67199855a44a2c6418fadb57ecb2" title=" " alt="" coords="5,48,211,76"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="243,65,211,65,211,60,243,60"/>
-<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="717,84,665,77,665,71,718,79"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="480,40,684,85"/>
+<area shape="rect" id="Node000002" href="$classProcessMetrics.html#afc464f41490e92722af1d5e0f0c57d85" title=" " alt="" coords="212,5,432,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="464,49,432,45,433,40,465,44"/>
+<area shape="rect" id="Node000004" href="$classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636" title=" " alt="" coords="232,75,412,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="465,81,412,88,412,82,464,75"/>
+<area shape="rect" id="Node000003" href="$classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82" title=" " alt="" coords="5,48,164,76"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="196,49,165,53,164,48,196,43"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="217,84,164,77,165,71,217,79"/>
 </map>

@@ -14,7 +14,7 @@ var classProcessMetrics =
     [ "getThreadCount", "classProcessMetrics.html#ad8ab94bdca96b56532277d89a9a5d636", null ],
     [ "operator=", "classProcessMetrics.html#a323e0b4bf42c7dbc5af0752883e15fcc", null ],
     [ "operator=", "classProcessMetrics.html#a048562bec48c6b562121a9438c0ba721", null ],
-    [ "threadRunner", "classProcessMetrics.html#a48996912e89faa15ddb289ec1c6c46a0", null ],
+    [ "threadRunner", "classProcessMetrics.html#af6d9d001d7b3945088f92f5e7a265fb6", null ],
     [ "update", "classProcessMetrics.html#aa1fba85f77ca0f7bfc68ef91fa05ed82", null ],
     [ "_checkFlag", "classProcessMetrics.html#ac700adb6902d2894970ecb2e7a28778e", null ],
     [ "_oldCpuTime", "classProcessMetrics.html#a0dae89a805461aea0e186edc3ed00f41", null ],
@@ -29,6 +29,5 @@ var classProcessMetrics =
     [ "_pMemory", "classProcessMetrics.html#a03917bb66122ce6a87ec96aac35379f8", null ],
     [ "_pPageFaults", "classProcessMetrics.html#a49957238a9cacaa8da241cf635961be5", null ],
     [ "_pThreadCount", "classProcessMetrics.html#aa08783fd9849823736ad7ce4d99bfa4c", null ],
-    [ "_shouldStop", "classProcessMetrics.html#a35fd70f84873719e0128a6b69bba09a1", null ],
-    [ "_thread", "classProcessMetrics.html#acd231e123cf41cd967c8888a033c6586", null ]
+    [ "_thread", "classProcessMetrics.html#a0745d48059c457b4b1cf9c620cfca940", null ]
 ];
