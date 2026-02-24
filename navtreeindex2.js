@@ -1,6 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"classZeroMQServer.html":[2,0,25],
 "classZeroMQServer.html#a2fd1a2cc1f77ec7a6ce5ae47ac4a7de3":[2,0,25,8],
 "classZeroMQServer.html#a3a4558d2caca6350276fe4c417c75811":[2,0,25,11],
 "classZeroMQServer.html#a3e9a6ebf998b7edcffa5e31e77d39843":[2,0,25,15],

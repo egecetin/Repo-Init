@@ -1,6 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"classInputParser.html#aea813a8d6ee9ea6d250ab99333316bdf":[2,0,7,1],
 "classMainLogger.html":[2,0,8],
 "classMainLogger.html#a124c6c161f48b08587e72dde8bcb8970":[2,0,8,3],
 "classMainLogger.html#a1b1a5afe10760a6d57f19d9febccb5a1":[2,0,8,5],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1 =
 "classZeroMQMonitor.html#ae22769b10d963387f91608df0c82a688":[2,0,24,23],
 "classZeroMQMonitor.html#af55de9c3dbe10313153ff9ed8b0e479c":[2,0,24,27],
 "classZeroMQMonitor.html#af87af122def750e0fca640c992672021":[2,0,24,9],
-"classZeroMQMonitor.html#afb8e523f553fcdf1e4c1cf7b14db68ac":[2,0,24,2]
+"classZeroMQMonitor.html#afb8e523f553fcdf1e4c1cf7b14db68ac":[2,0,24,2],
+"classZeroMQServer.html":[2,0,25]
 };
