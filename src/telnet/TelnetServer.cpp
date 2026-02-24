@@ -112,7 +112,7 @@ std::string TelnetSession::getPeerIP() const
 	sockaddr_in client_info{};
 	memset(&client_info, 0, sizeof(client_info));
 	socklen_t addrsize = sizeof(client_info);
-	getpeername(m_socket, reinterpret_cast<sockaddr *>(&client_info), &addrsize);
+	getpeername(m_socket, std::bit_cast<sockaddr *>(&client_info), &addrsize);
 
 	std::array<char, INET_ADDRSTRLEN> ipAddr{};
 	inet_ntop(AF_INET, &client_info.sin_addr, ipAddr.data(), INET_ADDRSTRLEN);

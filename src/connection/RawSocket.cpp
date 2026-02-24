@@ -21,7 +21,7 @@ void RawSocket::init(int domain, int type, int protocol)
 	{
 		throw std::ios_base::failure(getErrnoString(errno));
 	}
-	if (bind(_sockFd, reinterpret_cast<sockaddr *>(&_addr), sizeof(_addr)) < 0)
+	if (bind(_sockFd, std::bit_cast<sockaddr *>(&_addr), sizeof(_addr)) < 0)
 	{
 		throw std::ios_base::failure(std::string("Bind failed: ") + getErrnoString(errno));
 	}
@@ -88,7 +88,7 @@ int RawSocket::readData(unsigned char *data, size_t dataLen)
 
 	auto startTime = std::chrono::high_resolution_clock::now();
 	const auto retval =
-		static_cast<int>(recvfrom(_sockFd, data, dataLen, 0, reinterpret_cast<sockaddr *>(&_addr), &socketLen));
+		static_cast<int>(recvfrom(_sockFd, data, dataLen, 0, std::bit_cast<sockaddr *>(&_addr), &socketLen));
 
 	// Update stats
 	_stats.processingTime += static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
