@@ -13,9 +13,9 @@
 /// Sleep interval for the file monitor
 constexpr int SLEEP_INTERVAL_MS = 50;
 
-void FileMonitor::threadFunc() const noexcept
+void FileMonitor::threadFunc(const std::stop_token &stopToken) const noexcept
 {
-	while (!_shouldStop._M_i)
+	while (!stopToken.stop_requested())
 	{
 		// Buffer for reading events
 		unsigned int nBytes = 0;
@@ -75,15 +75,13 @@ FileMonitor::FileMonitor(std::filesystem::path filePath, uint32_t notifyEvents)
 		throw std::ios_base::failure("Failed to set file descriptor to non-blocking mode");
 	}
 
-	_thread = std::make_unique<std::thread>(&FileMonitor::threadFunc, this);
+	_thread = std::make_unique<std::jthread>([this](const std::stop_token &sToken) { threadFunc(sToken); });
 }
 
 FileMonitor::~FileMonitor()
 {
-	_shouldStop.test_and_set();
-	if (_thread && _thread->joinable())
+	if (_thread)
 	{
-		_thread->join();
 		_thread.reset();
 	}
 
