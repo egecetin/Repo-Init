@@ -5,8 +5,8 @@
 #include <rapidjson/ostreamwrapper.h>
 #include <rapidjson/writer.h>
 
-#include <fstream>
 #include <format>
+#include <fstream>
 
 namespace
 {

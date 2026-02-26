@@ -55,7 +55,7 @@ TEST(Utils_Tests, ConfigParserUnitTests)
 	ASSERT_FALSE(invalidParser1.isValid());
 	ASSERT_FALSE(invalidParser1.getLastError().empty());
 	ASSERT_FALSE(invalidParser1.load());
-	
+
 	ConfigParser invalidParser2(TEST_CONFIG_EMPTY_PATH);
 	ASSERT_FALSE(invalidParser2.isValid());
 	ASSERT_FALSE(invalidParser2.getLastError().empty());

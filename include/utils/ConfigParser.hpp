@@ -36,7 +36,7 @@ class ConfigParser {
 	 * Get the last error message
 	 * @return std::string Error message
 	 */
-	const std::string& getLastError() const { return _lastError; }
+	const std::string &getLastError() const { return _lastError; }
 
 	/**
 	 * Get the value of a key from the configuration file. If the configuration file modified from outside
