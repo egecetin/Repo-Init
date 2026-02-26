@@ -267,188 +267,195 @@ Variables</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno">   38</span>{</div>
 <div class="line"><span class="lineno">   39</span>    <span class="keyword">const</span> <a class="code hl_class" href="classInputParser.html">InputParser</a> input(argc, argv);</div>
 <div class="line"><span class="lineno">   40</span>    <span class="keyword">const</span> <a class="code hl_class" href="classConfigParser.html">ConfigParser</a> config(input.cmdOptionExists(<span class="stringliteral">&quot;--config&quot;</span>) ? input.getCmdOption(<span class="stringliteral">&quot;--config&quot;</span>) : <span class="stringliteral">&quot;config.json&quot;</span>);</div>
-<div class="line"><span class="lineno">   41</span>    <span class="keyword">const</span> <a class="code hl_class" href="classMainLogger.html">MainLogger</a> logger(config.get(<span class="stringliteral">&quot;LOKI_ADDRESS&quot;</span>), config.get(<span class="stringliteral">&quot;SENTRY_ADDRESS&quot;</span>));</div>
-<div class="line"><span class="lineno">   42</span> </div>
-<div class="line"><span class="lineno">   43</span>    <span class="comment">// Initialize curl as soon as possible</span></div>
-<div class="line"><span class="lineno">   44</span>    <span class="keywordflow">if</span> (curl_global_init(CURL_GLOBAL_DEFAULT) &lt; 0)</div>
-<div class="line"><span class="lineno">   45</span>    {</div>
-<div class="line"><span class="lineno">   46</span>        spdlog::critical(<span class="stringliteral">&quot;Can&#39;t init curl&quot;</span>);</div>
-<div class="line"><span class="lineno">   47</span>        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
-<div class="line"><span class="lineno">   48</span>    }</div>
+<div class="line"><span class="lineno">   41</span> </div>
+<div class="line"><span class="lineno">   42</span>    <span class="comment">// Check if config loaded successfully before proceeding</span></div>
+<div class="line"><span class="lineno">   43</span>    <span class="keywordflow">if</span> (!config.isValid())</div>
+<div class="line"><span class="lineno">   44</span>    {</div>
+<div class="line"><span class="lineno">   45</span>        std::invalid_argument(std::format(<span class="stringliteral">&quot;{} {}&quot;</span>, <span class="stringliteral">&quot;Failed to load configuration:&quot;</span>, config.getLastError()));</div>
+<div class="line"><span class="lineno">   46</span>    }</div>
+<div class="line"><span class="lineno">   47</span> </div>
+<div class="line"><span class="lineno">   48</span>    <span class="keyword">const</span> <a class="code hl_class" href="classMainLogger.html">MainLogger</a> logger(config.get(<span class="stringliteral">&quot;LOKI_ADDRESS&quot;</span>), config.get(<span class="stringliteral">&quot;SENTRY_ADDRESS&quot;</span>));</div>
 <div class="line"><span class="lineno">   49</span> </div>
-<div class="line"><span class="lineno">   50</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">   51</span>    <span class="comment">/* ############################# MAKE MODIFICATIONS HERE ############################# */</span></div>
-<div class="line"><span class="lineno">   52</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">   53</span> </div>
-<div class="line"><span class="lineno">   54</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">   55</span>    <span class="comment">/* ################################ END MODIFICATIONS ################################ */</span></div>
-<div class="line"><span class="lineno">   56</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">   57</span> </div>
-<div class="line"><span class="lineno">   58</span>    <span class="comment">// Adjust log level</span></div>
-<div class="line"><span class="lineno">   59</span>    <span class="keywordflow">if</span> (input.cmdOptionExists(<span class="stringliteral">&quot;-v&quot;</span>))</div>
-<div class="line"><span class="lineno">   60</span>    {</div>
-<div class="line"><span class="lineno">   61</span>        spdlog::set_level(spdlog::level::info);</div>
-<div class="line"><span class="lineno">   62</span>    }</div>
-<div class="line"><span class="lineno">   63</span>    <span class="keywordflow">if</span> (input.cmdOptionExists(<span class="stringliteral">&quot;-vv&quot;</span>))</div>
-<div class="line"><span class="lineno">   64</span>    {</div>
-<div class="line"><span class="lineno">   65</span>        spdlog::set_level(spdlog::level::debug);</div>
-<div class="line"><span class="lineno">   66</span>    }</div>
-<div class="line"><span class="lineno">   67</span>    <span class="keywordflow">if</span> (input.cmdOptionExists(<span class="stringliteral">&quot;-vvv&quot;</span>))</div>
-<div class="line"><span class="lineno">   68</span>    {</div>
-<div class="line"><span class="lineno">   69</span>        spdlog::set_level(spdlog::level::trace);</div>
-<div class="line"><span class="lineno">   70</span>    }</div>
-<div class="line"><span class="lineno">   71</span> </div>
-<div class="line"><span class="lineno">   72</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">   73</span>    <span class="comment">/* ############################# MAKE MODIFICATIONS HERE ############################# */</span></div>
-<div class="line"><span class="lineno">   74</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">   75</span> </div>
-<div class="line"><span class="lineno">   76</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">   77</span>    <span class="comment">/* ################################ END MODIFICATIONS ################################ */</span></div>
-<div class="line"><span class="lineno">   78</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">   79</span> </div>
-<div class="line"><span class="lineno">   80</span>    <span class="comment">// Log input arguments</span></div>
-<div class="line"><span class="lineno">   81</span>    spdlog::debug(<span class="stringliteral">&quot;======== Detected input arguments ========&quot;</span>);</div>
-<div class="line"><span class="lineno">   82</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;entry : input.getCmdOptions())</div>
-<div class="line"><span class="lineno">   83</span>    {</div>
-<div class="line"><span class="lineno">   84</span>        spdlog::debug(<span class="stringliteral">&quot;{} = {}&quot;</span>, entry.first, entry.second);</div>
-<div class="line"><span class="lineno">   85</span>    }</div>
+<div class="line"><span class="lineno">   50</span>    <span class="comment">// Initialize curl as soon as possible</span></div>
+<div class="line"><span class="lineno">   51</span>    <span class="keywordflow">if</span> (curl_global_init(CURL_GLOBAL_DEFAULT) &lt; 0)</div>
+<div class="line"><span class="lineno">   52</span>    {</div>
+<div class="line"><span class="lineno">   53</span>        spdlog::critical(<span class="stringliteral">&quot;Can&#39;t init curl&quot;</span>);</div>
+<div class="line"><span class="lineno">   54</span>        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line"><span class="lineno">   55</span>    }</div>
+<div class="line"><span class="lineno">   56</span> </div>
+<div class="line"><span class="lineno">   57</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><span class="lineno">   58</span>    <span class="comment">/* ############################# MAKE MODIFICATIONS HERE ############################# */</span></div>
+<div class="line"><span class="lineno">   59</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><span class="lineno">   60</span> </div>
+<div class="line"><span class="lineno">   61</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><span class="lineno">   62</span>    <span class="comment">/* ################################ END MODIFICATIONS ################################ */</span></div>
+<div class="line"><span class="lineno">   63</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><span class="lineno">   64</span> </div>
+<div class="line"><span class="lineno">   65</span>    <span class="comment">// Adjust log level</span></div>
+<div class="line"><span class="lineno">   66</span>    <span class="keywordflow">if</span> (input.cmdOptionExists(<span class="stringliteral">&quot;-v&quot;</span>))</div>
+<div class="line"><span class="lineno">   67</span>    {</div>
+<div class="line"><span class="lineno">   68</span>        spdlog::set_level(spdlog::level::info);</div>
+<div class="line"><span class="lineno">   69</span>    }</div>
+<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">if</span> (input.cmdOptionExists(<span class="stringliteral">&quot;-vv&quot;</span>))</div>
+<div class="line"><span class="lineno">   71</span>    {</div>
+<div class="line"><span class="lineno">   72</span>        spdlog::set_level(spdlog::level::debug);</div>
+<div class="line"><span class="lineno">   73</span>    }</div>
+<div class="line"><span class="lineno">   74</span>    <span class="keywordflow">if</span> (input.cmdOptionExists(<span class="stringliteral">&quot;-vvv&quot;</span>))</div>
+<div class="line"><span class="lineno">   75</span>    {</div>
+<div class="line"><span class="lineno">   76</span>        spdlog::set_level(spdlog::level::trace);</div>
+<div class="line"><span class="lineno">   77</span>    }</div>
+<div class="line"><span class="lineno">   78</span> </div>
+<div class="line"><span class="lineno">   79</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><span class="lineno">   80</span>    <span class="comment">/* ############################# MAKE MODIFICATIONS HERE ############################# */</span></div>
+<div class="line"><span class="lineno">   81</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><span class="lineno">   82</span> </div>
+<div class="line"><span class="lineno">   83</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><span class="lineno">   84</span>    <span class="comment">/* ################################ END MODIFICATIONS ################################ */</span></div>
+<div class="line"><span class="lineno">   85</span>    <span class="comment">/* ################################################################################### */</span></div>
 <div class="line"><span class="lineno">   86</span> </div>
-<div class="line"><span class="lineno">   87</span>    <span class="comment">// Log detected configuration to debug</span></div>
-<div class="line"><span class="lineno">   88</span>    spdlog::debug(<span class="stringliteral">&quot;======== Detected configuration ========&quot;</span>);</div>
-<div class="line"><span class="lineno">   89</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;entry : config.getConfigMap())</div>
+<div class="line"><span class="lineno">   87</span>    <span class="comment">// Log input arguments</span></div>
+<div class="line"><span class="lineno">   88</span>    spdlog::debug(<span class="stringliteral">&quot;======== Detected input arguments ========&quot;</span>);</div>
+<div class="line"><span class="lineno">   89</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;entry : input.getCmdOptions())</div>
 <div class="line"><span class="lineno">   90</span>    {</div>
 <div class="line"><span class="lineno">   91</span>        spdlog::debug(<span class="stringliteral">&quot;{} = {}&quot;</span>, entry.first, entry.second);</div>
 <div class="line"><span class="lineno">   92</span>    }</div>
 <div class="line"><span class="lineno">   93</span> </div>
-<div class="line"><span class="lineno">   94</span>    <span class="comment">// Register interrupt signal handler</span></div>
-<div class="line"><span class="lineno">   95</span>    <span class="keywordflow">if</span> (std::signal(SIGINT, interruptFunc) == SIG_ERR)</div>
-<div class="line"><span class="lineno">   96</span>    {</div>
-<div class="line"><span class="lineno">   97</span>        spdlog::critical(<span class="stringliteral">&quot;Can&#39;t set signal handler (SIGINT): {}&quot;</span>, <a class="code hl_function" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
-<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line"><span class="lineno">   94</span>    <span class="comment">// Log detected configuration to debug</span></div>
+<div class="line"><span class="lineno">   95</span>    spdlog::debug(<span class="stringliteral">&quot;======== Detected configuration ========&quot;</span>);</div>
+<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;entry : config.getConfigMap())</div>
+<div class="line"><span class="lineno">   97</span>    {</div>
+<div class="line"><span class="lineno">   98</span>        spdlog::debug(<span class="stringliteral">&quot;{} = {}&quot;</span>, entry.first, entry.second);</div>
 <div class="line"><span class="lineno">   99</span>    }</div>
 <div class="line"><span class="lineno">  100</span> </div>
-<div class="line"><span class="lineno">  101</span>    <span class="comment">// Register termination signal handler</span></div>
-<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">if</span> (std::signal(SIGTERM, interruptFunc) == SIG_ERR)</div>
+<div class="line"><span class="lineno">  101</span>    <span class="comment">// Register interrupt signal handler</span></div>
+<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">if</span> (std::signal(SIGINT, interruptFunc) == SIG_ERR)</div>
 <div class="line"><span class="lineno">  103</span>    {</div>
-<div class="line"><span class="lineno">  104</span>        spdlog::critical(<span class="stringliteral">&quot;Can&#39;t set signal handler (SIGTERM): {}&quot;</span>, <a class="code hl_function" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
+<div class="line"><span class="lineno">  104</span>        spdlog::critical(<span class="stringliteral">&quot;Can&#39;t set signal handler (SIGINT): {}&quot;</span>, <a class="code hl_function" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
 <div class="line"><span class="lineno">  105</span>        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
 <div class="line"><span class="lineno">  106</span>    }</div>
 <div class="line"><span class="lineno">  107</span> </div>
-<div class="line"><span class="lineno">  108</span>    <span class="comment">// Register alarm signal handler</span></div>
-<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">if</span> (std::signal(SIGALRM, alarmFunc) == SIG_ERR)</div>
+<div class="line"><span class="lineno">  108</span>    <span class="comment">// Register termination signal handler</span></div>
+<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">if</span> (std::signal(SIGTERM, interruptFunc) == SIG_ERR)</div>
 <div class="line"><span class="lineno">  110</span>    {</div>
-<div class="line"><span class="lineno">  111</span>        spdlog::critical(<span class="stringliteral">&quot;Can&#39;t set signal handler (SIGALRM): {}&quot;</span>, <a class="code hl_function" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
+<div class="line"><span class="lineno">  111</span>        spdlog::critical(<span class="stringliteral">&quot;Can&#39;t set signal handler (SIGTERM): {}&quot;</span>, <a class="code hl_function" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
 <div class="line"><span class="lineno">  112</span>        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
 <div class="line"><span class="lineno">  113</span>    }</div>
-<div class="line"><span class="lineno">  114</span>    alarm(<a class="code hl_variable" href="#a2b19e9b08a344702039cb07dbab604d8">alarmInterval</a>);</div>
-<div class="line"><span class="lineno">  115</span> </div>
-<div class="line"><span class="lineno">  116</span>    <span class="comment">// Initialize Crashpad handler</span></div>
-<div class="line"><span class="lineno">  117</span>    std::unique_ptr&lt;Tracer&gt; crashpadController(<span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  118</span>    <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.emplace_back(<span class="stringliteral">&quot;Crashpad Handler&quot;</span>, std::make_shared&lt;std::atomic_flag&gt;(<span class="keyword">false</span>));</div>
-<div class="line"><span class="lineno">  119</span>    crashpadController = std::make_unique&lt;Tracer&gt;(</div>
-<div class="line"><span class="lineno">  120</span>        <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>[<a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.size() - 1].second, config.get(<span class="stringliteral">&quot;CRASHPAD_REMOTE&quot;</span>), config.get(<span class="stringliteral">&quot;CRASHPAD_PROXY&quot;</span>),</div>
-<div class="line"><span class="lineno">  121</span>        config.get(<span class="stringliteral">&quot;CRASHPAD_EXECUTABLE_PATH&quot;</span>), config.get(<span class="stringliteral">&quot;CRASHPAD_REPORT_DIR&quot;</span>));</div>
+<div class="line"><span class="lineno">  114</span> </div>
+<div class="line"><span class="lineno">  115</span>    <span class="comment">// Register alarm signal handler</span></div>
+<div class="line"><span class="lineno">  116</span>    <span class="keywordflow">if</span> (std::signal(SIGALRM, alarmFunc) == SIG_ERR)</div>
+<div class="line"><span class="lineno">  117</span>    {</div>
+<div class="line"><span class="lineno">  118</span>        spdlog::critical(<span class="stringliteral">&quot;Can&#39;t set signal handler (SIGALRM): {}&quot;</span>, <a class="code hl_function" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a>(errno));</div>
+<div class="line"><span class="lineno">  119</span>        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line"><span class="lineno">  120</span>    }</div>
+<div class="line"><span class="lineno">  121</span>    alarm(<a class="code hl_variable" href="#a2b19e9b08a344702039cb07dbab604d8">alarmInterval</a>);</div>
 <div class="line"><span class="lineno">  122</span> </div>
-<div class="line"><span class="lineno">  123</span>    <span class="comment">// Initialize Prometheus server</span></div>
-<div class="line"><span class="lineno">  124</span>    std::unique_ptr&lt;PrometheusServer&gt; mainPrometheusServer(<span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  125</span>    <span class="keyword">const</span> std::string prometheusAddr = input.getCmdOption(<span class="stringliteral">&quot;--enable-prometheus&quot;</span>);</div>
-<div class="line"><span class="lineno">  126</span>    <span class="keywordflow">if</span> (!prometheusAddr.empty())</div>
-<div class="line"><span class="lineno">  127</span>    {</div>
-<div class="line"><span class="lineno">  128</span>        <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">  129</span>        {</div>
-<div class="line"><span class="lineno">  130</span>            mainPrometheusServer = std::make_unique&lt;PrometheusServer&gt;(prometheusAddr);</div>
-<div class="line"><span class="lineno">  131</span>            spdlog::info(<span class="stringliteral">&quot;Prometheus server start at {}&quot;</span>, prometheusAddr);</div>
-<div class="line"><span class="lineno">  132</span>        }</div>
-<div class="line"><span class="lineno">  133</span>        <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e)</div>
-<div class="line"><span class="lineno">  134</span>        {</div>
-<div class="line"><span class="lineno">  135</span>            spdlog::error(<span class="stringliteral">&quot;Can&#39;t start Prometheus Server: {}&quot;</span>, e.what());</div>
-<div class="line"><span class="lineno">  136</span>            <span class="keywordflow">return</span> EXIT_FAILURE;</div>
-<div class="line"><span class="lineno">  137</span>        }</div>
-<div class="line"><span class="lineno">  138</span>    }</div>
-<div class="line"><span class="lineno">  139</span> </div>
-<div class="line"><span class="lineno">  140</span>    <span class="comment">// Initialize self monitoring</span></div>
-<div class="line"><span class="lineno">  141</span>    std::unique_ptr&lt;ProcessMetrics&gt; selfMonitor(<span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  142</span>    <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.emplace_back(<span class="stringliteral">&quot;Self Monitor&quot;</span>, std::make_shared&lt;std::atomic_flag&gt;(<span class="keyword">false</span>));</div>
-<div class="line"><span class="lineno">  143</span>    <span class="keywordflow">if</span> (mainPrometheusServer)</div>
-<div class="line"><span class="lineno">  144</span>    {</div>
-<div class="line"><span class="lineno">  145</span>        selfMonitor = std::make_unique&lt;ProcessMetrics&gt;(<a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>[<a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.size() - 1].second,</div>
-<div class="line"><span class="lineno">  146</span>                                                       mainPrometheusServer-&gt;createNewRegistry());</div>
-<div class="line"><span class="lineno">  147</span>    }</div>
-<div class="line"><span class="lineno">  148</span> </div>
-<div class="line"><span class="lineno">  149</span>    <span class="comment">// Initialize ZeroMQ server</span></div>
-<div class="line"><span class="lineno">  150</span>    std::unique_ptr&lt;ZeroMQServer&gt; zmqController(<span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  151</span>    <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.emplace_back(<span class="stringliteral">&quot;ZeroMQ Server&quot;</span>, std::make_shared&lt;std::atomic_flag&gt;(<span class="keyword">false</span>));</div>
-<div class="line"><span class="lineno">  152</span>    <span class="keyword">const</span> std::string zeromqServerAddr = input.getCmdOption(<span class="stringliteral">&quot;--enable-zeromq&quot;</span>);</div>
-<div class="line"><span class="lineno">  153</span>    <span class="keywordflow">if</span> (!zeromqServerAddr.empty())</div>
-<div class="line"><span class="lineno">  154</span>    {</div>
-<div class="line"><span class="lineno">  155</span>        <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">  156</span>        {</div>
-<div class="line"><span class="lineno">  157</span>            zmqController = std::make_unique&lt;ZeroMQServer&gt;(</div>
-<div class="line"><span class="lineno">  158</span>                zeromqServerAddr, <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>[<a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.size() - 1].second,</div>
-<div class="line"><span class="lineno">  159</span>                mainPrometheusServer ? mainPrometheusServer-&gt;createNewRegistry() : <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  160</span>            zmqController-&gt;messageCallback(<a class="code hl_function" href="ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26">ZeroMQServerMessageCallback</a>);</div>
-<div class="line"><span class="lineno">  161</span>            zmqController-&gt;initialise();</div>
-<div class="line"><span class="lineno">  162</span>        }</div>
-<div class="line"><span class="lineno">  163</span>        <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e)</div>
-<div class="line"><span class="lineno">  164</span>        {</div>
-<div class="line"><span class="lineno">  165</span>            spdlog::error(<span class="stringliteral">&quot;Can&#39;t start ZeroMQ Server: {}&quot;</span>, e.what());</div>
-<div class="line"><span class="lineno">  166</span>            <span class="keywordflow">return</span> EXIT_FAILURE;</div>
-<div class="line"><span class="lineno">  167</span>        }</div>
-<div class="line"><span class="lineno">  168</span>    }</div>
-<div class="line"><span class="lineno">  169</span> </div>
-<div class="line"><span class="lineno">  170</span>    <span class="comment">// Initialize Telnet server</span></div>
-<div class="line"><span class="lineno">  171</span>    std::shared_ptr&lt;TelnetServer&gt; telnetController(<span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  172</span>    <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.emplace_back(<span class="stringliteral">&quot;Telnet Server&quot;</span>, std::make_shared&lt;std::atomic_flag&gt;(<span class="keyword">false</span>));</div>
-<div class="line"><span class="lineno">  173</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> telnetPort =</div>
-<div class="line"><span class="lineno">  174</span>        input.cmdOptionExists(<span class="stringliteral">&quot;--enable-telnet&quot;</span>) ? std::stoul(input.getCmdOption(<span class="stringliteral">&quot;--enable-telnet&quot;</span>)) : 0;</div>
-<div class="line"><span class="lineno">  175</span>    <span class="keywordflow">if</span> (telnetPort &gt; 0 &amp;&amp; telnetPort &lt; 65536)</div>
-<div class="line"><span class="lineno">  176</span>    {</div>
-<div class="line"><span class="lineno">  177</span>        <span class="keywordflow">try</span></div>
-<div class="line"><span class="lineno">  178</span>        {</div>
-<div class="line"><span class="lineno">  179</span>            telnetController = std::make_shared&lt;TelnetServer&gt;();</div>
-<div class="line"><span class="lineno">  180</span>            telnetController-&gt;connectedCallback(<a class="code hl_function" href="TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d">TelnetConnectedCallback</a>);</div>
-<div class="line"><span class="lineno">  181</span>            telnetController-&gt;newLineCallback(<a class="code hl_function" href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75">TelnetMessageCallback</a>);</div>
-<div class="line"><span class="lineno">  182</span>            telnetController-&gt;tabCallback(<a class="code hl_function" href="TelnetServer_8cpp.html#a9c012a2b1a2e8db789ab2d0bb48f6274">TelnetTabCallback</a>);</div>
-<div class="line"><span class="lineno">  183</span>            telnetController-&gt;initialise(telnetPort, <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>[<a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.size() - 1].second, <span class="stringliteral">&quot;&gt; &quot;</span>,</div>
-<div class="line"><span class="lineno">  184</span>                                         mainPrometheusServer ? mainPrometheusServer-&gt;createNewRegistry() : <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  185</span>        }</div>
-<div class="line"><span class="lineno">  186</span>        <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e)</div>
-<div class="line"><span class="lineno">  187</span>        {</div>
-<div class="line"><span class="lineno">  188</span>            spdlog::error(<span class="stringliteral">&quot;Can&#39;t start Telnet Server: {}&quot;</span>, e.what());</div>
-<div class="line"><span class="lineno">  189</span>            <span class="keywordflow">return</span> EXIT_FAILURE;</div>
-<div class="line"><span class="lineno">  190</span>        }</div>
-<div class="line"><span class="lineno">  191</span>    }</div>
-<div class="line"><span class="lineno">  192</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (telnetPort != 0)</div>
-<div class="line"><span class="lineno">  193</span>    {</div>
-<div class="line"><span class="lineno">  194</span>        spdlog::error(<span class="stringliteral">&quot;Invalid Telnet port: {}&quot;</span>, telnetPort);</div>
-<div class="line"><span class="lineno">  195</span>        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
-<div class="line"><span class="lineno">  196</span>    }</div>
-<div class="line"><span class="lineno">  197</span> </div>
-<div class="line"><span class="lineno">  198</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">  199</span>    <span class="comment">/* ############################# MAKE MODIFICATIONS HERE ############################# */</span></div>
-<div class="line"><span class="lineno">  200</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">  201</span> </div>
-<div class="line"><span class="lineno">  202</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">  203</span>    <span class="comment">/* ################################ END MODIFICATIONS ################################ */</span></div>
-<div class="line"><span class="lineno">  204</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">  205</span> </div>
-<div class="line"><span class="lineno">  206</span>    <span class="keywordflow">while</span> (interruptFlag == 0)</div>
-<div class="line"><span class="lineno">  207</span>    {</div>
-<div class="line"><span class="lineno">  208</span>        std::this_thread::sleep_for(std::chrono::milliseconds(500));</div>
-<div class="line"><span class="lineno">  209</span>    }</div>
-<div class="line"><span class="lineno">  210</span> </div>
+<div class="line"><span class="lineno">  123</span>    <span class="comment">// Initialize Crashpad handler</span></div>
+<div class="line"><span class="lineno">  124</span>    std::unique_ptr&lt;Tracer&gt; crashpadController(<span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  125</span>    <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.emplace_back(<span class="stringliteral">&quot;Crashpad Handler&quot;</span>, std::make_shared&lt;std::atomic_flag&gt;(<span class="keyword">false</span>));</div>
+<div class="line"><span class="lineno">  126</span>    crashpadController = std::make_unique&lt;Tracer&gt;(</div>
+<div class="line"><span class="lineno">  127</span>        <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>[<a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.size() - 1].second, config.get(<span class="stringliteral">&quot;CRASHPAD_REMOTE&quot;</span>), config.get(<span class="stringliteral">&quot;CRASHPAD_PROXY&quot;</span>),</div>
+<div class="line"><span class="lineno">  128</span>        config.get(<span class="stringliteral">&quot;CRASHPAD_EXECUTABLE_PATH&quot;</span>), config.get(<span class="stringliteral">&quot;CRASHPAD_REPORT_DIR&quot;</span>));</div>
+<div class="line"><span class="lineno">  129</span> </div>
+<div class="line"><span class="lineno">  130</span>    <span class="comment">// Initialize Prometheus server</span></div>
+<div class="line"><span class="lineno">  131</span>    std::unique_ptr&lt;PrometheusServer&gt; mainPrometheusServer(<span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  132</span>    <span class="keyword">const</span> std::string prometheusAddr = input.getCmdOption(<span class="stringliteral">&quot;--enable-prometheus&quot;</span>);</div>
+<div class="line"><span class="lineno">  133</span>    <span class="keywordflow">if</span> (!prometheusAddr.empty())</div>
+<div class="line"><span class="lineno">  134</span>    {</div>
+<div class="line"><span class="lineno">  135</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  136</span>        {</div>
+<div class="line"><span class="lineno">  137</span>            mainPrometheusServer = std::make_unique&lt;PrometheusServer&gt;(prometheusAddr);</div>
+<div class="line"><span class="lineno">  138</span>            spdlog::info(<span class="stringliteral">&quot;Prometheus server start at {}&quot;</span>, prometheusAddr);</div>
+<div class="line"><span class="lineno">  139</span>        }</div>
+<div class="line"><span class="lineno">  140</span>        <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e)</div>
+<div class="line"><span class="lineno">  141</span>        {</div>
+<div class="line"><span class="lineno">  142</span>            spdlog::error(<span class="stringliteral">&quot;Can&#39;t start Prometheus Server: {}&quot;</span>, e.what());</div>
+<div class="line"><span class="lineno">  143</span>            <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line"><span class="lineno">  144</span>        }</div>
+<div class="line"><span class="lineno">  145</span>    }</div>
+<div class="line"><span class="lineno">  146</span> </div>
+<div class="line"><span class="lineno">  147</span>    <span class="comment">// Initialize self monitoring</span></div>
+<div class="line"><span class="lineno">  148</span>    std::unique_ptr&lt;ProcessMetrics&gt; selfMonitor(<span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  149</span>    <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.emplace_back(<span class="stringliteral">&quot;Self Monitor&quot;</span>, std::make_shared&lt;std::atomic_flag&gt;(<span class="keyword">false</span>));</div>
+<div class="line"><span class="lineno">  150</span>    <span class="keywordflow">if</span> (mainPrometheusServer)</div>
+<div class="line"><span class="lineno">  151</span>    {</div>
+<div class="line"><span class="lineno">  152</span>        selfMonitor = std::make_unique&lt;ProcessMetrics&gt;(<a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>[<a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.size() - 1].second,</div>
+<div class="line"><span class="lineno">  153</span>                                                       mainPrometheusServer-&gt;createNewRegistry());</div>
+<div class="line"><span class="lineno">  154</span>    }</div>
+<div class="line"><span class="lineno">  155</span> </div>
+<div class="line"><span class="lineno">  156</span>    <span class="comment">// Initialize ZeroMQ server</span></div>
+<div class="line"><span class="lineno">  157</span>    std::unique_ptr&lt;ZeroMQServer&gt; zmqController(<span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  158</span>    <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.emplace_back(<span class="stringliteral">&quot;ZeroMQ Server&quot;</span>, std::make_shared&lt;std::atomic_flag&gt;(<span class="keyword">false</span>));</div>
+<div class="line"><span class="lineno">  159</span>    <span class="keyword">const</span> std::string zeromqServerAddr = input.getCmdOption(<span class="stringliteral">&quot;--enable-zeromq&quot;</span>);</div>
+<div class="line"><span class="lineno">  160</span>    <span class="keywordflow">if</span> (!zeromqServerAddr.empty())</div>
+<div class="line"><span class="lineno">  161</span>    {</div>
+<div class="line"><span class="lineno">  162</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  163</span>        {</div>
+<div class="line"><span class="lineno">  164</span>            zmqController = std::make_unique&lt;ZeroMQServer&gt;(</div>
+<div class="line"><span class="lineno">  165</span>                zeromqServerAddr, <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>[<a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.size() - 1].second,</div>
+<div class="line"><span class="lineno">  166</span>                mainPrometheusServer ? mainPrometheusServer-&gt;createNewRegistry() : <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  167</span>            zmqController-&gt;messageCallback(<a class="code hl_function" href="ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26">ZeroMQServerMessageCallback</a>);</div>
+<div class="line"><span class="lineno">  168</span>            zmqController-&gt;initialise();</div>
+<div class="line"><span class="lineno">  169</span>        }</div>
+<div class="line"><span class="lineno">  170</span>        <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e)</div>
+<div class="line"><span class="lineno">  171</span>        {</div>
+<div class="line"><span class="lineno">  172</span>            spdlog::error(<span class="stringliteral">&quot;Can&#39;t start ZeroMQ Server: {}&quot;</span>, e.what());</div>
+<div class="line"><span class="lineno">  173</span>            <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line"><span class="lineno">  174</span>        }</div>
+<div class="line"><span class="lineno">  175</span>    }</div>
+<div class="line"><span class="lineno">  176</span> </div>
+<div class="line"><span class="lineno">  177</span>    <span class="comment">// Initialize Telnet server</span></div>
+<div class="line"><span class="lineno">  178</span>    std::shared_ptr&lt;TelnetServer&gt; telnetController(<span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  179</span>    <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.emplace_back(<span class="stringliteral">&quot;Telnet Server&quot;</span>, std::make_shared&lt;std::atomic_flag&gt;(<span class="keyword">false</span>));</div>
+<div class="line"><span class="lineno">  180</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> telnetPort =</div>
+<div class="line"><span class="lineno">  181</span>        input.cmdOptionExists(<span class="stringliteral">&quot;--enable-telnet&quot;</span>) ? std::stoul(input.getCmdOption(<span class="stringliteral">&quot;--enable-telnet&quot;</span>)) : 0;</div>
+<div class="line"><span class="lineno">  182</span>    <span class="keywordflow">if</span> (telnetPort &gt; 0 &amp;&amp; telnetPort &lt; 65536)</div>
+<div class="line"><span class="lineno">  183</span>    {</div>
+<div class="line"><span class="lineno">  184</span>        <span class="keywordflow">try</span></div>
+<div class="line"><span class="lineno">  185</span>        {</div>
+<div class="line"><span class="lineno">  186</span>            telnetController = std::make_shared&lt;TelnetServer&gt;();</div>
+<div class="line"><span class="lineno">  187</span>            telnetController-&gt;connectedCallback(<a class="code hl_function" href="TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d">TelnetConnectedCallback</a>);</div>
+<div class="line"><span class="lineno">  188</span>            telnetController-&gt;newLineCallback(<a class="code hl_function" href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75">TelnetMessageCallback</a>);</div>
+<div class="line"><span class="lineno">  189</span>            telnetController-&gt;tabCallback(<a class="code hl_function" href="TelnetServer_8cpp.html#a9c012a2b1a2e8db789ab2d0bb48f6274">TelnetTabCallback</a>);</div>
+<div class="line"><span class="lineno">  190</span>            telnetController-&gt;initialise(telnetPort, <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>[<a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>.size() - 1].second, <span class="stringliteral">&quot;&gt; &quot;</span>,</div>
+<div class="line"><span class="lineno">  191</span>                                         mainPrometheusServer ? mainPrometheusServer-&gt;createNewRegistry() : <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  192</span>        }</div>
+<div class="line"><span class="lineno">  193</span>        <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e)</div>
+<div class="line"><span class="lineno">  194</span>        {</div>
+<div class="line"><span class="lineno">  195</span>            spdlog::error(<span class="stringliteral">&quot;Can&#39;t start Telnet Server: {}&quot;</span>, e.what());</div>
+<div class="line"><span class="lineno">  196</span>            <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line"><span class="lineno">  197</span>        }</div>
+<div class="line"><span class="lineno">  198</span>    }</div>
+<div class="line"><span class="lineno">  199</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (telnetPort != 0)</div>
+<div class="line"><span class="lineno">  200</span>    {</div>
+<div class="line"><span class="lineno">  201</span>        spdlog::error(<span class="stringliteral">&quot;Invalid Telnet port: {}&quot;</span>, telnetPort);</div>
+<div class="line"><span class="lineno">  202</span>        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line"><span class="lineno">  203</span>    }</div>
+<div class="line"><span class="lineno">  204</span> </div>
+<div class="line"><span class="lineno">  205</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><span class="lineno">  206</span>    <span class="comment">/* ############################# MAKE MODIFICATIONS HERE ############################# */</span></div>
+<div class="line"><span class="lineno">  207</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><span class="lineno">  208</span> </div>
+<div class="line"><span class="lineno">  209</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><span class="lineno">  210</span>    <span class="comment">/* ################################ END MODIFICATIONS ################################ */</span></div>
 <div class="line"><span class="lineno">  211</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">  212</span>    <span class="comment">/* ############################# MAKE MODIFICATIONS HERE ############################# */</span></div>
-<div class="line"><span class="lineno">  213</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">  214</span> </div>
-<div class="line"><span class="lineno">  215</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">  216</span>    <span class="comment">/* ################################ END MODIFICATIONS ################################ */</span></div>
-<div class="line"><span class="lineno">  217</span>    <span class="comment">/* ################################################################################### */</span></div>
-<div class="line"><span class="lineno">  218</span> </div>
-<div class="line"><span class="lineno">  219</span>    curl_global_cleanup();</div>
-<div class="line"><span class="lineno">  220</span> </div>
-<div class="line"><span class="lineno">  221</span>    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line"><span class="lineno">  222</span>}</div>
+<div class="line"><span class="lineno">  212</span> </div>
+<div class="line"><span class="lineno">  213</span>    <span class="keywordflow">while</span> (interruptFlag == 0)</div>
+<div class="line"><span class="lineno">  214</span>    {</div>
+<div class="line"><span class="lineno">  215</span>        std::this_thread::sleep_for(std::chrono::milliseconds(500));</div>
+<div class="line"><span class="lineno">  216</span>    }</div>
+<div class="line"><span class="lineno">  217</span> </div>
+<div class="line"><span class="lineno">  218</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><span class="lineno">  219</span>    <span class="comment">/* ############################# MAKE MODIFICATIONS HERE ############################# */</span></div>
+<div class="line"><span class="lineno">  220</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><span class="lineno">  221</span> </div>
+<div class="line"><span class="lineno">  222</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><span class="lineno">  223</span>    <span class="comment">/* ################################ END MODIFICATIONS ################################ */</span></div>
+<div class="line"><span class="lineno">  224</span>    <span class="comment">/* ################################################################################### */</span></div>
+<div class="line"><span class="lineno">  225</span> </div>
+<div class="line"><span class="lineno">  226</span>    curl_global_cleanup();</div>
+<div class="line"><span class="lineno">  227</span> </div>
+<div class="line"><span class="lineno">  228</span>    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line"><span class="lineno">  229</span>}</div>
 <div class="ttc" id="aErrorHelpers_8cpp_html_abd1b95cce1437a885ce56e859099ddd8"><div class="ttname"><a href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; std::string, std::shared_ptr&lt; std::atomic_flag &gt; &gt; &gt; vCheckFlag</div><div class="ttdoc">Global variable to check if the servers are running.</div><div class="ttdef"><b>Definition</b> <a href="ErrorHelpers_8cpp_source.html#l00004">ErrorHelpers.cpp:4</a></div></div>
 <div class="ttc" id="aErrorHelpers_8hpp_html_a77c5602aee813ef2fde1a81c1db17e0c"><div class="ttname"><a href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c">getErrnoString</a></div><div class="ttdeci">std::string getErrnoString(int errVal)</div><div class="ttdef"><b>Definition</b> <a href="ErrorHelpers_8hpp_source.html#l00024">ErrorHelpers.hpp:24</a></div></div>
 <div class="ttc" id="aTelnetServer_8cpp_html_a39681d1af6065fb54f66a55c01e28e3d"><div class="ttname"><a href="TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d">TelnetConnectedCallback</a></div><div class="ttdeci">void TelnetConnectedCallback(const SP_TelnetSession &amp;session)</div><div class="ttdef"><b>Definition</b> <a href="TelnetServer_8cpp_source.html#l00770">TelnetServer.cpp:770</a></div></div>
@@ -464,37 +471,41 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.png" border="0" usemap="#amain_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph" alt=""/></div>
 <map name="amain_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph" id="amain_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph">
-<area shape="rect" title=" " alt="" coords="5,240,57,268"/>
+<area shape="rect" title=" " alt="" coords="5,292,57,320"/>
 <area shape="rect" href="classInputParser.html#aea813a8d6ee9ea6d250ab99333316bdf" title=" " alt="" coords="111,5,310,33"/>
-<area shape="poly" title=" " alt="" coords="30,240,34,201,45,148,67,92,83,66,103,44,108,39,112,44,107,48,87,70,72,95,50,150,39,202,36,240"/>
+<area shape="poly" title=" " alt="" coords="29,292,30,244,39,178,48,142,61,106,79,73,103,44,107,40,111,44,107,48,83,76,66,109,53,143,44,179,35,245,34,292"/>
 <area shape="rect" href="classConfigParser.html#a29eba7ec75ccd47eb5e70a3b86d72be0" title=" " alt="" coords="147,57,274,85"/>
-<area shape="poly" title=" " alt="" coords="32,239,39,209,52,170,73,130,103,96,131,80,134,85,106,100,77,133,57,173,44,211,37,240"/>
+<area shape="poly" title=" " alt="" coords="30,292,34,253,45,200,67,144,83,118,103,96,131,79,134,84,106,100,87,122,72,147,50,202,39,254,36,292"/>
 <area shape="rect" href="classInputParser.html#a3419884a7b59e5cb5df0fc7588c90e51" title=" " alt="" coords="116,109,304,137"/>
-<area shape="poly" title=" " alt="" coords="36,238,60,193,80,169,103,148,113,142,115,146,106,152,84,172,65,196,41,241"/>
+<area shape="poly" title=" " alt="" coords="32,291,39,261,52,222,73,182,103,148,109,143,113,147,106,152,77,185,57,225,44,263,37,292"/>
 <area shape="rect" href="classInputParser.html#a6f68b31cad3f3a6693df22528d9e4cb2" title=" " alt="" coords="113,161,308,189"/>
-<area shape="poly" title=" " alt="" coords="47,237,72,218,103,199,122,192,124,197,106,204,75,222,50,242"/>
+<area shape="poly" title=" " alt="" coords="36,290,60,245,80,221,103,200,113,194,115,198,106,204,84,224,65,248,41,293"/>
 <area shape="rect" href="classConfigParser.html#aa457f33a2b46a6e627514c3ca7dd0667" title=" " alt="" coords="114,213,307,241"/>
-<area shape="poly" title=" " alt="" coords="57,247,98,241,99,247,58,253"/>
+<area shape="poly" title=" " alt="" coords="47,289,72,270,103,251,122,244,124,249,106,256,75,274,50,294"/>
 <area shape="rect" href="ErrorHelpers_8hpp.html#a77c5602aee813ef2fde1a81c1db17e0c" title=" " alt="" coords="155,265,266,293"/>
-<area shape="poly" title=" " alt="" coords="58,255,140,267,139,272,57,260"/>
-<area shape="rect" href="TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d" title=" " alt="" coords="121,317,300,345"/>
-<area shape="poly" title=" " alt="" coords="51,266,76,285,106,302,125,310,123,315,104,307,73,289,47,270"/>
-<area shape="rect" href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title=" " alt="" coords="128,369,292,397"/>
-<area shape="poly" title=" " alt="" coords="41,267,65,311,84,334,106,354,116,360,113,365,103,359,80,338,61,314,36,270"/>
-<area shape="rect" href="TelnetServer_8cpp.html#a9c012a2b1a2e8db789ab2d0bb48f6274" title=" " alt="" coords="143,421,278,449"/>
-<area shape="poly" title=" " alt="" coords="37,268,45,297,58,335,78,374,106,406,130,420,127,425,103,411,73,377,53,337,39,299,32,269"/>
-<area shape="rect" href="ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26" title=" " alt="" coords="105,473,316,501"/>
-<area shape="poly" title=" " alt="" coords="36,268,40,306,50,357,72,412,87,437,107,459,112,463,108,467,103,462,83,440,67,414,45,359,34,307,30,268"/>
+<area shape="poly" title=" " alt="" coords="57,299,139,287,140,292,58,305"/>
+<area shape="rect" href="classConfigParser.html#a36130ca1d2829a79c1f87555b1a75eff" title=" " alt="" coords="119,317,302,345"/>
+<area shape="poly" title=" " alt="" coords="58,307,104,313,104,319,57,312"/>
+<area shape="rect" href="classConfigParser.html#a8ee7d286064f4bf25e2f737c2065033c" title=" " alt="" coords="138,369,283,397"/>
+<area shape="poly" title=" " alt="" coords="51,318,76,337,106,354,125,362,123,367,104,359,73,341,47,322"/>
+<area shape="rect" href="TelnetServer_8cpp.html#a39681d1af6065fb54f66a55c01e28e3d" title=" " alt="" coords="121,421,300,449"/>
+<area shape="poly" title=" " alt="" coords="41,319,65,363,84,386,106,406,116,412,113,417,103,411,80,390,61,366,36,322"/>
+<area shape="rect" href="TelnetServer_8cpp.html#afc54e2836d524b6deafaf20fd1ccdc75" title=" " alt="" coords="128,473,292,501"/>
+<area shape="poly" title=" " alt="" coords="37,320,45,349,58,387,78,426,106,459,116,465,113,470,103,462,73,429,53,389,39,351,32,321"/>
+<area shape="rect" href="TelnetServer_8cpp.html#a9c012a2b1a2e8db789ab2d0bb48f6274" title=" " alt="" coords="143,525,278,553"/>
+<area shape="poly" title=" " alt="" coords="36,320,40,358,50,409,72,464,87,489,106,510,130,525,127,530,103,515,83,492,67,466,45,411,34,359,30,320"/>
+<area shape="rect" href="ZeroMQServer_8cpp.html#af33b7d1864db8b5c7879aa48fd440b26" title=" " alt="" coords="105,577,316,605"/>
+<area shape="poly" title=" " alt="" coords="34,320,35,367,44,432,53,467,66,502,83,534,107,563,111,566,107,570,103,566,79,537,61,504,48,469,39,433,30,367,29,320"/>
 <area shape="rect" href="ErrorHelpers_8cpp.html#a21f59d386bf0b5e382221c9add0e2327" title=" " alt="" coords="428,265,514,293"/>
 <area shape="poly" title=" " alt="" coords="266,276,412,276,412,282,266,282"/>
-<area shape="rect" href="TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f" title=" " alt="" coords="364,317,577,345"/>
-<area shape="poly" title=" " alt="" coords="300,328,348,328,348,334,300,334"/>
-<area shape="poly" title=" " alt="" coords="283,366,382,346,383,351,284,371"/>
-<area shape="rect" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b" title=" " alt="" coords="422,393,519,421"/>
-<area shape="poly" title=" " alt="" coords="293,388,407,399,406,404,293,393"/>
-<area shape="rect" href="TelnetServer_8cpp.html#aaad0fd13b75d5ebde386438b336d77c7" title=" " alt="" coords="384,445,558,473"/>
-<area shape="poly" title=" " alt="" coords="277,395,317,407,365,430,390,438,389,443,363,435,315,412,275,400"/>
-<area shape="poly" title=" " alt="" coords="427,394,419,384,425,375,442,369,471,367,501,369,517,376,516,381,500,374,471,372,443,374,428,379,425,384,431,391"/>
+<area shape="rect" href="TelnetServer_8cpp.html#a3efc6fe43e5a496a75d5d51b308ba19f" title=" " alt="" coords="364,409,577,437"/>
+<area shape="poly" title=" " alt="" coords="300,428,348,426,349,431,300,434"/>
+<area shape="poly" title=" " alt="" coords="269,470,396,439,398,444,270,475"/>
+<area shape="rect" href="Hasher_8hpp.html#a69c2bf176d386d2413b9ae6d8346588b" title=" " alt="" coords="422,485,519,513"/>
+<area shape="poly" title=" " alt="" coords="293,488,407,494,406,499,293,494"/>
+<area shape="rect" href="TelnetServer_8cpp.html#aaad0fd13b75d5ebde386438b336d77c7" title=" " alt="" coords="384,537,558,565"/>
+<area shape="poly" title=" " alt="" coords="270,499,398,531,396,536,269,504"/>
+<area shape="poly" title=" " alt="" coords="427,486,419,476,425,467,442,461,471,459,501,461,517,468,516,473,500,466,471,464,443,466,428,471,425,476,431,483"/>
 </map>
 </div>
 
@@ -531,7 +542,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
-    <li class="footer">Generated on Tue Feb 24 2026 13:38:25 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Thu Feb 26 2026 08:14:48 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

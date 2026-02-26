@@ -23,6 +23,7 @@ var searchData=
   ['contributing_20support_20strong_20',['&lt;strong&gt;Contributing &amp; Support&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md31',1,'']]],
   ['core_20runtime_20libraries_20strong_21',['&lt;strong&gt;Core Runtime Libraries&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md13',1,'']]],
   ['countdirectoryentries_22',['countDirectoryEntries',['../classProcessMetrics.html#a3e3aa374808b5efd32f709a0747332df',1,'ProcessMetrics']]],
-  ['createnewregistry_23',['createNewRegistry',['../classPrometheusServer.html#a04e7b010c6227c4cf076d619b66cf6df',1,'PrometheusServer::createNewRegistry()'],['../classPrometheusServer.html#a1238fb991b79e91fa01e7f24ca1950c5',1,'PrometheusServer::createNewRegistry(uint64_t &amp;regId)']]],
-  ['curlmemory_24',['curlMemory',['../structcurlMemory.html',1,'']]]
+  ['crashpad_5fretry_5fcount_23',['CRASHPAD_RETRY_COUNT',['../Tracer_8cpp.html#a0aaabcaa18192e6d821c6aef093243da',1,'Tracer.cpp']]],
+  ['createnewregistry_24',['createNewRegistry',['../classPrometheusServer.html#a04e7b010c6227c4cf076d619b66cf6df',1,'PrometheusServer::createNewRegistry()'],['../classPrometheusServer.html#a1238fb991b79e91fa01e7f24ca1950c5',1,'PrometheusServer::createNewRegistry(uint64_t &amp;regId)']]],
+  ['curlmemory_25',['curlMemory',['../structcurlMemory.html',1,'']]]
 ];

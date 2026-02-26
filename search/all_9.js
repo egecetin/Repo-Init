@@ -14,5 +14,6 @@ var searchData=
   ['invalid_5fsocket_11',['INVALID_SOCKET',['../TelnetServer_8cpp.html#aa929f5b468b322e1661545d1e70866d3',1,'TelnetServer.cpp']]],
   ['is_20repo_20init_12',['What is Repo-Init?',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md3',1,'']]],
   ['isrunning_13',['isRunning',['../classTracer.html#a4e3975043a2fc94d307d511012706770',1,'Tracer']]],
-  ['issuccessful_14',['isSuccessful',['../structZeroMQServerStats.html#a0f72b56ee407f90b03badaa34e1727fe',1,'ZeroMQServerStats']]]
+  ['issuccessful_14',['isSuccessful',['../structZeroMQServerStats.html#a0f72b56ee407f90b03badaa34e1727fe',1,'ZeroMQServerStats']]],
+  ['isvalid_15',['isValid',['../classConfigParser.html#a8ee7d286064f4bf25e2f737c2065033c',1,'ConfigParser']]]
 ];
