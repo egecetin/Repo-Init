@@ -12,9 +12,11 @@ class ConfigParser {
   private:
 	std::filesystem::path _configPath;
 	std::unordered_map<std::string, std::string> _configMap;
+	bool _isValid = false;
+	std::string _lastError;
 
 	// JSON helpers
-	void readJson();
+	bool readJson();
 	void writeJson() const;
 
   public:
@@ -23,6 +25,18 @@ class ConfigParser {
 	 * @param[in] configPath Path to the configuration file
 	 */
 	explicit ConfigParser(std::filesystem::path configPath);
+
+	/**
+	 * Check if the configuration was loaded successfully
+	 * @return bool True if valid, false otherwise
+	 */
+	bool isValid() const { return _isValid; }
+
+	/**
+	 * Get the last error message
+	 * @return std::string Error message
+	 */
+	const std::string& getLastError() const { return _lastError; }
 
 	/**
 	 * Get the value of a key from the configuration file. If the configuration file modified from outside
@@ -61,6 +75,7 @@ class ConfigParser {
 
 	/**
 	 * Load the configuration from the file
+	 * @return bool True if valid, false otherwise
 	 */
-	void load();
+	bool load();
 };

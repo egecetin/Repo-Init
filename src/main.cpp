@@ -38,6 +38,13 @@ int main(int argc, char **argv)
 {
 	const InputParser input(argc, argv);
 	const ConfigParser config(input.cmdOptionExists("--config") ? input.getCmdOption("--config") : "config.json");
+	
+	// Check if config loaded successfully before proceeding
+	if (!config.isValid())
+	{
+		std::invalid_argument(std::format("{} {}", "Failed to load configuration:", config.getLastError()));
+	}
+	
 	const MainLogger logger(config.get("LOKI_ADDRESS"), config.get("SENTRY_ADDRESS"));
 
 	// Initialize curl as soon as possible

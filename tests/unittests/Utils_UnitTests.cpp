@@ -19,23 +19,27 @@ TEST(Utils_Tests, ConfigParserUnitTests)
 	ASSERT_FALSE(dstFile.fail());
 
 	ConfigParser parser(TEST_CONFIG_PATH_COPY);
+	ASSERT_TRUE(parser.isValid());
 
 	ASSERT_EQ(parser.get("TELNET_PORT"), "23000");
 	ASSERT_EQ(parser.get("LOKI_ADDRESS"), "http://localhost:8400");
 	ASSERT_EQ(parser.get("NonExistentKey"), "");
 
-	ASSERT_NO_THROW(parser.load());
+	ASSERT_TRUE(parser.load());
+	ASSERT_TRUE(parser.isValid());
 	ASSERT_GT(parser.getConfigMap().size(), 0);
 
 	ASSERT_NO_THROW(parser.set("NEW_KEY", "NEW_VALUE"));
 	ASSERT_EQ(parser.get("NEW_KEY"), "NEW_VALUE");
-	ASSERT_NO_THROW(parser.load());
+	ASSERT_TRUE(parser.load());
+	ASSERT_TRUE(parser.isValid());
 	ASSERT_EQ(parser.get("NEW_KEY"), "");
 
 	ASSERT_NO_THROW(parser.set("NEW_KEY", "NEW_VALUE"));
 	ASSERT_NO_THROW(parser.save());
 
 	ConfigParser parser2(TEST_CONFIG_PATH_COPY);
+	ASSERT_TRUE(parser2.isValid());
 	ASSERT_EQ(parser2.get("NEW_KEY"), "NEW_VALUE");
 
 	ASSERT_NO_THROW(parser.remove("NEW_KEY"));
@@ -43,11 +47,19 @@ TEST(Utils_Tests, ConfigParserUnitTests)
 	ASSERT_NO_THROW(parser.save());
 
 	ASSERT_EQ(parser2.get("NEW_KEY"), "NEW_VALUE");
-	ASSERT_NO_THROW(parser2.load());
+	ASSERT_TRUE(parser2.load());
+	ASSERT_TRUE(parser2.isValid());
 	ASSERT_EQ(parser2.get("NEW_KEY"), "");
 
-	ASSERT_THROW(ConfigParser(""), std::invalid_argument);
-	ASSERT_THROW(ConfigParser(TEST_CONFIG_EMPTY_PATH), std::invalid_argument);
+	ConfigParser invalidParser1("");
+	ASSERT_FALSE(invalidParser1.isValid());
+	ASSERT_FALSE(invalidParser1.getLastError().empty());
+	ASSERT_FALSE(invalidParser1.load());
+	
+	ConfigParser invalidParser2(TEST_CONFIG_EMPTY_PATH);
+	ASSERT_FALSE(invalidParser2.isValid());
+	ASSERT_FALSE(invalidParser2.getLastError().empty());
+	ASSERT_FALSE(invalidParser2.load());
 }
 
 TEST(Utils_Tests, ErrorHelpersUnitTests)
