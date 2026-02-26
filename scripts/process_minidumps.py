@@ -19,7 +19,7 @@ def find_minidump_files(dump_dir):
 
     # Find all .dmp files
     minidump_files = list(dump_path.glob("*.dmp"))
-    return sorted(minidump_files)
+    return minidump_files
 
 
 def process_minidump(minidump_stackwalk_path, minidump_file, symbol_dir):
