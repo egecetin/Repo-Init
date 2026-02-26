@@ -18,6 +18,7 @@
 #include <unistd.h>
 
 constexpr int SLEEP_INTERVAL_MS = 50;
+constexpr auto CRASHPAD_RETRY_COUNT = 10;
 
 void Tracer::startHandler()
 {
@@ -55,19 +56,26 @@ void Tracer::startHandler()
 
 void Tracer::threadFunc(const std::stop_token &stopToken) const noexcept
 {
+	int stopCounter = 0;
 	while (!stopToken.stop_requested())
 	{
 		try
 		{
 			if (!isRunning())
 			{
-				spdlog::info("Crashpad handler closed");
-				return;
+				++stopCounter;
+				if (stopCounter > CRASHPAD_RETRY_COUNT) // Give some time to restart handler
+				{
+					spdlog::info("Crashpad handler closed");
+					return;
+				}
 			}
 			if (_checkFlag)
 			{
 				_checkFlag->test_and_set();
 			}
+
+			stopCounter = 0;
 		}
 		catch (const std::exception &e)
 		{

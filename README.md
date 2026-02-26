@@ -141,6 +141,7 @@ Our carefully crafted CMake modules provide powerful build automation:
 | `firstName.sh` | **Name Changer** | Replaces placeholder names throughout the project |
 | `crashpad_manual_upload.py` | **Manual Minidump Uploader** | Uploads bulk of minidump files in given directory |
 | `dump_syms.py` | **Symbol Dumper** | Generates symbol files for crash analysis |
+| `process_minidumps.py` | **Minidump Stackwalker** | Prints minidump stackwalk results |
 
 ---
 
