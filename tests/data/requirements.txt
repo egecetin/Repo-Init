@@ -1,3 +1,1 @@
-pyzmq==25.1.2 \
-    --hash=sha256:f8429b17cbb746c3e043cb986328da023657e79d5ed258b711c06a70c2ea7537 \
-    --hash=sha256:93f1aa311e8bb912e34f004cf186407a4e90eec4f0ecc0efd26056bf7eda0226
+pyzmq @ git+https://github.com/zeromq/pyzmq.git@21f32cc9789415b7655eb62e5e5cb72ecc18cf04
