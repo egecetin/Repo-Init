@@ -15,7 +15,7 @@ find_package(RapidJSON REQUIRED)
 find_package(spdlog REQUIRED)
 find_package(ZLIB REQUIRED)
 
-option(XXX_BUILD_TESTS "Build XXX tests" ON)
+option(XXX_BUILD_TESTS "Build XXX tests" OFF)
 option(XXX_BUILD_UNITTESTS "Build XXX unit tests" ON)
 option(XXX_BUILD_FUZZTESTS "Build XXX fuzz tests" OFF)
 option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
@@ -52,8 +52,6 @@ endif()
 # Disable/Enable options of subprojects
 set(CPPZMQ_BUILD_TESTS OFF CACHE BOOL "")
 set(ENABLE_TESTING OFF CACHE BOOL "") # prometheus-cpp
-set(INSTALL_GMOCK OFF CACHE BOOL "")
-set(INSTALL_GTEST OFF CACHE BOOL "")
 
 set(SENTRY_BACKEND none) # Disable backend to manually use crashpad
 
