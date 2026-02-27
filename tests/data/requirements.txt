@@ -1,1 +1,1 @@
-pyzmq @ git+https://github.com/zeromq/pyzmq.git@21f32cc9789415b7655eb62e5e5cb72ecc18cf04
+pyzmq==25.1.2
