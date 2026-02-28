@@ -50,17 +50,26 @@ class EchoServer {
 
 			if (bytesRead > 0)
 			{
-				buffer[bytesRead] = '\0';
-				std::string request(buffer);
+				// Use explicit length constructor to ensure exact byte count
+				std::string request(buffer, bytesRead);
 
-				// Build HTTP response with echoed content
+				// Extract only the body from the HTTP request
+				// HTTP headers end with "\r\n\r\n", body starts after that
+				std::string body;
+				size_t bodyStart = request.find("\r\n\r\n");
+				if (bodyStart != std::string::npos)
+				{
+					body = request.substr(bodyStart + 4); // +4 to skip "\r\n\r\n"
+				}
+
+				// Build HTTP response with echoed body content
 				std::ostringstream response;
 				response << "HTTP/1.1 200 OK\r\n";
 				response << "Content-Type: text/plain\r\n";
-				response << "Content-Length: " << request.length() << "\r\n";
+				response << "Content-Length: " << body.length() << "\r\n";
 				response << "Connection: close\r\n";
 				response << "\r\n";
-				response << request;
+				response << body;
 
 				// Send response
 				std::string responseStr = response.str();
