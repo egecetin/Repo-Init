@@ -24,12 +24,12 @@ add_subdirectory(thirdparty/fuzztest)
 
 file(
   GLOB ProjectTestSources
-  src/Connection_UnitTests.cpp
-  src/Logger_UnitTests.cpp
-  src/Metrics_UnitTests.cpp
-  src/Telnet_UnitTests.cpp
-  src/Utils_UnitTests.cpp
-  src/ZeroMQ_UnitTests.cpp
+  src/Connection_Tests.cpp
+  src/Logger_Tests.cpp
+  src/Metrics_Tests.cpp
+  src/Telnet_Tests.cpp
+  src/Utils_Tests.cpp
+  src/ZeroMQ_Tests.cpp
   src/gtest_main.cpp
 )
 
