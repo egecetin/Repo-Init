@@ -1,12 +1,12 @@
 if(XXX_ENABLE_MEMLEAK_CHECK)
-  include_directories(MemPlumber)
-  add_subdirectory(MemPlumber)
+  include_directories(thirdparty/MemPlumber)
+  add_subdirectory(thirdparty/MemPlumber)
 
   # Disable MemPlumber tests from parent
   add_custom_target(
     ExcludeMemPlumberTests
     ALL
-    COMMAND rm -f "${PROJECT_BINARY_DIR}/tests/MemPlumber/CTestTestfile.cmake"
+    COMMAND rm -f "${PROJECT_BINARY_DIR}/tests/thirdparty/MemPlumber/CTestTestfile.cmake"
   )
 endif()
 
