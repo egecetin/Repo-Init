@@ -19,3 +19,6 @@
 [submodule "tests/gtest"]
 	path = tests/thirdparty/gtest
 	url = https://github.com/google/googletest.git
+[submodule "tests/thirdparty/fuzztest"]
+	path = tests/thirdparty/fuzztest
+	url = https://github.com/google/fuzztest.git
