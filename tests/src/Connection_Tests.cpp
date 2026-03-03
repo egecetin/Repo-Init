@@ -9,6 +9,7 @@
 #include <cstring>
 #include <thread>
 
+#include <fuzztest/fuzztest.h>
 #include <gtest/gtest.h>
 
 #define RAWSOCKET_BUFFER_SIZE 65536
@@ -98,6 +99,45 @@ TEST(Connection_Tests, HttpUnitTests)
 	ASSERT_EQ("", recvData);
 	ASSERT_EQ(HttpStatus::Code::xxx_max, statusCode);
 }
+
+void HttpFuzzTests(std::string &data)
+{
+	constexpr auto echoServerPort = 9100;
+	static uint64_t counter;
+	static EchoServer echoServer(echoServerPort);
+	static HTTP httpServer("http://localhost:" + std::to_string(echoServerPort));
+
+	std::string recvBuffer;
+	HttpStatus::Code sendCode;
+	switch (counter % 4)
+	{
+	case 0: // POST
+		ASSERT_NE(httpServer.sendPOSTRequest("/test", data, recvBuffer, sendCode), CURLE_COULDNT_CONNECT);
+		ASSERT_EQ(recvBuffer, data);
+		ASSERT_EQ(sendCode, HttpStatus::Code::NotFound);
+		break;
+	case 1: // PUT
+		ASSERT_NE(httpServer.sendPUTRequest("/test", data, recvBuffer, sendCode), CURLE_COULDNT_CONNECT);
+		ASSERT_EQ(recvBuffer, data);
+		ASSERT_EQ(sendCode, HttpStatus::Code::NotFound);
+		break;
+	case 2: // GET
+		ASSERT_NE(httpServer.sendGETRequest(data, recvBuffer, sendCode), CURLE_COULDNT_CONNECT);
+		ASSERT_EQ(sendCode, HttpStatus::Code::NotFound);
+		break;
+	case 3: // HEAD
+		ASSERT_NE(httpServer.sendHEADRequest(data, recvBuffer, sendCode), CURLE_COULDNT_CONNECT);
+		ASSERT_EQ(sendCode, HttpStatus::Code::NotFound);
+		break;
+	default:
+		GTEST_FAIL();
+		return;
+	}
+	++counter;
+
+	return;
+}
+FUZZ_TEST(Connection_Tests, HttpFuzzTests);
 
 TEST(Connection_Tests, RawSocketUnitTests)
 {
