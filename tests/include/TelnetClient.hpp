@@ -39,7 +39,9 @@ class TelnetClient {
 				break;
 			}
 
-			ssize_t sent = send(_sockfd, command.c_str(), command.length(), 0);
+			// Append telnet line terminator (CR+LF)
+			std::string commandWithTerminator = command + "\r\n";
+			ssize_t sent = send(_sockfd, commandWithTerminator.c_str(), commandWithTerminator.length(), 0);
 			if (sent < 0)
 			{
 				break;
@@ -47,7 +49,7 @@ class TelnetClient {
 
 			// Read response (discard for testing purposes)
 			char buffer[4096];
-			recv(_sockfd, buffer, sizeof(buffer), MSG_DONTWAIT);
+			recv(_sockfd, buffer, sizeof(buffer), MSG_WAITALL);
 		}
 	}
 
@@ -87,6 +89,10 @@ class TelnetClient {
 			close(_sockfd);
 			throw std::runtime_error("Connection failed");
 		}
+
+
+		char buffer[4096];
+		recv(_sockfd, buffer, sizeof(buffer), MSG_WAITFORONE);
 
 		// If commands provided, start sending them in a thread
 		if (!commands.empty())
@@ -130,7 +136,9 @@ class TelnetClient {
 			return false;
 		}
 
-		ssize_t sent = send(_sockfd, command.c_str(), command.length(), 0);
+		// Append telnet line terminator (CR+LF)
+		std::string commandWithTerminator = command + "\r\n";
+		ssize_t sent = send(_sockfd, commandWithTerminator.c_str(), commandWithTerminator.length(), 0);
 		return sent > 0;
 	}
 
