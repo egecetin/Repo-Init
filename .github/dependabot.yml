@@ -13,12 +13,3 @@ updates:
       actions-dependencies:
         patterns:
           - "*" # Include all actions
-
-  - package-ecosystem: "pip"
-    directory: "/tests/data/requirements.txt"
-    schedule:
-      interval: "monthly"
-    groups:
-      pip-dependencies:
-        patterns:
-          - "*" # Include all dependencies
