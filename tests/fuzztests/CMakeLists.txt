@@ -4,7 +4,7 @@ if(NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 endif()
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
-include_directories(${PROJECT_SOURCE_DIR}/tests)
+include_directories(${PROJECT_SOURCE_DIR}/tests/include)
 include_directories(${PROJECT_BINARY_DIR}/tests)
 
 # Fuzz sources
