@@ -12,7 +12,7 @@
 #define TEST_CRASHPAD_REPORT_DIR "@PROJECT_BINARY_DIR@"
 
 // Connection_UnitTests
-#define TEST_RAWSOCKET_INTERFACE "eth0"
+#define TEST_RAWSOCKET_INTERFACE "lo"
 #define TEST_RAWSOCKET_SENDER_PY_PATH "@PROJECT_SOURCE_DIR@/tests/data/rawsocket-test.py"
 #define TEST_ZEROMQ_ECHO_SERVER_PY_PATH "@PROJECT_SOURCE_DIR@/tests/data/zeromqEchoServer.py"
 

@@ -2,10 +2,11 @@
 #include "connection/RawSocket.hpp"
 
 #include "EchoServer.hpp"
+#include "RawPacketSender.hpp"
 #include "test-static-definitions.h"
 
 #include <chrono>
-#include <future>
+#include <cstring>
 #include <thread>
 
 #include <gtest/gtest.h>
@@ -106,10 +107,7 @@ TEST(Connection_Tests, RawSocketUnitTests)
 	}
 
 	// Launch packet sender
-	std::future<int> pyResult;
-	pyResult = std::async(std::launch::async, []() {
-		return system(("python3 " + std::string(TEST_RAWSOCKET_SENDER_PY_PATH) + " >/dev/null").c_str());
-	});
+	RawPacketSender sender(TEST_RAWSOCKET_INTERFACE, "I'm a dumb message.", 10, 100);
 
 	bool found = false;
 	uint8_t data[RAWSOCKET_BUFFER_SIZE];
@@ -156,7 +154,4 @@ TEST(Connection_Tests, RawSocketUnitTests)
 	ASSERT_DOUBLE_EQ(statsWrite.processingTime, 0.0);
 	ASSERT_EQ(statsWrite.receivedBytes, 0);
 	ASSERT_EQ(statsWrite.sentBytes, 0);
-
-	pyResult.wait();
-	ASSERT_EQ(0, pyResult.get());
 }
