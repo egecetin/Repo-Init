@@ -16,8 +16,7 @@ find_package(spdlog REQUIRED)
 find_package(ZLIB REQUIRED)
 
 option(XXX_BUILD_TESTS "Build XXX tests" OFF)
-option(XXX_BUILD_UNITTESTS "Build XXX unit tests" ON)
-option(XXX_BUILD_FUZZTESTS "Build XXX fuzz tests" OFF)
+option(XXX_ENABLE_FUZZ "Enable XXX fuzzing" OFF)
 option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
 option(XXX_ENABLE_SYMBOL_GENERATION "Enables symbol generation for binaries (Requires breakpad)" OFF)
@@ -258,9 +257,7 @@ if(XXX_BUILD_TESTS)
           "${PROJECT_SOURCE_DIR}/src/main.cpp"
           "${PROJECT_SOURCE_DIR}/thirdparty/*"
           "${PROJECT_SOURCE_DIR}/build/*"
-          "${PROJECT_SOURCE_DIR}/tests/gtest/*"
-          "${PROJECT_SOURCE_DIR}/tests/unittests/*"
-          "${PROJECT_SOURCE_DIR}/tests/fuzztests/*"
+          "${PROJECT_SOURCE_DIR}/tests/*"
     )
 
     setup_target_for_coverage_gcovr_xml(
@@ -274,9 +271,7 @@ if(XXX_BUILD_TESTS)
           "${PROJECT_SOURCE_DIR}/src/main.cpp"
           "${PROJECT_SOURCE_DIR}/thirdparty/*"
           "${PROJECT_SOURCE_DIR}/build/*"
-          "${PROJECT_SOURCE_DIR}/tests/gtest/*"
-          "${PROJECT_SOURCE_DIR}/tests/unittests/*"
-          "${PROJECT_SOURCE_DIR}/tests/fuzztests/*"
+          "${PROJECT_SOURCE_DIR}/tests/*"
     )
   endif()
 endif()

@@ -1,4 +1,4 @@
 [codespell]
-skip = ./.git/*,./build/*,./cmake/*,./doc/*,./scripts/*,./thirdparty/*,./tests/gtest/*,./tests/MemPlumber/*
+skip = ./.git/*,./build/*,./cmake/*,./doc/*,./scripts/*,./thirdparty/*,./tests/thirdparty/*
 ignore-words = codespell-ignore-list.txt
 count =

@@ -17,40 +17,69 @@ option(XXX_ENABLE_MSAN "Enables Memory Sanitizer for XXX" OFF)
 option(XXX_ENABLE_USAN "Enables Undefined Behaviour Sanitizer for XXX" OFF)
 option(XXX_ENABLE_TSAN "Enables Thread Sanitizer for XXX" OFF)
 
+include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/tests/include)
+
+add_subdirectory(thirdparty/fuzztest)
+
+file(
+  GLOB ProjectTestSources
+  src/Connection_UnitTests.cpp
+  src/Logger_UnitTests.cpp
+  src/Metrics_UnitTests.cpp
+  src/Telnet_UnitTests.cpp
+  src/Utils_UnitTests.cpp
+  src/ZeroMQ_UnitTests.cpp
+  src/gtest_main.cpp
+)
+
 # Sanitizers
 if(XXX_ENABLE_ASAN)
   message(STATUS "Enabling Address Sanitizer")
-  target_compile_options("${PROJECT_NAME}-lib" PUBLIC "-fsanitize=address")
+  target_compile_options(
+    "${PROJECT_NAME}-lib"
+    PUBLIC "-fsanitize=address -fsanitize-coverage=inline-8bit-counters -fsanitize-coverage=trace-cmp"
+  )
   target_link_options("${PROJECT_NAME}-lib" PUBLIC "-fsanitize=address")
 endif()
 
 if(XXX_ENABLE_MSAN)
   message(STATUS "Enabling Memory Sanitizer")
-  target_compile_options("${PROJECT_NAME}-lib" PUBLIC "-fsanitize=memory")
+  target_compile_options(
+    "${PROJECT_NAME}-lib"
+    PUBLIC "-fsanitize=memory -fsanitize-coverage=inline-8bit-counters -fsanitize-coverage=trace-cmp"
+  )
   target_link_options("${PROJECT_NAME}-lib" PUBLIC "-fsanitize=memory")
 endif()
 
 if(XXX_ENABLE_USAN)
   message(STATUS "Enabling Undefined Behaviour Sanitizer")
-  target_compile_options("${PROJECT_NAME}-lib" PUBLIC "-fsanitize=undefined")
+  target_compile_options(
+    "${PROJECT_NAME}-lib"
+    PUBLIC "-fsanitize=undefined -fsanitize-coverage=inline-8bit-counters -fsanitize-coverage=trace-cmp"
+  )
   target_link_options("${PROJECT_NAME}-lib" PUBLIC "-fsanitize=undefined")
 endif()
 
 if(XXX_ENABLE_TSAN)
   message(STATUS "Enabling Thread Sanitizer")
-  target_compile_options("${PROJECT_NAME}-lib" PUBLIC "-fsanitize=thread")
+  target_compile_options(
+    "${PROJECT_NAME}-lib"
+    PUBLIC "-fsanitize=thread -fsanitize-coverage=inline-8bit-counters -fsanitize-coverage=trace-cmp"
+  )
   target_link_options("${PROJECT_NAME}-lib" PUBLIC "-fsanitize=thread")
 endif()
 
-if(XXX_BUILD_UNITTESTS)
-  add_subdirectory(gtest)
-  add_subdirectory(unittests)
-  list(APPEND TestExecutablesLocal UnitTestMain)
+add_executable(TestMain ${ProjectTestSources})
+target_include_directories(TestMain PRIVATE "${PROJECT_BINARY_DIR}/tests")
+target_link_libraries(TestMain PRIVATE "${PROJECT_NAME}-lib")
+link_fuzztest(TestMain)
+
+if(XXX_ENABLE_MEMLEAK_CHECK)
+  target_link_libraries(TestMain PRIVATE memplumber)
 endif()
 
-if(XXX_BUILD_FUZZTESTS)
-  add_subdirectory(fuzztests)
-  list(APPEND TestExecutablesLocal ${FuzzTestExecutables})
-endif()
+include(GoogleTest)
+gtest_discover_tests(TestMain)
 
-set(TestExecutables ${TestExecutablesLocal} PARENT_SCOPE)
+set(TestExecutables TestMain PARENT_SCOPE)
