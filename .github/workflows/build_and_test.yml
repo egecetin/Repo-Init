@@ -24,6 +24,8 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           submodules: recursive
+      - name: Fix checkout ownership
+        run: chown -R "$(id -u):$(id -g)" "$GITHUB_WORKSPACE"
       - name: Run clang-format
         run: clang-format include/**/*.hpp src/*.cpp src/**/*.cpp --verbose --dry-run --Werror
       - name: Run cppcheck
@@ -31,7 +33,7 @@ jobs:
       - name: Configure for clang-tidy
         run: cmake -S . -B build
       - name: Clang-tidy
-        run: run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/*.cpp src/**/*.cpp
+        run: ./scripts/clang-tidy-changed.sh changed
 
   memleak:
     runs-on: ubuntu-latest
