@@ -295,9 +295,8 @@ Our test suite requires some Python dependencies for comprehensive testing. Here
 
 | Option | Description | Default | 🎯 Use Case |
 |--------|-------------|---------|-------------|
-| `XXX_BUILD_TESTS` | Build all test suites | `ON` | Complete testing pipeline |
-| `XXX_BUILD_UNITTESTS` | Build unit tests only | `ON` | Fast development feedback |
-| `XXX_BUILD_FUZZTESTS` | Build fuzz testing suite | `OFF` | Security & robustness testing |
+| `XXX_BUILD_TESTS` | Build test suites | `ON` | Complete testing pipeline |
+| `XXX_ENABLE_FUZZ` | Build additional fuzz testing suite | `OFF` | Security & robustness testing |
 | `XXX_ENABLE_COVERAGE` | Generate test coverage reports | `OFF` | Code quality metrics |
 | `XXX_ENABLE_MEMLEAK_CHECK` | Memory leak detection with MemPlumber | `OFF` | Debug memory issues |
 
@@ -323,8 +322,8 @@ cmake -B build -DXXX_BUILD_TESTS=OFF \
                 -DXXX_ENABLE_SYMBOL_GENERATION=ON
 
 # Security testing build
-cmake -B build -DXXX_BUILD_FUZZTESTS=ON \
-                -DXXX_ENABLE_MEMLEAK_CHECK=ON
+cmake -B build -DXXX_BUILD_TESTS=ON \
+                -DXXX_BUILD_FUZZTESTS=ON
 
 # Minimal build (fastest)
 cmake -B build -DXXX_BUILD_TESTS=OFF
