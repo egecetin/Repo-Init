@@ -1,10 +1,12 @@
 #include "metrics/PrometheusServer.hpp"
 #include "telnet/TelnetServer.hpp"
+#include "TelnetClient.hpp"
 #include "test-static-definitions.h"
 
 #include <chrono>
-#include <future>
+#include <memory>
 #include <thread>
+#include <vector>
 
 #include <gtest/gtest.h>
 
@@ -13,8 +15,6 @@ constexpr int TELNET_PORT = 23000;
 TEST(Telnet_Tests, TelnetServerUnitTests)
 {
 	std::string promServerAddr = "localhost:8200";
-
-	std::future<int> shResult;
 
 	// For internal statistics
 	PrometheusServer reporter(promServerAddr);
@@ -31,14 +31,26 @@ TEST(Telnet_Tests, TelnetServerUnitTests)
 	telnetServerPtr->newLineCallback(TelnetMessageCallback);
 	telnetServerPtr->tabCallback(TelnetTabCallback);
 
-	// Launch script
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	shResult = std::async(std::launch::async, []() {
-		return system(("expect " + std::string(TEST_TELNET_SH_PATH) + " >/dev/null").c_str());
-	});
+	// Prepare commands to send
+	std::vector<std::string> commands = {"Test Message\r",     "Unknown Message\r", "help\r",
+	                                     "\b",                 "\t",                "he\t\r",
+	                                     "enable log v\r",     "enable log vv\r",   "ping\r",
+	                                     "clear\r",            "enable log vvv\r",  "disable log\r",
+	                                     "disable log all\r",  "version\r",         "status\r",
+	                                     "\x1b\x5b\x41\r",     "\x1b\x5b\x42\r",    "\r",
+	                                     "quit\r"};
 
-	shResult.wait();
+	// Create first client that sends all commands
+	auto mainClient = std::make_unique<TelnetClient>("127.0.0.1", TELNET_PORT, commands);
+	mainClient->wait();
+
+	// Create additional connections
+	std::vector<std::unique_ptr<TelnetClient>> additionalClients;
+	for (int i = 0; i < 8; ++i)
+	{
+		additionalClients.push_back(std::make_unique<TelnetClient>("127.0.0.1", TELNET_PORT));
+	}
+
 	ASSERT_NO_THROW(telnetServerPtr->shutdown());
 	ASSERT_NO_THROW(telnetServerPtr->shutdown());
-	ASSERT_EQ(0, shResult.get());
 }
