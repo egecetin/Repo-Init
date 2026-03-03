@@ -31,7 +31,7 @@ jobs:
       - name: Configure for clang-tidy
         run: cmake -S . -B build
       - name: Clang-tidy
-        run: run-clang-tidy -j`nproc` -p=build -header-filter=`pwd`/include/ src/*.cpp src/**/*.cpp
+        run: bash scripts/clang-tidy-changed.sh changed
 
   memleak:
     runs-on: ubuntu-latest
