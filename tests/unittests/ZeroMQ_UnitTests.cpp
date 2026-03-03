@@ -1,9 +1,11 @@
 #include "metrics/PrometheusServer.hpp"
 #include "test-static-definitions.h"
 #include "zeromq/ZeroMQServer.hpp"
+#include "ZeroMQEchoServer.hpp"
+#include "ZeroMQTestClient.hpp"
 
 #include <chrono>
-#include <future>
+#include <memory>
 #include <thread>
 
 #include <gtest/gtest.h>
@@ -12,16 +14,11 @@ TEST(ZeroMQ_Tests, ZeroMQUnitTests)
 {
 	std::string echoServerAddr = "tcp://127.0.0.1:8001";
 
-	// Launch echo server
-	std::future<int> pyResult;
-	pyResult = std::async(std::launch::async, [echoServerAddr]() {
-		return system(("python3 " + std::string(TEST_ZEROMQ_ECHO_SERVER_PY_PATH) + " --address=" + echoServerAddr +
-					   " --count=1 >/dev/null")
-						  .c_str());
-	});
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-
 	{
+		// Launch echo server
+		auto echoServer = std::make_unique<ZeroMQEchoServer>(echoServerAddr, 1);
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
 		std::shared_ptr<zmq::context_t> ctx = std::make_shared<zmq::context_t>(1);
 		ZeroMQ handler(ctx, zmq::socket_type::req, echoServerAddr, false);
 
@@ -58,8 +55,7 @@ TEST(ZeroMQ_Tests, ZeroMQUnitTests)
 			ASSERT_FALSE(memcmp(vExpectedMsg[idx].data(), vRecvMsgs[idx].data(), vExpectedMsg[idx].size()));
 		}
 
-		pyResult.wait();
-		ASSERT_EQ(0, pyResult.get());
+		echoServer->wait();
 	}
 
 	{
@@ -79,8 +75,6 @@ TEST(ZeroMQ_Tests, ZeroMQServerUnitTests)
 	std::string zeromqServerAddr = "tcp://127.0.0.1:8300";
 	std::string promServerAddr = "localhost:8301";
 
-	std::future<int> shResult;
-
 	// For internal statistics
 	PrometheusServer reporter(promServerAddr);
 
@@ -95,16 +89,12 @@ TEST(ZeroMQ_Tests, ZeroMQServerUnitTests)
 	zeromqServerPtr->messageCallback(ZeroMQServerMessageCallback);
 	ASSERT_TRUE(zeromqServerPtr->initialise());
 
-	// Launch script
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-	shResult = std::async(std::launch::async, []() {
-		return system(("python3 " + std::string(TEST_ZEROMQ_PY_PATH) + " >/dev/null").c_str());
-	});
+	// Launch test client
+	auto testClient = std::make_unique<ZeroMQTestClient>(zeromqServerAddr);
+	testClient->sendTestMessages();
 
-	shResult.wait();
 	ASSERT_NO_THROW(zeromqServerPtr->shutdown());
 	ASSERT_NO_THROW(zeromqServerPtr->shutdown());
-	ASSERT_EQ(0, shResult.get());
 }
 
 TEST(ZeroMQ_Tests, ZeroMQMonitorUnitTests)

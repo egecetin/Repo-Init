@@ -17,11 +17,11 @@ BUILD_DIR=${2:-build}
 
 if [ "$MODE" = "changed" ]; then
     # Get the list of changed files from origin/master
-    git fetch origin master
-    files=$(git diff --name-only origin/master -- '*.cpp' '*.h' | grep -v 'thirdparty/' || true)
+    git fetch --no-recurse-submodules origin master
+    files=$(git diff --name-only origin/master -- '*.cpp' '*.hpp' | grep -v 'thirdparty/' || true)
 else
     # Find all relevant files
-    files=$(find "${ROOTPATH}" -type f \( -name '*.cpp' -o -name '*.h' \) -not -path "*/thirdparty/*")
+    files=$(find "${ROOTPATH}" -type f \( -name '*.cpp' -o -name '*.hpp' \) -not -path "*/thirdparty/*")
 fi
 
 # Check if there are any files to process
