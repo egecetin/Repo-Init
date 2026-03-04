@@ -1,6 +1,6 @@
+#include "TelnetClient.hpp"
 #include "metrics/PrometheusServer.hpp"
 #include "telnet/TelnetServer.hpp"
-#include "TelnetClient.hpp"
 #include "test-static-definitions.h"
 
 #include <chrono>
@@ -32,13 +32,25 @@ TEST(Telnet_Tests, TelnetServerUnitTests)
 	telnetServerPtr->tabCallback(TelnetTabCallback);
 
 	// Prepare commands to send
-	std::vector<std::string> commands = {"Test Message\r",     "Unknown Message\r", "help\r",
-	                                     "\b",                 "\t",                "he\t\r",
-	                                     "enable log v\r",     "enable log vv\r",   "ping\r",
-	                                     "clear\r",            "enable log vvv\r",  "disable log\r",
-	                                     "disable log all\r",  "version\r",         "status\r",
-	                                     "\x1b\x5b\x41\r",     "\x1b\x5b\x42\r",    "\r",
-	                                     "quit\r"};
+	std::vector<std::string> commands = {"Test Message",
+										 "Unknown Message",
+										 "help",
+										 "\b",
+										 "\t",
+										 "he\t",
+										 "enable log v",
+										 "enable log vv",
+										 "ping",
+										 "clear",
+										 "enable log vvv",
+										 "disable log",
+										 "disable log all",
+										 "version",
+										 "status",
+										 "\x1b\x5b\x41",
+										 "\x1b\x5b\x42",
+										 "",
+										 "quit"};
 
 	// Create first client that sends all commands
 	auto mainClient = std::make_unique<TelnetClient>("127.0.0.1", TELNET_PORT, commands);
