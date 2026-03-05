@@ -39,7 +39,9 @@ class TelnetClient {
 				break;
 			}
 
-			ssize_t sent = send(_sockfd, command.c_str(), command.length(), 0);
+			// Append telnet line terminator (CR+LF)
+			std::string commandWithTerminator = command + "\r\n";
+			ssize_t sent = send(_sockfd, commandWithTerminator.c_str(), commandWithTerminator.length(), 0);
 			if (sent < 0)
 			{
 				break;
@@ -47,7 +49,10 @@ class TelnetClient {
 
 			// Read response (discard for testing purposes)
 			char buffer[4096];
-			recv(_sockfd, buffer, sizeof(buffer), MSG_DONTWAIT);
+			while (recv(_sockfd, buffer, sizeof(buffer), MSG_WAITFORONE) > 0)
+			{
+				std::this_thread::sleep_for(std::chrono::milliseconds(5));
+			}
 		}
 	}
 
@@ -69,6 +74,16 @@ class TelnetClient {
 			throw std::runtime_error("Failed to create socket");
 		}
 
+		// Set receive timeout
+		struct timeval tv;
+		tv.tv_sec = 0;
+		tv.tv_usec = 15000;
+		if (setsockopt(_sockfd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)) < 0)
+		{
+			close(_sockfd);
+			throw std::runtime_error("Failed to set socket timeout");
+		}
+
 		// Set up server address
 		struct sockaddr_in serverAddr;
 		memset(&serverAddr, 0, sizeof(serverAddr));
@@ -88,12 +103,17 @@ class TelnetClient {
 			throw std::runtime_error("Connection failed");
 		}
 
+		char buffer[4096];
+		while (recv(_sockfd, buffer, sizeof(buffer), MSG_WAITFORONE) > 0)
+		{
+			std::this_thread::sleep_for(std::chrono::milliseconds(5));
+		}
+
 		// If commands provided, start sending them in a thread
 		if (!commands.empty())
 		{
-			_clientThread = std::jthread([this, commands](std::stop_token stopToken) {
-				this->clientLoop(commands, stopToken);
-			});
+			_clientThread =
+				std::jthread([this, commands](std::stop_token stopToken) { this->clientLoop(commands, stopToken); });
 		}
 	}
 
@@ -130,7 +150,9 @@ class TelnetClient {
 			return false;
 		}
 
-		ssize_t sent = send(_sockfd, command.c_str(), command.length(), 0);
+		// Append telnet line terminator (CR+LF)
+		std::string commandWithTerminator = command + "\r\n";
+		ssize_t sent = send(_sockfd, commandWithTerminator.c_str(), commandWithTerminator.length(), 0);
 		return sent > 0;
 	}
 

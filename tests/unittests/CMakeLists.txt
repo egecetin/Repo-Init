@@ -11,7 +11,7 @@ file(
 )
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
-include_directories(${PROJECT_SOURCE_DIR}/tests)
+include_directories(${PROJECT_SOURCE_DIR}/tests/include)
 
 add_executable(UnitTestMain ${ProjectUnitTestSources})
 target_include_directories(UnitTestMain PRIVATE "${PROJECT_BINARY_DIR}/tests")

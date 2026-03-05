@@ -78,10 +78,10 @@ class ZeroMQTestClient {
 		std::vector<std::vector<zmq::message_t>> messageArray;
 
 		// Command codes from the Python script
-		const uint32_t CMD_VERSION = 1230128470;    // "version" hash
-		const uint32_t CMD_LOG_LEVEL = 1279741772;  // "log level" hash
-		const uint32_t CMD_PING = 1196312912;       // "ping" hash
-		const uint32_t CMD_STATUS = 1263027027;     // "status" hash
+		const uint64_t CMD_VERSION = 1230128470;    // "version" hash
+		const uint64_t CMD_LOG_LEVEL = 1279741772;  // "log level" hash
+		const uint64_t CMD_PING = 1196312912;       // "ping" hash
+		const uint64_t CMD_STATUS = 1263027027;     // "status" hash
 
 		// Ask version (success)
 		{
