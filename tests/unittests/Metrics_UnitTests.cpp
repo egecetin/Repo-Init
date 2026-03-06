@@ -72,7 +72,7 @@ TEST(Metrics_Tests, PerformanceTrackerUnitTests)
 	}
 
 	// Collect data from socket
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	ASSERT_FALSE(system((std::string("curl ") + promServerAddr + "/metrics --output metrics2.prom").c_str()));
 
 	// Metrics
@@ -110,7 +110,7 @@ TEST(Metrics_Tests, StatusTrackerUnitTests)
 	statTracker.incrementFail();
 
 	// Collect data from socket
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	ASSERT_FALSE(system((std::string("curl ") + promServerAddr + "/metrics --output metrics3.prom").c_str()));
 
 	// Metrics
@@ -140,7 +140,7 @@ TEST(Metrics_Tests, ProcessMetricsUnitTests)
 	ProcessMetrics procMetrics(checkFlag, reporter.createNewRegistry());
 
 	// Collect data from socket
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	ASSERT_FALSE(system((std::string("curl ") + promServerAddr + "/metrics --output metrics4.prom").c_str()));
 
 	// Metrics
