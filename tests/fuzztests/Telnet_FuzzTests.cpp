@@ -37,7 +37,7 @@ extern "C" int LLVMFuzzerInitialize(int *, char ***)
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size)
 {
 	static TelnetWrapper server(TELNET_SERVER_PORT);
-	static TelnetClient client("localhost", TELNET_SERVER_PORT);
+	static TelnetClient client("127.0.0.1", TELNET_SERVER_PORT);
 
 	const auto command = std::string(reinterpret_cast<const char *>(data), size);
 	return client.sendCommand(command);
