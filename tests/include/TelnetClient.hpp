@@ -51,7 +51,6 @@ class TelnetClient {
 			char buffer[4096];
 			while (recv(_sockfd, buffer, sizeof(buffer), MSG_WAITFORONE) > 0)
 			{
-				std::this_thread::sleep_for(std::chrono::milliseconds(5));
 			}
 		}
 	}
@@ -106,7 +105,6 @@ class TelnetClient {
 		char buffer[4096];
 		while (recv(_sockfd, buffer, sizeof(buffer), MSG_WAITFORONE) > 0)
 		{
-			std::this_thread::sleep_for(std::chrono::milliseconds(5));
 		}
 
 		// If commands provided, start sending them in a thread
@@ -157,7 +155,6 @@ class TelnetClient {
 		char buffer[4096];
 		while (recv(_sockfd, buffer, sizeof(buffer), MSG_WAITFORONE) > 0)
 		{
-			std::this_thread::sleep_for(std::chrono::milliseconds(5));
 		}
 
 		return sent > 0;
