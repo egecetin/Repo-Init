@@ -20,8 +20,6 @@
 class TelnetClient {
   private:
 	int _sockfd{-1};
-	std::string _host;
-	int _port;
 	std::jthread _clientThread;
 
 	/**
@@ -64,7 +62,6 @@ class TelnetClient {
 	 * @throws std::runtime_error if connection fails
 	 */
 	explicit TelnetClient(const std::string &host, int port, const std::vector<std::string> &commands = {})
-		: _host(host), _port(port)
 	{
 		// Create socket
 		_sockfd = socket(AF_INET, SOCK_STREAM, 0);

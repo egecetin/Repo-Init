@@ -1,8 +1,8 @@
+#include "ZeroMQEchoServer.hpp"
+#include "ZeroMQTestClient.hpp"
 #include "metrics/PrometheusServer.hpp"
 #include "test-static-definitions.h"
 #include "zeromq/ZeroMQServer.hpp"
-#include "ZeroMQEchoServer.hpp"
-#include "ZeroMQTestClient.hpp"
 
 #include <chrono>
 #include <memory>
@@ -89,9 +89,37 @@ TEST(ZeroMQ_Tests, ZeroMQServerUnitTests)
 	zeromqServerPtr->messageCallback(ZeroMQServerMessageCallback);
 	ASSERT_TRUE(zeromqServerPtr->initialise());
 
+	const uint64_t CMD_VERSION = 1230128470;   // "version" hash
+	const uint64_t CMD_LOG_LEVEL = 1279741772; // "log level" hash
+	const uint64_t CMD_PING = 1196312912;	   // "ping" hash
+	const uint64_t CMD_STATUS = 1263027027;	   // "status" hash
+
+	std::vector<std::vector<zmq::message_t>> msgArray;
+
+	// Ask version (success)
+	msgArray.push_back(makeMessageVector(CMD_VERSION));
+	// Ask version (fail - extra data)
+	msgArray.push_back(makeMessageVector(CMD_VERSION, "dummy"));
+	// Ask log level (info - "v")
+	msgArray.push_back(makeMessageVector(CMD_LOG_LEVEL, "v"));
+	// Ask log level (debug - "vv")
+	msgArray.push_back(makeMessageVector(CMD_LOG_LEVEL, "vv"));
+	// Ask log level (trace - "vvv")
+	msgArray.push_back(makeMessageVector(CMD_LOG_LEVEL, "vvv"));
+	// Ask log level (fail - extra data)
+	msgArray.push_back(makeMessageVector(CMD_LOG_LEVEL, "v", "dummy"));
+	// Ask ping (success)
+	msgArray.push_back(makeMessageVector(CMD_PING));
+	// Ask ping (fail - extra data)
+	msgArray.push_back(makeMessageVector(CMD_PING, "dummy"));
+	// Ask status (success)
+	msgArray.push_back(makeMessageVector(CMD_STATUS));
+	// Ask status (fail - extra data)
+	msgArray.push_back(makeMessageVector(CMD_STATUS, "dummy"));
+
 	// Launch test client
 	auto testClient = std::make_unique<ZeroMQTestClient>(zeromqServerAddr);
-	testClient->sendTestMessages();
+	testClient->sendTestMessages(msgArray);
 
 	ASSERT_NO_THROW(zeromqServerPtr->shutdown());
 	ASSERT_NO_THROW(zeromqServerPtr->shutdown());
