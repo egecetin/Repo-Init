@@ -130,6 +130,8 @@ namespace spdlog::sinks
 		sentry_options_t *sentryOptions = sentry_options_new();
 		sentry_options_set_release(sentryOptions, PROJECT_FULL_REVISION);
 		sentry_options_set_dsn(sentryOptions, sentryAddress.c_str());
+		sentry_options_set_debug(sentryOptions, 0);
+		sentry_options_set_logger_level(sentryOptions, SENTRY_LEVEL_WARNING);
 
 		// Init
 		sentry_init(sentryOptions);
