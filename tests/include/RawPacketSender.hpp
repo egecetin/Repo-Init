@@ -52,7 +52,8 @@ class RawPacketSender {
 	 * @param[in] delayMs Delay between packets in milliseconds (default: 100)
 	 * @throws std::runtime_error if socket creation or binding fails
 	 */
-	explicit RawPacketSender(const std::string &interface, const std::string &message, int count = 10, int delayMs = 100)
+	explicit RawPacketSender(const std::string &interface, const std::string &message, int count = 10,
+							 int delayMs = 100)
 	{
 		// Create raw socket
 		_sockfd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL));

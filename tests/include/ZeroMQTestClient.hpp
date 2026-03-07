@@ -22,12 +22,12 @@ zmq::message_t createMessage(const std::string &data) { return zmq::message_t(da
 /**
  * Variadic function to create message vector
  */
-template<typename... Args>
-std::vector<zmq::message_t> makeMessageVector(Args&&... args) {
-    std::vector<zmq::message_t> vec;
-    vec.reserve(sizeof...(args));
-    (vec.push_back(createMessage(std::forward<Args>(args))), ...);
-    return vec;
+template <typename... Args> std::vector<zmq::message_t> makeMessageVector(Args &&...args)
+{
+	std::vector<zmq::message_t> vec;
+	vec.reserve(sizeof...(args));
+	(vec.push_back(createMessage(std::forward<Args>(args))), ...);
+	return vec;
 }
 
 /**
@@ -85,7 +85,7 @@ class ZeroMQTestClient {
 		{
 			zmq::send_multipart(*_socket, msgs);
 			std::vector<zmq::message_t> recvMsgs;
-			(void) zmq::recv_multipart(*_socket, std::back_inserter(recvMsgs)).value_or(0);
+			(void)zmq::recv_multipart(*_socket, std::back_inserter(recvMsgs)).value_or(0);
 		}
 	}
 };
