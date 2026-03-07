@@ -153,6 +153,13 @@ class TelnetClient {
 		// Append telnet line terminator (CR+LF)
 		std::string commandWithTerminator = command + "\r\n";
 		ssize_t sent = send(_sockfd, commandWithTerminator.c_str(), commandWithTerminator.length(), 0);
+
+		char buffer[4096];
+		while (recv(_sockfd, buffer, sizeof(buffer), MSG_WAITFORONE) > 0)
+		{
+			std::this_thread::sleep_for(std::chrono::milliseconds(5));
+		}
+
 		return sent > 0;
 	}
 
