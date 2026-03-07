@@ -21,7 +21,6 @@
 class RawPacketSender {
   private:
 	int _sockfd{-1};
-	std::string _interface;
 	std::jthread _senderThread;
 
 	/**
@@ -54,7 +53,6 @@ class RawPacketSender {
 	 * @throws std::runtime_error if socket creation or binding fails
 	 */
 	explicit RawPacketSender(const std::string &interface, const std::string &message, int count = 10, int delayMs = 100)
-		: _interface(interface)
 	{
 		// Create raw socket
 		_sockfd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL));
@@ -112,10 +110,4 @@ class RawPacketSender {
 	// Delete copy constructor and assignment operator
 	RawPacketSender(const RawPacketSender &) = delete;
 	RawPacketSender &operator=(const RawPacketSender &) = delete;
-
-	/**
-	 * Gets the interface name
-	 * @return The network interface name
-	 */
-	[[nodiscard]] const std::string &getInterface() const { return _interface; }
 };

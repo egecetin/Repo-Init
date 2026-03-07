@@ -19,7 +19,6 @@
 class EchoServer {
   private:
 	int _serverSocket{-1};
-	int _port;
 	std::jthread _serverThread;
 
 	/**
@@ -86,7 +85,7 @@ class EchoServer {
 	 * @param[in] port The port to listen on
 	 * @throws std::runtime_error if server fails to start
 	 */
-	explicit EchoServer(int port) : _port(port)
+	explicit EchoServer(int port)
 	{
 		_serverSocket = socket(AF_INET, SOCK_STREAM, 0);
 		if (_serverSocket < 0)
@@ -104,7 +103,7 @@ class EchoServer {
 		sockaddr_in serverAddr{};
 		serverAddr.sin_family = AF_INET;
 		serverAddr.sin_addr.s_addr = INADDR_ANY;
-		serverAddr.sin_port = htons(_port);
+		serverAddr.sin_port = htons(port);
 
 		if (bind(_serverSocket, reinterpret_cast<sockaddr *>(&serverAddr), sizeof(serverAddr)) < 0)
 		{
@@ -121,12 +120,6 @@ class EchoServer {
 		// Start server thread
 		_serverThread = std::jthread(&EchoServer::serverLoop, this);
 	}
-
-	/**
-	 * Gets the port number
-	 * @return The port number the server is listening on
-	 */
-	[[nodiscard]] int getPort() const { return _port; }
 
 	/// Destructor - stops the server and cleans up
 	~EchoServer()
