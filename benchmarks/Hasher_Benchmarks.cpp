@@ -2,7 +2,7 @@
 
 #include <benchmark/benchmark.h>
 
-static void Benchmark_Hasher(benchmark::State &state)
+static void Hasher_Benchmark(benchmark::State &state)
 {
 	std::string testString = "Lorem ipsum dolor sit amet";
 	for (auto _ : state)
@@ -10,9 +10,9 @@ static void Benchmark_Hasher(benchmark::State &state)
 		benchmark::DoNotOptimize(constHasher(testString.c_str()));
 	}
 }
-BENCHMARK(Benchmark_Hasher);
+BENCHMARK(Hasher_Benchmark);
 
-static void Benchmark_Seeder(benchmark::State &state)
+static void Seeder_Benchmark(benchmark::State &state)
 {
 	char testString[] = "Lorem ipsum dolor sit amet";
 	for (auto _ : state)
@@ -20,4 +20,4 @@ static void Benchmark_Seeder(benchmark::State &state)
 		benchmark::DoNotOptimize(constSeeder(testString));
 	}
 }
-BENCHMARK(Benchmark_Seeder);
+BENCHMARK(Seeder_Benchmark);

@@ -1,6 +1,8 @@
 file(
   GLOB ProjectBenchmarkSources
   Hasher_Benchmarks.cpp
+  Http_Benchmarks.cpp
+  Telnet_Benchmarks.cpp
   benchmark_main.cpp
 )
 
