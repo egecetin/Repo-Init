@@ -18,6 +18,7 @@ find_package(ZLIB REQUIRED)
 option(XXX_BUILD_TESTS "Build XXX tests" OFF)
 option(XXX_BUILD_UNITTESTS "Build XXX unit tests" ON)
 option(XXX_BUILD_FUZZTESTS "Build XXX fuzz tests" OFF)
+option(XXX_BUILD_BENCHMARKS "Build XXX performance benchmarks" OFF)
 option(XXX_ENABLE_COVERAGE "Enables coverage report generation" OFF)
 option(XXX_ENABLE_MEMLEAK_CHECK "Enables Memory Leak Checker for unit tests" OFF)
 option(XXX_ENABLE_SYMBOL_GENERATION "Enables symbol generation for binaries (Requires breakpad)" OFF)
@@ -229,6 +230,12 @@ Also, it can send logs to syslog using Spdlog, to a Sentry server and Grafana Lo
       COMMENT "Creating tar gz archive from ${CMAKE_BINARY_DIR}/syms"
     )
   endif()
+endif()
+
+# Enable performance benchmarks
+if(XXX_BUILD_BENCHMARKS)
+  set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "")
+  add_subdirectory(benchmarks)
 endif()
 
 # Enable test framework
