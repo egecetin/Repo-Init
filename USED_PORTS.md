@@ -14,3 +14,5 @@ Used ports during tests,
 | Logger_Tests.LoggingUnitTests | 8400 | Logger_UnitTests.cpp |
 | Http_FuzzTests | 9000 | Http_FuzzTests.cpp |
 | Telnet_FuzzTests | 9001 | Telnet_FuzzTests.cpp |
+| Http_Benchmark | 10000 | Http_Benchmarks.cpp |
+| Telnet_Benchmark | 10001 | Telnet_Benchmarks.cpp |
