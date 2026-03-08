@@ -26,17 +26,17 @@ class TelnetWrapper {
 
 static void Telnet_Benchmark(benchmark::State &state)
 {
-    static TelnetWrapper server(TELNET_SERVER_PORT);
+	static TelnetWrapper server(TELNET_SERVER_PORT);
 	static TelnetClient client("127.0.0.1", TELNET_SERVER_PORT);
 
 	const auto command = "ping";
-    for (auto _ : state)
-    {
-        if (!client.sendCommand(command))
-        {
-            state.SkipWithError("Can't send Telnet command to server");
-            return;
-        }
-    }
+	for (auto _ : state)
+	{
+		if (!client.sendCommand(command))
+		{
+			state.SkipWithError("Can't send Telnet command to server");
+			return;
+		}
+	}
 }
 BENCHMARK(Telnet_Benchmark);
