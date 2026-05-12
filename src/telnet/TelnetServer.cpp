@@ -799,7 +799,11 @@ bool TelnetMessageCallback(const SP_TelnetSession &session, const std::string &l
 		return true;
 	case constHasher("disable log"):
 		session->sendLine("Default log mode enabled");
+#ifdef NDEBUG
+		spdlog::set_level(spdlog::level::warn);
+#else
 		spdlog::set_level(spdlog::level::info);
+#endif
 		return true;
 	case constHasher("disable log all"): // Internal use only
 		session->sendLine("Disabling all logs");
