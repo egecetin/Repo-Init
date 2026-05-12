@@ -133,6 +133,14 @@ bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, st
 		{
 			spdlog::set_level(spdlog::level::trace);
 		}
+		if (receivedMsg == "r")
+		{
+#ifdef NDEBUG
+			spdlog::set_level(spdlog::level::warn);
+#else
+			spdlog::set_level(spdlog::level::info);
+#endif
+		}
 		reply = ZMQ_EVENT_HANDSHAKE_SUCCEEDED;
 		break;
 	}

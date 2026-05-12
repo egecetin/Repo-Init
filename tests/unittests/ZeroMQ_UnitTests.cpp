@@ -106,6 +106,8 @@ TEST(ZeroMQ_Tests, ZeroMQServerUnitTests)
 	msgArray.push_back(makeMessageVector(CMD_LOG_LEVEL, "vv"));
 	// Ask log level (trace - "vvv")
 	msgArray.push_back(makeMessageVector(CMD_LOG_LEVEL, "vvv"));
+	// Ask log level (reset - "r")
+	msgArray.push_back(makeMessageVector(CMD_LOG_LEVEL, "r"));
 	// Ask log level (fail - extra data)
 	msgArray.push_back(makeMessageVector(CMD_LOG_LEVEL, "v", "dummy"));
 	// Ask ping (success)
