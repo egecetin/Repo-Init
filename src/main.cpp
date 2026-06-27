@@ -39,20 +39,20 @@ int main(int argc, char **argv)
 	const InputParser input(argc, argv);
 	const ConfigParser config(input.cmdOptionExists("--config") ? input.getCmdOption("--config") : "config.json");
 
-	// Check if config loaded successfully before proceeding
-	if (!config.isValid())
-	{
-		std::invalid_argument(std::format("{} {}", "Failed to load configuration:", config.getLastError()));
-	}
-
-	const MainLogger logger(config.get("LOKI_ADDRESS"), config.get("SENTRY_ADDRESS"));
-
 	// Initialize curl as soon as possible
 	if (curl_global_init(CURL_GLOBAL_DEFAULT) < 0)
 	{
 		spdlog::critical("Can't init curl");
 		return EXIT_FAILURE;
 	}
+
+	// Check if config loaded successfully before proceeding
+	if (!config.isValid())
+	{
+		throw std::invalid_argument(std::format("{} {}", "Failed to load configuration:", config.getLastError()));
+	}
+
+	const MainLogger logger(config.get("LOKI_ADDRESS"), config.get("SENTRY_ADDRESS"));
 
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
@@ -177,28 +177,33 @@ int main(int argc, char **argv)
 	// Initialize Telnet server
 	std::shared_ptr<TelnetServer> telnetController(nullptr);
 	vCheckFlag.emplace_back("Telnet Server", std::make_shared<std::atomic_flag>(false));
-	const unsigned long telnetPort =
-		input.cmdOptionExists("--enable-telnet") ? std::stoul(input.getCmdOption("--enable-telnet")) : 0;
-	if (telnetPort > 0 && telnetPort < 65536)
+	unsigned long telnetPort = 0;
+	try
 	{
-		try
+		telnetPort = input.cmdOptionExists("--enable-telnet") ? std::stoul(input.getCmdOption("--enable-telnet")) : 0;
+		if (telnetPort < 1 || telnetPort > 65535)
 		{
-			telnetController = std::make_shared<TelnetServer>();
-			telnetController->connectedCallback(TelnetConnectedCallback);
-			telnetController->newLineCallback(TelnetMessageCallback);
-			telnetController->tabCallback(TelnetTabCallback);
-			telnetController->initialise(telnetPort, vCheckFlag[vCheckFlag.size() - 1].second, "> ",
-										 mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
-		}
-		catch (const std::exception &e)
-		{
-			spdlog::error("Can't start Telnet Server: {}", e.what());
-			return EXIT_FAILURE;
+			throw std::invalid_argument("Input out of range");
 		}
 	}
-	else if (telnetPort != 0)
+	catch (const std::exception &e)
 	{
-		spdlog::error("Invalid Telnet port: {}", telnetPort);
+		spdlog::error("Invalid Telnet port: {} {}", telnetPort, e.what());
+		return EXIT_FAILURE;
+	}
+
+	try
+	{
+		telnetController = std::make_shared<TelnetServer>();
+		telnetController->connectedCallback(TelnetConnectedCallback);
+		telnetController->newLineCallback(TelnetMessageCallback);
+		telnetController->tabCallback(TelnetTabCallback);
+		telnetController->initialise(telnetPort, vCheckFlag[vCheckFlag.size() - 1].second, "> ",
+									 mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
+	}
+	catch (const std::exception &e)
+	{
+		spdlog::error("Can't start Telnet Server: {}", e.what());
 		return EXIT_FAILURE;
 	}
 

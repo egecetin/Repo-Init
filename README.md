@@ -113,7 +113,6 @@
 - [CMake Modules](#-cmake-modules)
 - [Utility Scripts](#-utility-scripts)
 - [Dependencies](#-dependencies)
-- [Testing Setup](#-testing-setup)
 - [Build Targets](#-build-targets)
 - [Grafana Integration](#-grafana-integration)
 
@@ -211,48 +210,6 @@ Our carefully crafted CMake modules provide powerful build automation:
 
 </div>
 
-## Testing Setup
-
-<div align="center">
-
-### **Python Test Dependencies**
-
-</div>
-
-Our test suite requires some Python dependencies for comprehensive testing. Here's how to set them up:
-
-<table>
-    <tr>
-        <td width="50%">
-            <h4>🚀 <strong>Quick Setup</strong></h4>
-            <pre><code class="bash">
-    # Create virtual environment
-    python3 -m venv .venv
-    <br>
-    # Activate virtual environment
-    source .venv/bin/activate  # Linux/macOS
-    # OR
-    .venv\Scripts\activate     # Windows
-    <br>
-    # Install test dependencies
-    pip install -r tests/data/requirements.txt</code></pre>
-        </td>
-        <td width="50%">
-            <h4>📋 <strong>Required Dependencies</strong></h4>
-            <ul>
-                <li><strong>pyzmq</strong> - Python ZeroMQ bindings for testing messaging functionality</li>
-            </ul>
-            <h4>⚠️ <strong>Important Notes</strong></h4>
-            <ul>
-                <li>Virtual environment <strong>must be activated</strong> before running tests</li>
-                <li>Dependencies are automatically detected by the test suite</li>
-                <li>Deactivate with <code>deactivate</code> when done</li>
-            </ul>
-        </td>
-    </tr>
-</table>
-
----
 
 ## Build Targets
 
@@ -275,7 +232,6 @@ Our test suite requires some Python dependencies for comprehensive testing. Here
 
 > 💡 **Pro Tips**:
 > - For packages, specify your preferred format with `-DCPACK_GENERATOR="DEB"` or `"RPM"`
-> - Ensure Python virtual environment is activated before running tests!
 
 ---
 

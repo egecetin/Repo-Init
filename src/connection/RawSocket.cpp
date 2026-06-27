@@ -43,8 +43,7 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : _writeMode(isWrite), _iF
 	// Interface request
 	ifreq ifr{};
 	memset(static_cast<void *>(&ifr), 0, sizeof(ifreq));
-	memcpy(std::addressof(ifr.ifr_name), _iFace.c_str(),
-		   _iFace.size()); // Size should be sufficient because if_nametoindex not failed
+	strncpy(ifr.ifr_name, _iFace.c_str(), IFNAMSIZ - 1);
 
 	if (isWrite)
 	{
@@ -73,7 +72,10 @@ int RawSocket::writeData(const unsigned char *data, size_t dataLen)
 
 	// Update stats
 	_stats.processingTime += static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
-	_stats.sentBytes += dataLen;
+	if (retval > 0)
+	{
+		_stats.sentBytes += dataLen;
+	}
 
 	return retval;
 }
@@ -93,7 +95,10 @@ int RawSocket::readData(unsigned char *data, size_t dataLen)
 
 	// Update stats
 	_stats.processingTime += static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
-	_stats.receivedBytes += dataLen;
+	if (retval > 0)
+	{
+		_stats.receivedBytes += dataLen;
+	}
 
 	return retval;
 }
