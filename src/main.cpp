@@ -178,33 +178,36 @@ int main(int argc, char **argv)
 	std::shared_ptr<TelnetServer> telnetController(nullptr);
 	vCheckFlag.emplace_back("Telnet Server", std::make_shared<std::atomic_flag>(false));
 	unsigned long telnetPort = 0;
-	try
+	if (input.cmdOptionExists("--enable-telnet"))
 	{
-		telnetPort = input.cmdOptionExists("--enable-telnet") ? std::stoul(input.getCmdOption("--enable-telnet")) : 0;
-		if (telnetPort < 1 || telnetPort > 65535)
+		try
 		{
-			throw std::invalid_argument("Input out of range");
+			telnetPort = std::stoul(input.getCmdOption("--enable-telnet"));
+			if (telnetPort < 1 || telnetPort > 65535)
+			{
+				throw std::invalid_argument("out of range");
+			}
 		}
-	}
-	catch (const std::exception &e)
-	{
-		spdlog::error("Invalid Telnet port: {} {}", telnetPort, e.what());
-		return EXIT_FAILURE;
-	}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Invalid Telnet port: {} {}", telnetPort, e.what());
+			return EXIT_FAILURE;
+		}
 
-	try
-	{
-		telnetController = std::make_shared<TelnetServer>();
-		telnetController->connectedCallback(TelnetConnectedCallback);
-		telnetController->newLineCallback(TelnetMessageCallback);
-		telnetController->tabCallback(TelnetTabCallback);
-		telnetController->initialise(telnetPort, vCheckFlag[vCheckFlag.size() - 1].second, "> ",
-									 mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
-	}
-	catch (const std::exception &e)
-	{
-		spdlog::error("Can't start Telnet Server: {}", e.what());
-		return EXIT_FAILURE;
+		try
+		{
+			telnetController = std::make_shared<TelnetServer>();
+			telnetController->connectedCallback(TelnetConnectedCallback);
+			telnetController->newLineCallback(TelnetMessageCallback);
+			telnetController->tabCallback(TelnetTabCallback);
+			telnetController->initialise(telnetPort, vCheckFlag[vCheckFlag.size() - 1].second, "> ",
+										 mainPrometheusServer ? mainPrometheusServer->createNewRegistry() : nullptr);
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Can't start Telnet Server: {}", e.what());
+			return EXIT_FAILURE;
+		}
 	}
 
 	/* ################################################################################### */

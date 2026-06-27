@@ -74,7 +74,7 @@ int RawSocket::writeData(const unsigned char *data, size_t dataLen)
 	_stats.processingTime += static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
 	if (retval > 0)
 	{
-		_stats.sentBytes += dataLen;
+		_stats.sentBytes += retval;
 	}
 
 	return retval;
@@ -97,7 +97,7 @@ int RawSocket::readData(unsigned char *data, size_t dataLen)
 	_stats.processingTime += static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
 	if (retval > 0)
 	{
-		_stats.receivedBytes += dataLen;
+		_stats.receivedBytes += retval;
 	}
 
 	return retval;

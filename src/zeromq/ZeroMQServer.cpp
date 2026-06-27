@@ -28,13 +28,23 @@ void ZeroMQServer::update()
 {
 	auto recvMsgs = recvMessages();
 
-	if (!recvMsgs.empty() && recvMsgs[0].size() == sizeof(uint32_t))
+	if (!recvMsgs.empty())
 	{
 		std::vector<zmq::message_t> replyMsgs;
 
 		ZeroMQServerStats serverStats;
 		serverStats.processingTimeStart = std::chrono::high_resolution_clock::now();
-		serverStats.isSuccessful = messageCallback() && messageCallback()(recvMsgs, replyMsgs);
+
+		if (recvMsgs[0].size() != sizeof(uint32_t))
+		{
+			int errorCode = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;
+			replyMsgs.emplace_back(&errorCode, sizeof(errorCode));
+			replyMsgs.emplace_back("", 0);
+		}
+		else
+		{
+			serverStats.isSuccessful = messageCallback() && messageCallback()(recvMsgs, replyMsgs);
+		}
 
 		if (size_t nSentMsg = sendMessages(replyMsgs); nSentMsg != replyMsgs.size())
 		{
