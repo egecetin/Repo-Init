@@ -137,10 +137,12 @@ Our carefully crafted CMake modules provide powerful build automation:
 
 | Script | 🚀 Function | 📝 Description |
 |--------|-------------|----------------|
-| `firstName.sh` | **Name Changer** | Replaces placeholder names throughout the project |
+| `clang-tidy-changed.sh` | **Clang-tidy Analyzer** | Runs clang-tidy analysis on just changed files |
 | `crashpad_manual_upload.py` | **Manual Minidump Uploader** | Uploads bulk of minidump files in given directory |
 | `dump_syms.py` | **Symbol Dumper** | Generates symbol files for crash analysis |
+| `firstName.sh` | **Name Changer** | Replaces placeholder names throughout the project |
 | `process_minidumps.py` | **Minidump Stackwalker** | Prints minidump stackwalk results |
+| `runStaticAnalysis.sh` | **Static Analyzer** | Runs all static analysis tools | 
 
 ---
 
@@ -251,9 +253,10 @@ Our carefully crafted CMake modules provide powerful build automation:
 
 | Option | Description | Default | 🎯 Use Case |
 |--------|-------------|---------|-------------|
-| `XXX_BUILD_TESTS` | Build all test suites | `ON` | Complete testing pipeline |
+| `XXX_BUILD_TESTS` | Build all test suites | `OFF` | Complete testing pipeline |
 | `XXX_BUILD_UNITTESTS` | Build unit tests only | `ON` | Fast development feedback |
 | `XXX_BUILD_FUZZTESTS` | Build fuzz testing suite | `OFF` | Security & robustness testing |
+| `XXX_BUILD_BENCHMARKS` | Build benchmark suite | `OFF` | Performance testing |
 | `XXX_ENABLE_COVERAGE` | Generate test coverage reports | `OFF` | Code quality metrics |
 | `XXX_ENABLE_MEMLEAK_CHECK` | Memory leak detection with MemPlumber | `OFF` | Debug memory issues |
 
