@@ -43,7 +43,13 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : _writeMode(isWrite), _iF
 	// Interface request
 	ifreq ifr{};
 	memset(static_cast<void *>(&ifr), 0, sizeof(ifreq));
-	strncpy(ifr.ifr_name, _iFace.c_str(), IFNAMSIZ - 1);
+	const size_t maxIfaceNameLen = static_cast<size_t>(IFNAMSIZ - 1);
+	const size_t ifaceNameLen = _iFace.size() < maxIfaceNameLen ? _iFace.size() : maxIfaceNameLen;
+	for (size_t i = 0; i < ifaceNameLen; ++i)
+	{
+		ifr.ifr_name[i] = _iFace[i];
+	}
+	ifr.ifr_name[ifaceNameLen] = '\0';
 
 	if (isWrite)
 	{
