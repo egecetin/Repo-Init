@@ -120,14 +120,14 @@
 
 Our carefully crafted CMake modules provide powerful build automation:
 
-| Module | 🎯 Purpose | ✨ Benefits |
-|--------|------------|-------------|
-| **CodeCoverage** | Detects and enables `gcovr` | Automatic test coverage reports |
-| **CompilerSecurityOptions** | Enables/Disables secure compiler flags | Hardened binary security |
-| **Doxy** | Finds Doxygen package and prepares docs | Auto-generated documentation |
-| **GenerateSymbols** | Adds target for symbol file generation | Enhanced debugging with minidumps |
-| **GitVersion** | Gets SHA1 hash of current commit | Version tracking and build reproducibility |
-| **GraphViz** | Finds GraphViz and dot executable | Visual dependency graphs |
+| Module                      | 🎯 Purpose                               | ✨ Benefits                                 |
+| --------------------------- | --------------------------------------- | ------------------------------------------ |
+| **CodeCoverage**            | Detects and enables `gcovr`             | Automatic test coverage reports            |
+| **CompilerSecurityOptions** | Enables/Disables secure compiler flags  | Hardened binary security                   |
+| **Doxy**                    | Finds Doxygen package and prepares docs | Auto-generated documentation               |
+| **GenerateSymbols**         | Adds target for symbol file generation  | Enhanced debugging with minidumps          |
+| **GitVersion**              | Gets SHA1 hash of current commit        | Version tracking and build reproducibility |
+| **GraphViz**                | Finds GraphViz and dot executable       | Visual dependency graphs                   |
 
 ---
 
@@ -135,14 +135,14 @@ Our carefully crafted CMake modules provide powerful build automation:
 
 > 💡 **Tip**: All scripts should be executed from the top-level directory
 
-| Script | 🚀 Function | 📝 Description |
-|--------|-------------|----------------|
-| `clang-tidy-changed.sh` | **Clang-tidy Analyzer** | Runs clang-tidy analysis on just changed files |
+| Script                      | 🚀 Function                   | 📝 Description                                     |
+| --------------------------- | ---------------------------- | ------------------------------------------------- |
+| `clang-tidy-changed.sh`     | **Clang-tidy Analyzer**      | Runs clang-tidy analysis on just changed files    |
 | `crashpad_manual_upload.py` | **Manual Minidump Uploader** | Uploads bulk of minidump files in given directory |
-| `dump_syms.py` | **Symbol Dumper** | Generates symbol files for crash analysis |
-| `firstName.sh` | **Name Changer** | Replaces placeholder names throughout the project |
-| `process_minidumps.py` | **Minidump Stackwalker** | Prints minidump stackwalk results |
-| `runStaticAnalysis.sh` | **Static Analyzer** | Runs all static analysis tools | 
+| `dump_syms.py`              | **Symbol Dumper**            | Generates symbol files for crash analysis         |
+| `firstName.sh`              | **Name Changer**             | Replaces placeholder names throughout the project |
+| `process_minidumps.py`      | **Minidump Stackwalker**     | Prints minidump stackwalk results                 |
+| `runStaticAnalysis.sh`      | **Static Analyzer**          | Runs all static analysis tools                    |
 
 ---
 
@@ -221,14 +221,14 @@ Our carefully crafted CMake modules provide powerful build automation:
 
 </div>
 
-| Target | 🚀 Command | 📋 Description |
-|--------|------------|----------------|
-| **all** | `cmake --build .` | Builds the complete project with all components |
-| **coverage** | `cmake --build . --target coverage` | Generates comprehensive test coverage reports |
-| **docs** | `cmake --build . --target docs` | Creates beautiful documentation with Doxygen |
-| **dependency-graph** | `cmake --build . --target dependency-graph` | Visualizes project dependencies with GraphViz |
-| **package** | `cmake --build . --target package` | Creates distribution packages (DEB/RPM + systemd service) |
-| **test** | `ctest . --parallel` | Runs the complete test suite with GoogleTest |
+| Target               | 🚀 Command                                   | 📋 Description                                             |
+| -------------------- | ------------------------------------------- | --------------------------------------------------------- |
+| **all**              | `cmake --build .`                           | Builds the complete project with all components           |
+| **coverage**         | `cmake --build . --target coverage`         | Generates comprehensive test coverage reports             |
+| **docs**             | `cmake --build . --target docs`             | Creates beautiful documentation with Doxygen              |
+| **dependency-graph** | `cmake --build . --target dependency-graph` | Visualizes project dependencies with GraphViz             |
+| **package**          | `cmake --build . --target package`          | Creates distribution packages (DEB/RPM + systemd service) |
+| **test**             | `ctest . --parallel`                        | Runs the complete test suite with GoogleTest              |
 
 <div align="center">
 
@@ -251,21 +251,21 @@ Our carefully crafted CMake modules provide powerful build automation:
 
 #### 🧪 **Testing & Quality Assurance**
 
-| Option | Description | Default | 🎯 Use Case |
-|--------|-------------|---------|-------------|
-| `XXX_BUILD_TESTS` | Build all test suites | `OFF` | Complete testing pipeline |
-| `XXX_BUILD_UNITTESTS` | Build unit tests only | `ON` | Fast development feedback |
-| `XXX_BUILD_FUZZTESTS` | Build fuzz testing suite | `OFF` | Security & robustness testing |
-| `XXX_BUILD_BENCHMARKS` | Build benchmark suite | `OFF` | Performance testing |
-| `XXX_ENABLE_COVERAGE` | Generate test coverage reports | `OFF` | Code quality metrics |
-| `XXX_ENABLE_MEMLEAK_CHECK` | Memory leak detection with MemPlumber | `OFF` | Debug memory issues |
+| Option                     | Description                           | Default | 🎯 Use Case                    |
+| -------------------------- | ------------------------------------- | ------- | ----------------------------- |
+| `XXX_BUILD_TESTS`          | Build all test suites                 | `OFF`   | Complete testing pipeline     |
+| `XXX_BUILD_UNITTESTS`      | Build unit tests only                 | `ON`    | Fast development feedback     |
+| `XXX_BUILD_FUZZTESTS`      | Build fuzz testing suite              | `OFF`   | Security & robustness testing |
+| `XXX_BUILD_BENCHMARKS`     | Build benchmark suite                 | `OFF`   | Performance testing           |
+| `XXX_ENABLE_COVERAGE`      | Generate test coverage reports        | `OFF`   | Code quality metrics          |
+| `XXX_ENABLE_MEMLEAK_CHECK` | Memory leak detection with MemPlumber | `OFF`   | Debug memory issues           |
 
 #### 🚀 **Release & Distribution**
 
-| Option | Description | Default | Use Case |
-|--------|-------------|---------|----------|
-| `XXX_ENABLE_SYMBOL_GENERATION` | Generate debug symbols for crash dumps | `OFF` | Production debugging |
-| `XXX_ENABLE_PACKAGING` | Enable DEB/RPM packaging with systemd | `OFF` | Distribution & deployment |
+| Option                         | Description                            | Default | Use Case                  |
+| ------------------------------ | -------------------------------------- | ------- | ------------------------- |
+| `XXX_ENABLE_SYMBOL_GENERATION` | Generate debug symbols for crash dumps | `OFF`   | Production debugging      |
+| `XXX_ENABLE_PACKAGING`         | Enable DEB/RPM packaging with systemd  | `OFF`   | Distribution & deployment |
 
 ---
 
