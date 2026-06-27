@@ -28,7 +28,7 @@ void ZeroMQServer::update()
 {
 	auto recvMsgs = recvMessages();
 
-	if (!recvMsgs.empty() || recvMsgs[0].size() == sizeof(uint32_t))
+	if (!recvMsgs.empty() && recvMsgs[0].size() == sizeof(uint32_t))
 	{
 		std::vector<zmq::message_t> replyMsgs;
 
