@@ -68,10 +68,18 @@ std::pair<size_t, size_t> ProcessMetrics::getDiskIO()
 	std::string buffer;
 	findFromFile("/proc/self/io", "read_bytes", buffer);
 	size_t readBytes = buffer.empty() ? 0 : std::stoull(buffer);
+	if (buffer.empty())
+	{
+		return {};
+	}
 
 	buffer.clear();
 	findFromFile("/proc/self/io", "write_bytes", buffer);
 	size_t writeBytes = buffer.empty() ? 0 : std::stoull(buffer);
+	if (buffer.empty())
+	{
+		return {};
+	}
 
 	std::pair<size_t, size_t> result = {readBytes - _oldReadBytes, writeBytes - _oldWriteBytes};
 

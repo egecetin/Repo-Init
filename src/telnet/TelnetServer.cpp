@@ -169,7 +169,7 @@ void TelnetSession::sendLine(std::string data)
 	}
 
 	data.append("\r\n");
-	if (auto sendBytes = send(m_socket, data.c_str(), data.length(), 0) > 0)
+	if (const auto sendBytes = send(m_socket, data.c_str(), data.length(), 0); sendBytes > 0)
 	{
 		stats.uploadBytes += static_cast<size_t>(sendBytes);
 	}
@@ -834,7 +834,7 @@ bool TelnetMessageCallback(const SP_TelnetSession &session, const std::string &l
 		for (const auto &[service, statusFlag] : vCheckFlag)
 		{
 			session->sendLine(std::format("{:.<{}}{:.>{}} ", service + " ", KEY_WIDTH,
-										  (statusFlag->_M_i ? " OK" : " Not Active"), VAL_WIDTH));
+										  (statusFlag->test() ? " OK" : " Not Active"), VAL_WIDTH));
 		}
 		return true;
 	/* ################################################################################### */

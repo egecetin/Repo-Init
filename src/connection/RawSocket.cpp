@@ -2,10 +2,12 @@
 
 #include "utils/ErrorHelpers.hpp"
 
+#include <algorithm>
 #include <chrono>
 #include <cstring>
 #include <format>
 #include <ios>
+#include <iterator>
 #include <stdexcept>
 #include <utility>
 
@@ -43,8 +45,11 @@ RawSocket::RawSocket(std::string iface, bool isWrite) : _writeMode(isWrite), _iF
 	// Interface request
 	ifreq ifr{};
 	memset(static_cast<void *>(&ifr), 0, sizeof(ifreq));
-	memcpy(std::addressof(ifr.ifr_name), _iFace.c_str(),
-		   _iFace.size()); // Size should be sufficient because if_nametoindex not failed
+	const auto maxIfaceNameLen = static_cast<size_t>(IFNAMSIZ - 1);
+	const size_t ifaceNameLen = _iFace.size() < maxIfaceNameLen ? _iFace.size() : maxIfaceNameLen;
+	auto *const ifaceNameBegin = std::begin(ifr.ifr_name);
+	std::copy_n(_iFace.begin(), ifaceNameLen, ifaceNameBegin);
+	*std::next(ifaceNameBegin, static_cast<std::ptrdiff_t>(ifaceNameLen)) = '\0';
 
 	if (isWrite)
 	{
@@ -73,7 +78,10 @@ int RawSocket::writeData(const unsigned char *data, size_t dataLen)
 
 	// Update stats
 	_stats.processingTime += static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
-	_stats.sentBytes += dataLen;
+	if (retval > 0)
+	{
+		_stats.sentBytes += static_cast<size_t>(retval);
+	}
 
 	return retval;
 }
@@ -93,7 +101,10 @@ int RawSocket::readData(unsigned char *data, size_t dataLen)
 
 	// Update stats
 	_stats.processingTime += static_cast<double>((std::chrono::high_resolution_clock::now() - startTime).count());
-	_stats.receivedBytes += dataLen;
+	if (retval > 0)
+	{
+		_stats.receivedBytes += static_cast<size_t>(retval);
+	}
 
 	return retval;
 }

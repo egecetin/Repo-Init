@@ -71,7 +71,8 @@ FileMonitor::FileMonitor(std::filesystem::path filePath, uint32_t notifyEvents)
 		throw std::ios_base::failure("Failed to add watch descriptor");
 	}
 
-	if (fcntl(_fDescriptor, F_SETFL, fcntl(_fDescriptor, F_GETFL) | O_NONBLOCK) < 0)
+	if (const int flags = fcntl(_fDescriptor, F_GETFL);
+		flags < 0 || fcntl(_fDescriptor, F_SETFL, flags | O_NONBLOCK) < 0)
 	{
 		close(_fDescriptor);
 		throw std::ios_base::failure("Failed to set file descriptor to non-blocking mode");

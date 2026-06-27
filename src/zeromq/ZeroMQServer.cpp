@@ -34,7 +34,17 @@ void ZeroMQServer::update()
 
 		ZeroMQServerStats serverStats;
 		serverStats.processingTimeStart = std::chrono::high_resolution_clock::now();
-		serverStats.isSuccessful = messageCallback() && messageCallback()(recvMsgs, replyMsgs);
+
+		if (recvMsgs[0].size() != sizeof(uint32_t))
+		{
+			int errorCode = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;
+			replyMsgs.emplace_back(&errorCode, sizeof(errorCode));
+			replyMsgs.emplace_back("", 0);
+		}
+		else
+		{
+			serverStats.isSuccessful = messageCallback() && messageCallback()(recvMsgs, replyMsgs);
+		}
 
 		if (size_t nSentMsg = sendMessages(replyMsgs); nSentMsg != replyMsgs.size())
 		{
@@ -109,7 +119,7 @@ bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, st
 
 	std::string replyBody;
 	int reply = ZMQ_EVENT_HANDSHAKE_FAILED_NO_DETAIL;
-	switch (*(static_cast<const uint64_t *>(recvMsgs[0].data())))
+	switch (*(static_cast<const uint32_t *>(recvMsgs[0].data())))
 	{
 	case LOG_LEVEL_ID: {
 		if (recvMsgs.size() != 2)
@@ -179,7 +189,7 @@ bool ZeroMQServerMessageCallback(const std::vector<zmq::message_t> &recvMsgs, st
 		oss << "{";
 		for (const auto &[process, statusFlag] : vCheckFlag)
 		{
-			oss << "\"" << process << "\":" << (statusFlag->_M_i ? "1," : "0,");
+			oss << "\"" << process << "\":" << (statusFlag->test() ? "1," : "0,");
 		}
 		replyBody = oss.str();
 		replyBody.replace(replyBody.size() - 1, 1, "}");

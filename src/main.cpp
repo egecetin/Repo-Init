@@ -39,20 +39,20 @@ int main(int argc, char **argv)
 	const InputParser input(argc, argv);
 	const ConfigParser config(input.cmdOptionExists("--config") ? input.getCmdOption("--config") : "config.json");
 
-	// Check if config loaded successfully before proceeding
-	if (!config.isValid())
-	{
-		std::invalid_argument(std::format("{} {}", "Failed to load configuration:", config.getLastError()));
-	}
-
-	const MainLogger logger(config.get("LOKI_ADDRESS"), config.get("SENTRY_ADDRESS"));
-
 	// Initialize curl as soon as possible
 	if (curl_global_init(CURL_GLOBAL_DEFAULT) < 0)
 	{
 		spdlog::critical("Can't init curl");
 		return EXIT_FAILURE;
 	}
+
+	// Check if config loaded successfully before proceeding
+	if (!config.isValid())
+	{
+		throw std::invalid_argument(std::format("{} {}", "Failed to load configuration:", config.getLastError()));
+	}
+
+	const MainLogger logger(config.get("LOKI_ADDRESS"), config.get("SENTRY_ADDRESS"));
 
 	/* ################################################################################### */
 	/* ############################# MAKE MODIFICATIONS HERE ############################# */
@@ -177,10 +177,23 @@ int main(int argc, char **argv)
 	// Initialize Telnet server
 	std::shared_ptr<TelnetServer> telnetController(nullptr);
 	vCheckFlag.emplace_back("Telnet Server", std::make_shared<std::atomic_flag>(false));
-	const unsigned long telnetPort =
-		input.cmdOptionExists("--enable-telnet") ? std::stoul(input.getCmdOption("--enable-telnet")) : 0;
-	if (telnetPort > 0 && telnetPort < 65536)
+	if (input.cmdOptionExists("--enable-telnet"))
 	{
+		unsigned long telnetPort = 0;
+		try
+		{
+			telnetPort = std::stoul(input.getCmdOption("--enable-telnet"));
+			if (telnetPort < 1 || telnetPort > 65535)
+			{
+				throw std::invalid_argument("out of range");
+			}
+		}
+		catch (const std::exception &e)
+		{
+			spdlog::error("Invalid Telnet port: {} {}", telnetPort, e.what());
+			return EXIT_FAILURE;
+		}
+
 		try
 		{
 			telnetController = std::make_shared<TelnetServer>();
@@ -195,11 +208,6 @@ int main(int argc, char **argv)
 			spdlog::error("Can't start Telnet Server: {}", e.what());
 			return EXIT_FAILURE;
 		}
-	}
-	else if (telnetPort != 0)
-	{
-		spdlog::error("Invalid Telnet port: {}", telnetPort);
-		return EXIT_FAILURE;
 	}
 
 	/* ################################################################################### */

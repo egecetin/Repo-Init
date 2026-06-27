@@ -62,8 +62,12 @@ bool ConfigParser::readJson()
 void ConfigParser::writeJson() const
 {
 	std::ofstream outFile(_configPath);
-	rapidjson::OStreamWrapper fStreamWrapper(outFile);
+	if (!outFile.is_open())
+	{
+		throw std::ios_base::failure("Cannot open config file for writing: " + _configPath.string());
+	}
 
+	rapidjson::OStreamWrapper fStreamWrapper(outFile);
 	rapidjson::Document doc;
 	doc.SetObject();
 
