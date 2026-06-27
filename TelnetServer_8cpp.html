@@ -1189,7 +1189,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  834</span>        for (const auto &amp;[service, statusFlag] : <a class="code hl_variable" href="ErrorHelpers_8cpp.html#abd1b95cce1437a885ce56e859099ddd8">vCheckFlag</a>)</div>
 <div class="line"><span class="lineno">  835</span>        {</div>
 <div class="line"><span class="lineno">  836</span>            session-&gt;sendLine(std::format(<span class="stringliteral">&quot;{:.&lt;{}}{:.&gt;{}} &quot;</span>, service + <span class="stringliteral">&quot; &quot;</span>, <a class="code hl_variable" href="#a5ba785f30cf1b83e34a0613a0e9633a1">KEY_WIDTH</a>,</div>
-<div class="line"><span class="lineno">  837</span>                                          (statusFlag-&gt;_M_i ? <span class="stringliteral">&quot; OK&quot;</span> : <span class="stringliteral">&quot; Not Active&quot;</span>), <a class="code hl_variable" href="#a212d3f65beba384c5460e3b0d5c0345c">VAL_WIDTH</a>));</div>
+<div class="line"><span class="lineno">  837</span>                                          (statusFlag-&gt;test() ? <span class="stringliteral">&quot; OK&quot;</span> : <span class="stringliteral">&quot; Not Active&quot;</span>), <a class="code hl_variable" href="#a212d3f65beba384c5460e3b0d5c0345c">VAL_WIDTH</a>));</div>
 <div class="line"><span class="lineno">  838</span>        }</div>
 <div class="line"><span class="lineno">  839</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">  840</span>    <span class="comment">/* ################################################################################### */</span></div>
@@ -1680,7 +1680,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_638f1a289fa697f4a26358f6059ac853.html">telnet</a></li><li class="navelem"><a class="el" href="TelnetServer_8cpp.html">TelnetServer.cpp</a></li>
-    <li class="footer">Generated on Tue May 12 2026 10:38:48 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Sat Jun 27 2026 18:38:00 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

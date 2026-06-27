@@ -186,9 +186,9 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00081">81</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   81</span>: <a class="code hl_variable" href="#a8f3bae3769c2bcff73c22c7977efc87c">_configPath</a>(std::move(configPath)) { <a class="code hl_function" href="#a3ba03fd10d090e54c5fca7af2c3b02c3">load</a>(); }</div>
-<div class="ttc" id="aclassConfigParser_html_a3ba03fd10d090e54c5fca7af2c3b02c3"><div class="ttname"><a href="#a3ba03fd10d090e54c5fca7af2c3b02c3">ConfigParser::load</a></div><div class="ttdeci">bool load()</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8cpp_source.html#l00095">ConfigParser.cpp:95</a></div></div>
+<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00085">85</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   85</span>: <a class="code hl_variable" href="#a8f3bae3769c2bcff73c22c7977efc87c">_configPath</a>(std::move(configPath)) { <a class="code hl_function" href="#a3ba03fd10d090e54c5fca7af2c3b02c3">load</a>(); }</div>
+<div class="ttc" id="aclassConfigParser_html_a3ba03fd10d090e54c5fca7af2c3b02c3"><div class="ttname"><a href="#a3ba03fd10d090e54c5fca7af2c3b02c3">ConfigParser::load</a></div><div class="ttdeci">bool load()</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8cpp_source.html#l00099">ConfigParser.cpp:99</a></div></div>
 <div class="ttc" id="aclassConfigParser_html_a8f3bae3769c2bcff73c22c7977efc87c"><div class="ttname"><a href="#a8f3bae3769c2bcff73c22c7977efc87c">ConfigParser::_configPath</a></div><div class="ttdeci">std::filesystem::path _configPath</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8hpp_source.html#l00013">ConfigParser.hpp:13</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -228,11 +228,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::string Value of the key </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00083">83</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   84</span>{</div>
-<div class="line"><span class="lineno">   85</span>    <span class="keyword">auto</span> itr = <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>.find(key);</div>
-<div class="line"><span class="lineno">   86</span>    <span class="keywordflow">return</span> itr == <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>.end() ? <span class="stringliteral">&quot;&quot;</span> : itr-&gt;second;</div>
-<div class="line"><span class="lineno">   87</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00087">87</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   88</span>{</div>
+<div class="line"><span class="lineno">   89</span>    <span class="keyword">auto</span> itr = <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>.find(key);</div>
+<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">return</span> itr == <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>.end() ? <span class="stringliteral">&quot;&quot;</span> : itr-&gt;second;</div>
+<div class="line"><span class="lineno">   91</span>}</div>
 <div class="ttc" id="aclassConfigParser_html_a0122e029204b215bcf5c6b287a440ae5"><div class="ttname"><a href="#a0122e029204b215bcf5c6b287a440ae5">ConfigParser::_configMap</a></div><div class="ttdeci">std::unordered_map&lt; std::string, std::string &gt; _configMap</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8hpp_source.html#l00014">ConfigParser.hpp:14</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -382,12 +382,12 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Load the configuration from the file </p><dl class="section return"><dt>Returns</dt><dd>bool True if valid, false otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00095">95</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   96</span>{</div>
-<div class="line"><span class="lineno">   97</span>    <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>.clear();</div>
-<div class="line"><span class="lineno">   98</span>    <a class="code hl_variable" href="#a540d839cb359bfbb94cb53f32e529e32">_isValid</a> = <a class="code hl_function" href="#a8b70b95a7660724654ef822f2d7552b8">readJson</a>();</div>
-<div class="line"><span class="lineno">   99</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="#a540d839cb359bfbb94cb53f32e529e32">_isValid</a>;</div>
-<div class="line"><span class="lineno">  100</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00099">99</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  100</span>{</div>
+<div class="line"><span class="lineno">  101</span>    <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>.clear();</div>
+<div class="line"><span class="lineno">  102</span>    <a class="code hl_variable" href="#a540d839cb359bfbb94cb53f32e529e32">_isValid</a> = <a class="code hl_function" href="#a8b70b95a7660724654ef822f2d7552b8">readJson</a>();</div>
+<div class="line"><span class="lineno">  103</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="#a540d839cb359bfbb94cb53f32e529e32">_isValid</a>;</div>
+<div class="line"><span class="lineno">  104</span>}</div>
 <div class="ttc" id="aclassConfigParser_html_a8b70b95a7660724654ef822f2d7552b8"><div class="ttname"><a href="#a8b70b95a7660724654ef822f2d7552b8">ConfigParser::readJson</a></div><div class="ttdeci">bool readJson()</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8cpp_source.html#l00022">ConfigParser.cpp:22</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -510,8 +510,8 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00091">91</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   91</span>{ <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>.erase(key); }</div>
+<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00095">95</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   95</span>{ <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>.erase(key); }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -531,8 +531,8 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Save the configuration to the file </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00093">93</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   93</span>{ <a class="code hl_function" href="#a2e7cd06bfeb1ceacf9e65711bb0ccd08">writeJson</a>(); }</div>
+<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00097">97</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   97</span>{ <a class="code hl_function" href="#a2e7cd06bfeb1ceacf9e65711bb0ccd08">writeJson</a>(); }</div>
 <div class="ttc" id="aclassConfigParser_html_a2e7cd06bfeb1ceacf9e65711bb0ccd08"><div class="ttname"><a href="#a2e7cd06bfeb1ceacf9e65711bb0ccd08">ConfigParser::writeJson</a></div><div class="ttdeci">void writeJson() const</div><div class="ttdef"><b>Definition</b> <a href="ConfigParser_8cpp_source.html#l00062">ConfigParser.cpp:62</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -573,8 +573,8 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00089">89</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   89</span>{ <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>[key] = value; }</div>
+<p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00093">93</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   93</span>{ <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>[key] = value; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -604,21 +604,25 @@ Here is the call graph for this function:</div>
 <p class="definition">Definition at line <a class="el" href="ConfigParser_8cpp_source.html#l00062">62</a> of file <a class="el" href="ConfigParser_8cpp_source.html">ConfigParser.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   63</span>{</div>
 <div class="line"><span class="lineno">   64</span>    std::ofstream outFile(<a class="code hl_variable" href="#a8f3bae3769c2bcff73c22c7977efc87c">_configPath</a>);</div>
-<div class="line"><span class="lineno">   65</span>    rapidjson::OStreamWrapper fStreamWrapper(outFile);</div>
-<div class="line"><span class="lineno">   66</span> </div>
-<div class="line"><span class="lineno">   67</span>    rapidjson::Document doc;</div>
-<div class="line"><span class="lineno">   68</span>    doc.SetObject();</div>
+<div class="line"><span class="lineno">   65</span>    <span class="keywordflow">if</span> (!outFile.is_open())</div>
+<div class="line"><span class="lineno">   66</span>    {</div>
+<div class="line"><span class="lineno">   67</span>        <span class="keywordflow">throw</span> std::ios_base::failure(<span class="stringliteral">&quot;Cannot open config file for writing: &quot;</span> + <a class="code hl_variable" href="#a8f3bae3769c2bcff73c22c7977efc87c">_configPath</a>.string());</div>
+<div class="line"><span class="lineno">   68</span>    }</div>
 <div class="line"><span class="lineno">   69</span> </div>
-<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;[keyVal, valueVal] : <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>)</div>
-<div class="line"><span class="lineno">   71</span>    {</div>
-<div class="line"><span class="lineno">   72</span>        rapidjson::Value key(keyVal.c_str(), doc.GetAllocator());</div>
-<div class="line"><span class="lineno">   73</span>        rapidjson::Value value(valueVal.c_str(), doc.GetAllocator());</div>
-<div class="line"><span class="lineno">   74</span>        doc.AddMember(key, value, doc.GetAllocator());</div>
-<div class="line"><span class="lineno">   75</span>    }</div>
-<div class="line"><span class="lineno">   76</span> </div>
-<div class="line"><span class="lineno">   77</span>    rapidjson::Writer&lt;rapidjson::OStreamWrapper&gt; writer(fStreamWrapper);</div>
-<div class="line"><span class="lineno">   78</span>    doc.Accept(writer);</div>
-<div class="line"><span class="lineno">   79</span>}</div>
+<div class="line"><span class="lineno">   70</span>    rapidjson::OStreamWrapper fStreamWrapper(outFile);</div>
+<div class="line"><span class="lineno">   71</span>    rapidjson::Document doc;</div>
+<div class="line"><span class="lineno">   72</span>    doc.SetObject();</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;[keyVal, valueVal] : <a class="code hl_variable" href="#a0122e029204b215bcf5c6b287a440ae5">_configMap</a>)</div>
+<div class="line"><span class="lineno">   75</span>    {</div>
+<div class="line"><span class="lineno">   76</span>        rapidjson::Value key(keyVal.c_str(), doc.GetAllocator());</div>
+<div class="line"><span class="lineno">   77</span>        rapidjson::Value value(valueVal.c_str(), doc.GetAllocator());</div>
+<div class="line"><span class="lineno">   78</span>        doc.AddMember(key, value, doc.GetAllocator());</div>
+<div class="line"><span class="lineno">   79</span>    }</div>
+<div class="line"><span class="lineno">   80</span> </div>
+<div class="line"><span class="lineno">   81</span>    rapidjson::Writer&lt;rapidjson::OStreamWrapper&gt; writer(fStreamWrapper);</div>
+<div class="line"><span class="lineno">   82</span>    doc.Accept(writer);</div>
+<div class="line"><span class="lineno">   83</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -739,7 +743,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classConfigParser.html">ConfigParser</a></li>
-    <li class="footer">Generated on Tue May 12 2026 10:38:48 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Sat Jun 27 2026 18:38:00 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

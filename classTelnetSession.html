@@ -976,7 +976,7 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">  169</span>    }</div>
 <div class="line"><span class="lineno">  170</span> </div>
 <div class="line"><span class="lineno">  171</span>    data.append(<span class="stringliteral">&quot;\r\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  172</span>    <span class="keywordflow">if</span> (<span class="keyword">auto</span> sendBytes = send(<a class="code hl_variable" href="#a4c691b5380f6fcee081d97dfd91a8894">m_socket</a>, data.c_str(), data.length(), 0) &gt; 0)</div>
+<div class="line"><span class="lineno">  172</span>    <span class="keywordflow">if</span> (<span class="keyword">const</span> <span class="keyword">auto</span> sendBytes = send(<a class="code hl_variable" href="#a4c691b5380f6fcee081d97dfd91a8894">m_socket</a>, data.c_str(), data.length(), 0); sendBytes &gt; 0)</div>
 <div class="line"><span class="lineno">  173</span>    {</div>
 <div class="line"><span class="lineno">  174</span>        <a class="code hl_variable" href="#a0d007221ece26a10d8f8668a786122e4">stats</a>.uploadBytes += <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(sendBytes);</div>
 <div class="line"><span class="lineno">  175</span>    }</div>
@@ -1551,7 +1551,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classTelnetSession.html">TelnetSession</a></li>
-    <li class="footer">Generated on Tue May 12 2026 10:38:48 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Sat Jun 27 2026 18:38:01 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

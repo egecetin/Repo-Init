@@ -7,5 +7,5 @@ var searchData=
   ['errorhelpers_2ecpp_4',['ErrorHelpers.cpp',['../ErrorHelpers_8cpp.html',1,'']]],
   ['errorhelpers_2ehpp_5',['ErrorHelpers.hpp',['../ErrorHelpers_8hpp.html',1,'']]],
   ['event_5fcheck_5ftimeout_5fms_6',['EVENT_CHECK_TIMEOUT_MS',['../ZeroMQMonitor_8cpp.html#af51d7fee89249cab8bb83de9e3c8a1d7',1,'ZeroMQMonitor.cpp']]],
-  ['examples_20strong_7',['&lt;strong&gt;💡 Quick Examples&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md25',1,'']]]
+  ['examples_20strong_7',['&lt;strong&gt;💡 Quick Examples&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md22',1,'']]]
 ];

@@ -115,7 +115,7 @@ $(function(){initNavTree('Http_8cpp_source.html',''); initResizable(true); });
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <a class="code hl_variable" href="classHTTP.html#ad6192892ac34cff8ddd9b066c66bd519">_data</a>-&gt;data.clear();</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    curl_easy_setopt(<a class="code hl_variable" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_URL, fullURL.c_str());</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    curl_easy_setopt(<a class="code hl_variable" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_WRITEDATA, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(<a class="code hl_variable" href="classHTTP.html#ad6192892ac34cff8ddd9b066c66bd519">_data</a>.get())); <span class="comment">// Register user-supplied memory</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    curl_easy_setopt(<a class="code hl_variable" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_WRITEDATA, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;<a class="code hl_variable" href="classHTTP.html#ad6192892ac34cff8ddd9b066c66bd519">_data</a>-&gt;data)); <span class="comment">// Register user-supplied memory</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    curl_easy_setopt(<a class="code hl_variable" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, method, 1L);</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>}</div>
 </div>
@@ -125,9 +125,9 @@ $(function(){initNavTree('Http_8cpp_source.html',''); initResizable(true); });
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_variable" href="classHTTP.html#ad6192892ac34cff8ddd9b066c66bd519">_data</a>-&gt;data.clear();</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    curl_easy_setopt(<a class="code hl_variable" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_POSTFIELDS, payload.c_str());</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    curl_easy_setopt(<a class="code hl_variable" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_POSTFIELDSIZE_LARGE, payload.size());</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    curl_easy_setopt(<a class="code hl_variable" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_POSTFIELDSIZE_LARGE, <span class="keyword">static_cast&lt;</span>curl_off_t<span class="keyword">&gt;</span>(payload.size()));</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    curl_easy_setopt(<a class="code hl_variable" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_URL, fullURL.c_str());</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    curl_easy_setopt(<a class="code hl_variable" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_WRITEDATA, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(<a class="code hl_variable" href="classHTTP.html#ad6192892ac34cff8ddd9b066c66bd519">_data</a>.get())); <span class="comment">// Register user-supplied memory</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    curl_easy_setopt(<a class="code hl_variable" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, CURLOPT_WRITEDATA, <span class="keyword">static_cast&lt;</span><span class="keywordtype">void</span> *<span class="keyword">&gt;</span>(&amp;<a class="code hl_variable" href="classHTTP.html#ad6192892ac34cff8ddd9b066c66bd519">_data</a>-&gt;data)); <span class="comment">// Register user-supplied memory</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    curl_easy_setopt(<a class="code hl_variable" href="classHTTP.html#ad3b75a5d46f308b5186b36bc7dff9ff5">_curl</a>, method, 1L);</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}</div>
 </div>
@@ -278,7 +278,7 @@ $(function(){initNavTree('Http_8cpp_source.html',''); initResizable(true); });
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_7809a5fd4a748505dcdbefeb977685f2.html">connection</a></li><li class="navelem"><a class="el" href="Http_8cpp.html">Http.cpp</a></li>
-    <li class="footer">Generated on Tue May 12 2026 10:38:48 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Sat Jun 27 2026 18:38:00 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>
