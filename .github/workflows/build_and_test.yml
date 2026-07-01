@@ -21,7 +21,7 @@ jobs:
     container: egecetinn/alpine@sha256:9e2b9bedd5f930f7b03a459976f72eb329efb01995569e72a270ead4d07200d6
     steps:
       - name: Checkout Code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           submodules: recursive
       - name: Fix checkout ownership
@@ -40,14 +40,14 @@ jobs:
     container: egecetinn/ubuntu2404@sha256:0f63b02fe3dcd1a03d299000466713596df974a657005e27cda42155f652134d
     steps:
       - name: Checkout Code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           submodules: recursive
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Restore ccache
         id: ccache-restore
-        uses: actions/cache/restore@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: |
             ${{ env.CCACHE_DIR }}
@@ -61,7 +61,7 @@ jobs:
       - name: Run tests
         run: ctest --output-on-failure --test-dir build
       - name: Save ccache
-        uses: actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ env.CCACHE_DIR }}
           key: ${{ steps.ccache-restore.outputs.cache-primary-key }}
@@ -74,14 +74,14 @@ jobs:
         sanitizer: [ASAN, USAN]
     steps:
       - name: Checkout Code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           submodules: recursive
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Restore ccache
         id: ccache-restore
-        uses: actions/cache/restore@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: |
             ${{ env.CCACHE_DIR }}
@@ -95,7 +95,7 @@ jobs:
       - name: Run tests
         run: ctest --output-on-failure --test-dir build
       - name: Save ccache
-        uses: actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ env.CCACHE_DIR }}
           key: ${{ steps.ccache-restore.outputs.cache-primary-key }}
@@ -118,14 +118,14 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           submodules: recursive
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Restore ccache
         id: ccache-restore
-        uses: actions/cache/restore@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: |
             ${{ env.CCACHE_DIR }}
@@ -139,7 +139,7 @@ jobs:
       - name: Run Tests
         run: ctest --output-on-failure --test-dir build
       - name: Save ccache
-        uses: actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ env.CCACHE_DIR }}
           key: ${{ steps.ccache-restore.outputs.cache-primary-key }}
