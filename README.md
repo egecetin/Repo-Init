@@ -40,6 +40,16 @@
 
 <div align="center">
 
+### AI Usage Disclosure
+
+This is not a vibe coding project. Project utilizes generative AI tools to create and fix documentation mostly. For development, AI tools only used for assisting (test generation, inline recommendations and/or debugging)
+
+- **Tools Used:** Github Copilot
+- **Scope of Use:** 
+  - **Test Code Generation:** Boilerplate unit tests and routine utility functions were drafted using AI and manually reviewed/refactored for logic.
+  - **Documentation:** Most of the README sections and function descriptions were AI-generated. But only for documentation purposes!
+- **Responsibility:** The project has required unit/fuzz tests and has a good coverage percentage for a C++ application. Additionally some state of the art analysis tools are already integrated to CI/CD tests.
+
 ### **Key Features at a Glance**
 
 </div>
