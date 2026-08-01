@@ -52,12 +52,6 @@ class Tracer {
 	 */
 	static inline std::string getSelfExecutableDir();
 
-	/**
-	 * Dump shared library information to a file
-	 * @param[in] filePath File path to dump the information
-	 */
-	static void dumpSharedLibraryInfo(const std::string &filePath);
-
   public:
 	/**
 	 * Construct a new Tracer object
