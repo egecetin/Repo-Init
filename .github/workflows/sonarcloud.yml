@@ -22,6 +22,10 @@ jobs:
         with:
           fetch-depth: 0
           submodules: recursive
+      - name: Set UTF-8 Locale
+        run: |
+          echo "LANG=en_US.UTF-8" >> $GITHUB_ENV
+          echo "LC_ALL=en_US.UTF-8" >> $GITHUB_ENV
       - name: Prepare
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Install Build Wrapper
