@@ -1,7 +1,7 @@
 var searchData=
 [
   ['failcmdctr_0',['failCmdCtr',['../structTelnetSessionStats.html#a57bfc50e80600a8060dae059d58b04eb',1,'TelnetSessionStats']]],
-  ['features_20at_20a_20glance_20strong_1',['&lt;strong&gt;Key Features at a Glance&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md4',1,'']]],
+  ['features_20at_20a_20glance_20strong_1',['&lt;strong&gt;Key Features at a Glance&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md5',1,'']]],
   ['features_20strong_20⚡_2',['⚡ &lt;strong&gt;Modern C++ Application Template with Enterprise-Grade Features&lt;/strong&gt; ⚡',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md1',1,'']]],
   ['filehelpers_2ecpp_3',['FileHelpers.cpp',['../FileHelpers_8cpp.html',1,'']]],
   ['filehelpers_2ehpp_4',['FileHelpers.hpp',['../FileHelpers_8hpp.html',1,'']]],
