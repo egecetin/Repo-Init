@@ -128,46 +128,6 @@ bool Tracer::isRunning()
 	return true;
 }
 
-void Tracer::dumpSharedLibraryInfo(const std::string &filePath)
-{
-	// Open the output file
-	std::ofstream ofile(filePath);
-	if (!ofile.is_open())
-	{
-		throw std::invalid_argument("Can't open file: " + filePath);
-	}
-
-	// Get the shared library information
-	std::ifstream maps("/proc/self/maps");
-
-	std::string line;
-	while (std::getline(maps, line))
-	{
-		// The format of each line is: address perms offset dev inode pathname
-		// We only care about the address and the pathname, which are the first and last fields
-		std::istringstream iss(line);
-		std::string address;
-		std::string perms;
-		std::string offset;
-		std::string dev;
-		std::string inode;
-		std::string pathname;
-		iss >> address >> perms >> offset >> dev >> inode >> pathname;
-
-		// We only want the shared libraries, which have the .so extension and the read and execute permissions
-		if (pathname.find(".so") != std::string::npos && perms.find("r-x") != std::string::npos)
-		{
-			// The address field is in the form of start-end, we only need the start address
-			const std::string start = address.substr(0, address.find('-'));
-
-			// Convert the start address from hexadecimal string to unsigned long
-			const unsigned long addr = std::stoul(start, nullptr, 16);
-
-			ofile << pathname << " " << addr << '\n';
-		}
-	}
-}
-
 Tracer::Tracer(std::shared_ptr<std::atomic_flag> checkFlag, std::string serverPath, std::string serverProxy,
 			   const std::string &crashpadHandlerPath, const std::string &reportPath,
 			   std::vector<base::FilePath> attachments)
@@ -185,10 +145,6 @@ Tracer::Tracer(std::shared_ptr<std::atomic_flag> checkFlag, std::string serverPa
 		 {"version", PROJECT_FULL_REVISION},
 		 {"build_info", PROJECT_BUILD_DATE + std::string(" ") + PROJECT_BUILD_TIME + std::string(" ") + BUILD_TYPE},
 		 {"compiler_info", COMPILER_NAME + std::string(" ") + COMPILER_VERSION}});
-
-	// Dump shared library information and add as attachment
-	dumpSharedLibraryInfo(_reportPath + "/shared_libs.txt");
-	_attachments.emplace_back(_reportPath + "/shared_libs.txt");
 
 	startHandler();
 }
