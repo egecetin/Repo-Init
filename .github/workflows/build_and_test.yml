@@ -21,7 +21,7 @@ jobs:
     container: egecetinn/alpine@sha256:9e2b9bedd5f930f7b03a459976f72eb329efb01995569e72a270ead4d07200d6
     steps:
       - name: Checkout Code
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           submodules: recursive
       - name: Fix checkout ownership
@@ -40,7 +40,7 @@ jobs:
     container: egecetinn/ubuntu2404@sha256:0f63b02fe3dcd1a03d299000466713596df974a657005e27cda42155f652134d
     steps:
       - name: Checkout Code
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           submodules: recursive
       - name: Prepare
@@ -74,7 +74,7 @@ jobs:
         sanitizer: [ASAN, USAN]
     steps:
       - name: Checkout Code
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           submodules: recursive
       - name: Prepare
@@ -118,7 +118,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           submodules: recursive
       - name: Prepare
