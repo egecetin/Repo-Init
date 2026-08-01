@@ -154,8 +154,6 @@ Static Private Member Functions</h2></td></tr>
 <tr class="separator:a006a1ba1dd8fade9e80f1fe96aef0c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab220e3d1019cb07d311a35b40e1a6163" id="r_ab220e3d1019cb07d311a35b40e1a6163"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab220e3d1019cb07d311a35b40e1a6163">getSelfExecutableDir</a> ()</td></tr>
 <tr class="separator:ab220e3d1019cb07d311a35b40e1a6163"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45e5efd9d9aa56696931411cd7e0c47e" id="r_a45e5efd9d9aa56696931411cd7e0c47e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45e5efd9d9aa56696931411cd7e0c47e">dumpSharedLibraryInfo</a> (const std::string &amp;filePath)</td></tr>
-<tr class="separator:a45e5efd9d9aa56696931411cd7e0c47e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -241,30 +239,25 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00171">171</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  174</span>    : <a class="code hl_variable" href="#aa5890fbf36b84d0eb0eb7a21e5334b37">_checkFlag</a>(std::move(checkFlag)), <a class="code hl_variable" href="#a630fd0665579e85532205c49261a44b3">_serverPath</a>(std::move(serverPath)), <a class="code hl_variable" href="#a83b60f1d681607d0ac7ddeb47ae52dac">_serverProxy</a>(std::move(serverProxy)),</div>
-<div class="line"><span class="lineno">  175</span>      <a class="code hl_variable" href="#aa44dba799c31108166f8d33b1ebf516f">_attachments</a>(std::move(attachments))</div>
-<div class="line"><span class="lineno">  176</span>{</div>
-<div class="line"><span class="lineno">  177</span>    <span class="keyword">auto</span> selfDir = <a class="code hl_function" href="#ab220e3d1019cb07d311a35b40e1a6163">getSelfExecutableDir</a>();</div>
-<div class="line"><span class="lineno">  178</span> </div>
-<div class="line"><span class="lineno">  179</span>    <a class="code hl_variable" href="#ac8182e8d14799e97e3306d463cf589a9">_handlerPath</a> = crashpadHandlerPath.empty() ? selfDir + <span class="stringliteral">&quot;/crashpad_handler&quot;</span> : crashpadHandlerPath;</div>
-<div class="line"><span class="lineno">  180</span>    <a class="code hl_variable" href="#a20b67711375fe47fc9f881a599077ddc">_reportPath</a> = reportPath.empty() ? selfDir : reportPath;</div>
-<div class="line"><span class="lineno">  181</span>    <a class="code hl_variable" href="#a5f6a4054b44156656a529c3fa1cf6dbb">_clientHandler</a> = std::make_unique&lt;crashpad::CrashpadClient&gt;();</div>
-<div class="line"><span class="lineno">  182</span> </div>
-<div class="line"><span class="lineno">  183</span>    <a class="code hl_variable" href="#ab66fe7b82f20fbd67a6122bce49e06b0">_annotations</a> = std::map&lt;std::string, std::string&gt;(</div>
-<div class="line"><span class="lineno">  184</span>        {{<span class="stringliteral">&quot;name&quot;</span>, PROJECT_NAME},</div>
-<div class="line"><span class="lineno">  185</span>         {<span class="stringliteral">&quot;version&quot;</span>, PROJECT_FULL_REVISION},</div>
-<div class="line"><span class="lineno">  186</span>         {<span class="stringliteral">&quot;build_info&quot;</span>, PROJECT_BUILD_DATE + std::string(<span class="stringliteral">&quot; &quot;</span>) + PROJECT_BUILD_TIME + std::string(<span class="stringliteral">&quot; &quot;</span>) + BUILD_TYPE},</div>
-<div class="line"><span class="lineno">  187</span>         {<span class="stringliteral">&quot;compiler_info&quot;</span>, COMPILER_NAME + std::string(<span class="stringliteral">&quot; &quot;</span>) + COMPILER_VERSION}});</div>
-<div class="line"><span class="lineno">  188</span> </div>
-<div class="line"><span class="lineno">  189</span>    <span class="comment">// Dump shared library information and add as attachment</span></div>
-<div class="line"><span class="lineno">  190</span>    <a class="code hl_function" href="#a45e5efd9d9aa56696931411cd7e0c47e">dumpSharedLibraryInfo</a>(<a class="code hl_variable" href="#a20b67711375fe47fc9f881a599077ddc">_reportPath</a> + <span class="stringliteral">&quot;/shared_libs.txt&quot;</span>);</div>
-<div class="line"><span class="lineno">  191</span>    <a class="code hl_variable" href="#aa44dba799c31108166f8d33b1ebf516f">_attachments</a>.emplace_back(<a class="code hl_variable" href="#a20b67711375fe47fc9f881a599077ddc">_reportPath</a> + <span class="stringliteral">&quot;/shared_libs.txt&quot;</span>);</div>
-<div class="line"><span class="lineno">  192</span> </div>
-<div class="line"><span class="lineno">  193</span>    <a class="code hl_function" href="#a5e733e7676276b3640d8e44eb7865aac">startHandler</a>();</div>
-<div class="line"><span class="lineno">  194</span>}</div>
+<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00131">131</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  134</span>    : <a class="code hl_variable" href="#aa5890fbf36b84d0eb0eb7a21e5334b37">_checkFlag</a>(std::move(checkFlag)), <a class="code hl_variable" href="#a630fd0665579e85532205c49261a44b3">_serverPath</a>(std::move(serverPath)), <a class="code hl_variable" href="#a83b60f1d681607d0ac7ddeb47ae52dac">_serverProxy</a>(std::move(serverProxy)),</div>
+<div class="line"><span class="lineno">  135</span>      <a class="code hl_variable" href="#aa44dba799c31108166f8d33b1ebf516f">_attachments</a>(std::move(attachments))</div>
+<div class="line"><span class="lineno">  136</span>{</div>
+<div class="line"><span class="lineno">  137</span>    <span class="keyword">auto</span> selfDir = <a class="code hl_function" href="#ab220e3d1019cb07d311a35b40e1a6163">getSelfExecutableDir</a>();</div>
+<div class="line"><span class="lineno">  138</span> </div>
+<div class="line"><span class="lineno">  139</span>    <a class="code hl_variable" href="#ac8182e8d14799e97e3306d463cf589a9">_handlerPath</a> = crashpadHandlerPath.empty() ? selfDir + <span class="stringliteral">&quot;/crashpad_handler&quot;</span> : crashpadHandlerPath;</div>
+<div class="line"><span class="lineno">  140</span>    <a class="code hl_variable" href="#a20b67711375fe47fc9f881a599077ddc">_reportPath</a> = reportPath.empty() ? selfDir : reportPath;</div>
+<div class="line"><span class="lineno">  141</span>    <a class="code hl_variable" href="#a5f6a4054b44156656a529c3fa1cf6dbb">_clientHandler</a> = std::make_unique&lt;crashpad::CrashpadClient&gt;();</div>
+<div class="line"><span class="lineno">  142</span> </div>
+<div class="line"><span class="lineno">  143</span>    <a class="code hl_variable" href="#ab66fe7b82f20fbd67a6122bce49e06b0">_annotations</a> = std::map&lt;std::string, std::string&gt;(</div>
+<div class="line"><span class="lineno">  144</span>        {{<span class="stringliteral">&quot;name&quot;</span>, PROJECT_NAME},</div>
+<div class="line"><span class="lineno">  145</span>         {<span class="stringliteral">&quot;version&quot;</span>, PROJECT_FULL_REVISION},</div>
+<div class="line"><span class="lineno">  146</span>         {<span class="stringliteral">&quot;build_info&quot;</span>, PROJECT_BUILD_DATE + std::string(<span class="stringliteral">&quot; &quot;</span>) + PROJECT_BUILD_TIME + std::string(<span class="stringliteral">&quot; &quot;</span>) + BUILD_TYPE},</div>
+<div class="line"><span class="lineno">  147</span>         {<span class="stringliteral">&quot;compiler_info&quot;</span>, COMPILER_NAME + std::string(<span class="stringliteral">&quot; &quot;</span>) + COMPILER_VERSION}});</div>
+<div class="line"><span class="lineno">  148</span> </div>
+<div class="line"><span class="lineno">  149</span>    <a class="code hl_function" href="#a5e733e7676276b3640d8e44eb7865aac">startHandler</a>();</div>
+<div class="line"><span class="lineno">  150</span>}</div>
 <div class="ttc" id="aclassTracer_html_a20b67711375fe47fc9f881a599077ddc"><div class="ttname"><a href="#a20b67711375fe47fc9f881a599077ddc">Tracer::_reportPath</a></div><div class="ttdeci">std::string _reportPath</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00019">Tracer.hpp:19</a></div></div>
-<div class="ttc" id="aclassTracer_html_a45e5efd9d9aa56696931411cd7e0c47e"><div class="ttname"><a href="#a45e5efd9d9aa56696931411cd7e0c47e">Tracer::dumpSharedLibraryInfo</a></div><div class="ttdeci">static void dumpSharedLibraryInfo(const std::string &amp;filePath)</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8cpp_source.html#l00131">Tracer.cpp:131</a></div></div>
 <div class="ttc" id="aclassTracer_html_a5e733e7676276b3640d8e44eb7865aac"><div class="ttname"><a href="#a5e733e7676276b3640d8e44eb7865aac">Tracer::startHandler</a></div><div class="ttdeci">void startHandler()</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8cpp_source.html#l00023">Tracer.cpp:23</a></div></div>
 <div class="ttc" id="aclassTracer_html_a5f6a4054b44156656a529c3fa1cf6dbb"><div class="ttname"><a href="#a5f6a4054b44156656a529c3fa1cf6dbb">Tracer::_clientHandler</a></div><div class="ttdeci">std::unique_ptr&lt; crashpad::CrashpadClient &gt; _clientHandler</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00020">Tracer.hpp:20</a></div></div>
 <div class="ttc" id="aclassTracer_html_a630fd0665579e85532205c49261a44b3"><div class="ttname"><a href="#a630fd0665579e85532205c49261a44b3">Tracer::_serverPath</a></div><div class="ttdeci">std::string _serverPath</div><div class="ttdef"><b>Definition</b> <a href="Tracer_8hpp_source.html#l00014">Tracer.hpp:14</a></div></div>
@@ -279,21 +272,19 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTracer_adcba2e6b7a59caec2a3d116aab510c0e_cgraph.png" border="0" usemap="#aclassTracer_adcba2e6b7a59caec2a3d116aab510c0e_cgraph" alt=""/></div>
 <map name="aclassTracer_adcba2e6b7a59caec2a3d116aab510c0e_cgraph" id="aclassTracer_adcba2e6b7a59caec2a3d116aab510c0e_cgraph">
-<area shape="rect" title=" " alt="" coords="5,57,109,85"/>
-<area shape="rect" href="classTracer.html#a45e5efd9d9aa56696931411cd7e0c47e" title=" " alt="" coords="157,5,365,33"/>
-<area shape="poly" title=" " alt="" coords="108,55,188,35,189,40,110,61"/>
-<area shape="rect" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title=" " alt="" coords="166,57,356,85"/>
-<area shape="poly" title=" " alt="" coords="109,68,150,68,150,74,109,74"/>
-<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="190,109,332,137"/>
-<area shape="poly" title=" " alt="" coords="110,82,189,102,188,107,108,87"/>
-<area shape="rect" href="classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="413,109,547,137"/>
-<area shape="poly" title=" " alt="" coords="333,120,397,120,397,126,333,126"/>
-<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="595,109,720,137"/>
-<area shape="poly" title=" " alt="" coords="548,120,580,120,580,126,548,126"/>
-<area shape="rect" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="778,83,956,110"/>
-<area shape="poly" title=" " alt="" coords="720,113,762,107,763,112,720,118"/>
-<area shape="rect" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="768,135,967,162"/>
-<area shape="poly" title=" " alt="" coords="720,128,752,132,752,137,720,133"/>
+<area shape="rect" title=" " alt="" coords="5,32,109,60"/>
+<area shape="rect" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title=" " alt="" coords="157,5,347,33"/>
+<area shape="poly" title=" " alt="" coords="109,36,141,32,141,37,110,41"/>
+<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="181,57,323,85"/>
+<area shape="poly" title=" " alt="" coords="110,50,165,57,165,63,109,55"/>
+<area shape="rect" href="classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="395,57,529,85"/>
+<area shape="poly" title=" " alt="" coords="323,68,379,68,379,74,323,74"/>
+<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="577,57,702,85"/>
+<area shape="poly" title=" " alt="" coords="530,68,562,68,562,74,530,74"/>
+<area shape="rect" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="760,31,938,58"/>
+<area shape="poly" title=" " alt="" coords="702,61,744,55,745,60,702,66"/>
+<area shape="rect" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="750,83,949,110"/>
+<area shape="poly" title=" " alt="" coords="702,76,734,80,734,85,702,81"/>
 </map>
 </div>
 <div class="dynheader">
@@ -344,23 +335,21 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTracer_a566dddc062ed6e9cce4dfc7c71eebe97_cgraph.png" border="0" usemap="#aclassTracer_a566dddc062ed6e9cce4dfc7c71eebe97_cgraph" alt=""/></div>
 <map name="aclassTracer_a566dddc062ed6e9cce4dfc7c71eebe97_cgraph" id="aclassTracer_a566dddc062ed6e9cce4dfc7c71eebe97_cgraph">
-<area shape="rect" title="Copy constructor." alt="" coords="5,57,109,85"/>
-<area shape="rect" href="classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="157,57,260,85"/>
-<area shape="poly" title=" " alt="" coords="109,68,141,68,141,74,109,74"/>
-<area shape="rect" href="classTracer.html#a45e5efd9d9aa56696931411cd7e0c47e" title=" " alt="" coords="308,5,516,33"/>
-<area shape="poly" title=" " alt="" coords="260,55,339,35,341,40,261,61"/>
-<area shape="rect" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title=" " alt="" coords="317,57,507,85"/>
-<area shape="poly" title=" " alt="" coords="260,68,302,68,302,74,260,74"/>
-<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="341,109,483,137"/>
-<area shape="poly" title=" " alt="" coords="261,82,341,102,339,107,260,87"/>
-<area shape="rect" href="classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="564,109,699,137"/>
-<area shape="poly" title=" " alt="" coords="484,120,549,120,549,126,484,126"/>
-<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="747,109,871,137"/>
-<area shape="poly" title=" " alt="" coords="699,120,731,120,731,126,699,126"/>
-<area shape="rect" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="930,83,1108,110"/>
-<area shape="poly" title=" " alt="" coords="871,113,914,107,914,112,872,118"/>
-<area shape="rect" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="919,135,1118,162"/>
-<area shape="poly" title=" " alt="" coords="872,128,904,132,903,137,871,133"/>
+<area shape="rect" title="Copy constructor." alt="" coords="5,32,109,60"/>
+<area shape="rect" href="classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="157,32,260,60"/>
+<area shape="poly" title=" " alt="" coords="109,43,141,43,141,48,109,48"/>
+<area shape="rect" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title=" " alt="" coords="308,5,498,33"/>
+<area shape="poly" title=" " alt="" coords="260,36,292,32,293,37,261,41"/>
+<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="332,57,474,85"/>
+<area shape="poly" title=" " alt="" coords="261,50,317,57,316,63,260,55"/>
+<area shape="rect" href="classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="546,57,681,85"/>
+<area shape="poly" title=" " alt="" coords="475,68,531,68,531,74,475,74"/>
+<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="729,57,853,85"/>
+<area shape="poly" title=" " alt="" coords="681,68,713,68,713,74,681,74"/>
+<area shape="rect" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="912,31,1090,58"/>
+<area shape="poly" title=" " alt="" coords="853,61,896,55,896,60,854,66"/>
+<area shape="rect" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="901,83,1100,110"/>
+<area shape="poly" title=" " alt="" coords="854,76,886,80,885,85,853,81"/>
 </map>
 </div>
 
@@ -395,23 +384,21 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTracer_a4b0800fcb9fbe6a1379a203ed57e88d9_cgraph.png" border="0" usemap="#aclassTracer_a4b0800fcb9fbe6a1379a203ed57e88d9_cgraph" alt=""/></div>
 <map name="aclassTracer_a4b0800fcb9fbe6a1379a203ed57e88d9_cgraph" id="aclassTracer_a4b0800fcb9fbe6a1379a203ed57e88d9_cgraph">
-<area shape="rect" title="Move constructor." alt="" coords="5,57,109,85"/>
-<area shape="rect" href="classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="157,57,260,85"/>
-<area shape="poly" title=" " alt="" coords="109,68,141,68,141,74,109,74"/>
-<area shape="rect" href="classTracer.html#a45e5efd9d9aa56696931411cd7e0c47e" title=" " alt="" coords="308,5,516,33"/>
-<area shape="poly" title=" " alt="" coords="260,55,339,35,341,40,261,61"/>
-<area shape="rect" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title=" " alt="" coords="317,57,507,85"/>
-<area shape="poly" title=" " alt="" coords="260,68,302,68,302,74,260,74"/>
-<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="341,109,483,137"/>
-<area shape="poly" title=" " alt="" coords="261,82,341,102,339,107,260,87"/>
-<area shape="rect" href="classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="564,109,699,137"/>
-<area shape="poly" title=" " alt="" coords="484,120,549,120,549,126,484,126"/>
-<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="747,109,871,137"/>
-<area shape="poly" title=" " alt="" coords="699,120,731,120,731,126,699,126"/>
-<area shape="rect" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="930,83,1108,110"/>
-<area shape="poly" title=" " alt="" coords="871,113,914,107,914,112,872,118"/>
-<area shape="rect" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="919,135,1118,162"/>
-<area shape="poly" title=" " alt="" coords="872,128,904,132,903,137,871,133"/>
+<area shape="rect" title="Move constructor." alt="" coords="5,32,109,60"/>
+<area shape="rect" href="classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="157,32,260,60"/>
+<area shape="poly" title=" " alt="" coords="109,43,141,43,141,48,109,48"/>
+<area shape="rect" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title=" " alt="" coords="308,5,498,33"/>
+<area shape="poly" title=" " alt="" coords="260,36,292,32,293,37,261,41"/>
+<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="332,57,474,85"/>
+<area shape="poly" title=" " alt="" coords="261,50,317,57,316,63,260,55"/>
+<area shape="rect" href="classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="546,57,681,85"/>
+<area shape="poly" title=" " alt="" coords="475,68,531,68,531,74,475,74"/>
+<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="729,57,853,85"/>
+<area shape="poly" title=" " alt="" coords="681,68,713,68,713,74,681,74"/>
+<area shape="rect" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="912,31,1090,58"/>
+<area shape="poly" title=" " alt="" coords="853,61,896,55,896,60,854,66"/>
+<area shape="rect" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="901,83,1100,110"/>
+<area shape="poly" title=" " alt="" coords="854,76,886,80,885,85,853,81"/>
 </map>
 </div>
 
@@ -556,95 +543,6 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="506,100,473,100,473,95,506,95"/>
 <area shape="rect" href="classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="180,84,283,112"/>
 <area shape="poly" title=" " alt="" coords="315,100,283,100,283,95,315,95"/>
-<area shape="rect" href="classTracer.html#a1438f66422a2685b45bbc63486aa49d5" title="Move assignment operator." alt="" coords="5,5,132,33"/>
-<area shape="poly" title=" " alt="" coords="189,78,131,48,104,36,106,31,133,43,192,74"/>
-<area shape="rect" href="classTracer.html#a261738e71561597c1c685306d045b3d1" title="Copy assignment operator." alt="" coords="5,57,132,85"/>
-<area shape="poly" title=" " alt="" coords="164,90,132,84,132,79,165,84"/>
-<area shape="rect" href="classTracer.html#a566dddc062ed6e9cce4dfc7c71eebe97" title="Copy constructor." alt="" coords="17,109,120,137"/>
-<area shape="poly" title=" " alt="" coords="165,111,121,118,120,112,164,106"/>
-<area shape="rect" href="classTracer.html#a4b0800fcb9fbe6a1379a203ed57e88d9" title="Move constructor." alt="" coords="17,161,120,189"/>
-<area shape="poly" title=" " alt="" coords="191,122,133,151,105,163,103,158,131,146,189,117"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a45e5efd9d9aa56696931411cd7e0c47e" name="a45e5efd9d9aa56696931411cd7e0c47e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45e5efd9d9aa56696931411cd7e0c47e">&#9670;&#160;</a></span>dumpSharedLibraryInfo()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Tracer::dumpSharedLibraryInfo </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>filePath</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Dump shared library information to a file </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">filePath</td><td>File path to dump the information </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="Tracer_8cpp_source.html#l00131">131</a> of file <a class="el" href="Tracer_8cpp_source.html">Tracer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  132</span>{</div>
-<div class="line"><span class="lineno">  133</span>    <span class="comment">// Open the output file</span></div>
-<div class="line"><span class="lineno">  134</span>    std::ofstream ofile(filePath);</div>
-<div class="line"><span class="lineno">  135</span>    <span class="keywordflow">if</span> (!ofile.is_open())</div>
-<div class="line"><span class="lineno">  136</span>    {</div>
-<div class="line"><span class="lineno">  137</span>        <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Can&#39;t open file: &quot;</span> + filePath);</div>
-<div class="line"><span class="lineno">  138</span>    }</div>
-<div class="line"><span class="lineno">  139</span> </div>
-<div class="line"><span class="lineno">  140</span>    <span class="comment">// Get the shared library information</span></div>
-<div class="line"><span class="lineno">  141</span>    std::ifstream maps(<span class="stringliteral">&quot;/proc/self/maps&quot;</span>);</div>
-<div class="line"><span class="lineno">  142</span> </div>
-<div class="line"><span class="lineno">  143</span>    std::string line;</div>
-<div class="line"><span class="lineno">  144</span>    <span class="keywordflow">while</span> (std::getline(maps, line))</div>
-<div class="line"><span class="lineno">  145</span>    {</div>
-<div class="line"><span class="lineno">  146</span>        <span class="comment">// The format of each line is: address perms offset dev inode pathname</span></div>
-<div class="line"><span class="lineno">  147</span>        <span class="comment">// We only care about the address and the pathname, which are the first and last fields</span></div>
-<div class="line"><span class="lineno">  148</span>        std::istringstream iss(line);</div>
-<div class="line"><span class="lineno">  149</span>        std::string address;</div>
-<div class="line"><span class="lineno">  150</span>        std::string perms;</div>
-<div class="line"><span class="lineno">  151</span>        std::string offset;</div>
-<div class="line"><span class="lineno">  152</span>        std::string dev;</div>
-<div class="line"><span class="lineno">  153</span>        std::string inode;</div>
-<div class="line"><span class="lineno">  154</span>        std::string pathname;</div>
-<div class="line"><span class="lineno">  155</span>        iss &gt;&gt; address &gt;&gt; perms &gt;&gt; offset &gt;&gt; dev &gt;&gt; inode &gt;&gt; pathname;</div>
-<div class="line"><span class="lineno">  156</span> </div>
-<div class="line"><span class="lineno">  157</span>        <span class="comment">// We only want the shared libraries, which have the .so extension and the read and execute permissions</span></div>
-<div class="line"><span class="lineno">  158</span>        <span class="keywordflow">if</span> (pathname.find(<span class="stringliteral">&quot;.so&quot;</span>) != std::string::npos &amp;&amp; perms.find(<span class="stringliteral">&quot;r-x&quot;</span>) != std::string::npos)</div>
-<div class="line"><span class="lineno">  159</span>        {</div>
-<div class="line"><span class="lineno">  160</span>            <span class="comment">// The address field is in the form of start-end, we only need the start address</span></div>
-<div class="line"><span class="lineno">  161</span>            <span class="keyword">const</span> std::string start = address.substr(0, address.find(<span class="charliteral">&#39;-&#39;</span>));</div>
-<div class="line"><span class="lineno">  162</span> </div>
-<div class="line"><span class="lineno">  163</span>            <span class="comment">// Convert the start address from hexadecimal string to unsigned long</span></div>
-<div class="line"><span class="lineno">  164</span>            <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> addr = std::stoul(start, <span class="keyword">nullptr</span>, 16);</div>
-<div class="line"><span class="lineno">  165</span> </div>
-<div class="line"><span class="lineno">  166</span>            ofile &lt;&lt; pathname &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; addr &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  167</span>        }</div>
-<div class="line"><span class="lineno">  168</span>    }</div>
-<div class="line"><span class="lineno">  169</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classTracer_a45e5efd9d9aa56696931411cd7e0c47e_icgraph.png" border="0" usemap="#aclassTracer_a45e5efd9d9aa56696931411cd7e0c47e_icgraph" alt=""/></div>
-<map name="aclassTracer_a45e5efd9d9aa56696931411cd7e0c47e_icgraph" id="aclassTracer_a45e5efd9d9aa56696931411cd7e0c47e_icgraph">
-<area shape="rect" title=" " alt="" coords="331,84,539,112"/>
-<area shape="rect" href="classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="180,84,283,112"/>
-<area shape="poly" title=" " alt="" coords="316,100,284,100,284,95,316,95"/>
 <area shape="rect" href="classTracer.html#a1438f66422a2685b45bbc63486aa49d5" title="Move assignment operator." alt="" coords="5,5,132,33"/>
 <area shape="poly" title=" " alt="" coords="189,78,131,48,104,36,106,31,133,43,192,74"/>
 <area shape="rect" href="classTracer.html#a261738e71561597c1c685306d045b3d1" title="Copy assignment operator." alt="" coords="5,57,132,85"/>
@@ -824,23 +722,21 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTracer_a1438f66422a2685b45bbc63486aa49d5_cgraph.png" border="0" usemap="#aclassTracer_a1438f66422a2685b45bbc63486aa49d5_cgraph" alt=""/></div>
 <map name="aclassTracer_a1438f66422a2685b45bbc63486aa49d5_cgraph" id="aclassTracer_a1438f66422a2685b45bbc63486aa49d5_cgraph">
-<area shape="rect" title="Move assignment operator." alt="" coords="5,57,132,85"/>
-<area shape="rect" href="classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="180,57,283,85"/>
-<area shape="poly" title=" " alt="" coords="132,68,164,68,164,74,132,74"/>
-<area shape="rect" href="classTracer.html#a45e5efd9d9aa56696931411cd7e0c47e" title=" " alt="" coords="331,5,539,33"/>
-<area shape="poly" title=" " alt="" coords="283,55,362,35,364,40,284,61"/>
-<area shape="rect" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title=" " alt="" coords="340,57,530,85"/>
-<area shape="poly" title=" " alt="" coords="283,68,325,68,325,74,283,74"/>
-<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="364,109,506,137"/>
-<area shape="poly" title=" " alt="" coords="284,82,364,102,362,107,283,87"/>
-<area shape="rect" href="classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="587,109,722,137"/>
-<area shape="poly" title=" " alt="" coords="507,120,572,120,572,126,507,126"/>
-<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="770,109,894,137"/>
-<area shape="poly" title=" " alt="" coords="722,120,754,120,754,126,722,126"/>
-<area shape="rect" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="952,83,1131,110"/>
-<area shape="poly" title=" " alt="" coords="894,113,937,107,937,112,895,118"/>
-<area shape="rect" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="942,135,1141,162"/>
-<area shape="poly" title=" " alt="" coords="895,128,927,132,926,137,894,133"/>
+<area shape="rect" title="Move assignment operator." alt="" coords="5,32,132,60"/>
+<area shape="rect" href="classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="180,32,283,60"/>
+<area shape="poly" title=" " alt="" coords="132,43,164,43,164,48,132,48"/>
+<area shape="rect" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title=" " alt="" coords="331,5,521,33"/>
+<area shape="poly" title=" " alt="" coords="283,36,315,32,316,37,284,41"/>
+<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="355,57,497,85"/>
+<area shape="poly" title=" " alt="" coords="284,50,340,57,339,63,283,55"/>
+<area shape="rect" href="classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="569,57,704,85"/>
+<area shape="poly" title=" " alt="" coords="498,68,554,68,554,74,498,74"/>
+<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="752,57,876,85"/>
+<area shape="poly" title=" " alt="" coords="704,68,736,68,736,74,704,74"/>
+<area shape="rect" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="934,31,1113,58"/>
+<area shape="poly" title=" " alt="" coords="876,61,919,55,919,60,877,66"/>
+<area shape="rect" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="924,83,1123,110"/>
+<area shape="poly" title=" " alt="" coords="877,76,909,80,908,85,876,81"/>
 </map>
 </div>
 
@@ -875,23 +771,21 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTracer_a261738e71561597c1c685306d045b3d1_cgraph.png" border="0" usemap="#aclassTracer_a261738e71561597c1c685306d045b3d1_cgraph" alt=""/></div>
 <map name="aclassTracer_a261738e71561597c1c685306d045b3d1_cgraph" id="aclassTracer_a261738e71561597c1c685306d045b3d1_cgraph">
-<area shape="rect" title="Copy assignment operator." alt="" coords="5,57,132,85"/>
-<area shape="rect" href="classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="180,57,283,85"/>
-<area shape="poly" title=" " alt="" coords="132,68,164,68,164,74,132,74"/>
-<area shape="rect" href="classTracer.html#a45e5efd9d9aa56696931411cd7e0c47e" title=" " alt="" coords="331,5,539,33"/>
-<area shape="poly" title=" " alt="" coords="283,55,362,35,364,40,284,61"/>
-<area shape="rect" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title=" " alt="" coords="340,57,530,85"/>
-<area shape="poly" title=" " alt="" coords="283,68,325,68,325,74,283,74"/>
-<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="364,109,506,137"/>
-<area shape="poly" title=" " alt="" coords="284,82,364,102,362,107,283,87"/>
-<area shape="rect" href="classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="587,109,722,137"/>
-<area shape="poly" title=" " alt="" coords="507,120,572,120,572,126,507,126"/>
-<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="770,109,894,137"/>
-<area shape="poly" title=" " alt="" coords="722,120,754,120,754,126,722,126"/>
-<area shape="rect" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="952,83,1131,110"/>
-<area shape="poly" title=" " alt="" coords="894,113,937,107,937,112,895,118"/>
-<area shape="rect" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="942,135,1141,162"/>
-<area shape="poly" title=" " alt="" coords="895,128,927,132,926,137,894,133"/>
+<area shape="rect" title="Copy assignment operator." alt="" coords="5,32,132,60"/>
+<area shape="rect" href="classTracer.html#adcba2e6b7a59caec2a3d116aab510c0e" title=" " alt="" coords="180,32,283,60"/>
+<area shape="poly" title=" " alt="" coords="132,43,164,43,164,48,132,48"/>
+<area shape="rect" href="classTracer.html#ab220e3d1019cb07d311a35b40e1a6163" title=" " alt="" coords="331,5,521,33"/>
+<area shape="poly" title=" " alt="" coords="283,36,315,32,316,37,284,41"/>
+<area shape="rect" href="classTracer.html#a5e733e7676276b3640d8e44eb7865aac" title=" " alt="" coords="355,57,497,85"/>
+<area shape="poly" title=" " alt="" coords="284,50,340,57,339,63,283,55"/>
+<area shape="rect" href="classTracer.html#ac5c0ad1b1a86dd3e489ed162d5b7b8fc" title=" " alt="" coords="569,57,704,85"/>
+<area shape="poly" title=" " alt="" coords="498,68,554,68,554,74,498,74"/>
+<area shape="rect" href="classTracer.html#a4e3975043a2fc94d307d511012706770" title=" " alt="" coords="752,57,876,85"/>
+<area shape="poly" title=" " alt="" coords="704,68,736,68,736,74,704,74"/>
+<area shape="rect" href="classTracer.html#afb3ac495395576ba791fd471bc7d4bda" title=" " alt="" coords="934,31,1113,58"/>
+<area shape="poly" title=" " alt="" coords="876,61,919,55,919,60,877,66"/>
+<area shape="rect" href="classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14" title=" " alt="" coords="924,83,1123,110"/>
+<area shape="poly" title=" " alt="" coords="877,76,909,80,908,85,876,81"/>
 </map>
 </div>
 
@@ -1319,7 +1213,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classTracer.html">Tracer</a></li>
-    <li class="footer">Generated on Sat Aug 1 2026 10:18:42 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Sat Aug 1 2026 10:59:12 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>
