@@ -43,7 +43,7 @@
 This is not a vibe coding project. Project utilizes generative AI tools to create and fix documentation mostly. For development, AI tools only used for assisting (test generation, inline recommendations and/or debugging)
 
 - **Tools Used:** Github Copilot
-- **Scope of Use:** 
+- **Scope of Use:**
   - **Test Code Generation:** Boilerplate unit tests and routine utility functions were drafted using AI and manually reviewed/refactored for logic.
   - **Documentation:** Most of the README sections and function descriptions were AI-generated. But only for documentation purposes!
 
