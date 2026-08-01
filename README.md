@@ -38,8 +38,6 @@
 
 > 💡 **Perfect for**: Microservices, CLI tools, system applications, and performance-critical software
 
-<div align="center">
-
 ### AI Usage Disclosure
 
 This is not a vibe coding project. Project utilizes generative AI tools to create and fix documentation mostly. For development, AI tools only used for assisting (test generation, inline recommendations and/or debugging)
@@ -49,6 +47,8 @@ This is not a vibe coding project. Project utilizes generative AI tools to creat
   - **Test Code Generation:** Boilerplate unit tests and routine utility functions were drafted using AI and manually reviewed/refactored for logic.
   - **Documentation:** Most of the README sections and function descriptions were AI-generated. But only for documentation purposes!
 - **Responsibility:** The project has required unit/fuzz tests and has a good coverage percentage for a C++ application. Additionally some state of the art analysis tools are already integrated to CI/CD tests.
+
+<div align="center">
 
 ### **Key Features at a Glance**
 
