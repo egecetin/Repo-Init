@@ -20,6 +20,12 @@ template <typename T> zmq::message_t createMessage(const T &data) { return zmq::
 zmq::message_t createMessage(const std::string &data) { return zmq::message_t(data.data(), data.size()); }
 
 /**
+ * Helper to create a message from a C string literal. Without this overload the generic template is selected for
+ * char arrays and the terminating null character is sent as part of the message
+ */
+zmq::message_t createMessage(const char *data) { return zmq::message_t(data, std::strlen(data)); }
+
+/**
  * Variadic function to create message vector
  */
 template <typename... Args> std::vector<zmq::message_t> makeMessageVector(Args &&...args)
