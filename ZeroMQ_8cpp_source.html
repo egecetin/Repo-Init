@@ -244,12 +244,11 @@ $(function(){initNavTree('ZeroMQ_8cpp_source.html',''); initResizable(true); });
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        }</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::exception &amp;e2)</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        {</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            std::cerr &lt;&lt; <span class="stringliteral">&quot;Error while stopping ZeroMQ connection and logger for connection &quot;</span> &lt;&lt; <a class="code hl_variable" href="classZeroMQ.html#a93c55d5da3ceceed95303a8b9a0ac02a">_socketAddr</a> &lt;&lt; <span class="stringliteral">&quot; (&quot;</span></div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                      &lt;&lt; e.what() &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span></div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                      &lt;&lt; e2.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        }</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    }</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>}</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            (void)std::fprintf(stderr, <span class="stringliteral">&quot;Error while stopping ZeroMQ connection and logger for connection %s (%s) %s\n&quot;</span>,</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                               <a class="code hl_variable" href="classZeroMQ.html#a93c55d5da3ceceed95303a8b9a0ac02a">_socketAddr</a>.c_str(), e.what(), e2.what());</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        }</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>}</div>
 </div>
 <div class="ttc" id="aZeroMQ_8cpp_html_a94f790c136cc969cb897b4d1f32a989c"><div class="ttname"><a href="ZeroMQ_8cpp.html#a94f790c136cc969cb897b4d1f32a989c">ZEROMQ_HEARTBEAT_TIMEOUT_MS</a></div><div class="ttdeci">constexpr int ZEROMQ_HEARTBEAT_TIMEOUT_MS</div><div class="ttdef"><b>Definition</b> <a href="#l00012">ZeroMQ.cpp:12</a></div></div>
 <div class="ttc" id="aZeroMQ_8cpp_html_ad78f588b5ecf561c6dfc6c0cf2348304"><div class="ttname"><a href="ZeroMQ_8cpp.html#ad78f588b5ecf561c6dfc6c0cf2348304">ZEROMQ_MSG_TIMEOUT_MS</a></div><div class="ttdeci">constexpr int ZEROMQ_MSG_TIMEOUT_MS</div><div class="ttdef"><b>Definition</b> <a href="#l00010">ZeroMQ.cpp:10</a></div></div>
@@ -272,7 +271,7 @@ $(function(){initNavTree('ZeroMQ_8cpp_source.html',''); initResizable(true); });
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d88ff245824df7df97e108605ade0712.html">zeromq</a></li><li class="navelem"><a class="el" href="ZeroMQ_8cpp.html">ZeroMQ.cpp</a></li>
-    <li class="footer">Generated on Wed Oct 14 2026 18:24:18 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Generated on Wed Oct 14 2026 18:25:48 for Repo-Init by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>
