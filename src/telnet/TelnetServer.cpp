@@ -380,57 +380,59 @@ void TelnetSession::addToHistory(const std::string &line)
 
 bool TelnetSession::processCommandHistory(std::string &buffer)
 {
-	// Handle up and down arrow actions
-	if (m_telnetServer->interactivePrompt())
+	if (!m_telnetServer->interactivePrompt())
 	{
-		if (buffer.find(ANSI_ARROW_UP) != std::string::npos && !m_history.empty())
+		return false;
+	}
+
+	// Handle up and down arrow actions
+	if (buffer.find(ANSI_ARROW_UP) != std::string::npos && !m_history.empty())
+	{
+		if (m_historyCursor != m_history.begin())
 		{
-			if (m_historyCursor != m_history.begin())
+			--m_historyCursor;
+		}
+		buffer = *m_historyCursor;
+
+		// Issue a cursor command to counter it
+		ssize_t sendBytes = 0;
+		if ((sendBytes = send(m_socket, ANSI_ARROW_DOWN.c_str(), ANSI_ARROW_DOWN.length(), 0)) < 0)
+		{
+			return false;
+		}
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
+		return true;
+	}
+	if (buffer.find(ANSI_ARROW_DOWN) != std::string::npos && !m_history.empty())
+	{
+		if (m_historyCursor == m_history.end())
+		{
+			buffer.clear();
+		}
+		else
+		{
+			if (next(m_historyCursor) != m_history.end())
 			{
-				--m_historyCursor;
+				++m_historyCursor;
 			}
 			buffer = *m_historyCursor;
-
-			// Issue a cursor command to counter it
-			ssize_t sendBytes = 0;
-			if ((sendBytes = send(m_socket, ANSI_ARROW_DOWN.c_str(), ANSI_ARROW_DOWN.length(), 0)) < 0)
-			{
-				return false;
-			}
-			stats.uploadBytes += static_cast<size_t>(sendBytes);
-			return true;
 		}
-		if (buffer.find(ANSI_ARROW_DOWN) != std::string::npos && !m_history.empty())
+
+		// Issue a cursor command to counter it
+		ssize_t sendBytes = 0;
+		if ((sendBytes = send(m_socket, ANSI_ARROW_UP.c_str(), ANSI_ARROW_UP.length(), 0)) < 0)
 		{
-			if (m_historyCursor == m_history.end())
-			{
-				buffer.clear();
-			}
-			else
-			{
-				if (next(m_historyCursor) != m_history.end())
-				{
-					++m_historyCursor;
-				}
-				buffer = *m_historyCursor;
-			}
-
-			// Issue a cursor command to counter it
-			ssize_t sendBytes = 0;
-			if ((sendBytes = send(m_socket, ANSI_ARROW_UP.c_str(), ANSI_ARROW_UP.length(), 0)) < 0)
-			{
-				return false;
-			}
-
-			stats.uploadBytes += static_cast<size_t>(sendBytes);
-			return true;
+			return false;
 		}
 
-		// Ignore left and right and just reprint buffer
-		if (buffer.find(ANSI_ARROW_LEFT) != std::string::npos || buffer.find(ANSI_ARROW_RIGHT) != std::string::npos)
-		{
-			return true;
-		}
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
+		return true;
+	}
+
+	// Ignore left and right and just reprint buffer
+	if (buffer.find(ANSI_ARROW_LEFT) != std::string::npos || buffer.find(ANSI_ARROW_RIGHT) != std::string::npos)
+	{
+		return true;
 	}
 	return false;
 }
