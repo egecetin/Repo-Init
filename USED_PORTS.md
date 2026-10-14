@@ -9,6 +9,7 @@ Used ports during tests,
 | Metrics_Tests.StatusTrackerUnitTests | 8102 | Metrics_UnitTests.cpp |
 | Metrics_Tests.ProcessMetricsUnitTests | 8103 | Metrics_UnitTests.cpp |
 | Telnet_Tests.TelnetServerUnitTests | 8200 | Telnet_UnitTests.cpp |
+| Telnet_Tests.TelnetCoalescedCommandsUnitTests | 8201 | Telnet_UnitTests.cpp |
 | ZeroMQ_Tests.ZeroMQServerUnitTests | 8300 | ZeroMQ_UnitTests.cpp |
 | ZeroMQ_Tests.ZeroMQServerUnitTests | 8301 | ZeroMQ_UnitTests.cpp |
 | Logger_Tests.LoggingUnitTests | 8400 | Logger_UnitTests.cpp |

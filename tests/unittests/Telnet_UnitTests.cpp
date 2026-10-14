@@ -5,6 +5,8 @@
 
 #include <chrono>
 #include <memory>
+#include <mutex>
+#include <string>
 #include <thread>
 #include <vector>
 
@@ -43,13 +45,13 @@ TEST(Telnet_Tests, TelnetServerUnitTests)
 										 "ping",
 										 "clear",
 										 "enable log vvv",
-										 "disable log",
-										 "disable log all",
-										 "version",
 										 "status",
+										 "version",
 										 "\x1b\x5b\x41",
 										 "\x1b\x5b\x42",
 										 "",
+										 "disable log",
+										 "disable log all",
 										 "quit"};
 
 	// Create first client that sends all commands
@@ -63,6 +65,48 @@ TEST(Telnet_Tests, TelnetServerUnitTests)
 		additionalClients.push_back(std::make_unique<TelnetClient>("127.0.0.1", TELNET_PORT));
 	}
 
+	for (auto &client : additionalClients)
+	{
+		client->sendCommand("ping");
+	}
+
 	ASSERT_NO_THROW(telnetServerPtr->shutdown());
 	ASSERT_NO_THROW(telnetServerPtr->shutdown());
+}
+
+TEST(Telnet_Tests, TelnetCoalescedCommandsUnitTests)
+{
+	constexpr int port = TELNET_PORT + 1;
+
+	std::mutex mtx;
+	std::vector<std::string> receivedLines;
+	std::vector<std::string> tabRequests;
+
+	auto telnetServerPtr = std::make_shared<TelnetServer>();
+	std::shared_ptr<std::atomic_flag> checkFlag;
+	ASSERT_TRUE(telnetServerPtr->initialise(port, checkFlag, "> "));
+	telnetServerPtr->newLineCallback([&](const SP_TelnetSession &, const std::string &line) {
+		const std::lock_guard<std::mutex> lock(mtx);
+		receivedLines.push_back(line);
+		return true;
+	});
+	telnetServerPtr->tabCallback([&](const SP_TelnetSession &, std::string_view line) {
+		const std::lock_guard<std::mutex> lock(mtx);
+		tabRequests.emplace_back(line);
+		return line == "he" ? std::string("help") : std::string();
+	});
+
+	{
+		TelnetClient client("127.0.0.1", port);
+
+		// Sent in a single write so the server receives all of them in the same recv call
+		client.sendCommand("\b\r\n\t\r\nhe\t\r\nping\r\n\x1b[A");
+		std::this_thread::sleep_for(std::chrono::milliseconds(300));
+	}
+
+	ASSERT_NO_THROW(telnetServerPtr->shutdown());
+
+	const std::lock_guard<std::mutex> lock(mtx);
+	EXPECT_EQ(receivedLines, (std::vector<std::string>{"", "", "help", "ping", "ping"}));
+	EXPECT_EQ(tabRequests, (std::vector<std::string>{"", "he"}));
 }
