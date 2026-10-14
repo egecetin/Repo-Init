@@ -122,9 +122,8 @@ ZeroMQ::~ZeroMQ()
 		}
 		catch (const std::exception &e2)
 		{
-			std::cerr << "Error while stopping ZeroMQ connection and logger for connection " << _socketAddr << " ("
-					  << e.what() << ")" << '\n'
-					  << e2.what() << '\n';
+			(void)std::fprintf(stderr, "Error while stopping ZeroMQ connection and logger for connection %s (%s) %s\n",
+							   _socketAddr.c_str(), e.what(), e2.what());
 		}
 	}
 }

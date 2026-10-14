@@ -11,7 +11,6 @@
 #include <ctime>
 #include <format>
 #include <iomanip>
-#include <iostream>
 #include <sstream>
 #include <string>
 #include <utility>
@@ -544,8 +543,8 @@ TelnetServer::~TelnetServer()
 		}
 		catch (const std::exception &e2)
 		{
-			std::cerr << "Telnet server destructor and also logger thrown an exception: " << e.what() << '\n'
-					  << e2.what() << '\n';
+			(void)std::fprintf(stderr, "Telnet server destructor and also logger thrown an exception: %s %s\n",
+							   e.what(), e2.what());
 		}
 	}
 }
