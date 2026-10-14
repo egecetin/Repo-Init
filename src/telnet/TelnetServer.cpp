@@ -314,13 +314,14 @@ bool TelnetSession::processBackspace(std::string &buffer)
 
 		if (found != std::string::npos)
 		{
-			if (buffer.length() > 1 && (found > 0))
+			if (found > 0)
 			{
 				buffer.erase(found - 1, 2);
 			}
 			else
 			{
-				buffer = "";
+				// Nothing to delete before it, drop only the backspace itself
+				buffer.erase(0, 1);
 			}
 			foundBackspaces = true;
 		}
@@ -378,50 +379,59 @@ void TelnetSession::addToHistory(const std::string &line)
 
 bool TelnetSession::processCommandHistory(std::string &buffer)
 {
-	// Handle up and down arrow actions
-	if (m_telnetServer->interactivePrompt())
+	if (!m_telnetServer->interactivePrompt())
 	{
-		if (buffer.find(ANSI_ARROW_UP) != std::string::npos && !m_history.empty())
-		{
-			if (m_historyCursor != m_history.begin())
-			{
-				--m_historyCursor;
-			}
-			buffer = *m_historyCursor;
+		return false;
+	}
 
-			// Issue a cursor command to counter it
-			ssize_t sendBytes = 0;
-			if ((sendBytes = send(m_socket, ANSI_ARROW_DOWN.c_str(), ANSI_ARROW_DOWN.length(), 0)) < 0)
-			{
-				return false;
-			}
-			stats.uploadBytes += static_cast<size_t>(sendBytes);
-			return true;
+	// Handle up and down arrow actions
+	if (buffer.find(ANSI_ARROW_UP) != std::string::npos && !m_history.empty())
+	{
+		if (m_historyCursor != m_history.begin())
+		{
+			--m_historyCursor;
 		}
-		if (buffer.find(ANSI_ARROW_DOWN) != std::string::npos && !m_history.empty())
+		buffer = *m_historyCursor;
+
+		// Issue a cursor command to counter it
+		ssize_t sendBytes = 0;
+		if ((sendBytes = send(m_socket, ANSI_ARROW_DOWN.c_str(), ANSI_ARROW_DOWN.length(), 0)) < 0)
+		{
+			return false;
+		}
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
+		return true;
+	}
+	if (buffer.find(ANSI_ARROW_DOWN) != std::string::npos && !m_history.empty())
+	{
+		if (m_historyCursor == m_history.end())
+		{
+			buffer.clear();
+		}
+		else
 		{
 			if (next(m_historyCursor) != m_history.end())
 			{
 				++m_historyCursor;
 			}
 			buffer = *m_historyCursor;
-
-			// Issue a cursor command to counter it
-			ssize_t sendBytes = 0;
-			if ((sendBytes = send(m_socket, ANSI_ARROW_UP.c_str(), ANSI_ARROW_UP.length(), 0)) < 0)
-			{
-				return false;
-			}
-
-			stats.uploadBytes += static_cast<size_t>(sendBytes);
-			return true;
 		}
 
-		// Ignore left and right and just reprint buffer
-		if (buffer.find(ANSI_ARROW_LEFT) != std::string::npos || buffer.find(ANSI_ARROW_RIGHT) != std::string::npos)
+		// Issue a cursor command to counter it
+		ssize_t sendBytes = 0;
+		if ((sendBytes = send(m_socket, ANSI_ARROW_UP.c_str(), ANSI_ARROW_UP.length(), 0)) < 0)
 		{
-			return true;
+			return false;
 		}
+
+		stats.uploadBytes += static_cast<size_t>(sendBytes);
+		return true;
+	}
+
+	// Ignore left and right and just reprint buffer
+	if (buffer.find(ANSI_ARROW_LEFT) != std::string::npos || buffer.find(ANSI_ARROW_RIGHT) != std::string::npos)
+	{
+		return true;
 	}
 	return false;
 }
@@ -484,32 +494,16 @@ void TelnetSession::update()
 		// Remove telnet negotiation sequences
 		stripNVT(m_buffer);
 
-		bool requirePromptReprint = false;
-		if (m_telnetServer->interactivePrompt())
-		{
-			// Read up and down arrow keys and scroll through history
-			if (processCommandHistory(m_buffer))
-			{
-				requirePromptReprint = true;
-			}
-			stripEscapeCharacters(m_buffer);
+		// Several commands can arrive in a single recv. Split them first so line editing (history, backspace, tab)
+		// is applied to each line separately instead of the whole chunk
+		std::string pending = std::move(m_buffer);
+		m_buffer.clear();
 
-			// Remove characters
-			if (processBackspace(m_buffer))
-			{
-				requirePromptReprint = true;
-			}
-			// Complete commands
-			if (processTab(m_buffer))
-			{
-				requirePromptReprint = true;
-			}
-		}
-
-		// Process commands
-		auto lines = getCompleteLines(m_buffer);
-		for (const auto &line : lines)
+		const auto lines = getCompleteLines(pending);
+		for (auto line : lines)
 		{
+			editInput(line);
+
 			if (!m_telnetServer->newLineCallBack())
 			{
 				break;
@@ -519,12 +513,32 @@ void TelnetSession::update()
 			addToHistory(line);
 		}
 
-		if (requirePromptReprint && m_telnetServer->interactivePrompt())
+		// Remaining incomplete line stays in the buffer
+		m_buffer = std::move(pending);
+		if (editInput(m_buffer) && m_telnetServer->interactivePrompt())
 		{
 			eraseLine();
 			sendPromptAndBuffer();
 		}
 	}
+}
+
+bool TelnetSession::editInput(std::string &buffer)
+{
+	if (!m_telnetServer->interactivePrompt())
+	{
+		return false;
+	}
+
+	// Read up and down arrow keys and scroll through history
+	bool changed = processCommandHistory(buffer);
+	stripEscapeCharacters(buffer);
+
+	// Remove characters
+	changed |= processBackspace(buffer);
+	// Complete commands
+	changed |= processTab(buffer);
+	return changed;
 }
 
 /* ------------------ Telnet Server -------------------*/

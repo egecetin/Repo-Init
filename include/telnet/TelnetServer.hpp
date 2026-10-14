@@ -99,6 +99,8 @@ class TelnetSession : public std::enable_shared_from_this<TelnetSession> {
 	void addToHistory(const std::string &line);
 	// Handles arrow key actions for history management. Returns true if the input buffer was changed.
 	bool processCommandHistory(std::string &buffer);
+	// Applies history, escape, backspace and tab handling to a single line. Returns true if the line was changed.
+	bool editInput(std::string &buffer);
 	//
 	static std::vector<std::string> getCompleteLines(std::string &buffer);
 
