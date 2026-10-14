@@ -99,8 +99,9 @@ FileMonitor::~FileMonitor()
 			catch (const std::exception &e)
 			{
 				const auto errStr = getErrnoString(errno);
-				std::fprintf(stderr, "Failed to remove watch descriptor and also logger thrown an exception: %s %s\n",
-							 errStr.c_str(), e.what());
+				(void)std::fprintf(stderr,
+								   "Failed to remove watch descriptor and also logger thrown an exception: %s %s\n",
+								   errStr.c_str(), e.what());
 			}
 		}
 		_wDescriptor = -1;
@@ -118,8 +119,9 @@ FileMonitor::~FileMonitor()
 			catch (const std::exception &e)
 			{
 				const auto errStr = getErrnoString(errno);
-				std::fprintf(stderr, "Failed to close file descriptor and also logger thrown an exception: %s %s\n",
-							 errStr.c_str(), e.what());
+				(void)std::fprintf(stderr,
+								   "Failed to close file descriptor and also logger thrown an exception: %s %s\n",
+								   errStr.c_str(), e.what());
 			}
 		}
 		_fDescriptor = -1;
