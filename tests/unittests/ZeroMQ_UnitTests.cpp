@@ -89,10 +89,12 @@ TEST(ZeroMQ_Tests, ZeroMQServerUnitTests)
 	zeromqServerPtr->messageCallback(ZeroMQServerMessageCallback);
 	ASSERT_TRUE(zeromqServerPtr->initialise());
 
-	const uint64_t CMD_VERSION = 1230128470;   // "version" hash
-	const uint64_t CMD_LOG_LEVEL = 1279741772; // "log level" hash
-	const uint64_t CMD_PING = 1196312912;	   // "ping" hash
-	const uint64_t CMD_STATUS = 1263027027;	   // "status" hash
+	const uint32_t CMD_VERSION = 1230128470;   // "version" hash
+	const uint32_t CMD_LOG_LEVEL = 1279741772; // "log level" hash
+	const uint32_t CMD_PING = 1196312912;	   // "ping" hash
+	const uint32_t CMD_STATUS = 1263027027;	   // "status" hash
+	const uint32_t CMD_UNKNOWN = 9999;		   // "unknown" hash
+	const uint64_t CMD_UNKNOWN64 = 9999;	   // "unknown" hash
 
 	std::vector<std::vector<zmq::message_t>> msgArray;
 
@@ -118,6 +120,10 @@ TEST(ZeroMQ_Tests, ZeroMQServerUnitTests)
 	msgArray.push_back(makeMessageVector(CMD_STATUS));
 	// Ask status (fail - extra data)
 	msgArray.push_back(makeMessageVector(CMD_STATUS, "dummy"));
+	// Ask unknown (fail)
+	msgArray.push_back(makeMessageVector(CMD_UNKNOWN));
+	// Ask unknown64 (fail)
+	msgArray.push_back(makeMessageVector(CMD_UNKNOWN64));
 
 	// Launch test client
 	auto testClient = std::make_unique<ZeroMQTestClient>(zeromqServerAddr);
