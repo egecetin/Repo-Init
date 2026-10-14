@@ -1,5 +1,7 @@
 <map id="TelnetSession::stripEscapeCharacters" name="TelnetSession::stripEscapeCharacters">
-<area shape="rect" id="Node000001" title=" " alt="" coords="207,5,387,50"/>
-<area shape="rect" id="Node000002" href="$classTelnetSession.html#a0348872a381dd52fbf0e5529aa173ff4" title="Called every frame/loop by the Terminal Server." alt="" coords="5,14,159,42"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,30,159,30,159,25,191,25"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="421,5,601,50"/>
+<area shape="rect" id="Node000002" href="$classTelnetSession.html#a61a1f514861864b20946743b27e92e1d" title=" " alt="" coords="207,14,373,42"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="406,30,373,30,373,25,406,25"/>
+<area shape="rect" id="Node000003" href="$classTelnetSession.html#a0348872a381dd52fbf0e5529aa173ff4" title="Called every frame/loop by the Terminal Server." alt="" coords="5,14,159,42"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="191,30,159,30,159,25,191,25"/>
 </map>

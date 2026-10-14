@@ -5,6 +5,7 @@ var classTelnetSession =
     [ "checkTimeout", "classTelnetSession.html#a89a34200c3a07dfe78d4d82ab53fb10f", null ],
     [ "closeClient", "classTelnetSession.html#acd4fae03ff70b3d19551d4c7f5083b2f", null ],
     [ "echoBack", "classTelnetSession.html#ad2d2cf96dba5554a3c551b0d2c6c634c", null ],
+    [ "editInput", "classTelnetSession.html#a61a1f514861864b20946743b27e92e1d", null ],
     [ "eraseLine", "classTelnetSession.html#a4ee1bafa66c2ef419ed0af4dda27d044", null ],
     [ "getCompleteLines", "classTelnetSession.html#ac7629c5f06196cb044f0a61d22661839", null ],
     [ "getPeerIP", "classTelnetSession.html#af4c695d1caa6e0efb98be2279c694666", null ],
