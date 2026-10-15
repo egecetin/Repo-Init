@@ -53,6 +53,12 @@ endif()
 # Disable/Enable options of subprojects
 set(CPPZMQ_BUILD_TESTS OFF CACHE BOOL "")
 set(ENABLE_TESTING OFF CACHE BOOL "") # prometheus-cpp
+set(CIVETWEB_ENABLE_CXX ON CACHE BOOL "") # Required by prometheus-cpp
+set(CIVETWEB_BUILD_TESTING OFF CACHE BOOL "")
+set(CIVETWEB_ENABLE_SERVER_EXECUTABLE OFF CACHE BOOL "")
+set(CIVETWEB_INSTALL_EXECUTABLE OFF CACHE BOOL "")
+set(CIVETWEB_ENABLE_SSL OFF CACHE BOOL "")
+set(CIVETWEB_ENABLE_ASAN OFF CACHE BOOL "")
 
 set(SENTRY_BACKEND none) # Disable backend to manually use crashpad
 
@@ -95,6 +101,10 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/include)
 
 # Subdirectories
 add_subdirectory(thirdparty/civetweb EXCLUDE_FROM_ALL)
+# prometheus-cpp uses find_package(civetweb CONFIG) and links civetweb::civetweb-cpp. Provide them from the submodule
+add_library(civetweb::civetweb ALIAS civetweb-c-library)
+add_library(civetweb::civetweb-cpp ALIAS civetweb-cpp)
+set(civetweb_DIR ${PROJECT_SOURCE_DIR}/cmake/civetweb CACHE PATH "" FORCE)
 add_subdirectory(thirdparty/cppzmq EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry EXCLUDE_FROM_ALL)
