@@ -94,6 +94,7 @@ include_directories(${PROJECT_SOURCE_DIR}/thirdparty/prometheus-cpp/pull/include
 include_directories(${PROJECT_SOURCE_DIR}/thirdparty/sentry/include)
 
 # Subdirectories
+add_subdirectory(thirdparty/civetweb EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/cppzmq EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/prometheus-cpp EXCLUDE_FROM_ALL)
 add_subdirectory(thirdparty/sentry EXCLUDE_FROM_ALL)

@@ -22,3 +22,6 @@
 [submodule "benchmarks/benchmark"]
 	path = benchmarks/benchmark
 	url = https://github.com/google/benchmark.git
+[submodule "thirdparty/civetweb"]
+	path = thirdparty/civetweb
+	url = https://github.com/civetweb/civetweb.git

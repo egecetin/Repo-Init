@@ -182,6 +182,7 @@ Our carefully crafted CMake modules provide powerful build automation:
                     - HTTP utilities</li>
                 <li><a href="https://github.com/jupp0r/prometheus-cpp.git"><strong>Prometheus-cpp</strong></a> -
                     Metrics collection</li>
+                <li><a href="https://github.com/civetweb/civetweb.git"><strong>civetweb</strong></a> - Publishing prometheus metrics</li>
                 <li><a href="https://github.com/Tencent/rapidjson.git"><strong>RapidJSON</strong></a> - Ultra-fast
                     JSON parser</li>
                 <li><a href="https://github.com/getsentry/sentry-native.git"><strong>Sentry</strong></a> - Error
@@ -198,6 +199,7 @@ Our carefully crafted CMake modules provide powerful build automation:
                     Symbol dumping</li>
                 <li><a href="https://github.com/google/googletest.git"><strong>GoogleTest</strong></a> - Unit testing
                     framework</li>
+                <li><a href="https://github.com/google/benchmark.git"><strong>Google Benchmark</strong></a> - Benchmarking and performance tests</li>
                 <li><a href="https://github.com/seladb/MemPlumber.git"><strong>MemPlumber</strong></a> - Memory leak
                     detection</li>
                 <li><strong>ZLIB</strong> - Compression (required by Breakpad)</li>
