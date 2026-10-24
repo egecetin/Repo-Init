@@ -3,3 +3,4 @@ missingIncludeSystem:*
 unmatchedSuppression:*
 unusedFunction:*
 noValidConfiguration:*
+syntaxError:*
