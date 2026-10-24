@@ -2,3 +2,4 @@ missingInclude:*
 missingIncludeSystem:*
 unmatchedSuppression:*
 unusedFunction:*
+noValidConfiguration:*
