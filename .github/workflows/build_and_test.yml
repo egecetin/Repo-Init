@@ -18,7 +18,7 @@ concurrency:
 jobs:
   static-analysis:
     runs-on: ubuntu-latest
-    container: egecetinn/alpine@sha256:9e2b9bedd5f930f7b03a459976f72eb329efb01995569e72a270ead4d07200d6
+    container: egecetinn/ubuntu2604@sha256:f3fd555a92e0b55bbdc7d5d53a2229799ed7d732137a8e76760254c03d91a675
     steps:
       - name: Checkout Code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -37,7 +37,7 @@ jobs:
 
   memleak:
     runs-on: ubuntu-latest
-    container: egecetinn/ubuntu2404@sha256:0f63b02fe3dcd1a03d299000466713596df974a657005e27cda42155f652134d
+    container: egecetinn/ubuntu2604@sha256:f3fd555a92e0b55bbdc7d5d53a2229799ed7d732137a8e76760254c03d91a675
     steps:
       - name: Checkout Code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -68,7 +68,7 @@ jobs:
 
   fuzztests:
     runs-on: ubuntu-latest
-    container: egecetinn/ubuntu2404@sha256:0f63b02fe3dcd1a03d299000466713596df974a657005e27cda42155f652134d
+    container: egecetinn/ubuntu2604@sha256:f3fd555a92e0b55bbdc7d5d53a2229799ed7d732137a8e76760254c03d91a675
     strategy:
       matrix:
         sanitizer: [ASAN, USAN]
@@ -113,8 +113,7 @@ jobs:
       matrix:
         include:
           - image: rockylinux10@sha256:3e7fb793635d9ca1e0475f749e4543ba13ec61670d98ff95eec87a934b83c8d2
-          - image: ubuntu2404@sha256:0f63b02fe3dcd1a03d299000466713596df974a657005e27cda42155f652134d
-          - image: ubuntu2604@sha256:6d99a760f3d9b222c837cccffe7cc9e8513285dd25e8cc8e00255d4d8575440e
+          - image: ubuntu2604@sha256:f3fd555a92e0b55bbdc7d5d53a2229799ed7d732137a8e76760254c03d91a675
 
     steps:
       - name: Checkout Code
