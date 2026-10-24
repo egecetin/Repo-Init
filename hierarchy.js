@@ -23,7 +23,7 @@ var hierarchy =
     [ "HTTP", "classHTTP.html", null ],
     [ "HTTPStats", "structHTTPStats.html", null ],
     [ "InputParser", "classInputParser.html", null ],
-    [ "spdlog::sinks::loki_api_sink< Mutex >::logInfo_t", "structspdlog_1_1sinks_1_1loki__api__sink_1_1logInfo__t.html", null ],
+    [ "spdlog::sinks::loki_api_sink&lt; Mutex &gt;::logInfo_t", "structspdlog_1_1sinks_1_1loki__api__sink_1_1logInfo__t.html", null ],
     [ "MainLogger", "classMainLogger.html", null ],
     [ "zmq::monitor_t", null, [
       [ "ZeroMQMonitor", "classZeroMQMonitor.html", [

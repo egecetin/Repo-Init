@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['c_20application_20template_20with_20enterprise_20grade_20features_20strong_20⚡_0',['⚡ &lt;strong&gt;Modern C++ Application Template with Enterprise-Grade Features&lt;/strong&gt; ⚡',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md1',1,'']]],
+  ['c_20application_20template_20with_20enterprise_20grade_20features_20⚡_0',['⚡ &lt;b&gt;Modern C++ Application Template with Enterprise-Grade Features&lt;/b&gt; ⚡',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md1',1,'']]],
   ['checkerror_1',['checkError',['../ErrorHelpers_8cpp.html#a21f59d386bf0b5e382221c9add0e2327',1,'checkError(int, char *buffer, int):&#160;ErrorHelpers.cpp'],['../ErrorHelpers_8cpp.html#aaba07997c68e733933b90fc42cd19a04',1,'checkError(char *result, const char *, int):&#160;ErrorHelpers.cpp'],['../ErrorHelpers_8hpp.html#a21f59d386bf0b5e382221c9add0e2327',1,'checkError(int, char *buffer, int):&#160;ErrorHelpers.cpp'],['../ErrorHelpers_8hpp.html#aaba07997c68e733933b90fc42cd19a04',1,'checkError(char *result, const char *, int):&#160;ErrorHelpers.cpp']]],
   ['checkpidisrunning_2',['checkPidIsRunning',['../classTracer.html#afb3ac495395576ba791fd471bc7d4bda',1,'Tracer']]],
   ['checksocketisrunning_3',['checkSocketIsRunning',['../classTracer.html#a006a1ba1dd8fade9e80f1fe96aef0c14',1,'Tracer']]],
@@ -8,7 +8,7 @@ var searchData=
   ['closeclient_5',['closeClient',['../classTelnetSession.html#acd4fae03ff70b3d19551d4c7f5083b2f',1,'TelnetSession']]],
   ['cmake_20modules_6',['CMake Modules',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md9',1,'']]],
   ['cmdoptionexists_7',['cmdOptionExists',['../classInputParser.html#aea813a8d6ee9ea6d250ab99333316bdf',1,'InputParser']]],
-  ['command_20multiple_20possibilities_20strong_8',['&lt;strong&gt;One Command, Multiple Possibilities&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md17',1,'']]],
+  ['command_20multiple_20possibilities_8',['&lt;b&gt;One Command, Multiple Possibilities&lt;/b&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md17',1,'']]],
   ['configparser_9',['ConfigParser',['../classConfigParser.html',1,'ConfigParser'],['../classConfigParser.html#a7c131b3763f1b3b1c4bbfe52530e14d4',1,'ConfigParser::ConfigParser()']]],
   ['configparser_2ecpp_10',['ConfigParser.cpp',['../ConfigParser_8cpp.html',1,'']]],
   ['configparser_2ehpp_11',['ConfigParser.hpp',['../ConfigParser_8hpp.html',1,'']]],
@@ -20,8 +20,8 @@ var searchData=
   ['consumebasestats_17',['consumeBaseStats',['../classBaseServerStats.html#a4b718f45d89d7c4a71e93702d02fce31',1,'BaseServerStats']]],
   ['consumestats_18',['consumeStats',['../classTelnetStats.html#a29b90c320dd788ae9045e27a180e7b73',1,'TelnetStats::consumeStats(const TelnetSessionStats &amp;stat, bool sessionClosed)'],['../classTelnetStats.html#a910010aa6bd7d54a3ceae40b3c3fed14',1,'TelnetStats::consumeStats(const TelnetServerStats &amp;stat)'],['../classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07',1,'ZeroMQStats::consumeStats()']]],
   ['contents_19',['Table of Contents',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md8',1,'']]],
-  ['contributing_20support_20strong_20',['&lt;strong&gt;Contributing &amp; Support&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md29',1,'']]],
-  ['core_20runtime_20libraries_20strong_21',['&lt;strong&gt;Core Runtime Libraries&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md14',1,'']]],
+  ['contributing_20support_20',['&lt;b&gt;Contributing &amp;amp; Support&lt;/b&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md29',1,'']]],
+  ['core_20runtime_20libraries_21',['&lt;b&gt;Core Runtime Libraries&lt;/b&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md14',1,'']]],
   ['countdirectoryentries_22',['countDirectoryEntries',['../classProcessMetrics.html#a3e3aa374808b5efd32f709a0747332df',1,'ProcessMetrics']]],
   ['crashpad_5fretry_5fcount_23',['CRASHPAD_RETRY_COUNT',['../Tracer_8cpp.html#a0aaabcaa18192e6d821c6aef093243da',1,'Tracer.cpp']]],
   ['createnewregistry_24',['createNewRegistry',['../classPrometheusServer.html#a04e7b010c6227c4cf076d619b66cf6df',1,'PrometheusServer::createNewRegistry()'],['../classPrometheusServer.html#a1238fb991b79e91fa01e7f24ca1950c5',1,'PrometheusServer::createNewRegistry(uint64_t &amp;regId)']]],

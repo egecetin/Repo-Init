@@ -1,9 +1,9 @@
 <map id="BaseServerStats::consumeBaseStats" name="BaseServerStats::consumeBaseStats">
-<area shape="rect" id="Node000001" title=" " alt="" coords="244,49,420,94"/>
-<area shape="rect" id="Node000002" href="$classTelnetStats.html#a910010aa6bd7d54a3ceae40b3c3fed14" title=" " alt="" coords="10,5,191,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,51,165,36,166,31,229,45"/>
-<area shape="rect" id="Node000003" href="$classTelnetStats.html#a29b90c320dd788ae9045e27a180e7b73" title=" " alt="" coords="10,57,191,85"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="228,74,191,74,191,68,228,68"/>
-<area shape="rect" id="Node000004" href="$classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07" title=" " alt="" coords="5,109,196,137"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="229,97,166,111,165,106,228,92"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="260,49,455,94"/>
+<area shape="rect" id="Node000002" href="$classTelnetStats.html#a910010aa6bd7d54a3ceae40b3c3fed14" title=" " alt="" coords="12,5,205,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="242,48,178,36,178,31,247,47"/>
+<area shape="rect" id="Node000003" href="$classTelnetStats.html#a29b90c320dd788ae9045e27a180e7b73" title=" " alt="" coords="12,57,205,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="241,72,206,74,205,69,247,71"/>
+<area shape="rect" id="Node000004" href="$classZeroMQStats.html#a4c3eeaf1011a5dcaa05c50ece9abaf07" title=" " alt="" coords="5,109,212,137"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="247,94,179,111,178,106,242,95"/>
 </map>

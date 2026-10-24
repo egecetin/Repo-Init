@@ -1,5 +1,5 @@
 <map id="RawSocket" name="RawSocket">
-<area shape="rect" id="Node000001" title=" " alt="" coords="20,98,107,126"/>
-<area shape="rect" id="Node000002" href="$structRawSocketStats.html" title=" " alt="" coords="5,5,122,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,48,66,98,61,98,61,48"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="22,106,114,134"/>
+<area shape="rect" id="Node000002" href="$structRawSocketStats.html" title=" " alt="" coords="5,5,131,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,47,71,106,65,105,66,50"/>
 </map>

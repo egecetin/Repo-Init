@@ -7,7 +7,7 @@ var searchData=
   ['dependencies_4',['Dependencies',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md13',1,'']]],
   ['disclosure_5',['AI Usage Disclosure',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md4',1,'']]],
   ['disconnecttime_6',['disconnectTime',['../structTelnetSessionStats.html#a2b44b296364265e460d47212105c11e3',1,'TelnetSessionStats']]],
-  ['distribution_20strong_7',['🚀 &lt;strong&gt;Release &amp; Distribution&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md21',1,'']]],
+  ['distribution_7',['🚀 &lt;b&gt;Release &amp;amp; Distribution&lt;/b&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md21',1,'']]],
   ['downloadbytes_8',['downloadBytes',['../structHTTPStats.html#ac2e196f65a56cff893c5ee55709be2a7',1,'HTTPStats::downloadBytes'],['../structTelnetSessionStats.html#a93001f883b7f45d77d43bfd4ba51cdab',1,'TelnetSessionStats::downloadBytes']]],
   ['downloadspeed_9',['downloadSpeed',['../structHTTPStats.html#afa1cc613c384c58d5860098245c5ce5e',1,'HTTPStats']]]
 ];

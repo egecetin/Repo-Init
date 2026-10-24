@@ -1,7 +1,7 @@
 <map id="TelnetSession::eraseLine" name="TelnetSession::eraseLine">
-<area shape="rect" id="Node000001" title=" " alt="" coords="219,32,387,60"/>
-<area shape="rect" id="Node000002" href="$classTelnetSession.html#a92c3c3ac48409b7f5910510b0ee00816" title="Send a line of data to the Telnet Server." alt="" coords="5,5,171,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,36,171,32,172,27,204,31"/>
-<area shape="rect" id="Node000003" href="$classTelnetSession.html#a0348872a381dd52fbf0e5529aa173ff4" title="Called every frame/loop by the Terminal Server." alt="" coords="11,57,165,85"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="204,60,165,65,165,59,203,55"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="230,32,411,60"/>
+<area shape="rect" id="Node000002" href="$classTelnetSession.html#a92c3c3ac48409b7f5910510b0ee00816" title="Send a line of data to the Telnet Server." alt="" coords="5,5,182,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,34,182,32,182,27,217,33"/>
+<area shape="rect" id="Node000003" href="$classTelnetSession.html#a0348872a381dd52fbf0e5529aa173ff4" title="Called every frame/loop by the Terminal Server." alt="" coords="12,57,175,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="211,58,176,65,175,59,217,57"/>
 </map>

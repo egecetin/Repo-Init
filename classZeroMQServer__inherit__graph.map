@@ -1,9 +1,9 @@
 <map id="ZeroMQServer" name="ZeroMQServer">
-<area shape="rect" id="Node000001" title=" " alt="" coords="46,157,153,184"/>
-<area shape="rect" id="Node000002" href="$classZeroMQ.html" title=" " alt="" coords="5,81,76,109"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,119,91,155,87,158,58,123"/>
-<area shape="rect" id="Node000003" href="$classZeroMQMonitor.html" title=" " alt="" coords="100,81,218,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="141,123,112,158,108,155,137,119"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="102,5,216,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="162,49,162,81,156,81,156,49"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="46,157,161,184"/>
+<area shape="rect" id="Node000002" href="$classZeroMQ.html" title=" " alt="" coords="5,81,79,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,118,95,156,90,157,61,123"/>
+<area shape="rect" id="Node000003" href="$classZeroMQMonitor.html" title=" " alt="" coords="103,81,226,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="147,120,116,158,112,154,142,122"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="104,5,225,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="166,47,167,82,162,80,163,51"/>
 </map>

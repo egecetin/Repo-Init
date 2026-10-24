@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🚀_20strong_20release_20distribution_20strong_0',['🚀 &lt;strong&gt;Release &amp; Distribution&lt;/strong&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md21',1,'']]]
+  ['🚀_20release_20distribution_0',['🚀 &lt;b&gt;Release &amp;amp; Distribution&lt;/b&gt;',['..//__w/Repo-Init/Repo-Init/README.md#autotoc_md21',1,'']]]
 ];

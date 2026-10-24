@@ -1,5 +1,5 @@
 <map id="TelnetSession::getCompleteLines" name="TelnetSession::getCompleteLines">
-<area shape="rect" id="Node000001" title=" " alt="" coords="207,5,398,50"/>
-<area shape="rect" id="Node000002" href="$classTelnetSession.html#a0348872a381dd52fbf0e5529aa173ff4" title="Called every frame/loop by the Terminal Server." alt="" coords="5,14,159,42"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,30,159,30,159,25,191,25"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="217,5,419,50"/>
+<area shape="rect" id="Node000002" href="$classTelnetSession.html#a0348872a381dd52fbf0e5529aa173ff4" title="Called every frame/loop by the Terminal Server." alt="" coords="5,14,169,42"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,28,169,30,169,25,204,27"/>
 </map>
