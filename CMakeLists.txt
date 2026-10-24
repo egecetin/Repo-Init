@@ -137,7 +137,7 @@ target_compile_options(
 )
 target_include_directories(${PROJECT_NAME}-lib PRIVATE ${PROJECT_BINARY_DIR})
 # Clang rejects spdlog's internal FMT_STRING usage (SPDLOG_LOGGER_CATCH) with consteval format checks
-target_compile_definitions(${PROJECT_NAME}-lib PUBLIC FMT_USE_CONSTEVAL=0)
+target_compile_definitions(${PROJECT_NAME}-lib PUBLIC FMT_CONSTEVAL=)
 target_link_libraries(
   ${PROJECT_NAME}-lib
   PUBLIC cppzmq crashpad::client CURL::libcurl prometheus-cpp::pull sentry::sentry spdlog::spdlog stdc++fs
