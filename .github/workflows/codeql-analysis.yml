@@ -18,7 +18,7 @@ jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
-    container: egecetinn/ubuntu2404@sha256:0f63b02fe3dcd1a03d299000466713596df974a657005e27cda42155f652134d
+    container: egecetinn/ubuntu2604@sha256:6da5b408684179bc461a30b7a932f24f250e54797d1061d1547c570bdff9afb7
     permissions:
       actions: read
       contents: read
